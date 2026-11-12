@@ -34,7 +34,20 @@ func _ready() -> void:
 	rig_release_ready = split_clip_count == 16 and equipment_sockets.size() == 7
 
 func _sample_track(source: Animation, track: int, time: float) -> Variant:
-	var v: Variant = source.track_interpolate(track, time)
+	var v: Variant = null
+	match source.track_get_type(track):
+		Animation.TYPE_POSITION_3D:
+			v = source.position_track_interpolate(track, time)
+		Animation.TYPE_ROTATION_3D:
+			v = source.rotation_track_interpolate(track, time)
+		Animation.TYPE_SCALE_3D:
+			v = source.scale_track_interpolate(track, time)
+		Animation.TYPE_BLEND_SHAPE:
+			v = source.blend_shape_track_interpolate(track, time)
+		Animation.TYPE_VALUE:
+			v = source.value_track_interpolate(track, time)
+		Animation.TYPE_BEZIER:
+			v = source.bezier_track_interpolate(track, time)
 	if v != null:
 		return v
 	var key_count: int = source.track_get_key_count(track)

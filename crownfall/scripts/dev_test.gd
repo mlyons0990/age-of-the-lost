@@ -31,6 +31,7 @@ func _note(s: String) -> void:
 
 
 var checks := 0
+var finished: Array = []   # test sections that ran to the end (a script error stops one silently)
 var fails := 0
 
 
@@ -322,7 +323,9 @@ func _inventory_tests() -> void:
 	await _lore_tests()
 	await _caster_tests()
 	await _affix_tests()
+	await _boss_tests()
 	await _stat_tests()
+	_check(finished.size() == 6, "every test section ran to the end (%s)" % ", ".join(finished))
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
 	_note("inventory and stat checks: %d run, %d failed" % [checks, fails])
@@ -397,6 +400,7 @@ func _lore_tests() -> void:
 	main.load_game()
 	_check(p.lore.has("veiled_lady") and p.lore.has("echo_elite") and p.lore.size() == 2, "journal survives save and load")
 	p.level = lvl_saved
+	finished.append("_lore_tests")
 
 
 func _merchant_tests() -> void:
@@ -486,6 +490,7 @@ func _merchant_tests() -> void:
 
 
 ## Rolls real items until one of the wanted type comes up, so names and stats match the type.
+	finished.append("_merchant_tests")
 func _item_of(slot: String, lvl: int, boost: float) -> Dictionary:
 	var GD := load("res://scripts/game_data.gd")
 	for i in 500:
@@ -495,7 +500,18 @@ func _item_of(slot: String, lvl: int, boost: float) -> Dictionary:
 	return GD.make_item(lvl, boost)
 
 
+## A level-up during earlier tests can queue a class choice a moment later, which pauses
+## the game. Let it appear, then dismiss it so the next checks run unpaused.
+func _dismiss_choice() -> void:
+	await _wait(1.1)
+	if main.hud.choice_panel != null:
+		main.hud.choice_panel.queue_free()
+		main.hud.choice_panel = null
+		main.hud._refresh_pause()
+
+
 func _stat_tests() -> void:
+	await _dismiss_choice()
 	var GD := load("res://scripts/game_data.gd")
 	var Inv := load("res://scripts/inventory_logic.gd")
 	var p: Node2D = main.player
@@ -621,8 +637,11 @@ func _stat_tests() -> void:
 	_check(is_equal_approx(s2["crit_mult"], 2.25) and is_equal_approx(s2["atk_speed"], 0.2) and is_equal_approx(s2["life_hit"], 7.0) and is_equal_approx(s2["move"], 0.1), "secondary bonuses reach the stats")
 	_check(is_equal_approx(s2["cdr"], float(s2["m"]["cdr"]) + 0.1), "gear cooldown reduction adds to talents")
 	p.cds.clear()
-	p.use_skill("basic", p.position + Vector2(60, 20))
-	_check(is_equal_approx(float(p.cd_full["basic"]), 0.55 / 1.2), "attack speed shortens the basic attack (%.3f)" % float(p.cd_full["basic"]))
+	p.cd_full.erase("basic")
+	var used: bool = p.use_skill("basic", p.position + Vector2(60, 20))
+	if not used:
+		_note("basic attack refused: dead %s paused %s mp %.1f choice %s death %s" % [str(p.dead), str(get_tree().paused), p.mp, str(main.hud.choice_panel), str(main.hud.death_panel)])
+	_check(used and is_equal_approx(float(p.cd_full.get("basic", -1.0)), 0.55 / 1.2), "attack speed shortens the basic attack (%.3f)" % float(p.cd_full.get("basic", -1.0)))
 	p.gear["ring1"] = GD.starter_item("ring", "Caps", {"cdr": 5.0, "atk_speed": 5.0, "move": 5.0})
 	var s3: Dictionary = p.stats()
 	_check(s3["cdr"] <= 0.5 and s3["atk_speed"] <= 0.75 and s3["move"] <= 0.4, "secondary bonuses are capped")
@@ -651,6 +670,7 @@ func _stat_tests() -> void:
 	await _wait(0.3)
 	await _shot("g10_stats")
 	main.hud.toggle_character()
+	finished.append("_stat_tests")
 
 
 func _run() -> void:
@@ -816,6 +836,7 @@ func _caster_tests() -> void:
 
 
 ## Elite affixes: Swift, Shielded, Molten and Summoner each do what they say.
+	finished.append("_caster_tests")
 func _affix_tests() -> void:
 	var GD := load("res://scripts/game_data.gd")
 	var p: Node2D = main.player
@@ -869,3 +890,64 @@ func _affix_tests() -> void:
 	_check(main.hazard_hits == h1, "stepping out of the Molten ring avoids the blast")
 	main.close_rift()
 	await _wait(0.3)
+
+
+## The Warden: arrives on wave 5, slams the ground, calls help, enrages, drops a legendary.
+	finished.append("_affix_tests")
+func _boss_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var p: Node2D = main.player
+	p.position = main.RIFT_POS + GD.to_px(Vector2(-2.5, 0.0))
+	p.hp = float(p.stats()["max_hp"])
+	main.toggle_rift()
+	main.rift["wave"] = GD.BOSS_EVERY - 1
+	main.spawn_wave()
+	var boss: Node2D = null
+	for e in main.enemies:
+		if e.boss:
+			boss = e
+	_check(boss != null and main.enemies.size() == 3, "wave %d brings the Warden and two Hollowlings" % GD.BOSS_EVERY)
+	if boss == null:
+		return
+	for e in main.enemies.duplicate():
+		if e != boss:
+			main.kill_enemy(e)
+	_check(boss.max_hp > 400.0 and boss.affixes.has("summoner"), "the Warden is tough (%d life) and can call help" % int(boss.max_hp))
+	# it slams the ground where the knight stands
+	boss.slam_cd = 0.05
+	boss.stun = 0.0
+	var hz0: int = _count_hazards()
+	await _wait(0.2)
+	_check(_count_hazards() == hz0 + 1, "the Warden slams the ground under the knight")
+	await _wait(0.4)
+	await _shot("g21_warden")
+	# enrage below 35%: faster, and slams twice
+	boss.take_hit(int(boss.hp - boss.max_hp * 0.3), false, p.position, {})
+	await _wait(0.1)
+	_check(boss.enraged and boss.speed_mult() > 1.2, "the Warden enrages below 35% life")
+	_check(boss.summons_done >= 1, "and has called Hollowlings on the way down")
+	await _shot("g22_warden_enraged")
+	# defeat: a legendary drops and the kill is counted
+	var loot0: int = main.loot.size()
+	var kills0: int = p.bosses_killed
+	main.kill_enemy(boss)
+	var legendary := false
+	for i in range(loot0, main.loot.size()):
+		var l: Node2D = main.loot[i]
+		if l.kind == "item" and int(l.item["rarity"]) == 3:
+			legendary = true
+	_check(legendary and p.bosses_killed == kills0 + 1, "defeating the Warden drops a legendary")
+	main.ground_blast(p.position, 2.0, 1.0, 999.0, 99, Color.RED)
+	main.close_rift()
+	await _wait(0.1)
+	_check(_count_hazards() == 0, "closing the Scar clears pending blasts")
+	await _wait(0.3)
+	finished.append("_boss_tests")
+
+
+func _count_hazards() -> int:
+	var n := 0
+	for c in main.world.get_children():
+		if c.get_script() == main.Hazard and not c.done:
+			n += 1
+	return n

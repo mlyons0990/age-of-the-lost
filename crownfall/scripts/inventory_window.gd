@@ -975,6 +975,7 @@ func _draw_character(r: Rect2, mouse: Vector2) -> void:
 		["Movement speed", "+%d%%" % roundi(float(s["move"]) * 100.0)],
 		["Gold", "%d" % p.gold],
 		["Monsters slain", "%d" % p.kills],
+		["Wardens defeated", "%d" % p.bosses_killed],
 		["Memories found", "%d of %d" % [p.lore.size(), GD.LORE.size()]],
 		["#", "Path"],
 		["Level 1", "Knight"],

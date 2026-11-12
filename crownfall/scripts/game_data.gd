@@ -150,6 +150,10 @@ const ETYPES := {
 	"revenant": {"name": "Veilbound Revenant", "hp": 46.0, "dmg": 10.0, "speed": 2.5, "range": 1.35, "atk_cd": 1.7, "wind": 0.5, "rad": 0.4, "xp": 1.15, "h": 96.0},
 	# Ranged caster: keeps its distance ("keep"), charges a bolt ("wind"), then fires it ("bolt_speed" ground units/s).
 	"caster": {"name": "Hexbound Gravecaller", "hp": 34.0, "dmg": 11.0, "speed": 2.1, "range": 6.0, "keep": 3.2, "atk_cd": 2.4, "wind": 0.75, "rad": 0.4, "xp": 1.3, "h": 96.0, "ranged": true, "bolt_speed": 7.0},
+	# Boss of every fifth wave. Uses the Brute art, much larger and darkened ("tex", "tint").
+	# Slams the ground where the knight stands ("slam_*"), calls Hollowlings at half life and enrages below "enrage".
+	"warden": {"name": "The Unwritten Warden", "hp": 640.0, "dmg": 20.0, "speed": 1.6, "range": 1.9, "atk_cd": 2.6, "wind": 0.8, "rad": 0.9, "xp": 14.0, "h": 150.0,
+		"boss": true, "tex": "brute", "tint": "8a7aa8", "slam_cd": 5.0, "slam_radius": 2.1, "slam_delay": 1.1, "slam_dmg": 1.3, "enrage": 0.35},
 	"brute": {"name": "Thornhide Brute", "hp": 95.0, "dmg": 16.0, "speed": 1.7, "range": 1.6, "atk_cd": 2.3, "wind": 0.7, "rad": 0.6, "xp": 2.0, "h": 92.0},
 }
 const ELITE_PREFIX := ["Vile", "Dread", "Blighted", "Ancient", "Frenzied", "Gloomborn"]
@@ -163,6 +167,8 @@ const ELITE_AFFIXES := {
 	"summoner": {"name": "Summoner", "color": "c9a8ff", "desc": "Calls Hollowlings to its side when wounded.", "at": [0.6, 0.25], "count": 2},
 }
 const ELITE_TWO_AFFIX_LEVEL := 15
+## Every this-many waves the Reality Scar sends a boss.
+const BOSS_EVERY := 5
 
 const RARITY := [
 	{"name": "Common", "color": "e4e0d6", "mult": 1.0},

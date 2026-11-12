@@ -48,6 +48,7 @@ var gold := 0
 var potions := 3
 var kills := 0
 var elite_kills := 0
+var bosses_killed := 0
 var spec := ""
 var adv := ""
 var heroic := ""

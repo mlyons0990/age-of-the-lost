@@ -37,7 +37,18 @@ for the knight and three painted enemy types:
   attacks 30% faster), Shielded (a ward blocks all damage for 2.2 s every 7 s),
   Molten (explodes 1.3 s after dying; step out of the orange ring), Summoner
   (calls two Hollowlings at 60% and 25% life). From wave 6 elites can also be
-  Gravecallers. Numbers live in `ELITE_AFFIXES` in `game_data.gd`. This arena
+  Gravecallers. Numbers live in `ELITE_AFFIXES` in `game_data.gd`.
+- **Boss every fifth wave:** the Unwritten Warden (the Brute art, much larger
+  and darkened; replace with real art later). Big health bar at the top of the
+  screen. Every 5 s it slams the ground where the knight stands (purple warning
+  ring, 1.1 s to step out); it calls Hollowlings at 60% and 25% life; below 35%
+  it enrages: red tint, faster, slams twice (the second ring leads the knight).
+  It resists knockback and stuns. Defeat drops a guaranteed legendary, a second
+  good item and triple gold, and counts on the character panel ("Wardens
+  defeated", saved). Closing the Scar clears pending slams and bolts. Tuning:
+  `warden` in `ETYPES` and `BOSS_EVERY` in `game_data.gd`.
+- **Hovering an enemy** shows its health bar at the top, plus a line for each
+  elite affix explaining what it does. This arena
   is a placeholder so combat has somewhere to happen.
 - **Knight skills:** Slash, Cleave, Shield Charge, Rallying Cry, plus one skill
   from the chosen specialization.
@@ -189,12 +200,15 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 120 checks covering
+(walk, fight a wave, level to 60 making each class choice, 128 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
+the last check confirms every test section ran to the end (a GDScript error
+inside a section stops it without failing a check, so also look for
+"SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 120 of 120 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 128 of 128 checks. Not yet run on Windows.
 
 ## How the plaza works
 

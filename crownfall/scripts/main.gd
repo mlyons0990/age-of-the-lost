@@ -466,6 +466,13 @@ func spawn_wave() -> void:
 	hud.toast("Wave %d" % wave, Color("c9a8ff"))
 	audio.play("wave", 0.0)
 	shake = maxf(shake, 4.0)
+	if wave % GD.BOSS_EVERY == 0:
+		# boss wave: the Warden and a few Hollowlings
+		hud.banner("The Unwritten Warden", "A guardian of the Scar awakens")
+		spawn_enemy("warden", false, _spawn_point())
+		for i in 2:
+			spawn_enemy("slime", false, _spawn_point())
+		return
 	for i in mini(3 + wave, 9):
 		var r := randf()
 		var key := "slime"
@@ -508,6 +515,10 @@ func close_rift(msg := "") -> void:
 			e.dead_t = 0.0
 			fx_parts.burst(e.position, 12, [Color("c9a8ff"), Color("7a4dff")], 3.0, 60.0)
 	enemies.clear()
+	# pending slams, blasts and bolts vanish with the Scar
+	for c in world.get_children():
+		if c.get_script() == Hazard or c.get_script() == Bolt:
+			c.queue_free()
 	if msg != "":
 		hud.banner(msg, "You reached wave %d" % int(rift["wave"]) if int(rift["wave"]) > 0 else "")
 
@@ -539,12 +550,21 @@ func kill_enemy(e: Node2D) -> void:
 		cols = [Color("7dffc8"), Color("1f4a3c"), Color("c8ffe8")]
 	fx_parts.burst(e.position, 40 if e.elite else 18, cols, 5.0, 60.0, 8.0)
 	var xp: int = roundi(GD.xp_need(e.level) / (5.0 + e.level * 0.35) * float(e.t["xp"]) * (3.0 if e.elite else 1.0))
+	if e.boss:
+		shake = 12.0
 	fx_text.text(e.position + Vector2(0, -30), "+%d XP" % xp, Color("c9a8ff"))
 	var gold: int = roundi(randf_range(2, 6) * (1.0 + e.level * 0.4) * (4.0 if e.elite else 1.0))
 	_drop(e.position, "gold", gold, {})
 	if randf() < 0.13:
 		_drop(e.position, "potion", 0, {})
-	if e.elite or randf() < 0.3:
+	if e.boss:
+		# the Warden always leaves a legendary and a second good item
+		_drop(e.position, "item", 0, GD.make_item(e.level, 1.0))
+		_drop(e.position, "item", 0, GD.make_item(e.level, 0.5))
+		_drop(e.position, "gold", gold * 3, {})
+		hud.banner("Warden Defeated", "The Scar falters")
+		player.bosses_killed += 1
+	elif e.elite or randf() < 0.3:
 		_drop(e.position, "item", 0, GD.make_item(e.level, 0.3 if e.elite else 0.0))
 	if e.elite and randf() < 0.5:
 		_drop(e.position, "item", 0, GD.make_item(e.level, 0.15))
@@ -694,7 +714,7 @@ func quit_game() -> void:
 func save_game() -> void:
 	var p := player
 	var data := {"save_version": 2, "bag": p.bag, "stash": p.stash, "name": p.hero_name, "level": p.level, "xp": p.xp, "gold": p.gold, "potions": p.potions, "kills": p.kills,
-		"elite_kills": p.elite_kills, "spec": p.spec, "adv": p.adv, "heroic": p.heroic, "gear": p.gear,
+		"elite_kills": p.elite_kills, "bosses_killed": p.bosses_killed, "spec": p.spec, "adv": p.adv, "heroic": p.heroic, "gear": p.gear,
 		"opened_rift": p.opened_rift, "quest": p.quest, "spent": p.spent,
 		"shop": shop, "shop_level": shop_level, "buyback": p.buyback, "lore": p.lore}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -719,6 +739,7 @@ func load_game() -> bool:
 	p.potions = int(data.get("potions", 3))
 	p.kills = int(data.get("kills", 0))
 	p.elite_kills = int(data.get("elite_kills", 0))
+	p.bosses_killed = int(data.get("bosses_killed", 0))
 	p.spec = String(data.get("spec", ""))
 	p.adv = String(data.get("adv", ""))
 	p.heroic = String(data.get("heroic", ""))

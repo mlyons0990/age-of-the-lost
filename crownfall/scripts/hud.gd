@@ -616,15 +616,40 @@ class HudDraw extends Control:
 		var he: Node2D = main.hover_enemy
 		if he == null and p.target != null and is_instance_valid(p.target) and p.target.dead_t < 0.0:
 			he = p.target
-		if he != null and is_instance_valid(he):
+		var boss_up := false
+		for e in main.enemies:
+			if e.boss and e.dead_t < 0.0:
+				boss_up = true
+		if he != null and is_instance_valid(he) and not he.boss:
 			var fw := 460.0
-			var fr := Rect2(w / 2 - fw / 2, 20, fw, 24)
+			var fr := Rect2(w / 2 - fw / 2, 92.0 if boss_up else 20.0, fw, 24)
 			draw_rect(fr.grow(3), Color(0.04, 0.04, 0.06, 0.85))
 			draw_rect(fr, Color("3a0a0e"))
 			draw_rect(Rect2(fr.position, Vector2(fw * clampf(he.hp / he.max_hp, 0.0, 1.0), fr.size.y)), Color("d07a1e") if he.elite else Color("b3242e"))
 			_text_c("%s  ·  Lv %d%s" % [he.ename, he.level, "  ·  Elite" if he.elite else ""], fr.get_center() + Vector2(0, 6), 17, Color("ffd27a") if he.elite else Color("f2e6d0"), 4)
+			# what its elite affixes do
+			var ay := fr.end.y + 20.0
+			for af in he.affixes:
+				var ad: Dictionary = GD.ELITE_AFFIXES[af]
+				_text_c("%s: %s" % [ad["name"], ad["desc"]], Vector2(w / 2, ay), 15, Color(String(ad["color"])), 4)
+				ay += 19.0
 
 		# toasts and banner
+		# boss health bar, top centre
+		for e in main.enemies:
+			if e.boss and e.dead_t < 0.0:
+				var bw := 640.0
+				var bx := w / 2 - bw / 2
+				var by := 46.0
+				draw_rect(Rect2(bx - 4, by - 4, bw + 8, 30), Color(0.03, 0.02, 0.05, 0.85))
+				draw_rect(Rect2(bx, by, bw * clampf(e.hp / e.max_hp, 0.0, 1.0), 22), Color("c0392b") if e.enraged else Color("8e44ad"))
+				draw_rect(Rect2(bx - 4, by - 4, bw + 8, 30), GOLD.darkened(0.2), false, 2.0)
+				# enrage threshold tick
+				var ex: float = bx + bw * float(e.t["enrage"])
+				draw_line(Vector2(ex, by - 2), Vector2(ex, by + 24), Color(1, 0.6, 0.5, 0.8), 2.0)
+				_text_c(e.ename + ("  ·  Enraged" if e.enraged else ""), Vector2(w / 2, by - 12), 22, GOLD, 6)
+				_text_c("%d / %d" % [int(e.hp), int(e.max_hp)], Vector2(w / 2, by + 17), 15, Color("efe6d2"), 4)
+				break
 		# toasts sit in a band near the top, each on a dark plate so they read over bright stone
 		var ty := 150.0
 		for t in hud.toasts:

@@ -10,7 +10,7 @@ const TEX := {
 	"caster": preload("res://assets/enemies/hexcaller.png"),
 }
 ## On-screen scale of each sprite, tuned against the knight's height.
-const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88, "caster": 0.82}
+const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88, "caster": 0.82, "warden": 1.45}
 
 var main: Node2D
 var player: Node2D
@@ -42,6 +42,9 @@ var affixes: Array = []   # elite affix ids, see GD.ELITE_AFFIXES
 var ward := 0.0           # Shielded: seconds the ward stays up
 var ward_cd := 3.0        # Shielded: seconds until the next ward
 var summons_done := 0     # Summoner: how many hp thresholds have called help
+var boss := false
+var slam_cd := 3.0        # boss: seconds until the next ground slam
+var enraged := false
 
 
 func setup(key: String, is_elite: bool, player_level: int) -> void:
@@ -58,6 +61,15 @@ func setup(key: String, is_elite: bool, player_level: int) -> void:
 	if elite:
 		ename = "%s %s" % [GD.ELITE_PREFIX[randi() % GD.ELITE_PREFIX.size()], t["name"]]
 	phase = randf() * 6.0
+	boss = t.get("boss", false)
+	if boss:
+		elite = false
+		level = player_level + 1
+		max_hp = round(float(t["hp"]) * (1.0 + 0.3 * (level - 1)))
+		hp = max_hp
+		dmg = float(t["dmg"]) * (1.0 + 0.24 * (level - 1))
+		set_affixes(["summoner"])
+		return
 	if elite:
 		var pool: Array = GD.ELITE_AFFIXES.keys()
 		pool.shuffle()
@@ -81,16 +93,20 @@ func affix_names() -> String:
 
 ## Speed and attack-rate multipliers from affixes.
 func speed_mult() -> float:
-	return float(GD.ELITE_AFFIXES["swift"]["speed"]) if affixes.has("swift") else 1.0
+	return (float(GD.ELITE_AFFIXES["swift"]["speed"]) if affixes.has("swift") else 1.0) * (1.35 if enraged else 1.0)
 
 
 func attack_mult() -> float:
-	return float(GD.ELITE_AFFIXES["swift"]["attack"]) if affixes.has("swift") else 1.0
+	return (float(GD.ELITE_AFFIXES["swift"]["attack"]) if affixes.has("swift") else 1.0) * (0.7 if enraged else 1.0)
 
 
 ## Height of the sprite on screen, in pixels.
+func tex() -> Texture2D:
+	return TEX[String(t.get("tex", type_key))]
+
+
 func height() -> float:
-	var tex: Texture2D = TEX[type_key]
+	var tex: Texture2D = tex()
 	return tex.get_height() * float(DRAW_SCALE[type_key]) * (1.25 if elite else 1.0)
 
 
@@ -103,10 +119,10 @@ func take_hit(amount: int, crit: bool, from: Vector2, opt: Dictionary) -> int:
 	hp -= amount
 	flash = 0.12
 	var dir := GD.ground(from, position).normalized()
-	var k: float = float(opt.get("kb", 0.15)) * (0.4 if type_key == "brute" else 1.0) * (0.5 if elite else 1.0)
+	var k: float = float(opt.get("kb", 0.15)) * (0.4 if type_key == "brute" else 1.0) * (0.5 if elite else 1.0) * (0.1 if boss else 1.0)
 	kb += dir * k * 10.0
 	if opt.has("stun"):
-		stun = maxf(stun, float(opt["stun"]))
+		stun = maxf(stun, float(opt["stun"]) * (0.3 if boss else 1.0))
 	main.fx_text.text(position, str(amount), Color("ffd84a") if crit else Color.WHITE, crit)
 	var cols: Array = opt.get("colors", [Color.WHITE, Color("ffd2a0")])
 	main.fx_parts.burst(position, 10 if crit else 5, cols, 3.0, 70.0)
@@ -187,6 +203,8 @@ func _process(delta: float) -> void:
 	if t.get("ranged", false):
 		_ranged_ai(delta, to_p, d_p)
 		return
+	if boss:
+		_boss_specials(delta)
 	if state == "windup":
 		wind_left -= delta
 		if wind_left <= 0.0:
@@ -245,6 +263,26 @@ func _retreat(dir_to_player: Vector2, step: float, d_now: float) -> bool:
 	return false
 
 
+## Boss: slams the ground where the knight stands (twice when enraged) and enrages at low life.
+func _boss_specials(delta: float) -> void:
+	if not enraged and hp / max_hp <= float(t["enrage"]):
+		enraged = true
+		main.hud.banner("The Warden Rages", "")
+		main.audio.play("wave", 0.0)
+		main.shake = maxf(main.shake, 8.0)
+	slam_cd -= delta
+	if slam_cd <= 0.0 and state != "windup":
+		slam_cd = float(t["slam_cd"]) * (0.65 if enraged else 1.0)
+		var col := Color("b07aff") if not enraged else Color("ff5a5a")
+		main.ground_blast(player.position, float(t["slam_radius"]), float(t["slam_delay"]), dmg * float(t["slam_dmg"]), level, col)
+		if enraged:
+			# a second ring where the knight is heading
+			var lead: Vector2 = player.position + GD.to_px(GD.ground(position, player.position).normalized() * 2.0)
+			main.ground_blast(lead, float(t["slam_radius"]), float(t["slam_delay"]) + 0.4, dmg * float(t["slam_dmg"]), level, col)
+		struck = 0.18
+		main.audio.play("enemy_swing", 0.0)
+
+
 func _start_cast() -> void:
 	state = "windup"
 	wind_left = float(t["wind"]) * attack_mult()
@@ -299,7 +337,7 @@ func _draw() -> void:
 
 	# shadow
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-	draw_colored_polygon(_ellipse(Vector2.ZERO, 22.0 * sc * (1.5 if type_key == "brute" else 1.0), 9.0 * sc), Color(0.1, 0.08, 0.2, 0.3))
+	draw_colored_polygon(_ellipse(Vector2.ZERO, 22.0 * sc * (1.5 if type_key == "brute" else (2.4 if boss else 1.0)), 9.0 * sc * (1.6 if boss else 1.0)), Color(0.1, 0.08, 0.2, 0.3))
 	if elite:
 		draw_circle(Vector2(0, -tall * 0.5), tall * 0.55, Color(1.0, 0.78, 0.3, 0.12))
 	if affixes.has("molten"):
@@ -311,7 +349,7 @@ func _draw() -> void:
 			main.fx_parts.spark(position + Vector2(randf_range(-30, 30), -randf_range(0, tall * 0.6)), Vector2.ZERO, randf_range(30, 80), 60.0, 0.0, 0.5, Color("ff8a3a"), 4.0)
 
 	# painted sprite (faces lower-right in the source art; mirrored when facing left)
-	var tex: Texture2D = TEX[type_key]
+	var tex: Texture2D = tex()
 	var k: float = float(DRAW_SCALE[type_key]) * (1.25 if elite else 1.0)
 	var hop := 0.0
 	var squash := 1.0
@@ -326,12 +364,14 @@ func _draw() -> void:
 		"caster":
 			hop = 10.0 + sin(phase * 2.4) * 7.0   # floats above the ground
 			tilt = sin(phase * 4.0) * 0.03 if moving else 0.0
-		"brute":
+		"brute", "warden":
 			hop = absf(sin(phase * 5.0)) * 6.0 if moving else sin(phase * 2.0) * 2.0
 			tilt = sin(phase * 5.0) * 0.04 if moving else 0.0
 	# lean back while winding up, lunge forward on the strike
 	tilt += (-0.22 * wind + (0.3 * struck / 0.18)) * face
 	var tint := Color(2.2, 2.2, 2.2) if flash > 0.0 else (Color(1.0, 0.75, 0.6) if burn > 0.0 else Color.WHITE)
+	if t.has("tint") and flash <= 0.0:
+		tint *= Color(String(t["tint"])) * (Color(1.4, 0.7, 0.7) if enraged else Color.WHITE)
 	draw_set_transform(Vector2(struck / 0.18 * 14.0 * face, -hop), tilt, Vector2(k * face * squash, k / squash))
 	draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 8.0), tint)
 
@@ -354,7 +394,7 @@ func _draw() -> void:
 		draw_circle(hc, rr * 0.45, Color("f2fff9"))
 
 	# health bar and elite name
-	if dead_t < 0.0 and (hp < max_hp or elite or main.hover_enemy == self):
+	if dead_t < 0.0 and not boss and (hp < max_hp or elite or main.hover_enemy == self):
 		var w: float = 110.0 if elite else 76.0
 		var y: float = -tall - 24.0
 		draw_rect(Rect2(-w / 2 - 1, y - 1, w + 2, 8), Color(0, 0, 0, 0.7))

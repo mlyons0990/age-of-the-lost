@@ -43,9 +43,16 @@ var frame_clock := 0.0
 var active_texture_key := ""
 var cached_textures: Dictionary = {}
 var active_proxy_clip := ""
+var foot_anchor_metadata: Dictionary = {}
+var last_anchor_bottom_px := 0.0
 
 func _ready() -> void:
     name = "AOTL_PaintedActor_25D"
+    var anchor_path := "res://data/25d_sprite_foot_anchors.json"
+    if FileAccess.file_exists(anchor_path):
+        var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(anchor_path))
+        if parsed is Dictionary:
+            foot_anchor_metadata = parsed.get("sprites", {})
     var capsule := CapsuleShape3D.new()
     capsule.radius = 0.26
     capsule.height = 1.85
@@ -65,16 +72,36 @@ func _ready() -> void:
     visual.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
     add_child(visual)
 
-    var shadow_mesh := PlaneMesh.new()
-    shadow_mesh.size = Vector2(0.85, 0.52)
+    # Soft contact shadow with radial vertex-alpha fade (replaces the opaque dark rectangle).
+    var vertices := PackedVector3Array()
+    var colors := PackedColorArray()
+    var indexes := PackedInt32Array()
+    vertices.append(Vector3.ZERO)
+    colors.append(Color(0.05, 0.08, 0.13, 0.27))
+    var segments := 28
+    for i in segments:
+        var angle := TAU * float(i) / float(segments)
+        vertices.append(Vector3(cos(angle) * .59, 0, sin(angle) * .39))
+        colors.append(Color(0.05, 0.08, 0.13, 0.0))
+    for i in segments:
+        indexes.append(0)
+        indexes.append(i + 1)
+        indexes.append((i + 1) % segments + 1)
+    var surface := []
+    surface.resize(Mesh.ARRAY_MAX)
+    surface[Mesh.ARRAY_VERTEX] = vertices
+    surface[Mesh.ARRAY_COLOR] = colors
+    surface[Mesh.ARRAY_INDEX] = indexes
+    var shadow_mesh := ArrayMesh.new()
+    shadow_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, surface)
     shadow = MeshInstance3D.new()
-    shadow.name = "ContactShadow"
+    shadow.name = "Painterly_Gradient_ContactShadow"
     shadow.mesh = shadow_mesh
-    shadow.position = Vector3(0, 0.024, 0)
+    shadow.position = Vector3(0, 0.031, 0)
     var shadow_mat := StandardMaterial3D.new()
     shadow_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
     shadow_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-    shadow_mat.albedo_color = Color(0.07, 0.09, 0.16, 0.24)
+    shadow_mat.vertex_color_use_as_albedo = true
     shadow_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
     shadow.material_override = shadow_mat
     add_child(shadow)
@@ -136,7 +163,8 @@ func start_dodge() -> void:
     dodge_cd = 1.10
     has_target = false
     frame_clock = 0.0
-    # Painted sprites have NO authored dodge-roll frames. This is explicitly a placeholder.
+    # Painted sprites have NO authored dodge-roll frames. A staged lean/compression
+    # serves only as a readable placeholder; never label it a finished painted roll.
 
 func _physics_process(delta: float) -> void:
     dodge_cd = maxf(0.0, dodge_cd - delta)
@@ -235,15 +263,30 @@ func _render_painted_frame(state: String, force := false) -> void:
         visual.texture = source
         visual.hframes = maxi(1, int(source.get_width() / frame_size))
         visual.vframes = 1
-        visual.position.y = float(frame_size) * PIXEL_SIZE * 0.50 - 0.05
+        # Art-derived baseline: transparent trim varies by sheet (384px idle vs 512px attack).
+        # Anchor to first-frame silhouette's lowermost opaque row. Ground-plane y≈0.05m.
+        var data: Dictionary = foot_anchor_metadata.get(path, {})
+        last_anchor_bottom_px = float(data.get("alpha_bottom_y", frame_size - 8))
+        visual.position.y = 0.05 + (last_anchor_bottom_px - frame_size * .5) * PIXEL_SIZE
         active_texture_key = key
     var count := visual.hframes
     if state in ["idle"]:
         visual.frame = 0
     else:
         visual.frame = clampi(int(frame_clock * target_fps), 0, count - 1) if state in ["slash", "heavy", "cast"] else (int(frame_clock * target_fps) % count)
-    # WARNING: Not a real painted roll. This illustrates the pending animation gap.
-    visual.rotation.z = -0.08 if state == "dodge" else 0.0
+    # Ground-hugging anticipation/lean/recovery, not synthesized anatomical roll frames.
+    # Avoid an unrealistic whole-sprite 360° spin: it turns the painted hero into a coin.
+    visual.position.y = 0.05 + (last_anchor_bottom_px - frame_size * .5) * PIXEL_SIZE
+    visual.rotation.z = 0.0
+    visual.scale = Vector3.ONE
+    shadow.scale = Vector3.ONE
+    if state == "dodge":
+        var phase := clampf(1.0 - dodge_t / 0.66, 0.0, 1.0)
+        var arc := sin(phase * PI)
+        visual.rotation.z = -0.64 * arc * (1.0 if visual.flip_h else -1.0)
+        visual.scale = Vector3(1.0 + .14 * arc, 1.0 - .22 * arc, 1.0)
+        visual.position.y -= .18 * arc
+        shadow.scale = Vector3(1.0 + .38 * arc, 1.0, 1.0 + .22 * arc)
 
 func _render_proxy_animation(state: String, delta: float) -> void:
     if skeleton_visual == null:

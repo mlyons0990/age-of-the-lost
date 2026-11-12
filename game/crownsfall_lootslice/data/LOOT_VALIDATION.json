@@ -1,0 +1,52 @@
+{
+  "revision": "Persistent Ground Loot and Safe Collection",
+  "date": "2026-11-11",
+  "date_context": "America/New_York",
+  "engine": "Godot 4.6.3 Linux",
+  "headless_assertions": 749,
+  "distinct_assertions": 755,
+  "suites": {
+    "warrior": 52,
+    "mage": 57,
+    "lab": 28,
+    "art_audio": 19,
+    "mastery": 86,
+    "encounter": 60,
+    "encounter_bouts": 15,
+    "inventory_ui": 108,
+    "town_ui": 69,
+    "reliability": 77,
+    "navigation": 36,
+    "grid_alignment": 64,
+    "loot": 78
+  },
+  "rendered_checks": {
+    "inventory_ui": 110,
+    "town_ui": 71,
+    "grid_alignment": 66,
+    "loot": 78
+  },
+  "native_mouse_assertions": 6,
+  "save_schema": 6,
+  "import_schemas": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "upgrade_snapshot": ".pre-v6",
+  "max_ground_records": 512,
+  "scar_wave_record_reserve": 40,
+  "drop_kinds": [
+    "gold",
+    "potion",
+    "item"
+  ],
+  "ground_save_and_F7_roundtrip": true,
+  "persist_first_pickup": true,
+  "partial_piles": true,
+  "original_portraits_preserved": 17,
+  "new_media_jobs": 0,
+  "windows_tested": false,
+  "physical_controller_tested": false
+}

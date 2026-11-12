@@ -1,0 +1,58 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PASS sword first-fit insertion
+PASS overlap rejected
+PASS out-of-bounds footprint rejected
+PASS moving ignores only its own UID
+PASS full grid rejects item without deletion
+PASS auto-sort conserves items
+PASS level-one health and mana formula
+PASS level-one power and crit formula
+PASS Intelligence scales recovered magic and mana without inflating weapon power
+PASS explicit equip transfers ownership
+PASS weapon contribution reaches combat stats
+PASS second ring can be equipped
+PASS full bag unequip rolls back
+PASS level requirement enforced
+PASS wrong equipment slot rejected
+PASS skill assignment swaps without duplicates
+PASS cooldown survives slot reassignment
+PASS Lorecasting requirement enforced
+PASS spell level requirement enforced
+PASS discovery unlocks equippable ability
+PASS pending melee contact cannot be overwritten
+PASS I opens inventory and pauses world
+PASS drag refuses footprint beyond bag edge
+PASS drag accepts legal empty cells
+PASS drop commits cell coordinates
+PASS Escape closes modal without quitting
+PASS K opens Grimoire
+PASS service on navigation floor: Stash
+PASS service on navigation floor: Quartermaster
+PASS service on navigation floor: Stone memory
+PASS service on navigation floor: Noticeboard
+PASS E opens nearest service
+PASS stash uses proximity interaction
+PASS stash exposes a functional backpack grid
+PASS stash transfer conserves item ownership
+PASS merchant purchase transfers item and charges gold
+PASS potion purchase charges five gold
+PASS explicit merchant sale removes one item and grants gold
+PASS save roundtrip includes inventory and skill IDs
+PASS corrupt primary recovers backup and retains evidence
+PASS future save blocks destructive downgrade writes
+PASS blocked save leaves future-version bytes intact
+PASS duplicate ownership IDs rejected before loading
+PASS wrong save field types rejected safely
+PASS melee waits for its contact time
+PASS melee applies damage after contact delay
+PASS Winterglass applies documented stun
+PASS Cinderwake applies damage-over-time
+PASS ground ability does not hit before telegraph delay
+PASS ground ability resolves delayed damage
+PASS full bag pickup leaves world loot available
+PASS pickup adds item to inventory instead of auto-selling
+RESULT 52 checks; 0 failures

@@ -1,0 +1,725 @@
+{
+  "version": 1,
+  "name": "Expansion02 selected runtime art",
+  "icons": {
+    "cinder_thread": "res://assets/art_expansion02/icons/cinder_thread.png",
+    "glacial_stitch": "res://assets/art_expansion02/icons/glacial_stitch.png",
+    "arcane_fold": "res://assets/art_expansion02/icons/arcane_fold.png",
+    "ashen_ward": "res://assets/art_expansion02/icons/ashen_ward.png",
+    "starfall_script": "res://assets/art_expansion02/icons/starfall_script.png",
+    "solar_writ": "res://assets/art_expansion02/icons/solar_writ.png",
+    "winter_crown": "res://assets/art_expansion02/icons/winter_crown.png",
+    "epoch_lance": "res://assets/art_expansion02/icons/epoch_lance.png",
+    "echo_strike": "res://assets/art_expansion02/icons/echo_strike.png",
+    "frost_ring": "res://assets/art_expansion02/icons/frost_ring.png",
+    "ember_cone": "res://assets/art_expansion02/icons/ember_cone.png",
+    "dawnfall": "res://assets/art_expansion02/icons/dawnfall.png",
+    "slash": "res://assets/art_expansion02/icons/slash.png",
+    "cleave": "res://assets/art_expansion02/icons/cleave.png",
+    "charge": "res://assets/art_expansion02/icons/charge.png",
+    "rally": "res://assets/art_expansion02/icons/rally.png",
+    "hammer": "res://assets/art_expansion02/icons/hammer.png",
+    "harvest": "res://assets/art_expansion02/icons/harvest.png",
+    "breath": "res://assets/art_expansion02/icons/breath.png",
+    "ui_inventory": "res://assets/art_expansion02/icons/ui_inventory.png",
+    "ui_character": "res://assets/art_expansion02/icons/ui_character.png",
+    "ui_stash": "res://assets/art_expansion02/icons/ui_stash.png",
+    "ui_merchant": "res://assets/art_expansion02/icons/ui_merchant.png",
+    "ui_blacksmith": "res://assets/art_expansion02/icons/ui_blacksmith.png",
+    "ui_pickup": "res://assets/art_expansion02/icons/ui_pickup.png",
+    "ui_transfer": "res://assets/art_expansion02/icons/ui_transfer.png",
+    "ui_equip": "res://assets/art_expansion02/icons/ui_equip.png",
+    "ui_compare": "res://assets/art_expansion02/icons/ui_compare.png",
+    "ui_inspect": "res://assets/art_expansion02/icons/ui_inspect.png",
+    "ui_interact": "res://assets/art_expansion02/icons/ui_interact.png"
+  },
+  "portraits": {
+    "weapon": "res://assets/art_expansion02/portraits/weapon.png",
+    "offhand": "res://assets/art_expansion02/portraits/offhand.png",
+    "helm": "res://assets/art_expansion02/portraits/helm.png",
+    "armor": "res://assets/art_expansion02/portraits/armor.png",
+    "gloves": "res://assets/art_expansion02/portraits/gloves.png",
+    "boots": "res://assets/art_expansion02/portraits/boots.png",
+    "wand": "res://assets/art_expansion02/portraits/wand.png",
+    "focus": "res://assets/art_expansion02/portraits/focus.png",
+    "robe": "res://assets/art_expansion02/portraits/robe.png",
+    "hood": "res://assets/art_expansion02/portraits/hood.png",
+    "ring": "res://assets/art_expansion02/portraits/ring.png",
+    "belt": "res://assets/art_expansion02/portraits/belt.png"
+  },
+  "selections": [
+    {
+      "asset_id": "aotl_e02_gear_wayfarer_sword_001",
+      "game_id": "weapon",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_wayfarer_sword_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/weapon.png",
+      "cells": [
+        1,
+        3
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "b73b924b1fe484001c688ea5cd9fb2a534b998a4415631820e07832e1ec0b644",
+      "runtime_sha256": "1ba7dc2324140115b98e35ed958fac601c5e059731acd546649ca7daa3029748"
+    },
+    {
+      "asset_id": "aotl_e02_gear_wayfarer_shield_001",
+      "game_id": "offhand",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_wayfarer_shield_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/offhand.png",
+      "cells": [
+        2,
+        2
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "084fa010c854f93996c203019432f55a7037e3d3706afe328ca2f39b994375a5",
+      "runtime_sha256": "9b5c624e2b41063c4f8cf00692f11c3e53ad0cf2948edf8ed6aef60e344cb65f"
+    },
+    {
+      "asset_id": "aotl_e02_gear_wayfarer_helmet_001",
+      "game_id": "helm",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_wayfarer_helmet_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/helm.png",
+      "cells": [
+        2,
+        2
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "fbc3629f5f328fdb6e11e945338086034cf76ca93951e4df76158c7af8831b25",
+      "runtime_sha256": "a8b4e56d8597f7ce943ac6e980dc1d22ef35ca50271f834b1111f4b2cc4d9861"
+    },
+    {
+      "asset_id": "aotl_e02_gear_wayfarer_chest_001",
+      "game_id": "armor",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_wayfarer_chest_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/armor.png",
+      "cells": [
+        2,
+        3
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "c554daf2242113bb5f52d6a3e7b83d9be00a44d59fa458f796fbd7a9bbda9251",
+      "runtime_sha256": "042afa733e731186441897875b723684866950724d55193a748f00328f3aa5f8"
+    },
+    {
+      "asset_id": "aotl_e02_gear_wayfarer_gloves_001",
+      "game_id": "gloves",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_wayfarer_gloves_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/gloves.png",
+      "cells": [
+        2,
+        2
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "834b32189558dc7c63f99b8db7350beea01b0aa1716ce8038c9ed78963171e84",
+      "runtime_sha256": "1bd1036aa64985381eac6db7fe68377cb5fa34c3ac78b4e4c299a22eec352384"
+    },
+    {
+      "asset_id": "aotl_e02_gear_wayfarer_boots_001",
+      "game_id": "boots",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_wayfarer_boots_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/boots.png",
+      "cells": [
+        2,
+        2
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "bc0bdfd5cb0d211dd7431448ddf22728c9f29282d9650a6c0af4b08e80dfbb84",
+      "runtime_sha256": "71d1039da6be7fff7fe996ecf506a499f6fcc4b449305e5403c52a554bd2bdf6"
+    },
+    {
+      "asset_id": "aotl_e02_gear_threadkeeper_wand_001",
+      "game_id": "wand",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_threadkeeper_wand_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/wand.png",
+      "cells": [
+        1,
+        2
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "c2a54d2171e9dd432e70e73e87733f107cf13f91993b24e260acf3269e787554",
+      "runtime_sha256": "92e73c3f329d4d9473f9f5e317ab178b3b932ad4d38c0b432c746e661b9d62aa"
+    },
+    {
+      "asset_id": "aotl_e02_gear_threadkeeper_focus_001",
+      "game_id": "focus",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_threadkeeper_focus_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/focus.png",
+      "cells": [
+        1,
+        2
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "a44b0b8879d9407b15ba8838e9fc77ece7af3cf0f419658e7e7b62d50bd0f007",
+      "runtime_sha256": "dc3ec6d999e054dafdd697f896f4119bbfba6da502dabdc5d6d7e345eadcdbd3"
+    },
+    {
+      "asset_id": "aotl_e02_gear_threadkeeper_robe_001",
+      "game_id": "robe",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_threadkeeper_robe_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/robe.png",
+      "cells": [
+        2,
+        3
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "30610ad366cd7002bb946786869aa374887af557a0f1be5df5a92b5d85dc81a1",
+      "runtime_sha256": "d13f36e871b094d2ac8e94dd5c1cd49d858b821d698d9b5d0e9ab22c894fa290"
+    },
+    {
+      "asset_id": "aotl_e02_gear_threadkeeper_hood_001",
+      "game_id": "hood",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_threadkeeper_hood_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/hood.png",
+      "cells": [
+        2,
+        2
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "65da14130d5340c4c9897c12c1f325674a6bdc999d5111e5e79375ed14cdaa3c",
+      "runtime_sha256": "6f46ac25ed1ff3db55f0a6b6397dcd9a25153f1b0f8217f9fb8508c144f9b084"
+    },
+    {
+      "asset_id": "aotl_e02_gear_threadkeeper_ring_001",
+      "game_id": "ring",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_threadkeeper_ring_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/ring.png",
+      "cells": [
+        1,
+        1
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "d7bbb52f58f1349051f67a0c60e4d26af257f81552e97b1c7fd7f4274e961d6a",
+      "runtime_sha256": "5c4d2757e5e66ebc4fbfe7e2a4fe3fb7835c6771f66ee9b08858015060d0c55c"
+    },
+    {
+      "asset_id": "aotl_e02_gear_threadkeeper_belt_001",
+      "game_id": "belt",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "equipment",
+      "source_path": "runtime_items/aotl_e02_gear_threadkeeper_belt_001.png",
+      "runtime_path": "assets/art_expansion02/portraits/belt.png",
+      "cells": [
+        2,
+        1
+      ],
+      "pixels_per_cell": 64,
+      "source_sha256": "500c4beb48e15ab0d80e046e772909d8cc56e2468ccc6f7b8f44ef266c01c351",
+      "runtime_sha256": "8f4ab35ec52a9382590e79e05af52f35835be4da9620d701119210a1ee63b536"
+    },
+    {
+      "asset_id": "aotl_e02_skill_cinder_thread_001",
+      "game_id": "cinder_thread",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "cinder_thread",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_cinder_thread_001.png",
+      "runtime_path": "assets/art_expansion02/icons/cinder_thread.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "f7ac07849f201266ae725d960cfdb3a68d95e23d21f810c83c62222d4ecd9524",
+      "runtime_sha256": "f7ac07849f201266ae725d960cfdb3a68d95e23d21f810c83c62222d4ecd9524"
+    },
+    {
+      "asset_id": "aotl_e02_skill_glacial_stitch_001",
+      "game_id": "glacial_stitch",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "glacial_stitch",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_glacial_stitch_001.png",
+      "runtime_path": "assets/art_expansion02/icons/glacial_stitch.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "24f11d1afaae22efdec2bc0aaf4b645df0d18d63c128333d4b4de893f1ad99a8",
+      "runtime_sha256": "24f11d1afaae22efdec2bc0aaf4b645df0d18d63c128333d4b4de893f1ad99a8"
+    },
+    {
+      "asset_id": "aotl_e02_skill_arcane_fold_001",
+      "game_id": "arcane_fold",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "arcane_fold",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_arcane_fold_001.png",
+      "runtime_path": "assets/art_expansion02/icons/arcane_fold.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "bfe582f345b59de051206aa338b873c1519f1f95db840c04aff1d002de153655",
+      "runtime_sha256": "bfe582f345b59de051206aa338b873c1519f1f95db840c04aff1d002de153655"
+    },
+    {
+      "asset_id": "aotl_e02_skill_ashen_ward_001",
+      "game_id": "ashen_ward",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ashen_ward",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_ashen_ward_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ashen_ward.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "88caadd66e374b8429a7b9f35a4a7d61f51b7887bba2cafe478460b714d9a06c",
+      "runtime_sha256": "88caadd66e374b8429a7b9f35a4a7d61f51b7887bba2cafe478460b714d9a06c"
+    },
+    {
+      "asset_id": "aotl_e02_skill_starfall_script_001",
+      "game_id": "starfall_script",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "starfall_script",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_starfall_script_001.png",
+      "runtime_path": "assets/art_expansion02/icons/starfall_script.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "fca16b156e392f469141c0f63f324d3f7e89add195466ea0cfb07b4c32249538",
+      "runtime_sha256": "fca16b156e392f469141c0f63f324d3f7e89add195466ea0cfb07b4c32249538"
+    },
+    {
+      "asset_id": "aotl_e02_skill_solar_writ_001",
+      "game_id": "solar_writ",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "solar_writ",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_solar_writ_001.png",
+      "runtime_path": "assets/art_expansion02/icons/solar_writ.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "56d445ff6938069ef8c890ffefa7c573bba0b99824fe6479d071e3bfc7173d53",
+      "runtime_sha256": "56d445ff6938069ef8c890ffefa7c573bba0b99824fe6479d071e3bfc7173d53"
+    },
+    {
+      "asset_id": "aotl_e02_skill_winter_crown_001",
+      "game_id": "winter_crown",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "winter_crown",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_winter_crown_001.png",
+      "runtime_path": "assets/art_expansion02/icons/winter_crown.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "ee2287f213f55addab9b245c21e9296fe713df85441ed1090763371d8e676769",
+      "runtime_sha256": "ee2287f213f55addab9b245c21e9296fe713df85441ed1090763371d8e676769"
+    },
+    {
+      "asset_id": "aotl_e02_skill_epoch_lance_001",
+      "game_id": "epoch_lance",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "epoch_lance",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_epoch_lance_001.png",
+      "runtime_path": "assets/art_expansion02/icons/epoch_lance.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "bc1f1653b4f2b5e1432c888fc4d61657b7079480db684eacc18429f35793e057",
+      "runtime_sha256": "bc1f1653b4f2b5e1432c888fc4d61657b7079480db684eacc18429f35793e057"
+    },
+    {
+      "asset_id": "aotl_e02_skill_echo_strike_001",
+      "game_id": "echo_strike",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "echo_strike",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_echo_strike_001.png",
+      "runtime_path": "assets/art_expansion02/icons/echo_strike.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "1dc13e53a91f8bf50e68518df663a4d704fd01dd95cf05d2cced3dc379648dea",
+      "runtime_sha256": "1dc13e53a91f8bf50e68518df663a4d704fd01dd95cf05d2cced3dc379648dea"
+    },
+    {
+      "asset_id": "aotl_e02_skill_frost_ring_001",
+      "game_id": "frost_ring",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "frost_ring",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_frost_ring_001.png",
+      "runtime_path": "assets/art_expansion02/icons/frost_ring.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "ee9d36cf9f461c3146e9f2bfd375809510a2972ba5a3db8d8cc1d50f52416774",
+      "runtime_sha256": "ee9d36cf9f461c3146e9f2bfd375809510a2972ba5a3db8d8cc1d50f52416774"
+    },
+    {
+      "asset_id": "aotl_e02_skill_ember_cone_001",
+      "game_id": "ember_cone",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ember_cone",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_ember_cone_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ember_cone.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "27c7bf9a54671ee9738b47c6f5aeb4a98b8bb0f8a64e74206add1083a91c47ea",
+      "runtime_sha256": "27c7bf9a54671ee9738b47c6f5aeb4a98b8bb0f8a64e74206add1083a91c47ea"
+    },
+    {
+      "asset_id": "aotl_e02_skill_dawnfall_001",
+      "game_id": "dawnfall",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "dawnfall",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_dawnfall_001.png",
+      "runtime_path": "assets/art_expansion02/icons/dawnfall.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "965bdf1c6e15789e64e07379dc0fcdfb5849429f1c9fc1b938ac371167042a6c",
+      "runtime_sha256": "965bdf1c6e15789e64e07379dc0fcdfb5849429f1c9fc1b938ac371167042a6c"
+    },
+    {
+      "asset_id": "aotl_e02_skill_slash_001",
+      "game_id": "slash",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "slash",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_slash_001.png",
+      "runtime_path": "assets/art_expansion02/icons/slash.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "9ff7244546d4b60262d17fa7935d08fd6277831d88bcd5b8853f2b964f11ed4c",
+      "runtime_sha256": "9ff7244546d4b60262d17fa7935d08fd6277831d88bcd5b8853f2b964f11ed4c"
+    },
+    {
+      "asset_id": "aotl_e02_skill_cleave_001",
+      "game_id": "cleave",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "cleave",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_cleave_001.png",
+      "runtime_path": "assets/art_expansion02/icons/cleave.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "8deec9f62ac9587bd2cd3ef0a501e179e25f7a89ea1b9369578911afc67e9564",
+      "runtime_sha256": "8deec9f62ac9587bd2cd3ef0a501e179e25f7a89ea1b9369578911afc67e9564"
+    },
+    {
+      "asset_id": "aotl_e02_skill_charge_001",
+      "game_id": "charge",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "charge",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_charge_001.png",
+      "runtime_path": "assets/art_expansion02/icons/charge.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "84974fd2455a4ee574e6cb047dc04d0fe169bcd3e4386af7f027df203c9ed02a",
+      "runtime_sha256": "84974fd2455a4ee574e6cb047dc04d0fe169bcd3e4386af7f027df203c9ed02a"
+    },
+    {
+      "asset_id": "aotl_e02_skill_rally_001",
+      "game_id": "rally",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "rally",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_rally_001.png",
+      "runtime_path": "assets/art_expansion02/icons/rally.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "814fb45aa7ea0280c675cf3d9fa770070ffaf1dbabd1e446ff9069997d885cb0",
+      "runtime_sha256": "814fb45aa7ea0280c675cf3d9fa770070ffaf1dbabd1e446ff9069997d885cb0"
+    },
+    {
+      "asset_id": "aotl_e02_skill_hammer_001",
+      "game_id": "hammer",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "hammer",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_hammer_001.png",
+      "runtime_path": "assets/art_expansion02/icons/hammer.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "fbbd34efac7b559b5a9528912a4c1d3f90546bd2addc238f4e590d11d3cf4df5",
+      "runtime_sha256": "fbbd34efac7b559b5a9528912a4c1d3f90546bd2addc238f4e590d11d3cf4df5"
+    },
+    {
+      "asset_id": "aotl_e02_skill_harvest_001",
+      "game_id": "harvest",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "harvest",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_harvest_001.png",
+      "runtime_path": "assets/art_expansion02/icons/harvest.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "a3a4879b1fe50491be659e06c836bdf40c29a7cda71b19f768a376f5d6b4be86",
+      "runtime_sha256": "a3a4879b1fe50491be659e06c836bdf40c29a7cda71b19f768a376f5d6b4be86"
+    },
+    {
+      "asset_id": "aotl_e02_skill_breath_001",
+      "game_id": "breath",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "breath",
+      "source_path": "runtime_sizes/128/aotl_e02_skill_breath_001.png",
+      "runtime_path": "assets/art_expansion02/icons/breath.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "0c786971ae97f645ef4575c34ef958297ec1f7aa2a2f2005fc5ac03ef88cb416",
+      "runtime_sha256": "0c786971ae97f645ef4575c34ef958297ec1f7aa2a2f2005fc5ac03ef88cb416"
+    },
+    {
+      "asset_id": "aotl_e02_ui_inventory_001",
+      "game_id": "inventory",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_inventory",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_inventory_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_inventory.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "d4de5953f7ba68e67da189659d32b83cbd653ae4329d2aaf9bfee55cd9adf08b",
+      "runtime_sha256": "d4de5953f7ba68e67da189659d32b83cbd653ae4329d2aaf9bfee55cd9adf08b"
+    },
+    {
+      "asset_id": "aotl_e02_ui_character_001",
+      "game_id": "character",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_character",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_character_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_character.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "a219e65f0fe8b8a4983c26cdd0b0bc1567a5f92a482bb9e702f3e00aaf12f47c",
+      "runtime_sha256": "a219e65f0fe8b8a4983c26cdd0b0bc1567a5f92a482bb9e702f3e00aaf12f47c"
+    },
+    {
+      "asset_id": "aotl_e02_ui_stash_001",
+      "game_id": "stash",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_stash",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_stash_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_stash.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "25c29bee781d185aaeb496515e413bd82a50864e6124e7943d7cdccb523bc1ad",
+      "runtime_sha256": "25c29bee781d185aaeb496515e413bd82a50864e6124e7943d7cdccb523bc1ad"
+    },
+    {
+      "asset_id": "aotl_e02_ui_merchant_001",
+      "game_id": "merchant",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_merchant",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_merchant_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_merchant.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "78a83f0f0fcf1ffed494fa44b3f94670eee51473ab12b32d53fd3727d54cdb67",
+      "runtime_sha256": "78a83f0f0fcf1ffed494fa44b3f94670eee51473ab12b32d53fd3727d54cdb67"
+    },
+    {
+      "asset_id": "aotl_e02_ui_blacksmith_001",
+      "game_id": "blacksmith",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_blacksmith",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_blacksmith_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_blacksmith.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "90d35ce35efd5cc8e9a2d753cc711a3a196bc7b4f46874af099734e1407bf5f6",
+      "runtime_sha256": "90d35ce35efd5cc8e9a2d753cc711a3a196bc7b4f46874af099734e1407bf5f6"
+    },
+    {
+      "asset_id": "aotl_e02_ui_pickup_001",
+      "game_id": "pickup",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_pickup",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_pickup_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_pickup.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "567bf35d974ea709a592ed057e16bb3fff04e1630e49732f79e250f40e4a525f",
+      "runtime_sha256": "567bf35d974ea709a592ed057e16bb3fff04e1630e49732f79e250f40e4a525f"
+    },
+    {
+      "asset_id": "aotl_e02_ui_transfer_001",
+      "game_id": "transfer",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_transfer",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_transfer_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_transfer.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "d9b7a8d917a4ed2f4789fe0d8ea2feacf4fec3d978a07ce71c7b51dd3c09d114",
+      "runtime_sha256": "d9b7a8d917a4ed2f4789fe0d8ea2feacf4fec3d978a07ce71c7b51dd3c09d114"
+    },
+    {
+      "asset_id": "aotl_e02_ui_equip_001",
+      "game_id": "equip",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_equip",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_equip_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_equip.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "9001738606dad3bf3d1d529c7433c4b172baf94cbfec2d9d869a9fb5e183a69d",
+      "runtime_sha256": "9001738606dad3bf3d1d529c7433c4b172baf94cbfec2d9d869a9fb5e183a69d"
+    },
+    {
+      "asset_id": "aotl_e02_ui_compare_001",
+      "game_id": "compare",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_compare",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_compare_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_compare.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "6c85e2469dad4d413a1fbe375c491f62abf24bbcd1bb3eabd386bd54337fe4af",
+      "runtime_sha256": "6c85e2469dad4d413a1fbe375c491f62abf24bbcd1bb3eabd386bd54337fe4af"
+    },
+    {
+      "asset_id": "aotl_e02_ui_inspect_001",
+      "game_id": "inspect",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_inspect",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_inspect_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_inspect.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "31cda9b0472109673d4e6a7b3d0841141a3f1af9b9adccecfa1539a4e2dcb1bf",
+      "runtime_sha256": "31cda9b0472109673d4e6a7b3d0841141a3f1af9b9adccecfa1539a4e2dcb1bf"
+    },
+    {
+      "asset_id": "aotl_e02_ui_interact_001",
+      "game_id": "interact",
+      "provider": "OpenAI image_gen",
+      "source_library": "art/expansion02/2026-11-12",
+      "kind": "ui_icon",
+      "route_id": "ui_interact",
+      "source_path": "runtime_sizes/128/aotl_e02_ui_interact_001.png",
+      "runtime_path": "assets/art_expansion02/icons/ui_interact.png",
+      "pixels": [
+        128,
+        128
+      ],
+      "source_sha256": "88a7e26fb21bf4c340bef24734195a0851afd58e1394a5982083fbeac5201cc2",
+      "runtime_sha256": "88a7e26fb21bf4c340bef24734195a0851afd58e1394a5982083fbeac5201cc2"
+    }
+  ],
+  "gameplay_rules_changed": false
+}

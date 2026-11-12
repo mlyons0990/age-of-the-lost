@@ -1,0 +1,34 @@
+{
+  "revision": "Grid-Aligned Inventory Items",
+  "date": "2026-11-11",
+  "date_context": "America/New_York",
+  "engine": "Godot 4.6.3 Linux",
+  "headless_assertions": 671,
+  "distinct_assertions": 677,
+  "suites": {
+    "warrior": 52,
+    "mage": 57,
+    "lab": 28,
+    "art_audio": 19,
+    "mastery": 86,
+    "encounter": 60,
+    "encounter_bouts": 15,
+    "inventory_ui": 108,
+    "town_ui": 69,
+    "reliability": 77,
+    "navigation": 36,
+    "grid_alignment": 64
+  },
+  "rendered_checks": {
+    "inventory_ui": 110,
+    "town_ui": 71,
+    "grid_alignment": 66
+  },
+  "native_mouse_assertions": 6,
+  "original_portraits_preserved_exactly": 17,
+  "systems_geometry_unchanged": true,
+  "save_schema": 5,
+  "new_media_jobs": 0,
+  "windows_tested": false,
+  "physical_controller_tested": false
+}

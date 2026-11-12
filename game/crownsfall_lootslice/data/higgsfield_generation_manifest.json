@@ -1,0 +1,212 @@
+{
+  "date": "2026-11-11",
+  "provider": "Higgsfield",
+  "user_authorized_unlimited": true,
+  "user_authorized_canon_reference_upload": true,
+  "credits_preflight_per_image": 0,
+  "completed_generations": 7,
+  "accepted_generations": 6,
+  "rejected_generations": 1,
+  "three_d_mesh": {
+    "model": "tripo_h3_1_image_to_3d",
+    "quoted_credits": 9,
+    "balance_at_quote": 1.5,
+    "submitted": false
+  },
+  "submission_failures": {
+    "reason": "429 rate_limit_reached",
+    "created_jobs": false,
+    "recovery": "Retried known rejected items sequentially; no duplicate completed jobs."
+  },
+  "jobs": [
+    {
+      "index": 2,
+      "id": "mage_turnaround",
+      "job_id": "27a1c5c2-d5b4-422d-b12c-249b5277732b",
+      "configuration": {
+        "model": "gpt_image_2_6",
+        "use_unlim": true,
+        "resolution": "2k",
+        "quality": "medium",
+        "output_format": "png",
+        "count": 1,
+        "size": "2048x1024",
+        "aspect_ratio": "auto",
+        "background": "opaque",
+        "prompt": "Create a precise clean Mage CHARACTER MODEL TURNAROUND from the provided canon. Four full-body orthographic views side by side in four equal columns: front, right side, back, left side. All four are the SAME young adult male character: short tousled dark brown hair, cobalt royal blue cape, blue/ivory split tunic and coat tails, gold ornamental trim, fitted dark trousers and armored gold boots. Match canon proportions and outfit, no redesign. Neutral A pose, arms separated slightly from torso, fingers unclenched, legs separated. NO STAFF OR WEAPON in any hand: this is a future body mesh reference. Plain neutral gray background, diffuse studio light, no shadow, no labels, no scenery, no border. Feet and top of head same height in every view, each figure isolated within its 512px column with generous gutters. Crisp hand-painted anime 3D character concept rendering, clear back cape construction."
+      },
+      "references": [
+        {
+          "role": "image",
+          "source": "references/canon_originals/01_Mage_Official(1).png"
+        }
+      ],
+      "acceptance": "accepted",
+      "reason": "Visually inspected; runtime use or source role recorded in asset manifests."
+    },
+    {
+      "index": 3,
+      "id": "mage_spell_icon_atlas",
+      "job_id": "441b496a-a6b8-4cc0-952d-5af7aa8171fe",
+      "configuration": {
+        "model": "gpt_image_2_6",
+        "use_unlim": true,
+        "resolution": "2k",
+        "quality": "medium",
+        "output_format": "png",
+        "count": 1,
+        "size": "2048x1024",
+        "aspect_ratio": "auto",
+        "background": "opaque",
+        "prompt": "Paint a production dark fantasy RPG ABILITY ICON ATLAS, exactly 4 columns by 2 rows, 8 equal 512x512 cells, total 2048x1024. Each cell has identical near-black navy background (#0c1524), NO FRAME, NO TEXT, NO LETTERS, no grid lines. Leave a 48px safe dark margin inside every cell so icons never overlap boundaries. Ornate blue/gold magical style fits the reference but each has distinct shape/color. Row 1 left to right: (1) Cinder Thread: single thin bright orange comet/fire bolt with curling thread trail; (2) Glacial Stitch: sharp icy cyan needle projectile crossing a small frost crystal, clearly ice; (3) Arcane Fold: violet space tear with two offset footprints/portal silhouettes implying blink; (4) Ashen Ward: circular gold-and-ember protective shield rune, empty center. Row 2: (5) Starfall Script: golden falling star above a circular violet ground rune; (6) Solar Writ: radiant fan of orange flame and golden sun rays; (7) Winter Crown: three-point icy crystalline crown with frost nova; (8) Epoch Lance: long straight violet-white arcane spear crossing an hourglass ring. Beautiful readable bold central silhouettes, high contrast at 64 pixels. No UI, no characters, no artwork outside own cell. Uniform lighting and detail level."
+      },
+      "references": [
+        {
+          "role": "image",
+          "source": "references/canon_originals/01_Mage_Official(1).png"
+        }
+      ],
+      "acceptance": "accepted",
+      "reason": "Visually inspected; runtime use or source role recorded in asset manifests."
+    },
+    {
+      "index": 7,
+      "id": "mage_five_facing_walk_source",
+      "job_id": "c30ef751-1a50-413b-9f06-13e0649682f4",
+      "configuration": {
+        "model": "gpt_image_2_6",
+        "use_unlim": true,
+        "resolution": "2k",
+        "quality": "medium",
+        "output_format": "gif",
+        "size": "1920x512",
+        "frame_count": 8,
+        "frame_duration_ms": 100,
+        "background": "transparent",
+        "aspect_ratio": "auto",
+        "count": 1,
+        "prompt": "Create an ANIMATED GIF game sprite atlas. EXACTLY FIVE equal 384-pixel columns across a 1920x512 canvas. Each column shows one full-body version of the SAME Mage character from the two references performing a seamless looping WALK IN PLACE. The five columns are permanently different viewing directions, LEFT TO RIGHT: (1) back view facing SCREEN UP, (2) back three-quarter facing SCREEN UP-RIGHT, (3) side view facing SCREEN RIGHT, (4) front three-quarter facing SCREEN DOWN-RIGHT, (5) front view facing SCREEN DOWN. All viewed from the same elevated isometric orthographic RPG camera, 30 degree downward angle; no perspective changes. Keep each character's feet anchored near the bottom of its column, centered x=192 within its own column; all full staffs, hair, boots and capes entirely inside own column. Character height roughly 360 pixels with staff reaching y=60 and feet y=460, at least 30px padding around silhouette. Animate a natural alternating eight-frame walking cycle: knees/ankles/hips move, arms swing gently, cape sways, staff held in right hand moves slightly. Root stays fixed; no translation across canvas, no turning or camera motion. Transparent background, NO floor, NO shadow, NO text or border. Preserve canon identity: young adult male, tousled dark brown hair, cobalt royal blue cape and tunic, ivory coat tails, gold ornamental trim, dark trousers, golden boots, circular golden celestial staff with blue core. Clean hand-painted anime game sprites with readable detail. All five simultaneous independent cycles, same body size and identity, no extra figures."
+      },
+      "references": [
+        {
+          "role": "image",
+          "source": "references/canon_originals/01_Mage_Official(1).png"
+        },
+        {
+          "role": "image",
+          "source": "27a1c5c2-d5b4-422d-b12c-249b5277732b"
+        }
+      ],
+      "acceptance": "rejected",
+      "reason": "Duplicated front-facing figures and camera/framing changes; not five facings. Not used in gameplay."
+    },
+    {
+      "index": 4,
+      "id": "mage_gear_icon_atlas",
+      "job_id": "9c2d0436-3313-49fe-a4a3-9a53f1d7a355",
+      "configuration": {
+        "model": "gpt_image_2_6",
+        "use_unlim": true,
+        "resolution": "2k",
+        "quality": "medium",
+        "output_format": "png",
+        "count": 1,
+        "size": "2048x1024",
+        "aspect_ratio": "auto",
+        "background": "opaque",
+        "prompt": "Paint an RPG INVENTORY ITEM ICON ATLAS, exactly 4 columns by 2 rows, 8 equal 512x512 cells in a 2048x1024 image. Every cell flat near-black navy #0c1524 backdrop, no borders, no text, no letters, no grids. Each single item fits in its cell with at least 64px dark padding; no overlapping cells. Use the provided Mage canon for royal blue, ivory and gold celestial gear design. Row1 left to right: a long two-handed celestial STAFF with circular golden cage and blue crystal (diagonal within cell); a short blue/gold WAND (diagonal); a floating blue PRISMATIC FOCUS crystal in a small gold armillary ring; an ornate blue/ivory Mage ROBE on invisible display. Row2 left to right: a folded royal blue HOOD with gold trim (empty, no face); pair of ivory cloth WRAPS with gold clasps (no hands); pair of royal blue SLIPPERS with golden soles (no feet); a small sealed GOLD AND BLUE SPELLBOOK as a bonus source icon. Painterly premium game item rendering, sharp clear silhouettes at 64px, soft contained highlights, no glow bleeding out of cells."
+      },
+      "references": [
+        {
+          "role": "image",
+          "source": "references/canon_originals/01_Mage_Official(1).png"
+        }
+      ],
+      "acceptance": "accepted",
+      "reason": "Visually inspected; runtime use or source role recorded in asset manifests."
+    },
+    {
+      "index": 8,
+      "id": "mage_directional_pose_sheet",
+      "job_id": "cf22988a-2547-4030-bfe5-95b06b62a022",
+      "configuration": {
+        "model": "gpt_image_2_6",
+        "use_unlim": true,
+        "resolution": "2k",
+        "quality": "medium",
+        "output_format": "png",
+        "size": "1920x2048",
+        "aspect_ratio": "auto",
+        "background": "transparent",
+        "count": 1,
+        "prompt": "Create a precise full-body RPG sprite sheet, EXACTLY 5 COLUMNS and 4 ROWS, TWENTY separate small full-body figures in a clean rigid grid. Canvas 1920x2048, each cell384x512. Transparent background and no text or grid lines. The SAME royal Mage character from references in every cell: dark tousled hair, cobalt blue cape/tunic, ivory split coat tails, gold trim, dark trousers, gold boots, gold celestial staff with blue core in RIGHT hand. Isometric orthographic RPG camera elevated 30 degrees, CONSISTENT across all cells. COLUMNS encode facing, held constant from top to bottom: column1 BACK facing UP; column2 BACK THREE QUARTER facing UP-RIGHT; column3 SIDE facing RIGHT; column4 FRONT THREE QUARTER facing DOWN-RIGHT; column5 FRONT facing DOWN. ROWS encode a four-pose WALK CYCLE, same stage across each row: row1 LEFT FOOT FORWARD heel contact right foot back; row2 passing pose RIGHT KNEE LIFTED left foot planted; row3 RIGHT FOOT FORWARD heel contact left foot back; row4 passing pose LEFT KNEE LIFTED right foot planted. Natural alternating leg stride, opposite arm swing, cape follows motion. Staff held safely close to body. All twenty figures fit completely inside own cell, 30px padding, all feet approximately y=470 relative to cell, head approximately y=100 and staff top y=60. Match same scale and body size for all cells. No extra characters, no enlarged portrait, no merged figures, no zoom/camera variation. Clean readable painted game sprite style, reduce fine jewelry for small-scale clarity. This image will be cut into exact rectangular frames in a game engine; grid adherence and correct back/side/front facings are essential."
+      },
+      "references": [
+        {
+          "role": "image",
+          "source": "references/canon_originals/01_Mage_Official(1).png"
+        },
+        {
+          "role": "image",
+          "source": "27a1c5c2-d5b4-422d-b12c-249b5277732b"
+        }
+      ],
+      "acceptance": "accepted",
+      "reason": "Visually inspected; runtime use or source role recorded in asset manifests."
+    },
+    {
+      "index": 5,
+      "id": "royal_panel_skin",
+      "job_id": "222742cc-616f-4867-96da-a939d5822072",
+      "configuration": {
+        "model": "gpt_image_2_6",
+        "use_unlim": true,
+        "resolution": "2k",
+        "quality": "medium",
+        "output_format": "png",
+        "count": 1,
+        "size": "1024x1024",
+        "aspect_ratio": "1:1",
+        "background": "opaque",
+        "prompt": "Create ONE square reusable nine-slice UI PANEL BACKGROUND texture for the fantasy RPG suggested by the reference. 1024x1024. A very dark royal navy interior (#0b1425) covers the entire central 880x880 area, nearly flat with extremely subtle blue woven grain, perfect for overlaying readable white game text. At the outer edge a refined thin antique gold double-line border, elegant restrained gold filigree ONLY in the four 64x64 corners. Straight sides perfectly uniform so a game engine can stretch the middle. Outer corners lightly rounded by 12px. Tasteful blue/gold/ivory royal academy aesthetic. NO text, NO letters, NO symbols in center, NO characters, NO mockup, NO inventory slots, NO title bar, NO drop shadow. The panel fills the whole square edge to edge, symmetrical corners and clean edges. A utilitarian game UI texture, not a screenshot."
+      },
+      "references": [
+        {
+          "role": "image",
+          "source": "references/canon_originals/01_Mage_Official(1).png"
+        }
+      ],
+      "acceptance": "accepted",
+      "reason": "Visually inspected; runtime use or source role recorded in asset manifests."
+    },
+    {
+      "index": 9,
+      "id": "mage_idle_cast_pose_sheet",
+      "job_id": "317b7ac8-94ef-47a4-abf1-aa91fa357d55",
+      "configuration": {
+        "model": "gpt_image_2_6",
+        "use_unlim": true,
+        "resolution": "2k",
+        "quality": "medium",
+        "output_format": "png",
+        "size": "1920x1536",
+        "aspect_ratio": "auto",
+        "background": "transparent",
+        "count": 1,
+        "prompt": "Create a precise RPG CHARACTER SPRITE SHEET matching the Mage walk sheet reference. EXACTLY FIVE COLUMNS and THREE ROWS, FIFTEEN isolated full-body small sprites, a rigid 5x3 grid on a 1920x1536 transparent canvas. Each cell384x512, figures entirely within cell, staff top y60, head y100, feet y470, generous safe padding. The same young adult male Mage in every cell: tousled dark brown hair, cobalt blue/ivory coat and cape, gold trim, dark trousers, gold boots and golden armillary celestial staff blue crystal in right hand. Preserve same scale, outfit and elevated isometric orthographic 30-degree RPG camera as the supplied WALK SHEET. COLUMNS left to right always: back facing UP; back three-quarter facing UP-RIGHT; side facing RIGHT; front three-quarter facing DOWN-RIGHT; front facing DOWN. ROW1: neutral IDLE, BOTH FEET PLANTED close and weight balanced, staff upright by side, left hand relaxed. ROW2: CAST WINDUP, feet planted, left hand raised near chest concentrating a tiny blue spark, staff slightly angled forward. ROW3: CAST RELEASE, left hand extended towards the facing direction, staff angled forward releasing a small blue spark; feet still planted. No large effects, no rings, no floor, no shadows, no scenery, no text, no borders. Distinct genuine back views in first two columns, correct side view in third. No extra or enlarged figures. Clean hand-painted anime RPG assets, details simplified for readability. These fifteen cells will be cut at exact grid boundaries into actual idle/cast animation frames."
+      },
+      "references": [
+        {
+          "role": "image",
+          "source": "references/canon_originals/01_Mage_Official(1).png"
+        },
+        {
+          "role": "image",
+          "source": "cf22988a-2547-4030-bfe5-95b06b62a022"
+        }
+      ],
+      "acceptance": "accepted",
+      "reason": "Visually inspected; runtime use or source role recorded in asset manifests."
+    }
+  ]
+}

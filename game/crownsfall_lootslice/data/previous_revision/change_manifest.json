@@ -1,0 +1,676 @@
+{
+  "baseline": "Previously delivered Crownsfall Systems Expansion",
+  "revision": "Mage Slice",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "status": "modified",
+      "sha256": "dc6b82d72765d70be4c354116df82ee4b6f012596526f80513d0efdd20fe91d1"
+    },
+    {
+      "path": "HANDOFF.md",
+      "status": "modified",
+      "sha256": "0b28a6717bfccb6bddb20638c2cf6ae171d43eac10af30dd465f2c1a52a0c3f7"
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "sha256": "b352d4f01dd93e095ff117ea157c5cb438b36704af4a06891b0b3926566e64c6"
+    },
+    {
+      "path": "assets/enemies/brute.png",
+      "status": "retained",
+      "sha256": "ff6083f027f8ed73bc7d71548d888b6b5b6e8c1595692f0e66454e42cabec428"
+    },
+    {
+      "path": "assets/enemies/revenant.png",
+      "status": "retained",
+      "sha256": "648af8a513f48363c869ea3518b673df8c9a2c8ee87b78f1070dcee13c7829fd"
+    },
+    {
+      "path": "assets/enemies/slime.png",
+      "status": "retained",
+      "sha256": "d16757e94dde37d388bd8a9373ab7c711160885c7a7a45b647ef24906e92e7f7"
+    },
+    {
+      "path": "assets/icons/amulet.svg",
+      "status": "retained",
+      "sha256": "b3091a872d8831666d823d0639122642fde458d5910cc89dddbaf910ce5b50ce"
+    },
+    {
+      "path": "assets/icons/arcane_fold.svg",
+      "status": "new",
+      "sha256": "77877e989d66c476b8d2a8c093400bda65875ef1ed13ad52d895b7a2776a2a4b"
+    },
+    {
+      "path": "assets/icons/armor.svg",
+      "status": "retained",
+      "sha256": "7627e5535644f7a2c3cd379193b44e0bbcfa8d7884df8265f20e399841dfe6d1"
+    },
+    {
+      "path": "assets/icons/ashen_ward.svg",
+      "status": "new",
+      "sha256": "fd95c8683456af505f6895cab6d7984576848714a6f37c339d3c3e1efeaabf56"
+    },
+    {
+      "path": "assets/icons/belt.svg",
+      "status": "retained",
+      "sha256": "bbb46847a9e94f5d5c964e937fbad375db5153b8efeae90302572b4918b3f86f"
+    },
+    {
+      "path": "assets/icons/boots.svg",
+      "status": "retained",
+      "sha256": "c5784ac9c1652a9141e9b54754b7c13ed8c4eca7681ef2b7b24d28f9a770386b"
+    },
+    {
+      "path": "assets/icons/breath.svg",
+      "status": "retained",
+      "sha256": "f3e191d6e66efb19775543ffce3dd216b3683f870024c090fdddffc9f8d0c542"
+    },
+    {
+      "path": "assets/icons/charge.svg",
+      "status": "retained",
+      "sha256": "a2073e50866017b7a94aba7987bed77af2315bba4b58f09ab07f92503c0430e4"
+    },
+    {
+      "path": "assets/icons/cinder_thread.svg",
+      "status": "new",
+      "sha256": "73c2e5e9c33776d54ef5b52da1320101fe22f49bda22708db549c11d21a8ef4b"
+    },
+    {
+      "path": "assets/icons/cleave.svg",
+      "status": "retained",
+      "sha256": "c362fe3d57d0f34bf1bfbf500592b63ece4d234ae33661ca31f2f6f5733a90b4"
+    },
+    {
+      "path": "assets/icons/dawnfall.svg",
+      "status": "retained",
+      "sha256": "b98cd4ffe363c6118ac0ea4aeec3106e0e9c1d4ff58cac367a9823cbb152090d"
+    },
+    {
+      "path": "assets/icons/echo_strike.svg",
+      "status": "retained",
+      "sha256": "2dba427b6041d41cc2ba116235877a55dbb71c83ea865e3b69063e7a07cd0a42"
+    },
+    {
+      "path": "assets/icons/ember_cone.svg",
+      "status": "retained",
+      "sha256": "837a70682126199fd3b24044342a7874e6079cc9ab5124cd187c0be1dc6b76ab"
+    },
+    {
+      "path": "assets/icons/epoch_lance.svg",
+      "status": "new",
+      "sha256": "285634d285a1142d346038a552ae4bf5b6d48837425bc995df0513ef3842ba8b"
+    },
+    {
+      "path": "assets/icons/focus.svg",
+      "status": "new",
+      "sha256": "ff954dc13557c0ce20d2e901f8a32b662005b4ef14948801f2bb1cea2d8d494f"
+    },
+    {
+      "path": "assets/icons/frost_ring.svg",
+      "status": "retained",
+      "sha256": "43de46a6ce91a5cfaeee724ce0ebed284357f28ce2a1362a7c271d68b6460f3f"
+    },
+    {
+      "path": "assets/icons/glacial_stitch.svg",
+      "status": "new",
+      "sha256": "0e84f23f007b9b9774acb94f65bed50677f2590338880276a3659bc62bdd13f4"
+    },
+    {
+      "path": "assets/icons/gloves.svg",
+      "status": "retained",
+      "sha256": "6e1688cf4de2fe13a238d48ae4530ec3b577988bbe0c341d9a02604f87604f91"
+    },
+    {
+      "path": "assets/icons/hammer.svg",
+      "status": "retained",
+      "sha256": "c06039fd259be74227508b4f423ab30de9ce1d5aa443ef5c0c7eedeeb5de9fae"
+    },
+    {
+      "path": "assets/icons/harvest.svg",
+      "status": "retained",
+      "sha256": "a2356475f2d49a020e906674f6068d401e7d06c2f41272f068468247d8679d2b"
+    },
+    {
+      "path": "assets/icons/helm.svg",
+      "status": "retained",
+      "sha256": "4aad7d32cd382e3b3b4bc1f80c76a381bc43d406b0887bc469ce1dfea917aa2a"
+    },
+    {
+      "path": "assets/icons/hood.svg",
+      "status": "new",
+      "sha256": "e2d7f85223984f9534cfc17badece93ba3f442ced1029b6b85f642f067f67fee"
+    },
+    {
+      "path": "assets/icons/lock.svg",
+      "status": "retained",
+      "sha256": "6c758bcff9d180c9947122dbfd19ea8cfa7b97f0af994ee69faeec5bebbe6046"
+    },
+    {
+      "path": "assets/icons/lore.svg",
+      "status": "retained",
+      "sha256": "9bbebcc9f7ee27d5fc8027eac9c0c921c3b3c4f5de3be3ce0601a45c4cd4ab36"
+    },
+    {
+      "path": "assets/icons/offhand.svg",
+      "status": "retained",
+      "sha256": "7720800b3ce19262512e663f814cbc748457c49fd2ba3b1c7d05185ab8193f72"
+    },
+    {
+      "path": "assets/icons/potion.svg",
+      "status": "retained",
+      "sha256": "74767a577248e60ed647ed0e1f80bd972619214e7bc4b53ace7b2c1e0d0b9ac3"
+    },
+    {
+      "path": "assets/icons/rally.svg",
+      "status": "retained",
+      "sha256": "841eb702c7adc5a2cfd846e7811fcc02abb29891d47db01c845da1d78d81a98f"
+    },
+    {
+      "path": "assets/icons/ring.svg",
+      "status": "retained",
+      "sha256": "c9b862c68e2999a4051ccc99ee0bbac7e95d11ee5604447f644dc59f3ea2a8f4"
+    },
+    {
+      "path": "assets/icons/robe.svg",
+      "status": "new",
+      "sha256": "b577429183a1e3a3d062c380e0e0311936ded2f3e646e0bdb568f7ca37840c78"
+    },
+    {
+      "path": "assets/icons/slash.svg",
+      "status": "retained",
+      "sha256": "15c0e17372e2d36b2b460a3fa8646790b3a71b24492612b7b05bd0c5dc3e61d4"
+    },
+    {
+      "path": "assets/icons/slippers.svg",
+      "status": "new",
+      "sha256": "f71b3d3dc6d14bffacc3ff90f3f66efbc3814f5847273133ae66e5ce0b780c87"
+    },
+    {
+      "path": "assets/icons/solar_writ.svg",
+      "status": "new",
+      "sha256": "cf3518f326ea8f323aab8d44e9aea47a80b3b1010db8503f5357aad34d3569ac"
+    },
+    {
+      "path": "assets/icons/staff.svg",
+      "status": "new",
+      "sha256": "0e830b0b0ab185b250b2a4a925a88f8b2b9829d77ca6bcc3876365cca7057bb4"
+    },
+    {
+      "path": "assets/icons/starfall_script.svg",
+      "status": "new",
+      "sha256": "7bedb8e1b7c3979dbedea8915fb8370cba6d8a205ae6754896c99597d654b3b0"
+    },
+    {
+      "path": "assets/icons/stash.svg",
+      "status": "retained",
+      "sha256": "9c13f8f398498518f3560fcfa5b2d80718d7710159558675ee91670e7d5b7c22"
+    },
+    {
+      "path": "assets/icons/wand.svg",
+      "status": "new",
+      "sha256": "24c8f7d501377fd1a31c3db0a3d778fc29f55cf3b63d3e21b33f1a7c6ab549d9"
+    },
+    {
+      "path": "assets/icons/weapon.svg",
+      "status": "retained",
+      "sha256": "44c0d20979a99028104ce31019a16e9a1af9d72a297ee0dc8283aff56362c5b5"
+    },
+    {
+      "path": "assets/icons/winter_crown.svg",
+      "status": "new",
+      "sha256": "dcd2bbaebc54511950a4062b3f1c75020d8171806e748b85f77335c5368d125e"
+    },
+    {
+      "path": "assets/icons/wraps.svg",
+      "status": "new",
+      "sha256": "2d801cec4ee6a7956dacb3c0147b7d96e339b692c85d93d32dc168f46df3292a"
+    },
+    {
+      "path": "assets/knight/attack_ne.png",
+      "status": "retained",
+      "sha256": "b781c34ce240174b395d1322c75506156d5370bdf7cfffc7ee2413c81f3a5965"
+    },
+    {
+      "path": "assets/knight/attack_se.png",
+      "status": "retained",
+      "sha256": "b444fbe3640e92adffa770b96ab61966c8c7a1053b00852119db576ad3c876a1"
+    },
+    {
+      "path": "assets/knight/idle_down.png",
+      "status": "retained",
+      "sha256": "baa45e83d7eb336aef370880d910c1256e7abab91dd22f899b748ded2cb0fa0c"
+    },
+    {
+      "path": "assets/knight/idle_ne.png",
+      "status": "retained",
+      "sha256": "49aaac036448549cc0de62cda799c2d31f1031bf56c2e0453979cc8c87bea0a1"
+    },
+    {
+      "path": "assets/knight/idle_right.png",
+      "status": "retained",
+      "sha256": "7662ee3e8ff6105e29ab64330611f379cead44d29d8af0154fc7050b160b05b7"
+    },
+    {
+      "path": "assets/knight/idle_se.png",
+      "status": "retained",
+      "sha256": "494c308e0059d844a828a879aa3616977d4ccec36eafa48ba2726bf59378508a"
+    },
+    {
+      "path": "assets/knight/idle_up.png",
+      "status": "retained",
+      "sha256": "93929c97a543c5962bca280700e558e37681f6789e167adbd8ae1c5b195e5130"
+    },
+    {
+      "path": "assets/knight/walk_down.png",
+      "status": "retained",
+      "sha256": "6e16b6fd30c08bda703d9c3eba79e6de9395268f7c5db5d98eb6d70a16877aeb"
+    },
+    {
+      "path": "assets/knight/walk_ne.png",
+      "status": "retained",
+      "sha256": "9bf2268e182fb6baaf9ecb733e9319b315438eb24ddeaeee199de89de1450380"
+    },
+    {
+      "path": "assets/knight/walk_right.png",
+      "status": "retained",
+      "sha256": "e661b9109d2a8163041ca4450789ce01b6d1f944b21621e65cd6e0596bda6115"
+    },
+    {
+      "path": "assets/knight/walk_se.png",
+      "status": "retained",
+      "sha256": "3a8fea9719f785924e1248369cd970169c6282ec7c989d9ed6875cbde9f4ac19"
+    },
+    {
+      "path": "assets/knight/walk_up.png",
+      "status": "retained",
+      "sha256": "1e72a3bab01e39bb790cb9ae181df6f63e3588ea299bf769e891384b7796df9d"
+    },
+    {
+      "path": "assets/plaza.png",
+      "status": "retained",
+      "sha256": "f5a9d408e84121cee680669e06bd5230384b0f004b6c310094a23fa00488f60f"
+    },
+    {
+      "path": "data/MAGE_SLICE_VALIDATION.json",
+      "status": "new",
+      "sha256": "bf2017c2976f9c3b32216f7db2bfd0fdc37660d85a4d62f38fa116c3c75ca165"
+    },
+    {
+      "path": "data/balance_snapshot.armor.translation",
+      "status": "retained",
+      "sha256": "07cea2f4b19cefef38838a071972b33226f38ce8579b8840ac22a779de98e5ee"
+    },
+    {
+      "path": "data/balance_snapshot.cleave.translation",
+      "status": "retained",
+      "sha256": "6235b588991558ff6a27d7150a9fc46cd5b9f5a94ee00a49d6c8907072bbf07e"
+    },
+    {
+      "path": "data/balance_snapshot.crit.translation",
+      "status": "retained",
+      "sha256": "812e6d93dff64616a701554fed126e83f8eab1f0f039c73aa1409eedde0eab35"
+    },
+    {
+      "path": "data/balance_snapshot.csv",
+      "status": "retained",
+      "sha256": "e05c54b14dc455735bf73145e42854c67fd768e0b5a7884986fdebf2dfbaab85"
+    },
+    {
+      "path": "data/balance_snapshot.incoming.translation",
+      "status": "retained",
+      "sha256": "0b80d2cd7e191aef98ce6a6777fb96cd18088cf43865b8634384a08c96b06c5e"
+    },
+    {
+      "path": "data/balance_snapshot.loadout.translation",
+      "status": "retained",
+      "sha256": "94f5b1ff0d6309dc5a88ee2d96a47933bce8f405d2378638972b27eb0a026232"
+    },
+    {
+      "path": "data/balance_snapshot.mana.translation",
+      "status": "retained",
+      "sha256": "b6b259e57503b851bb576e826680411c3e7b9ea0579cc33a876eab5f9712610f"
+    },
+    {
+      "path": "data/balance_snapshot.max.translation",
+      "status": "retained",
+      "sha256": "59f460d749ed347c04f4998fad3c7ffe0ec037f99d9d562463d18d1421841d3e"
+    },
+    {
+      "path": "data/balance_snapshot.power.translation",
+      "status": "retained",
+      "sha256": "e495b90be744d9d02717cdb48757de48aef1c449440d342dae89cc695d80a54a"
+    },
+    {
+      "path": "data/balance_snapshot.raw.translation",
+      "status": "retained",
+      "sha256": "baa2b371a6db572f330d36d67037cca60df79d1121c80dcfa1a6d0ddd11df17a"
+    },
+    {
+      "path": "data/balance_snapshot.revenant.translation",
+      "status": "retained",
+      "sha256": "68a0c1956da340a524d37f06e2edd320ca4636d200d6c84a2c30ad75388e19ee"
+    },
+    {
+      "path": "data/class_ability_proposals.class.translation",
+      "status": "retained",
+      "sha256": "fe0e0b966b9f81bb6b52d4b617e0c3a1167eac4a8406cd7a055232aa3d68497e"
+    },
+    {
+      "path": "data/class_ability_proposals.cooldown.translation",
+      "status": "retained",
+      "sha256": "9a5f2d59fddd8439e0f43c75280fde75d289089b9a67ed2db8b8119dd98774b0"
+    },
+    {
+      "path": "data/class_ability_proposals.csv",
+      "status": "modified",
+      "sha256": "574712fcfa90eff24a52ad2ba832f9409d30d5baefa971afa3c7e9ae4ffc6bec"
+    },
+    {
+      "path": "data/class_ability_proposals.icon.translation",
+      "status": "retained",
+      "sha256": "4ecfb02a2da3cbc513256fd4f7e903a776db26a77833938c2b08b7751029c8df"
+    },
+    {
+      "path": "data/class_ability_proposals.json",
+      "status": "modified",
+      "sha256": "f47ca7eaaf1107a09aed4b608ed1ce9d46a022d46ff15f14dd9278d5ee1ccd0d"
+    },
+    {
+      "path": "data/class_ability_proposals.mechanic.translation",
+      "status": "retained",
+      "sha256": "1bce51011aa5b45c313806f1dd9455092f6c9cab8f9085f2581c5cae12092496"
+    },
+    {
+      "path": "data/class_ability_proposals.name.translation",
+      "status": "retained",
+      "sha256": "52c1b64d8a59f45c2dbeaee89fbafe6303ede97a94de860fd66f8301e308fbd0"
+    },
+    {
+      "path": "data/class_ability_proposals.power.translation",
+      "status": "retained",
+      "sha256": "29748bd4cd4c01f0b66ecaf8b2cfb54cff148e88020667f67133012cc142d1ab"
+    },
+    {
+      "path": "data/class_ability_proposals.requires.translation",
+      "status": "retained",
+      "sha256": "a970f81cdda9f34f0b80f55eb1ab06eae05d652e30612e85f4f554572b9518cf"
+    },
+    {
+      "path": "data/class_ability_proposals.resource.translation",
+      "status": "retained",
+      "sha256": "37d379ba63cf1ccd9e99742ca5e9bd1f53d0262a24f1b6be32bd56e6c3afb03c"
+    },
+    {
+      "path": "data/class_ability_proposals.role.translation",
+      "status": "retained",
+      "sha256": "936dcddaa5954abdbb0dbda677ab639b94df689f7c3d3c830da98585647871a4"
+    },
+    {
+      "path": "data/class_ability_proposals.status.translation",
+      "status": "retained",
+      "sha256": "af4eb0aeabac8cc12f4df0f3c078e54e263c2c0947c3dc9a1e88e6999f65e082"
+    },
+    {
+      "path": "data/class_ability_proposals.unlock.translation",
+      "status": "retained",
+      "sha256": "f96edc3cd9360410cc506305fc84724b4e0bc2a6da18f436b2cc3fc780f390e9"
+    },
+    {
+      "path": "data/class_balance_snapshot.csv",
+      "status": "new",
+      "sha256": "bd4f0c87440055f2e6ca56892ccd3c909f5bb4956d26d5bf00c19fffd529e900"
+    },
+    {
+      "path": "data/class_roster.json",
+      "status": "modified",
+      "sha256": "9e9ff559b8c57218d39d8e54026a6638ed2679923b7d1dbc334bad22a684ad1e"
+    },
+    {
+      "path": "data/icon_manifest.json",
+      "status": "modified",
+      "sha256": "cbfbcc73d5b7bdb36051f9bf2021c12c1513bb21b09dbe0ef548928d33d55f80"
+    },
+    {
+      "path": "data/implemented_spells.json",
+      "status": "modified",
+      "sha256": "52c1be3ce2ffecfbc8531b2020cd980a170a457050c48368fc338bf59f4fc919"
+    },
+    {
+      "path": "data/item_base_definitions.json",
+      "status": "new",
+      "sha256": "36ab4cde93f8842dd40d780489daafadf4e249f542a7eb0bf65a2f852045fbdf"
+    },
+    {
+      "path": "data/source_manifest.json",
+      "status": "retained",
+      "sha256": "c4e1c3b12d517774dc2f582f4c75a1b209210c0bd1389ae834a84dbe44b1598d"
+    },
+    {
+      "path": "data/unique_and_set_proposals.json",
+      "status": "retained",
+      "sha256": "e1ee4c81d70290254b96cc36ab92dd7878fa5169ba012592e9e55a559b4592e3"
+    },
+    {
+      "path": "docs/.gdignore",
+      "status": "retained",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/ICON_ATLAS.html",
+      "status": "modified",
+      "sha256": "6be4f6021668acfc5f333af834afd8dcf165d7b78fa5b3c2d44ad403bfee678e"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_STATUS.md",
+      "status": "new",
+      "sha256": "4d2676fd326982aa21c2b83ffcc38a170d73e4b290b0dafdfed62a877cce9ef5"
+    },
+    {
+      "path": "docs/MAGE_SLICE_COMPLETE_HANDOFF.md",
+      "status": "new",
+      "sha256": "b1c1f85d0da7f7221688ed3808b9a7eb9fd4197be4e170c6350b4a645e447ffd"
+    },
+    {
+      "path": "docs/MAGE_SLICE_SYSTEMS.md",
+      "status": "new",
+      "sha256": "a2a39889602e02e224be29c92dd7f289cab8c0952fe2148e48bd7b7f515dea2f"
+    },
+    {
+      "path": "docs/QA_AND_REPRO.md",
+      "status": "modified",
+      "sha256": "911210ef24cc235c080e9955e1b9551de7cd51baab1347aecb68c73d21719ece"
+    },
+    {
+      "path": "docs/previous_revision/BALANCE_AND_SCALING.md",
+      "status": "new",
+      "sha256": "337e76b0a68d0f0149534dcf2db40ea8ab7237d1932d877a86ca512ef2d34b0d"
+    },
+    {
+      "path": "docs/previous_revision/CONTENT_BLUEPRINT.md",
+      "status": "new",
+      "sha256": "1d5b5b5d3ec5701ee8b1d9b11e43b8abb5e49028e93e3980b65a8aab9f88cab9"
+    },
+    {
+      "path": "docs/previous_revision/HANDOFF.md",
+      "status": "new",
+      "sha256": "3e18b941634fc289212585016d88a54ac7366df8de1ec3b120238a04707640a0"
+    },
+    {
+      "path": "docs/previous_revision/IMPLEMENTATION_BACKLOG.md",
+      "status": "new",
+      "sha256": "711511f0b0e06a525ac7b5c08fcd85406aa826ad207e8651ac8dcdf71ae941eb"
+    },
+    {
+      "path": "docs/previous_revision/QA_AND_REPRO.md",
+      "status": "new",
+      "sha256": "373b61830d8810921493ccdf6fa00366c39fa9f6075fe180eee868a9792793f6"
+    },
+    {
+      "path": "docs/previous_revision/SOURCE_LEDGER.md",
+      "status": "new",
+      "sha256": "c78c156c44c989e74af170eb3c4436d1cd8211b98919518eac4bcdf3d9ac820a"
+    },
+    {
+      "path": "docs/previous_revision/SYSTEMS_DESIGN.md",
+      "status": "new",
+      "sha256": "6f3d5fb6876202c9f4e1e2c51c5939ef56d5350efb4735358d7374b915f215a0"
+    },
+    {
+      "path": "docs/source_archive/Age_of_the_Lost_AI_Handoff_2026-11-10.md",
+      "status": "retained",
+      "sha256": "b84db13fdd755ae7e87bb8d63cddf1a1b628ea1f81b596a5f2ca624e2ce27453"
+    },
+    {
+      "path": "docs/source_archive/Age_of_the_Lost_Conversation_Handoff.txt",
+      "status": "retained",
+      "sha256": "6c9726d6af449ed0f1e20023e03e11e64565c6abe815466943653f1e2447a9ea"
+    },
+    {
+      "path": "docs/source_archive/Crownfall-HANDOFF.md",
+      "status": "retained",
+      "sha256": "f22f533f06831b85ac0df48bf37a86488d584882ca7f4bc985c6fb1fcc6b6b8d"
+    },
+    {
+      "path": "docs/source_archive/Crownfall_Art_Update_Original_HANDOFF.md",
+      "status": "retained",
+      "sha256": "c459331bec88064d81d9fec8911dcec94c21023b14f9529ab5aec7165f85ea61"
+    },
+    {
+      "path": "main.tscn",
+      "status": "retained",
+      "sha256": "df7a61f5725d8b45812e95d89efa47df6fd3f51549c3938ea4627a28558ce52e"
+    },
+    {
+      "path": "project.godot",
+      "status": "modified",
+      "sha256": "21a419c3fa556759380a61ce7a62712c5ef3e413f3fc5ec8b095e4086632a11d"
+    },
+    {
+      "path": "scripts/effect_resolver.gd",
+      "status": "new",
+      "sha256": "f5cbf65ec90c09a3e9c35fc4fbd43d368691e1d6203a0b1222d9d8e526d9e6dc"
+    },
+    {
+      "path": "scripts/enemy.gd",
+      "status": "modified",
+      "sha256": "715141a02d934673ea1e119d0023d9582ba05332e23fb81ce52cf1af412f3847"
+    },
+    {
+      "path": "scripts/fx.gd",
+      "status": "retained",
+      "sha256": "3b0b4c404899d878a656673a91baf510a2cc617e61eff499db0d90c09be2ff19"
+    },
+    {
+      "path": "scripts/game_data.gd",
+      "status": "modified",
+      "sha256": "911aab50fcb7ecb89e1b51e7633f71fe3e436922beb98169a8d9a92d6191870e"
+    },
+    {
+      "path": "scripts/hud.gd",
+      "status": "modified",
+      "sha256": "2161972082fd64ded8dc9b4366b6af0effcd70f76cce5e9e1605a44c4e7197a4"
+    },
+    {
+      "path": "scripts/legacy_hud.gd",
+      "status": "modified",
+      "sha256": "3ae218bfd0210b74dabaa17df59e7734a3e20c663367a806853499e200a9058c"
+    },
+    {
+      "path": "scripts/loot.gd",
+      "status": "retained",
+      "sha256": "859f62c8027c939df711339d538606aca611aed31bd9df20b53db5fdd5f7e4ad"
+    },
+    {
+      "path": "scripts/main.gd",
+      "status": "modified",
+      "sha256": "4c5ea5df40945f6ba407507d6650fd6f8c79834a78f7e6ead0f3acdcdab95a19"
+    },
+    {
+      "path": "scripts/player.gd",
+      "status": "modified",
+      "sha256": "4039d0ab9e0431ee5b612a0bf4d16ab27dbf121e8224294efca7a8d016febed2"
+    },
+    {
+      "path": "scripts/projectile.gd",
+      "status": "new",
+      "sha256": "56039821f23576f264365aa1683fa0461f0c3f252bcd819850afdbdd9f54821f"
+    },
+    {
+      "path": "scripts/systems.gd",
+      "status": "modified",
+      "sha256": "c8271e87fd9db2b8f8fbea05ac09547babf85806de67822b5b0da3886c334cbe"
+    },
+    {
+      "path": "tests/LAST_RUN.txt",
+      "status": "modified",
+      "sha256": "46905de6df272e8873f63abedcb707842927f1a4f3fd77c83007199ab814bca0"
+    },
+    {
+      "path": "tests/MAGE_HEADLESS_RESULT.txt",
+      "status": "new",
+      "sha256": "9e9f2cd55e3d57b282ffc2a07caff3920491c85ca45974fdc4779b8e73669659"
+    },
+    {
+      "path": "tests/MAGE_LAST_RUN.txt",
+      "status": "new",
+      "sha256": "7f9eb977c6ed8c79d1c9c69edb8f942820dbb056ccdef3ced64745a35f0ffb34"
+    },
+    {
+      "path": "tests/MAGE_RENDERED_RESULT.txt",
+      "status": "new",
+      "sha256": "6a387edb98ce3711178af47b190edf4c4c8d269c5358c6dd0fb4b93266f1c4d8"
+    },
+    {
+      "path": "tests/WARRIOR_HEADLESS_RESULT.txt",
+      "status": "new",
+      "sha256": "92fe1fcaad6285c14edadef87990f18daaba46693fac34fd4ed4f3b05d4ad828"
+    },
+    {
+      "path": "tests/capture_atlas.gd",
+      "status": "modified",
+      "sha256": "8a87742ab4193a16837262f0856767849c9c87a8986382682085e9879ad2e5cb"
+    },
+    {
+      "path": "tests/export_data.gd",
+      "status": "modified",
+      "sha256": "69fa6a95a38b3314a66ef3f5586ed69e4ed7f93269a0303cc6d48721c32b0ac0"
+    },
+    {
+      "path": "tests/integration.gd",
+      "status": "modified",
+      "sha256": "30f6dc85c35f5b7425578947eb84d3b1e363a4693349294a0ef158208dca5a9c"
+    },
+    {
+      "path": "tests/mage_integration.gd",
+      "status": "new",
+      "sha256": "b68bd9861850fe1561240dbaa386338fab0ca962338b606e328e21354354b33c"
+    },
+    {
+      "path": "tests/previous_revision/HEADLESS_RESULT.txt",
+      "status": "new",
+      "sha256": "92fe1fcaad6285c14edadef87990f18daaba46693fac34fd4ed4f3b05d4ad828"
+    },
+    {
+      "path": "tests/previous_revision/RENDERED_RESULT.txt",
+      "status": "new",
+      "sha256": "b48925c69e0a42248389fcdf738d3e26f955ff344866982cafc7d7c35d1c69ef"
+    },
+    {
+      "path": "tools/.gdignore",
+      "status": "retained",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tools/key_sprite.py",
+      "status": "retained",
+      "sha256": "c31e38f5d748ae3c002c3fcdad4178063b9a7994bdc1ea8728cc62fbda43ea16"
+    },
+    {
+      "path": "tools/make_attack_strip.py",
+      "status": "retained",
+      "sha256": "621ebbb0e8eb23a1c7194d6e19f430059072dd95c826b45f617edfdbcfe2b2db"
+    }
+  ]
+}

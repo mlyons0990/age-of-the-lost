@@ -1,0 +1,32 @@
+{
+  "actions": [
+    "deposit",
+    "withdraw",
+    "deposit_matching",
+    "buy",
+    "sell",
+    "buyback",
+    "potion"
+  ],
+  "bag": [
+    10,
+    6
+  ],
+  "buyback_capacity": 12,
+  "filters": [
+    "all",
+    "weapons",
+    "armour",
+    "jewellery",
+    "unique"
+  ],
+  "gold_cap": 999999999,
+  "legacy_save_filename": "crownsfall_encounter_v4.json",
+  "one_time_upgrade_suffix": ".pre-v5",
+  "potion_price": 5,
+  "potion_stack_cap": 5,
+  "purchase_multiplier": 3,
+  "sale_and_buyback_multiplier": 1,
+  "schema": 5,
+  "service_left_inventory_right": true
+}

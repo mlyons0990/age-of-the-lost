@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "source": "Supplied November 10 handoff; implementation status audited November 11",
+  "classes": [
+    {
+      "id": "warrior",
+      "name": "Warrior",
+      "armor": "Plate",
+      "status": "implemented",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Weaponmaster",
+          "heroic_identity": "Bladestorm Paragon"
+        },
+        {
+          "specialization": "Bastion Guard",
+          "heroic_identity": "Citadel Sentinel"
+        },
+        {
+          "specialization": "Berserker",
+          "heroic_identity": "Bloodbound Warlord"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "mage",
+      "name": "Mage",
+      "armor": "Cloth",
+      "status": "implemented_gameplay_art_proxy",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Fire",
+          "heroic_identity": "Pyromancer"
+        },
+        {
+          "specialization": "Frost",
+          "heroic_identity": "Glacial Sovereign"
+        },
+        {
+          "specialization": "Arcane",
+          "heroic_identity": "Chronomancer"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "rogue",
+      "name": "Rogue",
+      "armor": "Leather",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Assassin",
+          "heroic_identity": "Night Reaper"
+        },
+        {
+          "specialization": "Trickster",
+          "heroic_identity": "Phantom Jester"
+        },
+        {
+          "specialization": "Duelist",
+          "heroic_identity": "Blade Virtuoso"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "druid",
+      "name": "Druid",
+      "armor": "Leather",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Grove Warden",
+          "heroic_identity": "Worldroot Guardian"
+        },
+        {
+          "specialization": "Shapeshifter",
+          "heroic_identity": "Primal Avatar"
+        },
+        {
+          "specialization": "Stormspeaker",
+          "heroic_identity": "Tempest Sage"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "ranger",
+      "name": "Ranger",
+      "armor": "Mail",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Deadeye",
+          "heroic_identity": "Starshot"
+        },
+        {
+          "specialization": "Beastkeeper",
+          "heroic_identity": "Wildbond Alpha"
+        },
+        {
+          "specialization": "Trapper",
+          "heroic_identity": "Briar Architect"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "oathkeeper",
+      "name": "Oathkeeper",
+      "armor": "Plate",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Dawn Vanguard",
+          "heroic_identity": "Sunward Justiciar"
+        },
+        {
+          "specialization": "Aegis Keeper",
+          "heroic_identity": "Hallowed Bastion"
+        },
+        {
+          "specialization": "Ashen Inquisitor",
+          "heroic_identity": "Cinder Arbiter"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "spiritcaller",
+      "name": "Spiritcaller",
+      "armor": "Mail",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Tempest",
+          "heroic_identity": "Storm Herald"
+        },
+        {
+          "specialization": "Earthkeeper",
+          "heroic_identity": "Worldshaper"
+        },
+        {
+          "specialization": "Ancestor",
+          "heroic_identity": "Echobound Sage"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "armor": "Cloth",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Luminary",
+          "heroic_identity": "Dawn Saint"
+        },
+        {
+          "specialization": "Veil Shepherd",
+          "heroic_identity": "Soul Shepherd"
+        },
+        {
+          "specialization": "Mindweaver",
+          "heroic_identity": "Dream Architect"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "hexbinder",
+      "name": "Hexbinder",
+      "armor": "Cloth",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Infernal Binder",
+          "heroic_identity": "Hellchain Sovereign"
+        },
+        {
+          "specialization": "Plague Hexer",
+          "heroic_identity": "Rot Covenant"
+        },
+        {
+          "specialization": "Void Scholar",
+          "heroic_identity": "Abyss Archivist"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "disciple",
+      "name": "Disciple",
+      "armor": "Leather",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Iron Fist",
+          "heroic_identity": "Mountain Hand"
+        },
+        {
+          "specialization": "Flowkeeper",
+          "heroic_identity": "Everflow Master"
+        },
+        {
+          "specialization": "Mist Dancer",
+          "heroic_identity": "Veilrunner"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "graveknight",
+      "name": "Graveknight",
+      "armor": "Plate",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Bloodbound",
+          "heroic_identity": "Sanguine Dreadlord"
+        },
+        {
+          "specialization": "Frost Warden",
+          "heroic_identity": "Winter Revenant"
+        },
+        {
+          "specialization": "Bonecaller",
+          "heroic_identity": "Ossuary Monarch"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "riftblade",
+      "name": "Riftblade",
+      "armor": "Leather",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Voidblade",
+          "heroic_identity": "Eclipse Harbinger"
+        },
+        {
+          "specialization": "Riftstalker",
+          "heroic_identity": "Foldwalker"
+        },
+        {
+          "specialization": "Chaosbreaker",
+          "heroic_identity": "Ruin Sentinel"
+        }
+      ],
+      "automatic_signature_passive": null
+    },
+    {
+      "id": "aethercaller",
+      "name": "Aethercaller",
+      "armor": "Mail",
+      "status": "design_only",
+      "specialization_level": 20,
+      "heroic_level": 40,
+      "paths": [
+        {
+          "specialization": "Starflare",
+          "heroic_identity": "Astral Herald"
+        },
+        {
+          "specialization": "Prismcraft",
+          "heroic_identity": "Prism Sovereign"
+        },
+        {
+          "specialization": "Lifeward",
+          "heroic_identity": "Genesis Keeper"
+        }
+      ],
+      "automatic_signature_passive": null
+    }
+  ]
+}

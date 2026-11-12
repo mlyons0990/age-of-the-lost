@@ -31,7 +31,13 @@ for the knight and three painted enemy types:
   ranged **Hexbound Gravecallers** join: they keep their distance (and back away,
   trying side routes when a wall is behind them), charge a green bolt with an aim
   line on the ground, then fire it. Bolts fly in a straight line and can be
-  sidestepped. This arena
+  sidestepped.
+- **Elite affixes (Diablo style):** every elite rolls one affix (two from
+  character level 15), shown in colour above its name. Swift (moves 45% faster,
+  attacks 30% faster), Shielded (a ward blocks all damage for 2.2 s every 7 s),
+  Molten (explodes 1.3 s after dying; step out of the orange ring), Summoner
+  (calls two Hollowlings at 60% and 25% life). From wave 6 elites can also be
+  Gravecallers. Numbers live in `ELITE_AFFIXES` in `game_data.gd`. This arena
   is a placeholder so combat has somewhere to happen.
 - **Knight skills:** Slash, Cleave, Shield Charge, Rallying Cry, plus one skill
   from the chosen specialization.
@@ -149,6 +155,7 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `scripts/player.gd` | Knight: movement, 8 facings, stats, skills, levels |
 | `scripts/enemy.gd` | Enemies: one painted sprite each, animated in code; melee chase, wind-up warning, strike; ranged casters keep distance and fire bolts |
 | `scripts/bolt.gd` | Enemy projectile: straight-line glowing orb that can be dodged |
+| `scripts/hazard.gd` | Delayed ground blast with a warning ring (Molten elites; reusable for bosses) |
 | `scripts/game_data.gd` | Class, spec, enemy and item data (edit this to design classes) |
 | `scripts/fx.gd` | Slash arcs, rings, blasts, particles, floating numbers |
 | `scripts/loot.gd` | Ground drops |
@@ -182,12 +189,12 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 114 checks covering
+(walk, fight a wave, level to 60 making each class choice, 120 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 114 of 114 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 120 of 120 checks. Not yet run on Windows.
 
 ## How the plaza works
 

@@ -321,6 +321,7 @@ func _inventory_tests() -> void:
 	await _merchant_tests()
 	await _lore_tests()
 	await _caster_tests()
+	await _affix_tests()
 	await _stat_tests()
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
@@ -811,4 +812,60 @@ func _caster_tests() -> void:
 	_note("caster retreat: state %s, caster moved %s, knight moved %s" % [c.state, str(c.position - c0), str(p.position - p0)])
 	_check(GD.gdist(c.position, p.position) > d0 + 0.5, "caster backs away when the knight closes in (%.2f -> %.2f)" % [d0, GD.gdist(c.position, p.position)])
 	main.kill_enemy(c)
+	await _wait(0.3)
+
+
+## Elite affixes: Swift, Shielded, Molten and Summoner each do what they say.
+func _affix_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var p: Node2D = main.player
+	p.position = main.RIFT_POS + GD.to_px(Vector2(-2.5, 0.0))
+	p.hp = float(p.stats()["max_hp"])
+	var at: Vector2 = main.RIFT_POS + GD.to_px(Vector2(2.0, 0.0))
+	# every elite rolls affixes; two at level 15 and above
+	main.spawn_enemy("revenant", true, at)
+	var e: Node2D = main.enemies[main.enemies.size() - 1]
+	var want: int = 2 if p.level >= GD.ELITE_TWO_AFFIX_LEVEL else 1
+	_check(e.affixes.size() == want, "elite rolls %d affix(es): %s" % [want, e.affix_names()])
+	# Swift: faster than a plain elite
+	e.set_affixes(["swift"])
+	_check(e.speed_mult() > 1.2 and e.attack_mult() < 1.0, "Swift elites move and attack faster")
+	# Shielded: the ward blocks damage
+	e.set_affixes(["shielded", "summoner"])
+	e.stun = 99.0
+	e.ward = 1.0
+	var hp0: float = e.hp
+	var got: int = e.take_hit(50, false, p.position, {})
+	_check(got == 0 and e.hp == hp0, "Shielded ward blocks all damage")
+	e.ward = 0.0
+	await _wait(0.2)
+	await _shot("g19_elite_affixes")
+	# Summoner: dropping below 60% life calls two Hollowlings
+	var n0: int = main.enemies.size()
+	e.take_hit(int(e.hp - e.max_hp * 0.55), false, p.position, {})
+	_check(main.enemies.size() == n0 + 2 and e.summons_done == 1, "Summoner calls two Hollowlings when wounded (%d -> %d)" % [n0, main.enemies.size()])
+	for x in main.enemies.duplicate():
+		if x != e:
+			main.kill_enemy(x)
+	# Molten: dying leaves a blast that hurts a knight who stays in the ring...
+	e.set_affixes(["molten"])
+	p.position = e.position + GD.to_px(Vector2(-1.0, 0.0))
+	var h0: int = main.hazard_hits
+	main.kill_enemy(e)
+	await _wait(0.6)
+	await _shot("g20_molten")
+	await _wait(1.0)
+	_check(main.hazard_hits == h0 + 1, "Molten death blast hurts a knight who stays in the ring")
+	# ...and misses one who steps out in time
+	main.spawn_enemy("brute", true, at)
+	var e2: Node2D = main.enemies[main.enemies.size() - 1]
+	e2.set_affixes(["molten"])
+	p.position = e2.position + GD.to_px(Vector2(-1.0, 0.0))
+	var h1: int = main.hazard_hits
+	main.kill_enemy(e2)
+	await _wait(0.3)
+	p.position = e2.position + GD.to_px(Vector2(-3.5, 0.0))
+	await _wait(1.4)
+	_check(main.hazard_hits == h1, "stepping out of the Molten ring avoids the blast")
+	main.close_rift()
 	await _wait(0.3)

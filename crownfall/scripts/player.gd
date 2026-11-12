@@ -362,7 +362,10 @@ func damage_enemy(e: Node2D, base: float, opt: Dictionary = {}) -> void:
 	if crit:
 		d *= float(s["crit_mult"])
 	var amount: int = maxi(1, roundi(d))
-	e.take_hit(amount, crit, position, opt)
+	amount = e.take_hit(amount, crit, position, opt)   # 0 when a ward blocks it
+	if amount <= 0:
+		main.audio.play("dodge", 0.08)
+		return
 	main.audio.play("crit" if crit else "hit", 0.08)
 	if float(s["life_hit"]) > 0.0:
 		heal(float(s["life_hit"]), true)

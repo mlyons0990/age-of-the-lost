@@ -8,6 +8,7 @@ const Player := preload("res://scripts/player.gd")
 const Enemy := preload("res://scripts/enemy.gd")
 const Loot := preload("res://scripts/loot.gd")
 const Bolt := preload("res://scripts/bolt.gd")
+const Hazard := preload("res://scripts/hazard.gd")
 const Fx := preload("res://scripts/fx.gd")
 const Inv := preload("res://scripts/inventory_logic.gd")
 const Hud := preload("res://scripts/hud.gd")
@@ -61,6 +62,7 @@ var debug_draw := false
 var enemies: Array = []
 var bolts_fired := 0   # counters for the self-test
 var bolt_hits := 0
+var hazard_hits := 0
 var loot: Array = []
 var open_points: Array[Vector2] = []
 var hover_enemy: Node2D = null
@@ -413,6 +415,22 @@ func spawn_enemy(key: String, elite: bool, at: Vector2) -> void:
 	fx_parts.burst(at, 14, [Color("c9a8ff"), Color("7a4dff")], 3.0, 40.0)
 
 
+## A delayed blast on the ground at `at` (warning ring, then damage if the knight is inside).
+func ground_blast(at: Vector2, radius: float, delay: float, dmg: float, level: int, col: Color) -> Node2D:
+	var h := Node2D.new()
+	h.set_script(Hazard)
+	h.main = self
+	h.player = player
+	h.position = at
+	h.radius = radius
+	h.delay = delay
+	h.dmg = dmg
+	h.level = level
+	h.col = col
+	world.add_child(h)
+	return h
+
+
 ## Fires an enemy bolt from `from` toward `at` (both screen positions on the ground).
 func fire_bolt(from: Vector2, at: Vector2, dmg: float, level: int, speed: float, reach: float) -> Node2D:
 	var b := Node2D.new()
@@ -459,7 +477,7 @@ func spawn_wave() -> void:
 			key = "caster"   # ranged casters join from the second wave
 		spawn_enemy(key, false, _spawn_point())
 	if wave % 3 == 0:
-		spawn_enemy("brute" if randf() < 0.5 else "revenant", true, _spawn_point())
+		spawn_enemy(["brute", "revenant", "caster"][randi() % 3] if wave >= 6 else ("brute" if randf() < 0.5 else "revenant"), true, _spawn_point())
 
 
 func toggle_rift() -> void:
@@ -509,6 +527,9 @@ func kill_enemy(e: Node2D) -> void:
 	if e.elite:
 		player.elite_kills += 1
 		shake = 9.0
+	if e.affixes.has("molten"):
+		var mo: Dictionary = GD.ELITE_AFFIXES["molten"]
+		ground_blast(e.position, float(mo["radius"]), float(mo["delay"]), e.dmg * float(mo["dmg"]), e.level, Color("ff7a2e"))
 	var cols: Array = [Color("a77bff"), Color("5a2f9a"), Color("ffe86a")]
 	if e.type_key == "brute":
 		cols = [Color("7a8a3a"), Color("c9b06a"), Color("3a2a18")]

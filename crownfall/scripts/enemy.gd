@@ -38,6 +38,10 @@ var phase := 0.0
 var stun := 0.8
 var moving := false
 var struck := 0.0
+var affixes: Array = []   # elite affix ids, see GD.ELITE_AFFIXES
+var ward := 0.0           # Shielded: seconds the ward stays up
+var ward_cd := 3.0        # Shielded: seconds until the next ward
+var summons_done := 0     # Summoner: how many hp thresholds have called help
 
 
 func setup(key: String, is_elite: bool, player_level: int) -> void:
@@ -54,6 +58,34 @@ func setup(key: String, is_elite: bool, player_level: int) -> void:
 	if elite:
 		ename = "%s %s" % [GD.ELITE_PREFIX[randi() % GD.ELITE_PREFIX.size()], t["name"]]
 	phase = randf() * 6.0
+	if elite:
+		var pool: Array = GD.ELITE_AFFIXES.keys()
+		pool.shuffle()
+		set_affixes(pool.slice(0, 2 if player_level >= GD.ELITE_TWO_AFFIX_LEVEL else 1))
+
+
+## Gives this elite specific affixes (also used by the self-test).
+func set_affixes(list: Array) -> void:
+	affixes = list.duplicate()
+	ward = 0.0
+	ward_cd = 3.0
+	summons_done = 0
+
+
+func affix_names() -> String:
+	var n: Array = []
+	for a in affixes:
+		n.append(GD.ELITE_AFFIXES[a]["name"])
+	return "  ·  ".join(n)
+
+
+## Speed and attack-rate multipliers from affixes.
+func speed_mult() -> float:
+	return float(GD.ELITE_AFFIXES["swift"]["speed"]) if affixes.has("swift") else 1.0
+
+
+func attack_mult() -> float:
+	return float(GD.ELITE_AFFIXES["swift"]["attack"]) if affixes.has("swift") else 1.0
 
 
 ## Height of the sprite on screen, in pixels.
@@ -62,7 +94,12 @@ func height() -> float:
 	return tex.get_height() * float(DRAW_SCALE[type_key]) * (1.25 if elite else 1.0)
 
 
-func take_hit(amount: int, crit: bool, from: Vector2, opt: Dictionary) -> void:
+## Applies a hit. Returns the damage actually taken (0 while a ward is up).
+func take_hit(amount: int, crit: bool, from: Vector2, opt: Dictionary) -> int:
+	if ward > 0.0:
+		main.fx_text.text(position, "Warded", Color("e6e0ff"))
+		main.fx_parts.burst(position + Vector2(0, -height() * 0.5), 6, [Color("e6e0ff"), Color("a9a0ff")], 2.0, 40.0)
+		return 0
 	hp -= amount
 	flash = 0.12
 	var dir := GD.ground(from, position).normalized()
@@ -75,6 +112,22 @@ func take_hit(amount: int, crit: bool, from: Vector2, opt: Dictionary) -> void:
 	main.fx_parts.burst(position, 10 if crit else 5, cols, 3.0, 70.0)
 	if crit:
 		main.shake = maxf(main.shake, 5.0)
+	_check_summon()
+	return amount
+
+
+## Summoner: calls Hollowlings each time its life drops past a threshold.
+func _check_summon() -> void:
+	if not affixes.has("summoner") or hp <= 0.0:
+		return
+	var su: Dictionary = GD.ELITE_AFFIXES["summoner"]
+	var at: Array = su["at"]
+	while summons_done < at.size() and hp / max_hp <= float(at[summons_done]):
+		summons_done += 1
+		main.fx_text.text(position + Vector2(0, -40), "Rise!", Color("c9a8ff"), true)
+		for i in int(su["count"]):
+			var off := GD.to_px(Vector2(1.0, 0.0).rotated(TAU * i / float(su["count"]) + randf()))
+			main.spawn_enemy("slime", false, position + off)
 
 
 func _move(g: Vector2) -> void:
@@ -93,12 +146,22 @@ func _process(delta: float) -> void:
 		return
 	flash = maxf(0.0, flash - delta)
 	struck = maxf(0.0, struck - delta)
+	if affixes.has("shielded"):
+		var sh: Dictionary = GD.ELITE_AFFIXES["shielded"]
+		if ward > 0.0:
+			ward -= delta
+		else:
+			ward_cd -= delta
+			if ward_cd <= 0.0:
+				ward = float(sh["lasts"])
+				ward_cd = float(sh["every"])
+				main.audio.play("rally", 0.1)
 	phase += delta
 	moving = false
 	if burn > 0.0:
 		burn -= delta
 		burn_tick += delta
-		if burn_tick > 0.5:
+		if burn_tick > 0.5 and ward <= 0.0:
 			burn_tick = 0.0
 			var d: int = maxi(1, roundi(burn_dps * 0.5))
 			hp -= d
@@ -128,7 +191,7 @@ func _process(delta: float) -> void:
 		wind_left -= delta
 		if wind_left <= 0.0:
 			state = "chase"
-			atk_cd = t["atk_cd"]
+			atk_cd = float(t["atk_cd"]) * attack_mult()
 			struck = 0.18
 			main.audio.play("enemy_swing", 0.12)
 			if d_p <= float(t["range"]) + 0.45:
@@ -136,10 +199,10 @@ func _process(delta: float) -> void:
 	elif d_p <= float(t["range"]) + 0.2:
 		if atk_cd <= 0.0:
 			state = "windup"
-			wind_left = t["wind"]
+			wind_left = float(t["wind"]) * attack_mult()
 			face = 1.0 if player.position.x >= position.x else -1.0
 	else:
-		_move(to_p / d_p * minf(float(t["speed"]) * delta * (0.85 if burn > 0.0 else 1.0), d_p))
+		_move(to_p / d_p * minf(float(t["speed"]) * speed_mult() * delta * (0.85 if burn > 0.0 else 1.0), d_p))
 		face = 1.0 if to_p.x >= 0.0 else -1.0
 		moving = true
 
@@ -148,12 +211,12 @@ func _process(delta: float) -> void:
 ## gets close, and otherwise charge and fire a bolt that can be sidestepped.
 func _ranged_ai(delta: float, to_p: Vector2, d_p: float) -> void:
 	face = 1.0 if to_p.x >= 0.0 else -1.0
-	var spd: float = float(t["speed"]) * delta * (0.85 if burn > 0.0 else 1.0)
+	var spd: float = float(t["speed"]) * speed_mult() * delta * (0.85 if burn > 0.0 else 1.0)
 	if state == "windup":
 		wind_left -= delta
 		if wind_left <= 0.0:
 			state = "chase"
-			atk_cd = float(t["atk_cd"]) * randf_range(0.85, 1.15)
+			atk_cd = float(t["atk_cd"]) * attack_mult() * randf_range(0.85, 1.15)
 			struck = 0.18
 			main.fire_bolt(position, player.position, dmg, level, float(t["bolt_speed"]), float(t["range"]))
 		return
@@ -184,7 +247,7 @@ func _retreat(dir_to_player: Vector2, step: float, d_now: float) -> bool:
 
 func _start_cast() -> void:
 	state = "windup"
-	wind_left = float(t["wind"])
+	wind_left = float(t["wind"]) * attack_mult()
 
 
 # ---------------------------------------------------------------- drawing
@@ -209,7 +272,7 @@ func _draw() -> void:
 	var tall: float = height()
 	var wind: float = 0.0
 	if state == "windup" and t.get("ranged", false):
-		wind = 1.0 - wind_left / float(t["wind"])
+		wind = 1.0 - wind_left / (float(t["wind"]) * attack_mult())
 		# aim line along the ground toward the knight, filling in as the bolt charges
 		var g := GD.ground(position, player.position).normalized()
 		var reach: float = float(t["range"]) + 1.5
@@ -217,7 +280,7 @@ func _draw() -> void:
 		draw_line(Vector2.ZERO, end, Color(0.5, 1.0, 0.8, 0.12 + 0.2 * wind), 10.0, true)
 		draw_line(Vector2.ZERO, end * wind, Color(0.6, 1.0, 0.85, 0.55), 3.0, true)
 	elif state == "windup":
-		wind = 1.0 - wind_left / float(t["wind"])
+		wind = 1.0 - wind_left / (float(t["wind"]) * attack_mult())
 		# red warning wedge on the ground
 		var ang := GD.ground(position, player.position).angle()
 		var r: float = (float(t["range"]) + 0.3) * GD.U
@@ -239,6 +302,13 @@ func _draw() -> void:
 	draw_colored_polygon(_ellipse(Vector2.ZERO, 22.0 * sc * (1.5 if type_key == "brute" else 1.0), 9.0 * sc), Color(0.1, 0.08, 0.2, 0.3))
 	if elite:
 		draw_circle(Vector2(0, -tall * 0.5), tall * 0.55, Color(1.0, 0.78, 0.3, 0.12))
+	if affixes.has("molten"):
+		# smouldering ground and embers
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, GD.SQ))
+		draw_circle(Vector2.ZERO, 70.0 + sin(phase * 5.0) * 6.0, Color(1.0, 0.4, 0.1, 0.16))
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+		if randf() < 0.25 and dead_t < 0.0:
+			main.fx_parts.spark(position + Vector2(randf_range(-30, 30), -randf_range(0, tall * 0.6)), Vector2.ZERO, randf_range(30, 80), 60.0, 0.0, 0.5, Color("ff8a3a"), 4.0)
 
 	# painted sprite (faces lower-right in the source art; mirrored when facing left)
 	var tex: Texture2D = TEX[type_key]
@@ -265,6 +335,15 @@ func _draw() -> void:
 	draw_set_transform(Vector2(struck / 0.18 * 14.0 * face, -hop), tilt, Vector2(k * face * squash, k / squash))
 	draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 8.0), tint)
 
+	# Shielded: a pale ward bubble while it blocks damage
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	if ward > 0.0:
+		var wa := clampf(ward / 0.3, 0.0, 1.0)
+		var wc := Vector2(0, -tall * 0.5)
+		draw_circle(wc, tall * 0.62, Color(0.85, 0.82, 1.0, 0.16 * wa))
+		draw_arc(wc, tall * 0.62, 0.0, TAU, 48, Color(0.92, 0.9, 1.0, 0.8 * wa), 3.0, true)
+		draw_arc(wc, tall * 0.62 - 6.0, phase * 2.0, phase * 2.0 + 2.0, 16, Color(1, 1, 1, 0.6 * wa), 2.0, true)
+
 	# a caster's bolt gathering in its hand
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	if state == "windup" and t.get("ranged", false):
@@ -287,3 +366,17 @@ func _draw() -> void:
 			var tw := font.get_string_size(ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x
 			draw_string_outline(font, Vector2(-tw / 2, y - 8), ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 5, Color(0, 0, 0, 0.9))
 			draw_string(font, Vector2(-tw / 2, y - 8), ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color("ffcf7a"))
+			# affixes on a line above the name, each in its own colour
+			if not affixes.is_empty():
+				var ax := 0.0
+				var parts: Array = []
+				for af in affixes:
+					parts.append(String(GD.ELITE_AFFIXES[af]["name"]))
+				var full := "  ·  ".join(parts)
+				ax = -font.get_string_size(full, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x / 2.0
+				for i in affixes.size():
+					var nm: String = parts[i] + ("  ·  " if i < affixes.size() - 1 else "")
+					var cc := Color(String(GD.ELITE_AFFIXES[affixes[i]]["color"]))
+					draw_string_outline(font, Vector2(ax, y - 28), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, 4, Color(0, 0, 0, 0.9))
+					draw_string(font, Vector2(ax, y - 28), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, cc)
+					ax += font.get_string_size(nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x

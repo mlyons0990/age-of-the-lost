@@ -154,6 +154,16 @@ const ETYPES := {
 }
 const ELITE_PREFIX := ["Vile", "Dread", "Blighted", "Ancient", "Frenzied", "Gloomborn"]
 
+## Elite affixes, Diablo-style. Elites roll one; from level 15 they roll two.
+## Numbers are tuned here; the behaviour lives in enemy.gd.
+const ELITE_AFFIXES := {
+	"swift": {"name": "Swift", "color": "9fe0ff", "desc": "Moves and attacks much faster.", "speed": 1.45, "attack": 0.7},
+	"shielded": {"name": "Shielded", "color": "e6e0ff", "desc": "Raises a ward that blocks all damage for a few seconds.", "every": 7.0, "lasts": 2.2},
+	"molten": {"name": "Molten", "color": "ff8a3a", "desc": "Explodes when it dies. Step out of the ring.", "radius": 2.0, "delay": 1.3, "dmg": 1.6},
+	"summoner": {"name": "Summoner", "color": "c9a8ff", "desc": "Calls Hollowlings to its side when wounded.", "at": [0.6, 0.25], "count": 2},
+}
+const ELITE_TWO_AFFIX_LEVEL := 15
+
 const RARITY := [
 	{"name": "Common", "color": "e4e0d6", "mult": 1.0},
 	{"name": "Magic", "color": "6fa8ff", "mult": 1.25},

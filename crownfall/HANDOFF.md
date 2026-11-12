@@ -199,7 +199,9 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `assets/knight/idle_<dir>.png` | One 384x384 standing frame per direction |
 | `assets/knight/attack_<se,ne>.png` | Sword swing strips, 15 frames of 512x512 (the 384 frame sits centred inside) |
 | `assets/enemies/<slime,revenant,brute>.png` | Enemy sprites: Hollowling, Veilbound Revenant, Thornhide Brute |
-| `assets/items/<slot>.png` | Item icons (weapon, offhand, helm, armor, gloves, belt, boots, ring, amulet), sized to each footprint. Made by `tools/make_item_icons.py`; replace any with a painted portrait of the same aspect and the game uses it |
+| `assets/items/painted/<art id>.png` | Painted item portraits from `art/item_taxonomy` (Higgsfield). Each item stores its `base` ("Chainmail", "Kite Shield"...) and `ITEM_ART` in `game_data.gd` maps bases to art: plate, mail, leather and cloth armour, three shields, sword/axe/mace. Old saves infer the base from the name |
+| `assets/skills/<skill id>.png` | Painted skill icons from `art/expansion02` (slash, cleave, charge, rally, hammer, breath). Soul Harvest keeps its drawn icon: the library's harvest art is a shield and doesn't read as the skill |
+| `assets/items/<slot>.png` | Fallback item icons (weapon, offhand, helm, armor, gloves, belt, boots, ring, amulet), sized to each footprint. Made by `tools/make_item_icons.py`; replace any with a painted portrait of the same aspect and the game uses it |
 | `tools/make_item_icons.py` | Paints the item icons (gradients, outlines, highlights) in the knight's palette |
 | `assets/enemies/hexcaller.png` | Placeholder Gravecaller: the Revenant recoloured spectral green. Replace with real art when available |
 
@@ -213,7 +215,7 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 139 checks covering
+(walk, fight a wave, level to 60 making each class choice, 142 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
@@ -223,7 +225,7 @@ the last check confirms every test section ran to the end (a GDScript error
 inside a section stops it without failing a check, so also look for
 "SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 139 of 139 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 142 of 142 checks. Not yet run on Windows.
 
 ## How the plaza works
 

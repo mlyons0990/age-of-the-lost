@@ -744,12 +744,21 @@ const ICON_SLOTS := ["weapon", "offhand", "helm", "armor", "gloves", "belt", "bo
 static var _icons := {}
 
 
-static func icon_for(slot: String) -> Texture2D:
-	if _icons.is_empty():
-		for k in ICON_SLOTS:
-			var path := "res://assets/items/%s.png" % k
-			_icons[k] = load(path) if ResourceLoader.exists(path) else null
-	return _icons.get(slot)
+## The picture for an item: its painted portrait if there is one, else the slot's drawn icon.
+static func icon_for(it: Dictionary) -> Texture2D:
+	var art := GD.item_art(it)
+	if art != "":
+		var key := "painted/" + art
+		if not _icons.has(key):
+			var path := "res://assets/items/painted/%s.png" % art
+			_icons[key] = load(path) if ResourceLoader.exists(path) else null
+		if _icons[key] != null:
+			return _icons[key]
+	var slot := String(it.get("slot", ""))
+	if not _icons.has(slot):
+		var p2 := "res://assets/items/%s.png" % slot
+		_icons[slot] = load(p2) if ResourceLoader.exists(p2) else null
+	return _icons[slot]
 
 
 func _draw_item(r: Rect2, it: Dictionary, alpha := 1.0) -> void:
@@ -760,7 +769,7 @@ func _draw_item(r: Rect2, it: Dictionary, alpha := 1.0) -> void:
 	if glow_a > 0.0:
 		draw_circle(r.get_center(), minf(r.size.x, r.size.y) * 0.42, Color(col.r, col.g, col.b, glow_a * alpha))
 	draw_rect(r.grow(-2), Color(col.r, col.g, col.b, alpha), false, 2.0)
-	var tex := icon_for(String(it.get("slot", "")))
+	var tex := icon_for(it)
 	if tex != null:
 		# fit the icon inside the rect, keeping its shape
 		var inner := r.grow(-5)

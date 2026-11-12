@@ -184,11 +184,47 @@ const ITEM_BASES := {
 	"belt": ["War Belt", "Girdle", "Sash"],
 	"boots": ["Greaves", "Sabatons", "Riding Boots"],
 	"ring": ["Band", "Signet", "Loop"],
-	"weapon": ["Longsword", "Arming Sword", "Bastard Sword", "Greatsword"],
+	"weapon": ["Longsword", "Arming Sword", "Bastard Sword", "War Axe", "Flanged Mace"],
 	"armor": ["Chainmail", "Brigandine", "Plate Cuirass"],
 	"helm": ["Barbute", "Sallet", "Great Helm"],
 	"amulet": ["Pendant", "Talisman", "Sigil"],
 }
+## Painted portrait for each item base (files in assets/items/painted/, from the
+## art/item_taxonomy library). Bases not listed use the slot's default below.
+const ITEM_ART := {
+	"Longsword": "one_hand_melee_sword", "Arming Sword": "one_hand_melee_sword", "Bastard Sword": "one_hand_melee_sword",
+	"Greatsword": "one_hand_melee_sword", "War Axe": "one_hand_melee_axe", "Flanged Mace": "one_hand_melee_mace",
+	"Kite Shield": "off_hand_kite_shield", "Heater Shield": "off_hand_shield", "Tower Shield": "off_hand_tower_shield",
+	"Great Helm": "armor_plate_plate_head", "Barbute": "armor_mail_mail_head", "Sallet": "armor_leather_leather_head",
+	"Plate Cuirass": "armor_plate_plate_chest", "Chainmail": "armor_mail_mail_chest", "Brigandine": "armor_leather_leather_chest",
+	"Gauntlets": "armor_plate_plate_gloves", "Mail Gloves": "armor_mail_mail_gloves", "Vambraces": "armor_leather_leather_gloves",
+	"War Belt": "armor_plate_plate_belt", "Girdle": "armor_mail_mail_belt", "Sash": "armor_cloth_cloth_belt",
+	"Greaves": "armor_plate_plate_boots", "Sabatons": "armor_mail_mail_boots", "Riding Boots": "armor_leather_leather_boots",
+}
+const SLOT_ART := {
+	"weapon": "one_hand_melee_sword", "offhand": "off_hand_kite_shield", "helm": "armor_plate_plate_head",
+	"armor": "armor_plate_plate_chest", "gloves": "armor_plate_plate_gloves", "belt": "armor_plate_plate_belt",
+	"boots": "armor_plate_plate_boots", "ring": "jewelry_ring", "amulet": "jewelry_amulet",
+}
+
+
+## The item's base type ("Chainmail", "Kite Shield"...). Older saves have no "base",
+## so it is read back from the name where possible.
+static func item_base(it: Dictionary) -> String:
+	if it.has("base"):
+		return String(it["base"])
+	var n := String(it.get("name", ""))
+	for b in ITEM_BASES.get(String(it.get("slot", "")), []):
+		if n.ends_with(String(b)):
+			return String(b)
+	return ""
+
+
+## Id of the painted portrait for an item.
+static func item_art(it: Dictionary) -> String:
+	return String(ITEM_ART.get(item_base(it), SLOT_ART.get(String(it.get("slot", "")), "")))
+
+
 const ITEM_PREFIX := ["Gilded", "Valorous", "Dawnforged", "Grim", "Wyrmscale", "Hallowed", "Stalwart", "Ashen", "Sunlit", "Oathsworn"]
 const ITEM_LEGEND := {
 	"offhand": ["Bulwark of the First Anchor", "Dawnwall"],
@@ -306,6 +342,7 @@ static func make_item(level: int, boost: float = 0.0) -> Dictionary:
 			it[pool2[i]] = float(roundi(val + level * float(a2.get("per_level", 0.0))))
 	var bases: Array = ITEM_BASES[slot]
 	var base: String = bases[randi() % bases.size()]
+	it["base"] = base
 	if ri == 3:
 		var legends: Array = ITEM_LEGEND[slot]
 		it["name"] = legends[randi() % legends.size()]

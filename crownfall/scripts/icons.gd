@@ -1,9 +1,26 @@
 extends RefCounted
 ## Skill and potion icons drawn in code, shared by the skill bar and the spellbook.
-## Painted icon art can replace these later.
+## A painted icon in assets/skills/<id>.png replaces the drawn one.
+
+
+static var _tex := {}
+
+
+## Painted icon for a skill, if assets/skills/<id>.png exists (from the art/expansion02 library).
+static func texture(id: String) -> Texture2D:
+	if not _tex.has(id):
+		var path := "res://assets/skills/%s.png" % id
+		_tex[id] = load(path) if ResourceLoader.exists(path) else null
+	return _tex[id]
 
 
 static func draw_icon(ci: CanvasItem, id: String, r: Rect2, col: Color) -> void:
+	var tex := texture(id)
+	if tex != null:
+		# a grey colour means locked or unavailable: dim the painting
+		var dim: bool = col.s < 0.05 and col.v < 0.6
+		ci.draw_texture_rect(tex, r.grow(-3), false, Color(0.4, 0.4, 0.42) if dim else Color.WHITE)
+		return
 	var c := r.get_center()
 	match id:
 		"slash":

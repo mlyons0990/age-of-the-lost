@@ -1005,6 +1005,19 @@ func _loot_label_tests() -> void:
 	for l in main.loot.duplicate():
 		main.loot.erase(l)
 		l.queue_free()
+	# painted portraits: every item base has one, and old saves without a base still find theirs
+	var missing: Array = []
+	for slot in GD.ITEM_BASES:
+		for base in GD.ITEM_BASES[slot]:
+			var art: String = GD.item_art({"slot": slot, "base": base})
+			if not ResourceLoader.exists("res://assets/items/painted/%s.png" % art):
+				missing.append(base)
+	_check(missing.is_empty(), "every item base has a painted portrait (missing: %s)" % str(missing))
+	var old_save: Dictionary = {"slot": "armor", "name": "Grim Chainmail", "rarity": 1}
+	_check(GD.item_art(old_save) == "armor_mail_mail_chest", "an old saved Chainmail still shows the mail art")
+	var IW := load("res://scripts/inventory_window.gd")
+	var tex: Texture2D = IW.icon_for(GD.make_item(10, 0.0))
+	_check(tex != null and tex.resource_path.contains("/painted/"), "new drops use painted portraits (%s)" % (tex.resource_path if tex != null else "none"))
 	finished.append("_loot_label_tests")
 
 

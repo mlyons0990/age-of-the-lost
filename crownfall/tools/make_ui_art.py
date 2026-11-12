@@ -193,32 +193,89 @@ def round_frame():
     return ring.crop(box)
 
 
+def _poly_mask(n, pts):
+    m = Image.new("L", (n, n), 0)
+    ImageDraw.Draw(m).polygon(pts, fill=255)
+    return m
+
+
 def evade_roll():
-    n = 128 * 2
+    """Dodge-roll button icon. Uses tools/ui_sources/evade_icon.png when present (the
+    Higgsfield icon: keyed if it's on chroma green, fitted into the circle); otherwise
+    draws a simple winged boot pointing right with speed lines."""
+    n = 128 * SS
+    hf = os.path.join(SRC, "evade_icon.png")
+    if os.path.exists(hf):
+        import sys
+        sys.path.insert(0, HERE)
+        from key_sprite import key
+        im = Image.open(hf).convert("RGBA")
+        px = np.asarray(im.convert("RGB")).astype(int)
+        if (px[..., 1] - np.maximum(px[..., 0], px[..., 2]) > 60).mean() > 0.2:
+            im = key(im)
+        side = min(im.size)
+        im = im.crop(((im.width - side) // 2, (im.height - side) // 2, (im.width + side) // 2, (im.height + side) // 2))
+        out = im.resize((128, 128), Image.LANCZOS)
+        m = Image.new("L", (128 * 4, 128 * 4), 0)
+        ImageDraw.Draw(m).ellipse([0, 0, 128 * 4 - 1, 128 * 4 - 1], fill=255)
+        out.putalpha(ImageChops.multiply(out.getchannel("A"), m.resize((128, 128), Image.LANCZOS)))
+        return out
     im = Image.new("RGBA", (n, n))
-    # deep navy well with a warm glow
+    # deep navy disc, lighter toward the centre
     y, x = np.mgrid[0:n, 0:n]
-    d = np.hypot(x - n * 0.5, y - n * 0.56) / (n * 0.5)
-    c0, c1 = np.array([60, 82, 140]), np.array([8, 12, 26])
-    bg = (c0 * (1 - d[..., None]).clip(0, 1) + c1 * d[..., None].clip(0, 1))
+    d = np.hypot(x - n * 0.5, y - n * 0.5) / (n * 0.5)
+    c0, c1 = np.array([46, 64, 118]), np.array([10, 14, 32])
+    bg = c0 * (1 - d[..., None]).clip(0, 1) + c1 * d[..., None].clip(0, 1)
     im = Image.fromarray(np.dstack([bg, np.full((n, n), 255)]).astype(np.uint8), "RGBA")
-    dr = ImageDraw.Draw(im, "RGBA")
-    # curved gold motion trails sweeping in from the left, behind the boots
-    for i, (dy, wd, al) in enumerate([(-34, 9, 210), (0, 7, 170), (34, 5, 130)]):
-        box = [n * 0.05, n * 0.30 + dy, n * 0.95, n * 1.10 + dy]
-        dr.arc(box, 192, 238, fill=(255, 214, 120, al), width=wd)
-    boots = Image.open(os.path.join(SRC, "leather_boots.png")).convert("RGBA")
-    bb = boots.getchannel("A").getbbox()
-    boots = boots.crop(bb)
-    k = min(n * 0.8 / boots.width, n * 0.8 / boots.height)
-    boots = boots.resize((round(boots.width * k), round(boots.height * k)), Image.LANCZOS).rotate(-12, expand=True, resample=Image.BICUBIC)
-    # a soft gold glow under the boots
-    glow = Image.new("RGBA", boots.size, (255, 200, 110, 0))
-    glow.putalpha(boots.getchannel("A").filter(ImageFilter.GaussianBlur(10)).point(lambda p: int(p * 0.55)))
-    pos = ((n - boots.width) // 2 + 16, (n - boots.height) // 2 + 4)
-    im.alpha_composite(glow, pos)
-    im.alpha_composite(boots, pos)
-    # round mask
+    dr = ImageDraw.Draw(im)
+    def P(pts):
+        return [(px * n, py * n) for px, py in pts]
+    # speed lines trailing behind the heel (to the left)
+    for (y0, x0, x1, w) in [(0.40, 0.10, 0.30, 0.035), (0.53, 0.06, 0.27, 0.035), (0.66, 0.12, 0.30, 0.035)]:
+        dr.rounded_rectangle([x0 * n, (y0 - w / 2) * n, x1 * n, (y0 + w / 2) * n], radius=w * n / 2, fill=(255, 214, 120, 235))
+    # boot: a shaft leaning slightly forward, curved instep, rounded toe pointing right
+    def curve(pts, steps=10):
+        """Smooth closed outline through the points (Catmull-Rom)."""
+        out = []
+        k = len(pts)
+        for i in range(k):
+            p0, p1, p2, p3 = pts[i - 1], pts[i], pts[(i + 1) % k], pts[(i + 2) % k]
+            for t in [j / steps for j in range(steps)]:
+                t2, t3 = t * t, t * t * t
+                out.append(tuple(0.5 * ((2 * p1[c]) + (-p0[c] + p2[c]) * t + (2 * p0[c] - 5 * p1[c] + 4 * p2[c] - p3[c]) * t2
+                                        + (-p0[c] + 3 * p1[c] - 3 * p2[c] + p3[c]) * t3) for c in (0, 1)))
+        return out
+    shape = [(0.35, 0.22), (0.56, 0.21), (0.565, 0.47), (0.64, 0.53), (0.76, 0.565), (0.845, 0.62),
+             (0.855, 0.69), (0.80, 0.735), (0.42, 0.735), (0.355, 0.70), (0.37, 0.50)]
+    outline = (26, 18, 10, 255)
+    body = P(curve(shape))
+    mask = Image.new("L", (n, n), 0)
+    ImageDraw.Draw(mask).polygon(body, fill=255)
+    # fill: warm ivory, lit from the upper left, darker toward the sole
+    yy = np.linspace(0, 1, n)[:, None] * np.ones((1, n))
+    xx = np.linspace(0, 1, n)[None, :] * np.ones((n, 1))
+    shade = np.clip(1.0 - 0.55 * (yy - 0.2) - 0.15 * (xx - 0.35), 0.55, 1.0)
+    fill = np.dstack([242 * shade, 228 * shade, 196 * shade, np.full((n, n), 255)]).astype(np.uint8)
+    im.paste(Image.fromarray(fill, "RGBA"), (0, 0), mask)
+    # gold cuff, toe cap and a dark sole
+    gold = (234, 184, 86, 255)
+    clip = lambda poly, col: im.paste(Image.new("RGBA", (n, n), col), (0, 0), ImageChops.multiply(mask, _poly_mask(n, P(poly))))
+    clip([(0.30, 0.18), (0.62, 0.18), (0.62, 0.29), (0.30, 0.30)], gold)
+    clip([(0.74, 0.50), (0.95, 0.50), (0.95, 0.80), (0.76, 0.80), (0.75, 0.62)], gold)
+    clip([(0.30, 0.695), (0.95, 0.695), (0.95, 0.80), (0.30, 0.80)], (112, 72, 36, 255))
+    dr = ImageDraw.Draw(im)
+    dr.line(body + [body[0]], fill=outline, width=int(0.022 * n), joint="curve")
+    # a feathered wing at the back of the ankle, sweeping left
+    for i, (ang, ln) in enumerate([(-28, 0.20), (-12, 0.17), (4, 0.13)]):
+        a = math.radians(180 + ang)
+        bx, by = 0.37 * n, (0.37 + i * 0.045) * n
+        tip = (bx + math.cos(a) * ln * n, by - math.sin(a) * ln * n * -1 - 0.0)
+        feather = [(bx, by - 0.03 * n), tip, (bx, by + 0.03 * n)]
+        dr.polygon(feather, fill=outline)
+        inner = [(bx - 0.004 * n, by - 0.018 * n), ((tip[0] + bx) / 2 * 0.15 + tip[0] * 0.85, tip[1]), (bx - 0.004 * n, by + 0.018 * n)]
+        dr.polygon(inner, fill=(250, 210, 118, 255))
+    # shine down the front of the shaft
+    dr.line(P([(0.505, 0.32), (0.515, 0.47)]), fill=(255, 255, 248, 210), width=int(0.02 * n))
     m = Image.new("L", (n, n), 0)
     ImageDraw.Draw(m).ellipse([0, 0, n - 1, n - 1], fill=255)
     im.putalpha(m)

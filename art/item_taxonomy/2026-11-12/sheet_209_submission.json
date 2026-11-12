@@ -1,0 +1,43 @@
+{
+  "request": {
+    "index": 209,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Original fantasy RPG equipment sprite asset sheet. Strict equal THREE-column TWO-row layout. top left: Dawnscript Arcane Sceptre: Upright ivory-and-brass arcane sceptre with an open astronomical crown and a contained soft-violet light, slim dark wooden stem and short wrapped grip; caster instrument rather than melee mace. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 1 wide by 3 tall. top middle: Frontier Round Shield: Weathered round iron-rimmed timber shield with a plain central bronze boss, deep burgundy painted wood and a few honest scratches; no giant gems or symbols from existing games. Compact balanced square silhouette, slight three-quarter view.; inventory shape 2 wide by 2 tall. top right: Duelist Buckler: Small compact convex steel buckler with a raised central boss and narrow brass rim, rivets and worn steel; strongly distinguishable from large shields. Compact balanced square silhouette, slight three-quarter view.; inventory shape 2 wide by 2 tall. bottom left: Gatehouse Tower Shield: Tall rectangular tower shield, rounded upper corners, aged silver iron rim and ivory painted wooden face with one original simple dark-blue branching arch motif. No words. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 3 tall. bottom middle: Royal Kite Shield: Point-down silver-and-ivory royal kite shield, antique brass edging, restrained dark royal-blue enamel heraldic arch and clear tapered medieval silhouette. Compact balanced square silhouette, slight three-quarter view.; inventory shape 2 wide by 2 tall. bottom right: Riftglass Focus: Narrow upright handheld caster focus: a small brass astrolabe frame enclosing violet-blue light over a short wrapped handle; connected structure, readable compact silhouette. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 1 wide by 2 tall. Each object fully visible, centered and wholly in its own cell with a broad transparent gutter. Long items upright vertical. Independent designs, no shared parts. Rich painterly anime-realistic craftsmanship, believable materials, clear readable outer silhouettes, warm highlights, restrained ornament. Genuine transparent PNG alpha outside objects; no scene, text, labels, frames, cell lines, people, wearers, or mannequin. No external glow or cast shadows."
+    }
+  },
+  "entries": [
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 209: b69c7575-d7b7-44d9-a920-0e8abe35440b (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 209,
+          "job_id": "b69c7575-d7b7-44d9-a920-0e8abe35440b",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

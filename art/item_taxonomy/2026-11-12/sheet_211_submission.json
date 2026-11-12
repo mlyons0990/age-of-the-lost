@@ -1,0 +1,42 @@
+{
+  "request": {
+    "index": 211,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Original fantasy RPG equipment sprite asset sheet. Strict equal THREE-column TWO-row layout. top left: Remembrance Idol: Small upright carved ivory-and-bronze abstract ceremonial figure, geometric faceless robed silhouette mounted on a solid oval base, fine age cracks and restrained turquoise enamel. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 1 wide by 2 tall. top middle: Reedbound Fetish: Small narrow ritual bundle of carved driftwood, braided cord, two clean pale bone charms and a few muted rust-colored feathers; all pieces tied together, not a floating collage. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 1 wide by 2 tall. top right: Sapphire Signet Ring: One complete three-quarter-view antique-gold signet ring with a deep royal-blue enamel face and a tiny incorporated sapphire inset, open ring hole clearly visible, restrained original arch crest. Compact balanced square silhouette, slight three-quarter view.; inventory shape 1 wide by 1 tall. bottom left: Wayfarer Memory Sigil: One complete warm silver and brass amulet with a small ivory sundial pendant and a short joined chain loop, restrained original arch engraving, no readable writing or loose gem. Compact balanced square silhouette, slight three-quarter view.; inventory shape 1 wide by 1 tall. bottom middle: Wayfarer Utility Belt: One horizontal broad worn brown leather belt arranged as a compact gentle arc, brass buckle centered, clearly joined ends, two small attached practical pouches; no waist or mannequin. Horizontal broad silhouette.; inventory shape 2 wide by 1 tall. Bottom right entirely empty. Each object fully visible, centered and wholly in its own cell with a broad transparent gutter. Long items upright vertical. Independent designs, no shared parts. Rich painterly anime-realistic craftsmanship, believable materials, clear readable outer silhouettes, warm highlights, restrained ornament. Genuine transparent PNG alpha outside objects; no scene, text, labels, frames, cell lines, people, wearers, or mannequin. No external glow or cast shadows."
+    }
+  },
+  "entries": [
+    38,
+    39,
+    40,
+    41,
+    42
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 211: 0d45fd58-a150-43e8-8302-68d719c2532d (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 211,
+          "job_id": "0d45fd58-a150-43e8-8302-68d719c2532d",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

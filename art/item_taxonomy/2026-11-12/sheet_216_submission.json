@@ -1,0 +1,42 @@
+{
+  "request": {
+    "index": 216,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Create FIVE isolated original fantasy RPG equipment inventory assets in an equal three-column two-row layout. Top left: compact wooden hand crossbow with visible taut string, short grip and silver fittings. Top middle: slender ivory magic wand with a small amber tip. Top right: dark wood rune wand wrapped in narrow silver rune bands. Bottom left: straight copper channeling rod with a small mounted blue crystal. Bottom middle: tall mystical staff with a silver crescent head enclosing a blue crystal. Bottom right entirely empty. Every item fully visible and generously padded within its cell; long items upright. Rich painterly anime-realistic fantasy craftsmanship, warm highlights, clear recognizable silhouettes, practical construction. Equipment only, no characters, no wearers, no text or grid. Background and gutters have exactly ZERO alpha, genuine transparent PNG, no haze, no halo, no external glow or shadows."
+    }
+  },
+  "entries": [
+    20,
+    22,
+    23,
+    24,
+    25
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 216: ae41a5ec-730c-486a-b37d-7bd78c59434f (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 216,
+          "job_id": "ae41a5ec-730c-486a-b37d-7bd78c59434f",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "request": {
+    "index": 217,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "medias": [
+        {
+          "role": "image",
+          "value": "ae41a5ec-730c-486a-b37d-7bd78c59434f"
+        }
+      ],
+      "prompt": "Edit this original fantasy equipment sprite sheet for game inventory use. Keep exactly the same five item designs, colors, materials, layout and full silhouettes. Remove ALL external cloudy halos and ALL background glow, especially the white fog behind the crescent staff head. Every space outside physical item outlines must have ZERO alpha. Preserve the actual silver crescent metal and blue mounted crystal, but make the gap inside the crescent and all space surrounding it truly transparent. Similarly clean the background around the hand crossbow, two wands and copper rod. Three columns, two rows, last cell empty. No smoke, no mist, no glowing aura, no cast shadows, no text or grid. Return a genuinely transparent PNG with clean equipment edges and generous clear gutters."
+    }
+  },
+  "entries": [
+    20,
+    22,
+    23,
+    24,
+    25
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 217: 760bbd95-fc4c-4791-83ec-0dfeb666dc72 (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 217,
+          "job_id": "760bbd95-fc4c-4791-83ec-0dfeb666dc72",
+          "status": "pending",
+          "adjustments": {
+            "medias[0].role": {
+              "requested": "image",
+              "used": "image_references",
+              "reason": "GPT Image 2.6 backend expects schema-key media roles"
+            }
+          }
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

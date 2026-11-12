@@ -1,0 +1,43 @@
+{
+  "request": {
+    "index": 215,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Original fantasy RPG equipment sprite sheet of SIX isolated items in a strict equal three-column two-row grid. Top left a compact wooden hand crossbow with a short grip and visible bowstring. Top middle a fantasy early arquebus with a long wooden stock, bronze barrel, simple stock ornament, shown upright as a game item. Top right a plain slender ivory wand. Bottom left a blackwood wand with narrow silver rune bands. Bottom middle a copper channeling rod with a small crystal mounted at its tip. Bottom right an elegant long mystical staff with a crescent silver head enclosing a blue crystal. All long items upright, entirely visible, generously padded within their own cells. Painterly anime-realistic craftsmanship, believable materials, readable silhouettes, warm highlights. Isolated equipment, no people, no scenery, no labels, no grid, no frames. Genuine transparent PNG with zero alpha outside items, no halo or external shadows."
+    }
+  },
+  "entries": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 215: cf14b405-0d74-4b8e-9cb9-875be258c70b (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 215,
+          "job_id": "cf14b405-0d74-4b8e-9cb9-875be258c70b",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

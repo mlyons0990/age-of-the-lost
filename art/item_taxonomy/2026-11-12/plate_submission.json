@@ -1,0 +1,42 @@
+{
+  "request": {
+    "index": 204,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Five original fantasy RPG PLATE armor inventory assets in a strict equal three-column two-row grid. Top left: closed steel helmet with narrow empty visor. Top middle: breastplate cuirass with pauldrons and short waist tassets, clear torso shape. Top right: a pair of articulated steel gauntlets. Bottom left: a pair of plated boots and short greaves. Bottom middle: horizontal armored waist belt with steel buckle, no hanging tails. Bottom right empty. Bright polished silver steel, antique gold narrow borders, restrained crimson lining, clean readable silhouettes, substantial practical construction, warmly painted anime-realistic high-fantasy craftsmanship. Empty unworn equipment, no people, no mannequin, no limbs. Every item wholly within its own cell and generously padded. Genuine transparent PNG alpha outside objects and in gutters. No text, no frame, no cell lines, no ground, no background glow."
+    }
+  },
+  "entries": [
+    58,
+    59,
+    60,
+    61,
+    62
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 204: 1b8b91ac-5cfc-4fa0-b083-31d5c25e8ceb (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 204,
+          "job_id": "1b8b91ac-5cfc-4fa0-b083-31d5c25e8ceb",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

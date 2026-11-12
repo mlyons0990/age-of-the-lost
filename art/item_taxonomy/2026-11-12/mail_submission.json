@@ -1,0 +1,42 @@
+{
+  "request": {
+    "index": 203,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Original fantasy RPG equipment asset sheet, five separate MAIL armor items in a strict equal three-column two-row grid. Top left: steel chainmail coif. Top middle: chainmail hauberk with short royal blue tabard, torso to thigh length, silver linked rings clearly visible. Top right: pair of chainmail gloves. Bottom left: pair of chainmail boots with leather soles. Bottom middle: wide leather waist belt, horizontally stretched with a silver buckle, no hanging tails. Bottom right: empty. All items unworn, no people or body parts, no mannequin. Each design wholly inside its own cell with generous transparent gutters. Warm antique silver, dark brown leather, modest blue cloth accents, painterly adult anime-realistic Aurelian craftsmanship, strong distinct silhouettes, restrained gold trim. Real transparent PNG alpha everywhere outside the equipment, no shadows outside objects, no background scene, no labels, no frames or grid lines."
+    }
+  },
+  "entries": [
+    53,
+    54,
+    55,
+    56,
+    57
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 203: bf14fbd8-55e6-4e6a-bf3a-9c5e989fc5cc (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 203,
+          "job_id": "bf14fbd8-55e6-4e6a-bf3a-9c5e989fc5cc",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

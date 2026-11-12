@@ -200,7 +200,7 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `assets/knight/attack_<se,ne>.png` | Sword swing strips, 15 frames of 512x512 (the 384 frame sits centred inside) |
 | `assets/enemies/<slime,revenant,brute>.png` | Enemy sprites: Hollowling, Veilbound Revenant, Thornhide Brute |
 | `assets/items/painted/<art id>.png` | Painted item portraits from `art/item_taxonomy` (Higgsfield). Each item stores its `base` ("Chainmail", "Kite Shield"...) and `ITEM_ART` in `game_data.gd` maps bases to art: plate, mail, leather and cloth armour, three shields, sword/axe/mace. Old saves infer the base from the name |
-| `assets/skills/<skill id>.png` | Painted skill icons from `art/expansion02` (slash, cleave, charge, rally, hammer, breath). Soul Harvest keeps its drawn icon: the library's harvest art is a shield and doesn't read as the skill |
+| `assets/skills/<skill id>.png` | Full-square framed skill tiles (Diablo 4 / Path of Exile style) from `art/skill_tiles` (Higgsfield GPT Image 2.6), 128 px, for all seven Knight skills. They fill the whole action-bar slot; the HUD draws a clockwise cooldown sweep and key plates over them (`icons.gd`) |
 | `assets/items/<slot>.png` | Fallback item icons (weapon, offhand, helm, armor, gloves, belt, boots, ring, amulet), sized to each footprint. Made by `tools/make_item_icons.py`; replace any with a painted portrait of the same aspect and the game uses it |
 | `tools/make_item_icons.py` | Paints the item icons (gradients, outlines, highlights) in the knight's palette |
 | `assets/enemies/hexcaller.png` | Placeholder Gravecaller: the Revenant recoloured spectral green. Replace with real art when available |

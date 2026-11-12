@@ -6,7 +6,7 @@ extends RefCounted
 static var _tex := {}
 
 
-## Painted icon for a skill, if assets/skills/<id>.png exists (from the art/expansion02 library).
+## Painted full-square tile for a skill, if assets/skills/<id>.png exists (from art/skill_tiles).
 static func texture(id: String) -> Texture2D:
 	if not _tex.has(id):
 		var path := "res://assets/skills/%s.png" % id
@@ -14,12 +14,34 @@ static func texture(id: String) -> Texture2D:
 	return _tex[id]
 
 
+## Darkens the part of a square still on cooldown, sweeping clockwise from the top (Diablo style).
+static func draw_cooldown(ci: CanvasItem, r: Rect2, frac: float) -> void:
+	frac = clampf(frac, 0.0, 1.0)
+	if frac <= 0.0:
+		return
+	var c := r.get_center()
+	var rad := r.size.length() * 0.5 + 2.0
+	var pts := PackedVector2Array([c])
+	var start := -PI / 2.0 + TAU * (1.0 - frac)
+	var steps := maxi(2, int(48 * frac))
+	for i in steps + 1:
+		var a := start + TAU * frac * i / steps
+		pts.append(c + Vector2(cos(a), sin(a)) * rad)
+	# clip to the square by drawing the pie and then masking the outside with the frame colour is costly;
+	# instead clamp each point into the rect, which keeps the shape square at the corners
+	for i in range(1, pts.size()):
+		pts[i] = Vector2(clampf(pts[i].x, r.position.x, r.end.x), clampf(pts[i].y, r.position.y, r.end.y))
+	ci.draw_colored_polygon(pts, Color(0, 0, 0, 0.66))
+	ci.draw_line(c, pts[1], Color(1, 0.9, 0.6, 0.7), 2.0, true)
+
+
 static func draw_icon(ci: CanvasItem, id: String, r: Rect2, col: Color) -> void:
 	var tex := texture(id)
 	if tex != null:
 		# a grey colour means locked or unavailable: dim the painting
 		var dim: bool = col.s < 0.05 and col.v < 0.6
-		ci.draw_texture_rect(tex, r.grow(-3), false, Color(0.4, 0.4, 0.42) if dim else Color.WHITE)
+		# full-bleed framed tiles (art/skill_tiles, Higgsfield) fill the whole square
+		ci.draw_texture_rect(tex, r, false, Color(0.4, 0.4, 0.42) if dim else Color.WHITE)
 		return
 	var c := r.get_center()
 	match id:

@@ -577,9 +577,10 @@ class HudDraw extends Control:
 			draw_rect(r, Color(0.11, 0.11, 0.16))
 			if i == n - 1:
 				_icon("potion", r, Color.WHITE)
-				draw_string(font, r.position + Vector2(5, 17), "Q", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
 				draw_string(font, r.position + Vector2(sz - 16, sz - 6), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color.WHITE)
 				draw_rect(r, BRONZE.darkened(0.25), false, 2.0)
+				draw_rect(Rect2(r.position + Vector2(3, 3), Vector2(16, 18)), Color(0.02, 0.02, 0.04, 0.78))
+				draw_string(font, r.position + Vector2(7, 17), "Q", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("f2e6d0"))
 				if r.has_point(mouse):
 					tip = {"name": "Health Potion", "desc": "Restore 45% of your life.", "meta": ""}
 					tip_rect = r
@@ -598,18 +599,28 @@ class HudDraw extends Control:
 				var cd: float = p.cds.get(slot, 0.0)
 				var full: float = p.cd_full.get(slot, 1.0)
 				if cd > 0.0:
-					draw_rect(Rect2(r.position, Vector2(sz, sz * clampf(cd / full, 0.0, 1.0))), Color(0, 0, 0, 0.72))
+					Icons.draw_cooldown(self, r, cd / full)
 					if cd > 0.6 and slot != "basic":
-						_text_c(str(int(ceil(cd))), r.get_center() + Vector2(0, 8), 24, Color.WHITE)
+						_text_c(str(int(ceil(cd))), r.get_center() + Vector2(0, 9), 26, Color.WHITE, 6)
 				var no_mana: bool = float(sk["mana"]) > 0.0 and p.mp < float(sk["mana"])
-				draw_rect(r, Color("2a5bd8") if no_mana else BRONZE.darkened(0.25), false, 3.0 if no_mana else 2.0)
+				if no_mana:
+					draw_rect(r, Color(0.1, 0.2, 0.6, 0.35))
+					draw_rect(r, Color("2a5bd8"), false, 3.0)
+				elif Icons.texture(sk["id"]) == null:
+					draw_rect(r, BRONZE.darkened(0.25), false, 2.0)
 				if r.has_point(mouse):
 					var meta := "%ss cooldown" % str(sk["cd"])
 					if float(sk["mana"]) > 0.0:
 						meta = "%d mana · %s" % [int(sk["mana"]), meta]
 					tip = {"name": sk["name"], "desc": sk["desc"], "meta": meta}
 					tip_rect = r
-			draw_string(font, r.position + Vector2(5, 17), SLOTS[i][1], HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
+			# key label on a small dark plate so it reads over bright art
+			var key: String = SLOTS[i][1]
+			var kw := font.get_string_size(key, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
+			var kr := Rect2(r.position + Vector2(3, 3), Vector2(kw + 8, 18))
+			draw_rect(kr, Color(0.02, 0.02, 0.04, 0.78))
+			draw_rect(kr, BRONZE.darkened(0.2), false, 1.0)
+			draw_string(font, kr.position + Vector2(4, 14), key, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("f2e6d0"))
 		var max_mp: float = s["max_mp"]
 		_orb(Vector2(x0 - 100, cy - 8), 60, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
 		_orb(Vector2(x0 + bar_w + 100, cy - 8), 60, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])

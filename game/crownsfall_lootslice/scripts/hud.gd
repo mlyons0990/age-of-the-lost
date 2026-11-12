@@ -33,6 +33,7 @@ var overlay_buttons: Array = []
 func _exit_tree() -> void:
 	ART.icons.clear()
 	ART.portraits.clear()
+	ART.tiles.clear()
 
 func _ready() -> void:
 	super._ready()
@@ -234,7 +235,7 @@ func _row(box: VBoxContainer) -> HBoxContainer:
 	return row
 
 func _icon(id: String) -> Texture2D:
-	return ART.icon(id)
+	return ART.action_icon(id)
 
 func _item_icon(item: Dictionary) -> Texture2D:
 	return _item_portrait(item)

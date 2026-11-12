@@ -1,3 +1,7 @@
+# Current cycle — Full-square skill artwork
+
+Read `docs/FULL_SKILL_BUTTONS_HANDOFF.md` first. Twenty full-square paintings now appear in the real action bar and Grimoire; earlier transparent symbols remain fallback art. Current QA is900 headless assertions and a75-check rendered skill suite. Six previously verified native drag checks bring distinct coverage to906. Inventory, gameplay and saves retain prior behavior. The following handoff records the preceding integration cycle.
+
 # Crownsfall — current Art Integration handoff
 
 Revision: November 12, 2026. This independently saved source revision extends the tested Higgsfield Mage art build. Original projects, prior ZIPs and canon references remain preserved. Historical handoffs are under `docs/previous_revision/`; current claims come from this README, `MASTERY_SYSTEMS.md`, runtime definitions and result logs.

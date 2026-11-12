@@ -1,3 +1,16 @@
+# November12,2026 — Approved framed Higgsfield skill-art standard
+
+- Selected20 full-bleed painted skill images, with distinct beveled borders and restrained school trim, as the user-approved style for future AOTL action-bar spells.
+- Generated both production painting/framing passes in Higgsfield GPT Image2.6 using the existing unlimited allowance at0-credit quotes.
+- Preserved exact sources, requests, reference lineage, hashes and a future-spell style guide/brief generator. Earlier source studies remain labeled separately.
+
+# November 12, 2026 — Full-square skill paintings
+
+- Added20 opaque edge-to-edge paintings for19 base abilities and Ember Aura, using approved AOTL motifs with crisp silhouettes, grimdark material depth and distinct spell-school backgrounds.
+- Filled each action square inside its thin frame and matched Grimoire artwork; preserved existing state overlays, transparent UI symbols and safe fallback art.
+- Added75 headless/rendered assertions and six native screenshots; full headless total900. Retained original gameplay/stat/save code.
+- Verified credit-free ElevenLabs speech eligibility; generation awaits the required voice-picker selection. No audio job or credits were submitted.
+
 # November 12, 2026 — Selected art integration
 
 - Integrated 42 accepted Expansion02 designs through a hash-recorded runtime profile: 12 equipment portraits, 19 ability icons, 11 service symbols.

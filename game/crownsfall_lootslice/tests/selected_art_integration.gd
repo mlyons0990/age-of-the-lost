@@ -56,7 +56,7 @@ func _run() -> void:
 		await shot(class_id+"_comparison")
 		ui.close_page(); ui.selected_spell="arcane_fold" if class_id=="mage" else "cleave"; ui.open_page("spells"); await frames(4)
 		var skill_button:=button(ui.char_panel,"Arcane Fold" if class_id=="mage" else "Cleave")
-		check(skill_button!=null and skill_button.icon==ARTWORK.icon(ui.selected_spell),"%s Grimoire list uses the selected active ability icon" % class_id)
+		check(skill_button!=null and skill_button.icon==ARTWORK.action_icon(ui.selected_spell),"%s Grimoire list uses the selected active ability icon" % class_id)
 		await shot(class_id+"_grimoire"); ui.close_page()
 	reset_actor("","mage",40); p.discoveries=[]
 	ui.open_page("lore"); await frames(3)

@@ -1,6 +1,14 @@
 # age-of-the-lost
 AOTL Files
 
+## Full-square skill artwork and future spell framework
+
+[View approved icons](https://drive.google.com/file/d/1at2mBYThoYL3p335qc68jVpvdBXdxWJ0/view) · [Latest downloads and verification](docs/releases/2026-11-12-approved-skill-icons/README.md).
+
+[Play the updated source](game/crownsfall_lootslice/README.md) · [Browse20 full-bleed skill images](art/skill_tiles/2026-11-12/README.md) · [Future-spell style guide](art/skill_tiles/2026-11-12/framework/STYLE_GUIDE.md).
+
+Higgsfield GPT Image2.6 produced the selected20-image batch using the existing unlimited allowance at0 credits. The user-approved ongoing style includes distinct beveled metal frames. Oversized painted skill subjects reach those frames, with distinct physical/fire/frost/arcane forms and live hotkey/cooldown overlays. The library includes448px masters, exact source/prompts/settings, a32/64/128px viewer and a reusable brief generator for future spells. Full QA:900 headless assertions, including75 new skill-art checks; the new suite also passes rendered. Earlier equipment, stat and save behavior remains intact.
+
 ## Playable artwork integration
 
 [Open the complete Crownsfall LootSlice project](game/crownsfall_lootslice/README.md) in **Godot 4.6.3** after `git lfs pull`. The accepted Expansion02 designs now appear in gameplay: 12 equipment portraits, 19 ability icons and 11 service symbols. Equipment and inventory share matching, proportional art; the right-docked Character sheet and exact item-grid footprints remain intact.

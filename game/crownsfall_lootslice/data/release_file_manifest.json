@@ -1,10 +1,10 @@
 {
-  "project": "Crownsfall_ArtIntegration_2026-11-12",
+  "project": "Crownsfall_Full_Skill_Buttons_2026-11-12",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 6664,
-      "sha256": "00f6826fb39d522943bf8a06de8fbbb8e8b7ba4e75cc6005f6e5cc57e5af9c5d"
+      "bytes": 7887,
+      "sha256": "bdf1ce7ed33f63b145bc9fd5df47987948b74ee46047c894974cd78ec8e7778d"
     },
     {
       "path": "ENCOUNTER_TEST_RESULTS.txt",
@@ -13,13 +13,13 @@
     },
     {
       "path": "HANDOFF.md",
-      "bytes": 9699,
-      "sha256": "09731f77c61cb4623573cddf49e902333ae530b727d451a8d0f9d9a05cba345c"
+      "bytes": 10185,
+      "sha256": "bc22dbbdbc96baaebc722785cc7badf767673485901bec0c403396bcca0126f7"
     },
     {
       "path": "README.md",
-      "bytes": 8107,
-      "sha256": "90ca939ea5dca8769547101b1ac1be5585c37cd29c14dbce3f0f52c683ab8d37"
+      "bytes": 8177,
+      "sha256": "4d3ee19f92de10531f8f81e870c32a60b4d090f2e8ce377a9282613cc09afc56"
     },
     {
       "path": "assets/art_expansion02/icons/arcane_fold.png",
@@ -907,6 +907,106 @@
       "sha256": "f5a9d408e84121cee680669e06bd5230384b0f004b6c310094a23fa00488f60f"
     },
     {
+      "path": "assets/skill_tiles/arcane_fold.png",
+      "bytes": 31033,
+      "sha256": "82eac199a4a0a7a1a4496c03ef5f2e6967e15542bbaf2fb73669593c449af664"
+    },
+    {
+      "path": "assets/skill_tiles/ashen_ward.png",
+      "bytes": 29406,
+      "sha256": "b49a623d9e4fad3475a0c8b232b6a0d4379afd8742bbd820df7322189927dbcb"
+    },
+    {
+      "path": "assets/skill_tiles/breath.png",
+      "bytes": 29578,
+      "sha256": "ed6720050d0278e010a02594c98a56ea450461f88d7e4ac28595df3f8a442d3d"
+    },
+    {
+      "path": "assets/skill_tiles/charge.png",
+      "bytes": 29805,
+      "sha256": "7e4e20754eda1a450e00f0c7495def74e8db24055157b8224c6851468a1c5e46"
+    },
+    {
+      "path": "assets/skill_tiles/cinder_thread.png",
+      "bytes": 28633,
+      "sha256": "ffc9b0897ac756c371cc824898ec8e6ff9d80410959cf64d374ece8f86e8b7f7"
+    },
+    {
+      "path": "assets/skill_tiles/cleave.png",
+      "bytes": 30256,
+      "sha256": "b2c557ecc0d2b1220803717304e63f655905d402f149b3f188f7aa85645e7b1e"
+    },
+    {
+      "path": "assets/skill_tiles/dawnfall.png",
+      "bytes": 29951,
+      "sha256": "65751472734b73c0be0186c14516866cce045cbde4a758e124a914e27d538fa6"
+    },
+    {
+      "path": "assets/skill_tiles/echo_strike.png",
+      "bytes": 31281,
+      "sha256": "a86d2152dabcf2f768ab13dede05eea18a4fbc6f89dff7914b5a745b71526651"
+    },
+    {
+      "path": "assets/skill_tiles/ember_aura.png",
+      "bytes": 30048,
+      "sha256": "800ca3cf8cc43b852a854c7ee13b990db12426cb99f14846ffcd53c06451aa2e"
+    },
+    {
+      "path": "assets/skill_tiles/ember_cone.png",
+      "bytes": 31181,
+      "sha256": "5d822c66b3679407dbe0811e221d45196941d738d4af2653fcf18b897c463319"
+    },
+    {
+      "path": "assets/skill_tiles/epoch_lance.png",
+      "bytes": 32995,
+      "sha256": "e3ef8fcaddf1fb2c1691eafd57e64457bcc467f94990ade1ae46efaaf98d2aef"
+    },
+    {
+      "path": "assets/skill_tiles/frost_ring.png",
+      "bytes": 36338,
+      "sha256": "ecc6888e680ec7bcb93acf6e0839eca992d280d00922eb0f15a659e9e3edb994"
+    },
+    {
+      "path": "assets/skill_tiles/glacial_stitch.png",
+      "bytes": 34590,
+      "sha256": "3a605f6630e309bc421e6d5bcf749a32538293abbf4965050eacea722b32be8c"
+    },
+    {
+      "path": "assets/skill_tiles/hammer.png",
+      "bytes": 29795,
+      "sha256": "e15fc2201f8e48d9ab73fc46728559aa8896ea9a09de1875bb0ae624cf57592e"
+    },
+    {
+      "path": "assets/skill_tiles/harvest.png",
+      "bytes": 29886,
+      "sha256": "9d9149fca3e4f2daa2365ea08e959cefba2dc23b11198014891aa1bc738b8f99"
+    },
+    {
+      "path": "assets/skill_tiles/rally.png",
+      "bytes": 28375,
+      "sha256": "8536b590df6b780b3c5a71f8e325f0c29fef345c3ebd951fab37519e4fafb45c"
+    },
+    {
+      "path": "assets/skill_tiles/slash.png",
+      "bytes": 30887,
+      "sha256": "4a42da150dc38e9eb3b6d019d99bf00ecbb86c4ac00f6cf38baabd656cfc7be8"
+    },
+    {
+      "path": "assets/skill_tiles/solar_writ.png",
+      "bytes": 29672,
+      "sha256": "073e3ec3fa2292bdf3c0b316b03acd1b6fe985616ee6f7b60e725d7b94796dc3"
+    },
+    {
+      "path": "assets/skill_tiles/starfall_script.png",
+      "bytes": 31891,
+      "sha256": "7f41c2033a85b8b02f71d2aced11fb684c4bf1d702c8df3d42851310b6edf81d"
+    },
+    {
+      "path": "assets/skill_tiles/winter_crown.png",
+      "bytes": 32299,
+      "sha256": "eb4353258868126039afdd2163ac481b1591129639153009d11b7f26cdbc9d70"
+    },
+    {
       "path": "assets/ui/inventory_backplate.jpg",
       "bytes": 212973,
       "sha256": "6d0cb7e3de7f3dbfa3776796ae43420cdf9b92aac965ef0a4ae857057fef4312"
@@ -985,6 +1085,11 @@
       "path": "data/RELIABILITY_VALIDATION.json",
       "bytes": 1057,
       "sha256": "b8765ba47d06e0f7a802195b829ce0cc48f712d10835e5a8de3ee05c04520cd5"
+    },
+    {
+      "path": "data/SKILL_TILE_VALIDATION.json",
+      "bytes": 782,
+      "sha256": "dbcb172c514721e78ab5cfb59bae7dad4787de7c81dd9487c5ddc98bb696289f"
     },
     {
       "path": "data/TOWN_UI_VALIDATION.json",
@@ -1192,6 +1297,11 @@
       "sha256": "df70af6f04e9f2daa5c9d2be5730e1bc9fbd7552d6b0355325ee2fd4b3f76313"
     },
     {
+      "path": "data/skill_tile_profile.json",
+      "bytes": 11819,
+      "sha256": "af2361bd17597d38a621564a21203b47716a961c1bae3c73b1d7ce5ca36a249d"
+    },
+    {
       "path": "data/source_manifest.json",
       "bytes": 1978,
       "sha256": "c4e1c3b12d517774dc2f582f4c75a1b209210c0bd1389ae834a84dbe44b1598d"
@@ -1235,6 +1345,11 @@
       "path": "docs/EXACT_FOOTPRINTS_SOURCE_HANDOFF.md",
       "bytes": 5389,
       "sha256": "1fe2d37ae7b9c03d0f8fb4e1f09254edf8c7b4ad638dd6b6333ae99e4efabacb"
+    },
+    {
+      "path": "docs/FULL_SKILL_BUTTONS_HANDOFF.md",
+      "bytes": 5902,
+      "sha256": "3aa08296740b592ac110444355f44a246e444ffe7b994f1c357e28274ca7a4c3"
     },
     {
       "path": "docs/GRID_ALIGNMENT_HANDOFF.md",
@@ -1283,8 +1398,8 @@
     },
     {
       "path": "docs/QA_AND_REPRO.md",
-      "bytes": 8777,
-      "sha256": "0d67d01309c8681f491812ce2f807ce7d4df56264b26c5faf57c6a118c2a44c3"
+      "bytes": 9428,
+      "sha256": "4850b796c40b39cdb7f7245acd0077021778b29392c07f22edfee5385c2a5423"
     },
     {
       "path": "docs/RELIABILITY_HANDOFF.md",
@@ -1652,6 +1767,36 @@
       "sha256": "a298454a187985a7708aa65fc21c583a73acfe763bffac9f29d207fd820ac756"
     },
     {
+      "path": "previews/skill_tiles/mage_cooldown_low_mana.png",
+      "bytes": 2461394,
+      "sha256": "4fb3abfd90920481c6832561d196292bb65998e83b13f0097aa2142903c70ebe"
+    },
+    {
+      "path": "previews/skill_tiles/mage_ember_aura_on.png",
+      "bytes": 2465645,
+      "sha256": "c2d074d18a6362eb9fd70d5b50ec6dcaf1f70b2f2881b24c6c3c7749a8126695"
+    },
+    {
+      "path": "previews/skill_tiles/mage_grimoire.png",
+      "bytes": 1334050,
+      "sha256": "e26552f0bbdba319aa005b020eca8a0fd789da725cd42f973a97bb833b14b94f"
+    },
+    {
+      "path": "previews/skill_tiles/mage_ready.png",
+      "bytes": 2464106,
+      "sha256": "6bf430e2ab01bbee9c2ba7a29429e7e71714977f839ae90d98fd9c2bde861d18"
+    },
+    {
+      "path": "previews/skill_tiles/warrior_grimoire.png",
+      "bytes": 1328215,
+      "sha256": "f6b78cd680d3771a1d47c6b8999291b70250d25155af88412a26d6109180d1cb"
+    },
+    {
+      "path": "previews/skill_tiles/warrior_ready.png",
+      "bytes": 2460566,
+      "sha256": "4bc470a824defea943b898ce86174d75af41308ecdeea227e9e8d6bfaf247a9d"
+    },
+    {
       "path": "previews/three_d/01_runtime_rig_lab.png",
       "bytes": 69100,
       "sha256": "00982b224556fb3d3fc6809e09d2bd40f526358c68442c14ed63f1e677b5e6a2"
@@ -1748,8 +1893,8 @@
     },
     {
       "path": "scripts/art_library.gd",
-      "bytes": 2373,
-      "sha256": "a2155b20e837ebf84efc71c51723ea4de968c07b87325eef3c5b42d29d75bb45"
+      "bytes": 3098,
+      "sha256": "3d3bf99a747c35770a0fe17bf52655e9475dce31041244d22314932b1c8b41cd"
     },
     {
       "path": "scripts/art_library.gd.uid",
@@ -1833,8 +1978,8 @@
     },
     {
       "path": "scripts/hud.gd",
-      "bytes": 42810,
-      "sha256": "ff4eccdca2274b2d0c1a49bc9d0fd4929ffbd55c4edff9915d62974d0e90b74a"
+      "bytes": 42836,
+      "sha256": "36c91f348026d1ae2b1748bfe42c167d9a6a685895b0b667305694fd615247f7"
     },
     {
       "path": "scripts/hud.gd.uid",
@@ -1853,8 +1998,8 @@
     },
     {
       "path": "scripts/legacy_hud.gd",
-      "bytes": 24531,
-      "sha256": "6f96c7d663b800f49de31a1f515c2c5ebfc1a287b3390876202ddf9f7de9fc17"
+      "bytes": 24642,
+      "sha256": "184dee0bdb618dd59cb015e0b052871861bb131264428484056cf0574ee6ff4d"
     },
     {
       "path": "scripts/legacy_hud.gd.uid",
@@ -2222,6 +2367,11 @@
       "sha256": "34dca696420f0ddf051243b042e3c2357a3bca389d3876a28f8d0103f2a9786b"
     },
     {
+      "path": "tests/SKILL_TILES_LAST_RUN.txt",
+      "bytes": 4361,
+      "sha256": "0f39e5424ad678bb6324cbd6b94b6582178a550390e9d48bf3f28f24e267417a"
+    },
+    {
       "path": "tests/TOWN_UI_HEADLESS_RESULT.txt",
       "bytes": 4004,
       "sha256": "f0676af6b919620b393276e21accd002fd5919c3d6538fa2c234f3f33b29555c"
@@ -2528,13 +2678,113 @@
     },
     {
       "path": "tests/selected_art_integration.gd",
-      "bytes": 5966,
-      "sha256": "c367f90314fb034dba30fc7cdf4d61c69773d5f95d0662d30e7e86904693612f"
+      "bytes": 5973,
+      "sha256": "2ee2c44484df8a2e71e9bc9f36a6c6ea13c4039a80595196d67e691bc1e5eb1b"
     },
     {
       "path": "tests/selected_art_integration.gd.uid",
       "bytes": 20,
       "sha256": "0e0513ea66c385645f85718ddcd142f291d9195b371348191082b9e21e112e42"
+    },
+    {
+      "path": "tests/skill_tiles_integration.gd",
+      "bytes": 4178,
+      "sha256": "de61c900fd3d6220b5a174283d37984119543843d90baf81c29a0cd83465406c"
+    },
+    {
+      "path": "tests/skill_tiles_integration.gd.uid",
+      "bytes": 19,
+      "sha256": "81b695e99892f81d7d6ca933fc220d5cf86627e0c4fd7a9397d5f8071f018469"
+    },
+    {
+      "path": "tests/skill_tiles_qa/art_audio.log",
+      "bytes": 1230,
+      "sha256": "0d35974308ac275c91368f810b771028015dd8a2ff6dcf40b68bfaf5166ba0dc"
+    },
+    {
+      "path": "tests/skill_tiles_qa/encounter.log",
+      "bytes": 3285,
+      "sha256": "aacee2abe89e5a71d9abca9f822468c06974f12ea266fda55c1283f17cbc84a7"
+    },
+    {
+      "path": "tests/skill_tiles_qa/encounter_bouts.log",
+      "bytes": 2488,
+      "sha256": "f58c57849b3f6810ad200f7287f574ee1bc95654d9b7aacd752a0fb66627cdab"
+    },
+    {
+      "path": "tests/skill_tiles_qa/grid_alignment.log",
+      "bytes": 4281,
+      "sha256": "34015b621bc9e04f91aecbcde86d9e9cb887cf1946e8cf4a309fa0ae986acc35"
+    },
+    {
+      "path": "tests/skill_tiles_qa/import.log",
+      "bytes": 5658,
+      "sha256": "a75619286699850eb3c5ccb220ab19465c5a786c222203296170cfd98872f30f"
+    },
+    {
+      "path": "tests/skill_tiles_qa/inventory_ui.log",
+      "bytes": 6381,
+      "sha256": "3e5489a5439d8623eeaa9c6e5b7e250d18522ad4f1d4c1a85da071140e92378e"
+    },
+    {
+      "path": "tests/skill_tiles_qa/lab.log",
+      "bytes": 1528,
+      "sha256": "e9dc7809077922664368303d91d9ebce0c412fe4dd340c9c51baf7109e6a45e2"
+    },
+    {
+      "path": "tests/skill_tiles_qa/loot.log",
+      "bytes": 4990,
+      "sha256": "f2f49936f71c5117631dfd6fa995e304a1ebf7f3886310bda532b6f0bdb73285"
+    },
+    {
+      "path": "tests/skill_tiles_qa/mage.log",
+      "bytes": 3122,
+      "sha256": "a39c4ffa326d017300995498f54d2c7610d090bdb268acdf271bab31ff3e51e5"
+    },
+    {
+      "path": "tests/skill_tiles_qa/mastery.log",
+      "bytes": 5718,
+      "sha256": "571a6a5b2e72adae0d22ca54c6b937ded460a1a41d4d805ff8b9fbd280f50f06"
+    },
+    {
+      "path": "tests/skill_tiles_qa/navigation.log",
+      "bytes": 2413,
+      "sha256": "0cdfc679517d7604127c0b1d76f7482cfb67d7047297e9028bb242711f0bca7c"
+    },
+    {
+      "path": "tests/skill_tiles_qa/reliability.log",
+      "bytes": 5279,
+      "sha256": "71cbbe79925519345979cacbed6c10810d5c980eeaaa990e731af0466335e01d"
+    },
+    {
+      "path": "tests/skill_tiles_qa/rendered_skill_tiles.log",
+      "bytes": 4729,
+      "sha256": "4f48c40384c1d374f6021223a5af16138efb57564ca714ecabbb8401a407f45a"
+    },
+    {
+      "path": "tests/skill_tiles_qa/selected_art.log",
+      "bytes": 5104,
+      "sha256": "bdeee7219e2f762ba3678557674d120f278f9ca83fbf552ad3d8bf932b921591"
+    },
+    {
+      "path": "tests/skill_tiles_qa/skill_tiles.log",
+      "bytes": 4434,
+      "sha256": "a7d22aec95810ff02db600b11606f58b965d6d9b54721bef998ef3c52adb81d2"
+    },
+    {
+      "path": "tests/skill_tiles_qa/summary.json",
+      "bytes": 2247,
+      "sha256": "27c43523ca68103d913b7a4c44d310932283f068c19914bd16d1de1f84ebdda8"
+    },
+    {
+      "path": "tests/skill_tiles_qa/town_ui.log",
+      "bytes": 4004,
+      "sha256": "f0676af6b919620b393276e21accd002fd5919c3d6538fa2c234f3f33b29555c"
+    },
+    {
+      "path": "tests/skill_tiles_qa/warrior.log",
+      "bytes": 2339,
+      "sha256": "92fe1fcaad6285c14edadef87990f18daaba46693fac34fd4ed4f3b05d4ad828"
     },
     {
       "path": "tests/town_ui_integration.gd",
@@ -2558,8 +2808,8 @@
     },
     {
       "path": "tools/build_transfer.py",
-      "bytes": 2668,
-      "sha256": "33504ae3c39321c10beaeccdda075d6109b1c853bd0f96da35b2d05d0f12aa95"
+      "bytes": 2603,
+      "sha256": "752f6963469742901ce82161da1aecc8da467760caf434dbb5d41966ef3faf73"
     },
     {
       "path": "tools/compact_transfer_previews.py",
@@ -2643,8 +2893,8 @@
     },
     {
       "path": "tools/run_checks.py",
-      "bytes": 4568,
-      "sha256": "bcaf987e35338b44e4c2651210b771b9d6df96d7603f5ca778000e2e3051ae36"
+      "bytes": 4663,
+      "sha256": "dee129e8cb5cdd0c94db11a46d8efd4a2ed020ea9c5a4efc302a9eac5d2a8c24"
     },
     {
       "path": "tools/verify_footprint_ui.py",

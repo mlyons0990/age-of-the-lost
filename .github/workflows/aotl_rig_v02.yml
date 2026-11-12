@@ -29,7 +29,14 @@ jobs:
       - name: Import both 3D rigs into Godot
         run: godot --headless --path game/crownsfall_lootslice --editor --quit
       - name: Verify 16 V02 action clips, blend tree and sockets
-        run: godot --headless --path game/crownsfall_lootslice --script res://tests/rig_v02_smoke.gd -- --aotl-rig-v02
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/rig_v02_smoke.gd -- --aotl-rig-v02 2>&1 | tee /tmp/aotl-rig-v02-smoke.log
+          grep -q "RIG_V02_TEST_OK" /tmp/aotl-rig-v02-smoke.log
+          if grep -E "SCRIPT ERROR:|Parse Error:|Invalid call\\." /tmp/aotl-rig-v02-smoke.log; then
+            echo "Unexpected Godot script error; failing even if smoke assertion count passed"
+            exit 1
+          fi
       - name: Preserve all existing gameplay regressions
         run: python game/crownsfall_lootslice/tools/run_checks.py --report-dir /tmp/aotl-v02-qa
       - name: Package portable V02 rig and QA

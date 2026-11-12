@@ -72,6 +72,20 @@ jobs:
           frames[0].save(p/'AOTL_V03_Higgsfield_Walk_21m.gif',save_all=True,append_images=frames[1:],duration=120,loop=0,optimize=True)
           print('AOTL_V03_GIF_FRAMES',len(files))
           PY
+      - name: Build standalone complete Godot source ZIP for Windows testing
+        if: success()
+        run: |
+          zip -q -r -9 /tmp/AOTL_V03_Full_Playable_Source_2026-11-12.zip game/crownsfall_lootslice \
+            -x '*/.godot/*' '*/.git/*' '*.blend1' '*__pycache__*'
+          unzip -tq /tmp/AOTL_V03_Full_Playable_Source_2026-11-12.zip | tail -1
+          ls -lh /tmp/AOTL_V03_Full_Playable_Source_2026-11-12.zip
+      - name: Upload complete playable Windows-transfer source
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v03-full-playable-source
+          path: /tmp/AOTL_V03_Full_Playable_Source_2026-11-12.zip
+          compression-level: 0
       - name: Preserve test evidence
         if: always()
         uses: actions/upload-artifact@v4

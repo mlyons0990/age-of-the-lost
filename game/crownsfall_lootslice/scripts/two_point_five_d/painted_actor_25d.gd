@@ -5,6 +5,7 @@ extends CharacterBody3D
 signal action_impact(kind: String, at: Vector3, forward: Vector3)
 signal visual_changed(description: String)
 
+const HUMANOID_V03 := preload("res://scripts/two_point_five_d/humanoid_visual_v03.gd")
 const FRAME := 384
 const ATTACK_FRAME := 512
 const PIXEL_SIZE := 0.0053  # 384px painting ~2.04 world metres before transparent margins.
@@ -25,6 +26,8 @@ var camera: Camera3D
 var player_class := "warrior"
 var visual_mode := "painted"
 var visual: Sprite3D
+var humanoid_visual
+var humanoid_v03_opt_in := false
 var skeleton_visual: Node3D
 var skeleton_anims: AnimationPlayer
 var skeleton_clips: Dictionary = {}
@@ -122,25 +125,43 @@ func _ready() -> void:
                     skeleton_clips[short_name] = library_clip
                     if short_name in ["Idle", "Walk", "Run"]:
                         skeleton_anims.get_animation(library_clip).loop_mode = Animation.LOOP_LINEAR
+    humanoid_v03_opt_in = OS.get_cmdline_user_args().has("--aotl-v03")
+    if humanoid_v03_opt_in:
+        humanoid_visual = HUMANOID_V03.new()
+        add_child(humanoid_visual)
     _render_painted_frame("idle", true)
     visual_changed.emit("Painted sprites · Warrior")
 
 func change_visual_mode() -> void:
-    if visual_mode == "painted" and skeleton_visual != null:
+    if humanoid_v03_opt_in and humanoid_visual != null and humanoid_visual.ready_to_compare:
+        if visual_mode == "painted":
+            visual_mode = "humanoid"
+        elif visual_mode == "humanoid":
+            visual_mode = "proxy" if skeleton_visual != null else "painted"
+        else:
+            visual_mode = "painted"
+    elif visual_mode == "painted" and skeleton_visual != null:
         visual_mode = "proxy"
     else:
         visual_mode = "painted"
     visual.visible = visual_mode == "painted"
     if skeleton_visual != null:
         skeleton_visual.visible = visual_mode == "proxy"
+    if humanoid_visual != null:
+        humanoid_visual.set_visual_mode(visual_mode == "humanoid")
     active_texture_key = ""
     active_proxy_clip = ""
-    visual_changed.emit(("Painted sprites" if visual_mode == "painted" else "58-bone geometric proxy") + " · " + player_class.capitalize())
+    var description := "Original painted sprite"
+    if visual_mode == "humanoid":
+        description = "Higgsfield V03 animated humanoid (Warrior base model)"
+    elif visual_mode == "proxy":
+        description = "Original geometric proxy"
+    visual_changed.emit(description + " · " + player_class.capitalize())
 
 func toggle_class() -> void:
     player_class = "mage" if player_class == "warrior" else "warrior"
     active_texture_key = ""
-    visual_changed.emit(("Painted sprites" if visual_mode == "painted" else "58-bone geometric proxy") + " · " + player_class.capitalize())
+    visual_changed.emit(("Painted sprites" if visual_mode == "painted" else ("Higgsfield Warrior-base rig" if visual_mode == "humanoid" else "58-bone geometric proxy")) + " · " + player_class.capitalize())
 
 func move_to_ground(world_point: Vector3) -> void:
     target_position = Vector3(world_point.x, 0.0, world_point.z)
@@ -219,6 +240,8 @@ func _physics_process(delta: float) -> void:
     frame_clock += delta
     if visual_mode == "painted":
         _render_painted_frame(motion_state)
+    elif visual_mode == "humanoid" and humanoid_visual != null:
+        humanoid_visual.sync_actor(motion_state, facing_world, delta)
     else:
         _render_proxy_animation(motion_state, delta)
 

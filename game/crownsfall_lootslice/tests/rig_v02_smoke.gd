@@ -26,6 +26,26 @@ func _run() -> void:
 		finish()
 		return
 	check(lab.rig_v02_enabled, "Lab selects V02 controller")
+	check(lab.camera.projection == Camera3D.PROJECTION_ORTHOGONAL, "Baseline PoE camera is orthographic")
+	check(is_equal_approx(lab.camera.size, 21.0), "Baseline orthographic size 21.0")
+	check(is_equal_approx(lab.camera_size_for_test(), 21.0), "Target zoom defaults 21.0")
+	var expected_offset: Vector3 = Vector3(12.8, 16.4, 12.8)
+	var actual_offset: Vector3 = lab.camera.global_position - lab.player.global_position
+	check(actual_offset.distance_to(expected_offset) < 0.05, "Matches Phase02 camera follow offset and angle")
+	var wheel := InputEventMouseButton.new()
+	wheel.pressed = true
+	wheel.button_index = MOUSE_BUTTON_WHEEL_UP
+	lab._unhandled_input(wheel)
+	check(is_equal_approx(lab.camera_size_for_test(), 19.5), "Wheel up zooms 1.5 m closer")
+	wheel.button_index = MOUSE_BUTTON_WHEEL_DOWN
+	lab._unhandled_input(wheel)
+	check(is_equal_approx(lab.camera_size_for_test(), 21.0), "Wheel down zooms 1.5 m farther out")
+	lab._set_camera_zoom(999.0)
+	check(is_equal_approx(lab.camera_size_for_test(), 28.0), "Zoom out clamps at 28.0")
+	lab._set_camera_zoom(1.0)
+	check(is_equal_approx(lab.camera_size_for_test(), 14.0), "Zoom in clamps at 14.0")
+	lab._set_camera_zoom(21.0)
+	check(is_equal_approx(lab.camera_size_for_test(), 21.0), "Home preset resets to 21.0")
 	var hero: CharacterBody3D = lab.player
 	check(hero != null, "V02 player instantiated")
 	if hero == null:

@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "title": "AOTL Humanoid Master V02",
+  "source": "Higgsfield 3D Jutsu / Blender 5.2",
+  "source_project": "088e8199-50e8-4554-b0be-b108a6b2203a",
+  "source_revision": 7,
+  "source_glb_sha256": "ef8b288351d749e7e46fa0347c2ba658d773680735ced8d5377b93e672dcc455",
+  "source_gzip_sha256": "0638de285cf12a4561b1eff1e9709c32b07c92363644c1e669479770aa151596",
+  "joints": 58,
+  "fps": 30,
+  "reel_animation": "RIG_AOTL_Master_Humanoid_58",
+  "sockets": {
+    "main_hand": "WeaponRoot",
+    "off_hand": "ShieldRoot",
+    "vfx_right": "HandR",
+    "vfx_left": "HandL",
+    "back": "UpperChest",
+    "head": "Head",
+    "waist": "Hips"
+  },
+  "clips": [
+    {
+      "name": "Idle",
+      "start_frame": 1,
+      "end_frame": 48,
+      "loop": true
+    },
+    {
+      "name": "Walk",
+      "start_frame": 51,
+      "end_frame": 75,
+      "loop": true
+    },
+    {
+      "name": "Run",
+      "start_frame": 78,
+      "end_frame": 96,
+      "loop": true
+    },
+    {
+      "name": "Slash",
+      "start_frame": 99,
+      "end_frame": 121,
+      "loop": false
+    },
+    {
+      "name": "Dodge",
+      "start_frame": 124,
+      "end_frame": 147,
+      "loop": false
+    },
+    {
+      "name": "Cast",
+      "start_frame": 150,
+      "end_frame": 191,
+      "loop": false
+    },
+    {
+      "name": "HeavySlash",
+      "start_frame": 194,
+      "end_frame": 227,
+      "loop": false
+    },
+    {
+      "name": "Thrust",
+      "start_frame": 230,
+      "end_frame": 254,
+      "loop": false
+    },
+    {
+      "name": "HitReact",
+      "start_frame": 257,
+      "end_frame": 273,
+      "loop": false
+    },
+    {
+      "name": "CastRelease",
+      "start_frame": 276,
+      "end_frame": 296,
+      "loop": false
+    },
+    {
+      "name": "ShieldBlock",
+      "start_frame": 299,
+      "end_frame": 324,
+      "loop": false
+    },
+    {
+      "name": "Cleave",
+      "start_frame": 327,
+      "end_frame": 357,
+      "loop": false
+    },
+    {
+      "name": "DashStrike",
+      "start_frame": 360,
+      "end_frame": 385,
+      "loop": false
+    },
+    {
+      "name": "Jump",
+      "start_frame": 388,
+      "end_frame": 415,
+      "loop": false
+    },
+    {
+      "name": "Death",
+      "start_frame": 418,
+      "end_frame": 465,
+      "loop": false
+    },
+    {
+      "name": "Parry",
+      "start_frame": 468,
+      "end_frame": 486,
+      "loop": false
+    }
+  ],
+  "notes": [
+    "All authored source actions remain in Higgsfield editable .blend.",
+    "Godot reconstructs clips at runtime from export reel because Higgsfield scene GLB exports a single animation.",
+    "No game save or permanent item definition changes. Prototype render and human animation fidelity review still needed."
+  ]
+}

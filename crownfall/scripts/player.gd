@@ -15,7 +15,7 @@ const WALK_FPS := 14.0
 const ATTACK_FRAME := 512      # attack strips use larger frames so the sword swing fits
 const ATTACK_FPS := 28.0
 ## Frames per second of each action strip (assets/knight/<kind>_<se|ne>.png).
-const ACTION_FPS := {"attack": 28.0, "hit": 24.0, "cast": 24.0, "death": 9.0}
+const ACTION_FPS := {"attack": 28.0, "hit": 24.0, "cast": 24.0, "death": 9.0, "roll": 28.0}
 const ATTACK_TIME := 0.5       # how long a swing roots the knight
 const HIT_DELAY := 0.2         # the blow lands this long after the swing starts
 
@@ -82,6 +82,10 @@ var lore: Array = []      # ids of memories uncovered by Lorecasting (saved)
 var spent := {"str": 0, "dex": 0, "vit": 0, "int": 0, "wis": 0}   # stat points placed by hand
 var buyback: Array = []   # items sold this session, newest first (not saved)
 var dash := {}
+var rolling := {}            # active dodge roll: {"dir": ground dir, "left": units, "speed": units/s}
+var evade_override := ""     # forces an evade type (tests; a future class could set it too)
+var evade_msg := 0.0         # throttles the "Evade" text
+var evade_t := 0.0           # seconds left of the evade's untouchable window
 var mouse_held := false
 var repath := 0.0
 var mana_warn := 0.0
@@ -144,6 +148,65 @@ func _build_frames() -> SpriteFrames:
 				at2.region = Rect2(i * ATTACK_FRAME, 0, ATTACK_FRAME, ATTACK_FRAME)
 				sf.add_frame(aname, at2)
 	return sf
+
+
+# ---------------------------------------------------------------- evade (Space)
+func evade_def() -> Dictionary:
+	var id := evade_override
+	if id == "" and spec != "" and GD.SPECS[spec].has("evade"):
+		id = String(GD.SPECS[spec]["evade"])
+	return GD.EVADE.get(id, GD.EVADE["roll"])
+
+
+## Dodges toward a painting position: a roll (or a blink, for specs that have one).
+## Returns true if it happened (not on cooldown, enough mana, not already evading).
+func evade(aim: Vector2) -> bool:
+	if dead or get_tree().paused or not rolling.is_empty() or not dash.is_empty():
+		return false
+	if float(cds.get("evade", 0.0)) > 0.0:
+		return false
+	var ev := evade_def()
+	if mp < float(ev["mana"]):
+		return false
+	var g := GD.ground(position, aim)
+	if g.length() < 0.2:
+		g = GD.ground(Vector2.ZERO, Vector2(1, 0).rotated(facing * PI / 4.0))
+	var dir := g.normalized()
+	mp -= float(ev["mana"])
+	cds["evade"] = float(ev["cd"])
+	cd_full["evade"] = float(ev["cd"])
+	invuln = maxf(invuln, float(ev["iframes"]))
+	evade_t = float(ev["iframes"])
+	evade_msg = 0.0
+	# an evade cancels a swing in progress and any walk or target
+	pending_hit = Callable()
+	pending_t = 0.0
+	path = PackedVector2Array()
+	target = null
+	_face(GD.to_px(dir))
+	if String(ev["type"]) == "blink":
+		var from := position
+		var to := NavigationServer2D.map_get_closest_point(get_world_2d().navigation_map, position + GD.to_px(dir * float(ev["dist"])))
+		main.fx_ground.pillar(from, 0.5, Color("8fb8ff"))
+		main.fx_parts.burst(from, 18, [Color("cfe2ff"), Color("6a8cff")], 3.0, 50.0)
+		position = to
+		main.fx_ground.pillar(to, 0.5, Color("8fb8ff"))
+		main.fx_parts.burst(to, 18, [Color("cfe2ff"), Color("6a8cff")], 3.0, 50.0)
+		main.audio.play("dodge", 0.0)
+		return true
+	rolling = {"dir": dir, "left": float(ev["dist"]), "speed": float(ev["dist"]) / float(ev["time"])}
+	# the down-right clip rolls toward screen-left, so mirror it when rolling right
+	var up: bool = dir.y < -0.2
+	var anim := "roll_ne" if up else "roll_se"
+	if sprite.sprite_frames.has_animation(anim):
+		sprite.play(anim)
+		sprite.frame = 0
+		sprite.speed_scale = 1.0
+		sprite.scale = Vector2.ONE * SPRITE_SCALE
+		sprite.flip_h = (dir.x < 0.0) if up else (dir.x > 0.0)
+		swinging = float(ev["time"])
+	main.audio.play("dodge", 0.0)
+	return true
 
 
 ## Plays a one-shot action animation (hit, cast, death) facing the current direction.
@@ -353,7 +416,13 @@ func heal(v: float, quiet := false) -> void:
 
 
 func hurt(amount: float, src_level: int, src := "") -> void:
-	if invuln > 0.0 or dead:
+	if dead:
+		return
+	if invuln > 0.0:
+		# rolled or blinked through it
+		if evade_t > 0.0 and evade_msg <= 0.0:
+			main.fx_text.text(position, "Evade", Color("bfe3ff"))
+			evade_msg = 1.0
 		return
 	if src != "":
 		last_attacker = src
@@ -641,6 +710,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					main.hud.open_inventory("merchant")
 				elif main.portal_in_reach():
 					main.use_portal()
+			KEY_SPACE:
+				evade(at2)
 			KEY_Q:
 				drink_potion()
 
@@ -691,7 +762,9 @@ func _physics_process(delta: float) -> void:
 		if pending_t <= 0.0 and pending_hit.is_valid() and not dead:
 			pending_hit.call()
 			pending_hit = Callable()
-	sprite.modulate.a = 0.6 if (invuln > 0.0 and dash.is_empty() and int(clock * 20.0) % 2 == 1) else 1.0
+	evade_msg = maxf(0.0, evade_msg - delta)
+	evade_t = maxf(0.0, evade_t - delta)
+	sprite.modulate.a = 0.6 if (invuln > 0.0 and dash.is_empty() and rolling.is_empty() and int(clock * 20.0) % 2 == 1) else 1.0
 	if dead:
 		swinging = 0.0
 		pending_t = 0.0
@@ -713,6 +786,24 @@ func _physics_process(delta: float) -> void:
 	hp = minf(float(s["max_hp"]), hp + float(s["max_hp"]) * (0.012 if clock - last_hurt > 4.0 else 0.002) * delta)
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		mouse_held = false
+
+	# Dodge roll: travel along the ground, stopping at walls
+	if not rolling.is_empty():
+		var rstep: float = minf(float(rolling["left"]), float(rolling["speed"]) * delta)
+		var rdir: Vector2 = rolling["dir"]
+		var rnp := position + GD.to_px(rdir * rstep)
+		var rcp := NavigationServer2D.map_get_closest_point(get_world_2d().navigation_map, rnp)
+		if rcp.distance_to(rnp) < 6.0:
+			position = rnp
+			rolling["left"] = float(rolling["left"]) - rstep
+		else:
+			position = rcp
+			rolling["left"] = 0.0
+		if randf() < 0.5:
+			main.fx_parts.spark(position + Vector2(randf_range(-16, 16), -4), Vector2.ZERO, randf_range(10, 50), 20.0, 0.0, 0.35, Color(0.85, 0.8, 0.7, 0.7), 7.0)
+		if float(rolling["left"]) <= 0.0:
+			rolling = {}
+		return
 
 	# Shield Charge
 	if not dash.is_empty():

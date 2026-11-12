@@ -47,6 +47,16 @@ for the knight and three painted enemy types:
   good item and triple gold, and counts on the character panel ("Wardens
   defeated", saved). Closing the Scar clears pending slams and bolts. Tuning:
   `warden` in `ETYPES` and `BOSS_EVERY` in `game_data.gd`.
+- **Evade (Space):** an active dodge on top of the passive Dexterity dodge chance.
+  The Knight rolls about 3 ground units toward the cursor in 0.42 s, untouchable
+  for 0.38 s ("Evade" shows when a blow passes through), 1.2 s cooldown. It
+  cancels a swing in progress; bolts fly through you during the i-frames. The
+  roll animation is the Higgsfield dodge clip (`assets/knight/roll_<se,ne>.png`,
+  cut with `tools/make_roll_strip.py`, which re-centres each frame because the
+  game moves the knight). A Space slot on the skill bar shows its cooldown.
+  `EVADE` in `game_data.gd` also defines a **Blink** (5.5 units, instant, 0.6 s
+  i-frames, 2.5 s cooldown, 8 mana) for a future Mage: give that spec
+  `"evade": "blink"` in `SPECS` and Space blinks instead.
 - **Zones and Waystones:** `scripts/zones.gd` lists each zone (painting, walkable
   outline, props drawn in front, arrival point, Waystone and destination, music).
   A Waystone in the plaza's lower-right exit leads to the **Whisperwood Ruins**
@@ -233,7 +243,7 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 165 checks covering
+(walk, fight a wave, level to 60 making each class choice, 174 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
@@ -243,7 +253,7 @@ the last check confirms every test section ran to the end (a GDScript error
 inside a section stops it without failing a check, so also look for
 "SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 165 of 165 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 174 of 174 checks. Not yet run on Windows.
 
 ## How the plaza works
 

@@ -602,7 +602,7 @@ class HudDraw extends Control:
 		var cy := h - 84.0
 		var sz := 68.0
 		var gap := 8.0
-		var n := SLOTS.size() + 1
+		var n := SLOTS.size() + 2   # skills, then the potion (Q) and the evade (Space)
 		var bar_w := n * sz + (n - 1) * gap + 12.0
 		var x0 := (w - bar_w) / 2.0
 		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), DARK)
@@ -612,9 +612,22 @@ class HudDraw extends Control:
 		var tip: Dictionary = {}
 		var tip_rect := Rect2()
 		for i in n:
-			var r := Rect2(x0 + i * (sz + gap) + (12.0 if i == n - 1 else 0.0), cy - sz / 2, sz, sz)
+			var r := Rect2(x0 + i * (sz + gap) + (12.0 if i >= n - 2 else 0.0), cy - sz / 2, sz, sz)
 			draw_rect(r, Color(0.11, 0.11, 0.16))
 			if i == n - 1:
+				# evade on Space: the class's roll (or a spec's blink)
+				var ev: Dictionary = p.evade_def()
+				_icon("evade" if String(ev["type"]) == "roll" else "blink", r, Color.WHITE)
+				var ecd: float = p.cds.get("evade", 0.0)
+				if ecd > 0.0:
+					Icons.draw_cooldown(self, r, ecd / maxf(0.01, float(p.cd_full.get("evade", 1.0))))
+				draw_rect(Rect2(r.position + Vector2(3, 3), Vector2(44, 18)), Color(0.02, 0.02, 0.04, 0.78))
+				draw_string(font, r.position + Vector2(7, 17), "Space", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("f2e6d0"))
+				if r.has_point(mouse):
+					tip = {"name": ev["name"], "desc": ev["desc"], "meta": "%ss cooldown · untouchable %ss" % [str(ev["cd"]), str(ev["iframes"])]}
+					tip_rect = r
+				continue
+			if i == n - 2:
 				_icon("potion", r, Color.WHITE)
 				draw_string(font, r.position + Vector2(sz - 16, sz - 6), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color.WHITE)
 				draw_rect(r, BRONZE.darkened(0.25), false, 2.0)

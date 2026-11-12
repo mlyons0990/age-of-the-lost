@@ -19,6 +19,18 @@ const SQ := 0.72   # vertical squash of the painted camera (same as DEPTH_SQUASH
 
 const SPEC_LEVEL := 10
 
+## Evade on the Space bar (an active dodge, on top of the passive Dexterity dodge chance).
+## dist: ground units travelled; time: seconds it takes; iframes: seconds of invulnerability;
+## cd: cooldown in seconds. A class or specialization picks one with an "evade" key
+## (SPECS[...]["evade"]); without one the Knight rolls. "blink" is ready for a future
+## Mage spec: an instant teleport that goes farther and keeps you untouchable longer.
+const EVADE := {
+	"roll": {"name": "Dodge Roll", "type": "roll", "dist": 3.0, "time": 0.42, "iframes": 0.38, "cd": 1.2, "mana": 0.0,
+		"desc": "Roll toward the cursor, untouchable for a moment. Cancels a swing."},
+	"blink": {"name": "Blink", "type": "blink", "dist": 5.5, "time": 0.0, "iframes": 0.6, "cd": 2.5, "mana": 8.0,
+		"desc": "Vanish and reappear toward the cursor, untouchable for longer."},
+}
+
 # ---------------------------------------------------------------- attributes
 ## The five main stats. Each class has one "main" stat that raises all its damage
 ## (like World of Warcraft's primary stat or Diablo's main stat). The rest work for every class.

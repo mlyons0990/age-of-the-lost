@@ -21,7 +21,7 @@ anime art inspired by Ragnarok Online and Octopath Traveler. Built in **Godot 4.
 ## Controls
 
 Click to move and attack · 1–4 skills · Q potion · C character · I inventory ·
-K stash · P spellbook · J journal · E talk / Lorecast · R Reality Scar · Esc close.
+K stash · P spellbook · Space dodge roll · J journal · E talk / Lorecast · R Reality Scar · Esc close.
 
 ## Testing
 

@@ -328,8 +328,9 @@ func _inventory_tests() -> void:
 	await _death_tests()
 	await _anim_tests()
 	await _zone_tests()
+	await _evade_tests()
 	await _stat_tests()
-	_check(finished.size() == 10, "every test section ran to the end (%s)" % ", ".join(finished))
+	_check(finished.size() == 11, "every test section ran to the end (%s)" % ", ".join(finished))
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
 	_note("inventory and stat checks: %d run, %d failed" % [checks, fails])
@@ -1205,3 +1206,49 @@ func _zone_tests() -> void:
 	_check(main.zone == "plaza" and not p.dead and main.merchant.visible, "rising again returns you to Crownsfall")
 	_check(main.enemies.is_empty(), "the ruins' monsters stay in the ruins")
 	finished.append("_zone_tests")
+
+
+## Evade on Space: a roll with a moment of invulnerability; a blink is ready for future specs.
+func _evade_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var p: Node2D = main.player
+	main.close_rift()
+	p.position = main.RIFT_POS
+	p.path = PackedVector2Array()
+	p.cds.erase("evade")
+	p.invuln = 0.0
+	p.hp = float(p.stats()["max_hp"])
+	await _wait(0.2)
+	# Space rolls toward the mouse
+	var aim: Vector2 = p.position + GD.to_px(Vector2(4.0, 0.0))
+	Input.warp_mouse(main.get_viewport().get_canvas_transform() * aim)
+	await _wait(0.05)
+	var start: Vector2 = p.position
+	await _key(KEY_SPACE)
+	_check(not p.rolling.is_empty() and p.invuln > 0.2, "Space starts a dodge roll with i-frames")
+	_check(String(p.sprite.animation).begins_with("roll_"), "the roll animation plays (%s)" % p.sprite.animation)
+	# an enemy strike mid-roll does nothing
+	var hp0: float = p.hp
+	p.hurt(9999.0, 99, "Test Brute")
+	_check(p.hp == hp0, "a blow during the roll is evaded")
+	await _wait(0.1)
+	await _shot("g30_dodge_roll")
+	await _wait(0.5)
+	var moved: float = GD.gdist(start, p.position)
+	_check(p.rolling.is_empty() and moved > 2.4 and moved < 3.3, "the roll carries the knight about 3 units (%.2f)" % moved)
+	_check(GD.ground(start, p.position).x > 0.0, "toward the cursor")
+	_check(not p.evade(p.position + Vector2(100, 0)), "the roll has a cooldown")
+	await _wait(1.0)
+	p.invuln = 0.0
+	p.hurt(1.0, 1, "Test")
+	_check(p.hp < hp0 or p.evade_t <= 0.0, "after the roll the knight can be hit again")
+	# a blink (for a future Mage spec) goes farther and stays untouchable longer
+	p.evade_override = "blink"
+	p.cds.erase("evade")
+	p.mp = 100.0
+	var b0: Vector2 = p.position
+	_check(p.evade(p.position + GD.to_px(Vector2(-6.0, 0.0))), "a blink can be used")
+	var bd: float = GD.gdist(b0, p.position)
+	_check(bd > 3.5 and p.invuln >= 0.55, "a blink teleports farther with longer i-frames (%.2f units, %.2fs)" % [bd, p.invuln])
+	p.evade_override = ""
+	finished.append("_evade_tests")

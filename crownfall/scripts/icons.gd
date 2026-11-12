@@ -74,6 +74,11 @@ static func draw_icon(ci: CanvasItem, id: String, r: Rect2, col: Color) -> void:
 			ci.draw_rect(Rect2(-3, -6, 6, 28), col)
 			ci.draw_rect(Rect2(-14, -20, 28, 15), col)
 			ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+		"blink":
+			for i in 8:
+				var a2 := i / 8.0 * TAU
+				ci.draw_line(c + Vector2(cos(a2), sin(a2)) * 8, c + Vector2(cos(a2), sin(a2)) * 24, col, 3.0, true)
+			ci.draw_circle(c, 7, col)
 		"harvest":
 			ci.draw_arc(c, 19, 0, TAU, 32, col, 4.0, true)
 			ci.draw_circle(c + Vector2(0, -2), 10, col)

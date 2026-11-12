@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	position += GD.to_px(dir * speed * delta)
 	if randf() < 0.5:
 		main.fx_parts.spark(position + Vector2(0, -HEIGHT), Vector2.ZERO, randf_range(10, 50), 40.0, 0.0, 0.35, col, 4.0)
-	if not player.dead and GD.gdist(position, player.position) < HIT_RADIUS:
+	if not player.dead and player.invuln <= 0.0 and GD.gdist(position, player.position) < HIT_RADIUS:
 		player.hurt(dmg, level, src)
 		main.bolt_hits += 1
 		_burst()

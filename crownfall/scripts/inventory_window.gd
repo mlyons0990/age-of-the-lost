@@ -738,10 +738,36 @@ func _row(x: float, y: float, w: float, label: String, value: String, mouse: Vec
 		stat_rows.append([r, label])
 
 
+## Icon art per item type, made by tools/make_item_icons.py (replace with painted portraits
+## of the same aspect to upgrade). Missing files fall back to the shapes drawn below.
+const ICON_SLOTS := ["weapon", "offhand", "helm", "armor", "gloves", "belt", "boots", "ring", "amulet"]
+static var _icons := {}
+
+
+static func icon_for(slot: String) -> Texture2D:
+	if _icons.is_empty():
+		for k in ICON_SLOTS:
+			var path := "res://assets/items/%s.png" % k
+			_icons[k] = load(path) if ResourceLoader.exists(path) else null
+	return _icons.get(slot)
+
+
 func _draw_item(r: Rect2, it: Dictionary, alpha := 1.0) -> void:
 	var col := _rarity_color(it)
 	draw_rect(r.grow(-2), Color(col.r * 0.2 + 0.04, col.g * 0.2 + 0.04, col.b * 0.2 + 0.06, 0.96 * alpha))
+	# a soft rarity glow behind the icon, stronger for better items
+	var glow_a: float = [0.0, 0.10, 0.16, 0.24][int(it.get("rarity", 0))]
+	if glow_a > 0.0:
+		draw_circle(r.get_center(), minf(r.size.x, r.size.y) * 0.42, Color(col.r, col.g, col.b, glow_a * alpha))
 	draw_rect(r.grow(-2), Color(col.r, col.g, col.b, alpha), false, 2.0)
+	var tex := icon_for(String(it.get("slot", "")))
+	if tex != null:
+		# fit the icon inside the rect, keeping its shape
+		var inner := r.grow(-5)
+		var k: float = minf(inner.size.x / tex.get_width(), inner.size.y / tex.get_height())
+		var sz := Vector2(tex.get_width(), tex.get_height()) * k
+		draw_texture_rect(tex, Rect2(inner.get_center() - sz / 2.0, sz), false, Color(1, 1, 1, alpha))
+		return
 	var c := r.get_center()
 	var u: float = minf(r.size.x, r.size.y) * 0.36
 	var hgt: float = r.size.y * 0.5 - 8.0

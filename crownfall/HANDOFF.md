@@ -199,6 +199,8 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `assets/knight/idle_<dir>.png` | One 384x384 standing frame per direction |
 | `assets/knight/attack_<se,ne>.png` | Sword swing strips, 15 frames of 512x512 (the 384 frame sits centred inside) |
 | `assets/enemies/<slime,revenant,brute>.png` | Enemy sprites: Hollowling, Veilbound Revenant, Thornhide Brute |
+| `assets/items/<slot>.png` | Item icons (weapon, offhand, helm, armor, gloves, belt, boots, ring, amulet), sized to each footprint. Made by `tools/make_item_icons.py`; replace any with a painted portrait of the same aspect and the game uses it |
+| `tools/make_item_icons.py` | Paints the item icons (gradients, outlines, highlights) in the knight's palette |
 | `assets/enemies/hexcaller.png` | Placeholder Gravecaller: the Revenant recoloured spectral green. Replace with real art when available |
 
 Directions on disk are `up`, `ne`, `right`, `se`, `down`. The three west-facing

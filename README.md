@@ -1,6 +1,12 @@
 # age-of-the-lost
 AOTL Files
 
+## Latest development: actor feedback and selective voice reference
+
+[Actor feedback handoff and QA](game/crownsfall_lootslice/docs/ACTOR_FEEDBACK_HANDOFF.md) · [Grady voice reference](audio/voice_auditions/2026-11-12/README.md).
+
+Heroes now react visibly to damage, lean into Shield Charge, fall when defeated and reset on respawn. Enemies recoil and collapse; dead enemies no longer display attack warnings. These are procedural poses using existing art. The game source below includes this cycle; older downloadable ZIPs remain snapshots of their named releases. Grady's ElevenLabs audition was generated for zero credits and saved separately for selected NPC/enemy dialogue. Full character voice-over is outside the current scope.
+
 ## Full-square skill artwork and future spell framework
 
 [View approved icons](https://drive.google.com/file/d/1at2mBYThoYL3p335qc68jVpvdBXdxWJ0/view) · [Latest downloads and verification](docs/releases/2026-11-12-approved-skill-icons/README.md).

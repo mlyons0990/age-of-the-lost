@@ -37,6 +37,10 @@ const FACINGS := [
 
 var main: Node2D
 var sprite: AnimatedSprite2D
+## Presentation-only pivot: reactions never displace navigation or interrupt casts.
+var visual_root: Node2D
+var hurt_visual_left := 0.0
+var death_visual_time := -1.0
 var visual_class_id := ""
 var mage_art_active := false
 var visual_cast_time := 0.0
@@ -114,12 +118,15 @@ func _ready() -> void:
 	sprite = AnimatedSprite2D.new()
 	sprite.scale = Vector2.ONE * SPRITE_SCALE
 	sprite.offset = Vector2(0, -FRAME / 2.0) + FEET / SPRITE_SCALE
-	add_child(sprite)
+	visual_root = Node2D.new()
+	add_child(visual_root)
+	visual_root.add_child(sprite)
 	refresh_visuals()
 	_play("idle")
 
 func refresh_visuals() -> void:
 	if sprite == null or visual_class_id == class_id: return
+	_reset_visual_feedback()
 	visual_class_id = class_id
 	mage_art_active = class_id == "mage"
 	if mage_art_active:
@@ -132,6 +139,62 @@ func refresh_visuals() -> void:
 	sprite.sprite_frames = frame_cache[key]
 	visual_cast_time = 0
 	_play("idle")
+
+func _reset_visual_feedback() -> void:
+	hurt_visual_left = 0.0
+	death_visual_time = -1.0
+	if visual_root != null:
+		visual_root.transform = Transform2D.IDENTITY
+		visual_root.modulate = Color.WHITE
+	if shadow != null: shadow.modulate.a = 0.38
+	if sprite != null:
+		sprite.scale = Vector2.ONE * SPRITE_SCALE
+		sprite.modulate = Color.WHITE
+
+func visual_state() -> String:
+	if dead: return "dead"
+	if hurt_visual_left > 0: return "hurt"
+	if not dash.is_empty(): return "charge"
+	if cast_remaining > 0 or visual_cast_time > 0: return "cast"
+	if swinging > 0: return "attack"
+	if path_index < path.size(): return "walk"
+	return "idle"
+
+func _process(delta: float) -> void:
+	_advance_visual_feedback(delta)
+
+func _advance_visual_feedback(delta: float) -> void:
+	if visual_root == null: return
+	if not dead and death_visual_time >= 0: _reset_visual_feedback()
+	visual_root.transform = Transform2D.IDENTITY
+	visual_root.modulate = Color.WHITE
+	var side := -1.0 if sprite.flip_h else 1.0
+	if dead:
+		if death_visual_time < 0:
+			var f: Array = FACINGS[facing]
+			sprite.flip_h = f[1]
+			side = -1.0 if sprite.flip_h else 1.0
+			sprite.play("idle_" + String(f[0]))
+			sprite.pause()
+			sprite.scale = Vector2.ONE * SPRITE_SCALE
+			death_visual_time = 0.0
+		death_visual_time += maxf(0, delta)
+		var fall := smoothstep(0.0, 0.45, death_visual_time)
+		visual_root.rotation = side * 1.32 * fall
+		visual_root.position = Vector2(0, 12 * fall)
+		visual_root.scale = Vector2(1, 1 - 0.15 * fall)
+		visual_root.modulate = Color.WHITE.lerp(Color(0.48, 0.43, 0.46), fall)
+		shadow.modulate.a = lerpf(0.38, 0.2, fall)
+		return
+	hurt_visual_left = maxf(0, hurt_visual_left - maxf(0, delta))
+	if hurt_visual_left > 0:
+		var recoil := hurt_visual_left / 0.18
+		visual_root.rotation = -side * 0.10 * recoil
+		visual_root.position.x = -side * 5 * recoil
+		visual_root.modulate = Color.WHITE.lerp(Color(1.35, 0.72, 0.68), recoil)
+	elif not dash.is_empty():
+		visual_root.rotation = side * 0.16
+		visual_root.position.x = side * 7
 
 func _show_cast(windup: float) -> void:
 	if not mage_art_active: return
@@ -215,7 +278,7 @@ func _shadow_texture() -> Texture2D:
 
 
 func _play(kind: String) -> void:
-	if swinging > 0.0 or visual_cast_time > 0:
+	if dead or swinging > 0.0 or visual_cast_time > 0:
 		return  # let the attack animation finish
 	var f: Array = FACINGS[facing]
 	var anim: String = kind + "_" + f[0]
@@ -399,6 +462,7 @@ func hurt(amount: float, src_level: int) -> void:
 	if absorbed > 0: main.fx_text.text(position, "Ward %d" % absorbed, Color("ffc58b"))
 	if incoming > 0:
 		hp = maxf(0, hp - incoming)
+		hurt_visual_left = 0.18
 		main.hurt_flash = 0.35
 		main.shake = maxf(main.shake, 4)
 		main.fx_text.text(position, "-%d" % incoming, Color("ff5a5a"))
@@ -643,6 +707,8 @@ func level_up() -> void:
 func respawn(at: Vector2) -> void:
 	cancel_casts()
 	dead = false
+	_reset_visual_feedback()
+	_play("idle")
 	pending_t = 0.0
 	pending_hit = Callable()
 	dash = {}

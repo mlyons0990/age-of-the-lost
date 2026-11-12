@@ -1,5 +1,5 @@
 {
-  "project": "Crownsfall_Full_Skill_Buttons_2026-11-12",
+  "project": "crownsfall_lootslice",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8177,
-      "sha256": "4d3ee19f92de10531f8f81e870c32a60b4d090f2e8ce377a9282613cc09afc56"
+      "bytes": 8294,
+      "sha256": "dde4ae2bb5b25aadd5f1061178e8cfe5abc67f59d800effa53009bac1a158151"
     },
     {
       "path": "assets/art_expansion02/icons/arcane_fold.png",
@@ -1327,6 +1327,11 @@
       "sha256": "fb485b3e4005733aeecfd7c87a39dfc6540d52118c3473098b885e02ed8ee125"
     },
     {
+      "path": "docs/ACTOR_FEEDBACK_HANDOFF.md",
+      "bytes": 4152,
+      "sha256": "fd06ec33712f2ab62f3d711c6dc5d30bcafaf6147d8f9d4e4562e671cd78afcb"
+    },
+    {
       "path": "docs/ART_INTEGRATION_HANDOFF.md",
       "bytes": 6720,
       "sha256": "d0099f2c042c8da0eb3464bc189d16549858859c24bd242bffd1987b3100b7f8"
@@ -1398,8 +1403,8 @@
     },
     {
       "path": "docs/QA_AND_REPRO.md",
-      "bytes": 9428,
-      "sha256": "4850b796c40b39cdb7f7245acd0077021778b29392c07f22edfee5385c2a5423"
+      "bytes": 9637,
+      "sha256": "95529e0e4d1eebc49a7575719d9d92ea57ec37756767371256892cbe48c3caf1"
     },
     {
       "path": "docs/RELIABILITY_HANDOFF.md",
@@ -1590,6 +1595,41 @@
       "path": "previews/PREVIEW_INDEX.json",
       "bytes": 783,
       "sha256": "dc626feb4a3ccfe92ca3737ad03491b378d686a87407540495f4a239b7740443"
+    },
+    {
+      "path": "previews/actor_feedback/brute_fallen.png",
+      "bytes": 2431824,
+      "sha256": "efe71502e798ce8dba48314cec73a68b037826bcd110201b7c062677caaa332e"
+    },
+    {
+      "path": "previews/actor_feedback/mage_fallen.png",
+      "bytes": 2420481,
+      "sha256": "30d0179c807a8ceca32f351682b01b5322584226cb94c24c1e6b97dace665016"
+    },
+    {
+      "path": "previews/actor_feedback/mage_hurt.png",
+      "bytes": 2426953,
+      "sha256": "49e1307c23161bd2122cabaf3bd3c1585b1627df6432d46d59cb7ed4c41cc0f8"
+    },
+    {
+      "path": "previews/actor_feedback/revenant_fallen.png",
+      "bytes": 2427692,
+      "sha256": "7a982fce27e7feb656f75c4e75e79b5566bfe6995871336066c82ba86499a22f"
+    },
+    {
+      "path": "previews/actor_feedback/slime_fallen.png",
+      "bytes": 2425672,
+      "sha256": "6c5a013f1f2def4a99ffc9cc1299520a07cbd292409597cfb0f8ab6cec0b2521"
+    },
+    {
+      "path": "previews/actor_feedback/warrior_fallen.png",
+      "bytes": 2414468,
+      "sha256": "6bac4e3ef52f7e57a3e49814a55df54c4df7c9233d8d1ac399149ac1b032d2e4"
+    },
+    {
+      "path": "previews/actor_feedback/warrior_hurt.png",
+      "bytes": 2421218,
+      "sha256": "333928231d33e6ed40449fbf961a99a9cc9006d7826f2d1651ba6e7729bcdd6e"
     },
     {
       "path": "previews/art_integration/mage_comparison.png",
@@ -1948,8 +1988,8 @@
     },
     {
       "path": "scripts/enemy.gd",
-      "bytes": 8782,
-      "sha256": "337ec8f67cf23f8ec1b10de662cf07587c435438c86df83233b8a2b973956c47"
+      "bytes": 9762,
+      "sha256": "523d8c904ece2677811eac17889d539bdedd8bd372a0879acb32918b66ec47a0"
     },
     {
       "path": "scripts/enemy.gd.uid",
@@ -2058,8 +2098,8 @@
     },
     {
       "path": "scripts/player.gd",
-      "bytes": 32276,
-      "sha256": "793a108eeeedcd9e92586052c37bb462819cea807a729af3ab2c9464c86ba60e"
+      "bytes": 34612,
+      "sha256": "a189a27de00bf11499c4fde99d46fa40ecca86f47b88694ab4311eb504c067d1"
     },
     {
       "path": "scripts/player.gd.uid",
@@ -2197,6 +2237,11 @@
       "sha256": "4c75f3d28ee6aa678cf11736239837fad111c1cf02062079b4989492437ee508"
     },
     {
+      "path": "tests/ACTOR_FEEDBACK_LAST_RUN.txt",
+      "bytes": 3276,
+      "sha256": "9e875a6f6e24e7b54d72d969904886661dffaace9dc6385ef0f1839de94a85dc"
+    },
+    {
       "path": "tests/ART_AUDIO_HEADLESS_RESULT.txt",
       "bytes": 1230,
       "sha256": "695bbfa3d5f519cdbabe787a24eb627964bdcd7a8e18483ec086e85e82740662"
@@ -2238,8 +2283,8 @@
     },
     {
       "path": "tests/GRID_ALIGNMENT_LAST_RUN.txt",
-      "bytes": 4338,
-      "sha256": "1c735dcd4d911cf164319810fb8a7bec9eccbcb30772caf5ea9af71b36c5020a"
+      "bytes": 4208,
+      "sha256": "cdea54f2a2049c265e7616dd3d80084578ae59777f9960901d4ffade5a0367e6"
     },
     {
       "path": "tests/GRID_ALIGNMENT_RENDERED_RESULT.txt",
@@ -2253,8 +2298,8 @@
     },
     {
       "path": "tests/INVENTORY_UI_LAST_RUN.txt",
-      "bytes": 6436,
-      "sha256": "05dea005d31a2bba349dd7127631db0e3a8d9b0c5aa24266d62a13160a4be970"
+      "bytes": 6308,
+      "sha256": "af7acf293c9ac19f82548fcbd213d83f1f5eb54307d333d42a87cf4a0eae17c4"
     },
     {
       "path": "tests/INVENTORY_UI_RENDERED_RESULT.txt",
@@ -2378,8 +2423,8 @@
     },
     {
       "path": "tests/TOWN_UI_LAST_RUN.txt",
-      "bytes": 4063,
-      "sha256": "41c4511a81555550016232229f6d4dd6a95d32de3fa2e7e92d75e6518d755893"
+      "bytes": 3931,
+      "sha256": "6db088e448fbf3a4f9f9b83af413bf62745808926852e6c5306f85bb6ffb93e3"
     },
     {
       "path": "tests/TOWN_UI_RENDERED_RESULT.txt",
@@ -2393,6 +2438,111 @@
     },
     {
       "path": "tests/WARRIOR_HEADLESS_RESULT.txt",
+      "bytes": 2339,
+      "sha256": "92fe1fcaad6285c14edadef87990f18daaba46693fac34fd4ed4f3b05d4ad828"
+    },
+    {
+      "path": "tests/actor_feedback_integration.gd",
+      "bytes": 6518,
+      "sha256": "6ab86b4ba7cd7c43863bd3d962792e5d84c80863750f223bd3b69b6bb12502e9"
+    },
+    {
+      "path": "tests/actor_feedback_integration.gd.uid",
+      "bytes": 20,
+      "sha256": "c7a8d9221c20e4d34c92580611849a1d20b0a692e9e8711311a2cf137c7d896a"
+    },
+    {
+      "path": "tests/actor_feedback_qa/actor_feedback.log",
+      "bytes": 3349,
+      "sha256": "f67b6b26670a8bfce1ca12c3b23a012ad24358f51c079696dcbbf0cb29c03083"
+    },
+    {
+      "path": "tests/actor_feedback_qa/art_audio.log",
+      "bytes": 1230,
+      "sha256": "0d35974308ac275c91368f810b771028015dd8a2ff6dcf40b68bfaf5166ba0dc"
+    },
+    {
+      "path": "tests/actor_feedback_qa/encounter.log",
+      "bytes": 3285,
+      "sha256": "aacee2abe89e5a71d9abca9f822468c06974f12ea266fda55c1283f17cbc84a7"
+    },
+    {
+      "path": "tests/actor_feedback_qa/encounter_bouts.log",
+      "bytes": 2488,
+      "sha256": "f58c57849b3f6810ad200f7287f574ee1bc95654d9b7aacd752a0fb66627cdab"
+    },
+    {
+      "path": "tests/actor_feedback_qa/grid_alignment.log",
+      "bytes": 4281,
+      "sha256": "34015b621bc9e04f91aecbcde86d9e9cb887cf1946e8cf4a309fa0ae986acc35"
+    },
+    {
+      "path": "tests/actor_feedback_qa/import.log",
+      "bytes": 1017,
+      "sha256": "9572934ad4d57fbab2c09b2c82f3821584fba7ba71d7e1dec5055bc7fa531f3f"
+    },
+    {
+      "path": "tests/actor_feedback_qa/inventory_ui.log",
+      "bytes": 6381,
+      "sha256": "3e5489a5439d8623eeaa9c6e5b7e250d18522ad4f1d4c1a85da071140e92378e"
+    },
+    {
+      "path": "tests/actor_feedback_qa/lab.log",
+      "bytes": 1528,
+      "sha256": "e9dc7809077922664368303d91d9ebce0c412fe4dd340c9c51baf7109e6a45e2"
+    },
+    {
+      "path": "tests/actor_feedback_qa/loot.log",
+      "bytes": 4990,
+      "sha256": "f2f49936f71c5117631dfd6fa995e304a1ebf7f3886310bda532b6f0bdb73285"
+    },
+    {
+      "path": "tests/actor_feedback_qa/mage.log",
+      "bytes": 3122,
+      "sha256": "a39c4ffa326d017300995498f54d2c7610d090bdb268acdf271bab31ff3e51e5"
+    },
+    {
+      "path": "tests/actor_feedback_qa/mastery.log",
+      "bytes": 5718,
+      "sha256": "571a6a5b2e72adae0d22ca54c6b937ded460a1a41d4d805ff8b9fbd280f50f06"
+    },
+    {
+      "path": "tests/actor_feedback_qa/navigation.log",
+      "bytes": 2413,
+      "sha256": "0cdfc679517d7604127c0b1d76f7482cfb67d7047297e9028bb242711f0bca7c"
+    },
+    {
+      "path": "tests/actor_feedback_qa/reliability.log",
+      "bytes": 5279,
+      "sha256": "71cbbe79925519345979cacbed6c10810d5c980eeaaa990e731af0466335e01d"
+    },
+    {
+      "path": "tests/actor_feedback_qa/rendered.log",
+      "bytes": 3644,
+      "sha256": "8ac3adc8f2ec00f3ec2dbbc45b11a9fa10624e08aab40b6d93bc64326a39b27a"
+    },
+    {
+      "path": "tests/actor_feedback_qa/selected_art.log",
+      "bytes": 5104,
+      "sha256": "bdeee7219e2f762ba3678557674d120f278f9ca83fbf552ad3d8bf932b921591"
+    },
+    {
+      "path": "tests/actor_feedback_qa/skill_tiles.log",
+      "bytes": 4434,
+      "sha256": "a7d22aec95810ff02db600b11606f58b965d6d9b54721bef998ef3c52adb81d2"
+    },
+    {
+      "path": "tests/actor_feedback_qa/summary.json",
+      "bytes": 2430,
+      "sha256": "04aaef195fd619d36685fcdd8a0771c2383b950b5f028a4ced3b80ca8ba58fc9"
+    },
+    {
+      "path": "tests/actor_feedback_qa/town_ui.log",
+      "bytes": 4004,
+      "sha256": "f0676af6b919620b393276e21accd002fd5919c3d6538fa2c234f3f33b29555c"
+    },
+    {
+      "path": "tests/actor_feedback_qa/warrior.log",
       "bytes": 2339,
       "sha256": "92fe1fcaad6285c14edadef87990f18daaba46693fac34fd4ed4f3b05d4ad828"
     },
@@ -2893,8 +3043,8 @@
     },
     {
       "path": "tools/run_checks.py",
-      "bytes": 4663,
-      "sha256": "dee129e8cb5cdd0c94db11a46d8efd4a2ed020ea9c5a4efc302a9eac5d2a8c24"
+      "bytes": 4768,
+      "sha256": "21e6648ea9a7bf73877fea67ef45a940ac386bc4a67e4029f8fd42086f13430c"
     },
     {
       "path": "tools/verify_footprint_ui.py",

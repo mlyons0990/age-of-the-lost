@@ -2,7 +2,7 @@
 
 November 12, 2026. All nineteen implemented base abilities plus Ember Aura now use crisp grimdark full-square artwork in the action bar and Grimoire. Each image uses a tightly cropped action composition, with the subject and supporting artwork extending to the edges of the square inside the thin button frame. Clean contours and controlled shading preserve readability. Each icon has its own beveled metal frame, following the user-approved AOTL standard. Hotkeys, cooldown shading/numbers, active-aura ON state and low-mana borders remain live overlays. Earlier approved symbols and equipment artwork remain preserved.
 
-[Current skill-art handoff](docs/FULL_SKILL_BUTTONS_HANDOFF.md) explains the source atlas, exact IDs and reproduction. The right-docked equipment/character sheet, exact inventory footprints, stat scaling and schema-six saves remain included. The earlier [art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) records the preceding cycle.
+[Latest actor-feedback handoff](docs/ACTOR_FEEDBACK_HANDOFF.md) covers damage recoil, charge lean, death/corpse poses and respawn resets. [Skill-art handoff](docs/FULL_SKILL_BUTTONS_HANDOFF.md) explains the approved source atlas, exact IDs and reproduction. The right-docked equipment/character sheet, exact inventory footprints, stat scaling and schema-six saves remain included. The earlier [art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) records the preceding cycle.
 
 ## Play
 
@@ -61,7 +61,7 @@ godot --headless --path . --script res://tests/art_audio_integration.gd
 godot --headless --path . --script res://tests/mastery_integration.gd
 ```
 
-Current total: **900 headless assertions across 15 suites**, including75 new full-square skill-art checks. The skill-art suite also passes75 rendered checks. Six native screenshots cover both classes, Grimoire, cooldown/low-mana and active Ember Aura. Current complete logs are in `tests/skill_tiles_qa/`. Earlier native inventory/town/grid tests add six distinct pointer assertions to cumulative coverage; their historical logs remain in `tests/art_integration_qa/`. The source ZIP excludes caches and live progress. Tuning exports and validated example builds remain under `data/`.
+Current total: **954 headless assertions across 16 suites**, including 54 actor-feedback checks and 75 skill-art checks. The actor-feedback suite also passes its 54 checks rendered, with seven native review captures. Current complete logs are in `tests/actor_feedback_qa/`; prior skill-art logs remain in `tests/skill_tiles_qa/`. Earlier native inventory/town/grid tests add six historical pointer assertions; those were not rerun in this cycle. The source ZIP excludes caches and live progress. Tuning exports and validated example builds remain under `data/`.
 
 Remaining production work includes human encounter/economy tuning and audio review, Windows export/target hardware testing, additional character animation, real gear attachment visuals and the production 3D Mage. Current 2D clothing/staff are baked into the sprites. The lab remains an independent proxy testbed.
 

@@ -1,0 +1,700 @@
+{
+  "project": "Age of the Lost",
+  "batch": "Higgsfield Item Art Batch 01",
+  "created": "2026-11-11 America/New_York",
+  "credits_spent": 0,
+  "billing": "Higgsfield free-trial unlimited entitlement; use_unlim=true",
+  "generated_count": 5,
+  "generated": [
+    {
+      "asset_id": "aotl_weapon_1h_sword_001",
+      "name": "Crownguard Sword",
+      "family": "weapon",
+      "type": "one_hand_sword",
+      "width": 1,
+      "height": 3,
+      "model": "gpt_image_2_6",
+      "job_id": "1e39e7bf-d684-4135-be74-68d35bbf372e",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_022918_1e39e7bf-d684-4135-be74-68d35bbf372e.png",
+      "status": "generated_source_only"
+    },
+    {
+      "asset_id": "aotl_weapon_1h_axe_001",
+      "name": "Wayfarer Axe",
+      "family": "weapon",
+      "type": "one_hand_axe",
+      "width": 1,
+      "height": 3,
+      "model": "nano_banana_flash",
+      "job_id": "43713f78-78cc-4b94-b1ed-dc0d2082a7ad",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_023030_43713f78-78cc-4b94-b1ed-dc0d2082a7ad.png",
+      "status": "generated_source_only"
+    },
+    {
+      "asset_id": "aotl_offhand_kite_shield_001",
+      "name": "Royal Kite Shield",
+      "family": "off_hand",
+      "type": "kite_shield",
+      "width": 2,
+      "height": 2,
+      "model": "nano_banana_flash",
+      "job_id": "cd5b0ef2-462b-4000-ac22-ea3bb960c196",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_023746_cd5b0ef2-462b-4000-ac22-ea3bb960c196.png",
+      "status": "generated_source_only"
+    },
+    {
+      "asset_id": "aotl_weapon_arcane_staff_001",
+      "name": "Epoch Staff",
+      "family": "caster",
+      "type": "mystic_staff",
+      "width": 2,
+      "height": 4,
+      "model": "seedream_v5_pro",
+      "job_id": "591dad92-925b-4e0d-bc0c-76bc470267af",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_024308_591dad92-925b-4e0d-bc0c-76bc470267af.png",
+      "status": "generated_source_only"
+    },
+    {
+      "asset_id": "aotl_jewelry_sapphire_ring_001",
+      "name": "Sapphire Signet Ring",
+      "family": "jewelry",
+      "type": "ring",
+      "width": 1,
+      "height": 1,
+      "model": "gpt_image_2",
+      "job_id": "59fe5ebd-9262-4a06-a6ad-bb97c2676ea9",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_024447_59fe5ebd-9262-4a06-a6ad-bb97c2676ea9.png",
+      "status": "generated_source_only"
+    }
+  ],
+  "planned_count": 62,
+  "planned": [
+    {
+      "group": "one_hand_melee",
+      "type": "sword",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": true,
+      "status": "prototype_source_generated_only"
+    },
+    {
+      "group": "one_hand_melee",
+      "type": "axe",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": true,
+      "status": "prototype_source_generated_only"
+    },
+    {
+      "group": "one_hand_melee",
+      "type": "mace",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "one_hand_melee",
+      "type": "dagger",
+      "proposed_grid": [
+        1,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "one_hand_melee",
+      "type": "fist_weapon",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "one_hand_melee",
+      "type": "flail",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "one_hand_melee",
+      "type": "sceptre",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "one_hand_melee",
+      "type": "short_spear",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "two_hand_melee",
+      "type": "greatsword",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "two_hand_melee",
+      "type": "greataxe",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "two_hand_melee",
+      "type": "greatmace",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "two_hand_melee",
+      "type": "polearm",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "two_hand_melee",
+      "type": "quarterstaff",
+      "proposed_grid": [
+        1,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "two_hand_melee",
+      "type": "war_staff",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "ranged",
+      "type": "bow",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "ranged",
+      "type": "longbow",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "ranged",
+      "type": "recurve_bow",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "ranged",
+      "type": "crossbow",
+      "proposed_grid": [
+        2,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "ranged",
+      "type": "heavy_crossbow",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "ranged",
+      "type": "hand_crossbow",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "ranged",
+      "type": "arquebus",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "caster",
+      "type": "wand",
+      "proposed_grid": [
+        1,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "caster",
+      "type": "runic_wand",
+      "proposed_grid": [
+        1,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "caster",
+      "type": "channeling_rod",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "caster",
+      "type": "mystic_staff",
+      "proposed_grid": [
+        2,
+        4
+      ],
+      "generated": true,
+      "status": "prototype_source_generated_only"
+    },
+    {
+      "group": "caster",
+      "type": "sceptre",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "shield",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "buckler",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "tower_shield",
+      "proposed_grid": [
+        2,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "kite_shield",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": true,
+      "status": "prototype_source_generated_only"
+    },
+    {
+      "group": "off_hand",
+      "type": "spell_focus",
+      "proposed_grid": [
+        1,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "orb",
+      "proposed_grid": [
+        1,
+        1
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "tome",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "grimoire",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "catalyst",
+      "proposed_grid": [
+        1,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "quiver",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "totem",
+      "proposed_grid": [
+        1,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "idol",
+      "proposed_grid": [
+        1,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "off_hand",
+      "type": "fetish",
+      "proposed_grid": [
+        1,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "jewelry",
+      "type": "ring",
+      "proposed_grid": [
+        1,
+        1
+      ],
+      "generated": true,
+      "status": "prototype_source_generated_only"
+    },
+    {
+      "group": "jewelry",
+      "type": "amulet",
+      "proposed_grid": [
+        1,
+        1
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "jewelry",
+      "type": "belt",
+      "proposed_grid": [
+        2,
+        1
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_cloth",
+      "type": "cloth_head",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_cloth",
+      "type": "cloth_chest",
+      "proposed_grid": [
+        2,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_cloth",
+      "type": "cloth_gloves",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_cloth",
+      "type": "cloth_boots",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_cloth",
+      "type": "cloth_belt",
+      "proposed_grid": [
+        2,
+        1
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_leather",
+      "type": "leather_head",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_leather",
+      "type": "leather_chest",
+      "proposed_grid": [
+        2,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_leather",
+      "type": "leather_gloves",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_leather",
+      "type": "leather_boots",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_leather",
+      "type": "leather_belt",
+      "proposed_grid": [
+        2,
+        1
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_mail",
+      "type": "mail_head",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_mail",
+      "type": "mail_chest",
+      "proposed_grid": [
+        2,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_mail",
+      "type": "mail_gloves",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_mail",
+      "type": "mail_boots",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_mail",
+      "type": "mail_belt",
+      "proposed_grid": [
+        2,
+        1
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_plate",
+      "type": "plate_head",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_plate",
+      "type": "plate_chest",
+      "proposed_grid": [
+        2,
+        3
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_plate",
+      "type": "plate_gloves",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_plate",
+      "type": "plate_boots",
+      "proposed_grid": [
+        2,
+        2
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    },
+    {
+      "group": "armor_plate",
+      "type": "plate_belt",
+      "proposed_grid": [
+        2,
+        1
+      ],
+      "generated": false,
+      "status": "planned_not_generated"
+    }
+  ],
+  "art_direction": "Original AOTL premium painterly anime-realistic dark fantasy icon style; elegant midnight navy, antique gold, worn forged metals and distinct small-scale silhouettes.",
+  "background": "Artwork generated under unlimited entitlement. Sword and axe confirmed opaque RGB near-black backgrounds; all new sources need inspected, matted and verified for correct transparency before game integration.",
+  "integration_status": "Research and source art library only; no claimed Godot integration, no new engine QA.",
+  "production_note": "Do not overwrite or silently change in-game saved item footprint schemas. Proposed taxonomy includes future types.",
+  "baseline_recommended": "Age_of_the_Lost_Reliability_2026-11-11.zip is newest separately-tested base; AOTL_Crownsfall_Exact_Item_Footprints_2026-11-11.zip is the last user-verified footprint build. Treat as branches until merged and tested.",
+  "actual_source_png_package": "Five-source raw-PNG package uploaded as a general file in connected Higgsfield workspace (not Google Drive); job links listed individually.",
+  "technical_validation": "Higgsfield jobs completed; no alpha compositing or Godot integration asserted."
+}

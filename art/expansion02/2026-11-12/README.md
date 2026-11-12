@@ -1,0 +1,17 @@
+# AOTL Artwork Expansion 02
+
+42 new artwork candidates: 12 equipment variants, icons for all 19 implemented abilities in the validated LootSlice branch, and 11 service/interaction symbols. Combined with the preceding 61-item taxonomy library, this supplies 103 distinct art candidates. The 90 smaller icon files are derived sizes, not additional designs.
+
+Open `project.godot` in Godot 4.6.3, press F5, and browse with the arrow keys. Click a card to inspect it; click again or press Esc to close. Native captures include four art pages, equipment inspection and an icon readability sheet showing all 30 UI symbols at 32, 64 and 128 pixels.
+
+Equipment in `runtime_items/` uses 128 pixels per inventory cell: sword1×3 vertical, chest/robe2×3, helmet/shield/gloves/boots/hood2×2, wand/focus1×2, ring1×1 and belt2×1. Skill/service masters are 512×512 PNGs with 48-pixel transparent gutters; their 1×1 display tile is a presentation square, not an inventory footprint. `runtime_sizes/32`, `/64` and `/128` contain the 90 smaller UI textures. No hotkeys, numbers, text or frames are baked into icons.
+
+`catalog.json` and `ASSET_INDEX.csv` map stable IDs to names, related game IDs, dimensions, source regions and output textures. Seven exact source sheets are preserved in `generated_sources/`; `SOURCE_PROVENANCE.json` records their hashes and provider. `IMPLEMENTED_SKILL_REFERENCE.json` preserves the actual skill names/descriptions used for the art briefs. The ambiguous legacy IDs `hammer`, `harvest` and `breath` correctly map to Sundering Standard, Citadel Reprisal and Furnace Sweep. Proposed service artwork routes are not input bindings.
+
+New source art in this pass was generated with OpenAI image_gen. Higgsfield rejected all attempted submissions before creating jobs because its account-wide single concurrent slot was occupied. Those attempts are preserved in submission logs. Do not label these seven images as Higgsfield generations or invent backend model/job IDs that the image tool did not expose. The earlier library's Higgsfield provenance remains separate. Per-asset and planned sheet briefs are provided for revision; they are not represented as exact backend prompt transcripts.
+
+All entries are visually reviewed candidates; none are installed into gameplay. The Wayfarer and Threadkeeper material themes do not imply rarity, character-level requirements, stat values or scaling changes. No class, save schema, loot rule, actor art or existing source branch was changed. The older Knight-focused Godot4.3 PC fork was inspected and kept distinct from the validated LootSlice; see `SOURCE_REVIEW.md`.
+
+The exporter performs only source-region extraction, visible-bounds measurement, proportional sizing and transparent-canvas placement. It preserves source alpha and never repaints or creates an alpha mask. UI padding protects icon corners after filtering at32pixels. Run `godot --headless --path . --script tools/export_items.gd`, then `python tools/validate_art.py`. The 522 image checks cover 42 masters and 90 small icons; they are separate from gameplay regression tests. Native rendered review is required to assess the artwork itself.
+
+For integration, choose accepted candidates in a separate game checkout and route them through the existing art library/portrait paths. Keep previous images for rollback. Test small hotbar icons, cooldown overlays, grayscale legibility, inventory drag/stash/merchant views and both classes before shipping an art swap. The optional future arquebus remains unproduced in the preceding library.

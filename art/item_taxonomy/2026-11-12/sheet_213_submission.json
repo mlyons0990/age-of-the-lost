@@ -1,0 +1,56 @@
+{
+  "request": {
+    "index": 213,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "medias": [
+        {
+          "role": "image",
+          "value": "f9f494f6-43ae-4230-9277-6ffb90d0bbac"
+        }
+      ],
+      "prompt": "Edit the supplied original game equipment sprite sheet into clean production inventory assets. Preserve all equipment designs, materials, arrangement, colors and complete silhouettes. Remove ALL of the cloudy white halo and ALL background pixels between and around items. The background and cell gutters must have exactly ZERO alpha, fully invisible, including the spaces between gauntlet fingers and inside open chain loops. Do not replace the background with white, gray, black, checkerboard or smoke; actual transparent PNG alpha is essential. Keep a strict equal 3-column 2-row grid, generous margins around each complete object including tips. No labels or visible grid. Only the equipment has visible opacity. Return the edited transparent PNG sheet."
+    }
+  },
+  "entries": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 213: e4329ad6-010b-4409-8fc4-08667bf1eb8a (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 213,
+          "job_id": "e4329ad6-010b-4409-8fc4-08667bf1eb8a",
+          "status": "pending",
+          "adjustments": {
+            "medias[0].role": {
+              "requested": "image",
+              "used": "image_references",
+              "reason": "GPT Image 2.6 backend expects schema-key media roles"
+            }
+          }
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

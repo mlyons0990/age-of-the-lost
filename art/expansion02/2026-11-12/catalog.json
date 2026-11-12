@@ -1,0 +1,1715 @@
+{
+  "name": "AOTL Art Expansion02",
+  "date": "2026-11-12",
+  "planned_count": 42,
+  "equipment_variants": 12,
+  "implemented_skill_icons": 19,
+  "service_interaction_icons": 11,
+  "entries": [
+    {
+      "index": 1,
+      "asset_id": "aotl_e02_gear_wayfarer_sword_001",
+      "name": "Wayfarer Iron Sword",
+      "group": "gear_wayfarer",
+      "type": "sword",
+      "cells": [
+        1,
+        3
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        1,
+        3
+      ],
+      "brief": "upright narrow iron sword, bronze guard, brown leather grip",
+      "related_game_id": "weapon",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_wayfarer_sword_001.png",
+      "source_path": "generated_sources/sheet_301.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        128,
+        384
+      ],
+      "texture_sha256": "b73b924b1fe484001c688ea5cd9fb2a534b998a4415631820e07832e1ec0b644",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 2,
+      "asset_id": "aotl_e02_gear_wayfarer_shield_001",
+      "name": "Wayfarer Oak Shield",
+      "group": "gear_wayfarer",
+      "type": "shield",
+      "cells": [
+        2,
+        2
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        2
+      ],
+      "brief": "iron-rimmed round oak shield, muted moss-green center, bronze boss",
+      "related_game_id": "offhand",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_wayfarer_shield_001.png",
+      "source_path": "generated_sources/sheet_301.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        256
+      ],
+      "texture_sha256": "084fa010c854f93996c203019432f55a7037e3d3706afe328ca2f39b994375a5",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 3,
+      "asset_id": "aotl_e02_gear_wayfarer_helmet_001",
+      "name": "Wayfarer Iron Helm",
+      "group": "gear_wayfarer",
+      "type": "helmet",
+      "cells": [
+        2,
+        2
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        2
+      ],
+      "brief": "empty open-face practical iron helmet",
+      "related_game_id": "helm",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_wayfarer_helmet_001.png",
+      "source_path": "generated_sources/sheet_301.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        256
+      ],
+      "texture_sha256": "fbc3629f5f328fdb6e11e945338086034cf76ca93951e4df76158c7af8831b25",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 4,
+      "asset_id": "aotl_e02_gear_wayfarer_chest_001",
+      "name": "Wayfarer Iron Cuirass",
+      "group": "gear_wayfarer",
+      "type": "chest",
+      "cells": [
+        2,
+        3
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        3
+      ],
+      "brief": "empty iron breastplate, leather shoulder straps and short waist plates",
+      "related_game_id": "armor",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_wayfarer_chest_001.png",
+      "source_path": "generated_sources/sheet_301.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        384
+      ],
+      "texture_sha256": "c554daf2242113bb5f52d6a3e7b83d9be00a44d59fa458f796fbd7a9bbda9251",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 5,
+      "asset_id": "aotl_e02_gear_wayfarer_gloves_001",
+      "name": "Wayfarer Plated Gloves",
+      "group": "gear_wayfarer",
+      "type": "gloves",
+      "cells": [
+        2,
+        2
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        2
+      ],
+      "brief": "pair of iron-plated brown leather gloves",
+      "related_game_id": "gloves",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_wayfarer_gloves_001.png",
+      "source_path": "generated_sources/sheet_301.png",
+      "source_region": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        256
+      ],
+      "texture_sha256": "834b32189558dc7c63f99b8db7350beea01b0aa1716ce8038c9ed78963171e84",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 6,
+      "asset_id": "aotl_e02_gear_wayfarer_boots_001",
+      "name": "Wayfarer Reinforced Boots",
+      "group": "gear_wayfarer",
+      "type": "boots",
+      "cells": [
+        2,
+        2
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        2
+      ],
+      "brief": "pair of brown leather boots with iron reinforcements",
+      "related_game_id": "boots",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_wayfarer_boots_001.png",
+      "source_path": "generated_sources/sheet_301.png",
+      "source_region": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        256
+      ],
+      "texture_sha256": "bc0bdfd5cb0d211dd7431448ddf22728c9f29282d9650a6c0af4b08e80dfbb84",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 7,
+      "asset_id": "aotl_e02_gear_threadkeeper_wand_001",
+      "name": "Threadkeeper Wand",
+      "group": "gear_threadkeeper",
+      "type": "wand",
+      "cells": [
+        1,
+        2
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        1,
+        2
+      ],
+      "brief": "upright slender ivory wand, copper spiral fitting, small turquoise tip",
+      "related_game_id": "wand",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_threadkeeper_wand_001.png",
+      "source_path": "generated_sources/sheet_302.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        128,
+        256
+      ],
+      "texture_sha256": "c2a54d2171e9dd432e70e73e87733f107cf13f91993b24e260acf3269e787554",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 8,
+      "asset_id": "aotl_e02_gear_threadkeeper_focus_001",
+      "name": "Threadkeeper Focus",
+      "group": "gear_threadkeeper",
+      "type": "focus",
+      "cells": [
+        1,
+        2
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        1,
+        2
+      ],
+      "brief": "oval turquoise lens in copper cage on short ivory handle",
+      "related_game_id": "focus",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_threadkeeper_focus_001.png",
+      "source_path": "generated_sources/sheet_302.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        128,
+        256
+      ],
+      "texture_sha256": "a44b0b8879d9407b15ba8838e9fc77ece7af3cf0f419658e7e7b62d50bd0f007",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 9,
+      "asset_id": "aotl_e02_gear_threadkeeper_robe_001",
+      "name": "Threadkeeper Robe",
+      "group": "gear_threadkeeper",
+      "type": "robe",
+      "cells": [
+        2,
+        3
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        3
+      ],
+      "brief": "empty long ivory linen robe, muted teal panels, narrow copper-gold embroidery",
+      "related_game_id": "robe",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_threadkeeper_robe_001.png",
+      "source_path": "generated_sources/sheet_302.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        384
+      ],
+      "texture_sha256": "30610ad366cd7002bb946786869aa374887af557a0f1be5df5a92b5d85dc81a1",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 10,
+      "asset_id": "aotl_e02_gear_threadkeeper_hood_001",
+      "name": "Threadkeeper Hood",
+      "group": "gear_threadkeeper",
+      "type": "hood",
+      "cells": [
+        2,
+        2
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        2
+      ],
+      "brief": "empty ivory and teal cloth hood, open dark center, copper clasp",
+      "related_game_id": "hood",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_threadkeeper_hood_001.png",
+      "source_path": "generated_sources/sheet_302.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        256
+      ],
+      "texture_sha256": "65da14130d5340c4c9897c12c1f325674a6bdc999d5111e5e79375ed14cdaa3c",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 11,
+      "asset_id": "aotl_e02_gear_threadkeeper_ring_001",
+      "name": "Threadkeeper Signet",
+      "group": "gear_threadkeeper",
+      "type": "ring",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        1,
+        1
+      ],
+      "brief": "copper signet ring with a turquoise enamel eye motif",
+      "related_game_id": "ring",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_threadkeeper_ring_001.png",
+      "source_path": "generated_sources/sheet_302.png",
+      "source_region": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        128,
+        128
+      ],
+      "texture_sha256": "d7bbb52f58f1349051f67a0c60e4d26af257f81552e97b1c7fd7f4274e961d6a",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 12,
+      "asset_id": "aotl_e02_gear_threadkeeper_belt_001",
+      "name": "Threadkeeper Sash",
+      "group": "gear_threadkeeper",
+      "type": "belt",
+      "cells": [
+        2,
+        1
+      ],
+      "kind": "equipment",
+      "pixels_per_cell": 128,
+      "inventory_footprint": [
+        2,
+        1
+      ],
+      "brief": "wide horizontal ivory and teal woven waist belt, small copper buckle, no hanging tails",
+      "related_game_id": "belt",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_gear_threadkeeper_belt_001.png",
+      "source_path": "generated_sources/sheet_302.png",
+      "source_region": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        256,
+        128
+      ],
+      "texture_sha256": "500c4beb48e15ab0d80e046e772909d8cc56e2468ccc6f7b8f44ef266c01c351",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "mapping_status": "candidate_for_existing_item_base"
+    },
+    {
+      "index": 13,
+      "asset_id": "aotl_e02_skill_cinder_thread_001",
+      "name": "Cinder Thread",
+      "group": "skill",
+      "type": "cinder_thread",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "single narrow orange fire dart with a long curling thread trail, diagonal rising motion",
+      "related_game_id": "cinder_thread",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A narrow fire projectile. Restore 3 mana when it hits a living enemy.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_cinder_thread_001.png",
+      "source_path": "generated_sources/sheet_303.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "1a0a6cf3bb9dff46582a89c956ea1da3c18b98124dcb0c84c4f9dbd604a8aa11",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_cinder_thread_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_cinder_thread_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_cinder_thread_001.png"
+      }
+    },
+    {
+      "index": 14,
+      "asset_id": "aotl_e02_skill_glacial_stitch_001",
+      "name": "Glacial Stitch",
+      "group": "skill",
+      "type": "glacial_stitch",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one sharp cyan ice needle crossing a small fractured frost star, precise piercing diagonal",
+      "related_game_id": "glacial_stitch",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Pierce up to 3 enemies and slow 30% for 2s. Two hits within 6s freeze briefly; elites resist the duration.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_glacial_stitch_001.png",
+      "source_path": "generated_sources/sheet_303.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "e3d33cdf70ae209c5f4be569d65c9adb1a9e246ccb632f9d98e1b2dadbbe37ae",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_glacial_stitch_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_glacial_stitch_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_glacial_stitch_001.png"
+      }
+    },
+    {
+      "index": 15,
+      "asset_id": "aotl_e02_skill_arcane_fold_001",
+      "name": "Arcane Fold",
+      "group": "skill",
+      "type": "arcane_fold",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "two offset violet doorway silhouettes connected by a sharply folded ribbon of space",
+      "related_game_id": "arcane_fold",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Blink up to 4 ground units onto valid floor. Invalid destinations do not spend mana or cooldown.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_arcane_fold_001.png",
+      "source_path": "generated_sources/sheet_303.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "80c80a511d6ee523bf9464d4a218af4938f95cf69bef926fdae3d497ba6cf494",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_arcane_fold_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_arcane_fold_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_arcane_fold_001.png"
+      }
+    },
+    {
+      "index": 16,
+      "asset_id": "aotl_e02_skill_ashen_ward_001",
+      "name": "Ashen Ward",
+      "group": "skill",
+      "type": "ashen_ward",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "golden shield-shaped rune enclosing a tiny ember with a clear dark open center",
+      "related_game_id": "ashen_ward",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Absorb incoming damage for 3s. This active ward does not heal or stack with itself.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_ashen_ward_001.png",
+      "source_path": "generated_sources/sheet_303.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "5c849e7b0ae89ff3881f0829b3105a31bb1ad7c1cf7bd9538e70cc3b413ddcf6",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_ashen_ward_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_ashen_ward_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_ashen_ward_001.png"
+      }
+    },
+    {
+      "index": 17,
+      "asset_id": "aotl_e02_skill_starfall_script_001",
+      "name": "Starfall Script",
+      "group": "skill",
+      "type": "starfall_script",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one golden falling star striking a violet circular ground sigil, readable top-to-bottom motion",
+      "related_game_id": "starfall_script",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Cast for 0.3s, then mark a circle that strikes after another 0.8s. Damage snapshots on activation.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_starfall_script_001.png",
+      "source_path": "generated_sources/sheet_303.png",
+      "source_region": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "7757a6f4bb64b5d3b9cc71ccef84e1b0754666de1cd5dea77c746eeae32d6808",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_starfall_script_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_starfall_script_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_starfall_script_001.png"
+      }
+    },
+    {
+      "index": 18,
+      "asset_id": "aotl_e02_skill_solar_writ_001",
+      "name": "Solar Writ",
+      "group": "skill",
+      "type": "solar_writ",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "a bright orange fan of flame spreading outward from a small golden sun disc",
+      "related_game_id": "solar_writ",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A committed fire wave leaves a 3s burn. Direct damage and burn use the same spell-power snapshot.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_solar_writ_001.png",
+      "source_path": "generated_sources/sheet_303.png",
+      "source_region": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "c4c973c2e21d381666746909624e84100cfad415514e9d4a5f745f913ec859e4",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_solar_writ_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_solar_writ_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_solar_writ_001.png"
+      }
+    },
+    {
+      "index": 19,
+      "asset_id": "aotl_e02_skill_winter_crown_001",
+      "name": "Winter Crown",
+      "group": "skill",
+      "type": "winter_crown",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "three-point cyan crystalline crown above a broad circular frost nova",
+      "related_game_id": "winter_crown",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A freezing nova stuns for 1s. Elite control duration is halved.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_winter_crown_001.png",
+      "source_path": "generated_sources/sheet_304.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "148e5f26d38398a570342a33e9bf174a346431b42a6d9b915d8718ad3f7ded1e",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_winter_crown_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_winter_crown_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_winter_crown_001.png"
+      }
+    },
+    {
+      "index": 20,
+      "asset_id": "aotl_e02_skill_epoch_lance_001",
+      "name": "Epoch Lance",
+      "group": "skill",
+      "type": "epoch_lance",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one long violet-white lance passing diagonally through a silver hourglass ring",
+      "related_game_id": "epoch_lance",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A precise arcane lance pierces up to 3 enemies; each takes one hit.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_epoch_lance_001.png",
+      "source_path": "generated_sources/sheet_304.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "1ae984e940842f8d182cdcd7a9d36004d3203652a96ad66a3af2eba9f2a4d9e5",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_epoch_lance_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_epoch_lance_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_epoch_lance_001.png"
+      }
+    },
+    {
+      "index": 21,
+      "asset_id": "aotl_e02_skill_echo_strike_001",
+      "name": "Echo Strike",
+      "group": "skill",
+      "type": "echo_strike",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "two offset violet impact rings, the rear ring a pale ghost echo, strong concentric silhouettes",
+      "related_game_id": "echo_strike",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A recovered memory strikes after 0.6s. Reach: 7 ground units.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_echo_strike_001.png",
+      "source_path": "generated_sources/sheet_304.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "1648b1b8d408138b73caecb2b0463df99fa0f3112b695ad4ddd4131afa371122",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_echo_strike_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_echo_strike_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_echo_strike_001.png"
+      }
+    },
+    {
+      "index": 22,
+      "asset_id": "aotl_e02_skill_frost_ring_001",
+      "name": "Winterglass Pulse",
+      "group": "skill",
+      "type": "frost_ring",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "thick cyan circular ice pulse with four large outward ice shards",
+      "related_game_id": "frost_ring",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A cold pulse stuns nearby enemies for 1.2s.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_frost_ring_001.png",
+      "source_path": "generated_sources/sheet_304.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "15e3a3c82621ba09720e91305aec4c212b10b6ffd1af305781e02fa24aa710b3",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_frost_ring_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_frost_ring_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_frost_ring_001.png"
+      }
+    },
+    {
+      "index": 23,
+      "asset_id": "aotl_e02_skill_ember_cone_001",
+      "name": "Cinderwake",
+      "group": "skill",
+      "type": "ember_cone",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "wide low orange fire cone sweeping outward from a glowing ember at its narrow end",
+      "related_game_id": "ember_cone",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A Lorecasting training technique: scorch a cone and burn for 3s.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_ember_cone_001.png",
+      "source_path": "generated_sources/sheet_304.png",
+      "source_region": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "d47f3be44e048f7ef06c8353dcd80fd7a0a265c49d8cd73dbd06f94f426f350a",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_ember_cone_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_ember_cone_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_ember_cone_001.png"
+      }
+    },
+    {
+      "index": 24,
+      "asset_id": "aotl_e02_skill_dawnfall_001",
+      "name": "Dawnfall",
+      "group": "skill",
+      "type": "dawnfall",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one vertical ivory-gold sunbeam striking a small golden ground ring, strong radiant pillar",
+      "related_game_id": "dawnfall",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A large delayed radiant strike at the cursor. Reach: 7 units.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_dawnfall_001.png",
+      "source_path": "generated_sources/sheet_304.png",
+      "source_region": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "68dc70c48da39d31ec3f9addb2a7aba5bbf0cb983307839fde48ca57fd922bd1",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_dawnfall_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_dawnfall_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_dawnfall_001.png"
+      }
+    },
+    {
+      "index": 25,
+      "asset_id": "aotl_e02_skill_slash_001",
+      "name": "Slash",
+      "group": "skill",
+      "type": "slash",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one silver sword edge with a single short white slashing arc",
+      "related_game_id": "slash",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A swift sword strike. Restores 4 mana on the first successful hit.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_slash_001.png",
+      "source_path": "generated_sources/sheet_305.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "4e8d44f6881a0a9fefbb94844e18c0ce16b830582780d19bd80f21b7ee7c7d9e",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_slash_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_slash_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_slash_001.png"
+      }
+    },
+    {
+      "index": 26,
+      "asset_id": "aotl_e02_skill_cleave_001",
+      "name": "Cleave",
+      "group": "skill",
+      "type": "cleave",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one broad sweeping silver sword with a wide cool blue crescent trail",
+      "related_game_id": "cleave",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A sweeping blow that strikes all enemies in front of you.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_cleave_001.png",
+      "source_path": "generated_sources/sheet_305.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        465
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "2df3c10799b2c574a3d5c0b2057919fc1835f5f7068348c0c3496c8836a89099",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_cleave_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_cleave_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_cleave_001.png"
+      }
+    },
+    {
+      "index": 27,
+      "asset_id": "aotl_e02_skill_charge_001",
+      "name": "Shield Charge",
+      "group": "skill",
+      "type": "charge",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one silver kite shield moving diagonally forward with three bold blue motion strokes",
+      "related_game_id": "charge",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Charge toward the cursor, bashing every enemy in your path.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_charge_001.png",
+      "source_path": "generated_sources/sheet_305.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        465
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "1011e834762438112a6f6a763fbaea32cb7027108ba83489261097e1d4a273c1",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_charge_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_charge_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_charge_001.png"
+      }
+    },
+    {
+      "index": 28,
+      "asset_id": "aotl_e02_skill_rally_001",
+      "name": "Rallying Cry",
+      "group": "skill",
+      "type": "rally",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one golden war horn with three widening amber sound arcs",
+      "related_game_id": "rally",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Restore 25% HP and gain 30% damage for 6s.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_rally_001.png",
+      "source_path": "generated_sources/sheet_305.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "0a143e6a2442a2278515d1c1f010d6e47dd7445c7b08d667ec673eed8c771e47",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_rally_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_rally_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_rally_001.png"
+      }
+    },
+    {
+      "index": 29,
+      "asset_id": "aotl_e02_skill_hammer_001",
+      "name": "Sundering Standard",
+      "group": "skill",
+      "type": "hammer",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one blue royal battle standard planted vertically into a cracked silver impact star",
+      "related_game_id": "hammer",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "A delayed standard strike at the cursor.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_hammer_001.png",
+      "source_path": "generated_sources/sheet_305.png",
+      "source_region": [
+        512,
+        465,
+        512,
+        559
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "95bfee0698bc8a00e9c21e374962bf532409a604b2631355417ce8f053f17b36",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_hammer_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_hammer_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_hammer_001.png"
+      }
+    },
+    {
+      "index": 30,
+      "asset_id": "aotl_e02_skill_harvest_001",
+      "name": "Citadel Reprisal",
+      "group": "skill",
+      "type": "harvest",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one upright golden shield repelling three arrows radially outward with a pale gold pulse",
+      "related_game_id": "harvest",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Repel enemies and recover 4% life per target hit.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_harvest_001.png",
+      "source_path": "generated_sources/sheet_305.png",
+      "source_region": [
+        1024,
+        465,
+        512,
+        559
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "2b2b4ca7e4684faf002e1b83f9d183842d4ef9b019eed490852cb8eeef92a5ac",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_harvest_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_harvest_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_harvest_001.png"
+      }
+    },
+    {
+      "index": 31,
+      "asset_id": "aotl_e02_skill_breath_001",
+      "name": "Furnace Sweep",
+      "group": "skill",
+      "type": "breath",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one broad iron sword sweeping through a compact orange fan of furnace flame",
+      "related_game_id": "breath",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "game_description": "Sweep a fiery cone; burn for three seconds.",
+      "asset_integrated": false,
+      "ability_implemented": true,
+      "texture_path": "runtime_items/aotl_e02_skill_breath_001.png",
+      "source_path": "generated_sources/sheet_306.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "914c15c625fad1f51b8d4f4334468f6c6861b3b16df98e8626207f571f4d1f7e",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_skill_breath_001.png",
+        "64": "runtime_sizes/64/aotl_e02_skill_breath_001.png",
+        "128": "runtime_sizes/128/aotl_e02_skill_breath_001.png"
+      }
+    },
+    {
+      "index": 32,
+      "asset_id": "aotl_e02_ui_inventory_001",
+      "name": "Inventory",
+      "group": "ui",
+      "type": "inventory",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "a small brown leather backpack with a brass buckle",
+      "related_game_id": "inventory",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_inventory_001.png",
+      "source_path": "generated_sources/sheet_306.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "62a3b185f218a3715674734f1e6a59482d9f84af0705fd16a89f249ce4580aca",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_inventory_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_inventory_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_inventory_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 33,
+      "asset_id": "aotl_e02_ui_character_001",
+      "name": "Character Sheet",
+      "group": "ui",
+      "type": "character",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "an ivory parchment stat sheet behind a small silver helmet, no face or portrait",
+      "related_game_id": "character",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_character_001.png",
+      "source_path": "generated_sources/sheet_306.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "27fc5bca2ee0ffaa2cc9c8192407e2686d02d4939a13a45f65c4873b9c3cf056",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_character_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_character_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_character_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 34,
+      "asset_id": "aotl_e02_ui_stash_001",
+      "name": "Stash",
+      "group": "ui",
+      "type": "stash",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "a compact closed oak storage chest with iron corners and brass lock",
+      "related_game_id": "stash",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_stash_001.png",
+      "source_path": "generated_sources/sheet_306.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "2bc5bc9aa816d83716033045b758551c07c8aceb7d596012165ab38e498c699e",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_stash_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_stash_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_stash_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 35,
+      "asset_id": "aotl_e02_ui_merchant_001",
+      "name": "Merchant",
+      "group": "ui",
+      "type": "merchant",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "small brass balance scale above two gold coins",
+      "related_game_id": "merchant",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_merchant_001.png",
+      "source_path": "generated_sources/sheet_306.png",
+      "source_region": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "f2efffe6cb85f2ed2cd437243260d1c515ca5d7e58f83bf30b2a8e79120dbf2a",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_merchant_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_merchant_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_merchant_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 36,
+      "asset_id": "aotl_e02_ui_blacksmith_001",
+      "name": "Blacksmith",
+      "group": "ui",
+      "type": "blacksmith",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "a small dark iron anvil crossed by a copper forging hammer",
+      "related_game_id": "blacksmith",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_blacksmith_001.png",
+      "source_path": "generated_sources/sheet_306.png",
+      "source_region": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "9b7530d66b80c41c6669d66d51280ed8e2bbd422dbf71e07a4e6f25e6e61aef6",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_blacksmith_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_blacksmith_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_blacksmith_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 37,
+      "asset_id": "aotl_e02_ui_pickup_001",
+      "name": "Pick Up Loot",
+      "group": "ui",
+      "type": "pickup",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "an open ivory gloved hand lifting one gold coin",
+      "related_game_id": "pickup",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_pickup_001.png",
+      "source_path": "generated_sources/sheet_307.png",
+      "source_region": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "c80bfafe4c14979bf3c3cda7b3ea36779f3eeba5eeadd5aa36cc28924215a3f8",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_pickup_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_pickup_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_pickup_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 38,
+      "asset_id": "aotl_e02_ui_transfer_001",
+      "name": "Transfer Item",
+      "group": "ui",
+      "type": "transfer",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "two small leather pouches connected by two bold opposing brass arrows",
+      "related_game_id": "transfer",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_transfer_001.png",
+      "source_path": "generated_sources/sheet_307.png",
+      "source_region": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "a03a895d3d294d9e9e38ef9bea9a6119057b3ee3f6199e86401cb9aea2b6eea8",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_transfer_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_transfer_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_transfer_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 39,
+      "asset_id": "aotl_e02_ui_equip_001",
+      "name": "Equip Item",
+      "group": "ui",
+      "type": "equip",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one upright silver sword entering an outlined equipment socket, small gold upward arrow",
+      "related_game_id": "equip",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_equip_001.png",
+      "source_path": "generated_sources/sheet_307.png",
+      "source_region": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "b3c72fb837f37b8f0bc61cf65e28e7dfaa6b9b820d7d1025370f087dec06bf6e",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_equip_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_equip_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_equip_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 40,
+      "asset_id": "aotl_e02_ui_compare_001",
+      "name": "Compare Gear",
+      "group": "ui",
+      "type": "compare",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "two small contrasting silver and bronze shields side by side with a narrow center divider",
+      "related_game_id": "compare",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_compare_001.png",
+      "source_path": "generated_sources/sheet_307.png",
+      "source_region": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "fa096f916b05575c8cfb4cb3f0c5622687d79af799522716da9471cf1bdbdedc",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_compare_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_compare_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_compare_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 41,
+      "asset_id": "aotl_e02_ui_inspect_001",
+      "name": "Inspect Item",
+      "group": "ui",
+      "type": "inspect",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "one brass magnifying glass over a small blue crystal set in a ring",
+      "related_game_id": "inspect",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_inspect_001.png",
+      "source_path": "generated_sources/sheet_307.png",
+      "source_region": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "b4cd75c441944f28af42f2edb17c9a8ff6a99c5d880184f46436e52ae603e5ec",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_inspect_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_inspect_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_inspect_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    },
+    {
+      "index": 42,
+      "asset_id": "aotl_e02_ui_interact_001",
+      "name": "Interact",
+      "group": "ui",
+      "type": "interact",
+      "cells": [
+        1,
+        1
+      ],
+      "kind": "ui_icon",
+      "pixels_per_cell": 512,
+      "inventory_footprint": null,
+      "brief": "an open ivory glove with raised index finger inside a simple open brass circle",
+      "related_game_id": "interact",
+      "runtime_enabled": false,
+      "status": "reviewed_art_candidate",
+      "asset_integrated": false,
+      "ability_implemented": false,
+      "texture_path": "runtime_items/aotl_e02_ui_interact_001.png",
+      "source_path": "generated_sources/sheet_307.png",
+      "source_region": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "pixels": [
+        512,
+        512
+      ],
+      "texture_sha256": "ebc0a908a87117691db32d95dc2776445fdcdd26390c03b29f4078ff1166c0a0",
+      "provider": "OpenAI image_gen",
+      "model": "not exposed by tool",
+      "derived_sizes": {
+        "32": "runtime_sizes/32/aotl_e02_ui_interact_001.png",
+        "64": "runtime_sizes/64/aotl_e02_ui_interact_001.png",
+        "128": "runtime_sizes/128/aotl_e02_ui_interact_001.png"
+      },
+      "mapping_status": "proposed_ui_art_route"
+    }
+  ],
+  "selected_art_count": 42,
+  "derived_icon_files": 90,
+  "prior_library_candidates": 61,
+  "cumulative_art_candidates": 103,
+  "new_gameplay_types": 0,
+  "runtime_enabled_count": 0,
+  "billing_note": "Higgsfield submissions rejected by account concurrency before creating any jobs; no paid fallback. All seven new source sheets came from OpenAI image_gen."
+}

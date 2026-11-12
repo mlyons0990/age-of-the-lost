@@ -1,0 +1,41 @@
+{
+  "board": {
+    "index": 101,
+    "entries": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7
+    ],
+    "prompt": "Original Age of the Lost equipment ASSET SHEET for game production. Exactly SIX independent item illustrations in a precisely aligned THREE-COLUMN TWO-ROW grid. No contact sheet labels: the cells have NO drawn frame or lines. Each item stays wholly inside its own equal rectangle, separated by generous TRANSPARENT empty gutters. Layout fixed: top row left/center/right, then bottom row left/center/right. Never combine items from different cells. All six cells share consistent painterly anime-realistic fantasy lighting, believable material detail and crisp readable outer contours, inspired by an elegant bright elven city, not grimdark photorealism. No human, no mannequin, no background scene, no text, no UI, no numerals, no decorative tile backgrounds, no cast shadows. Actual transparent PNG alpha, not a checkerboard drawing. CELL row 1 column 1: Crownguard Sword. Upright straight silver longsword with an elegant antique-brass winged crossguard and a midnight leather grip; practical long narrow blade, ivory pommel. Upright vertical silhouette, top at image top and grip/bottom below. Compose specifically for 1 columns by 3 rows of square inventory cells, width by height; the object should use about 85 percent of the canvas in its long axis.\nCELL row 1 column 2: Wayfarer Axe. Single-headed forged steel hand axe with a crescent cutting edge, compact bronze socket, straight ashwood haft and worn brown leather grip; blade at top. Upright vertical silhouette, top at image top and grip/bottom below. Compose specifically for 1 columns by 3 rows of square inventory cells, width by height; the object should use about 85 percent of the canvas in its long axis.\nCELL row 1 column 3: Dawnkeeper Mace. Upright six-flanged blunt silver mace with bronze bindings, dark wine leather grip and ivory sunburst pommel. Read clearly as a functional mace. Upright vertical silhouette, top at image top and grip/bottom below. Compose specifically for 1 columns by 3 rows of square inventory cells, width by height; the object should use about 85 percent of the canvas in its long axis.\nCELL row 2 column 1: Veilrunner Dagger. Point-up slim single-edged steel dagger with an engraved fuller, short curved brass crossguard and short charcoal-brown wrapped grip. Upright vertical silhouette, top at image top and grip/bottom below. Compose specifically for 1 columns by 2 rows of square inventory cells, width by height; the object should use about 85 percent of the canvas in its long axis.\nCELL row 2 column 2: Bellward Flail. One oak-handled flail: a single continuous short iron chain joins the handle to exactly one heavy fluted iron ball. Arrange connected parts into a tall narrow silhouette. Upright vertical silhouette, top at image top and grip/bottom below. Compose specifically for 1 columns by 3 rows of square inventory cells, width by height; the object should use about 85 percent of the canvas in its long axis.\nCELL row 2 column 3: Votive Sceptre. Upright silver ceremonial cudgel with a solid ivory lantern-shaped flanged head, brass arches, red enamel center and dark leather grip; a sacred melee sceptre, not a long staff. Upright vertical silhouette, top at image top and grip/bottom below. Compose specifically for 1 columns by 3 rows of square inventory cells, width by height; the object should use about 85 percent of the canvas in its long axis.",
+    "params": {
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2"
+    }
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 101: 0ad4252f-a737-403a-8091-4f3346b14fc6 (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 101,
+          "job_id": "0ad4252f-a737-403a-8091-4f3346b14fc6",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

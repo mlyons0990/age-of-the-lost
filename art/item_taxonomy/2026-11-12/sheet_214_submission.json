@@ -1,0 +1,45 @@
+{
+  "request": {
+    "index": 214,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "1k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "2:1",
+      "prompt": "A single original fantasy RPG cloth equipment inventory sprite: a wide horizontal Aurelian woven waist belt, cream linen with royal blue stripe and antique gold embroidery and small silver buckle. Compact horizontal silhouette designed for TWO cells wide by ONE cell tall. Closed oval loop front view with a small neat knot; absolutely no tassels, no hanging ends or ribbons. Rich painterly anime-realistic craftsmanship, bold outer contour, warm highlights. Entire item centered with 10 percent clear margin, no wearer or mannequin. Genuine transparent PNG background with ZERO alpha outside the belt. No background glow or shadow, no text, no frame."
+    }
+  },
+  "entries": [
+    47
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 214: b53251da-5078-415c-83a3-16c1d19124f4 (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 214,
+          "job_id": "b53251da-5078-415c-83a3-16c1d19124f4",
+          "status": "pending",
+          "adjustments": {
+            "aspect_ratio": {
+              "requested": "2:1",
+              "used": "16:9",
+              "reason": "closest supported aspect ratio"
+            }
+          }
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

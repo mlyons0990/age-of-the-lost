@@ -336,6 +336,9 @@ class HudDraw extends Control:
 		draw_string(font, at - Vector2(w / 2.0, 0), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, col)
 
 	func _icon(id: String, r: Rect2, col: Color) -> void:
+		if ART.action_icon(id)!=ART.icon(id):
+			draw_texture_rect(ART.action_icon(id), r.grow(-2), false)
+			return
 		var icon_path := "res://assets/icons/%s.svg" % id
 		if ResourceLoader.exists(icon_path) or ResourceLoader.exists("res://assets/painted_icons/%s.png" % id):
 			draw_texture_rect(ART.icon(id), r.grow(-3), false)

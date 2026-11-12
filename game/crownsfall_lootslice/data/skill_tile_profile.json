@@ -1,0 +1,410 @@
+{
+  "version": 1,
+  "name": "Full-square AOTL skill paintings",
+  "provider": "Higgsfield",
+  "model": "gpt_image_2_6",
+  "model_provider": "OpenAI",
+  "job_id": "88f63d60-3742-48ad-846b-640315582612",
+  "source_library": "art/skill_tiles/2026-11-12",
+  "source": "generated_sources/skill_tiles_atlas.png",
+  "source_pixels": [
+    1792,
+    2240
+  ],
+  "source_sha256": "e9e99c609d47dc0fe45464cde6c596151a66896e9c7311e7d4cd47ec37f7b3b4",
+  "processing": "Exact square tile extraction and Lanczos downsample only; no semantic edits after image generation. All source cells are extracted exactly.",
+  "tiles": {
+    "cinder_thread": "res://assets/skill_tiles/cinder_thread.png",
+    "glacial_stitch": "res://assets/skill_tiles/glacial_stitch.png",
+    "arcane_fold": "res://assets/skill_tiles/arcane_fold.png",
+    "ashen_ward": "res://assets/skill_tiles/ashen_ward.png",
+    "starfall_script": "res://assets/skill_tiles/starfall_script.png",
+    "solar_writ": "res://assets/skill_tiles/solar_writ.png",
+    "winter_crown": "res://assets/skill_tiles/winter_crown.png",
+    "epoch_lance": "res://assets/skill_tiles/epoch_lance.png",
+    "echo_strike": "res://assets/skill_tiles/echo_strike.png",
+    "frost_ring": "res://assets/skill_tiles/frost_ring.png",
+    "ember_cone": "res://assets/skill_tiles/ember_cone.png",
+    "dawnfall": "res://assets/skill_tiles/dawnfall.png",
+    "slash": "res://assets/skill_tiles/slash.png",
+    "cleave": "res://assets/skill_tiles/cleave.png",
+    "charge": "res://assets/skill_tiles/charge.png",
+    "rally": "res://assets/skill_tiles/rally.png",
+    "hammer": "res://assets/skill_tiles/hammer.png",
+    "harvest": "res://assets/skill_tiles/harvest.png",
+    "breath": "res://assets/skill_tiles/breath.png",
+    "ember_aura": "res://assets/skill_tiles/ember_aura.png"
+  },
+  "selections": [
+    {
+      "id": "cinder_thread",
+      "source_region": [
+        0,
+        0,
+        448,
+        448
+      ],
+      "master": "masters/cinder_thread.png",
+      "master_sha256": "aca3c6debf901e8770528c841618073a120808b406d42dfdf5189d903e66c2ed",
+      "runtime_path": "assets/skill_tiles/cinder_thread.png",
+      "runtime_sha256": "ffc9b0897ac756c371cc824898ec8e6ff9d80410959cf64d374ece8f86e8b7f7",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "glacial_stitch",
+      "source_region": [
+        448,
+        0,
+        448,
+        448
+      ],
+      "master": "masters/glacial_stitch.png",
+      "master_sha256": "daa076703dc502518a8add40e780344ddccb07cb30b0094331a339b1415ee9ba",
+      "runtime_path": "assets/skill_tiles/glacial_stitch.png",
+      "runtime_sha256": "3a605f6630e309bc421e6d5bcf749a32538293abbf4965050eacea722b32be8c",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "arcane_fold",
+      "source_region": [
+        896,
+        0,
+        448,
+        448
+      ],
+      "master": "masters/arcane_fold.png",
+      "master_sha256": "7811e0ef8592ee933850c64bb721d864a0e01d2370fa1556e9f1fb852f3b5170",
+      "runtime_path": "assets/skill_tiles/arcane_fold.png",
+      "runtime_sha256": "82eac199a4a0a7a1a4496c03ef5f2e6967e15542bbaf2fb73669593c449af664",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "ashen_ward",
+      "source_region": [
+        1344,
+        0,
+        448,
+        448
+      ],
+      "master": "masters/ashen_ward.png",
+      "master_sha256": "032204d263ed54a6be3732faa07350e07751e588c2ffa3985dcb0a7f56727055",
+      "runtime_path": "assets/skill_tiles/ashen_ward.png",
+      "runtime_sha256": "b49a623d9e4fad3475a0c8b232b6a0d4379afd8742bbd820df7322189927dbcb",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "starfall_script",
+      "source_region": [
+        0,
+        448,
+        448,
+        448
+      ],
+      "master": "masters/starfall_script.png",
+      "master_sha256": "0c430322360860bdaed1a32677e42989c6d47edb44f7a2da8cf28d37334effba",
+      "runtime_path": "assets/skill_tiles/starfall_script.png",
+      "runtime_sha256": "7f41c2033a85b8b02f71d2aced11fb684c4bf1d702c8df3d42851310b6edf81d",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "solar_writ",
+      "source_region": [
+        448,
+        448,
+        448,
+        448
+      ],
+      "master": "masters/solar_writ.png",
+      "master_sha256": "ed1f67ceedbc65c4eecd327feba942282432a026e5264456e87c9dfaa9e16d60",
+      "runtime_path": "assets/skill_tiles/solar_writ.png",
+      "runtime_sha256": "073e3ec3fa2292bdf3c0b316b03acd1b6fe985616ee6f7b60e725d7b94796dc3",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "winter_crown",
+      "source_region": [
+        896,
+        448,
+        448,
+        448
+      ],
+      "master": "masters/winter_crown.png",
+      "master_sha256": "760e1564a0609ec12d4c654520a6af8eeef6b1492a4c532737d204b10cbdc9d7",
+      "runtime_path": "assets/skill_tiles/winter_crown.png",
+      "runtime_sha256": "eb4353258868126039afdd2163ac481b1591129639153009d11b7f26cdbc9d70",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "epoch_lance",
+      "source_region": [
+        1344,
+        448,
+        448,
+        448
+      ],
+      "master": "masters/epoch_lance.png",
+      "master_sha256": "a87a8640c711455ea547c4c63bdad773f0c1b194cf0b5f5290a8d467b83164f8",
+      "runtime_path": "assets/skill_tiles/epoch_lance.png",
+      "runtime_sha256": "e3ef8fcaddf1fb2c1691eafd57e64457bcc467f94990ade1ae46efaaf98d2aef",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "echo_strike",
+      "source_region": [
+        0,
+        896,
+        448,
+        448
+      ],
+      "master": "masters/echo_strike.png",
+      "master_sha256": "b38759a76d296c9dafb9ed6d7fa4dd7113ffe938b1acf63d62b5c5562d7cf687",
+      "runtime_path": "assets/skill_tiles/echo_strike.png",
+      "runtime_sha256": "a86d2152dabcf2f768ab13dede05eea18a4fbc6f89dff7914b5a745b71526651",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "frost_ring",
+      "source_region": [
+        448,
+        896,
+        448,
+        448
+      ],
+      "master": "masters/frost_ring.png",
+      "master_sha256": "86d8b623b6e59ccc54d18c29697417785d9534221c6bb98a7ee6430de342d632",
+      "runtime_path": "assets/skill_tiles/frost_ring.png",
+      "runtime_sha256": "ecc6888e680ec7bcb93acf6e0839eca992d280d00922eb0f15a659e9e3edb994",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "ember_cone",
+      "source_region": [
+        896,
+        896,
+        448,
+        448
+      ],
+      "master": "masters/ember_cone.png",
+      "master_sha256": "3332a5306eb834907f257769839415356d425391b2683f69c96aeba21a7ee519",
+      "runtime_path": "assets/skill_tiles/ember_cone.png",
+      "runtime_sha256": "5d822c66b3679407dbe0811e221d45196941d738d4af2653fcf18b897c463319",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "dawnfall",
+      "source_region": [
+        1344,
+        896,
+        448,
+        448
+      ],
+      "master": "masters/dawnfall.png",
+      "master_sha256": "b7c760a123a229fd1485c9e7fce1069ff7d42b90769c944e19ff5a18a1fc32f5",
+      "runtime_path": "assets/skill_tiles/dawnfall.png",
+      "runtime_sha256": "65751472734b73c0be0186c14516866cce045cbde4a758e124a914e27d538fa6",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "slash",
+      "source_region": [
+        0,
+        1344,
+        448,
+        448
+      ],
+      "master": "masters/slash.png",
+      "master_sha256": "76122d213f65d7eb1b46f12a647c23ae5adb2bfe37ec9b3d7984cb36ef13dc51",
+      "runtime_path": "assets/skill_tiles/slash.png",
+      "runtime_sha256": "4a42da150dc38e9eb3b6d019d99bf00ecbb86c4ac00f6cf38baabd656cfc7be8",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "cleave",
+      "source_region": [
+        448,
+        1344,
+        448,
+        448
+      ],
+      "master": "masters/cleave.png",
+      "master_sha256": "8a1e4cc5e6ac59cca67c49775d672f7e29ddb2aba21eda612b83cd51c1987c9f",
+      "runtime_path": "assets/skill_tiles/cleave.png",
+      "runtime_sha256": "b2c557ecc0d2b1220803717304e63f655905d402f149b3f188f7aa85645e7b1e",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "charge",
+      "source_region": [
+        896,
+        1344,
+        448,
+        448
+      ],
+      "master": "masters/charge.png",
+      "master_sha256": "94bf449ee85ee5ce1c5db4f8f5b2013aed11d2195487a20053a8b8f1960b3306",
+      "runtime_path": "assets/skill_tiles/charge.png",
+      "runtime_sha256": "7e4e20754eda1a450e00f0c7495def74e8db24055157b8224c6851468a1c5e46",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "rally",
+      "source_region": [
+        1344,
+        1344,
+        448,
+        448
+      ],
+      "master": "masters/rally.png",
+      "master_sha256": "ec8f137d016a74c5f75147f400e5067eec4d4033bdddbdf09ae17547561cd0d6",
+      "runtime_path": "assets/skill_tiles/rally.png",
+      "runtime_sha256": "8536b590df6b780b3c5a71f8e325f0c29fef345c3ebd951fab37519e4fafb45c",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "hammer",
+      "source_region": [
+        0,
+        1792,
+        448,
+        448
+      ],
+      "master": "masters/hammer.png",
+      "master_sha256": "2c3c403d75cd215d9af706342f943eea28589889d0b63ff1004d358969ab8287",
+      "runtime_path": "assets/skill_tiles/hammer.png",
+      "runtime_sha256": "e15fc2201f8e48d9ab73fc46728559aa8896ea9a09de1875bb0ae624cf57592e",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "harvest",
+      "source_region": [
+        448,
+        1792,
+        448,
+        448
+      ],
+      "master": "masters/harvest.png",
+      "master_sha256": "68fe2572350b8b6ae27b3b82873c8bd9249320a6407b8f5e4857deb787ffbcd8",
+      "runtime_path": "assets/skill_tiles/harvest.png",
+      "runtime_sha256": "9d9149fca3e4f2daa2365ea08e959cefba2dc23b11198014891aa1bc738b8f99",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "breath",
+      "source_region": [
+        896,
+        1792,
+        448,
+        448
+      ],
+      "master": "masters/breath.png",
+      "master_sha256": "4a6670479d325444e147b553cf03dcc515921030a972356d9eac3105284baa9f",
+      "runtime_path": "assets/skill_tiles/breath.png",
+      "runtime_sha256": "ed6720050d0278e010a02594c98a56ea450461f88d7e4ac28595df3f8a442d3d",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    },
+    {
+      "id": "ember_aura",
+      "source_region": [
+        1344,
+        1792,
+        448,
+        448
+      ],
+      "master": "masters/ember_aura.png",
+      "master_sha256": "7e536b8958b63e1878141cd19e1bd8e4ed223c3084b6dc29a95ae55b3887b816",
+      "runtime_path": "assets/skill_tiles/ember_aura.png",
+      "runtime_sha256": "800ca3cf8cc43b852a854c7ee13b990db12426cb99f14846ffcd53c06451aa2e",
+      "pixels": [
+        128,
+        128
+      ],
+      "opaque": true
+    }
+  ],
+  "gameplay_rules_changed": false,
+  "art_direction_revision": 9,
+  "frames_baked": true,
+  "frame_style": "Individual beveled AOTL dark-metal frames, black outer edge and restrained school-colored trim",
+  "approval": {
+    "state": "user_approved_style",
+    "date": "2026-11-12",
+    "scope": "Action-bar skill icons and future spell artwork"
+  },
+  "base_painting_job_id": "d42ce8a2-c1cf-4fbf-90f0-ea1097fa78ac"
+}

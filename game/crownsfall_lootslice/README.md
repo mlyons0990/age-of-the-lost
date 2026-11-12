@@ -1,8 +1,8 @@
-# Age of the Lost — Crownsfall Art Integration
+# Age of the Lost — Full-Square Skill Artwork
 
-November 12, 2026. The accepted Expansion02 artwork is now integrated into the playable LootSlice: twelve selected equipment portraits, nineteen ability icons and eleven service symbols. Equipment appears above the exact-cell backpack on the right; the Character tab shares that dock. Selected gear uses matching art in both equipment and inventory, preserves its aspect ratio, and respects the existing footprint rules (including 1×1 jewelry and vertical 1×3 one-handed swords).
+November 12, 2026. All nineteen implemented base abilities plus Ember Aura now use crisp grimdark full-square artwork in the action bar and Grimoire. Each image uses a tightly cropped action composition, with the subject and supporting artwork extending to the edges of the square inside the thin button frame. Clean contours and controlled shading preserve readability. Each icon has its own beveled metal frame, following the user-approved AOTL standard. Hotkeys, cooldown shading/numbers, active-aura ON state and low-mana borders remain live overlays. Earlier approved symbols and equipment artwork remain preserved.
 
-Read [the current art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) for the ID map, provenance, reproduction and verification. Original art and fallbacks remain included. Stat curves, combat, transactions and schema-six saves are unchanged. The independent Knight/Godot 4.3 prototype remains a separate branch in the repository.
+[Current skill-art handoff](docs/FULL_SKILL_BUTTONS_HANDOFF.md) explains the source atlas, exact IDs and reproduction. The right-docked equipment/character sheet, exact inventory footprints, stat scaling and schema-six saves remain included. The earlier [art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) records the preceding cycle.
 
 ## Play
 
@@ -61,7 +61,7 @@ godot --headless --path . --script res://tests/art_audio_integration.gd
 godot --headless --path . --script res://tests/mastery_integration.gd
 ```
 
-Current total: **825 headless assertions** (52 Warrior, 57 Mage, 28 lab, 19 art/audio, 86 mastery, 60 encounter, 15 scripted-bout, 108 inventory UI, 69 town UI, 77 reliability, 36 navigation, 64 grid alignment, 78 loot, 76 selected art), plus rendered Inventory (110) Town (71), Grid (66), and Loot (78) passes with six extra native mouse-drag checks, plus a 76-check rendered selected-art pass. This is 831 distinct assertions when the six display-only checks are included. Exact logs and engine/display modes are under `tests/`. Tuning exports and validated example builds are under `data/`. The source ZIP excludes caches and live user-data directories.
+Current total: **900 headless assertions across 15 suites**, including75 new full-square skill-art checks. The skill-art suite also passes75 rendered checks. Six native screenshots cover both classes, Grimoire, cooldown/low-mana and active Ember Aura. Current complete logs are in `tests/skill_tiles_qa/`. Earlier native inventory/town/grid tests add six distinct pointer assertions to cumulative coverage; their historical logs remain in `tests/art_integration_qa/`. The source ZIP excludes caches and live progress. Tuning exports and validated example builds remain under `data/`.
 
 Remaining production work includes human encounter/economy tuning and audio review, Windows export/target hardware testing, additional character animation, real gear attachment visuals and the production 3D Mage. Current 2D clothing/staff are baked into the sprites. The lab remains an independent proxy testbed.
 

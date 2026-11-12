@@ -1,0 +1,132 @@
+{
+  "production_framework_job_id": "88f63d60-3742-48ad-846b-640315582612",
+  "style_anchors": [
+    "ember_aura",
+    "cinder_thread"
+  ],
+  "abilities": {
+    "cinder_thread": {
+      "name": "Cinder Thread",
+      "action": "A narrow fire projectile. Restore 3 mana when it hits a living enemy.",
+      "family": "fire",
+      "motif": "fire needle and taut red thread"
+    },
+    "glacial_stitch": {
+      "name": "Glacial Stitch",
+      "action": "Pierce up to 3 enemies and slow 30% for 2s. Two hits within 6s freeze briefly; elites resist the duration.",
+      "family": "frost",
+      "motif": "long ice needle across jagged shards"
+    },
+    "arcane_fold": {
+      "name": "Arcane Fold",
+      "action": "Blink up to 4 ground units onto valid floor. Invalid destinations do not spend mana or cooldown.",
+      "family": "arcane",
+      "motif": "two portals and angular bridge"
+    },
+    "ashen_ward": {
+      "name": "Ashen Ward",
+      "action": "Absorb incoming damage for 3s. This active ward does not heal or stack with itself.",
+      "family": "fire",
+      "motif": "bronze shield face and flame"
+    },
+    "starfall_script": {
+      "name": "Starfall Script",
+      "action": "Cast for 0.3s, then mark a circle that strikes after another 0.8s. Damage snapshots on activation.",
+      "family": "gold_light",
+      "motif": "large star and descending shaft"
+    },
+    "solar_writ": {
+      "name": "Solar Writ",
+      "action": "A committed fire wave leaves a 3s burn. Direct damage and burn use the same spell-power snapshot.",
+      "family": "fire",
+      "motif": "bronze sun seal and flame rays"
+    },
+    "winter_crown": {
+      "name": "Winter Crown",
+      "action": "A freezing nova stuns for 1s. Elite control duration is halved.",
+      "family": "frost",
+      "motif": "towering ice crown"
+    },
+    "epoch_lance": {
+      "name": "Epoch Lance",
+      "action": "A precise arcane lance pierces up to 3 enemies; each takes one hit.",
+      "family": "arcane",
+      "motif": "hourglass and violet spear"
+    },
+    "echo_strike": {
+      "name": "Echo Strike",
+      "action": "A recovered memory strikes after 0.6s. Reach: 7 ground units.",
+      "family": "arcane",
+      "motif": "offset amethyst impact crescents"
+    },
+    "frost_ring": {
+      "name": "Winterglass Pulse",
+      "action": "A cold pulse stuns nearby enemies for 1.2s.",
+      "family": "frost",
+      "motif": "ice crystal and broken pulse ring"
+    },
+    "ember_cone": {
+      "name": "Cinderwake",
+      "action": "A Lorecasting training technique: scorch a cone and burn for 3s.",
+      "family": "fire",
+      "motif": "three directional fire-fan jets"
+    },
+    "dawnfall": {
+      "name": "Dawnfall",
+      "action": "A large delayed radiant strike at the cursor. Reach: 7 units.",
+      "family": "gold_light",
+      "motif": "gold pillar and fractured impact slabs"
+    },
+    "slash": {
+      "name": "Slash",
+      "action": "A swift sword strike. Restores 4 mana on the first successful hit.",
+      "family": "physical",
+      "motif": "broad steel sword and leather grip"
+    },
+    "cleave": {
+      "name": "Cleave",
+      "action": "A sweeping blow that strikes all enemies in front of you.",
+      "family": "physical",
+      "motif": "heavy curved blade and slash crescent"
+    },
+    "charge": {
+      "name": "Shield Charge",
+      "action": "Charge toward the cursor, bashing every enemy in your path.",
+      "family": "physical",
+      "motif": "oversized iron shield, leather and momentum marks"
+    },
+    "rally": {
+      "name": "Rallying Cry",
+      "action": "Restore 25% HP and gain 30% damage for 6s.",
+      "family": "physical",
+      "motif": "war horn and navy cloth"
+    },
+    "hammer": {
+      "name": "Sundering Standard",
+      "action": "A delayed standard strike at the cursor.",
+      "family": "physical",
+      "motif": "navy/gold banner, iron pole and fractured slabs"
+    },
+    "harvest": {
+      "name": "Citadel Reprisal",
+      "action": "Repel enemies and recover 4% life per target hit.",
+      "family": "physical",
+      "motif": "frontal brass shield and outward arrows"
+    },
+    "breath": {
+      "name": "Furnace Sweep",
+      "action": "Sweep a fiery cone; burn for three seconds.",
+      "family": "fire",
+      "motif": "fire sword cutting arc"
+    },
+    "ember_aura": {
+      "name": "Ember Aura",
+      "action": "Toggle a paid fire aura around the Mage; visual variant of Ashen Ward.",
+      "family": "fire",
+      "motif": "rear-view navy/gold mage and fire ring"
+    }
+  },
+  "future_art_does_not_implement_gameplay": true,
+  "base_painting_job_id": "d42ce8a2-c1cf-4fbf-90f0-ea1097fa78ac",
+  "style_status": "User-approved action-bar skill-icon standard, November12,2026"
+}

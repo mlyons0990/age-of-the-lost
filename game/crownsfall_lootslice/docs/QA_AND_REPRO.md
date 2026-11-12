@@ -1,6 +1,6 @@
 # Current QA and reproduction
 
-On Linux, `python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` runs import and all fourteen suites in separate disposable XDG directories, checks full logs and writes a JSON summary. This helper passes 825 headless assertions. The rendered UI suite adds two native mouse checks, along with two Town and two Grid native checks, totaling 831 distinct assertions. It is intentionally Linux-only; use an isolated project/user directory on other platforms.
+On Linux, `python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` runs import and all fifteen suites in separate disposable XDG directories, checks full logs and writes a JSON summary. This helper passes 900 headless assertions. The rendered UI suite adds two native mouse checks, along with two Town and two Grid native checks, totaling 906 distinct assertions. It is intentionally Linux-only; use an isolated project/user directory on other platforms.
 
 Godot 4.6.3 stable on Linux. Rendered runs use X11/Xvfb, software OpenGL and Dummy audio. Tests operate real scripts, UI signals and scene changes; they are not human usability or native Windows validation.
 
@@ -20,7 +20,8 @@ Godot 4.6.3 stable on Linux. Rendered runs use X11/Xvfb, software OpenGL and Dum
 | `--script res://tests/grid_alignment_integration.gd` (headless) | 64 |
 | `--script res://tests/loot_integration.gd` | 78 |
 | `--script res://tests/selected_art_integration.gd` | 76 |
-| Total headless assertions | 825 |
+| `--script res://tests/skill_tiles_integration.gd` | 75 |
+| Total headless assertions | 900 |
 
 Use a project copy and isolated data directories. On Linux set XDG_DATA_HOME, XDG_CONFIG_HOME and XDG_CACHE_HOME to dedicated QA directories outside the source project. On Windows use a separate Custom User Dir Name. Suites intentionally create/alter their QA saves.
 
@@ -56,7 +57,7 @@ Read `RELIABILITY_HANDOFF.md` for the fault matrix and writer contract. The new 
 
 ## Exact item-grid alignment
 
-Current Inventory passes 108 headless / 110 rendered; Grid passes 64 headless / 66 rendered. Together with Town, six native mouse checks supplement 825 unique headless checks, for 831 distinct overall. See `GRID_ALIGNMENT_HANDOFF.md` for the complete dimensions, source references, five-resolution drag-scale tests and actual native third-cell sword drag.
+Current Inventory passes 108 headless / 110 rendered; Grid passes 64 headless / 66 rendered. Together with Town, six native mouse checks supplement 900 unique headless checks, for 906 distinct overall. See `GRID_ALIGNMENT_HANDOFF.md` for the complete dimensions, source references, five-resolution drag-scale tests and actual native third-cell sword drag.
 
 ## Persistent floor loot
 
@@ -67,3 +68,7 @@ The new 78-assertion headless/rendered suite tests collection plans, failed-writ
 `selected_art_integration.gd` passes 76 checks in both headless and rendered modes. It verifies all 42 selections, real ability IDs, footprint-sized portraits, safe original-art fallback, aspect/caption clearance for both classes, matching bag/equipment art, real tab/action icons, Grimoire routing, the crafting callback, the preserved unique portrait and schema-six save validity. Six rendered captures are in `previews/art_integration/`. Logs from this cycle are in `tests/art_integration_qa/`; inherited previous-cycle logs retain their historical scope.
 
 `python3 tools/verify_selected_art.py` validates the 42 runtime hashes without extra dependencies. Add `--library ../../art/expansion02/2026-11-12` to validate source hashes too when using the repository layout. This is file provenance verification in addition to the 825 gameplay/UI assertions.
+
+## Full-square skill paintings
+
+The skill-tile suite adds 75 headless/rendered assertions covering all twenty IDs, square dimensions, every pixel opaque, accepted hashes, fallback safety, real HUD/Grimoire routing for both classes, actual low-mana/cooldown preservation, active Ember Aura and a valid schema-six save. Six native captures are in `previews/skill_tiles/`; complete current logs are in `tests/skill_tiles_qa/`. Full headless total:900. The six previously verified display-only drag assertions give906 distinct overall; native drag suites were not rerun for this icon-only cycle.

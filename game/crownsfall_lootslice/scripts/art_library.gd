@@ -3,6 +3,23 @@ extends RefCounted
 ## editable vectors remain the fallback for unfinished/rejected paintings.
 static var icons: Dictionary = {}
 static var selected_profile: Dictionary = {}
+static var tile_profile: Dictionary = {}
+static var tiles: Dictionary = {}
+
+static func action_icon(id: String) -> Texture2D:
+	if tiles.has(id): return tiles[id]
+	if tile_profile.is_empty() and FileAccess.file_exists("res://data/skill_tile_profile.json"):
+		var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string("res://data/skill_tile_profile.json"))
+		if parsed is Dictionary: tile_profile=parsed
+	var choices: Variant=tile_profile.get("tiles",{})
+	if choices is Dictionary:
+		var path: Variant=choices.get(id,"")
+		if path is String and not path.is_empty() and ResourceLoader.exists(path):
+			var texture:=load(path) as Texture2D
+			if texture!=null:
+				tiles[id]=texture
+				return texture
+	return icon(id)
 
 static func profile() -> Dictionary:
 	if selected_profile.is_empty() and FileAccess.file_exists("res://data/selected_art_profile.json"):

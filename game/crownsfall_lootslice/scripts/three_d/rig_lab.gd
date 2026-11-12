@@ -9,6 +9,16 @@ const IVORY := Color("f3e8d3")
 const GOLD := Color("e5bf72")
 const BLUE := Color("274f99")
 
+# Canonical wide-isometric gameplay framing from feature/painted-2p5d-phase02-poe-camera.
+# Maintain the Phase 02 2.5D camera contract.
+const CAMERA_POE_DEFAULT := 21.0
+const CAMERA_MIN := 14.0
+const CAMERA_MAX := 28.0
+const CAMERA_STEP := 1.5
+const CAMERA_FOLLOW_OFFSET := Vector3(12.8, 16.4, 12.8)
+const CAMERA_LOOK_AHEAD := Vector3(0.0, 1.10, -1.8)
+
+
 var player
 var camera: Camera3D
 var effects: Node3D
@@ -18,6 +28,10 @@ var hpbar: ProgressBar
 var kills := 0
 var mode := "3D articulated rig lab"
 var rig_v02_enabled := false
+var camera_target_size := CAMERA_POE_DEFAULT
+var camera_preset_name := "ARPG / PoE-wide"
+var zoom_label: Label
+
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=true # This independent lab never changes the saved plaza actor.
@@ -30,10 +44,14 @@ func _ready() -> void:
 	player.impact.connect(_on_impact)
 	player.health_changed.connect(_on_hp)
 	camera = Camera3D.new()
+	camera.name = "Camera_Orthographic_AOTL"
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-	camera.size = 14.0
+	camera.size = CAMERA_POE_DEFAULT
+	camera_target_size = CAMERA_POE_DEFAULT
 	camera.current = true
 	add_child(camera)
+	camera.global_position = player.global_position + CAMERA_FOLLOW_OFFSET
+	camera.look_at(player.global_position + CAMERA_LOOK_AHEAD, Vector3.UP)
 	player.camera = camera
 	effects = FX.new()
 	add_child(effects)
@@ -152,6 +170,8 @@ func _build_hud() -> void:
 	top.add_child(v)
 	v.add_child(_hud_label("AOTL · 3D MOTION / COMBAT TESTBED", 25, GOLD))
 	v.add_child(_hud_label("58-bone GLB · 16 animation clips · live sockets + blend tree" if rig_v02_enabled else "58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
+	zoom_label = _hud_label("PoE-wide camera · 21.0 m", 15, Color("9dbff1"))
+	v.add_child(zoom_label)
 	info = _hud_label("Targets defeated: 0", 17)
 	v.add_child(info)
 	hpbar = ProgressBar.new()
@@ -174,13 +194,17 @@ func _build_hud() -> void:
 	var words := VBoxContainer.new()
 	bottom.add_child(words)
 	words.add_child(_hud_label("WASD move    Shift sprint    Space dodge    Left click slash    1 cleave    2 dash strike    3 lorecast burst", 19, GOLD))
+	words.add_child(_hud_label("Mouse wheel or +/- zoom    Home: PoE-wide default (21 m)    Zoom limits: 14-28 m", 15, GOLD))
 	words.add_child(_hud_label("V02 model: refined procedural rig; visual fidelity, foot IK and cloth still need production work." if rig_v02_enabled else "Proxy geometry only. Final SAO-proportion character sculpt, skin weights, texture work, IK and cloth simulation still required.", 15))
 
 func _process(delta: float) -> void:
 	if player == null: return
-	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
-	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
-	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
+	var goal: Vector3 = player.global_position + CAMERA_FOLLOW_OFFSET
+	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 8.0))
+	camera.look_at(player.global_position + CAMERA_LOOK_AHEAD, Vector3.UP)
+	camera.size = lerpf(camera.size, camera_target_size, minf(1.0, delta * 9.0))
+	if zoom_label != null:
+		zoom_label.text = "Camera: %s · %.1f m vertical view" % [camera_preset_name, camera.size]
 	info.text = "Targets defeated: %d  ·  Dodge invuln: %.1f s   ·  Cast cooldown: %.1f s" % [kills, player.invulnerable, player.spell_cd]
 
 func _on_hp(current: float, maximum: float) -> void:
@@ -210,5 +234,28 @@ func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:
-		_back_to_plaza()
+	# Match the canonical Phase 02 mouse-wheel behavior in the playable world.
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_set_camera_zoom(camera_target_size - CAMERA_STEP)
+			return
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_set_camera_zoom(camera_target_size + CAMERA_STEP)
+			return
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_MINUS, KEY_KP_SUBTRACT:
+				_set_camera_zoom(camera_target_size + CAMERA_STEP)
+			KEY_EQUAL, KEY_KP_ADD:
+				_set_camera_zoom(camera_target_size - CAMERA_STEP)
+			KEY_HOME:
+				_set_camera_zoom(CAMERA_POE_DEFAULT)
+			KEY_ESCAPE, KEY_F7:
+				_back_to_plaza()
+
+func _set_camera_zoom(size_metres: float) -> void:
+	camera_target_size = clampf(size_metres, CAMERA_MIN, CAMERA_MAX)
+	camera_preset_name = "ARPG / PoE-wide" if is_equal_approx(camera_target_size, CAMERA_POE_DEFAULT) else "Custom"
+
+func camera_size_for_test() -> float:
+	return camera_target_size

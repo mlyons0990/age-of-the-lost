@@ -5,6 +5,7 @@ extends CanvasLayer
 
 const GD := preload("res://scripts/game_data.gd")
 const ART := preload("res://scripts/art_library.gd")
+const Layout := preload("res://scripts/poe_hud_layout.gd")
 const GOLD := Color("e8c77a")
 const BRONZE := Color(0.62, 0.47, 0.22)
 const DARK := Color(0.07, 0.06, 0.08, 0.92)
@@ -380,6 +381,47 @@ class HudDraw extends Control:
 				draw_circle(c + Vector2(-2, 4), 11, Color("e0434a"))
 				draw_circle(c + Vector2(-6, 0), 4, Color(1, 1, 1, 0.5))
 
+	func _bank_frame(rect: Rect2, metal: Color) -> void:
+		draw_rect(rect.grow(4), Color("080c16e8"))
+		draw_rect(rect.grow(2), Color("352c26"), false, 2.0)
+		draw_rect(rect, metal.darkened(0.22), false, 1.5)
+		var line_y: float = rect.position.y - 4.0
+		draw_line(Vector2(rect.position.x + 8, line_y), Vector2(rect.end.x - 8, line_y), metal, 1.2, true)
+		for side in [rect.position.x + 4, rect.end.x - 4]:
+			draw_circle(Vector2(side, line_y), 3, metal.darkened(0.12))
+
+	func _flask_slot(r: Rect2, liquid: Color, enabled: bool) -> void:
+		var opacity: float = 1.0 if enabled else 0.38
+		draw_rect(r, Color("11111a"))
+		var cx: float = r.get_center().x
+		var y: float = r.position.y
+		var s: float = r.size.x / 53.0
+		# Stylised bottle with a metallic lip, glass highlight and colored contents.
+		var glass := Color("b3cad7", 0.76 * opacity)
+		var content_color := liquid
+		content_color.a = opacity
+		draw_rect(Rect2(cx - 7*s, y + 9*s, 14*s, 7*s), Color("bd9560", opacity))
+		draw_rect(Rect2(cx - 9*s, y + 5*s, 18*s, 5*s), Color("ead4a3", opacity))
+		draw_colored_polygon(PackedVector2Array([
+			Vector2(cx - 13*s,y + 17*s), Vector2(cx + 13*s,y + 17*s),
+			Vector2(cx + 17*s,y + 25*s), Vector2(cx + 13*s,y + 43*s),
+			Vector2(cx - 13*s,y + 43*s), Vector2(cx - 17*s,y + 25*s)]), glass)
+		draw_colored_polygon(PackedVector2Array([
+			Vector2(cx - 12*s,y + 27*s), Vector2(cx + 12*s,y + 27*s),
+			Vector2(cx + 12*s,y + 41*s), Vector2(cx - 12*s,y + 41*s)]), content_color)
+		draw_line(Vector2(cx - 8*s,y + 20*s), Vector2(cx - 8*s,y + 37*s), Color(1,1,1,0.55*opacity), 2*s, true)
+		draw_rect(r, BRONZE.darkened(0.4), false, maxf(1.0, 2.0*s))
+
+	func _draw_ornamented_orb(c: Vector2, radius: float, liquid: Color, frac: float) -> void:
+		_orb(c, radius, liquid, frac, "")
+		for i in 12:
+			var a: float = TAU * float(i) / 12.0
+			var out: Vector2 = c + Vector2(cos(a), sin(a)) * (radius + 12)
+			var inner: Vector2 = c + Vector2(cos(a), sin(a)) * (radius + 6)
+			draw_line(inner, out, GOLD.darkened(0.24), 2.0, true)
+		draw_circle(c + Vector2(0, radius + 10), 4, GOLD)
+		draw_arc(c, radius + 15, PI * 0.22, PI * 0.78, 24, Color("c7aa72"), 2.0, true)
+
 	func _draw() -> void:
 		var p: Node2D = hud.player
 		var main: Node2D = hud.main
@@ -443,70 +485,93 @@ class HudDraw extends Control:
 		draw_string(font, qr.position + Vector2(12, 26), ("Silence the Cantor" if in_trial else main.quest_title()), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 18, GOLD)
 		draw_multiline_string(font, qr.position + Vector2(12, 48), ("Read the seals. R to retreat." if in_trial else main.quest_text()), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 15, 2, Color("efe6d2"))
 
-		# bottom: orbs, skill bar, xp
-		var cy := h - 84.0
-		var sz := 68.0
-		var gap := 8.0
-		var n := SLOTS.size() + 1
-		var bar_w := n * sz + (n - 1) * gap + 12.0
-		var x0 := (w - bar_w) / 2.0
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), DARK)
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), BRONZE, false, 3.0)
-		var cols: Array = p.fx_colors()
+		# Phase 03: painterly Path-of-Exile-inspired screen edges.
+		# The *actual* main game, not the independent 2.5D rig lab, uses this.
+		# Geometry comes from one pure model shared with the input hitboxes;
+		# hotbar IDs, mana rules, cooldowns and potion ownership are unchanged.
+		var geometry: Dictionary = Layout.compute(size)
+		var unit: float = geometry["scale"]
+		var radius: float = geometry["radius"]
+		var skill_rects: Array = geometry["skills"]
+		var flask_rects: Array = geometry["flasks"]
+		var left_panel: Rect2 = geometry["left_panel"]
+		var right_panel: Rect2 = geometry["right_panel"]
+		var xp_rect: Rect2 = geometry["xp_rect"]
+		_bank_frame(left_panel, GOLD)
+		_bank_frame(right_panel, Color("9ba8c6"))
 		var mouse := get_local_mouse_position()
 		var tip: Dictionary = {}
 		var tip_rect := Rect2()
-		for i in n:
-			var r := Rect2(x0 + i * (sz + gap) + (12.0 if i == n - 1 else 0.0), cy - sz / 2, sz, sz)
-			draw_rect(r, Color(0.11, 0.11, 0.16))
-			if i == n - 1:
-				_icon("potion", r, Color.WHITE)
-				draw_string(font, r.position + Vector2(5, 17), "Q", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
-				draw_string(font, r.position + Vector2(sz - 16, sz - 6), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color.WHITE)
-				draw_rect(r, BRONZE.darkened(0.25), false, 2.0)
-				if hud.char_panel==null and r.has_point(mouse):
-					tip = {"name": "Health Potion", "desc": "Restore 45% of your life.", "meta": ""}
-					tip_rect = r
-				continue
+
+		# Q is the ONE implemented health potion. Four future flask slots are
+		# intentionally dark / unassigned; they cannot spend or duplicate items.
+		for i in flask_rects.size():
+			var r: Rect2 = flask_rects[i]
+			var assigned: bool = i == 0
+			var fluid := Color("cf2735") if i < 3 else Color("3164cb")
+			_flask_slot(r, fluid, assigned)
+			if assigned:
+				_text_c("Q", r.position + Vector2(9.0 * unit, 15.0 * unit), maxi(11, int(13 * unit)), Color("ffe5ae"), 3)
+				_text_c(str(p.potions), r.end - Vector2(10.0 * unit, 7.0 * unit), maxi(12, int(16 * unit)), Color.WHITE, 3)
+			else:
+				_text_c("—", r.get_center() + Vector2(0, 16.0 * unit), maxi(12, int(17 * unit)), Color("aaa39a"), 2)
+			if hud.char_panel == null and r.has_point(mouse):
+				tip = {"name":"Health Potion", "desc":"Restore 45% life from your inventory.", "meta":"Q · %d remaining" % p.potions} if assigned else {"name":"Flask slot %d" % (i + 1), "desc":"Unassigned. Future flask types will go here.", "meta":"No item assigned or consumed."}
+				tip_rect = r
+		var cols: Array = p.fx_colors()
+		for i in skill_rects.size():
+			var r: Rect2 = skill_rects[i]
+			draw_rect(r, Color("151a28"))
+			draw_rect(r.grow(2.0 * unit), BRONZE.darkened(0.38), false, 1.0 * unit)
 			var slot: String = SLOTS[i][0]
 			var sk: Dictionary = p.skill_def(slot)
 			if sk.is_empty():
 				_icon("lock", r, Color.GRAY)
-				draw_rect(r, BRONZE.darkened(0.5), false, 2.0)
-				if hud.char_panel==null and r.has_point(mouse):
-					tip = {"name": "Locked", "desc": "Open Spellbook (K) to equip a known ability.", "meta": ""}
+				draw_rect(r, BRONZE.darkened(0.55), false, 2.0 * unit)
+				if hud.char_panel == null and r.has_point(mouse):
+					tip = {"name":"Locked", "desc":"Open the Grimoire (K) and equip a known ability.", "meta":""}
 					tip_rect = r
 			else:
 				var col: Color = Color.WHITE if slot == "basic" else (cols[1] if slot == "s4" else cols[0])
-				_icon(String(sk.get("variant",sk.id)), r, col)
+				_icon(String(sk.get("variant", sk.id)), r, col)
 				var active_aura: bool = sk.get("type", "") == "aura" and p.aura.running
 				var cd: float = p.cds.get(sk["id"], 0.0)
 				var full: float = maxf(0.001, p.cd_full.get(sk["id"], 1.0))
 				if cd > 0.0:
-					draw_rect(Rect2(r.position, Vector2(sz, sz * clampf(cd / full, 0.0, 1.0))), Color(0, 0, 0, 0.72))
+					draw_rect(Rect2(r.position, Vector2(r.size.x, r.size.y * clampf(cd / full, 0.0, 1.0))), Color(0, 0, 0, 0.72))
 					if cd > 0.6 and slot != "basic" and not active_aura:
-						_text_c(str(int(ceil(cd))), r.get_center() + Vector2(0, 8), 24, Color.WHITE)
-				if active_aura: _text_c("ON",r.get_center()+Vector2(0,8),21,Color("ffc67d"))
+						_text_c(str(int(ceil(cd))), r.get_center() + Vector2(0, 8 * unit), maxi(14, int(22 * unit)), Color.WHITE)
+				if active_aura: _text_c("ON", r.get_center() + Vector2(0, 8 * unit), maxi(13, int(20 * unit)), Color("ffc67d"))
 				var no_mana: bool = not active_aura and float(sk["mana"]) > 0.0 and p.mp < float(sk["mana"])
-				draw_rect(r, Color("2a5bd8") if no_mana else BRONZE.darkened(0.25), false, 3.0 if no_mana else 2.0)
-				if hud.char_panel==null and r.has_point(mouse):
+				draw_rect(r, Color("2a5bd8") if no_mana else BRONZE.darkened(0.25), false, (3.0 if no_mana else 2.0) * unit)
+				if hud.char_panel == null and r.has_point(mouse):
 					var meta := "%ss cooldown" % str(sk["cd"])
 					if sk.get("type", "") == "aura": meta = "%.2f mana / %.1fs pulse · toggle off freely" % [sk.pulse_cost,sk.pulse_interval]
 					if float(sk["mana"]) > 0.0:
 						meta = "%d mana · %s" % [int(sk["mana"]), meta]
-					tip = {"name": sk["name"], "desc": sk["desc"], "meta": meta}
+					tip = {"name":sk["name"], "desc":sk["desc"], "meta":meta}
 					tip_rect = r
-			draw_string(font, r.position + Vector2(5, 17), SLOTS[i][1], HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
+			# Existing bindings remain LMB / 1–4; art reference keys do NOT
+			# silently remap combat to QWERT or steal Q from the health flask.
+			_text_c("LMB" if i == 0 else SLOTS[i][1], r.position + Vector2(13.0 * unit, 14.0 * unit), maxi(9, int(12 * unit)), Color("fff8e4"), 3)
+
+		# Jewelled globe framing is procedural so it scales crisply at 810p/1080p.
+		var left_globe: Vector2 = geometry["left_orb"]
+		var right_globe: Vector2 = geometry["right_orb"]
+		_draw_ornamented_orb(left_globe, radius, Color("b51f2f"), p.hp / max_hp)
 		var max_mp: float = s["max_mp"]
-		_orb(Vector2(x0 - 100, cy - 8), 60, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
-		_orb(Vector2(x0 + bar_w + 100, cy - 8), 60, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
-		var xr := Rect2(x0 - 16, cy + sz / 2 + 18, bar_w + 32, 12)
-		draw_rect(xr, Color(0.06, 0.06, 0.06))
+		_draw_ornamented_orb(right_globe, radius, Color("225fc7"), p.mp / max_mp)
+		_text_c("HP  %d / %d" % [int(ceil(p.hp)), int(max_hp)], left_panel.position + Vector2(left_panel.size.x * 0.55, -13.0 * unit), maxi(11, int(15 * unit)), Color("f5dccb"), 4)
+		_text_c("MP  %d / %d" % [int(p.mp), int(max_mp)], right_panel.position + Vector2(right_panel.size.x * 0.48, -13.0 * unit), maxi(11, int(15 * unit)), Color("d4e1ff"), 4)
+
+		# Thin centre XP ledger: resource banks never straddle the playfield.
+		draw_rect(xp_rect.grow(2 * unit), Color("110d13"))
+		draw_rect(xp_rect, Color("242137"))
 		var need: int = GD.xp_need(p.level)
 		var xf: float = 1.0 if p.level >= GD.MAX_LEVEL else float(p.xp) / need
-		draw_rect(Rect2(xr.position, Vector2(xr.size.x * xf, xr.size.y)), GOLD.darkened(0.15))
-		draw_rect(xr, BRONZE.darkened(0.25), false, 1.5)
-		_text_c("Max level" if p.level >= GD.MAX_LEVEL else "XP %d/%d" % [p.xp, need], xr.get_center() + Vector2(0, 5), 13, Color.WHITE, 4)
+		draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xf, xp_rect.size.y)), Color("9878c6"))
+		draw_rect(xp_rect, GOLD.darkened(0.3), false, maxf(1.0, unit))
+		_text_c("LEVEL %d  ·  %s" % [p.level, "MAX" if p.level >= GD.MAX_LEVEL else "%d / %d XP" % [p.xp, need]], xp_rect.get_center() - Vector2(0, 7.0 * unit), maxi(10, int(12 * unit)), Color("f1d9a6"), 3)
 
 		# skill tooltip
 		if not tip.is_empty():

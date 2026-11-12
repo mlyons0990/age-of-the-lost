@@ -116,6 +116,15 @@ func _input(event: InputEvent) -> void:
 	if event.keycode==KEY_F5:
 		main.save_game(); get_viewport().set_input_as_handled(); return
 	if start_panel != null or choice_panel != null or death_panel != null: return
+	if event.keycode == KEY_F8:
+		var activate: bool = not ART.phase_a_preview_enabled
+		if ART.set_phase_a_preview_enabled(activate):
+			toast("Phase A item art " + ("ON" if activate else "OFF") + " — presentation only; no saves changed", Color("b4e6c5"), true)
+			if inventory_active(): refresh_inventory()
+		else:
+			toast("Phase A previews missing: run stage_phase_a_art.py first", Color("ffc28e"), true)
+		get_viewport().set_input_as_handled()
+		return
 	var focus:=get_viewport().gui_get_focus_owner()
 	if focus==save_retry and event.keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE]:
 		main.save_game(); get_viewport().set_input_as_handled(); return
@@ -214,7 +223,7 @@ func open_page(kind: String) -> void:
 			box.add_child(_button("Sound effects: " + ("Off" if main.sound.muted else "On"), func() -> void:
 				main.sound.set_muted(not main.sound.muted)
 				open_page("pause"), Vector2(0, 42)))
-			box.add_child(_label("Crownsfall / Systems expansion\n\nLMB: move or attack · Shift+LMB: first equipped skill\nRMB / 1 / 2 / 3 / 4: skills · Q: potion\nE: nearby service · I: equipment · C: character · K/B: spellbook\nR: training Scar · F11: fullscreen · F3: navigation outline\nF6: gain a level (development shortcut)", 20))
+			box.add_child(_label("Crownsfall / Systems expansion\n\nLMB: move or attack · Shift+LMB: first equipped skill\nRMB / 1 / 2 / 3 / 4: skills · Q: potion\nE: nearby service · I: equipment · C: character · K/B: spellbook\nR: training Scar · F11: fullscreen · F3: navigation outline · F8: Phase A art preview\nF6: gain a level (development shortcut)", 20))
 			box.add_child(_button("Save and quit", func() -> void:
 				main.request_exit(), Vector2(0, 42)))
 			if not main.save_error.is_empty() or main.save_blocked:

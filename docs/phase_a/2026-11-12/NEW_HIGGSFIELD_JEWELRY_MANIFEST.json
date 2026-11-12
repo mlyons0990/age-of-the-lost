@@ -1,0 +1,52 @@
+{
+  "checkpoint_date": "2026-11-12",
+  "status": "original jewelry art candidates awaiting game QA",
+  "source_provider": "Higgsfield",
+  "model": "gpt_image_2_6",
+  "paid_credits_used": 0,
+  "full_quality_source_archive": {
+    "filename": "AOTL_PhaseA_Jewelry_Eclipse_Emberwake_Source_RGBA_2026-11-12.zip",
+    "media_id": "eff632ef-d082-4ac6-b144-a47a6fa1d2c9",
+    "bytes": 3561542,
+    "files": 11,
+    "qa_checks": 14,
+    "qa_passed": 14
+  },
+  "items": [
+    {
+      "id": "aotl_eclipse_oathband_v1",
+      "name": "Eclipse Oathband",
+      "slot": "ring",
+      "cells": [
+        1,
+        1
+      ],
+      "higgsfield_job_id": "72f7d40f-5048-4182-93c0-ff86f028f61a",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_195956_72f7d40f-5048-4182-93c0-ff86f028f61a.png",
+      "runtime_enabled": false
+    },
+    {
+      "id": "aotl_emberwake_signet_v1",
+      "name": "Emberwake Signet",
+      "slot": "ring",
+      "cells": [
+        1,
+        1
+      ],
+      "higgsfield_job_id": "4ac74e50-5f86-408d-876d-a215eb042dbe",
+      "source_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_200408_4ac74e50-5f86-408d-876d-a215eb042dbe.png",
+      "runtime_enabled": false
+    }
+  ],
+  "audited_existing_taxonomy": {
+    "source_candidates": 61,
+    "checks_total": 856,
+    "checks_passed": 856
+  },
+  "known_blockers": [
+    "Native Godot UI integration regression",
+    "Human art acceptance",
+    "Windows testing"
+  ],
+  "gameplay_data_changed": false
+}

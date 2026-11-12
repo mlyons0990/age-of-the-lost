@@ -976,6 +976,7 @@ func _draw_character(r: Rect2, mouse: Vector2) -> void:
 		["Gold", "%d" % p.gold],
 		["Monsters slain", "%d" % p.kills],
 		["Wardens defeated", "%d" % p.bosses_killed],
+		["Deaths", "%d" % p.deaths],
 		["Memories found", "%d of %d" % [p.lore.size(), GD.LORE.size()]],
 		["#", "Path"],
 		["Level 1", "Knight"],

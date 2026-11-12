@@ -13,6 +13,7 @@ var level := 1
 var col := Color("ff7a2e")
 var t := 0.0
 var done := false
+var src := ""   # who caused it, for the death screen
 
 
 func _process(delta: float) -> void:
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 		main.shake = maxf(main.shake, 7.0)
 		main.fx_parts.burst(position, 30, [col, Color("ffe2a0"), Color("5a2a10")], 5.0, 40.0, 8.0)
 		if not player.dead and GD.gdist(position, player.position) <= radius:
-			player.hurt(dmg, level)
+			player.hurt(dmg, level, src)
 			main.hazard_hits += 1
 
 

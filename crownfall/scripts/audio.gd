@@ -11,7 +11,7 @@ const VOLUME := {   # per-sound level in dB, so loud and quiet sounds sit togeth
 	"gold": -8.0, "pickup": -8.0, "drop_rare": -6.0, "potion": -6.0, "level_up": -4.0,
 	"rift_open": -4.0, "rift_close": -6.0, "wave": -6.0, "lorecast": -5.0,
 	"ui_pick": -10.0, "ui_drop": -10.0, "equip": -8.0, "sell": -7.0, "error": -10.0, "click": -12.0,
-	"bolt_cast": -8.0, "bolt_hit": -7.0,
+	"bolt_cast": -8.0, "bolt_hit": -7.0, "drop_legendary": -5.0, "death": -4.0, "respawn": -6.0,
 }
 const MIN_GAP := 0.045   # the same sound won't restart faster than this (many hits in one swing)
 

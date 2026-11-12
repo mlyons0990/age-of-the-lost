@@ -48,7 +48,18 @@ for the knight and three painted enemy types:
   defeated", saved). Closing the Scar clears pending slams and bolts. Tuning:
   `warden` in `ETYPES` and `BOSS_EVERY` in `game_data.gd`.
 - **Hovering an enemy** shows its health bar at the top, plus a line for each
-  elite affix explaining what it does. This arena
+  elite affix explaining what it does.
+- **Ground loot (Path of Exile style):** every drop gets a name plate in its
+  rarity colour; plates stack upward so they never overlap, the best item keeps
+  the spot nearest its drop. Magic and better always show; commons, gold and
+  potions show while Alt is held or the mouse is near. Click a plate to walk to
+  it. Light by rarity: magic a soft glow, rare a beam, legendary a tall pulsing
+  pillar with ground rings, its own chime and a "Legendary: ..." message.
+- **Death:** the knight topples and darkens, then the death screen names what
+  killed him (enemy, bolt or Molten blast), the wave reached and the cost: 10%
+  of carried gold (`DEATH_GOLD_LOSS` in `main.gd`); gear is never lost. Enter or
+  the button rises again at the plaza with full life, a chime and 2 s of
+  invulnerability. Deaths are counted on the character panel and saved. This arena
   is a placeholder so combat has somewhere to happen.
 - **Knight skills:** Slash, Cleave, Shield Charge, Rallying Cry, plus one skill
   from the chosen specialization.
@@ -200,15 +211,17 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 128 checks covering
+(walk, fight a wave, level to 60 making each class choice, 139 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
+after adding a sound or image run `godot --headless --path . --import` once (a
+file Godot hasn't imported is silently skipped; the sound check catches this),
 the last check confirms every test section ran to the end (a GDScript error
 inside a section stops it without failing a check, so also look for
 "SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 128 of 128 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 139 of 139 checks. Not yet run on Windows.
 
 ## How the plaza works
 

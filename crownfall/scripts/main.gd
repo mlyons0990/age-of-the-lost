@@ -304,6 +304,7 @@ func _process(delta: float) -> void:
 			_pick_up(l)
 			l.queue_free()
 	full_warn = maxf(0.0, full_warn - delta)
+	_layout_loot_labels()
 
 	hover_enemy = pick_enemy(get_global_mouse_position())
 	var mouse := get_global_mouse_position()
@@ -336,6 +337,52 @@ func _add_memory(id: String, at: Vector2) -> Node2D:
 	world.add_child(m)
 	memories.append(m)
 	return m
+
+
+## Places the name plates of ground loot so they never overlap (Path of Exile style):
+## each plate sits above its drop and moves up past any plate already placed.
+## Commons, gold and potions only show while Alt is held or the mouse is near them.
+func _layout_loot_labels() -> void:
+	var mouse := get_global_mouse_position()
+	var alt := Input.is_key_pressed(KEY_ALT)
+	var shown: Array = []
+	for l in loot:
+		var near: bool = l.position.distance_to(mouse) < 70.0
+		l.show_label = l.always_labelled() or alt or near
+		l.hot = false
+		if l.show_label:
+			shown.append(l)
+	# best items first so they keep the spot closest to their drop
+	shown.sort_custom(func(a, b) -> bool: return a.rarity() > b.rarity() if a.rarity() != b.rarity() else a.position.y > b.position.y)
+	var placed: Array = []
+	for l in shown:
+		var sz: Vector2 = l.label_size()
+		var r := Rect2(l.position + Vector2(-sz.x / 2.0, -64.0), sz)
+		var guard := 0
+		var moved := true
+		while moved and guard < 30:
+			moved = false
+			for o in placed:
+				if (o as Rect2).grow(2.0).intersects(r):
+					r.position.y = (o as Rect2).position.y - sz.y - 3.0
+					moved = true
+			guard += 1
+		placed.append(r)
+		l.label_rect = r
+	var hot := pick_loot(mouse)
+	if hot != null:
+		hot.hot = true
+
+
+## The ground drop whose name plate (or drop) is under a world position, or null.
+func pick_loot(at: Vector2) -> Node2D:
+	for l in loot:
+		if l.show_label and (l.label_rect as Rect2).has_point(at):
+			return l
+	for l in loot:
+		if l.position.distance_to(at + Vector2(0, 12)) < 18.0:
+			return l
+	return null
 
 
 func pick_memory(at: Vector2) -> Node2D:
@@ -416,7 +463,7 @@ func spawn_enemy(key: String, elite: bool, at: Vector2) -> void:
 
 
 ## A delayed blast on the ground at `at` (warning ring, then damage if the knight is inside).
-func ground_blast(at: Vector2, radius: float, delay: float, dmg: float, level: int, col: Color) -> Node2D:
+func ground_blast(at: Vector2, radius: float, delay: float, dmg: float, level: int, col: Color, src := "") -> Node2D:
 	var h := Node2D.new()
 	h.set_script(Hazard)
 	h.main = self
@@ -427,12 +474,13 @@ func ground_blast(at: Vector2, radius: float, delay: float, dmg: float, level: i
 	h.dmg = dmg
 	h.level = level
 	h.col = col
+	h.src = src
 	world.add_child(h)
 	return h
 
 
 ## Fires an enemy bolt from `from` toward `at` (both screen positions on the ground).
-func fire_bolt(from: Vector2, at: Vector2, dmg: float, level: int, speed: float, reach: float) -> Node2D:
+func fire_bolt(from: Vector2, at: Vector2, dmg: float, level: int, speed: float, reach: float, src := "") -> Node2D:
 	var b := Node2D.new()
 	b.set_script(Bolt)
 	b.main = self
@@ -444,6 +492,7 @@ func fire_bolt(from: Vector2, at: Vector2, dmg: float, level: int, speed: float,
 	b.life = (reach + 1.5) / speed
 	b.dmg = dmg
 	b.level = level
+	b.src = src
 	world.add_child(b)
 	audio.play("bolt_cast", 0.1)
 	bolts_fired += 1
@@ -540,7 +589,7 @@ func kill_enemy(e: Node2D) -> void:
 		shake = 9.0
 	if e.affixes.has("molten"):
 		var mo: Dictionary = GD.ELITE_AFFIXES["molten"]
-		ground_blast(e.position, float(mo["radius"]), float(mo["delay"]), e.dmg * float(mo["dmg"]), e.level, Color("ff7a2e"))
+		ground_blast(e.position, float(mo["radius"]), float(mo["delay"]), e.dmg * float(mo["dmg"]), e.level, Color("ff7a2e"), "the blast of " + e.ename)
 	var cols: Array = [Color("a77bff"), Color("5a2f9a"), Color("ffe86a")]
 	if e.type_key == "brute":
 		cols = [Color("7a8a3a"), Color("c9b06a"), Color("3a2a18")]
@@ -573,7 +622,10 @@ func kill_enemy(e: Node2D) -> void:
 
 
 func _drop(at: Vector2, kind: String, amount: int, item: Dictionary) -> void:
-	if kind == "item" and int(item.get("rarity", 0)) >= 2:
+	if kind == "item" and int(item.get("rarity", 0)) == 3:
+		audio.play("drop_legendary", 0.0)
+		hud.toast("Legendary: %s" % item["name"], Color(String(GD.RARITY[3]["color"])))
+	elif kind == "item" and int(item.get("rarity", 0)) >= 2:
 		audio.play("drop_rare", 0.0)
 	var map := get_world_2d().navigation_map
 	var p := NavigationServer2D.map_get_closest_point(map, at + GD.to_px(Vector2(randf_range(-0.9, 0.9), randf_range(-0.9, 0.9))))
@@ -655,13 +707,37 @@ func on_choice_made(kind: String, label: String, color: Color) -> void:
 	get_tree().create_timer(0.6).timeout.connect(check_choice)
 
 
+## Share of carried gold lost on death (the price of being carried back to the plaza).
+const DEATH_GOLD_LOSS := 0.1
+var death_info := {}
+
+
 func on_player_died() -> void:
+	var lost: int = int(floor(player.gold * DEATH_GOLD_LOSS))
+	player.gold -= lost
+	player.deaths += 1
+	death_info = {
+		"killer": player.last_attacker if player.last_attacker != "" else "the Unwritten",
+		"wave": int(rift["wave"]) if rift["active"] else 0,
+		"lost": lost,
+	}
+	audio.play("death", 0.0)
+	shake = maxf(shake, 6.0)
 	close_rift()
-	hud.show_death()
+	save_game()
+	# let the fall play out for a moment before the death screen
+	get_tree().create_timer(1.3).timeout.connect(func() -> void:
+		if player.dead:
+			hud.show_death())
 
 
 func respawn() -> void:
 	player.respawn(START)
+	player.last_attacker = ""
+	audio.play("respawn", 0.0)
+	fx_ground.pillar(START, 1.0, Color("ffe9a8"))
+	fx_parts.burst(START, 30, [Color("ffe9a8"), Color.WHITE], 3.0, 40.0)
+	hud.toast("You rise again in Crownsfall", Color("ffe9a8"), true)
 
 
 const QUESTS := [
@@ -714,7 +790,7 @@ func quit_game() -> void:
 func save_game() -> void:
 	var p := player
 	var data := {"save_version": 2, "bag": p.bag, "stash": p.stash, "name": p.hero_name, "level": p.level, "xp": p.xp, "gold": p.gold, "potions": p.potions, "kills": p.kills,
-		"elite_kills": p.elite_kills, "bosses_killed": p.bosses_killed, "spec": p.spec, "adv": p.adv, "heroic": p.heroic, "gear": p.gear,
+		"elite_kills": p.elite_kills, "bosses_killed": p.bosses_killed, "deaths": p.deaths, "spec": p.spec, "adv": p.adv, "heroic": p.heroic, "gear": p.gear,
 		"opened_rift": p.opened_rift, "quest": p.quest, "spent": p.spent,
 		"shop": shop, "shop_level": shop_level, "buyback": p.buyback, "lore": p.lore}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -740,6 +816,7 @@ func load_game() -> bool:
 	p.kills = int(data.get("kills", 0))
 	p.elite_kills = int(data.get("elite_kills", 0))
 	p.bosses_killed = int(data.get("bosses_killed", 0))
+	p.deaths = int(data.get("deaths", 0))
 	p.spec = String(data.get("spec", ""))
 	p.adv = String(data.get("adv", ""))
 	p.heroic = String(data.get("heroic", ""))

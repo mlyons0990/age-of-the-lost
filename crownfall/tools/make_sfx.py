@@ -210,6 +210,19 @@ def build(folder):
     thud = sine(np.interp(t(d), [0, d], [300, 90]), d) * env(d, 0.002, curve=3) * 0.7
     save(folder, "bolt_hit", mix(zap, thud), 0.6)
 
+    # --- legendary drop, death and respawn (appended so earlier sounds stay identical)
+    d = 1.6
+    chime = mix(*[at(bell(f, 1.2, 0.4), d, i * 0.07) for i, f in enumerate([783.99, 987.77, 1174.66, 1567.98, 1975.5])])
+    swell = sum(sine(f, d) for f in (196.0, 293.66, 392.0)) / 3 * env(d, 0.25, curve=1.4) * 0.5
+    save(folder, "drop_legendary", mix(chime, swell, highpass(noise(d), 6000) * env(d, 0.3, curve=2) * 0.15), 0.75)
+    d = 2.2
+    toll = mix(bell(98.0, d, 1.1), bell(146.8, d, 0.9) * 0.6)
+    fall = sine(np.interp(t(d), [0, d], [220, 110]), d) * env(d, 0.05, curve=1.6) * 0.4
+    save(folder, "death", mix(toll, fall), 0.75)
+    d = 1.4
+    rise = sum(sine(np.interp(t(d), [0, d], [f * 0.5, f]), d) for f in (392.0, 493.88, 587.33)) / 3 * env(d, 0.3, curve=1.3)
+    save(folder, "respawn", mix(rise, bell(1174.66, d, 0.4) * 0.3), 0.6)
+
 
 if __name__ == "__main__":
     build(sys.argv[1] if len(sys.argv) > 1 else "assets/sfx")

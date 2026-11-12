@@ -67,6 +67,10 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and not event.echo):
 		return
+	if death_panel != null and ((event as InputEventKey).keycode == KEY_ENTER or (event as InputEventKey).keycode == KEY_KP_ENTER):
+		rise_again()
+		get_viewport().set_input_as_handled()
+		return
 	if start_panel != null or choice_panel != null or death_panel != null:
 		return
 	match (event as InputEventKey).keycode:
@@ -434,10 +438,25 @@ func show_death() -> void:
 	death_panel = m[0]
 	var box: VBoxContainer = m[1]
 	box.add_child(_label("You Have Fallen", 48, Color("dd3333")))
-	box.add_child(_button("Rise again in Crownsfall", func() -> void:
-		death_panel.queue_free()
-		death_panel = null
-		main.respawn(), Vector2(0, 52)))
+	var info: Dictionary = main.death_info
+	box.add_child(_label("Slain by %s" % info.get("killer", "the Unwritten"), 22, Color("efe6d2")))
+	if int(info.get("wave", 0)) > 0:
+		box.add_child(_label("The Reality Scar closed at wave %d" % int(info["wave"]), 17, Color("c9a8ff")))
+	if int(info.get("lost", 0)) > 0:
+		box.add_child(_label("Lost %d gold on the way back" % int(info["lost"]), 17, Color("ffd84a")))
+	box.add_child(_label("Your gear and items are safe.", 15, Color("a99f8a")))
+	var rise := _button("Rise again in Crownsfall  (Enter)", rise_again, Vector2(0, 52))
+	rise.name = "rise_again"
+	box.add_child(rise)
+	rise.grab_focus()
+
+
+func rise_again() -> void:
+	if death_panel == null:
+		return
+	death_panel.queue_free()
+	death_panel = null
+	main.respawn()
 
 
 # ================================================================ drawn HUD

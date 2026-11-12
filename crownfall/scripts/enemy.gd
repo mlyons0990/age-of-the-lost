@@ -213,7 +213,7 @@ func _process(delta: float) -> void:
 			struck = 0.18
 			main.audio.play("enemy_swing", 0.12)
 			if d_p <= float(t["range"]) + 0.45:
-				player.hurt(dmg, level)
+				player.hurt(dmg, level, ename)
 	elif d_p <= float(t["range"]) + 0.2:
 		if atk_cd <= 0.0:
 			state = "windup"
@@ -236,7 +236,7 @@ func _ranged_ai(delta: float, to_p: Vector2, d_p: float) -> void:
 			state = "chase"
 			atk_cd = float(t["atk_cd"]) * attack_mult() * randf_range(0.85, 1.15)
 			struck = 0.18
-			main.fire_bolt(position, player.position, dmg, level, float(t["bolt_speed"]), float(t["range"]))
+			main.fire_bolt(position, player.position, dmg, level, float(t["bolt_speed"]), float(t["range"]), ename)
 		return
 	if d_p > float(t["range"]):
 		_move(to_p / d_p * minf(spd, d_p - float(t["range"]) + 0.1))
@@ -274,11 +274,11 @@ func _boss_specials(delta: float) -> void:
 	if slam_cd <= 0.0 and state != "windup":
 		slam_cd = float(t["slam_cd"]) * (0.65 if enraged else 1.0)
 		var col := Color("b07aff") if not enraged else Color("ff5a5a")
-		main.ground_blast(player.position, float(t["slam_radius"]), float(t["slam_delay"]), dmg * float(t["slam_dmg"]), level, col)
+		main.ground_blast(player.position, float(t["slam_radius"]), float(t["slam_delay"]), dmg * float(t["slam_dmg"]), level, col, ename)
 		if enraged:
 			# a second ring where the knight is heading
 			var lead: Vector2 = player.position + GD.to_px(GD.ground(position, player.position).normalized() * 2.0)
-			main.ground_blast(lead, float(t["slam_radius"]), float(t["slam_delay"]) + 0.4, dmg * float(t["slam_dmg"]), level, col)
+			main.ground_blast(lead, float(t["slam_radius"]), float(t["slam_delay"]) + 0.4, dmg * float(t["slam_dmg"]), level, col, ename)
 		struck = 0.18
 		main.audio.play("enemy_swing", 0.0)
 

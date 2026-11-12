@@ -324,8 +324,10 @@ func _inventory_tests() -> void:
 	await _caster_tests()
 	await _affix_tests()
 	await _boss_tests()
+	await _loot_label_tests()
+	await _death_tests()
 	await _stat_tests()
-	_check(finished.size() == 6, "every test section ran to the end (%s)" % ", ".join(finished))
+	_check(finished.size() == 8, "every test section ran to the end (%s)" % ", ".join(finished))
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
 	_note("inventory and stat checks: %d run, %d failed" % [checks, fails])
@@ -649,7 +651,7 @@ func _stat_tests() -> void:
 	var line: String = GD.item_line(GD.starter_item("gloves", "x", {"atk_speed": 0.07, "life_hit": 5.0}))
 	_check(line.contains("+7% attack speed") and line.contains("+5 life per hit"), "secondary text: " + line)
 	# sounds
-	_check(main.audio.streams.size() == 29, "all 29 sounds loaded (%d)" % main.audio.streams.size())
+	_check(main.audio.streams.size() == main.audio.VOLUME.size(), "every sound in the mixer list loaded (%d)" % main.audio.streams.size())
 	_check(main.audio.music_now == "plaza" and (main.audio.music_a.playing or main.audio.music_b.playing), "plaza music is playing")
 	main.toggle_rift()
 	await _wait(0.2)
@@ -951,3 +953,87 @@ func _count_hazards() -> int:
 		if c.get_script() == main.Hazard and not c.done:
 			n += 1
 	return n
+
+
+## Ground loot: plates never overlap, commons hide until Alt or hover, clicking a plate walks there.
+func _loot_label_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var p: Node2D = main.player
+	for l in main.loot.duplicate():
+		main.loot.erase(l)
+		l.queue_free()
+	p.position = main.RIFT_POS + GD.to_px(Vector2(-3.0, 0.0))
+	var spot: Vector2 = main.RIFT_POS + GD.to_px(Vector2(1.5, 0.0))
+	var items: Array = []
+	for r in [3, 2, 1, 0]:
+		var it: Dictionary = GD.make_item(10, 0.0)
+		it["rarity"] = r
+		it["name"] = ["Plain", "Magic", "Rare", "Legendary"][r] + " Test Item"
+		items.append(it)
+	var toasts0: int = main.hud.toasts.size()
+	for it in items:
+		main._drop(spot, "item", 0, it)
+	for l in main.loot:
+		l.position = spot   # all on the same spot, the worst case for overlap
+		l.wait_leave = true
+	_check(main.hud.toasts.any(func(t): return String(t["text"]).begins_with("Legendary:")), "a legendary drop announces itself")
+	Input.warp_mouse(Vector2(20, 900))
+	await _wait(0.6)
+	var shown: Array = main.loot.filter(func(l): return l.show_label)
+	_check(shown.size() == 3, "magic, rare and legendary plates show; the common one waits for Alt (%d shown)" % shown.size())
+	var overlap := false
+	for a2 in shown:
+		for b2 in shown:
+			if a2 != b2 and (a2.label_rect as Rect2).intersects(b2.label_rect):
+				overlap = true
+	_check(not overlap, "loot plates never overlap")
+	var leg: Node2D = null
+	for l in main.loot:
+		if l.rarity() == 3:
+			leg = l
+	_check(leg != null and leg.label_rect.end.y <= leg.position.y - 30.0, "the legendary keeps the plate nearest its drop")
+	await _shot("g23_loot_labels")
+	# click the rare item's plate: the knight walks to it
+	var rare: Node2D = null
+	for l in main.loot:
+		if l.rarity() == 2:
+			rare = l
+	var screen: Vector2 = main.get_viewport().get_canvas_transform() * (rare.label_rect as Rect2).get_center()
+	await _click(screen)
+	_check(main.pick_loot((rare.label_rect as Rect2).get_center()) == rare and p.path.size() > 0, "clicking a loot plate walks the knight to it")
+	p.path = PackedVector2Array()
+	for l in main.loot.duplicate():
+		main.loot.erase(l)
+		l.queue_free()
+	finished.append("_loot_label_tests")
+
+
+## Dying: the death screen names the killer and the cost, Enter brings the knight back.
+func _death_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var p: Node2D = main.player
+	p.position = main.RIFT_POS
+	p.invuln = 0.0
+	p.gold = 500
+	var deaths0: int = p.deaths
+	main.toggle_rift()
+	main.rift["wave"] = 3
+	p.hp = 1.0
+	var s: Dictionary = p.stats()
+	p.gear["offhand"] = null
+	# keep hitting until a hit lands (dodge can avoid one)
+	for i in 50:
+		p.hurt(99999.0, 1, "Test Revenant")
+		if p.dead:
+			break
+	_check(p.dead and main.death_info.get("killer", "") == "Test Revenant", "the death screen knows what killed you")
+	_check(p.gold == 450 and int(main.death_info["lost"]) == 50 and p.deaths == deaths0 + 1, "dying costs 10%% of carried gold (%d left)" % p.gold)
+	_check(not main.rift["active"] and int(main.death_info["wave"]) == 3, "the Scar closes and the wave reached is shown")
+	await _wait(1.6)
+	_check(main.hud.death_panel != null, "death screen appears after the fall")
+	await _shot("g24_death")
+	await _key(KEY_ENTER)
+	await _wait(0.3)
+	_check(not p.dead and main.hud.death_panel == null and p.hp >= float(p.stats()["max_hp"]) - 0.5, "Enter rises again with full life")
+	_check(GD.gdist(p.position, main.START) < 0.5 and p.sprite.rotation == 0.0, "back on your feet at the plaza")
+	finished.append("_death_tests")

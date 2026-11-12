@@ -49,6 +49,8 @@ var potions := 3
 var kills := 0
 var elite_kills := 0
 var bosses_killed := 0
+var last_attacker := ""   # name of whatever hit the knight last, for the death screen
+var deaths := 0
 var spec := ""
 var adv := ""
 var heroic := ""
@@ -327,9 +329,11 @@ func heal(v: float, quiet := false) -> void:
 		main.fx_text.text(position, "+%d" % int(round(hp - before)), Color("7dff8a"))
 
 
-func hurt(amount: float, src_level: int) -> void:
+func hurt(amount: float, src_level: int, src := "") -> void:
 	if invuln > 0.0 or dead:
 		return
+	if src != "":
+		last_attacker = src
 	var s := stats()
 	if randf() < float(s["dodge"]):
 		main.fx_text.text(position, "Dodge", Color("cfe0ff"))
@@ -562,6 +566,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				if e != null:
 					target = e
 					path = PackedVector2Array()
+				elif main.pick_loot(at) != null:
+					# click a loot label: walk over it to pick it up
+					target = null
+					_walk_to(main.pick_loot(at).position, true)
 				elif main.pick_memory(at) != null:
 					go_to_memory(main.pick_memory(at))
 				elif main.pick_merchant(at):
@@ -648,7 +656,15 @@ func _physics_process(delta: float) -> void:
 		swinging = 0.0
 		pending_t = 0.0
 		_play("idle")
+		sprite.stop()
+		# topple over and darken
+		var side := -1.0 if sprite.flip_h else 1.0
+		sprite.rotation = move_toward(sprite.rotation, 1.35 * side, 3.0 * delta)
+		sprite.modulate = sprite.modulate.lerp(Color(0.45, 0.35, 0.4, 1.0), 2.0 * delta)
 		return
+	sprite.rotation = 0.0
+	if sprite.modulate.r < 0.99:
+		sprite.modulate = Color(1, 1, 1, sprite.modulate.a)
 	var s := stats()
 	mp = minf(float(s["max_mp"]), mp + float(s["mana_regen"]) * delta)
 	hp = minf(float(s["max_hp"]), hp + float(s["max_hp"]) * (0.012 if clock - last_hurt > 4.0 else 0.002) * delta)

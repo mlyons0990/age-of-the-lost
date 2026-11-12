@@ -149,7 +149,7 @@ func _update_status(value: String) -> void:
 func _process(delta: float) -> void:
     if player == null or camera == null:
         return
-    var target := player.global_position + Vector3(10.0, 12.8, 10.0)
+    var target: Vector3 = player.global_position + Vector3(10.0, 12.8, 10.0)
     camera.global_position = camera.global_position.lerp(target, minf(1.0, delta * 8.0))
     camera.look_at(player.global_position + Vector3.UP * 1.10, Vector3.UP)
     if summary != null:

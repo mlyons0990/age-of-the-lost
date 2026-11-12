@@ -9,6 +9,7 @@ const Projectile := preload("res://scripts/projectile.gd")
 const GD := preload("res://scripts/game_data.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const Aura := preload("res://scripts/aura_controller.gd")
+const GearLayer := preload("res://scripts/gear_visual_layer.gd")
 
 const SPEED := 340.0          # pixels per second across the screen
 const DEPTH_SQUASH := 0.72    # moving "into" the screen covers less ground
@@ -39,6 +40,7 @@ var main: Node2D
 var sprite: AnimatedSprite2D
 ## Presentation-only pivot: reactions never displace navigation or interrupt casts.
 var visual_root: Node2D
+var equipped_visual
 var hurt_visual_left := 0.0
 var death_visual_time := -1.0
 var visual_class_id := ""
@@ -121,11 +123,17 @@ func _ready() -> void:
 	visual_root = Node2D.new()
 	add_child(visual_root)
 	visual_root.add_child(sprite)
+	equipped_visual = GearLayer.new()
+	equipped_visual.actor = self
+	visual_root.add_child(equipped_visual)
 	refresh_visuals()
 	_play("idle")
 
 func refresh_visuals() -> void:
-	if sprite == null or visual_class_id == class_id: return
+	if sprite == null: return
+	if visual_class_id == class_id:
+		if equipped_visual != null: equipped_visual.sync_gear(class_id, gear)
+		return
 	_reset_visual_feedback()
 	visual_class_id = class_id
 	mage_art_active = class_id == "mage"
@@ -139,6 +147,7 @@ func refresh_visuals() -> void:
 	sprite.sprite_frames = frame_cache[key]
 	visual_cast_time = 0
 	_play("idle")
+	if equipped_visual != null: equipped_visual.sync_gear(class_id, gear)
 
 func _reset_visual_feedback() -> void:
 	hurt_visual_left = 0.0
@@ -381,8 +390,8 @@ func preview_equipment(item: Dictionary, slot: String) -> Dictionary:
 	if not Systems.class_allows(item,class_id): return {"ok":false,"reason":"This item cannot be worn by your class."}
 	if int(item.level)>level: return {"ok":false,"reason":"Requires level %d." % int(item.level)}
 	var next_gear:=gear.duplicate(true); next_gear[slot]=item.duplicate(true)
-	if slot=="weapon" and item.slot=="staff": next_gear.offhand=null
-	if not Systems.gear_valid(next_gear,class_id,level): return {"ok":false,"reason":"A staff occupies both hands. Equip a wand before adding a focus."}
+	if slot=="weapon" and Systems.two_handed(item): next_gear.offhand=null
+	if not Systems.gear_valid(next_gear,class_id,level): return {"ok":false,"reason":"A two-handed weapon occupies both hands. Unequip it before adding an offhand."}
 	return {"ok":true,"reason":"","gear":next_gear}
 
 func plan_equip(index: int, slot: String) -> Dictionary:
@@ -391,7 +400,7 @@ func plan_equip(index: int, slot: String) -> Dictionary:
 	if not candidate.ok: return candidate
 	var trial:=inventory.duplicate(true); trial.remove_at(index)
 	if gear[slot] is Dictionary and not Systems.insert(trial,gear[slot].duplicate(true)): return {"ok":false,"reason":"Make room for the currently equipped item."}
-	if slot=="weapon" and item.slot=="staff" and gear.offhand is Dictionary:
+	if slot=="weapon" and Systems.two_handed(item) and gear.offhand is Dictionary:
 		if not Systems.insert(trial,gear.offhand.duplicate(true)): return {"ok":false,"reason":"Make room for the displaced offhand as well."}
 	return {"ok":true,"reason":"","inventory":trial,"gear":candidate.gear}
 
@@ -400,6 +409,7 @@ func equip_item(index: int, slot: String) -> bool:
 	if not plan.ok: return false
 	if not main.persist_changes({"inventory":plan.inventory,"gear":plan.gear}): return false
 	aura.stop("equipment change"); inventory=plan.inventory; gear=plan.gear
+	refresh_visuals()
 	clamp_resources(); main.sound.play_cue("equip"); return true
 
 func unequip_item(slot: String, at := Vector2i(-1,-1)) -> bool:
@@ -412,6 +422,7 @@ func unequip_item(slot: String, at := Vector2i(-1,-1)) -> bool:
 	var next:=gear.duplicate(true); next[slot]=null
 	if not main.persist_changes({"inventory":trial,"gear":next}): return false
 	aura.stop("equipment change"); inventory=trial; gear=next
+	refresh_visuals()
 	clamp_resources(); main.sound.play_cue("equip"); return true
 
 func clamp_resources() -> void:
@@ -933,3 +944,4 @@ class ClickMarker extends Node2D:
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.55))
 		draw_arc(Vector2.ZERO, 14.0 + 26.0 * k, 0.0, TAU, 40, Color(1.0, 0.86, 0.4, 1.0 - k), 4.0, true)
 		draw_arc(Vector2.ZERO, 6.0 + 10.0 * k, 0.0, TAU, 24, Color(1, 1, 1, 0.8 * (1.0 - k)), 2.0, true)
+

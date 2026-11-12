@@ -9,6 +9,38 @@ const NAMES := {"weapon": "Longsword", "offhand": "Kite Shield", "helm": "Sallet
 const MULT := [1.0, 1.25, 1.55, 2.0]
 const UNIQUE_ID := "emberwake_circlet"
 
+## Whitelisted, stable cosmetic variants sourced from Higgsfield. This is not a
+## new loot-system schema: art_id is optional and existing saves remain valid.
+const VARIANT_SPECS := {
+	"dawnforged_flail": {"name":"Dawnforged Chain Flail", "slot":"weapon", "class":"warrior", "size":Vector2i(1,3), "hands":1, "weapon_style":"flail", "armor_family":""},
+	"ashensteel_short_spear": {"name":"Ashensteel Short Spear", "slot":"weapon", "class":"warrior", "size":Vector2i(1,3), "hands":1, "weapon_style":"spear", "armor_family":""},
+	"riftglass_sceptre": {"name":"Riftglass Sceptre", "slot":"wand", "class":"mage", "size":Vector2i(1,3), "hands":1, "weapon_style":"sceptre", "armor_family":""},
+	"vesper_talon": {"name":"Vesper Talon Fist Weapon", "slot":"weapon", "class":"warrior", "size":Vector2i(2,2), "hands":1, "weapon_style":"fist", "armor_family":""},
+	"bastion_greataxe": {"name":"Bastion Greataxe", "slot":"weapon", "class":"warrior", "size":Vector2i(2,4), "hands":2, "weapon_style":"greataxe", "armor_family":""},
+	"ironwake_warhammer": {"name":"Ironwake Warhammer", "slot":"weapon", "class":"warrior", "size":Vector2i(2,4), "hands":2, "weapon_style":"warhammer", "armor_family":""},
+	"crownspine_halberd": {"name":"Crownspine Halberd", "slot":"weapon", "class":"warrior", "size":Vector2i(2,4), "hands":2, "weapon_style":"glaive", "armor_family":""},
+	"wayfarer_oak_quarterstaff": {"name":"Wayfarer's Oak Quarterstaff", "slot":"staff", "class":"mage", "size":Vector2i(2,4), "hands":2, "weapon_style":"quarterstaff", "armor_family":""},
+	"greyfen_hauberk": {"name":"Greyfen Warden Hauberk", "slot":"armor", "class":"warrior", "size":Vector2i(2,3), "hands":0, "weapon_style":"", "armor_family":"mail"},
+	"greyfen_coif": {"name":"Greyfen Warden Coif", "slot":"helm", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"mail"},
+	"greyfen_gauntlets": {"name":"Greyfen Warden Gauntlets", "slot":"gloves", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"mail"},
+	"greyfen_boots": {"name":"Greyfen Warden Boots", "slot":"boots", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"mail"},
+	"greyfen_belt": {"name":"Greyfen Warden Warbelt", "slot":"belt", "class":"warrior", "size":Vector2i(2,1), "hands":0, "weapon_style":"", "armor_family":"mail"},
+	"moonweave_robe": {"name":"Moonweave Arcanist Robe", "slot":"robe", "class":"mage", "size":Vector2i(2,3), "hands":0, "weapon_style":"", "armor_family":"cloth"},
+	"moonweave_hood": {"name":"Moonweave Arcanist Hood", "slot":"hood", "class":"mage", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"cloth"},
+	"moonweave_gloves": {"name":"Moonweave Arcanist Gloves", "slot":"wraps", "class":"mage", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"cloth"},
+	"moonweave_boots": {"name":"Moonweave Arcanist Boots", "slot":"slippers", "class":"mage", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"cloth"},
+	"moonweave_belt": {"name":"Moonweave Arcanist Sash", "slot":"belt", "class":"mage", "size":Vector2i(2,1), "hands":0, "weapon_style":"", "armor_family":"cloth"},
+	"thornveil_jerkin": {"name":"Thornveil Pathfinder Jerkin", "slot":"armor", "class":"warrior", "size":Vector2i(2,3), "hands":0, "weapon_style":"", "armor_family":"leather"},
+	"thornveil_hood": {"name":"Thornveil Pathfinder Hood", "slot":"helm", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"leather"},
+	"thornveil_gloves": {"name":"Thornveil Pathfinder Gloves", "slot":"gloves", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"leather"},
+	"thornveil_boots": {"name":"Thornveil Pathfinder Boots", "slot":"boots", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"", "armor_family":"leather"},
+	"thornveil_belt": {"name":"Thornveil Pathfinder Belt", "slot":"belt", "class":"warrior", "size":Vector2i(2,1), "hands":0, "weapon_style":"", "armor_family":"leather"},
+	"greyfen_shield": {"name":"Greyfen Warden Kite Shield", "slot":"offhand", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"shield", "armor_family":""},
+	"moonweave_staff": {"name":"Moonweave Chronicle Staff", "slot":"staff", "class":"mage", "size":Vector2i(2,4), "hands":2, "weapon_style":"staff", "armor_family":""},
+	"thornveil_dagger": {"name":"Thornveil Pathfinder Dagger", "slot":"weapon", "class":"warrior", "size":Vector2i(1,2), "hands":1, "weapon_style":"dagger", "armor_family":""},
+	"thornveil_buckler": {"name":"Thornveil Pathfinder Buckler", "slot":"offhand", "class":"warrior", "size":Vector2i(2,2), "hands":0, "weapon_style":"shield", "armor_family":""}
+}
+
 static func make_unique() -> Dictionary:
 	var item := make_item(40, 3.0, "hood", "mage")
 	for key in ATTRS: item.erase(key)
@@ -22,7 +54,35 @@ static func unique_valid(item: Dictionary) -> bool:
 	return is_finite(float(required)) and item.unique_id is String and item.unique_id == UNIQUE_ID and item.get("slot") == "hood" and float(required) >= 40
 
 static func footprint(item: Dictionary) -> Vector2i:
+	var id := String(item.get("art_id", ""))
+	if VARIANT_SPECS.has(id) and VARIANT_SPECS[id].slot == item.get("slot"):
+		return VARIANT_SPECS[id].size
 	return FOOTPRINTS.get(String(item.get("slot", "ring")), Vector2i.ONE)
+
+static func variant_valid(item: Dictionary) -> bool:
+	if not item.has("art_id"): return true
+	var id := String(item.get("art_id", ""))
+	return VARIANT_SPECS.has(id) and VARIANT_SPECS[id].slot == item.get("slot")
+
+static func two_handed(item: Variant) -> bool:
+	if not item is Dictionary: return false
+	if String(item.get("slot", "")) == "staff": return true
+	var id := String(item.get("art_id", ""))
+	return VARIANT_SPECS.has(id) and VARIANT_SPECS[id].slot == item.get("slot") and int(VARIANT_SPECS[id].hands) == 2
+
+static func make_variant(level: int, art_id: String) -> Dictionary:
+	if not VARIANT_SPECS.has(art_id): return {}
+	var v: Dictionary = VARIANT_SPECS[art_id]
+	var item := make_item(level, 0.0, String(v.slot), String(v["class"]))
+	item["name"] = String(v.name)
+	item["art_id"] = art_id
+	return item
+
+static func shop_variants(class_id: String) -> Array:
+	if class_id == "mage":
+		return ["moonweave_robe", "moonweave_hood", "moonweave_gloves", "moonweave_boots", "moonweave_belt", "riftglass_sceptre", "wayfarer_oak_quarterstaff", "moonweave_staff"]
+	return ["greyfen_hauberk", "greyfen_coif", "greyfen_gauntlets", "greyfen_boots", "greyfen_belt", "greyfen_shield", "thornveil_jerkin", "thornveil_dagger", "thornveil_buckler", "dawnforged_flail", "ashensteel_short_spear", "vesper_talon", "bastion_greataxe", "ironwake_warhammer", "crownspine_halberd"]
+
 
 static func fits(bag: Array, item: Dictionary, at: Vector2i, ignore := "") -> bool:
 	var r := Rect2i(at, footprint(item))
@@ -102,6 +162,9 @@ static func legal_slot(item: Dictionary, slot: String) -> bool:
 	return default_slot(item) == slot or (item.get("slot") == "ring" and slot == "ring2")
 
 static func class_allows(item: Dictionary, class_id: String) -> bool:
+	var art_id := String(item.get("art_id", ""))
+	if item.has("art_id") and (not variant_valid(item) or String(VARIANT_SPECS[art_id]["class"]) != class_id):
+		return false
 	return drop_pool(class_id).has(String(item.get("slot", "")))
 
 static func gear_valid(gear: Dictionary, class_id: String, level: int) -> bool:
@@ -109,12 +172,12 @@ static func gear_valid(gear: Dictionary, class_id: String, level: int) -> bool:
 	for slot in gear:
 		var item = gear[slot]
 		if item == null: continue
-		if not item is Dictionary or not legal_slot(item, slot) or not class_allows(item, class_id) or int(item.get("level", 1)) > level: return false
+		if not item is Dictionary or not variant_valid(item) or not legal_slot(item, slot) or not class_allows(item, class_id) or int(item.get("level", 1)) > level: return false
 		if not unique_valid(item): return false
 		if item.has("unique_id"):
 			if unique_ids.has(item.unique_id): return false
 			unique_ids[item.unique_id] = true
-	if gear.get("weapon") is Dictionary and gear.weapon.slot == "staff" and gear.get("offhand") != null: return false
+	if two_handed(gear.get("weapon")) and gear.get("offhand") != null: return false
 	return true
 
 static func derive(level: int, gear: Dictionary, modifiers: Dictionary, class_id := "warrior") -> Dictionary:
@@ -146,4 +209,6 @@ static func clean_item(raw: Variant) -> Dictionary:
 	out["y"] = clampi(int(raw.get("y", 0)), 0, HEIGHT - 1)
 	out["value"] = clampi(int(raw.get("value", 5)), 1, 100000)
 	if raw.has("unique_id") and unique_valid(raw): out.unique_id = raw.unique_id
+	if variant_valid(raw) and raw.has("art_id"): out["art_id"] = String(raw.art_id)
 	return out
+

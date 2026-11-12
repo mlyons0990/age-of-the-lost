@@ -326,8 +326,9 @@ func _inventory_tests() -> void:
 	await _boss_tests()
 	await _loot_label_tests()
 	await _death_tests()
+	await _anim_tests()
 	await _stat_tests()
-	_check(finished.size() == 8, "every test section ran to the end (%s)" % ", ".join(finished))
+	_check(finished.size() == 9, "every test section ran to the end (%s)" % ", ".join(finished))
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
 	_note("inventory and stat checks: %d run, %d failed" % [checks, fails])
@@ -1050,3 +1051,69 @@ func _death_tests() -> void:
 	_check(not p.dead and main.hud.death_panel == null and p.hp >= float(p.stats()["max_hp"]) - 0.5, "Enter rises again with full life")
 	_check(GD.gdist(p.position, main.START) < 0.5 and p.sprite.rotation == 0.0, "back on your feet at the plaza")
 	finished.append("_death_tests")
+
+
+## Enemy animations from the Higgsfield clips, and the two new enemies.
+func _anim_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var EA := load("res://scripts/enemy_anims.gd")
+	var Enemy := load("res://scripts/enemy.gd")
+	var p: Node2D = main.player
+	# every sheet loads and every frame rect fits inside it
+	var bad: Array = []
+	for key in EA.ANIMS:
+		for anim in EA.ANIMS[key]:
+			var m: Dictionary = EA.ANIMS[key][anim]
+			var tex: Texture2D = Enemy.sheet(key, anim)
+			var rows: int = (int(m["frames"]) + int(m["cols"]) - 1) / int(m["cols"])
+			if tex == null or tex.get_width() < int(m["cw"]) * int(m["cols"]) or tex.get_height() < int(m["ch"]) * rows:
+				bad.append(key + "_" + anim)
+	_check(bad.is_empty(), "every enemy animation sheet loads and fits its frames (bad: %s)" % str(bad))
+	# new enemies join later waves
+	var seen := {}
+	for i in 400:
+		seen[main.wave_enemy(6)] = true
+	_check(seen.has("skeleton") and seen.has("stag") and seen.has("caster"), "wave 6 can bring Legionnaires, Stags and Gravecallers (%s)" % str(seen.keys()))
+	var early := {}
+	for i in 300:
+		early[main.wave_enemy(1)] = true
+	_check(not early.has("skeleton") and not early.has("stag"), "the first wave sticks to the basic enemies")
+	# a Legionnaire walks, winds up and strikes with animation frames
+	p.position = main.RIFT_POS + GD.to_px(Vector2(-3.0, 0.0))
+	main.spawn_enemy("skeleton", false, main.RIFT_POS + GD.to_px(Vector2(2.0, 0.0)))
+	var e: Node2D = main.enemies[main.enemies.size() - 1]
+	e.stun = 0.0
+	var walk_frames := {}
+	for i in 12:
+		await _wait(0.05)
+		var fr: Array = e.current_frame()
+		if not fr.is_empty() and fr[0] == "walk":
+			walk_frames[fr[1]] = true
+	_check(walk_frames.size() >= 3, "the Legionnaire's walk cycles through frames (%d seen)" % walk_frames.size())
+	await _shot("g25_legionnaire_walk")
+	e.state = "windup"
+	e.wind_left = 0.2
+	_check(e.current_frame()[0] == "wind", "winding up uses the wind-up frames")
+	e.strike_t = 0.3
+	e.state = "chase"
+	_check(e.current_frame()[0] == "strike", "a landed attack plays the strike frames")
+	# dying plays the death animation before the body is removed
+	main.kill_enemy(e)
+	await _wait(0.6)
+	var mid: Array = e.current_frame() if is_instance_valid(e) else []
+	_check(is_instance_valid(e) and not mid.is_empty() and mid[0] == "death" and mid[1] > 0, "a defeated Legionnaire plays its collapse")
+	await _shot("g26_legionnaire_death")
+	await _wait(1.3)
+	_check(not is_instance_valid(e), "and is removed once it finishes")
+	# a Stag in a screenshot for review
+	main.spawn_enemy("stag", false, main.RIFT_POS + GD.to_px(Vector2(1.0, 1.0)))
+	main.spawn_enemy("brute", false, main.RIFT_POS + GD.to_px(Vector2(-0.5, 1.6)))
+	main.spawn_enemy("caster", false, main.RIFT_POS + GD.to_px(Vector2(2.5, -0.5)))
+	for x in main.enemies:
+		x.stun = 99.0
+	await _wait(0.9)
+	await _shot("g27_new_enemies")
+	for x in main.enemies.duplicate():
+		main.kill_enemy(x)
+	await _wait(1.6)
+	finished.append("_anim_tests")

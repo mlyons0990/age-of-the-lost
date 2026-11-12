@@ -8,9 +8,14 @@ const TEX := {
 	"revenant": preload("res://assets/enemies/revenant.png"),
 	"brute": preload("res://assets/enemies/brute.png"),
 	"caster": preload("res://assets/enemies/hexcaller.png"),
+	"skeleton": preload("res://assets/enemies/skeleton.png"),
+	"stag": preload("res://assets/enemies/stag.png"),
 }
+const EA := preload("res://scripts/enemy_anims.gd")
+const DEATH_TIME := 1.5     # seconds a death animation plays
+const STRIKE_TIME := 0.42   # seconds the strike animation plays
 ## On-screen scale of each sprite, tuned against the knight's height.
-const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88, "caster": 0.82, "warden": 1.45}
+const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88, "caster": 0.82, "warden": 1.45, "skeleton": 0.84, "stag": 0.86}
 
 var main: Node2D
 var player: Node2D
@@ -38,6 +43,8 @@ var phase := 0.0
 var stun := 0.8
 var moving := false
 var struck := 0.0
+var strike_t := 0.0   # counts down while the strike animation plays
+static var _sheets := {}
 var affixes: Array = []   # elite affix ids, see GD.ELITE_AFFIXES
 var ward := 0.0           # Shielded: seconds the ward stays up
 var ward_cd := 3.0        # Shielded: seconds until the next ward
@@ -157,9 +164,10 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	if dead_t >= 0.0:
 		dead_t += delta
-		if dead_t > 1.0:
+		if dead_t > death_length():
 			queue_free()
 		return
+	strike_t = maxf(0.0, strike_t - delta)
 	flash = maxf(0.0, flash - delta)
 	struck = maxf(0.0, struck - delta)
 	if affixes.has("shielded"):
@@ -211,6 +219,7 @@ func _process(delta: float) -> void:
 			state = "chase"
 			atk_cd = float(t["atk_cd"]) * attack_mult()
 			struck = 0.18
+			strike_t = STRIKE_TIME
 			main.audio.play("enemy_swing", 0.12)
 			if d_p <= float(t["range"]) + 0.45:
 				player.hurt(dmg, level, ename)
@@ -236,6 +245,7 @@ func _ranged_ai(delta: float, to_p: Vector2, d_p: float) -> void:
 			state = "chase"
 			atk_cd = float(t["atk_cd"]) * attack_mult() * randf_range(0.85, 1.15)
 			struck = 0.18
+			strike_t = STRIKE_TIME
 			main.fire_bolt(position, player.position, dmg, level, float(t["bolt_speed"]), float(t["range"]), ename)
 		return
 	if d_p > float(t["range"]):
@@ -280,6 +290,7 @@ func _boss_specials(delta: float) -> void:
 			var lead: Vector2 = player.position + GD.to_px(GD.ground(position, player.position).normalized() * 2.0)
 			main.ground_blast(lead, float(t["slam_radius"]), float(t["slam_delay"]) + 0.4, dmg * float(t["slam_dmg"]), level, col, ename)
 		struck = 0.18
+		strike_t = STRIKE_TIME
 		main.audio.play("enemy_swing", 0.0)
 
 
@@ -301,10 +312,59 @@ func _col(hex: String) -> Color:
 	return Color.WHITE if flash > 0.0 else Color(hex)
 
 
+# ---------------------------------------------------------------- animation (Higgsfield clips)
+## The art key this enemy's pictures use (the Warden borrows the Brute's).
+func art_key() -> String:
+	return String(t.get("tex", type_key)) if type_key != "caster" else "caster"
+
+
+func has_anim(anim: String) -> bool:
+	return EA.ANIMS.has(art_key()) and EA.ANIMS[art_key()].has(anim)
+
+
+func death_length() -> float:
+	return DEATH_TIME if has_anim("death") else 1.0
+
+
+static func sheet(key: String, anim: String) -> Texture2D:
+	var k := key + "_" + anim
+	if not _sheets.has(k):
+		var path := "res://assets/enemies/anim/%s.png" % k
+		_sheets[k] = load(path) if ResourceLoader.exists(path) else null
+	return _sheets[k]
+
+
+## [anim name, frame index] for the current state, or [] to draw the still.
+func current_frame() -> Array:
+	var key := art_key()
+	if not EA.ANIMS.has(key):
+		return []
+	var A: Dictionary = EA.ANIMS[key]
+	if dead_t >= 0.0:
+		if A.has("death"):
+			var n: int = A["death"]["frames"]
+			return ["death", mini(n - 1, int(dead_t / DEATH_TIME * n))]
+		return []
+	if strike_t > 0.0 and A.has("strike"):
+		var n2: int = A["strike"]["frames"]
+		return ["strike", mini(n2 - 1, int((1.0 - strike_t / STRIKE_TIME) * n2))]
+	if state == "windup" and A.has("wind"):
+		var n3: int = A["wind"]["frames"]
+		var w := 1.0 - wind_left / maxf(0.01, float(t["wind"]) * attack_mult())
+		return ["wind", clampi(int(w * n3), 0, n3 - 1)]
+	if A.has("walk"):
+		if moving:
+			var n4: int = A["walk"]["frames"]
+			return ["walk", int(phase * 10.0 * speed_mult()) % n4]
+		return ["walk", 0]
+	return []
+
+
 func _draw() -> void:
 	var alpha := 1.0
 	if dead_t >= 0.0:
-		alpha = maxf(0.0, 1.0 - dead_t)
+		var dl := death_length()
+		alpha = clampf((dl - dead_t) / (0.35 if has_anim("death") else dl), 0.0, 1.0)
 	modulate.a = alpha
 	var sc: float = (1.25 if elite else 1.0) * 2.0
 	var tall: float = height()
@@ -372,8 +432,20 @@ func _draw() -> void:
 	var tint := Color(2.2, 2.2, 2.2) if flash > 0.0 else (Color(1.0, 0.75, 0.6) if burn > 0.0 else Color.WHITE)
 	if t.has("tint") and flash <= 0.0:
 		tint *= Color(String(t["tint"])) * (Color(1.4, 0.7, 0.7) if enraged else Color.WHITE)
-	draw_set_transform(Vector2(struck / 0.18 * 14.0 * face, -hop), tilt, Vector2(k * face * squash, k / squash))
-	draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 8.0), tint)
+	var fr := current_frame()
+	if not fr.is_empty():
+		# animated: the clip already carries the motion, so only keep a float for the caster
+		var meta: Dictionary = EA.ANIMS[art_key()][fr[0]]
+		var cols: int = meta["cols"]
+		var cw: float = meta["cw"]
+		var chh: float = meta["ch"]
+		var src := Rect2((fr[1] % cols) * cw, (fr[1] / cols) * chh, cw, chh)
+		var float_up: float = (10.0 + sin(phase * 2.4) * 7.0) if type_key == "caster" else 0.0
+		draw_set_transform(Vector2(0, -float_up), 0.0, Vector2(k * face, k))
+		draw_texture_rect_region(sheet(art_key(), fr[0]), Rect2(Vector2(-float(meta["ax"]), -float(meta["ay"]) + 8.0), Vector2(cw, chh)), src, tint)
+	else:
+		draw_set_transform(Vector2(struck / 0.18 * 14.0 * face, -hop), tilt, Vector2(k * face * squash, k / squash))
+		draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 8.0), tint)
 
 	# Shielded: a pale ward bubble while it blocks damage
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

@@ -523,17 +523,29 @@ func spawn_wave() -> void:
 			spawn_enemy("slime", false, _spawn_point())
 		return
 	for i in mini(3 + wave, 9):
-		var r := randf()
-		var key := "slime"
-		if r < minf(0.4, 0.15 + wave * 0.03):
-			key = "brute"
-		elif r < 0.65:
-			key = "revenant"
-		elif wave >= 2 and r < 0.65 + minf(0.25, 0.1 + wave * 0.02):
-			key = "caster"   # ranged casters join from the second wave
-		spawn_enemy(key, false, _spawn_point())
+		spawn_enemy(wave_enemy(wave), false, _spawn_point())
 	if wave % 3 == 0:
 		spawn_enemy(["brute", "revenant", "caster"][randi() % 3] if wave >= 6 else ("brute" if randf() < 0.5 else "revenant"), true, _spawn_point())
+
+
+## Picks an enemy type for a wave: tougher and stranger kinds join as waves climb.
+func wave_enemy(wave: int) -> String:
+	var weights := {"slime": 3.0, "revenant": 2.5, "brute": minf(2.0, 0.6 + wave * 0.15)}
+	if wave >= 2:
+		weights["caster"] = minf(1.6, 0.6 + wave * 0.1)   # ranged Gravecallers
+	if wave >= 3:
+		weights["skeleton"] = minf(2.0, 0.8 + wave * 0.12)
+	if wave >= 4:
+		weights["stag"] = minf(1.5, 0.5 + wave * 0.1)
+	var total := 0.0
+	for k in weights:
+		total += float(weights[k])
+	var r := randf() * total
+	for k in weights:
+		r -= float(weights[k])
+		if r <= 0.0:
+			return k
+	return "slime"
 
 
 func toggle_rift() -> void:
@@ -597,6 +609,10 @@ func kill_enemy(e: Node2D) -> void:
 		cols = [Color("8a90b8"), Color("2b2f45"), Color("c79bff")]
 	elif e.type_key == "caster":
 		cols = [Color("7dffc8"), Color("1f4a3c"), Color("c8ffe8")]
+	elif e.type_key == "skeleton":
+		cols = [Color("d8cfc0"), Color("7a1f1f"), Color("2a2a30")]
+	elif e.type_key == "stag":
+		cols = [Color("c9d48a"), Color("6a4a8a"), Color("e8e0c8")]
 	fx_parts.burst(e.position, 40 if e.elite else 18, cols, 5.0, 60.0, 8.0)
 	var xp: int = roundi(GD.xp_need(e.level) / (5.0 + e.level * 0.35) * float(e.t["xp"]) * (3.0 if e.elite else 1.0))
 	if e.boss:

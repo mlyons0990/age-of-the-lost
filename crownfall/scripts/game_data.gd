@@ -154,6 +154,9 @@ const ETYPES := {
 	# Slams the ground where the knight stands ("slam_*"), calls Hollowlings at half life and enrages below "enrage".
 	"warden": {"name": "The Unwritten Warden", "hp": 640.0, "dmg": 20.0, "speed": 1.6, "range": 1.9, "atk_cd": 2.6, "wind": 0.8, "rad": 0.9, "xp": 14.0, "h": 150.0,
 		"boss": true, "tex": "brute", "tint": "8a7aa8", "slam_cd": 5.0, "slam_radius": 2.1, "slam_delay": 1.1, "slam_dmg": 1.3, "enrage": 0.35},
+	# Armoured skeleton swordsman (wave 3+) and a fast antlered charger (wave 4+), both animated from Higgsfield clips.
+	"skeleton": {"name": "Dread Legionnaire", "hp": 62.0, "dmg": 12.0, "speed": 2.2, "range": 1.4, "atk_cd": 1.8, "wind": 0.55, "rad": 0.42, "xp": 1.35, "h": 96.0},
+	"stag": {"name": "Root-bone Stag", "hp": 72.0, "dmg": 14.0, "speed": 3.3, "range": 1.5, "atk_cd": 2.2, "wind": 0.6, "rad": 0.55, "xp": 1.5, "h": 96.0},
 	"brute": {"name": "Thornhide Brute", "hp": 95.0, "dmg": 16.0, "speed": 1.7, "range": 1.6, "atk_cd": 2.3, "wind": 0.7, "rad": 0.6, "xp": 2.0, "h": 92.0},
 }
 const ELITE_PREFIX := ["Vile", "Dread", "Blighted", "Ancient", "Frenzied", "Gloomborn"]

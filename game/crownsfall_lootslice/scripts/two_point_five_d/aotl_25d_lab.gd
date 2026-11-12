@@ -55,6 +55,7 @@ func _ready() -> void:
         dummies.append(t)
     player.action_impact.connect(_on_player_impact)
     _build_hud()
+    player.visual_changed.connect(_update_status)
     _update_status("Ready — existing AOTL painted Warrior art")
 
 func _block(position: Vector3, dimensions: Vector3, color: Color, metallic := 0.0) -> MeshInstance3D:
@@ -146,7 +147,8 @@ func _build_hud() -> void:
     summary = _small_label("", 13)
     v.add_child(summary)
     v.add_child(_small_label("WASD / click move · Shift run · Space dodge · 1/2/3 attacks", 13, GOLD))
-    v.add_child(_small_label("Wheel or +/- zoom · Home reset · V proxy · Tab class", 13, GOLD))
+    var mode_hint := "Wheel or +/- zoom · Home reset · V painted/rig/proxy · Tab class" if OS.get_cmdline_user_args().has("--aotl-v03") else "Wheel or +/- zoom · Home reset · V proxy · Tab class"
+    v.add_child(_small_label(mode_hint, 13, GOLD))
     v.add_child(_small_label("P: show / hide approved art reference", 13, IVORY))
     zoom_label = _small_label("", 13, Color("b0d3fb"))
     v.add_child(zoom_label)

@@ -117,7 +117,7 @@ rig.animation_data_create()
 anim=rig.animation_data
 created=[]
 for clip_name,spec in ANIMS.items():
-  action_name="AOTL_"+clip_name
+  action_name=clip_name
   prior=bpy.data.actions.get(action_name)
   if prior: bpy.data.actions.remove(prior)
   action=bpy.data.actions.new(name=action_name)
@@ -126,7 +126,7 @@ for clip_name,spec in ANIMS.items():
   strip=action.layers.new("Motion").strips.new(type='KEYFRAME')
   bag=strip.channelbag(slot,ensure=True)
   used=sorted({bn for _,pose in spec['keys'] for bn in pose.keys()})
-  if 'vertical' in spec: used.append('Hips')
+  if 'vertical' in spec and 'Hips' not in used: used.append('Hips')
   # New actions are independent; make zero/rest tracks for every involved bone
   # at each authored timing sample to prevent unintended carry-over.
   for bn in used:
@@ -152,7 +152,7 @@ for clip_name,spec in ANIMS.items():
   created.append((action_name,len(used),spec['frames']))
 # The active action is the calm editable rest/idle. Distinct actions exist as saved
 # datablocks; the future retarget/export pass should verify each clip in Godot.
-anim.action=bpy.data.actions['AOTL_Idle']
+anim.action=bpy.data.actions['Idle']
 anim.action_slot=anim.action.slots[0]
 rig["AOTL_Animation_Clips"]=",".join(ANIMS)
 rig["AOTL_Animation_Status"]="Authored procedural keyframes; physics, contact, IK and Godot import not yet QA-validated"

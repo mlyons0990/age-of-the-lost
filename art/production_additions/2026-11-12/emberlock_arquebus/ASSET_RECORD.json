@@ -1,0 +1,62 @@
+{
+  "project": "Age of the Lost",
+  "date": "2026-11-12",
+  "id": "aotl_ranged_arquebus_002",
+  "name": "Emberlock Arquebus",
+  "category": "ranged",
+  "subtype": "arquebus",
+  "optional_future_item": true,
+  "proposed_grid_cells": {
+    "width": 2,
+    "height": 4
+  },
+  "px_per_inventory_cell": 128,
+  "selected_art_status": "generated_source_processed_candidate_needs_visual_review",
+  "gameplay_runtime_enabled": false,
+  "base_catalog_path": "art/item_taxonomy/2026-11-12/catalog.json",
+  "original_source": {
+    "provider": "Higgsfield",
+    "model": "gpt_image_2",
+    "job_id": "c52aaf3c-bc1c-4f1e-b580-2ee60e966300",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_060956_c52aaf3c-bc1c-4f1e-b580-2ee60e966300.png",
+    "filename": "original.png",
+    "dimensions_px": [
+      880,
+      1168
+    ],
+    "format": "RGB PNG",
+    "sha256": "cdf2fc62939a9cc03741c8cce5042fed67b7c72e09570abd63b28adffe42764b"
+  },
+  "source_proxy": {
+    "file": "higgsfield_source_q94.webp",
+    "note": "High-quality WebP conversion of the original RGB PNG; not bit-identical original.",
+    "dimensions_px": [
+      880,
+      1168
+    ],
+    "sha256": "353045bed758c8bd04c90fe8766866284fa2a28222a4469aa5c08a12387358e6"
+  },
+  "processed": {
+    "file": "aotl_emberlock_arquebus_2x4_RGBA.png",
+    "dimensions_px": [
+      256,
+      512
+    ],
+    "sha256": "3604ef845224f7a5a21409ea7fde21511dc1d49907aa43255ebc9a7c81f19974",
+    "alpha_bbox_xyxy": [
+      89,
+      19,
+      167,
+      492
+    ],
+    "alpha_levels": 246,
+    "method": "OpenCV GrabCut alpha mask on near-black background, proportional fit and +33% brightness contrast adjustment; transparent borders",
+    "qa_status": "static_alpha_and_geometry_passed_visual_review_needed"
+  },
+  "billing": {
+    "use_unlim": true,
+    "paid_credits_spent": 0
+  },
+  "scope": "Art candidate only. No Godot gameplay change, no item definitions or save schema changes.",
+  "derived_from": "Latest AOTL 62-slot taxonomy, whose previous optional arquebus was unproduced."
+}

@@ -1,0 +1,13 @@
+# AOTL Expansion02 delivery handoff
+
+This pass adds 42 new art designs and 90 derived small-icon textures. The preceding 61-item taxonomy library remains unchanged. Across both folders there are 103 candidate designs: 73 equipment illustrations, 19 implemented-ability symbols and 11 service/interaction symbols. Derived image sizes are excluded from design counts.
+
+Twelve new equipment variants cover existing bases. Gear footprints remain authoritative: swords1×3 vertical; ring1×1; cuirass/robe2×3; belt2×1. UI symbols are not inventory items. Skill names, descriptions and legacy IDs are copied from the validated LootSlice's implemented ability registry, included here for reference. No new skill mechanics, stat scaling, rarity assignments or gameplay integration is implied.
+
+All seven new source sheets were generated through OpenAI image_gen and preserved byte for byte; source metadata and hashes distinguish them from the previous library's Higgsfield originals. The account's single Higgsfield slot was occupied and attempted submissions created no jobs. No unknown submissions were retried and no unrelated generation was canceled.
+
+Godot 4.6.3 exports use explicit source regions and proportional sizing. The Warrior sheet's banner and upper arrow tips cross the nominal row midpoint; selected rectangles preserve them without including neighboring artwork. Icon masters have48pixel transparent gutters, protecting edge pixels after resampling to32pixels. Original alpha is retained. Technical image validation passes522/522 checks over42 masters and90 small icons. Four native art pages, sword/ring inspection captures and a30-icon32/64/128pixel readability capture were reviewed. This does not replace gameplay or accessibility acceptance testing.
+
+The first library was published to the private GitHub repository on branch art/taxonomy-library-2026-11-12 and pull request2. A fresh clone plus Git LFS pull verified all94 large files and146 manifest hashes before this artwork resumed. Expansion02 is added as a further art-only commit on that branch; the existing Knight/game-development branches are not overwritten. Git LFS is required for full PNG/PDF bytes.
+
+For another developer, start with README.md, ASSET_INDEX.csv and catalog.json. Sources and target IDs are stable, individual art briefs are retained, and assets remain explicitly unintegrated. Select art for acceptance, preserve previous portraits/icons, then test hotbar cooldown overlays and both classes' equipment, inventory, stash, merchant, drag and comparison views in the chosen gameplay branch. Review the separate PC fork before choosing its save schema or control conventions.

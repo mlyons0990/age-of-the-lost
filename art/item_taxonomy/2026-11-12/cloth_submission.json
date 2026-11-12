@@ -1,0 +1,42 @@
+{
+  "request": {
+    "index": 201,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "prompt": "Create an original game-equipment sprite asset sheet. Exactly FIVE separate cloth equipment designs arranged in a THREE-column TWO-row equal grid: top-left hood, top-middle long robe, top-right pair of gloves, bottom-left pair of shoes, bottom-middle woven sash belt, bottom-right entirely empty. Each object entirely inside its own cell with a wide transparent gutter. Aurelian fantasy design: cream linen and royal blue woven cloth, antique gold edge embroidery, silver fasteners, rich painterly anime-realistic craftsmanship, clean readable outer silhouette and warm material highlights. Garments displayed as isolated equipment without wearers. The robe has a clear torso and long hem; hood has an empty dark opening; glove pair and shoe pair each count as one item design; belt is horizontal. Use genuine transparent PNG alpha, with zero opacity everywhere outside the five objects. No words, numbers, labels, frames or visible cell lines. No setting or mannequin. Uniform 3x2 layout.",
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2"
+    }
+  },
+  "entries": [
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 201: 2f96d47a-65d9-41c8-ab74-3fefeef0d942 (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 201,
+          "job_id": "2f96d47a-65d9-41c8-ab74-3fefeef0d942",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

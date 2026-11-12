@@ -1,0 +1,42 @@
+{
+  "request": {
+    "index": 202,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "prompt": "Original Age of the Lost game equipment asset sheet: FIVE separate leather armor designs in a precise equal THREE-column TWO-row grid. Top-left: fitted empty leather hood with a partial lower-face mask. Top-middle: complete reinforced leather torso jerkin with shoulders, collar and waist. Top-right: one neatly arranged pair of empty leather gloves. Bottom-left: one pair of tall leather boots. Bottom-middle: one horizontal leather utility girdle with brass buckle. Bottom-right empty. Warm chestnut and walnut leather, moss-green textile insets, practical brass rivets, reinforced stitching, natural creases and subtle warm highlights. Premium richly painted anime-realistic high-fantasy craftsmanship, not photographic merchandise. Equipment only, never worn, no wearer or mannequin. Each object entirely contained within its own cell, generously padded; no object touches a cell boundary or another object. Make all five recognizable silhouettes. Genuine transparent PNG background and transparent gutters, no drawn grid, no labels, text, frame, ground or shadows.",
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2"
+    }
+  },
+  "entries": [
+    48,
+    49,
+    50,
+    51,
+    52
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 202: 358e5237-2cd0-4dfa-9ed7-dc3e11500673 (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 202,
+          "job_id": "358e5237-2cd0-4dfa-9ed7-dc3e11500673",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

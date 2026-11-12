@@ -1,0 +1,56 @@
+{
+  "request": {
+    "index": 301,
+    "params": {
+      "model": "gpt_image_2",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Create six original fantasy RPG equipment inventory assets in a strict equal THREE-column TWO-row grid. Top left: long narrow straight one-handed iron sword, point upright, simple bronze crossguard and dark brown leather grip, entirely vertical. Top middle: round iron-rimmed oak shield with a muted moss-green painted center and bronze boss. Top right: practical open-face iron helmet, empty inside. Bottom left: empty iron breastplate cuirass with leather shoulder straps and short waist plates. Bottom middle: a pair of iron-plated leather gloves. Bottom right: a pair of iron-reinforced leather boots. A coordinated Wayfarer material family: dark iron, weathered oak, warm chestnut leather, restrained bronze edges and tiny moss cloth details. Rich original painterly anime-realistic high-fantasy craftsmanship, believable construction and wear, strong readable silhouettes rather than tiny ornament. No people or mannequin. Every item fully visible, wholly inside its own equal cell, with a generous clear margin on all sides. Genuine transparent PNG: background and gutters must have ZERO alpha. No background glow, fog, shadows, text, frame, labels or drawn grid."
+    }
+  },
+  "entries": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 0/1 image generations.\n- index 301: submission_failed — Rate limit reached: max 1 concurrent job(s) on ultra (monthly) plan.\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 301,
+          "status": "submission_failed",
+          "error": "Rate limit reached: max 1 concurrent job(s) on ultra (monthly) plan.",
+          "adjustments": {
+            "params.background": {
+              "requested": "transparent",
+              "used": "omitted",
+              "reason": "GPT Image 2 does not support this parameter"
+            },
+            "params.output_format": {
+              "requested": "png",
+              "used": "omitted",
+              "reason": "GPT Image 2 does not support this parameter"
+            }
+          }
+        }
+      ],
+      "submitted_count": 0,
+      "failed_count": 1,
+      "error_code": "INVALID_ARGUMENT"
+    },
+    "isError": true
+  }
+}

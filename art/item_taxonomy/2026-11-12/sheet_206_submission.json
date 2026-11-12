@@ -1,0 +1,43 @@
+{
+  "request": {
+    "index": 206,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Original fantasy RPG equipment sprite asset sheet. Strict equal THREE-column TWO-row layout. top left: Borderwatch Short Spear: Straight ashwood short spear, a leaf-shaped forged steel point at top, small tied moss-green pennant, worn brown grip and brass butt cap. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 1 wide by 3 tall. top middle: Oathkeeper Greatsword: Large upright two-handed silver greatsword with a broad tapered blade, long dark leather two-hand grip, swept bronze crossguard and a restrained ivory crest. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. top right: Deepforge Greataxe: Large upright two-handed greataxe with one broad asymmetrical iron head, a hooked balancing spine, heavy dark ash haft and reddish leather bindings. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. bottom left: Citadel Maul: Large upright two-handed maul, blocky forged iron striking head with beveled faces and small brass corner braces, long ashwood haft and double wrapped grip. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. bottom middle: Gatewarden Halberd: Long upright halberd with one leaf point, a crescent axe blade and a short opposing hook, all joined to one straight wooden shaft by a sturdy socket. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. bottom right: Waywood Quarterstaff: Straight narrow hardwood quarterstaff, no spell orb and no blade; visible wood grain, two dark leather hand grips and simple iron ferrules at both ends. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 1 wide by 4 tall. Each object fully visible, centered and wholly in its own cell with a broad transparent gutter. Long items upright vertical. Independent designs, no shared parts. Rich painterly anime-realistic craftsmanship, believable materials, clear readable outer silhouettes, warm highlights, restrained ornament. Genuine transparent PNG alpha outside objects; no scene, text, labels, frames, cell lines, people, wearers, or mannequin. No external glow or cast shadows."
+    }
+  },
+  "entries": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 206: 703f3861-7fb4-4a6b-b4d8-e35d943da2ae (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 206,
+          "job_id": "703f3861-7fb4-4a6b-b4d8-e35d943da2ae",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

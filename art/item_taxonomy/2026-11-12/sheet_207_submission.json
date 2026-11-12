@@ -1,0 +1,43 @@
+{
+  "request": {
+    "index": 207,
+    "params": {
+      "model": "gpt_image_2_6",
+      "use_unlim": true,
+      "quality": "medium",
+      "resolution": "2k",
+      "background": "transparent",
+      "output_format": "png",
+      "aspect_ratio": "3:2",
+      "prompt": "Original fantasy RPG equipment sprite asset sheet. Strict equal THREE-column TWO-row layout. top left: Sunforge War Staff: Heavy upright combat staff with bronze-capped striking ends, a segmented black iron collar and two brown leather grips; martial blunt weapon, no floating crystal. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. top middle: Ranger Ash Bow: Complete medium-height curved ashwood bow, intact taut bowstring joining both tips, leather central grip and small bronze nock fittings; upright slender profile. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. top right: Farwatch Longbow: Very tall slender yew longbow, nearly straight elegant limbs, continuous taut bowstring, dark wrapped grip, understated moss-green cloth tie and ivory nocks. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. bottom left: Moonwillow Recurve: Strong readable recurved bow with ivory horn limb tips, warm laminated wood, a continuous taut bowstring and compact dark leather grip; clearly different from longbow. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. bottom middle: Caravan Crossbow: Compact medieval crossbow seen from above at a slight three-quarter angle, upright wooden stock, horizontal steel prod and continuous string, working lever and brass trigger housing. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 3 tall. bottom right: Bastion Arbalest: Heavy two-handed medieval arbalest with a long oak stock, thick steel bow assembly, taut string, cranking gear and a sturdy metal stirrup. Tall heavy silhouette. Upright vertical silhouette, top at image top and grip/bottom below.; inventory shape 2 wide by 4 tall. Each object fully visible, centered and wholly in its own cell with a broad transparent gutter. Long items upright vertical. Independent designs, no shared parts. Rich painterly anime-realistic craftsmanship, believable materials, clear readable outer silhouettes, warm highlights, restrained ornament. Genuine transparent PNG alpha outside objects; no scene, text, labels, frames, cell lines, people, wearers, or mannequin. No external glow or cast shadows."
+    }
+  },
+  "entries": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Submitted 1/1 image generations.\n- index 207: 6d680055-d064-40f2-a7c8-e14f8da86318 (pending)\nWait for the complete requested set with jobs_wait, then show it together with show_generation_by_ids using the collected indexed jobs. This includes jobs submitted across separate calls. job_display accepts only one id and cannot display a group; do not pass ids or call it once per job."
+      }
+    ],
+    "structuredContent": {
+      "jobs": [
+        {
+          "index": 207,
+          "job_id": "6d680055-d064-40f2-a7c8-e14f8da86318",
+          "status": "pending"
+        }
+      ],
+      "submitted_count": 1,
+      "failed_count": 0
+    },
+    "isError": false
+  }
+}

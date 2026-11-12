@@ -200,6 +200,16 @@ def build(folder):
     save(folder, "error", sine(150, 0.16) * env(0.16, 0.003, curve=1.5) + sine(143, 0.16) * env(0.16, 0.003, curve=1.5), 0.4)
     save(folder, "click", sine(1000, 0.03) * env(0.03, 0.001, 0.006), 0.3)
 
+    # --- enemy casters (added after everything else so the earlier sounds stay identical)
+    d = 0.55
+    whoosh = bandpass(noise(d), 600, np.interp(t(d), [0, d], [900, 4200])) * env(d, 0.12, curve=1.6)
+    hum = sine(np.interp(t(d), [0, d], [220, 440]), d) * env(d, 0.08, curve=1.5) * 0.5
+    save(folder, "bolt_cast", mix(whoosh, hum, bell(1320, d, 0.12) * 0.25), 0.6)
+    d = 0.35
+    zap = highpass(noise(d), 1500) * env(d, 0.002, 0.05)
+    thud = sine(np.interp(t(d), [0, d], [300, 90]), d) * env(d, 0.002, curve=3) * 0.7
+    save(folder, "bolt_hit", mix(zap, thud), 0.6)
+
 
 if __name__ == "__main__":
     build(sys.argv[1] if len(sys.argv) > 1 else "assets/sfx")

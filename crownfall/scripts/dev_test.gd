@@ -320,6 +320,7 @@ func _inventory_tests() -> void:
 	_check(Inv.is_valid(p.bag, Inv.BAG_COLS, Inv.BAG_ROWS) and Inv.is_valid(p.stash, Inv.STASH_COLS, Inv.STASH_ROWS), "loaded grids are valid")
 	await _merchant_tests()
 	await _lore_tests()
+	await _caster_tests()
 	await _stat_tests()
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
@@ -628,7 +629,7 @@ func _stat_tests() -> void:
 	var line: String = GD.item_line(GD.starter_item("gloves", "x", {"atk_speed": 0.07, "life_hit": 5.0}))
 	_check(line.contains("+7% attack speed") and line.contains("+5 life per hit"), "secondary text: " + line)
 	# sounds
-	_check(main.audio.streams.size() == 27, "all 27 sounds loaded (%d)" % main.audio.streams.size())
+	_check(main.audio.streams.size() == 29, "all 29 sounds loaded (%d)" % main.audio.streams.size())
 	_check(main.audio.music_now == "plaza" and (main.audio.music_a.playing or main.audio.music_b.playing), "plaza music is playing")
 	main.toggle_rift()
 	await _wait(0.2)
@@ -758,3 +759,56 @@ func _run() -> void:
 	var ok: bool = main.load_game()
 	_note("save reload ok: %s, level %d spec %s" % [str(ok), p.level, p.spec])
 	main.quit_game()
+
+
+## The ranged caster: fires bolts, keeps its distance, and its bolts can be sidestepped.
+func _caster_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var p: Node2D = main.player
+	if main.hud.inv_window != null:
+		main.hud.close_inventory()
+	main.close_rift()
+	p.position = main.RIFT_POS + GD.to_px(Vector2(-2.2, 0.0))   # the open middle of the plaza
+	p.path = PackedVector2Array()
+	p.target = null
+	p.hp = float(p.stats()["max_hp"])
+	await _wait(0.3)
+	# a caster at mid range starts casting and its bolt hits a knight who stands still
+	var fired0: int = main.bolts_fired
+	var hits0: int = main.bolt_hits
+	main.spawn_enemy("caster", false, main.RIFT_POS + GD.to_px(Vector2(2.3, 0.0)))
+	var c: Node2D = main.enemies[main.enemies.size() - 1]
+	c.stun = 0.0
+	c.atk_cd = 0.0
+	var saw_windup := false
+	for i in 40:
+		await _wait(0.05)
+		if c.state == "windup":
+			saw_windup = true
+		if main.bolts_fired > fired0:
+			break
+	_check(saw_windup and main.bolts_fired == fired0 + 1, "caster charges and fires a bolt")
+	await _wait(0.12)
+	await _shot("g18_caster")
+	for i in 30:
+		await _wait(0.05)
+		if main.bolt_hits > hits0:
+			break
+	_check(main.bolt_hits == hits0 + 1, "the bolt hits a knight who stands still")
+	# stepping out of the bolt's path avoids it
+	var hits1: int = main.bolt_hits
+	main.fire_bolt(c.position, p.position, 5.0, 1, 7.0, 6.0)
+	p.position += GD.to_px(Vector2(0.0, 2.0))
+	await _wait(1.4)
+	_check(main.bolt_hits == hits1, "sidestepping the bolt avoids it")
+	# walking up to the caster makes it back away
+	c.atk_cd = 99.0
+	p.position = NavigationServer2D.map_get_closest_point(main.get_world_2d().navigation_map, c.position + GD.to_px(Vector2(-1.5, 0.0)))
+	var d0: float = GD.gdist(c.position, p.position)
+	var c0: Vector2 = c.position
+	var p0: Vector2 = p.position
+	await _wait(0.8)
+	_note("caster retreat: state %s, caster moved %s, knight moved %s" % [c.state, str(c.position - c0), str(p.position - p0)])
+	_check(GD.gdist(c.position, p.position) > d0 + 0.5, "caster backs away when the knight closes in (%.2f -> %.2f)" % [d0, GD.gdist(c.position, p.position)])
+	main.kill_enemy(c)
+	await _wait(0.3)

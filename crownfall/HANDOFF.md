@@ -27,7 +27,11 @@ for the knight and three painted enemy types:
 - The knight walks where you click, paths around walls and planters, and props
   draw in front of him when he stands behind them.
 - **Combat:** the plaza is safe until the player opens the "Reality Scar"
-  (R). Waves of enemies then spawn; every third wave adds an elite. This arena
+  (R). Waves of enemies then spawn; every third wave adds an elite. From wave 2
+  ranged **Hexbound Gravecallers** join: they keep their distance (and back away,
+  trying side routes when a wall is behind them), charge a green bolt with an aim
+  line on the ground, then fire it. Bolts fly in a straight line and can be
+  sidestepped. This arena
   is a placeholder so combat has somewhere to happen.
 - **Knight skills:** Slash, Cleave, Shield Charge, Rallying Cry, plus one skill
   from the chosen specialization.
@@ -143,7 +147,8 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `main.tscn` | One root node; everything else is built in code |
 | `scripts/main.gd` | Plaza, navigation, prop cut-outs, camera, Reality Scar waves, loot, quests, saving |
 | `scripts/player.gd` | Knight: movement, 8 facings, stats, skills, levels |
-| `scripts/enemy.gd` | Enemies: one painted sprite each, animated in code; chase, wind-up warning, strike |
+| `scripts/enemy.gd` | Enemies: one painted sprite each, animated in code; melee chase, wind-up warning, strike; ranged casters keep distance and fire bolts |
+| `scripts/bolt.gd` | Enemy projectile: straight-line glowing orb that can be dodged |
 | `scripts/game_data.gd` | Class, spec, enemy and item data (edit this to design classes) |
 | `scripts/fx.gd` | Slash arcs, rings, blasts, particles, floating numbers |
 | `scripts/loot.gd` | Ground drops |
@@ -165,6 +170,7 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `assets/knight/idle_<dir>.png` | One 384x384 standing frame per direction |
 | `assets/knight/attack_<se,ne>.png` | Sword swing strips, 15 frames of 512x512 (the 384 frame sits centred inside) |
 | `assets/enemies/<slime,revenant,brute>.png` | Enemy sprites: Hollowling, Veilbound Revenant, Thornhide Brute |
+| `assets/enemies/hexcaller.png` | Placeholder Gravecaller: the Revenant recoloured spectral green. Replace with real art when available |
 
 Directions on disk are `up`, `ne`, `right`, `se`, `down`. The three west-facing
 directions are the east-facing strips mirrored in code (`FACINGS` in
@@ -176,12 +182,12 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 110 checks covering
+(walk, fight a wave, level to 60 making each class choice, 114 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 110 of 110 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 114 of 114 checks. Not yet run on Windows.
 
 ## How the plaza works
 

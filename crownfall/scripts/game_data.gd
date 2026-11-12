@@ -148,6 +148,8 @@ const HEROIC := [
 const ETYPES := {
 	"slime": {"name": "Hollowling", "hp": 30.0, "dmg": 7.0, "speed": 2.0, "range": 1.0, "atk_cd": 1.4, "wind": 0.45, "rad": 0.35, "xp": 0.8, "h": 46.0},
 	"revenant": {"name": "Veilbound Revenant", "hp": 46.0, "dmg": 10.0, "speed": 2.5, "range": 1.35, "atk_cd": 1.7, "wind": 0.5, "rad": 0.4, "xp": 1.15, "h": 96.0},
+	# Ranged caster: keeps its distance ("keep"), charges a bolt ("wind"), then fires it ("bolt_speed" ground units/s).
+	"caster": {"name": "Hexbound Gravecaller", "hp": 34.0, "dmg": 11.0, "speed": 2.1, "range": 6.0, "keep": 3.2, "atk_cd": 2.4, "wind": 0.75, "rad": 0.4, "xp": 1.3, "h": 96.0, "ranged": true, "bolt_speed": 7.0},
 	"brute": {"name": "Thornhide Brute", "hp": 95.0, "dmg": 16.0, "speed": 1.7, "range": 1.6, "atk_cd": 2.3, "wind": 0.7, "rad": 0.6, "xp": 2.0, "h": 92.0},
 }
 const ELITE_PREFIX := ["Vile", "Dread", "Blighted", "Ancient", "Frenzied", "Gloomborn"]

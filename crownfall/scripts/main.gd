@@ -7,6 +7,7 @@ const PLAZA := preload("res://assets/plaza.png")
 const Player := preload("res://scripts/player.gd")
 const Enemy := preload("res://scripts/enemy.gd")
 const Loot := preload("res://scripts/loot.gd")
+const Bolt := preload("res://scripts/bolt.gd")
 const Fx := preload("res://scripts/fx.gd")
 const Inv := preload("res://scripts/inventory_logic.gd")
 const Hud := preload("res://scripts/hud.gd")
@@ -58,6 +59,8 @@ var nav_region: NavigationRegion2D
 var debug_draw := false
 
 var enemies: Array = []
+var bolts_fired := 0   # counters for the self-test
+var bolt_hits := 0
 var loot: Array = []
 var open_points: Array[Vector2] = []
 var hover_enemy: Node2D = null
@@ -401,12 +404,32 @@ func spawn_enemy(key: String, elite: bool, at: Vector2) -> void:
 	e.set_script(Enemy)
 	e.main = self
 	e.player = player
-	e.position = at
+	# keep spawns on the walkable floor, so their first step doesn't snap them somewhere else
+	e.position = NavigationServer2D.map_get_closest_point(get_world_2d().navigation_map, at)
 	e.setup(key, elite, player.level)
 	world.add_child(e)
 	enemies.append(e)
 	fx_ground.pillar(at, 0.8, Color("a070ff"))
 	fx_parts.burst(at, 14, [Color("c9a8ff"), Color("7a4dff")], 3.0, 40.0)
+
+
+## Fires an enemy bolt from `from` toward `at` (both screen positions on the ground).
+func fire_bolt(from: Vector2, at: Vector2, dmg: float, level: int, speed: float, reach: float) -> Node2D:
+	var b := Node2D.new()
+	b.set_script(Bolt)
+	b.main = self
+	b.player = player
+	var g := GD.ground(from, at)
+	b.dir = g.normalized() if g.length() > 0.01 else Vector2.RIGHT
+	b.position = from + GD.to_px(b.dir * 0.5)
+	b.speed = speed
+	b.life = (reach + 1.5) / speed
+	b.dmg = dmg
+	b.level = level
+	world.add_child(b)
+	audio.play("bolt_cast", 0.1)
+	bolts_fired += 1
+	return b
 
 
 func _spawn_point() -> Vector2:
@@ -432,6 +455,8 @@ func spawn_wave() -> void:
 			key = "brute"
 		elif r < 0.65:
 			key = "revenant"
+		elif wave >= 2 and r < 0.65 + minf(0.25, 0.1 + wave * 0.02):
+			key = "caster"   # ranged casters join from the second wave
 		spawn_enemy(key, false, _spawn_point())
 	if wave % 3 == 0:
 		spawn_enemy("brute" if randf() < 0.5 else "revenant", true, _spawn_point())
@@ -489,6 +514,8 @@ func kill_enemy(e: Node2D) -> void:
 		cols = [Color("7a8a3a"), Color("c9b06a"), Color("3a2a18")]
 	elif e.type_key == "revenant":
 		cols = [Color("8a90b8"), Color("2b2f45"), Color("c79bff")]
+	elif e.type_key == "caster":
+		cols = [Color("7dffc8"), Color("1f4a3c"), Color("c8ffe8")]
 	fx_parts.burst(e.position, 40 if e.elite else 18, cols, 5.0, 60.0, 8.0)
 	var xp: int = roundi(GD.xp_need(e.level) / (5.0 + e.level * 0.35) * float(e.t["xp"]) * (3.0 if e.elite else 1.0))
 	fx_text.text(e.position + Vector2(0, -30), "+%d XP" % xp, Color("c9a8ff"))

@@ -7,9 +7,10 @@ const TEX := {
 	"slime": preload("res://assets/enemies/slime.png"),
 	"revenant": preload("res://assets/enemies/revenant.png"),
 	"brute": preload("res://assets/enemies/brute.png"),
+	"caster": preload("res://assets/enemies/hexcaller.png"),
 }
 ## On-screen scale of each sprite, tuned against the knight's height.
-const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88}
+const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88, "caster": 0.82}
 
 var main: Node2D
 var player: Node2D
@@ -120,6 +121,9 @@ func _process(delta: float) -> void:
 		return
 	var to_p := GD.ground(position, player.position)
 	var d_p := to_p.length()
+	if t.get("ranged", false):
+		_ranged_ai(delta, to_p, d_p)
+		return
 	if state == "windup":
 		wind_left -= delta
 		if wind_left <= 0.0:
@@ -138,6 +142,49 @@ func _process(delta: float) -> void:
 		_move(to_p / d_p * minf(float(t["speed"]) * delta * (0.85 if burn > 0.0 else 1.0), d_p))
 		face = 1.0 if to_p.x >= 0.0 else -1.0
 		moving = true
+
+
+## Casters keep their distance: approach until in range, back away when the knight
+## gets close, and otherwise charge and fire a bolt that can be sidestepped.
+func _ranged_ai(delta: float, to_p: Vector2, d_p: float) -> void:
+	face = 1.0 if to_p.x >= 0.0 else -1.0
+	var spd: float = float(t["speed"]) * delta * (0.85 if burn > 0.0 else 1.0)
+	if state == "windup":
+		wind_left -= delta
+		if wind_left <= 0.0:
+			state = "chase"
+			atk_cd = float(t["atk_cd"]) * randf_range(0.85, 1.15)
+			struck = 0.18
+			main.fire_bolt(position, player.position, dmg, level, float(t["bolt_speed"]), float(t["range"]))
+		return
+	if d_p > float(t["range"]):
+		_move(to_p / d_p * minf(spd, d_p - float(t["range"]) + 0.1))
+		moving = true
+	elif d_p < float(t["keep"]):
+		moving = _retreat(to_p / maxf(d_p, 0.01), spd, d_p)
+		# cornered against a wall: stand and fight
+		if not moving and atk_cd <= 0.0:
+			_start_cast()
+	elif atk_cd <= 0.0:
+		_start_cast()
+
+
+## Steps away from the knight, trying angled routes when a wall is directly behind.
+## Returns true if it found a step that gains distance.
+func _retreat(dir_to_player: Vector2, step: float, d_now: float) -> bool:
+	var map := get_world_2d().navigation_map
+	for ang in [0.0, 0.6, -0.6, 1.2, -1.2, 1.7, -1.7]:
+		var g: Vector2 = (-dir_to_player).rotated(ang) * step
+		var np := NavigationServer2D.map_get_closest_point(map, position + GD.to_px(g))
+		if np.distance_to(position) > step * GD.U * 0.4 and GD.gdist(np, player.position) > d_now + step * 0.3:
+			position = np
+			return true
+	return false
+
+
+func _start_cast() -> void:
+	state = "windup"
+	wind_left = float(t["wind"])
 
 
 # ---------------------------------------------------------------- drawing
@@ -161,7 +208,15 @@ func _draw() -> void:
 	var sc: float = (1.25 if elite else 1.0) * 2.0
 	var tall: float = height()
 	var wind: float = 0.0
-	if state == "windup":
+	if state == "windup" and t.get("ranged", false):
+		wind = 1.0 - wind_left / float(t["wind"])
+		# aim line along the ground toward the knight, filling in as the bolt charges
+		var g := GD.ground(position, player.position).normalized()
+		var reach: float = float(t["range"]) + 1.5
+		var end := GD.to_px(g * reach)
+		draw_line(Vector2.ZERO, end, Color(0.5, 1.0, 0.8, 0.12 + 0.2 * wind), 10.0, true)
+		draw_line(Vector2.ZERO, end * wind, Color(0.6, 1.0, 0.85, 0.55), 3.0, true)
+	elif state == "windup":
 		wind = 1.0 - wind_left / float(t["wind"])
 		# red warning wedge on the ground
 		var ang := GD.ground(position, player.position).angle()
@@ -174,7 +229,7 @@ func _draw() -> void:
 		if wind > 0.05:
 			draw_colored_polygon(wedge, Color(1.0, 0.16, 0.12, 0.14 + wind * 0.2))
 		draw_arc(Vector2.ZERO, r, ang - 0.9, ang + 0.9, 16, Color(1.0, 0.3, 0.24, 0.7), 3.0, true)
-	if struck > 0.0 and player != null:
+	if struck > 0.0 and player != null and not t.get("ranged", false):
 		var ang2 := GD.ground(position, player.position).angle()
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, GD.SQ))
 		draw_arc(Vector2.ZERO, (float(t["range"]) + 0.2) * GD.U, ang2 - 0.8, ang2 + 0.8, 16, Color(1.0, 0.24, 0.16, struck / 0.18 * 0.7), 14.0, true)
@@ -198,6 +253,9 @@ func _draw() -> void:
 		"revenant":
 			hop = 5.0 + sin(phase * 3.0) * 5.0
 			tilt = sin(phase * 6.0) * 0.03 if moving else 0.0
+		"caster":
+			hop = 10.0 + sin(phase * 2.4) * 7.0   # floats above the ground
+			tilt = sin(phase * 4.0) * 0.03 if moving else 0.0
 		"brute":
 			hop = absf(sin(phase * 5.0)) * 6.0 if moving else sin(phase * 2.0) * 2.0
 			tilt = sin(phase * 5.0) * 0.04 if moving else 0.0
@@ -207,8 +265,16 @@ func _draw() -> void:
 	draw_set_transform(Vector2(struck / 0.18 * 14.0 * face, -hop), tilt, Vector2(k * face * squash, k / squash))
 	draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 8.0), tint)
 
-	# health bar and elite name
+	# a caster's bolt gathering in its hand
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	if state == "windup" and t.get("ranged", false):
+		var hc := Vector2(30.0 * face, -tall * 0.55 - hop)
+		var rr := 4.0 + 12.0 * wind
+		draw_circle(hc, rr * 1.8, Color(0.5, 1.0, 0.8, 0.2))
+		draw_circle(hc, rr, Color("7dffc8"))
+		draw_circle(hc, rr * 0.45, Color("f2fff9"))
+
+	# health bar and elite name
 	if dead_t < 0.0 and (hp < max_hp or elite or main.hover_enemy == self):
 		var w: float = 110.0 if elite else 76.0
 		var y: float = -tall - 24.0

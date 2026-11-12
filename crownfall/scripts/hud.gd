@@ -190,9 +190,18 @@ func close_inventory() -> void:
 	main.save_game()
 
 
+## Short message near the top of the screen. A repeat of a message still showing
+## refreshes it with a count ("x2") instead of stacking another copy.
+const TOAST_MAX := 3
+
 func toast(msg: String, color := GOLD, small := false) -> void:
-	toasts.append({"text": msg, "color": color, "small": small, "t": 0.0})
-	while toasts.size() > 5:
+	for t in toasts:
+		if t["text"] == msg:
+			t["count"] = int(t.get("count", 1)) + 1
+			t["t"] = minf(float(t["t"]), 0.2)
+			return
+	toasts.append({"text": msg, "color": color, "small": small, "t": 0.0, "count": 1})
+	while toasts.size() > TOAST_MAX:
 		toasts.pop_front()
 
 
@@ -616,13 +625,20 @@ class HudDraw extends Control:
 			_text_c("%s  ·  Lv %d%s" % [he.ename, he.level, "  ·  Elite" if he.elite else ""], fr.get_center() + Vector2(0, 6), 17, Color("ffd27a") if he.elite else Color("f2e6d0"), 4)
 
 		# toasts and banner
-		var ty := h * 0.2
+		# toasts sit in a band near the top, each on a dark plate so they read over bright stone
+		var ty := 150.0
 		for t in hud.toasts:
 			var a: float = clampf(minf(float(t["t"]) * 5.0, (2.8 - float(t["t"])) * 2.0), 0.0, 1.0)
 			var c: Color = t["color"]
 			c.a = a
-			_text_c(t["text"], Vector2(w / 2, ty), 20 if t["small"] else 26, c, 6)
-			ty += 30.0 if t["small"] else 38.0
+			var msg: String = t["text"]
+			if int(t.get("count", 1)) > 1:
+				msg += "  x%d" % int(t["count"])
+			var fs: int = 19 if t["small"] else 24
+			var tw: float = font.get_string_size(msg, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+			draw_rect(Rect2(w / 2 - tw / 2 - 16, ty - fs * 0.95, tw + 32, fs + 14), Color(0.03, 0.03, 0.05, 0.55 * a))
+			_text_c(msg, Vector2(w / 2, ty), fs, c, 5)
+			ty += fs + 20.0
 		if hud.banner_t < 3.2:
 			var a2: float = clampf(minf(hud.banner_t * 2.5, (3.2 - hud.banner_t) * 1.3), 0.0, 1.0)
 			_text_c(hud.banner_a, Vector2(w / 2, h * 0.36), 64, Color(GOLD.r, GOLD.g, GOLD.b, a2), 10)

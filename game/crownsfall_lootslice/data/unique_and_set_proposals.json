@@ -1,0 +1,68 @@
+{
+  "status": "mixed: Emberwake Circlet implemented; other records remain proposals",
+  "items": [
+    {
+      "id": "band_of_continuance",
+      "name": "Band of Continuance",
+      "slot": "ring",
+      "required_level": 40,
+      "rarity": "unique",
+      "effect": "Ember Aura keeps its last paid pulse for 0.4s after movement cancels another action. It still pays upkeep; it cannot bypass insufficient mana.",
+      "implementation_status": "design_only"
+    },
+    {
+      "id": "emberwake_circlet",
+      "name": "Emberwake Circlet",
+      "slot": "helm",
+      "required_level": 40,
+      "rarity": "unique",
+      "effect": "Ember Aura pulses every 0.4s instead of 0.5s; multiply per-pulse damage and cost by 0.8 so DPS and cost/s remain unchanged. Each paid pulse extends an existing burn by 0.15s, capped at 4s.",
+      "implementation_status": "implemented",
+      "runtime_base": "hood",
+      "implementation_reference": "runtime_unique_definitions.json"
+    },
+    {
+      "id": "riftglass_focus",
+      "name": "Riftglass Focus",
+      "slot": "offhand",
+      "required_level": 40,
+      "rarity": "unique",
+      "effect": "Arcane Fold leaves a memory focus for 3s. Starfall Script can target it once to repeat at 35% damage. Repeats cannot create repeats or return resources.",
+      "implementation_status": "design_only"
+    },
+    {
+      "id": "crownless_vestment",
+      "name": "Crownless Vestment",
+      "slot": "armor",
+      "required_level": 40,
+      "rarity": "set",
+      "effect": "Crownless set, body piece. Cloth; Mage usable in the proposed full class system.",
+      "implementation_status": "design_only"
+    },
+    {
+      "id": "crownless_sign",
+      "name": "Crownless Sign",
+      "slot": "amulet",
+      "required_level": 40,
+      "rarity": "set",
+      "effect": "Crownless set, amulet piece. No bonus until the required number of distinct set-piece IDs is worn.",
+      "implementation_status": "design_only"
+    },
+    {
+      "id": "crownless_steps",
+      "name": "Crownless Steps",
+      "slot": "boots",
+      "required_level": 40,
+      "rarity": "set",
+      "effect": "Crownless set, boots piece. Two pieces: recover 3 mana once per second when a paid aura pulse damages a cursed target. Three: first aura pulse after Arcane Fold has +25% radius for that pulse only.",
+      "implementation_status": "design_only"
+    }
+  ],
+  "stacking_rules": [
+    "Only one copy of each named unique may be equipped.",
+    "Set count uses distinct set-piece IDs, not number of instances.",
+    "Triggered damage cannot retrigger the originating effect.",
+    "Recovery per second is capped per player and source.",
+    "Preserve independent branch choice: Cinder Bloom or Siphon Embers, never both."
+  ]
+}

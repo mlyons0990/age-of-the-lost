@@ -1,0 +1,72 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS stash and real equipment/inventory occupy separate left/right panes
+PASS both service panes fit the viewport
+PASS equipment and both real container grids are reachable together
+PASS town planning cannot mutate actor ownership or currency
+PASS Ctrl-click deposits the same item UID into stash
+PASS transfer rebuild preserves service context
+PASS Ctrl-click withdraw reverses ownership without duplicating it
+PASS town transfers preserve current paid resources
+PASS cross-container drag validates item footprint at exact cells
+PASS stash drag commits requested coordinates
+PASS stale cross-container identity is rejected
+PASS explicit negative destination cannot fall back to auto-place
+PASS full stash leaves both containers unchanged
+PASS failed transfer explains its reason in the live panel
+PASS batch deposit is atomic even when some items would fit
+PASS backpack search dims non-matching items without moving them
+PASS matching batch deposit commits when the complete selection fits
+PASS batch uses the active backpack search and preserves that search
+PASS category filters reflect actual item families
+PASS search is case-insensitive and requires each typed word
+PASS filtered stash items remain owned but cannot be picked invisibly
+PASS dimmed items still occupy and protect their cells
+PASS typing I in a search field cannot close inventory
+PASS typing C in a search field cannot switch character tabs
+PASS first Escape releases text focus without closing the paired service
+PASS Ctrl-F focuses backpack search
+PASS shop stock list and the equipped character are visible together
+PASS unowned stock has a pure gear comparison and explicit purchase action
+PASS viewing merchant stock changes no owned containers
+PASS purchase accepts available stock and exact currency
+PASS purchase transfers one UID and charges exactly the displayed price
+PASS repeating a stale purchase cannot charge or duplicate items
+PASS unaffordable purchase preserves stock and gold
+PASS full bag cannot consume shop stock or gold
+PASS explicit sale creates a recoverable buyback record
+PASS sale conserves identity and grants exactly its value
+PASS a completed sale exposes a one-click undo action
+PASS duplicate sale cannot grant gold twice
+PASS buyback can restore the sold item
+PASS sell and buyback return the exact UID with zero gold profit
+PASS unaffordable buyback preserves the recovery record
+PASS full bag buyback preserves history and currency
+PASS gold cap cannot silently consume a sale
+PASS potion transaction adds exactly one potion for five gold
+PASS full potion stack is not charged
+PASS unaffordable potion cannot overdraw currency
+PASS active combat rejects service transactions
+PASS protected save rejects service transactions
+PASS dead actor cannot sell items
+PASS closed service rejects stale button callbacks
+PASS buyback retains exactly the newest twelve sold items
+PASS schema six persists validated buyback history
+PASS oversized buyback history is rejected
+PASS duplicate buyback ownership is rejected
+PASS gear and buyback cannot claim the same UID
+PASS malformed buyback container is rejected
+PASS schema-six records require the buyback field
+PASS prior schema-four inventory records remain importable
+PASS save reload restores exact buyback ownership and currency
+PASS schema-six actor can enter the independent rig lab
+PASS actual scene round-trip preserves buyback history and currency
+PASS schema-four migration retains mastery and starts empty buyback
+PASS first successful save upgrades the imported record to schema six
+PASS upgrade keeps an exact one-time pre-v5 snapshot
+PASS later saves cannot overwrite the preserved pre-upgrade snapshot
+PASS service transactions preserve the open character tab
+PASS empty buyback has a readable state
+PASS shop search exposes an empty-result state without changing stock
+PASS paired panes stay separate after four-to-three resizing
+TOWN UI RESULT 69 checks; 0 failures

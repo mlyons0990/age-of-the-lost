@@ -1,0 +1,83 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PASS reliability fixture is a valid full schema-five record
+PASS validating existing item UIDs does not consume gameplay randomness
+PASS save capture owns a deep snapshot rather than actor containers
+PASS injected open at .tmp reports failure
+PASS failed open preserves primary and old recovery bytes and cleans staging
+PASS injected write at .tmp reports failure
+PASS failed write preserves primary and old recovery bytes and cleans staging
+PASS injected flush at .tmp reports failure
+PASS failed flush preserves primary and old recovery bytes and cleans staging
+PASS injected read at .tmp reports failure
+PASS failed read preserves primary and old recovery bytes and cleans staging
+PASS injected copy at .bak.pending reports failure
+PASS failed copy preserves primary and old recovery bytes and cleans staging
+PASS injected read at .bak.pending reports failure
+PASS failed read preserves primary and old recovery bytes and cleans staging
+PASS injected rename at _v4.json reports failure
+PASS failed rename preserves primary and old recovery bytes and cleans staging
+PASS readback rejects corrupted write bytes without publishing
+PASS readback rejects corrupted copy bytes without publishing
+PASS temporary primary read failure is retryable without overwriting
+PASS failed upgrade snapshot copy preserves both existing records
+PASS failed upgrade snapshot read preserves both existing records
+PASS failed upgrade snapshot rename preserves both existing records
+PASS upgrade preserves exact original bytes before committing schema five
+PASS later successful commits keep the one-time legacy snapshot
+PASS normal save atomically publishes current state and previous-primary recovery
+PASS post-commit recovery publication failure is saved-with-warning, preserving older backup
+PASS backup warning never reports the committed primary as a failed action
+PASS first save commits without requiring a previous primary
+PASS newer on-disk save discovered during a session becomes write protected
+PASS manual retry cannot bypass newer-save protection
+PASS protected-state banner explains recovery and disables retry
+PASS invalid on-disk record is preserved for the loader recovery path
+PASS invalid candidate is rejected before any write
+PASS failed persistence rejects deposit transaction
+PASS failed deposit preserves all ownership, currency, paid resources and effects
+PASS failed persistence rejects withdraw transaction
+PASS failed withdraw preserves all ownership, currency, paid resources and effects
+PASS failed persistence rejects deposit_matching transaction
+PASS failed deposit_matching preserves all ownership, currency, paid resources and effects
+PASS failed persistence rejects buy transaction
+PASS failed buy preserves all ownership, currency, paid resources and effects
+PASS failed persistence rejects sell transaction
+PASS failed sell preserves all ownership, currency, paid resources and effects
+PASS failed persistence rejects buyback transaction
+PASS failed buyback preserves all ownership, currency, paid resources and effects
+PASS failed persistence rejects potion transaction
+PASS failed potion preserves all ownership, currency, paid resources and effects
+PASS failed purchase exposes a retryable save error
+PASS storage error has a visible keyboard-reachable retry control
+PASS F5 saves current state and clears the banner without replaying the rejected purchase
+PASS retry preserves the rejected item's original owner
+PASS explicitly repeated purchase succeeds once and matches durable currency
+PASS stale callback after successful retry cannot purchase twice
+PASS failure fixture includes an actually activated paid aura
+PASS failed equip preserves gear, bag, current resources, cooldown and running aura
+PASS failed unequip preserves ownership and running effects
+PASS failed hotbar assignment does not stop the existing aura
+PASS failed mastery refund cannot cancel casts or spend/refund points
+PASS failed unique attunement preserves gold, unique eligibility, bag and effects
+PASS failed F7 save cannot change scenes or cancel paid casts
+PASS failed save-and-quit keeps the active game available
+PASS failed exit offers retry and an explicit unsaved-exit choice
+PASS native window-close failure follows the same recovery flow
+PASS failed arrange leaves every original bag coordinate unchanged
+PASS movement failure test uses a legal empty destination
+PASS failed within-bag drag preserves item placement
+PASS post-commit backup warning still applies the durable purchase
+PASS warning state keeps live and disk ownership in agreement
+PASS successful unequip commits a legal candidate before changing ownership
+PASS prospective gear clamps saved and live resources identically without refill
+PASS successful equipment transaction publishes exactly the live containers
+PASS successful within-bag drag saves the exact requested destination
+PASS successful arrange publishes the same UID order and coordinates shown in the bag
+PASS successful within-stash drag persists its own container rather than the backpack
+PASS real disk adapter writes and verifies the full actor
+PASS real disk reload restores exact ownership and paid resources without refill
+RELIABILITY RESULT 77 checks; 0 failures

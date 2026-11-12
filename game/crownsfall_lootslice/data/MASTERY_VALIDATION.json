@@ -1,0 +1,47 @@
+{
+  "revision": "Crownsfall Mastery + Higgsfield Art",
+  "date": "2026-11-11",
+  "engine": "Godot 4.6.3 Linux",
+  "playable_classes": [
+    "warrior",
+    "mage"
+  ],
+  "planned_classes": 13,
+  "base_ability_definitions": 19,
+  "implemented_ability_variants": 1,
+  "mastery_nodes": 5,
+  "functional_named_uniques": [
+    "emberwake_circlet"
+  ],
+  "item_bases": 16,
+  "mage_frames": 35,
+  "mage_source_facings": 5,
+  "painted_runtime_icons": 21,
+  "bonus_source_book": 1,
+  "editable_vectors": 39,
+  "procedural_sound_cues": 13,
+  "verified_rebuild_derivatives": 51,
+  "unique_assertions": 242,
+  "checks": {
+    "warrior": 52,
+    "mage": 57,
+    "lab": 28,
+    "art_audio": 19,
+    "mastery": 86
+  },
+  "rendered_checks": {
+    "mastery": 86,
+    "mage": 57
+  },
+  "analytic_tuning_checkpoints": 26,
+  "validated_demo_records": 3,
+  "schema": 4,
+  "save_namespace": "AgeOfTheLost_Crownsfall_MasterySlice",
+  "save_filename": "crownsfall_mastery_v4.json",
+  "windows_tested": false,
+  "exported_executable": false,
+  "new_3d_mage_mesh": false,
+  "included_lab_model": "Preserved 58-bone/six-clip geometric proxy",
+  "new_modeling_reference": "Single-character front PNG only",
+  "paid_higgsfield_credits_consumed": 0
+}

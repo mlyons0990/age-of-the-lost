@@ -1,0 +1,975 @@
+{
+  "created": "2026-11-11",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "0a8a985bd12fb47c129ec8ffd1cfc6899e3fc329d3672e3885595eccbd244f78",
+      "size": 2071
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "3e18b941634fc289212585016d88a54ac7366df8de1ec3b120238a04707640a0",
+      "size": 6633
+    },
+    {
+      "path": "README.md",
+      "sha256": "f43345c71e731d834701edaa8b284d0b2a438738efb8dc48fbddaf52984b220a",
+      "size": 5161
+    },
+    {
+      "path": "README_CONSOLIDATED_FIRST.md",
+      "sha256": "1b8af6e711fd37a93947e5c7cd1d42ae4466d0ce286fb17f5a20acb766fad4f6",
+      "size": 5997
+    },
+    {
+      "path": "assets/enemies/brute.png",
+      "sha256": "ff6083f027f8ed73bc7d71548d888b6b5b6e8c1595692f0e66454e42cabec428",
+      "size": 189781
+    },
+    {
+      "path": "assets/enemies/brute.png.import",
+      "sha256": "3f1ecbfe92e6df8be1253e878ada448ac16b7e32e6e29b39f44d48f4306f11f4",
+      "size": 934
+    },
+    {
+      "path": "assets/enemies/revenant.png",
+      "sha256": "648af8a513f48363c869ea3518b673df8c9a2c8ee87b78f1070dcee13c7829fd",
+      "size": 96885
+    },
+    {
+      "path": "assets/enemies/revenant.png.import",
+      "sha256": "fea82c078df166618ebdbe111744cb104d334277b81646d5edee535dbd317a54",
+      "size": 943
+    },
+    {
+      "path": "assets/enemies/slime.png",
+      "sha256": "d16757e94dde37d388bd8a9373ab7c711160885c7a7a45b647ef24906e92e7f7",
+      "size": 40525
+    },
+    {
+      "path": "assets/enemies/slime.png.import",
+      "sha256": "9cfc0d005461a47d5c371d201c502afe2cbf1ed70934486ce037b75cec8c8c55",
+      "size": 934
+    },
+    {
+      "path": "assets/icons/amulet.svg",
+      "sha256": "b3091a872d8831666d823d0639122642fde458d5910cc89dddbaf910ce5b50ce",
+      "size": 785
+    },
+    {
+      "path": "assets/icons/amulet.svg.import",
+      "sha256": "66572cbbb573f8161f34d2179d1fc8c102adcc9abb967bc69d768f3e53720aae",
+      "size": 1032
+    },
+    {
+      "path": "assets/icons/armor.svg",
+      "sha256": "7627e5535644f7a2c3cd379193b44e0bbcfa8d7884df8265f20e399841dfe6d1",
+      "size": 803
+    },
+    {
+      "path": "assets/icons/armor.svg.import",
+      "sha256": "c49fdcda40cd60433b992bb2254541440dbc9b593627cbd8c325b2a1e19470b8",
+      "size": 1029
+    },
+    {
+      "path": "assets/icons/belt.svg",
+      "sha256": "bbb46847a9e94f5d5c964e937fbad375db5153b8efeae90302572b4918b3f86f",
+      "size": 747
+    },
+    {
+      "path": "assets/icons/belt.svg.import",
+      "sha256": "f6a6a4b7527d82d941cf47855a6fb669748e019a76ba9f94f89dff1ba3d922f2",
+      "size": 1026
+    },
+    {
+      "path": "assets/icons/boots.svg",
+      "sha256": "c5784ac9c1652a9141e9b54754b7c13ed8c4eca7681ef2b7b24d28f9a770386b",
+      "size": 775
+    },
+    {
+      "path": "assets/icons/boots.svg.import",
+      "sha256": "9bf2a42c17f3ada6a47fc2d3d3357a43dfb44af843d1a6b0607c0ffd0dbb2d6b",
+      "size": 1029
+    },
+    {
+      "path": "assets/icons/breath.svg",
+      "sha256": "f3e191d6e66efb19775543ffce3dd216b3683f870024c090fdddffc9f8d0c542",
+      "size": 778
+    },
+    {
+      "path": "assets/icons/breath.svg.import",
+      "sha256": "f1857290fdcb3b489baa05513e6e7a68fd7a08ae7cd31c904dc1b3edd5fd7e47",
+      "size": 1031
+    },
+    {
+      "path": "assets/icons/charge.svg",
+      "sha256": "a2073e50866017b7a94aba7987bed77af2315bba4b58f09ab07f92503c0430e4",
+      "size": 765
+    },
+    {
+      "path": "assets/icons/charge.svg.import",
+      "sha256": "bb5ba8fc8e5c6a613d38b8c26fddf8d8248b31a430a4b2c37fed9f1cbfc65e99",
+      "size": 1032
+    },
+    {
+      "path": "assets/icons/cleave.svg",
+      "sha256": "c362fe3d57d0f34bf1bfbf500592b63ece4d234ae33661ca31f2f6f5733a90b4",
+      "size": 747
+    },
+    {
+      "path": "assets/icons/cleave.svg.import",
+      "sha256": "099f70934d96ca3fadd273aaacf4f9f55f9c7fb3b52528fff29380ecdbb9fcd8",
+      "size": 1032
+    },
+    {
+      "path": "assets/icons/dawnfall.svg",
+      "sha256": "b98cd4ffe363c6118ac0ea4aeec3106e0e9c1d4ff58cac367a9823cbb152090d",
+      "size": 779
+    },
+    {
+      "path": "assets/icons/dawnfall.svg.import",
+      "sha256": "eb37fc8b407762021d322e320c3e59c6b10677c996c4ffee4f5330187a5d4a1c",
+      "size": 1038
+    },
+    {
+      "path": "assets/icons/echo_strike.svg",
+      "sha256": "2dba427b6041d41cc2ba116235877a55dbb71c83ea865e3b69063e7a07cd0a42",
+      "size": 794
+    },
+    {
+      "path": "assets/icons/echo_strike.svg.import",
+      "sha256": "77d307816d6a431408f2a00902a3d82d2cadc3aea4d547c37e688abacda31b51",
+      "size": 1047
+    },
+    {
+      "path": "assets/icons/ember_cone.svg",
+      "sha256": "837a70682126199fd3b24044342a7874e6079cc9ab5124cd187c0be1dc6b76ab",
+      "size": 779
+    },
+    {
+      "path": "assets/icons/ember_cone.svg.import",
+      "sha256": "60a86920b25b50a83470939bbd0266af924656c6bedec9c86de98ddccf6bc68b",
+      "size": 1044
+    },
+    {
+      "path": "assets/icons/frost_ring.svg",
+      "sha256": "43de46a6ce91a5cfaeee724ce0ebed284357f28ce2a1362a7c271d68b6460f3f",
+      "size": 832
+    },
+    {
+      "path": "assets/icons/frost_ring.svg.import",
+      "sha256": "a0fba9a666300d20f045a65a426b7e37a2bd06647d4df8cc91121d144f562137",
+      "size": 1043
+    },
+    {
+      "path": "assets/icons/gloves.svg",
+      "sha256": "6e1688cf4de2fe13a238d48ae4530ec3b577988bbe0c341d9a02604f87604f91",
+      "size": 822
+    },
+    {
+      "path": "assets/icons/gloves.svg.import",
+      "sha256": "b0e812391107e5bb42beedccff1eda3997b7eb3b71e953f16cb93fd5fdb94f92",
+      "size": 1032
+    },
+    {
+      "path": "assets/icons/hammer.svg",
+      "sha256": "c06039fd259be74227508b4f423ab30de9ce1d5aa443ef5c0c7eedeeb5de9fae",
+      "size": 761
+    },
+    {
+      "path": "assets/icons/hammer.svg.import",
+      "sha256": "626b505c25711086460eaeb4e097fa984501d2b8f8870191316f3063468742bc",
+      "size": 1032
+    },
+    {
+      "path": "assets/icons/harvest.svg",
+      "sha256": "a2356475f2d49a020e906674f6068d401e7d06c2f41272f068468247d8679d2b",
+      "size": 760
+    },
+    {
+      "path": "assets/icons/harvest.svg.import",
+      "sha256": "1707cfc4c0b1547a788551e1a83bb1ca1480dbc40984b381f752c2c0ae87c5eb",
+      "size": 1034
+    },
+    {
+      "path": "assets/icons/helm.svg",
+      "sha256": "4aad7d32cd382e3b3b4bc1f80c76a381bc43d406b0887bc469ce1dfea917aa2a",
+      "size": 793
+    },
+    {
+      "path": "assets/icons/helm.svg.import",
+      "sha256": "b0572cae64d887a1203649c3274d8a5c6a7d5498983cbb030678013fa399dc8d",
+      "size": 1026
+    },
+    {
+      "path": "assets/icons/lock.svg",
+      "sha256": "6c758bcff9d180c9947122dbfd19ea8cfa7b97f0af994ee69faeec5bebbe6046",
+      "size": 756
+    },
+    {
+      "path": "assets/icons/lock.svg.import",
+      "sha256": "741c8c879a87101bc70d744b7cbdb54473d46f5e098869869b04ee214d135651",
+      "size": 1026
+    },
+    {
+      "path": "assets/icons/lore.svg",
+      "sha256": "9bbebcc9f7ee27d5fc8027eac9c0c921c3b3c4f5de3be3ce0601a45c4cd4ab36",
+      "size": 812
+    },
+    {
+      "path": "assets/icons/lore.svg.import",
+      "sha256": "a4c91c6d52d5341c0d903ca2a3895a1db49b3f4a5b2687ab96a424b971a21477",
+      "size": 1026
+    },
+    {
+      "path": "assets/icons/offhand.svg",
+      "sha256": "7720800b3ce19262512e663f814cbc748457c49fd2ba3b1c7d05185ab8193f72",
+      "size": 771
+    },
+    {
+      "path": "assets/icons/offhand.svg.import",
+      "sha256": "93be3cc6d9b32e84b11a2a71c49e004ddea9daab249b20472413d556a2d838c4",
+      "size": 1035
+    },
+    {
+      "path": "assets/icons/potion.svg",
+      "sha256": "74767a577248e60ed647ed0e1f80bd972619214e7bc4b53ace7b2c1e0d0b9ac3",
+      "size": 788
+    },
+    {
+      "path": "assets/icons/potion.svg.import",
+      "sha256": "8dd1819de10822adfcb26db9057140c0bd6dae0b4af38fe5cbf0634638f573f2",
+      "size": 1031
+    },
+    {
+      "path": "assets/icons/rally.svg",
+      "sha256": "841eb702c7adc5a2cfd846e7811fcc02abb29891d47db01c845da1d78d81a98f",
+      "size": 763
+    },
+    {
+      "path": "assets/icons/rally.svg.import",
+      "sha256": "b86616501156a294b240c3ef317cd452dff138d7d7add53e6902e4af00c8cc8a",
+      "size": 1029
+    },
+    {
+      "path": "assets/icons/ring.svg",
+      "sha256": "c9b862c68e2999a4051ccc99ee0bbac7e95d11ee5604447f644dc59f3ea2a8f4",
+      "size": 796
+    },
+    {
+      "path": "assets/icons/ring.svg.import",
+      "sha256": "9185cf42e65878bc6ac16f3cd93453b48f60db249ed7fd126a43dbc93f458ab1",
+      "size": 1026
+    },
+    {
+      "path": "assets/icons/slash.svg",
+      "sha256": "15c0e17372e2d36b2b460a3fa8646790b3a71b24492612b7b05bd0c5dc3e61d4",
+      "size": 751
+    },
+    {
+      "path": "assets/icons/slash.svg.import",
+      "sha256": "f5900ecce3a9dc40cd88c01531a979a8251173a10c62e0462ac1048870995deb",
+      "size": 1029
+    },
+    {
+      "path": "assets/icons/stash.svg",
+      "sha256": "9c13f8f398498518f3560fcfa5b2d80718d7710159558675ee91670e7d5b7c22",
+      "size": 782
+    },
+    {
+      "path": "assets/icons/stash.svg.import",
+      "sha256": "cf71d31acce974b6f751ee3ed1f26bd3631af76695a50d33b51bf87405440b4b",
+      "size": 1028
+    },
+    {
+      "path": "assets/icons/weapon.svg",
+      "sha256": "44c0d20979a99028104ce31019a16e9a1af9d72a297ee0dc8283aff56362c5b5",
+      "size": 750
+    },
+    {
+      "path": "assets/icons/weapon.svg.import",
+      "sha256": "db69cc3e079c2e1adf012944a5b5ac4e270d788783010bee76326e0dc8b755f9",
+      "size": 1031
+    },
+    {
+      "path": "assets/knight/attack_ne.png",
+      "sha256": "b781c34ce240174b395d1322c75506156d5370bdf7cfffc7ee2413c81f3a5965",
+      "size": 2662263
+    },
+    {
+      "path": "assets/knight/attack_ne.png.import",
+      "sha256": "8d4776a32acd888797890afdd30c292846cde378dfa942b9e35838efbea56935",
+      "size": 945
+    },
+    {
+      "path": "assets/knight/attack_se.png",
+      "sha256": "b444fbe3640e92adffa770b96ab61966c8c7a1053b00852119db576ad3c876a1",
+      "size": 2451600
+    },
+    {
+      "path": "assets/knight/attack_se.png.import",
+      "sha256": "cafd4bbf826562d6213d9e1f0bc98bfdb4a5644c602e4cf78f314fca5885bfcc",
+      "size": 944
+    },
+    {
+      "path": "assets/knight/idle_down.png",
+      "sha256": "baa45e83d7eb336aef370880d910c1256e7abab91dd22f899b748ded2cb0fa0c",
+      "size": 121603
+    },
+    {
+      "path": "assets/knight/idle_down.png.import",
+      "sha256": "e152cbb6c31dea4080ee96cf4fa8297e8d5a4e9e1d7ba4596207a8e4f38ff4a8",
+      "size": 945
+    },
+    {
+      "path": "assets/knight/idle_ne.png",
+      "sha256": "49aaac036448549cc0de62cda799c2d31f1031bf56c2e0453979cc8c87bea0a1",
+      "size": 134878
+    },
+    {
+      "path": "assets/knight/idle_ne.png.import",
+      "sha256": "d055e274e7caae09291ff69dc5be755fbd8a7bde447b592ad27f4607ae0786d0",
+      "size": 939
+    },
+    {
+      "path": "assets/knight/idle_right.png",
+      "sha256": "7662ee3e8ff6105e29ab64330611f379cead44d29d8af0154fc7050b160b05b7",
+      "size": 112274
+    },
+    {
+      "path": "assets/knight/idle_right.png.import",
+      "sha256": "cccf03d2bf00b427190c4b4b90b994a29dab0016298ff9132dc6f30b78dc2655",
+      "size": 948
+    },
+    {
+      "path": "assets/knight/idle_se.png",
+      "sha256": "494c308e0059d844a828a879aa3616977d4ccec36eafa48ba2726bf59378508a",
+      "size": 127060
+    },
+    {
+      "path": "assets/knight/idle_se.png.import",
+      "sha256": "197fae8f39d505c87d38ea1e999e5a5008889a2d714e050d8cdd4def82fc55c0",
+      "size": 939
+    },
+    {
+      "path": "assets/knight/idle_up.png",
+      "sha256": "93929c97a543c5962bca280700e558e37681f6789e167adbd8ae1c5b195e5130",
+      "size": 124224
+    },
+    {
+      "path": "assets/knight/idle_up.png.import",
+      "sha256": "839742fd1b1a8d1e9578871478c9d4ac6c2ec29a070e190640766a397131423f",
+      "size": 938
+    },
+    {
+      "path": "assets/knight/walk_down.png",
+      "sha256": "6e16b6fd30c08bda703d9c3eba79e6de9395268f7c5db5d98eb6d70a16877aeb",
+      "size": 1424389
+    },
+    {
+      "path": "assets/knight/walk_down.png.import",
+      "sha256": "19149ec9b9b1cd432ce5df178d1c57bedc5cde259ba396526ad23d825baa26d1",
+      "size": 945
+    },
+    {
+      "path": "assets/knight/walk_ne.png",
+      "sha256": "9bf2268e182fb6baaf9ecb733e9319b315438eb24ddeaeee199de89de1450380",
+      "size": 1539085
+    },
+    {
+      "path": "assets/knight/walk_ne.png.import",
+      "sha256": "008c72f7fb2d6f7940670001cbad514bdc4f27fa0964380dac41b1475aa66344",
+      "size": 939
+    },
+    {
+      "path": "assets/knight/walk_right.png",
+      "sha256": "e661b9109d2a8163041ca4450789ce01b6d1f944b21621e65cd6e0596bda6115",
+      "size": 1307457
+    },
+    {
+      "path": "assets/knight/walk_right.png.import",
+      "sha256": "906e674d9bb4be96ea4475786f991bd880a63ad34f5ab7fe9ed1f4a94a1120e9",
+      "size": 948
+    },
+    {
+      "path": "assets/knight/walk_se.png",
+      "sha256": "3a8fea9719f785924e1248369cd970169c6282ec7c989d9ed6875cbde9f4ac19",
+      "size": 1457428
+    },
+    {
+      "path": "assets/knight/walk_se.png.import",
+      "sha256": "924e1af80d688a048af92b2009734faeffe5636f3529158a66c1b619db3939d5",
+      "size": 939
+    },
+    {
+      "path": "assets/knight/walk_up.png",
+      "sha256": "1e72a3bab01e39bb790cb9ae181df6f63e3588ea299bf769e891384b7796df9d",
+      "size": 1480404
+    },
+    {
+      "path": "assets/knight/walk_up.png.import",
+      "sha256": "dce5e0478b6e3f631e1adea85aeae458f4bca4094de3a66817d82e1ba8037086",
+      "size": 939
+    },
+    {
+      "path": "assets/plaza.png",
+      "sha256": "f5a9d408e84121cee680669e06bd5230384b0f004b6c310094a23fa00488f60f",
+      "size": 8162920
+    },
+    {
+      "path": "assets/plaza.png.import",
+      "sha256": "ecaeb9b2e4da486cd489bec087098abc50e726d31b983155e524dcfb9370d89b",
+      "size": 926
+    },
+    {
+      "path": "data/balance_snapshot.armor.translation",
+      "sha256": "07cea2f4b19cefef38838a071972b33226f38ce8579b8840ac22a779de98e5ee",
+      "size": 630
+    },
+    {
+      "path": "data/balance_snapshot.cleave.translation",
+      "sha256": "6235b588991558ff6a27d7150a9fc46cd5b9f5a94ee00a49d6c8907072bbf07e",
+      "size": 631
+    },
+    {
+      "path": "data/balance_snapshot.crit.translation",
+      "sha256": "812e6d93dff64616a701554fed126e83f8eab1f0f039c73aa1409eedde0eab35",
+      "size": 625
+    },
+    {
+      "path": "data/balance_snapshot.csv",
+      "sha256": "e05c54b14dc455735bf73145e42854c67fd768e0b5a7884986fdebf2dfbaab85",
+      "size": 1634
+    },
+    {
+      "path": "data/balance_snapshot.csv.import",
+      "sha256": "c0c1d188b65b832455fc76cdbdf96c63df0ecfd4ff9e9ccb7215d16cf8ddbdf4",
+      "size": 1317
+    },
+    {
+      "path": "data/balance_snapshot.incoming.translation",
+      "sha256": "0b80d2cd7e191aef98ce6a6777fb96cd18088cf43865b8634384a08c96b06c5e",
+      "size": 629
+    },
+    {
+      "path": "data/balance_snapshot.loadout.translation",
+      "sha256": "94f5b1ff0d6309dc5a88ee2d96a47933bce8f405d2378638972b27eb0a026232",
+      "size": 732
+    },
+    {
+      "path": "data/balance_snapshot.mana.translation",
+      "sha256": "b6b259e57503b851bb576e826680411c3e7b9ea0579cc33a876eab5f9712610f",
+      "size": 621
+    },
+    {
+      "path": "data/balance_snapshot.max.translation",
+      "sha256": "59f460d749ed347c04f4998fad3c7ffe0ec037f99d9d562463d18d1421841d3e",
+      "size": 620
+    },
+    {
+      "path": "data/balance_snapshot.power.translation",
+      "sha256": "e495b90be744d9d02717cdb48757de48aef1c449440d342dae89cc695d80a54a",
+      "size": 630
+    },
+    {
+      "path": "data/balance_snapshot.raw.translation",
+      "sha256": "baa2b371a6db572f330d36d67037cca60df79d1121c80dcfa1a6d0ddd11df17a",
+      "size": 620
+    },
+    {
+      "path": "data/balance_snapshot.revenant.translation",
+      "sha256": "68a0c1956da340a524d37f06e2edd320ca4636d200d6c84a2c30ad75388e19ee",
+      "size": 625
+    },
+    {
+      "path": "data/change_manifest.json",
+      "sha256": "44b6cb538d498c3b1c951a39cf2ce22a6d603ae911a18ed5e7c89b5bca49df84",
+      "size": 7928
+    },
+    {
+      "path": "data/class_ability_proposals.class.translation",
+      "sha256": "fe0e0b966b9f81bb6b52d4b617e0c3a1167eac4a8406cd7a055232aa3d68497e",
+      "size": 2718
+    },
+    {
+      "path": "data/class_ability_proposals.cooldown.translation",
+      "sha256": "9a5f2d59fddd8439e0f43c75280fde75d289089b9a67ed2db8b8119dd98774b0",
+      "size": 2409
+    },
+    {
+      "path": "data/class_ability_proposals.csv",
+      "sha256": "a574e36359b0e27d7f125a68973e0c0c6987e9b5c9e188d01cb8244608b487a4",
+      "size": 9515
+    },
+    {
+      "path": "data/class_ability_proposals.csv.import",
+      "sha256": "18ddb11b2f93887f2b14846de91fe96887d7112c808d0ff84eb2590d3ebd5b15",
+      "size": 1615
+    },
+    {
+      "path": "data/class_ability_proposals.icon.translation",
+      "sha256": "4ecfb02a2da3cbc513256fd4f7e903a776db26a77833938c2b08b7751029c8df",
+      "size": 625
+    },
+    {
+      "path": "data/class_ability_proposals.json",
+      "sha256": "8a6cc7427794d3092a89ecee33974c07f0bb7d0aec1df5804f7e60bda8174618",
+      "size": 29389
+    },
+    {
+      "path": "data/class_ability_proposals.mechanic.translation",
+      "sha256": "1bce51011aa5b45c313806f1dd9455092f6c9cab8f9085f2581c5cae12092496",
+      "size": 4657
+    },
+    {
+      "path": "data/class_ability_proposals.name.translation",
+      "sha256": "52c1b64d8a59f45c2dbeaee89fbafe6303ede97a94de860fd66f8301e308fbd0",
+      "size": 2961
+    },
+    {
+      "path": "data/class_ability_proposals.power.translation",
+      "sha256": "29748bd4cd4c01f0b66ecaf8b2cfb54cff148e88020667f67133012cc142d1ab",
+      "size": 2450
+    },
+    {
+      "path": "data/class_ability_proposals.requires.translation",
+      "sha256": "a970f81cdda9f34f0b80f55eb1ab06eae05d652e30612e85f4f554572b9518cf",
+      "size": 477
+    },
+    {
+      "path": "data/class_ability_proposals.resource.translation",
+      "sha256": "37d379ba63cf1ccd9e99742ca5e9bd1f53d0262a24f1b6be32bd56e6c3afb03c",
+      "size": 2429
+    },
+    {
+      "path": "data/class_ability_proposals.role.translation",
+      "sha256": "936dcddaa5954abdbb0dbda677ab639b94df689f7c3d3c830da98585647871a4",
+      "size": 2641
+    },
+    {
+      "path": "data/class_ability_proposals.status.translation",
+      "sha256": "af4eb0aeabac8cc12f4df0f3c078e54e263c2c0947c3dc9a1e88e6999f65e082",
+      "size": 3351
+    },
+    {
+      "path": "data/class_ability_proposals.unlock.translation",
+      "sha256": "f96edc3cd9360410cc506305fc84724b4e0bc2a6da18f436b2cc3fc780f390e9",
+      "size": 2363
+    },
+    {
+      "path": "data/class_roster.json",
+      "sha256": "e26d6c60ed8e8bbbe3023ade8cd5a29fbdd992d66dc503ba7034419c083d6730",
+      "size": 7588
+    },
+    {
+      "path": "data/icon_manifest.json",
+      "sha256": "8815726b75a431a8393b6e3b2afb45d947f7f34cbae8512a397903346453cb8c",
+      "size": 6150
+    },
+    {
+      "path": "data/implemented_spells.json",
+      "sha256": "99483a868c7c9690a23197dcd65dc2bbd7b316cb59ad15e5b0b701750cd869b9",
+      "size": 3274
+    },
+    {
+      "path": "data/source_manifest.json",
+      "sha256": "c4e1c3b12d517774dc2f582f4c75a1b209210c0bd1389ae834a84dbe44b1598d",
+      "size": 1978
+    },
+    {
+      "path": "data/unique_and_set_proposals.json",
+      "sha256": "e1ee4c81d70290254b96cc36ab92dd7878fa5169ba012592e9e55a559b4592e3",
+      "size": 2341
+    },
+    {
+      "path": "docs/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "docs/BALANCE_AND_SCALING.md",
+      "sha256": "557efd1f5b6e2e900ff775c348543ba6a1659f2b13bb003019d7f19a86f34e5a",
+      "size": 9900
+    },
+    {
+      "path": "docs/CONTENT_BLUEPRINT.md",
+      "sha256": "286d5dc5e2706ce22bcba99669b6a4357f01845a53a5cb85c83223c68b97bfac",
+      "size": 19891
+    },
+    {
+      "path": "docs/EXPANDED_HANDOFF_COMPLETE.md",
+      "sha256": "58bf7bf00f9745e4ab0e9433d6ee7d8857dfa3a44f8d0f79dabcdfb2887455c9",
+      "size": 80431
+    },
+    {
+      "path": "docs/Expanded_Handoff.docx",
+      "sha256": "74815f139de256b9fed1a8d3835879a4aad93cf09cac79be994dd814c0e066cb",
+      "size": 4940297
+    },
+    {
+      "path": "docs/ICON_ATLAS.html",
+      "sha256": "c903d7703b921ee69d43bcea60b4a481f455799e7122fccc94108cac1f225096",
+      "size": 2460
+    },
+    {
+      "path": "docs/IMPLEMENTATION_BACKLOG.md",
+      "sha256": "54189dd2bef70870e4d71468db23a58d1b007774b0a04603943dcb7a391f99ef",
+      "size": 7388
+    },
+    {
+      "path": "docs/INTEGRATION_STATUS_AND_NEXT_GATES.md",
+      "sha256": "57c44fe2aa1c9bf655ec2e88f2b6f624e66fa038ed64b99e7f8fbd7f3b3a5750",
+      "size": 7943
+    },
+    {
+      "path": "docs/OLDER_3D_HANDOFF_UNVERIFIED.md",
+      "sha256": "38f22484f6b487038e010c398e99a2385a26d5e81c95bafa6e6d03a2ebaedeae",
+      "size": 19442
+    },
+    {
+      "path": "docs/QA_AND_REPRO.md",
+      "sha256": "06c6d409c596f82af1b0b42c44960e3c656a268989b30370e05ec181e7f12bb3",
+      "size": 8572
+    },
+    {
+      "path": "docs/SOURCE_LEDGER.md",
+      "sha256": "44530b51e0f1f6665049adec0474141e4a96b5307e3ca69bac86ac6e1f32c79c",
+      "size": 4567
+    },
+    {
+      "path": "docs/SYSTEMS_DESIGN.md",
+      "sha256": "abf65b724731ec2023f4df99d08e72a1cf24b14817e69df845a1d3aa2e5761e3",
+      "size": 19706
+    },
+    {
+      "path": "docs/source_archive/Age_of_the_Lost_AI_Handoff_2026-11-10.md",
+      "sha256": "b84db13fdd755ae7e87bb8d63cddf1a1b628ea1f81b596a5f2ca624e2ce27453",
+      "size": 56120
+    },
+    {
+      "path": "docs/source_archive/Age_of_the_Lost_Conversation_Handoff.txt",
+      "sha256": "6c9726d6af449ed0f1e20023e03e11e64565c6abe815466943653f1e2447a9ea",
+      "size": 19773
+    },
+    {
+      "path": "docs/source_archive/Crownfall-HANDOFF.md",
+      "sha256": "f22f533f06831b85ac0df48bf37a86488d584882ca7f4bc985c6fb1fcc6b6b8d",
+      "size": 4361
+    },
+    {
+      "path": "docs/source_archive/Crownfall_Art_Update_Original_HANDOFF.md",
+      "sha256": "c459331bec88064d81d9fec8911dcec94c21023b14f9529ab5aec7165f85ea61",
+      "size": 7364
+    },
+    {
+      "path": "main.tscn",
+      "sha256": "df7a61f5725d8b45812e95d89efa47df6fd3f51549c3938ea4627a28558ce52e",
+      "size": 159
+    },
+    {
+      "path": "models/AOTL_Wayfarer_Articulated_Proxy.glb",
+      "sha256": "9b4cdd1eeb3661334a6d0886d337b13352e693bfbafa20cd972c670b72f56b11",
+      "size": 319464
+    },
+    {
+      "path": "previews/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "previews/01_inventory.png",
+      "sha256": "d8755ab1612f841ecf6e1d5aec8f7b3d6adc37a749e9aa716316083a03134649",
+      "size": 1217529
+    },
+    {
+      "path": "previews/01_inventory.png.import",
+      "sha256": "f0836071a849c7c8e5ddd561066c180c9ae01e25abe0c0cceb6be91a9b292174",
+      "size": 949
+    },
+    {
+      "path": "previews/02_grimoire.png",
+      "sha256": "47a5485bd09c4c49d29902cfd7f91a4a877fd02f7581a224bedec2ce4dfa8a32",
+      "size": 1076164
+    },
+    {
+      "path": "previews/02_grimoire.png.import",
+      "sha256": "a27d47d5ee49f2f4a49bdf75c9a7a7712d120853317831c9fdf54feb6008181f",
+      "size": 945
+    },
+    {
+      "path": "previews/03_lorecasting.png",
+      "sha256": "936e1ec9255c3bb18b160f17015f8e646db371abfcc5cff005866775b58197ca",
+      "size": 1354995
+    },
+    {
+      "path": "previews/03_lorecasting.png.import",
+      "sha256": "f27fe9ef10fdfa6b12dac4b5296ff2495da20f4f70a52802aecdb192cc871665",
+      "size": 955
+    },
+    {
+      "path": "previews/04_stash.png",
+      "sha256": "7e52c6504d7fd500e06abdc51ac3a31d0b570ba9f74a2c53059ed540d0ec1849",
+      "size": 1262816
+    },
+    {
+      "path": "previews/04_stash.png.import",
+      "sha256": "fc9f5a4444f3697e2510a6f22c45e04f51f0e0de4eca95b76349bcda19164f3a",
+      "size": 936
+    },
+    {
+      "path": "previews/05_merchant.png",
+      "sha256": "a3c71ff80e6d0545ad8b6b5a2b67f38c9615a587984aaeb3fb8c35a395baedec",
+      "size": 1110402
+    },
+    {
+      "path": "previews/05_merchant.png.import",
+      "sha256": "ea1e1a9078f4981ab6f94e73651062c1902a5e99a7ff06dccca3496546e98bb2",
+      "size": 946
+    },
+    {
+      "path": "previews/06_plaza.png",
+      "sha256": "0c2e064cad8232a4ebc289c0309ef5d44598c934962b03192601cf4c7cd33a28",
+      "size": 2387918
+    },
+    {
+      "path": "previews/06_plaza.png.import",
+      "sha256": "e5e9ffc92eadec8b3aa342de07b69fecdca23799734de4a6ad0baeb6138c5b85",
+      "size": 937
+    },
+    {
+      "path": "previews/07_icon_atlas.png",
+      "sha256": "2a70c598299a79a7a16b440439a819ca4a9094bd820f50561e83bf01e83d7752",
+      "size": 203477
+    },
+    {
+      "path": "previews/08_actual_engine_combat.gif",
+      "sha256": "b99bb4e082cfc94627351247f31ec37bd93285fc32dbcdb3630e066008e37aa6",
+      "size": 3412488
+    },
+    {
+      "path": "previews/three_d/AOTL_3D_Rig_Motion_Preview.gif",
+      "sha256": "8732bc488a8658a6e240566623d663b9cc2f8d47903226a7e1ca03e3f171847b",
+      "size": 619186
+    },
+    {
+      "path": "previews/three_d/AOTL_3D_Rig_Pose_Contact_Sheet.png",
+      "sha256": "d4b06790f3d8f78e73a0791df9835d4c17897976fcc8852e3bb33e33c3b24734",
+      "size": 72123
+    },
+    {
+      "path": "project.godot",
+      "sha256": "3a912fafcf25f7dd61654fe3adf76803a40d89dc31663c13bf241726f7827019",
+      "size": 1121
+    },
+    {
+      "path": "references/canon_originals/01_Mage_Official(1).png",
+      "sha256": "d3ea29bc3b087f0c091a0f293722e5a06ccbcfb1564ad0609cb4587218c5bf7c",
+      "size": 3516774
+    },
+    {
+      "path": "references/canon_originals/02_Rogue_Official(1).png",
+      "sha256": "0921fbb95798b998fe0e43d5c35e2976343b610c559de7fafb37fac096aa2ef7",
+      "size": 3423729
+    },
+    {
+      "path": "references/canon_originals/03_Mail_Wearer_Official(1).png",
+      "sha256": "afc0f4e7fc6429d7248f72a0d1b6bf14f21f7b773947b90a52d2b1bbdecd90ea",
+      "size": 3471994
+    },
+    {
+      "path": "references/canon_originals/04_Crownsfall_Market_Official(1).png",
+      "sha256": "b2ef23d4a777656f53da76adce4a7be1e45479d9fe3bd46034b88116135ef1b4",
+      "size": 3914269
+    },
+    {
+      "path": "references/canon_originals/05_Crownsfall_Royal_Square_Official(1).png",
+      "sha256": "18826f815db226f17fa7cdf1640069b4114cf7d34e6960105601576cc4f693cb",
+      "size": 3821795
+    },
+    {
+      "path": "references/canon_originals/06_Crownsfall_Citadel_Official(1).png",
+      "sha256": "9c44c22f812a90a98aa0a7012cc805765fcde2db8310fab026d31035978a6b3a",
+      "size": 3991889
+    },
+    {
+      "path": "references/canon_originals/AOTL_Original_Six_Reference_Sheet.jpg",
+      "sha256": "0b4f05683d266830a9e79632939af652b0c8ebed18bd3e3a4c3220e728ed388a",
+      "size": 1201306
+    },
+    {
+      "path": "scenes/rig_lab_3d.tscn",
+      "sha256": "42c44faeb5f6d24df5cb76c3c8f7581680fce317041e40392e9616c0db30a5a9",
+      "size": 190
+    },
+    {
+      "path": "scripts/dev_test.gd.uid",
+      "sha256": "b299e550e75d3e55091d72f16282d4792ea535ee8235a5062bc8a42a17b841f9",
+      "size": 20
+    },
+    {
+      "path": "scripts/enemy.gd",
+      "sha256": "22d6c377f1d56879071775e141855a0ca51e496cc2aa6176f47eda57242782ec",
+      "size": 7934
+    },
+    {
+      "path": "scripts/enemy.gd.uid",
+      "sha256": "85423e14ea0de97f6e4372616026297556cdd4a5883eecc2431e997c697ac2b0",
+      "size": 20
+    },
+    {
+      "path": "scripts/fx.gd",
+      "sha256": "3b0b4c404899d878a656673a91baf510a2cc617e61eff499db0d90c09be2ff19",
+      "size": 6674
+    },
+    {
+      "path": "scripts/fx.gd.uid",
+      "sha256": "bc808df3611bf6fdb4919736da403e286ceac01411a790d3f665c9631afa4aa1",
+      "size": 20
+    },
+    {
+      "path": "scripts/game_data.gd",
+      "sha256": "2c4d3e288334199f12cd98b533020c8d5b5666a25ca4bed3e5f98fdeee216e3e",
+      "size": 7826
+    },
+    {
+      "path": "scripts/game_data.gd.uid",
+      "sha256": "a2556fa9984425b376939c5f54387d4a71cd883625aac6447bc4e01ae14c1f8c",
+      "size": 20
+    },
+    {
+      "path": "scripts/hud.gd",
+      "sha256": "17ff878fc2045fe0b277859130c779e4bbb470abd75aa10c324a46fbf450b8e5",
+      "size": 18734
+    },
+    {
+      "path": "scripts/hud.gd.uid",
+      "sha256": "6a6d866ca32c08060c2a2f0175af154c079ff3b5e7fe62b0f4a1527aa5f53c2b",
+      "size": 20
+    },
+    {
+      "path": "scripts/legacy_hud.gd",
+      "sha256": "4ffe969a261e286ac40a3702ca56a9c9b6a1a62d45e6b9c90e3b682a82144a4e",
+      "size": 22836
+    },
+    {
+      "path": "scripts/legacy_hud.gd.uid",
+      "sha256": "ebb04312f675304f7879be9c1c423516459a187399b5aad9b234704ede5adf4a",
+      "size": 20
+    },
+    {
+      "path": "scripts/loot.gd",
+      "sha256": "859f62c8027c939df711339d538606aca611aed31bd9df20b53db5fdd5f7e4ad",
+      "size": 2033
+    },
+    {
+      "path": "scripts/loot.gd.uid",
+      "sha256": "8982e7046927c992f07103b34d9496ed5ce0989a7b3ca5233258a7e5c47d228a",
+      "size": 20
+    },
+    {
+      "path": "scripts/main.gd",
+      "sha256": "93e2233b805df47713e801ce446cc92ca81dd5e520e834f8489228991d810764",
+      "size": 25527
+    },
+    {
+      "path": "scripts/main.gd.uid",
+      "sha256": "11c4389cde3f118c608978a7d6d319cd7354f7a1a9ac07ec4a8b676d55662079",
+      "size": 20
+    },
+    {
+      "path": "scripts/player.gd",
+      "sha256": "fb10111d8db7e57e2d90c4983566d01d8de6cccc51fcaef8653d7560cb303e72",
+      "size": 21275
+    },
+    {
+      "path": "scripts/player.gd.uid",
+      "sha256": "00223d4cee1d43d583a1c0c9c6a4532c5afa517375d69f34bc971b226ff5c888",
+      "size": 20
+    },
+    {
+      "path": "scripts/systems.gd",
+      "sha256": "d35ee4f73a419abdfc39664c03f23ee0309dc9f1869045a10c7209e6af2377d1",
+      "size": 5329
+    },
+    {
+      "path": "scripts/systems.gd.uid",
+      "sha256": "1327f76cb4df599ae8e73c498776d8209913a4fc122e513a9cdc614202ec551b",
+      "size": 20
+    },
+    {
+      "path": "scripts/three_d/rig_controller.gd",
+      "sha256": "a89848bb214c23c5443a744245bc0fdbad21da45042a0eb5ed29e7763d0a130d",
+      "size": 4748
+    },
+    {
+      "path": "scripts/three_d/rig_effects.gd",
+      "sha256": "7087eb20e166e929fb184a79c564175fca586de57dd4fcb414303f001e25a223",
+      "size": 3780
+    },
+    {
+      "path": "scripts/three_d/rig_lab.gd",
+      "sha256": "e9d18f6d046cace9f8d657cce5b12dc5c90192c4aba65a3ec5d1538d09cd2df6",
+      "size": 7185
+    },
+    {
+      "path": "scripts/three_d/training_dummy.gd",
+      "sha256": "bea8419ec8da08d56760c12ea155f01b7d2c91789820f56e0ef98eb0fcbba5fa",
+      "size": 1688
+    },
+    {
+      "path": "tests/HEADLESS_RESULT.txt",
+      "sha256": "92fe1fcaad6285c14edadef87990f18daaba46693fac34fd4ed4f3b05d4ad828",
+      "size": 2339
+    },
+    {
+      "path": "tests/LAST_RUN.txt",
+      "sha256": "d8bed589cdc0dc2227cd93302674a7983ff094ffb40521ce802a8d72332a6553",
+      "size": 2295
+    },
+    {
+      "path": "tests/RENDERED_RESULT.txt",
+      "sha256": "b48925c69e0a42248389fcdf738d3e26f955ff344866982cafc7d7c35d1c69ef",
+      "size": 2634
+    },
+    {
+      "path": "tests/capture_atlas.gd",
+      "sha256": "4fe00e94f199b09958338b7169b544fe8255d3bbd1d7735868f028a68586e636",
+      "size": 1615
+    },
+    {
+      "path": "tests/export_data.gd",
+      "sha256": "58b44066e09b8e2069730d7df45b9c62492384234e10b0f24ed3da0999aa4817",
+      "size": 1779
+    },
+    {
+      "path": "tests/export_data.gd.uid",
+      "sha256": "d2e349cffeb112eafe4869ebd775af58b28f004f0f6d5853909b01a5704842af",
+      "size": 20
+    },
+    {
+      "path": "tests/integration.gd",
+      "sha256": "5c3428b5aaa578078a93fbd573d4f2e83d3baf42a4ddd97414c3f59930021072",
+      "size": 12925
+    },
+    {
+      "path": "tests/integration.gd.uid",
+      "sha256": "d0320f7a0e47e1db801b3a34f319b76c4a0e49a9d2c706c840fe7181296ea4a1",
+      "size": 20
+    },
+    {
+      "path": "tools/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "tools/key_sprite.py",
+      "sha256": "c31e38f5d748ae3c002c3fcdad4178063b9a7994bdc1ea8728cc62fbda43ea16",
+      "size": 1017
+    },
+    {
+      "path": "tools/make_attack_strip.py",
+      "sha256": "621ebbb0e8eb23a1c7194d6e19f430059072dd95c826b45f617edfdbcfe2b2db",
+      "size": 1641
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "cinder_bloom": {
+      "cost": 2,
+      "desc": "Aura radius +25%. A primary kill of a burning enemy leaves a non-stacking 1s cinder patch while aura runs.",
+      "group": "ember_branch",
+      "level": 40,
+      "max_rank": 1,
+      "name": "Cinder Bloom",
+      "requires": {
+        "ember_aura": 1
+      }
+    },
+    "ember_aura": {
+      "cost": 2,
+      "desc": "Transform Ashen Ward into a paid toggle: 10 mana to start, 3 per 0.5s pulse, radius 2.5.",
+      "discovery": "first_echo",
+      "group": "",
+      "level": 40,
+      "max_rank": 1,
+      "name": "Ember Aura",
+      "requires": {
+        "ward_temper": 1
+      }
+    },
+    "siphon_embers": {
+      "cost": 2,
+      "desc": "Heal 2% of actual aura damage, capped at 3% max life in a rolling second. No overkill or secondary healing.",
+      "group": "ember_branch",
+      "level": 40,
+      "max_rank": 1,
+      "name": "Siphon Embers",
+      "requires": {
+        "ember_aura": 1
+      }
+    },
+    "steady_flame": {
+      "cost": 1,
+      "desc": "Aura upkeep -5% per rank. Damage and pulse timing are unchanged.",
+      "group": "",
+      "level": 45,
+      "max_rank": 2,
+      "name": "Steady Flame",
+      "requires": {
+        "ember_aura": 1
+      }
+    },
+    "ward_temper": {
+      "cost": 1,
+      "desc": "Ward absorption +10% per rank. After transformation, ranks 2 and 3 each add 5% aura pulse damage.",
+      "group": "",
+      "level": 20,
+      "max_rank": 3,
+      "name": "Tempered Ward",
+      "requires": {
+
+      }
+    }
+  },
+  "point_rule": "Mage: one point every five levels, 20 through 60",
+  "status": "implemented"
+}

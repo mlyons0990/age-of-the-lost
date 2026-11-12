@@ -1,0 +1,21 @@
+Godot 4.6.3-stable (official) / headless
+PASS Mage fixture can be created with painted assets installed
+PASS Mage selects its complete dedicated sprite bank
+PASS all five facings have four walking poses, idle and two casting poses
+PASS Warrior retains its original character bank
+PASS switching back restores Mage art without changing ownership
+PASS spell and inventory widgets select the actual painted files
+PASS unknown artwork retains the editable vector fallback
+PASS generated nine-slice panel is available as a runtime style
+PASS all thirteen PCM sound cues import with bounded durations
+PASS a committed Mage cast starts exactly one cue
+PASS cast windup selects the matching initial pose
+PASS rejected repeat cast does not produce another cue
+PASS gameplay release advances to cast release pose
+PASS muting stops all existing sound voices
+PASS mute preference survives sound-bank recreation
+PASS muted ward still commits gameplay without starting audio
+PASS insufficient mana fails silently before audio commitment
+PASS pause-screen control toggles and redraws persistent mute state
+PASS audio settings work while paused without rewriting progression
+19 checks; 0 failures

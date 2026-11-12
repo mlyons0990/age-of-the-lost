@@ -1,0 +1,37 @@
+{
+  "revision": "Crownsfall Inventory & Character",
+  "date": "2026-11-11",
+  "engine": "Godot 4.6.3 Linux",
+  "headless_assertions": 365,
+  "rendered_inventory_ui_assertions": 50,
+  "distinct_assertions": 367,
+  "checks": {
+    "warrior": 52,
+    "mage": 57,
+    "lab": 28,
+    "art_audio": 19,
+    "mastery": 86,
+    "encounter": 60,
+    "encounter_bouts": 15,
+    "inventory_ui": 48
+  },
+  "native_pointer_drag_verified": true,
+  "equipment_slots": 10,
+  "bag_geometry": [
+    10,
+    6
+  ],
+  "inventory_panel_logical_size": [
+    680,
+    1020
+  ],
+  "backplate_job_id": "85ac0717-b195-4cff-be49-f527065e88dd",
+  "art_rebuild_byte_verified": true,
+  "save_namespace": "AgeOfTheLost_Crownsfall_EncounterSlice",
+  "save_filename": "crownsfall_encounter_v4.json",
+  "save_schema": 4,
+  "prior_save_geometry_compatible": true,
+  "windows_tested": false,
+  "controller_tested": false,
+  "original_canon_hashes_preserved": true
+}

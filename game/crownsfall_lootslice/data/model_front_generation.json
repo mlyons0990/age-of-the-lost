@@ -1,0 +1,24 @@
+{
+  "job_id": "53b0cb28-39e7-4df2-8b92-037d41202f8b",
+  "model": "gpt_image_2_6",
+  "configuration": {
+    "model": "gpt_image_2_6",
+    "use_unlim": true,
+    "resolution": "2k",
+    "quality": "medium",
+    "output_format": "png",
+    "size": "1024x1536",
+    "aspect_ratio": "2:3",
+    "background": "transparent",
+    "count": 1,
+    "prompt": "Create exactly ONE clean full-body FRONT ORTHOGRAPHIC character modeling reference of the SAME Mage in the supplied official reference and turnaround. Young adult male, short tousled dark brown hair, royal cobalt blue cape and layered blue/ivory coat, clear gold ornamental trim, dark fitted trousers, gold boots. Preserve this identity and outfit. Neutral A-POSE, arms extended 35 degrees out from torso, palms open, hands and individual fingers separated and visible, legs comfortably separated. Cape hangs BEHIND arms and legs so limb silhouettes remain clear; do not wrap cloth over the hands. Absolutely NO STAFF, NO WEAPON, no magic, no particles, no pedestal or cast shadow. Full head, fingers, boots and cape inside frame with generous transparent padding. Flat front orthographic camera at torso height, no isometric tilt, no perspective distortion. Even neutral studio lighting, clean anime 3D-character concept rendering consistent with the reference. This single isolated front view will be a source image for a future image-to-mesh workflow. Transparent alpha background, not a checkerboard painting. ONE character only, no extra views, no duplicate figure, no labels, no text, no borders."
+  },
+  "reference_files": [
+    "references/canon_originals/01_Mage_Official(1).png",
+    "assets/higgsfield_sources/mage_turnaround.png"
+  ],
+  "accepted": true,
+  "usage": "Single-character modeling reference only. No mesh or rig was generated.",
+  "source": "assets/higgsfield_sources/mage_model_front_reference.png",
+  "paid_credits": 0
+}

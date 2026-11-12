@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/two_point_five_d/aotl_25d_lab.gd" id="1"]
+
+[node name="AOTL_25D_PaintedActorLab" type="Node3D"]
+script = ExtResource("1")

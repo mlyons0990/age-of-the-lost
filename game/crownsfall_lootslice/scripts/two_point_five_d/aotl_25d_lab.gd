@@ -5,6 +5,7 @@ extends Node3D
 const ACTOR := preload("res://scripts/two_point_five_d/painted_actor_25d.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
+const COURTYARD := preload("res://scripts/two_point_five_d/crownsfall_courtyard_25d.gd")
 const INK := Color("142238")
 const GOLD := Color("d0aa65")
 const IVORY := Color("f4e9d5")
@@ -18,17 +19,32 @@ var status: Label
 var casts := 0
 var slain := 0
 
+# Wider PoE-like ARPG framing: approx. 31% smaller actor at 810px-tall window.
+const CAMERA_POE_DEFAULT := 21.0
+const CAMERA_CLOSE_PREVIEW := 14.5
+const CAMERA_WIDE_PREVIEW := 25.5
+const CAMERA_MIN := 14.0
+const CAMERA_MAX := 28.0
+var camera_target_size := CAMERA_POE_DEFAULT
+var camera_preset_name := "ARPG / PoE-wide"
+var reference_panel: Control
+var zoom_label: Label
+var world_environment: Node3D
+
 func _ready() -> void:
-    _build_crownsfall_blockout()
+    world_environment = COURTYARD.new()
+    add_child(world_environment)
     player = ACTOR.new()
     player.position = Vector3(0.0, 0.07, 1.2)
     add_child(player)
     camera = Camera3D.new()
     camera.name = "Camera_Orthographic_AOTL"
     camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-    camera.size = 14.5
+    camera.size = CAMERA_POE_DEFAULT
     camera.current = true
     add_child(camera)
+    camera.global_position = player.global_position + Vector3(12.8, 16.4, 12.8)
+    camera.look_at(player.global_position + Vector3.UP * 1.10 + Vector3(0, 0, -1.8), Vector3.UP)
     player.camera = camera
     fx = FX.new()
     add_child(fx)
@@ -113,7 +129,7 @@ func _build_hud() -> void:
     add_child(canvas)
     var info_panel := PanelContainer.new()
     info_panel.position = Vector2(22, 24)
-    info_panel.custom_minimum_size = Vector2(550, 0)
+    info_panel.custom_minimum_size = Vector2(425, 0)
     var style := StyleBoxFlat.new()
     style.bg_color = Color(0.035, 0.06, 0.10, 0.91)
     style.border_color = GOLD
@@ -123,24 +139,29 @@ func _build_hud() -> void:
     canvas.add_child(info_panel)
     var v := VBoxContainer.new()
     info_panel.add_child(v)
-    v.add_child(_small_label("AGE OF THE LOST  |  2.5D ART LAB", 24, GOLD))
-    v.add_child(_small_label("Real 3D collision + existing painted character sprites", 16))
-    status = _small_label("", 17, Color("a5cdf5"))
+    v.add_child(_small_label("AGE OF THE LOST  |  PAINTED 2.5D", 20, GOLD))
+    v.add_child(_small_label("Original Warrior/Mage painted art · real 3D world", 13))
+    status = _small_label("", 14, Color("a5cdf5"))
     v.add_child(status)
-    summary = _small_label("", 16)
+    summary = _small_label("", 13)
     v.add_child(summary)
-    v.add_child(_small_label("WASD / click: move   Shift: sprint   Space: dodge", 15, GOLD))
-    v.add_child(_small_label("1: slash   2: heavy   3: cast   V: painter / rig   Tab: Mage / Warrior", 15, GOLD))
-    v.add_child(_small_label("Research scene. Painted dodge-roll frames not authored yet.", 14, Color("edc8a0")))
-    v.add_child(_small_label("Press F6 on this scene in Godot. Existing main game is unchanged.", 14, IVORY))
+    v.add_child(_small_label("WASD / click move · Shift run · Space dodge · 1/2/3 attacks", 13, GOLD))
+    v.add_child(_small_label("Wheel or +/- zoom · Home reset · V proxy · Tab class", 13, GOLD))
+    v.add_child(_small_label("P: show / hide approved art reference", 13, IVORY))
+    zoom_label = _small_label("", 13, Color("b0d3fb"))
+    v.add_child(zoom_label)
     var ref := TextureRect.new()
     ref.texture = load("res://assets/plaza.png")
     ref.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     ref.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-    ref.custom_minimum_size = Vector2(460, 220)
+    ref.custom_minimum_size = Vector2(400, 190)
     ref.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    v.add_child(ref)
-    v.add_child(_small_label("Approved painted Crownsfall plaza — visual reference only", 13, Color("b7b0a4")))
+    reference_panel = VBoxContainer.new()
+    reference_panel.name = "Toggle_Approved_Art_Reference"
+    reference_panel.visible = false  # Keep gameplay visible by default.
+    v.add_child(reference_panel)
+    reference_panel.add_child(ref)
+    reference_panel.add_child(_small_label("Approved plaza artwork · reference, not a ground texture", 12, Color("b7b0a4")))
 
 func _update_status(value: String) -> void:
     if status != null:
@@ -149,9 +170,12 @@ func _update_status(value: String) -> void:
 func _process(delta: float) -> void:
     if player == null or camera == null:
         return
-    var target: Vector3 = player.global_position + Vector3(10.0, 12.8, 10.0)
+    var target: Vector3 = player.global_position + Vector3(12.8, 16.4, 12.8)
     camera.global_position = camera.global_position.lerp(target, minf(1.0, delta * 8.0))
-    camera.look_at(player.global_position + Vector3.UP * 1.10, Vector3.UP)
+    camera.look_at(player.global_position + Vector3.UP * 1.10 + Vector3(0, 0, -1.8), Vector3.UP)
+    camera.size = lerpf(camera.size, camera_target_size, minf(1.0, delta * 9.0))
+    if zoom_label != null:
+        zoom_label.text = "Camera: %s · %.1f m vertical view" % [camera_preset_name, camera.size]
     if summary != null:
         summary.text = "Action impacts: %d   Targets defeated: %d" % [casts, slain]
 
@@ -178,6 +202,9 @@ func _on_player_impact(kind: String, where: Vector3, forward: Vector3) -> void:
 func _unhandled_input(event: InputEvent) -> void:
     if player == null:
         return
+    if event is InputEventMouseButton and event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
+        _set_camera_zoom(camera_target_size + (-1.5 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.5))
+        return
     if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
         if event.shift_pressed:
             player.start_action("slash")
@@ -199,5 +226,22 @@ func _unhandled_input(event: InputEvent) -> void:
             KEY_TAB:
                 player.toggle_class()
                 _update_status("Visual: %s · %s" % [player.visual_mode, player.player_class])
+            KEY_MINUS, KEY_KP_SUBTRACT:
+                _set_camera_zoom(camera_target_size + 1.5)
+            KEY_EQUAL, KEY_KP_ADD:
+                _set_camera_zoom(camera_target_size - 1.5)
+            KEY_HOME:
+                _set_camera_zoom(CAMERA_POE_DEFAULT)
+            KEY_P:
+                if reference_panel != null:
+                    reference_panel.visible = not reference_panel.visible
             KEY_ESCAPE:
                 get_tree().quit()
+
+func _set_camera_zoom(size_metres: float) -> void:
+    camera_target_size = clampf(size_metres, CAMERA_MIN, CAMERA_MAX)
+    camera_preset_name = "ARPG / PoE-wide" if is_equal_approx(camera_target_size, CAMERA_POE_DEFAULT) else "Custom"
+    _update_status("Isometric camera: %.1f m visible height" % camera_target_size)
+
+func camera_size_for_test() -> float:
+    return camera_target_size

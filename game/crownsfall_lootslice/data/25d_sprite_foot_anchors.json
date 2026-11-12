@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "description": "Alpha-bounds based vertical foot-pivot metadata; preserves existing painted PNGs. Per-source first frame boot ground proxy; action-weapon silhouette may require manual refinement.",
+  "sprites": {
+    "res://assets/knight/idle_right.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 379,
+      "bbox_first_frame": [
+        80,
+        5,
+        317,
+        379
+      ]
+    },
+    "res://assets/knight/walk_se.png": {
+      "frame_px": 384,
+      "frame_count": 12,
+      "alpha_bottom_y": 371,
+      "bbox_first_frame": [
+        77,
+        9,
+        314,
+        371
+      ]
+    },
+    "res://assets/knight/idle_se.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 377,
+      "bbox_first_frame": [
+        47,
+        11,
+        319,
+        377
+      ]
+    },
+    "res://assets/knight/idle_ne.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 375,
+      "bbox_first_frame": [
+        40,
+        7,
+        343,
+        375
+      ]
+    },
+    "res://assets/knight/walk_ne.png": {
+      "frame_px": 384,
+      "frame_count": 12,
+      "alpha_bottom_y": 375,
+      "bbox_first_frame": [
+        57,
+        10,
+        322,
+        375
+      ]
+    },
+    "res://assets/knight/walk_down.png": {
+      "frame_px": 384,
+      "frame_count": 12,
+      "alpha_bottom_y": 379,
+      "bbox_first_frame": [
+        72,
+        8,
+        322,
+        379
+      ]
+    },
+    "res://assets/knight/attack_se.png": {
+      "frame_px": 512,
+      "frame_count": 15,
+      "alpha_bottom_y": 430,
+      "bbox_first_frame": [
+        46,
+        82,
+        376,
+        430
+      ]
+    },
+    "res://assets/knight/walk_right.png": {
+      "frame_px": 384,
+      "frame_count": 12,
+      "alpha_bottom_y": 364,
+      "bbox_first_frame": [
+        68,
+        12,
+        319,
+        364
+      ]
+    },
+    "res://assets/knight/idle_up.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 359,
+      "bbox_first_frame": [
+        57,
+        5,
+        335,
+        359
+      ]
+    },
+    "res://assets/knight/idle_down.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 380,
+      "bbox_first_frame": [
+        67,
+        8,
+        318,
+        380
+      ]
+    },
+    "res://assets/knight/walk_up.png": {
+      "frame_px": 384,
+      "frame_count": 12,
+      "alpha_bottom_y": 369,
+      "bbox_first_frame": [
+        39,
+        9,
+        346,
+        369
+      ]
+    },
+    "res://assets/knight/attack_ne.png": {
+      "frame_px": 512,
+      "frame_count": 15,
+      "alpha_bottom_y": 442,
+      "bbox_first_frame": [
+        85,
+        44,
+        431,
+        442
+      ]
+    },
+    "res://assets/mage/idle_right.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 369,
+      "bbox_first_frame": [
+        106,
+        62,
+        277,
+        369
+      ]
+    },
+    "res://assets/mage/cast_down.png": {
+      "frame_px": 384,
+      "frame_count": 2,
+      "alpha_bottom_y": 370,
+      "bbox_first_frame": [
+        95,
+        50,
+        284,
+        370
+      ]
+    },
+    "res://assets/mage/walk_se.png": {
+      "frame_px": 384,
+      "frame_count": 4,
+      "alpha_bottom_y": 384,
+      "bbox_first_frame": [
+        78,
+        68,
+        273,
+        384
+      ]
+    },
+    "res://assets/mage/idle_se.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 369,
+      "bbox_first_frame": [
+        101,
+        63,
+        290,
+        369
+      ]
+    },
+    "res://assets/mage/cast_right.png": {
+      "frame_px": 384,
+      "frame_count": 2,
+      "alpha_bottom_y": 368,
+      "bbox_first_frame": [
+        104,
+        61,
+        295,
+        368
+      ]
+    },
+    "res://assets/mage/cast_up.png": {
+      "frame_px": 384,
+      "frame_count": 2,
+      "alpha_bottom_y": 369,
+      "bbox_first_frame": [
+        96,
+        39,
+        306,
+        369
+      ]
+    },
+    "res://assets/mage/cast_se.png": {
+      "frame_px": 384,
+      "frame_count": 2,
+      "alpha_bottom_y": 368,
+      "bbox_first_frame": [
+        101,
+        62,
+        304,
+        368
+      ]
+    },
+    "res://assets/mage/idle_ne.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 369,
+      "bbox_first_frame": [
+        93,
+        44,
+        288,
+        369
+      ]
+    },
+    "res://assets/mage/walk_ne.png": {
+      "frame_px": 384,
+      "frame_count": 4,
+      "alpha_bottom_y": 384,
+      "bbox_first_frame": [
+        111,
+        61,
+        312,
+        384
+      ]
+    },
+    "res://assets/mage/walk_down.png": {
+      "frame_px": 384,
+      "frame_count": 4,
+      "alpha_bottom_y": 384,
+      "bbox_first_frame": [
+        110,
+        62,
+        283,
+        384
+      ]
+    },
+    "res://assets/mage/walk_right.png": {
+      "frame_px": 384,
+      "frame_count": 4,
+      "alpha_bottom_y": 375,
+      "bbox_first_frame": [
+        92,
+        69,
+        287,
+        375
+      ]
+    },
+    "res://assets/mage/idle_up.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 370,
+      "bbox_first_frame": [
+        92,
+        35,
+        296,
+        370
+      ]
+    },
+    "res://assets/mage/idle_down.png": {
+      "frame_px": 384,
+      "frame_count": 1,
+      "alpha_bottom_y": 371,
+      "bbox_first_frame": [
+        100,
+        52,
+        284,
+        371
+      ]
+    },
+    "res://assets/mage/cast_ne.png": {
+      "frame_px": 384,
+      "frame_count": 2,
+      "alpha_bottom_y": 368,
+      "bbox_first_frame": [
+        88,
+        51,
+        301,
+        368
+      ]
+    },
+    "res://assets/mage/walk_up.png": {
+      "frame_px": 384,
+      "frame_count": 4,
+      "alpha_bottom_y": 384,
+      "bbox_first_frame": [
+        90,
+        54,
+        291,
+        384
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "project": "Age of the Lost",
+  "phase": "Free master humanoid base V01",
+  "created_on": "2026-11-12",
+  "higgsfield_3d_jutsu_project_id": "088e8199-50e8-4554-b0be-b108a6b2203a",
+  "higgsfield_scene_revision": 2,
+  "rig_name": "RIG_AOTL_Master_Humanoid_58",
+  "bones": 58,
+  "skinned_mesh_components": 53,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Slash",
+    "HeavySlash",
+    "Thrust",
+    "Dodge",
+    "Cast",
+    "CastRelease",
+    "HitReact"
+  ],
+  "original_reference": "game/crownsfall_lootslice/data/rig_lab_structure.json",
+  "github_source_branch": "feature/free-master-humanoid-rig-v01",
+  "credits_spent": 0,
+  "qa": {
+    "hosted_blender_structure": "passed",
+    "action_datablocks": "created",
+    "animation_export": "unverified",
+    "visual_comparison": "unverified",
+    "godot_import": "unverified"
+  },
+  "release_ready": false
+}

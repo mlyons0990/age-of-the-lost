@@ -186,9 +186,11 @@ func _build_foot_ik() -> void:
 		foot_target[side] = marker
 		var node := SkeletonIK3D.new()
 		node.name = "GroundContactIK_" + side
-		skeleton.add_child(node)
+		# Initialize the full chain before attaching to a live Skeleton3D.
+		# Setting root/tip after parenting emits transient FABRIK invalid-root errors.
 		node.root_bone = root
 		node.tip_bone = tip
+		skeleton.add_child(node)
 		node.target_node = node.get_path_to(marker)
 		node.override_tip_basis = false
 		node.max_iterations = 12

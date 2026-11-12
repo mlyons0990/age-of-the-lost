@@ -9,7 +9,7 @@ GLB_SHA256 = "ef8b288351d749e7e46fa0347c2ba658d773680735ced8d5377b93e672dcc455"
 GZIP_SHA256 = "0638de285cf12a4561b1eff1e9709c32b07c92363644c1e669479770aa151596"
 def sha(blob: bytes) -> str: return hashlib.sha256(blob).hexdigest()
 def main() -> int:
-    packed = base64.b64decode(SRC.read_text(encoding="ascii"), validate=True)
+    packed = base64.b64decode(SRC.read_text(encoding="ascii").strip(), validate=True)
     assert sha(packed) == GZIP_SHA256, "Corrupted source gzip payload"
     binary = gzip.decompress(packed)
     assert sha(binary) == GLB_SHA256 and binary[:4] == b"glTF", "Invalid master humanoid GLB"

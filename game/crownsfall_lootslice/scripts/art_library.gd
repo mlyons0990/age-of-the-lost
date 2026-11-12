@@ -5,6 +5,37 @@ static var icons: Dictionary = {}
 static var selected_profile: Dictionary = {}
 static var tile_profile: Dictionary = {}
 static var tiles: Dictionary = {}
+static var phase_a_preview_enabled := false
+static var phase_a_preview_profile: Dictionary = {}
+
+## Phase A is a local, reversible art test. The user's selected art profile
+## remains the default, and no portrait choice enters game state or save data.
+static func preview_profile() -> Dictionary:
+	if phase_a_preview_profile.is_empty() and FileAccess.file_exists("res://data/phase_a_preview_profile.json"):
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://data/phase_a_preview_profile.json"))
+		if parsed is Dictionary:
+			phase_a_preview_profile = parsed
+	return phase_a_preview_profile
+
+static func phase_a_preview_missing() -> Array[String]:
+	var missing: Array[String] = []
+	var choices: Variant = preview_profile().get("portraits", {})
+	if not choices is Dictionary or choices.is_empty():
+		missing.append("phase_a_preview_profile.json")
+		return missing
+	for key in choices:
+		var path: Variant = choices[key]
+		if not path is String or not ResourceLoader.exists(path):
+			missing.append(String(key))
+	return missing
+
+static func set_phase_a_preview_enabled(enabled: bool) -> bool:
+	if enabled and not phase_a_preview_missing().is_empty():
+		return false
+	phase_a_preview_enabled = enabled
+	portraits.clear()
+	return true
+
 
 static func action_icon(id: String) -> Texture2D:
 	if tiles.has(id): return tiles[id]
@@ -28,6 +59,11 @@ static func profile() -> Dictionary:
 	return selected_profile
 
 static func selected_texture(kind: String, id: String) -> Texture2D:
+	if kind == "portraits" and phase_a_preview_enabled:
+		var preview_path: Variant = preview_profile().get("portraits", {}).get(id, "")
+		if preview_path is String and not preview_path.is_empty() and ResourceLoader.exists(preview_path):
+			var staged := load(preview_path) as Texture2D
+			if staged != null: return staged
 	var choices: Variant=profile().get(kind,{})
 	if not choices is Dictionary: return null
 	var path: Variant=choices.get(id,"")

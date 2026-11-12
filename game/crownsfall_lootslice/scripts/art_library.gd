@@ -55,6 +55,12 @@ static func icon(id: String) -> Texture2D:
 static var portraits: Dictionary = {}
 static func inventory_portrait(id: String) -> Texture2D:
 	if portraits.has(id): return portraits[id]
+	var equipment_path := "res://assets/equipment_variants/%s.png" % id
+	if ResourceLoader.exists(equipment_path):
+		var equipment_texture: Texture2D = load(equipment_path)
+		if equipment_texture != null:
+			portraits[id] = equipment_texture
+			return equipment_texture
 	var selected:=selected_texture("portraits",id)
 	if selected!=null:
 		portraits[id]=selected
@@ -73,3 +79,4 @@ static func panel() -> StyleBoxTexture:
 		style.set_texture_margin(side, 64)
 		style.set_content_margin(side, 64)
 	return style
+

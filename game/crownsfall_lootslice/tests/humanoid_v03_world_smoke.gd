@@ -38,6 +38,8 @@ func _run() -> void:
 		finish()
 		return
 	verify(v.ready_to_compare, "Higgsfield humanoid complete and ready for comparison")
+	for visual_mesh in ["V03_WEAPON_ForgedSwordBlade", "V03_GEAR_CrestStar", "V03_GEAR_AnatomicalBoot_L", "V03_GEAR_CapeFold_0"]:
+		verify(v.model_root.find_child(visual_mesh, true, false) != null, "Revision 8 refined mesh present: " + visual_mesh)
 	verify(v.skeleton != null and v.skeleton.get_bone_count() == 58, "58-joint skeleton imported")
 	verify(v.clip_count == 16, "16 actual split action clips")
 	var action_names := ["Idle","Walk","Run","Slash","Dodge","Cast","HeavySlash","Thrust","HitReact","CastRelease","ShieldBlock","Cleave","DashStrike","Jump","Death","Parry"]
@@ -64,6 +66,11 @@ func _run() -> void:
 	await frames(16)
 	verify(v.current_clip in ["Walk", "Run", "Idle"], "humanoid animation receives actual movement state")
 	verify(v.get_foot_contact_count() >= 1, "foot ray intersects world floor")
+	var ik_active := false
+	for side in ["L", "R"]:
+		if v.foot_ik.has(side) and v.foot_ik[side].influence > 0.01:
+			ik_active = true
+	verify(ik_active, "terrain IK has nonzero influence while walking")
 	var example := MeshInstance3D.new()
 	example.mesh = BoxMesh.new()
 	verify(v.attach_equipment("weapon", example), "weapon mesh mounted to the character")

@@ -17,7 +17,7 @@
 | Forged Weapons, [PR #12](https://github.com/mlyons0990/age-of-the-lost/pull/12) | 8 | Prior 56/56 static checks |
 | **New Eclipse Oathband and Emberwake Signet** | **2** | Original Higgsfield GPT Image 2.6, unlimited generation, **0 paid credits**; 14/14 asset processing checks; source/true-alpha master/32/64px previews archived |
 
-Additive ledger: **147 visual designs** = **117 equipment-variant art records + 30 ability/service graphics**. This is not 147 gameplay item definitions; variants can represent an existing type. Existing gameplay art selections are unchanged.
+Additive ledger: **148 visual designs** = **118 equipment-variant art records + 30 ability/service graphics**. This is not 147 gameplay item definitions; variants can represent an existing type. Existing gameplay art selections are unchanged.
 
 ## New Higgsfield art provenance
 
@@ -43,3 +43,7 @@ The full new audit report, reproducible Python scripts, and **bright/dark 32px/6
 - Windows export + rendered human playtest + original/current regression screenshots. Existing 954 headless assertions in main are historical, **not rerun for Phase A art**.
 
 **Leave the prior draft PRs unmerged until reviewed and proven in game.** This closeout PR is documentation only and safe to merge separately once verified. Phase B (consumables, quest drops, crafting/reagents) should begin only after the art acceptance gate.
+
+## Addendum — Chronicle Hourglass Pendant
+
+Another Higgsfield unlimited image finished after the initial two-ring archive: **Chronicle Hourglass Pendant** (`aotl_chronicle_hourglass_pendant_v1`, 1×1 amulet), job `8805f295-9d60-489e-91ff-d0366ff938a5`, [original image](https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_201621_8805f295-9d60-489e-91ff-d0366ff938a5.png). Its independent source ZIP (1,064,087 bytes, 8/8 static checks) is in Higgsfield Developer Files media ID `9ad6cf0c-5843-42a8-aa53-fab8ea8deb07`. This asset is **not installed in gameplay**. Release package **v2** and supplemental handoff are in the same Google Drive Art Production folder. Totals above supersede the initial two-ring checkpoint.

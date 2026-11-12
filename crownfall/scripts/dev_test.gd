@@ -329,8 +329,9 @@ func _inventory_tests() -> void:
 	await _anim_tests()
 	await _zone_tests()
 	await _evade_tests()
+	await _binding_tests()
 	await _stat_tests()
-	_check(finished.size() == 11, "every test section ran to the end (%s)" % ", ".join(finished))
+	_check(finished.size() == 12, "every test section ran to the end (%s)" % ", ".join(finished))
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
 	_note("inventory and stat checks: %d run, %d failed" % [checks, fails])
@@ -1252,3 +1253,78 @@ func _evade_tests() -> void:
 	_check(bd > 3.5 and p.invuln >= 0.55, "a blink teleports farther with longer i-frames (%.2f units, %.2fs)" % [bd, p.invuln])
 	p.evade_override = ""
 	finished.append("_evade_tests")
+
+
+## Skill bar: any skill in any slot, by dragging.
+func _binding_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var p: Node2D = main.player
+	var hud: CanvasLayer = main.hud
+	if hud.inv_window != null:
+		hud.close_inventory()
+	p.bindings = p.DEFAULT_BINDINGS.duplicate()
+	p.position = main.RIFT_POS
+	p.mp = 999.0
+	p.cds.clear()
+	await _wait(0.2)
+	_check(p.bindings == ["s2", "s3", "s4", "", "basic", "s1"], "default bar: Charge, Rally, spec skill, empty | Slash, Cleave")
+	# keys follow the bar
+	await _key(KEY_2)
+	_check(float(p.cds.get("s3", 0.0)) > 0.0, "key 2 uses what is in slot 2 (Rallying Cry)")
+	# drag slot 1 onto slot 4: they swap (slot 4 was empty)
+	var r: Array = hud.bar_rects
+	await _drag((r[0] as Rect2).get_center(), (r[3] as Rect2).get_center())
+	_check(p.bindings[0] == "" and p.bindings[3] == "s2", "dragging a skill to another slot moves it (%s)" % str(p.bindings))
+	await _drag((r[3] as Rect2).get_center(), (r[4] as Rect2).get_center())
+	_check(p.bindings[3] == "basic" and p.bindings[4] == "s2", "dropping on a filled slot swaps the two (%s)" % str(p.bindings))
+	# drag off the bar to empty a slot
+	await _drag((r[5] as Rect2).get_center(), (r[5] as Rect2).get_center() + Vector2(0, -320))
+	_check(p.bindings[5] == "", "dragging a skill off the bar empties its slot")
+	# from the spellbook: pick up Cleave and drop it on RMB
+	await _key(KEY_P)
+	hud.start_skill_drag("s1")
+	var at: Vector2 = (r[5] as Rect2).get_center()
+	Input.warp_mouse(at)
+	var up := InputEventMouseButton.new()
+	up.button_index = MOUSE_BUTTON_LEFT
+	up.pressed = false
+	up.position = at
+	up.global_position = at
+	Input.parse_input_event(up)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	_check(p.bindings[5] == "s1", "a skill dragged from the spellbook lands in the slot")
+	hud.start_skill_drag("s1")
+	var at2: Vector2 = (r[0] as Rect2).get_center()
+	var up2 := up.duplicate()
+	up2.position = at2
+	up2.global_position = at2
+	Input.parse_input_event(up2)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	_check(p.bindings[0] == "s1" and p.bindings[5] == "", "placing a skill already on the bar moves it there (no duplicates)")
+	await _shot("g31_skill_binding")
+	await _key(KEY_P)
+	# LMB attacks with whatever is on LMB
+	p.bindings = ["s2", "s3", "s4", "basic", "s1", ""]
+	p.cds.clear()
+	p.mp = 999.0
+	main.spawn_enemy("brute", false, p.position + GD.to_px(Vector2(1.6, 0.0)))
+	var e: Node2D = main.enemies[main.enemies.size() - 1]
+	e.stun = 99.0
+	p.target = e
+	for i in 20:
+		await _wait(0.05)
+		if float(p.cds.get("s1", 0.0)) > 0.0:
+			break
+	_check(float(p.cds.get("s1", 0.0)) > 0.0, "clicking an enemy attacks with the skill on LMB (Cleave)")
+	p.target = null
+	main.kill_enemy(e)
+	# saved with the character
+	main.save_game()
+	p.bindings = p.DEFAULT_BINDINGS.duplicate()
+	main.load_game()
+	_check(p.bindings == ["s2", "s3", "s4", "basic", "s1", ""], "the bar layout survives save and load")
+	p.bindings = p.DEFAULT_BINDINGS.duplicate()
+	await _wait(1.6)
+	finished.append("_binding_tests")

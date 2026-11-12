@@ -949,7 +949,7 @@ func quit_game() -> void:
 func save_game() -> void:
 	var p := player
 	var data := {"save_version": 2, "bag": p.bag, "stash": p.stash, "name": p.hero_name, "level": p.level, "xp": p.xp, "gold": p.gold, "potions": p.potions, "kills": p.kills,
-		"elite_kills": p.elite_kills, "bosses_killed": p.bosses_killed, "deaths": p.deaths, "spec": p.spec, "adv": p.adv, "heroic": p.heroic, "gear": p.gear,
+		"elite_kills": p.elite_kills, "bosses_killed": p.bosses_killed, "deaths": p.deaths, "bindings": p.bindings, "spec": p.spec, "adv": p.adv, "heroic": p.heroic, "gear": p.gear,
 		"opened_rift": p.opened_rift, "quest": p.quest, "spent": p.spent,
 		"shop": shop, "shop_level": shop_level, "buyback": p.buyback, "lore": p.lore}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -976,6 +976,17 @@ func load_game() -> bool:
 	p.elite_kills = int(data.get("elite_kills", 0))
 	p.bosses_killed = int(data.get("bosses_killed", 0))
 	p.deaths = int(data.get("deaths", 0))
+	var binds = data.get("bindings")
+	p.bindings = p.DEFAULT_BINDINGS.duplicate()
+	if binds is Array and binds.size() == p.BIND_KEYS.size():
+		var ok := true
+		for b in binds:
+			if not (String(b) in ["", "basic", "s1", "s2", "s3", "s4"]):
+				ok = false
+		if ok:
+			p.bindings = []
+			for b in binds:
+				p.bindings.append(String(b))
 	p.spec = String(data.get("spec", ""))
 	p.adv = String(data.get("adv", ""))
 	p.heroic = String(data.get("heroic", ""))

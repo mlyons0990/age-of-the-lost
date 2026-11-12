@@ -82,6 +82,11 @@ var lore: Array = []      # ids of memories uncovered by Lorecasting (saved)
 var spent := {"str": 0, "dex": 0, "vit": 0, "int": 0, "wis": 0}   # stat points placed by hand
 var buyback: Array = []   # items sold this session, newest first (not saved)
 var dash := {}
+## Skill bar: which skill (basic, s1..s4) sits in each slot, in bar order 1, 2, 3, 4, LMB, RMB.
+## Any skill can go in any slot; a skill appears at most once. "" is an empty slot.
+const BIND_KEYS := ["1", "2", "3", "4", "LMB", "RMB"]
+const DEFAULT_BINDINGS := ["s2", "s3", "s4", "", "basic", "s1"]
+var bindings: Array = DEFAULT_BINDINGS.duplicate()
 var rolling := {}            # active dodge roll: {"dir": ground dir, "left": units, "speed": units/s}
 var evade_override := ""     # forces an evade type (tests; a future class could set it too)
 var evade_msg := 0.0         # throttles the "Evade" text
@@ -682,26 +687,23 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif main.pick_merchant(at):
 					talk_to_merchant()
 				elif mb.shift_pressed:
-					use_skill("basic", at)
+					use_bound(4, at)
 				else:
 					target = null
 					_walk_to(at, true)
 		elif mb.button_index == MOUSE_BUTTON_RIGHT and mb.pressed:
-			use_skill("s1", get_global_mouse_position())
+			use_bound(5, get_global_mouse_position())
 	elif event is InputEventKey and event.pressed and not event.echo:
 		var at2 := get_global_mouse_position()
 		match (event as InputEventKey).keycode:
 			KEY_1:
-				use_skill("s1", at2)
+				use_bound(0, at2)
 			KEY_2:
-				use_skill("s2", at2)
+				use_bound(1, at2)
 			KEY_3:
-				use_skill("s3", at2)
+				use_bound(2, at2)
 			KEY_4:
-				if spec == "":
-					main.hud.toast("Specialization unlocks at level %d" % GD.SPEC_LEVEL, Color.WHITE, true)
-				else:
-					use_skill("s4", at2)
+				use_bound(3, at2)
 			KEY_E:
 				var m: Node2D = main.memory_in_reach()
 				if m != null:
@@ -714,6 +716,66 @@ func _unhandled_input(event: InputEvent) -> void:
 				evade(at2)
 			KEY_Q:
 				drink_potion()
+
+
+# ---------------------------------------------------------------- skill bar bindings
+## Uses whatever skill sits in bar slot i (0-3 = keys 1-4, 4 = LMB, 5 = RMB).
+func use_bound(i: int, aim: Vector2) -> bool:
+	var slot: String = bindings[i] if i < bindings.size() else ""
+	if slot == "":
+		return false
+	if skill_def(slot).is_empty():
+		main.hud.toast("Specialization unlocks at level %d" % GD.SPEC_LEVEL, Color.WHITE, true)
+		return false
+	return use_skill(slot, aim)
+
+
+## The skill on LMB, used when attacking a clicked enemy (Slash if LMB is empty or locked).
+func lmb_skill() -> String:
+	var slot: String = bindings[4]
+	return slot if slot != "" and not skill_def(slot).is_empty() else "basic"
+
+
+func can_use(slot: String) -> bool:
+	var sk := skill_def(slot)
+	if sk.is_empty() or float(cds.get(slot, 0.0)) > 0.0:
+		return false
+	return float(sk["mana"]) <= 0.0 or mp >= float(sk["mana"])
+
+
+## How close the knight must be to a target to use a skill on it, in ground units.
+func skill_reach(slot: String) -> float:
+	var sk := skill_def(slot)
+	if sk.is_empty():
+		return float(GD.BASE["basic"]["range"])
+	match String(sk["type"]):
+		"ground":
+			return 6.0
+		"nova":
+			return float(sk["radius"]) * 0.8
+		"dash":
+			return float(sk["range"]) * 0.8
+		"buff":
+			return float(GD.BASE["basic"]["range"])
+	return float(sk.get("range", GD.BASE["basic"]["range"]))
+
+
+## Puts a skill in bar slot i. If it's already elsewhere on the bar, the two slots swap.
+func bind_skill(i: int, slot: String) -> void:
+	var j := bindings.find(slot)
+	if j >= 0 and j != i:
+		bindings[j] = bindings[i]
+	bindings[i] = slot
+
+
+func swap_bindings(i: int, j: int) -> void:
+	var t: String = bindings[i]
+	bindings[i] = bindings[j]
+	bindings[j] = t
+
+
+func clear_binding(i: int) -> void:
+	bindings[i] = ""
 
 
 func go_to_memory(m: Node2D) -> void:
@@ -858,10 +920,17 @@ func _physics_process(delta: float) -> void:
 			if mouse_held:
 				target = main.pick_enemy(get_global_mouse_position())
 		else:
-			var reach: float = float(GD.BASE["basic"]["range"]) + target.rad - 0.15
-			if GD.gdist(position, target.position) <= reach:
+			# attack with the skill on LMB; Slash fills in while it is on cooldown or short of mana
+			var lmb: String = lmb_skill()
+			var reach: float = skill_reach(lmb) + target.rad - 0.15
+			var basic_reach: float = float(GD.BASE["basic"]["range"]) + target.rad - 0.15
+			var dist := GD.gdist(position, target.position)
+			if dist <= reach and can_use(lmb):
 				path = PackedVector2Array()
-				if float(cds.get("basic", 0.0)) <= 0.0:
+				use_skill(lmb, target.position)
+			elif dist <= basic_reach:
+				path = PackedVector2Array()
+				if lmb != "basic" and can_use("basic"):
 					use_skill("basic", target.position)
 				else:
 					_face(target.position - position)

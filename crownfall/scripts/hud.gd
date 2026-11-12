@@ -11,9 +11,14 @@ const GOLD := Color("e8c77a")
 const BRONZE := Color(0.62, 0.47, 0.22)
 const DARK := Color(0.07, 0.06, 0.08, 0.92)
 ## Skill bar, left to right (Diablo 4 layout): keys 1-4, a gap, then the mouse buttons.
-## [skill slot, key label]. Right click currently uses the first skill (Cleave).
-const SLOTS := [["s1", "1"], ["s2", "2"], ["s3", "3"], ["s4", "4"], ["basic", "LMB"], ["s1", "RMB"]]
+## What sits in each slot is player.bindings; drag skills from the spellbook (P) or
+## between slots to rearrange, drag one off the bar to empty its slot.
 const MOUSE_GROUP := 4   # index where the mouse-button group starts (after a gap)
+var bar_rects: Array = []      # screen rects of the six slots, set while drawing
+var bar_plate := Rect2()
+var drag_skill := ""           # skill being dragged onto / around the bar
+var drag_from := -1            # bar slot it came from, or -1 from the spellbook
+var drag_press := Vector2.ZERO
 
 var main: Node2D
 var player: Node2D
@@ -39,6 +44,12 @@ func _ready() -> void:
 	draw_ctl.set_anchors_preset(Control.PRESET_FULL_RECT)
 	draw_ctl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(draw_ctl)
+	var ghost := DragGhost.new()
+	ghost.hud = self
+	ghost.set_anchors_preset(Control.PRESET_FULL_RECT)
+	ghost.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ghost.z_index = 100   # above the docked panels
+	add_child(ghost)
 
 	top_row = HBoxContainer.new()
 	top_row.position = Vector2(24, 118)
@@ -66,6 +77,56 @@ func _process(delta: float) -> void:
 	rift_btn.disabled = main.zone != "plaza"
 	top_row.visible = inv_window == null or not inv_window.left_open()
 	draw_ctl.queue_redraw()
+
+
+## Starts dragging a skill (from the spellbook) toward the bar.
+func start_skill_drag(slot: String) -> void:
+	drag_skill = slot
+	drag_from = -1
+	drag_press = draw_ctl.get_local_mouse_position()
+
+
+func bar_slot_at(at: Vector2) -> int:
+	for i in bar_rects.size():
+		if (bar_rects[i] as Rect2).has_point(at):
+			return i
+	return -1
+
+
+## Mouse on the skill bar: drag to swap, drag off to clear. Clicks on the bar never reach the world.
+func _input(event: InputEvent) -> void:
+	if not (event is InputEventMouseButton) or (event as InputEventMouseButton).button_index != MOUSE_BUTTON_LEFT:
+		return
+	if start_panel != null or choice_panel != null or death_panel != null or lore_panel != null or journal_panel != null:
+		return
+	var mb := event as InputEventMouseButton
+	var at := draw_ctl.get_local_mouse_position() if mb.position == Vector2.ZERO else mb.position
+	if mb.pressed:
+		var i := bar_slot_at(at)
+		if i >= 0 and String(player.bindings[i]) != "":
+			drag_skill = player.bindings[i]
+			drag_from = i
+			drag_press = at
+		if bar_plate.has_point(at):
+			get_viewport().set_input_as_handled()
+		return
+	if drag_skill == "":
+		return
+	var j := bar_slot_at(at)
+	if drag_from >= 0:
+		if j >= 0 and j != drag_from:
+			player.swap_bindings(drag_from, j)
+			main.audio.play("ui_drop")
+		elif j < 0 and not bar_plate.has_point(at) and at.distance_to(drag_press) > 12.0:
+			player.clear_binding(drag_from)
+			main.audio.play("ui_drop")
+	elif j >= 0:
+		player.bind_skill(j, drag_skill)
+		main.audio.play("equip")
+	drag_skill = ""
+	drag_from = -1
+	main.save_game()
+	get_viewport().set_input_as_handled()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -612,10 +673,11 @@ class HudDraw extends Control:
 		var sz := 64.0
 		var gap := 6.0
 		var group_gap := 26.0
-		var n := SLOTS.size()
+		var n: int = p.bindings.size()
 		var bar_w := n * sz + (n - 1) * gap + group_gap
 		var x0 := (w - bar_w) / 2.0
 		var plate := Rect2(x0 - 14, cy - sz / 2 - 24, bar_w + 28, sz + 60)
+		hud.bar_plate = plate
 		draw_rect(plate, DARK)
 		draw_rect(plate, BRONZE, false, 3.0)
 		var cols: Array = p.fx_colors()
@@ -625,10 +687,23 @@ class HudDraw extends Control:
 		for i in n:
 			var rx: float = x0 + i * (sz + gap) + (group_gap if i >= MOUSE_GROUP else 0.0)
 			var r := Rect2(rx, cy - sz / 2, sz, sz)
+			if i == 0:
+				hud.bar_rects.clear()
+			hud.bar_rects.append(r)
 			draw_rect(r, Color(0.11, 0.11, 0.16))
-			var slot: String = SLOTS[i][0]
-			var sk: Dictionary = p.skill_def(slot)
-			if sk.is_empty():
+			var slot: String = p.bindings[i]
+			var sk: Dictionary = p.skill_def(slot) if slot != "" else {}
+			var dragging_this: bool = hud.drag_from == i and hud.drag_skill != "" and get_local_mouse_position().distance_to(hud.drag_press) > 6.0
+			if slot == "" or dragging_this:
+				# an empty slot waits for a skill
+				draw_rect(r, Color(0.07, 0.07, 0.1))
+				draw_rect(r, BRONZE.darkened(0.45), false, 2.0)
+				if hud.drag_skill != "" and r.has_point(get_local_mouse_position()):
+					draw_rect(r, Color(1, 0.85, 0.4, 0.25))
+				elif r.has_point(mouse) and hud.drag_skill == "":
+					tip = {"name": "Empty slot", "desc": "Drag a skill here from the spellbook (P).", "meta": ""}
+					tip_rect = r
+			elif sk.is_empty():
 				_icon("lock", r, Color.GRAY)
 				draw_rect(r, BRONZE.darkened(0.5), false, 2.0)
 				if r.has_point(mouse):
@@ -657,7 +732,7 @@ class HudDraw extends Control:
 					tip_rect = r
 			# key label under the slot: a small key cap, or a mouse for LMB / RMB
 			var kc := Vector2(r.get_center().x, r.end.y + 15)
-			var key: String = SLOTS[i][1]
+			var key: String = p.BIND_KEYS[i]
 			if key == "LMB" or key == "RMB":
 				Icons.draw_mouse(self, kc, key == "LMB", GOLD)
 			else:
@@ -783,3 +858,24 @@ class HudDraw extends Control:
 			_text_c(hud.banner_a, Vector2(w / 2, h * 0.36), 64, Color(GOLD.r, GOLD.g, GOLD.b, a2), 10)
 			if hud.banner_b != "":
 				_text_c(hud.banner_b, Vector2(w / 2, h * 0.36 + 40), 24, Color(0.94, 0.9, 0.82, a2), 6)
+
+
+# ================================================================ skill being dragged to the bar
+class DragGhost extends Control:
+	var hud: CanvasLayer
+
+	func _process(_delta: float) -> void:
+		queue_redraw()
+
+	func _draw() -> void:
+		if hud.drag_skill == "":
+			return
+		var m := get_local_mouse_position()
+		if hud.drag_from >= 0 and m.distance_to(hud.drag_press) <= 6.0:
+			return
+		var sk: Dictionary = hud.player.skill_def(hud.drag_skill)
+		if sk.is_empty():
+			return
+		var r := Rect2(m - Vector2(30, 30), Vector2(60, 60))
+		Icons.draw_icon(self, sk["id"], r, Color.WHITE)
+		draw_rect(r, Color(1, 0.85, 0.4, 0.9), false, 2.0)

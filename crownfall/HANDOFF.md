@@ -56,8 +56,13 @@ for the knight and three painted enemy types:
   game moves the knight). A round boot button on the mana orb's upper left
   (Space key cap beside it) shows the cooldown and glows when ready.
 - **Skill bar (Diablo 4 layout):** keys 1-4 on the left, a gap, then LMB and
-  RMB, with key caps or mouse icons under each slot (`SLOTS` in `hud.gd`; right
-  click uses the first skill until skills can be rebound). The level diamond
+  RMB, with key caps or mouse icons under each slot. **Any skill goes in any
+  slot:** drag a skill's icon from the spellbook (P) onto a slot, drag between
+  slots to swap, drag one off the bar to empty its slot. A skill sits on the bar
+  at most once (placing it again moves it). Clicking an enemy attacks with the
+  LMB skill (Slash fills in while it is on cooldown or short of mana). Layout is
+  `player.bindings` (saved; order 1, 2, 3, 4, LMB, RMB; default Charge, Rally,
+  spec skill, empty | Slash, Cleave). The level diamond
   and XP bar run along the top of the bar; the potion is a round button on the
   life orb's upper right (Q, with its count).
   `EVADE` in `game_data.gd` also defines a **Blink** (5.5 units, instant, 0.6 s
@@ -249,7 +254,7 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 174 checks covering
+(walk, fight a wave, level to 60 making each class choice, 183 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
@@ -259,7 +264,7 @@ the last check confirms every test section ran to the end (a GDScript error
 inside a section stops it without failing a check, so also look for
 "SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 174 of 174 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 183 of 183 checks. Not yet run on Windows.
 
 ## How the plaza works
 

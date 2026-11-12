@@ -1076,8 +1076,19 @@ func _skill_numbers(sk: Dictionary, s: Dictionary, slot: String) -> String:
 	return ""
 
 
+## "On 2", "On LMB" or "Not on the bar" for a skill slot.
+func _bound_label(slot: String) -> String:
+	var i: int = player.bindings.find(slot)
+	return ("On " + String(player.BIND_KEYS[i])) if i >= 0 else "Not on the bar"
+
+
 func _draw_skill_row(x: float, y: float, w: float, sk: Dictionary, key: String, slot: String, s: Dictionary, locked: bool, col: Color) -> void:
 	var ir := Rect2(x, y, 58, 58)
+	if not locked:
+		# drag the icon onto the skill bar
+		hotspots.append([ir, func() -> void: hud.start_skill_drag(slot)])
+		if ir.has_point(get_local_mouse_position()):
+			draw_rect(ir.grow(3), Color(1, 0.85, 0.4, 0.5), false, 2.0)
 	draw_rect(ir, Color(0.08, 0.08, 0.12))
 	draw_rect(ir, GOLD_DIM if not locked else Color(0.3, 0.3, 0.3), false, 2.0)
 	Icons.draw_icon(self, sk["id"], ir, col if not locked else Color(0.45, 0.45, 0.45))
@@ -1102,16 +1113,16 @@ func _draw_spellbook(r: Rect2, mouse: Vector2) -> void:
 	var y := top + 10 - scroll
 	var content := 0.0
 	var items: Array = []
-	items.append(["#", "Knight skills"])
-	for sl in [["basic", "Left click"], ["s1", "1 / right click"], ["s2", "2"], ["s3", "3"]]:
-		items.append(["skill", GD.BASE[sl[0]], sl[1], sl[0], false, Color("e6eeff")])
+	items.append(["#", "Knight skills  ·  drag onto the skill bar"])
+	for sl in ["basic", "s1", "s2", "s3"]:
+		items.append(["skill", GD.BASE[sl], _bound_label(sl), sl, false, Color("e6eeff")])
 	items.append(["#", "Specializations  ·  level %d" % GD.SPEC_LEVEL])
 	for id in GD.SPECS:
 		var sp: Dictionary = GD.SPECS[id]
 		var chosen: bool = p.spec == id
 		var status := "Chosen" if chosen else ("Locked until level %d" % GD.SPEC_LEVEL if p.level < GD.SPEC_LEVEL else ("Not chosen" if p.spec != "" else "Available"))
 		items.append(["spec", sp, status, chosen])
-		items.append(["skill", sp["skill"], "4" if chosen else "", "s4", not chosen, Color(String(sp["fx"][1]))])
+		items.append(["skill", sp["skill"], _bound_label("s4") if chosen else "", "s4", not chosen, Color(String(sp["fx"][1]))])
 		for a in sp["advanced"]:
 			items.append(["adv", a, sp, p.adv == a["id"]])
 	items.append(["#", "Heroic Talents  ·  level %d" % GD.MAX_LEVEL])

@@ -11,6 +11,8 @@
   ],
   "source_assets_present": true,
   "new_script_save_api_calls": false,
-  "runtime_test": "not executed; Godot binary unavailable",
-  "source_integrity": "all original files untouched"
+  "runtime_test": "Godot 4.6.3 Linux: opt-in 15/15 smoke passed",
+  "source_integrity": "all original files untouched",
+  "existing_regression": "Godot 4.6.3 Linux: 954/954 assertions, 16 suites passed",
+  "render_capture": "Xvfb + OpenGL llvmpipe: 1440x810 frame saved; visual art review pending"
 }

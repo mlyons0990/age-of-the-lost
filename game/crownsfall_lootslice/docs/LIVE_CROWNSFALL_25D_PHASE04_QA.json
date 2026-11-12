@@ -1,0 +1,31 @@
+{
+  "project": "Age of the Lost",
+  "phase": "Phase 04 Live 2.5D Courtyard Gameplay Integration",
+  "godot": "4.6.3 stable",
+  "date": "2026-11-12",
+  "save_schema": 6,
+  "paid_higgsfield_credits_spent": 0,
+  "live_25d_test": {
+    "checks": 72,
+    "passed": 72
+  },
+  "existing_regression": {
+    "suites": 16,
+    "checks": 954,
+    "passed": 954
+  },
+  "render": "1440x810 Linux OpenGL via Xvfb",
+  "mode_default": "original painted town; F8 activates live 3D scenery",
+  "files_sha256": {
+    "scripts/main.gd": "3bdddba7b794c7c38a509304df66fe6379089550d5b0090e81ecb1a0453b5526",
+    "scripts/two_point_five_d/live_courtyard_bridge.gd": "d89c2a1ede96eb26acdeebe294c08a0755cd097e019d7300c266c117162bbc37",
+    "scripts/two_point_five_d/crownsfall_courtyard_25d.gd": "25ecf4a625bc7c5ea5e27bb7253bc855b465ec2fbd17075af1c6b6f6b485fb38",
+    "tests/live_25d_gameplay_integration.gd": "c4bbf8b8caaba93324e8f6730eab58bc6fbfd49fc19c96796eb17f0187a81f1f",
+    "docs/LIVE_CROWNSFALL_25D_PHASE04.md": "dc175c068decebfe29ec378935a16c2be22562b41ed551f098866fd50d90d1e2"
+  },
+  "notes": [
+    "3D scenery is visual only; original game collision and navigation authoritative",
+    "3D foreground occlusion and material art quality not yet finished",
+    "Windows playtest pending"
+  ]
+}

@@ -175,8 +175,8 @@ func _build_foot_ik() -> void:
 	# Godot 4.6 SkeletonIK3D is a real FABRIK solver but deprecated. Keep isolated,
 	# weighted low while moving, and replace with a 4.6 native IKModifier after visual QA.
 	for side in ["L", "R"]:
-		var root := "Thigh" + side
-		var tip := "Ankle" + side
+		var root: String = "Thigh" + String(side)
+		var tip: String = "Ankle" + String(side)
 		if skeleton.find_bone(root) == -1 or skeleton.find_bone(tip) == -1:
 			push_warning("Cannot build "+side+" foot chain")
 			continue

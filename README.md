@@ -1,6 +1,10 @@
 # age-of-the-lost
 AOTL Files
 
+## Dodge Roll ability icon
+
+[Open the Dodge Roll icon](art/ability_icons/dodge_roll/2026-11-12/README.md): one round UI icon (winged ivory and gold boot with speed lines on a navy disc) in 1024, 256, 128, 64 and 48px, with the exact Higgsfield source, prompt and job ID. Artwork only; no ability or game data was added. Stored as normal Git files, not Git LFS.
+
 ## Latest development: actor feedback and selective voice reference
 
 [Actor feedback handoff and QA](game/crownsfall_lootslice/docs/ACTOR_FEEDBACK_HANDOFF.md) · [Grady voice reference](audio/voice_auditions/2026-11-12/README.md).

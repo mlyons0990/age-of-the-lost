@@ -126,6 +126,8 @@ func _ready() -> void:
 	merchant.title = "Maren"
 	merchant.role = "Merchant  ·  click to trade"
 	merchant.position = MERCHANT_POS
+	# idle loop from the Higgsfield clip (layout from assets/npc/maren_idle.json)
+	merchant.anim = {"tex": load("res://assets/npc/maren_idle.png"), "frames": 16, "cols": 6, "cw": 173, "ch": 310, "ax": 86.0, "ay": 305.0, "fps": 5.0}
 	world.add_child(merchant)
 
 	for id in GD.LORE:

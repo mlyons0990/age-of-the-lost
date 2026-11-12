@@ -36,6 +36,16 @@ static func draw_cooldown(ci: CanvasItem, r: Rect2, frac: float) -> void:
 
 
 static func draw_icon(ci: CanvasItem, id: String, r: Rect2, col: Color) -> void:
+	if id == "potion" and ResourceLoader.exists("res://assets/ui/potion.png"):
+		# painted potion bottle (Higgsfield), fitted inside the square
+		if not _tex.has("ui_potion"):
+			_tex["ui_potion"] = load("res://assets/ui/potion.png")
+		var pt: Texture2D = _tex["ui_potion"]
+		var inner := r.grow(-4)
+		var kk: float = minf(inner.size.x / pt.get_width(), inner.size.y / pt.get_height())
+		var sz := Vector2(pt.get_width(), pt.get_height()) * kk
+		ci.draw_texture_rect(pt, Rect2(inner.get_center() - sz / 2.0, sz), false, col)
+		return
 	var tex := texture(id)
 	if tex != null:
 		# a grey colour means locked or unavailable: dim the painting

@@ -464,7 +464,44 @@ func rise_again() -> void:
 class HudDraw extends Control:
 	var hud: CanvasLayer
 
+	## Painted orb (Higgsfield art, assets/ui/orb_<life|mana>_<full|empty>.png): the empty
+	## globe is drawn whole, then the full one from the bottom up to the current level.
+	const ORB_CENTER := Vector2(151.0, 167.9)   # globe centre and radius inside the 300x332 texture
+	const ORB_RADIUS := 93.4
+	static var orb_tex := {}
+
+	func _orb_painted(kind: String, c: Vector2, r: float, frac: float, label: String) -> bool:
+		if orb_tex.is_empty():
+			for k in ["life", "mana"]:
+				for v in ["full", "empty"]:
+					var path := "res://assets/ui/orb_%s_%s.png" % [k, v]
+					orb_tex[k + v] = load(path) if ResourceLoader.exists(path) else null
+		var full: Texture2D = orb_tex.get(kind + "full")
+		var empty: Texture2D = orb_tex.get(kind + "empty")
+		if full == null or empty == null:
+			return false
+		var k: float = r / ORB_RADIUS
+		var size := Vector2(full.get_width(), full.get_height()) * k
+		var pos := c - ORB_CENTER * k
+		draw_texture_rect(empty, Rect2(pos, size), false)
+		frac = clampf(frac, 0.0, 1.0)
+		if frac > 0.0:
+			var y0: float = ORB_CENTER.y - ORB_RADIUS + (1.0 - frac) * 2.0 * ORB_RADIUS
+			if frac >= 0.999:
+				y0 = 0.0
+			var src := Rect2(0, y0, full.get_width(), full.get_height() - y0)
+			draw_texture_rect_region(full, Rect2(pos + Vector2(0, y0 * k), src.size * k), src)
+			if frac < 0.999:
+				# a bright line on the liquid's surface
+				var sy: float = c.y - r + (1.0 - frac) * 2.0 * r
+				var half: float = sqrt(maxf(0.0, r * r - (sy - c.y) * (sy - c.y)))
+				draw_line(Vector2(c.x - half + 2, sy), Vector2(c.x + half - 2, sy), Color(1, 1, 1, 0.35), 2.0, true)
+		_text_c(label, c + Vector2(0, 7), 20, Color.WHITE)
+		return true
+
 	func _orb(c: Vector2, r: float, col: Color, frac: float, label: String) -> void:
+		if _orb_painted("life" if col.r > col.b else "mana", c, r, frac, label):
+			return
 		draw_circle(c, r + 10, BRONZE.darkened(0.35))
 		draw_circle(c, r + 4, Color(0.03, 0.03, 0.05))
 		frac = clampf(frac, 0.0, 1.0)

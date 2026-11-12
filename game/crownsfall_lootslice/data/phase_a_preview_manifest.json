@@ -1,0 +1,280 @@
+{
+  "created_at": "2026-11-12",
+  "source": "Higgsfield original taxonomy 2026-11-12, approved format; candidates NOT approved for game ship",
+  "mode": "developer opt-in only",
+  "count": 16,
+  "items": [
+    {
+      "game_id": "weapon",
+      "source_asset_id": "aotl_one_hand_melee_sword_002",
+      "source_title": "Crownguard Sword",
+      "source_pixels": [
+        128,
+        384
+      ],
+      "gameplay_footprint": [
+        1,
+        3
+      ],
+      "sha256": "8ca0d68709a39c4c2a9285a85f2c926c0a2d9ca0ddeee66777d6724b16bc776b",
+      "staged_path": "res://assets/phase_a_preview/portraits/weapon.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/weapon.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "offhand",
+      "source_asset_id": "aotl_off_hand_kite_shield_002",
+      "source_title": "Royal Kite Shield",
+      "source_pixels": [
+        256,
+        256
+      ],
+      "gameplay_footprint": [
+        2,
+        2
+      ],
+      "sha256": "05070d81c1386f68d6093e3fdfb3f8875fe3a2ecda5121c68a7d7a58f4f05be6",
+      "staged_path": "res://assets/phase_a_preview/portraits/offhand.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/offhand.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "helm",
+      "source_asset_id": "aotl_armor_plate_plate_head_002",
+      "source_title": "Citadel Helm",
+      "source_pixels": [
+        256,
+        256
+      ],
+      "gameplay_footprint": [
+        2,
+        2
+      ],
+      "sha256": "71261245533efdfebfaa689a1d3672c93f93f42af7041760a59e182cb8e0bd29",
+      "staged_path": "res://assets/phase_a_preview/portraits/helm.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/helm.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "armor",
+      "source_asset_id": "aotl_armor_plate_plate_chest_002",
+      "source_title": "Citadel Cuirass",
+      "source_pixels": [
+        256,
+        384
+      ],
+      "gameplay_footprint": [
+        2,
+        3
+      ],
+      "sha256": "e69e2b95106d69bfbc67029962beadc53fc117a13e0b022b6788adf6b09d8bce",
+      "staged_path": "res://assets/phase_a_preview/portraits/armor.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/armor.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "gloves",
+      "source_asset_id": "aotl_armor_plate_plate_gloves_002",
+      "source_title": "Citadel Gauntlets",
+      "source_pixels": [
+        256,
+        256
+      ],
+      "gameplay_footprint": [
+        2,
+        2
+      ],
+      "sha256": "1c96a8d30fd6635beed8db7292079bdcd1ab3f1fdcd0e02f1ff6d4d5209cb075",
+      "staged_path": "res://assets/phase_a_preview/portraits/gloves.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/gloves.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "boots",
+      "source_asset_id": "aotl_armor_plate_plate_boots_002",
+      "source_title": "Citadel Sabatons",
+      "source_pixels": [
+        256,
+        256
+      ],
+      "gameplay_footprint": [
+        2,
+        2
+      ],
+      "sha256": "c71cae9e44d4bccfadb07047cd32766cca70605b846e4222b0a2c645a946da04",
+      "staged_path": "res://assets/phase_a_preview/portraits/boots.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/boots.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "belt",
+      "source_asset_id": "aotl_armor_plate_plate_belt_002",
+      "source_title": "Citadel War Belt",
+      "source_pixels": [
+        256,
+        128
+      ],
+      "gameplay_footprint": [
+        2,
+        1
+      ],
+      "sha256": "8203267ab7033078a1a2676b5479ccdde8b42a380dea11adb1de89e6757318b3",
+      "staged_path": "res://assets/phase_a_preview/portraits/belt.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/belt.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "wand",
+      "source_asset_id": "aotl_caster_wand_002",
+      "source_title": "Cinderweave Wand",
+      "source_pixels": [
+        128,
+        256
+      ],
+      "gameplay_footprint": [
+        1,
+        2
+      ],
+      "sha256": "69aba4a79b7eda3c437ea3cfb2338a4fe5d4dfc0b09949c291e3f79a6f8c49d1",
+      "staged_path": "res://assets/phase_a_preview/portraits/wand.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/wand.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "focus",
+      "source_asset_id": "aotl_off_hand_spell_focus_002",
+      "source_title": "Riftglass Focus",
+      "source_pixels": [
+        128,
+        256
+      ],
+      "gameplay_footprint": [
+        1,
+        2
+      ],
+      "sha256": "80101197f09a14739e22652ea90f8ff2b350ebc2dccd29ffa82592a49c37b626",
+      "staged_path": "res://assets/phase_a_preview/portraits/focus.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/focus.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "robe",
+      "source_asset_id": "aotl_armor_cloth_cloth_chest_002",
+      "source_title": "Aurelian Vestments",
+      "source_pixels": [
+        256,
+        384
+      ],
+      "gameplay_footprint": [
+        2,
+        3
+      ],
+      "sha256": "598cc4565a5adab01cd04ccae6f90eb68116d5aab2c82650eda79a7184403d63",
+      "staged_path": "res://assets/phase_a_preview/portraits/robe.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/robe.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "hood",
+      "source_asset_id": "aotl_armor_cloth_cloth_head_002",
+      "source_title": "Aurelian Hood",
+      "source_pixels": [
+        256,
+        256
+      ],
+      "gameplay_footprint": [
+        2,
+        2
+      ],
+      "sha256": "2057a48fa109417134e99d3cf73d23c7da64897e2da705ff849db61fc06e49ff",
+      "staged_path": "res://assets/phase_a_preview/portraits/hood.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/hood.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "ring",
+      "source_asset_id": "aotl_jewelry_ring_002",
+      "source_title": "Sapphire Signet Ring",
+      "source_pixels": [
+        128,
+        128
+      ],
+      "gameplay_footprint": [
+        1,
+        1
+      ],
+      "sha256": "c8eeee0784f5e9339a3f27c8ccebaccfd91fbcb388cb359570e8b47f77da098f",
+      "staged_path": "res://assets/phase_a_preview/portraits/ring.png",
+      "baseline_art": "res://assets/art_expansion02/portraits/ring.png",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "amulet",
+      "source_asset_id": "aotl_jewelry_amulet_002",
+      "source_title": "Wayfarer Memory Sigil",
+      "source_pixels": [
+        128,
+        128
+      ],
+      "gameplay_footprint": [
+        1,
+        1
+      ],
+      "sha256": "09d462713ef24bb949d27f64727c764043cd38c3e2b4e311d1f075b2ca384f5e",
+      "staged_path": "res://assets/phase_a_preview/portraits/amulet.png",
+      "baseline_art": "(fallback)",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "staff",
+      "source_asset_id": "aotl_caster_mystic_staff_002",
+      "source_title": "Epoch Staff",
+      "source_pixels": [
+        256,
+        512
+      ],
+      "gameplay_footprint": [
+        2,
+        4
+      ],
+      "sha256": "6726e7b51a101c6047df44c0b31d9e589ad8996f870b779988c010c4c05244c0",
+      "staged_path": "res://assets/phase_a_preview/portraits/staff.png",
+      "baseline_art": "(fallback)",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "slippers",
+      "source_asset_id": "aotl_armor_cloth_cloth_boots_002",
+      "source_title": "Aurelian Slippers",
+      "source_pixels": [
+        256,
+        256
+      ],
+      "gameplay_footprint": [
+        2,
+        2
+      ],
+      "sha256": "b8abaf4e30de678666be93b45ca8e07226d90c40fd0bf53c226370a54677082f",
+      "staged_path": "res://assets/phase_a_preview/portraits/slippers.png",
+      "baseline_art": "(fallback)",
+      "runtime_enabled_by_default": false
+    },
+    {
+      "game_id": "wraps",
+      "source_asset_id": "aotl_armor_cloth_cloth_gloves_002",
+      "source_title": "Aurelian Gloves",
+      "source_pixels": [
+        256,
+        256
+      ],
+      "gameplay_footprint": [
+        2,
+        2
+      ],
+      "sha256": "fb2a9d3e5ea3d1612ad9bebc74e7dd21b74c211f10d0fca12af669dc947fe0b7",
+      "staged_path": "res://assets/phase_a_preview/portraits/wraps.png",
+      "baseline_art": "(fallback)",
+      "runtime_enabled_by_default": false
+    }
+  ]
+}

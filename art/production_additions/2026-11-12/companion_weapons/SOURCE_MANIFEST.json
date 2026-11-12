@@ -1,0 +1,83 @@
+{
+  "collection": "AOTL Moonweave and Greyfen matching equipment weapons",
+  "date": "2026-11-12",
+  "items": [
+    {
+      "name": "Moonweave Chronicle Staff",
+      "key": "moonweave_staff",
+      "category": "two_handed",
+      "slot": "main_hand",
+      "grid": [
+        2,
+        4
+      ],
+      "job_id": "267542ce-3fd8-4f71-968b-72ae72a6f158",
+      "model": "gpt_image_2_6",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_083729_267542ce-3fd8-4f71-968b-72ae72a6f158.png",
+      "original": "moonweave_staff_source.png",
+      "master": "aotl_moonweave_staff_2x4_RGBA.png",
+      "compact": "aotl_moonweave_staff_2x4_indexed.png",
+      "alpha_method": "Higgsfield native transparent PNG",
+      "source_sha256": "d9df66bef4ac4362cdc36a00d9fb8fa484634b3d717acb728d220858e40504b6",
+      "master_sha256": "1cd3e7921d3cdcbfec4684081d158d18a171cd5ec3785e8732892bdff13868f4",
+      "compact_sha256": "52d11a1b63bbcffd4a8e85d9ea05ee88b076b3eb9c002f53ab83841ce60ab314",
+      "pixels": [
+        256,
+        512
+      ],
+      "alpha_bbox": [
+        90,
+        23,
+        166,
+        488
+      ],
+      "production_status": "generated_processed_art_candidate_not_gameplay_imported",
+      "source_provider": "Higgsfield",
+      "unlimited_generation": true,
+      "paid_credits_spent": 0
+    },
+    {
+      "name": "Greyfen Warden Shield",
+      "key": "greyfen_shield",
+      "category": "offhand",
+      "slot": "offhand",
+      "grid": [
+        2,
+        2
+      ],
+      "job_id": "61b01051-fe00-44d6-ac19-0520d9488214",
+      "model": "gpt_image_2",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261112_084635_61b01051-fe00-44d6-ac19-0520d9488214.png",
+      "original": "greyfen_shield_source.png",
+      "master": "aotl_greyfen_shield_2x2_RGBA.png",
+      "compact": "aotl_greyfen_shield_2x2_indexed.png",
+      "alpha_method": "OpenCV GrabCut against original opaque charcoal background; output needs manual edge review",
+      "source_sha256": "02db02b51eeface41acf683aca64734cb6aa74ed00ed8061dac41c4d4b9c9e82",
+      "master_sha256": "ad43356a06a6d607b50f7d87642378278df3df1381a8c03f9067bcf3a5c1b1e5",
+      "compact_sha256": "6a5902c7f6a22dab622c290ff54d55fee5b6df5ae9b2ac01051784929f0a51e6",
+      "pixels": [
+        256,
+        256
+      ],
+      "alpha_bbox": [
+        63,
+        13,
+        193,
+        243
+      ],
+      "production_status": "generated_processed_art_candidate_not_gameplay_imported",
+      "source_provider": "Higgsfield",
+      "unlimited_generation": true,
+      "paid_credits_spent": 0
+    }
+  ],
+  "qa_assertions_passed": 12,
+  "shield_prior_failed_jobs": [
+    "46d42a40-3df2-425b-9e42-467ad1a617c9",
+    "f93934b2-a342-46b1-a36d-c56377f43cfa"
+  ],
+  "runtime_tested": false,
+  "developer_files_archive_id": "06f73c59-712c-4ce4-8e36-6a2d57ee034d",
+  "archive_bytes": 3589083,
+  "notes": "Higgsfield-only generation. Moonweave Staff native alpha from GPT Image 2.6; Greyfen shield opaque source from GPT Image 2 followed by GrabCut alpha. Human fringe review and live Godot QA are pending. Failed shield jobs excluded."
+}

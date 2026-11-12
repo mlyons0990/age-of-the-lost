@@ -1035,6 +1035,26 @@ func _death_tests() -> void:
 	p.hp = 1.0
 	var s: Dictionary = p.stats()
 	p.gear["offhand"] = null
+	# knight animations from the Higgsfield clips: flinch, cast, fall
+	p.hp = 500.0
+	p.swinging = 0.0
+	var flinched := false
+	for i in 20:
+		p.hurt(1.0, 1, "Test Revenant")
+		if String(p.sprite.animation).begins_with("hit_"):
+			flinched = true
+			break
+	_check(flinched, "the knight flinches when hit (%s)" % p.sprite.animation)
+	await _wait(0.5)
+	p.cds.clear()
+	p.mp = 999.0
+	p.use_skill("s3", p.position + Vector2(40, 10))
+	_check(String(p.sprite.animation).begins_with("cast_"), "Rallying Cry plays the cast animation (%s)" % p.sprite.animation)
+	await _wait(0.1)
+	await _shot("g28_knight_cast")
+	await _wait(0.6)
+	p.hp = 1.0
+	p.invuln = 0.0
 	# keep hitting until a hit lands (dodge can avoid one)
 	for i in 50:
 		p.hurt(99999.0, 1, "Test Revenant")
@@ -1043,7 +1063,9 @@ func _death_tests() -> void:
 	_check(p.dead and main.death_info.get("killer", "") == "Test Revenant", "the death screen knows what killed you")
 	_check(p.gold == 450 and int(main.death_info["lost"]) == 50 and p.deaths == deaths0 + 1, "dying costs 10%% of carried gold (%d left)" % p.gold)
 	_check(not main.rift["active"] and int(main.death_info["wave"]) == 3, "the Scar closes and the wave reached is shown")
-	await _wait(1.6)
+	await _wait(0.1)
+	_check(String(p.sprite.animation).begins_with("death_"), "the knight plays his fall (%s)" % p.sprite.animation)
+	await _wait(1.5)
 	_check(main.hud.death_panel != null, "death screen appears after the fall")
 	await _shot("g24_death")
 	await _key(KEY_ENTER)

@@ -14,6 +14,8 @@ const FEET := Vector2(0, 12) # nudges the art so the boots sit on the node origi
 const WALK_FPS := 14.0
 const ATTACK_FRAME := 512      # attack strips use larger frames so the sword swing fits
 const ATTACK_FPS := 28.0
+## Frames per second of each action strip (assets/knight/<kind>_<se|ne>.png).
+const ACTION_FPS := {"attack": 28.0, "hit": 24.0, "cast": 24.0, "death": 9.0}
 const ATTACK_TIME := 0.5       # how long a swing roots the knight
 const HIT_DELAY := 0.2         # the blow lands this long after the swing starts
 
@@ -124,21 +126,42 @@ func _build_frames() -> SpriteFrames:
 		sf.set_animation_loop(idle, false)
 		var itex: Texture2D = load("res://assets/knight/idle_%s.png" % d)
 		sf.add_frame(idle, itex)
-	for d in ["se", "ne"]:
-		var apath := "res://assets/knight/attack_%s.png" % d
-		if not ResourceLoader.exists(apath):
-			continue
-		var atex: Texture2D = load(apath)
-		var attack: String = "attack_" + d
-		sf.add_animation(attack)
-		sf.set_animation_speed(attack, ATTACK_FPS)
-		sf.set_animation_loop(attack, false)
-		for i in int(atex.get_width() / float(ATTACK_FRAME)):
-			var at2 := AtlasTexture.new()
-			at2.atlas = atex
-			at2.region = Rect2(i * ATTACK_FRAME, 0, ATTACK_FRAME, ATTACK_FRAME)
-			sf.add_frame(attack, at2)
+	# action strips (512 px frames, the 384 px idle pose centred): sword swing, plus the
+	# hit reaction, cast and death from the Higgsfield clips. Only the two diagonals exist.
+	for kind in ACTION_FPS:
+		for d in ["se", "ne"]:
+			var apath := "res://assets/knight/%s_%s.png" % [kind, d]
+			if not ResourceLoader.exists(apath):
+				continue
+			var atex: Texture2D = load(apath)
+			var aname: String = kind + "_" + d
+			sf.add_animation(aname)
+			sf.set_animation_speed(aname, float(ACTION_FPS[kind]))
+			sf.set_animation_loop(aname, false)
+			for i in int(atex.get_width() / float(ATTACK_FRAME)):
+				var at2 := AtlasTexture.new()
+				at2.atlas = atex
+				at2.region = Rect2(i * ATTACK_FRAME, 0, ATTACK_FRAME, ATTACK_FRAME)
+				sf.add_frame(aname, at2)
 	return sf
+
+
+## Plays a one-shot action animation (hit, cast, death) facing the current direction.
+## The animation holds the sprite for `lock` seconds; movement isn't stopped.
+func _play_action(kind: String, lock: float) -> bool:
+	var f: Array = ATTACK_FACINGS[facing]
+	var anim: String = kind + "_" + String(f[0])
+	if not sprite.sprite_frames.has_animation(anim):
+		anim = kind + "_se"
+		if not sprite.sprite_frames.has_animation(anim):
+			return false
+	sprite.flip_h = f[1]
+	sprite.play(anim)
+	sprite.frame = 0
+	sprite.speed_scale = 1.0
+	sprite.scale = Vector2.ONE * SPRITE_SCALE
+	swinging = lock
+	return true
 
 
 func _shadow_texture() -> Texture2D:
@@ -348,6 +371,8 @@ func hurt(amount: float, src_level: int, src := "") -> void:
 	main.hurt_flash = 0.35
 	main.shake = maxf(main.shake, 4.0)
 	main.fx_text.text(position, "-%d" % d, Color("ff5a5a"))
+	if hp > 0.0 and swinging <= 0.0 and dash.is_empty():
+		_play_action("hit", 0.32)   # flinch, unless mid-swing or charging
 	if hp <= 0.0:
 		hp = 0.0
 		dead = true
@@ -463,12 +488,14 @@ func use_skill(slot: String, aim: Vector2) -> bool:
 			path = PackedVector2Array()
 			target = null
 		"buff":
+			_play_action("cast", 0.55)
 			heal(float(s["max_hp"]) * (float(sk["heal"]) + float(s["m"]["rally_heal"])))
 			rally = sk["duration"]
 			main.audio.play("rally", 0.0)
 			main.fx_ground.ring(position, 0.3, 3.2, 0.6, c1)
 			main.fx_ground.pillar(position, 0.8, c1)
 		"nova":
+			_play_action("cast", 0.5)
 			var radius: float = float(sk["radius"]) * (1.0 + float(s["m"]["spec_radius"]))
 			main.fx_ground.ring(position, 0.3, radius, 0.45, c2, true)
 			main.audio.play("harvest", 0.03)
@@ -478,6 +505,7 @@ func use_skill(slot: String, aim: Vector2) -> bool:
 				heal(float(s["max_hp"]) * float(sk["heal_per_hit"]) * n)
 			main.shake = maxf(main.shake, 6.0)
 		"cone":
+			_play_action("cast", 0.5)
 			main.audio.play("fire", 0.04)
 			var fire := [Color("fff2b0"), Color("ffb347"), Color("ff6a1f"), Color("ff3b1f")]
 			for i in 70:
@@ -488,6 +516,7 @@ func use_skill(slot: String, aim: Vector2) -> bool:
 			_hit_arc(sk["range"], sk["arc"], float(sk["dmg"]) * spec_mult, ang, {"burn": float(sk["burn"]), "kb": 0.2, "colors": [fire[1], fire[2]]})
 			main.shake = maxf(main.shake, 4.0)
 		"ground":
+			_play_action("cast", 0.5)
 			var reach: float = minf(gv.length(), 7.0)
 			var at: Vector2 = position + GD.to_px(gv.normalized() * reach)
 			var radius2: float = sk["radius"]
@@ -655,12 +684,15 @@ func _physics_process(delta: float) -> void:
 	if dead:
 		swinging = 0.0
 		pending_t = 0.0
-		_play("idle")
-		sprite.stop()
-		# topple over and darken
-		var side := -1.0 if sprite.flip_h else 1.0
-		sprite.rotation = move_toward(sprite.rotation, 1.35 * side, 3.0 * delta)
-		sprite.modulate = sprite.modulate.lerp(Color(0.45, 0.35, 0.4, 1.0), 2.0 * delta)
+		if not String(sprite.animation).begins_with("death"):
+			if not _play_action("death", 0.0):
+				_play("idle")
+				sprite.stop()
+		if not String(sprite.animation).begins_with("death"):
+			# no death animation: topple over
+			var side := -1.0 if sprite.flip_h else 1.0
+			sprite.rotation = move_toward(sprite.rotation, 1.35 * side, 3.0 * delta)
+		sprite.modulate = sprite.modulate.lerp(Color(0.6, 0.5, 0.55, 1.0), 1.5 * delta)
 		return
 	sprite.rotation = 0.0
 	if sprite.modulate.r < 0.99:

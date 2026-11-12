@@ -197,6 +197,7 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `assets/plaza.png` | 2720x1536 painted plaza, used as one background image |
 | `assets/knight/walk_<dir>.png` | Walk strips, 12 frames of 384x384, laid out left to right |
 | `assets/knight/idle_<dir>.png` | One 384x384 standing frame per direction |
+| `assets/knight/<hit,cast>_<se,ne>.png`, `death_se.png` | Knight flinch (on taking a hit, unless swinging), cast (Rallying Cry and the spec skills) and death fall, cut from the Higgsfield clips with `tools/make_attack_strip.py`; frame rates in `ACTION_FPS` in `player.gd` |
 | `assets/knight/attack_<se,ne>.png` | Sword swing strips, 15 frames of 512x512 (the 384 frame sits centred inside) |
 | `assets/enemies/<slime,revenant,brute>.png` | Enemy sprites: Hollowling, Veilbound Revenant, Thornhide Brute |
 | `assets/items/painted/<art id>.png` | Painted item portraits from `art/item_taxonomy` (Higgsfield). Each item stores its `base` ("Chainmail", "Kite Shield"...) and `ITEM_ART` in `game_data.gd` maps bases to art: plate, mail, leather and cloth armour, three shields, sword/axe/mace. Old saves infer the base from the name |
@@ -217,7 +218,7 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 150 checks covering
+(walk, fight a wave, level to 60 making each class choice, 153 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
@@ -227,7 +228,7 @@ the last check confirms every test section ran to the end (a GDScript error
 inside a section stops it without failing a check, so also look for
 "SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 150 of 150 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 153 of 153 checks. Not yet run on Windows.
 
 ## How the plaza works
 

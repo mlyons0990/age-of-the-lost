@@ -2,7 +2,7 @@ extends Node3D
 ## Visual-only bridge: original painted movement/collision owns physics and combat;
 ## Higgsfield Master V02 owns the 58-joint mesh, 16 actions, optional terrain IK and sockets.
 ## Turn on in the Phase02 scene with --aotl-v03. Never touches the save schema.
-const MODEL_PATH := "res://models/AOTL_Humanoid_Master_V02.glb"
+const MODEL_PATH := "res://models/AOTL_Humanoid_Master_V03.glb"
 const REEL_MANIFEST := "res://data/humanoid_v02_reel_manifest.json"
 
 var model_root: Node3D
@@ -28,7 +28,7 @@ func _ready() -> void:
 	name = "AOTL_V03_Higgsfield_Humanoid_Visual"
 	actor_body = get_parent() as CharacterBody3D
 	if not ResourceLoader.exists(MODEL_PATH):
-		push_warning("V03 rig not restored. Run tools/restore_rig_v02.py; painted mode stays playable.")
+		push_warning("V03 rig not restored. Run tools/restore_rig_v03.py; painted mode stays playable.")
 		return
 	var resource := load(MODEL_PATH) as PackedScene
 	if resource == null:

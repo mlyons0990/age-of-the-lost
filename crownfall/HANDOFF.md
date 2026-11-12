@@ -213,6 +213,7 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `assets/zones/whisperwood.png` | Whisperwood Ruins painting (Higgsfield) |
 | `assets/ui/orb_<life,mana>_<full,empty>.png`, `assets/ui/potion.png` | Painted HUD orbs and potion (Higgsfield). The empty globe draws first, then the full one from the bottom up to the current level (`_orb_painted` in `hud.gd`; globe centre/radius in `ORB_CENTER`/`ORB_RADIUS`) |
 | `assets/npc/maren_idle.png` | Maren's idle loop (Higgsfield clip), played by `npc.gd` at 5 fps |
+| `assets/ui/bar_plate.png`, `bar_crest.png`, `slot_socket.png`, `keycap.png`, `mouse_<l,r>.png`, `round_frame.png`, `evade_roll.png`, `lock.png`, `level_gem.png` | Skill bar and HUD button art, built by `tools/make_ui_art.py` from the Higgsfield ornate panel frame (`tools/ui_sources/ui_panel_frame.png`, nine-sliced into the bar plate; its shield becomes the crest), the orb ring (cut out for the round potion/evade buttons) and the painted leather boots (the dodge icon). Re-run the tool after changing the bar's size in `hud.gd` (`PLATE` must match `bar_w + 80` by `sz + 78`) |
 | `scripts/hazard.gd` | Delayed ground blast with a warning ring (Molten elites; reusable for bosses) |
 | `scripts/game_data.gd` | Class, spec, enemy and item data (edit this to design classes) |
 | `scripts/fx.gd` | Slash arcs, rings, blasts, particles, floating numbers |

@@ -590,11 +590,43 @@ class HudDraw extends Control:
 			draw_string_outline(font, at - Vector2(w / 2.0, 0), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, outline, Color(0, 0, 0, col.a * 0.9))
 		draw_string(font, at - Vector2(w / 2.0, 0), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, col)
 
-	## A small round button with a bronze rim (potion, evade).
+	## HUD art from tools/make_ui_art.py (assets/ui), cached; null if missing.
+	static var ui_tex := {}
+
+	func _ui(name: String) -> Texture2D:
+		if not ui_tex.has(name):
+			var path := "res://assets/ui/%s.png" % name
+			ui_tex[name] = load(path) if ResourceLoader.exists(path) else null
+		return ui_tex[name]
+
+	## A key cap with a label on it (1-4, Q, Space).
+	func _keycap(c: Vector2, label: String, w := 24.0) -> void:
+		var t := _ui("keycap")
+		var r := Rect2(c - Vector2(w / 2.0, 11), Vector2(w, 22))
+		if t != null:
+			draw_texture_rect(t, r, false)
+		else:
+			draw_rect(r, Color(0.05, 0.05, 0.07))
+			draw_rect(r, Color("bdb6a6"), false, 1.5)
+		_text_c(label, c + Vector2(0, 3), 12 if label.length() > 1 else 14, Color("f2e6d0"), 3)
+
+	## A small round button: the orbs' gold ring around a dark well (potion, evade).
 	func _round_button(c: Vector2, r: float) -> void:
-		draw_circle(c, r + 4, BRONZE.darkened(0.35))
-		draw_circle(c, r, Color(0.06, 0.06, 0.09))
-		draw_arc(c, r + 2, 0.0, TAU, 40, BRONZE, 2.0, true)
+		draw_circle(c, r, Color(0.05, 0.05, 0.08))
+		var f := _ui("round_frame")
+		if f == null:
+			draw_circle(c, r + 4, BRONZE.darkened(0.35))
+			draw_circle(c, r, Color(0.06, 0.06, 0.09))
+			draw_arc(c, r + 2, 0.0, TAU, 40, BRONZE, 2.0, true)
+
+	## The ring itself, drawn last so it sits over the icon and cooldown sweep.
+	func _round_frame(c: Vector2, r: float) -> void:
+		var f := _ui("round_frame")
+		if f == null:
+			return
+		var k: float = r / 93.4   # ring radius inside the texture
+		var half: float = (93.4 + 26.0) * k
+		draw_texture_rect(f, Rect2(c - Vector2(half, half), Vector2(half, half) * 2.0), false)
 
 	func _icon(id: String, r: Rect2, col: Color) -> void:
 		Icons.draw_icon(self, id, r, col)
@@ -676,10 +708,14 @@ class HudDraw extends Control:
 		var n: int = p.bindings.size()
 		var bar_w := n * sz + (n - 1) * gap + group_gap
 		var x0 := (w - bar_w) / 2.0
-		var plate := Rect2(x0 - 14, cy - sz / 2 - 24, bar_w + 28, sz + 60)
+		var plate := Rect2(x0 - 40, cy - sz / 2 - 34, bar_w + 80, sz + 78)
 		hud.bar_plate = plate
-		draw_rect(plate, DARK)
-		draw_rect(plate, BRONZE, false, 3.0)
+		var plate_tex := _ui("bar_plate")
+		if plate_tex != null:
+			draw_texture_rect(plate_tex, plate, false)
+		else:
+			draw_rect(plate, DARK)
+			draw_rect(plate, BRONZE, false, 3.0)
 		var cols: Array = p.fx_colors()
 		var mouse := get_local_mouse_position()
 		var tip: Dictionary = {}
@@ -696,16 +732,26 @@ class HudDraw extends Control:
 			var dragging_this: bool = hud.drag_from == i and hud.drag_skill != "" and get_local_mouse_position().distance_to(hud.drag_press) > 6.0
 			if slot == "" or dragging_this:
 				# an empty slot waits for a skill
-				draw_rect(r, Color(0.07, 0.07, 0.1))
-				draw_rect(r, BRONZE.darkened(0.45), false, 2.0)
+				var sock := _ui("slot_socket")
+				if sock != null:
+					draw_texture_rect(sock, r, false)
+				else:
+					draw_rect(r, Color(0.07, 0.07, 0.1))
+					draw_rect(r, BRONZE.darkened(0.45), false, 2.0)
 				if hud.drag_skill != "" and r.has_point(get_local_mouse_position()):
 					draw_rect(r, Color(1, 0.85, 0.4, 0.25))
 				elif r.has_point(mouse) and hud.drag_skill == "":
 					tip = {"name": "Empty slot", "desc": "Drag a skill here from the spellbook (P).", "meta": ""}
 					tip_rect = r
 			elif sk.is_empty():
-				_icon("lock", r, Color.GRAY)
-				draw_rect(r, BRONZE.darkened(0.5), false, 2.0)
+				var sock2 := _ui("slot_socket")
+				var lk := _ui("lock")
+				if sock2 != null and lk != null:
+					draw_texture_rect(sock2, r, false)
+					draw_texture_rect(lk, r.grow(-14), false, Color(1, 1, 1, 0.85))
+				else:
+					_icon("lock", r, Color.GRAY)
+					draw_rect(r, BRONZE.darkened(0.5), false, 2.0)
 				if r.has_point(mouse):
 					tip = {"name": "Locked", "desc": "Choose a specialization at level %d to unlock this skill." % GD.SPEC_LEVEL, "meta": ""}
 					tip_rect = r
@@ -734,23 +780,33 @@ class HudDraw extends Control:
 			var kc := Vector2(r.get_center().x, r.end.y + 15)
 			var key: String = p.BIND_KEYS[i]
 			if key == "LMB" or key == "RMB":
-				Icons.draw_mouse(self, kc, key == "LMB", GOLD)
+				var mt := _ui("mouse_l" if key == "LMB" else "mouse_r")
+				if mt != null:
+					draw_texture_rect(mt, Rect2(kc - Vector2(10, 13), Vector2(20, 26)), false)
+				else:
+					Icons.draw_mouse(self, kc, key == "LMB", GOLD)
 			else:
-				var kr := Rect2(kc - Vector2(11, 10), Vector2(22, 20))
-				draw_rect(kr, Color(0.05, 0.05, 0.07))
-				draw_rect(kr, Color("bdb6a6"), false, 1.5)
-				_text_c(key, kc + Vector2(0, 5), 14, Color("f2e6d0"), 0)
+				_keycap(kc, key)
 		# xp along the top of the bar, with the level on a diamond at its left
-		var xr := Rect2(x0 + 20, cy - sz / 2 - 16, bar_w - 20, 8)
+		var xr := Rect2(x0 + 22, cy - sz / 2 - 13, bar_w - 26, 7)
 		draw_rect(xr, Color(0.06, 0.06, 0.06))
 		var need: int = GD.xp_need(p.level)
 		var xf: float = 1.0 if p.level >= GD.MAX_LEVEL else float(p.xp) / need
 		draw_rect(Rect2(xr.position, Vector2(xr.size.x * xf, xr.size.y)), GOLD.darkened(0.15))
 		draw_rect(xr, BRONZE.darkened(0.25), false, 1.5)
-		var lc := Vector2(x0 + 4, xr.get_center().y)
-		draw_colored_polygon(PackedVector2Array([lc + Vector2(0, -15), lc + Vector2(15, 0), lc + Vector2(0, 15), lc + Vector2(-15, 0)]), Color(0.12, 0.1, 0.08))
-		draw_polyline(PackedVector2Array([lc + Vector2(0, -15), lc + Vector2(15, 0), lc + Vector2(0, 15), lc + Vector2(-15, 0), lc + Vector2(0, -15)]), BRONZE, 2.0, true)
-		_text_c(str(p.level), lc + Vector2(0, 5), 14, GOLD, 0)
+		var lc := Vector2(x0 + 6, xr.get_center().y)
+		var gem := _ui("level_gem")
+		if gem != null:
+			draw_texture_rect(gem, Rect2(lc - Vector2(18, 18), Vector2(36, 36)), false)
+		else:
+			draw_colored_polygon(PackedVector2Array([lc + Vector2(0, -15), lc + Vector2(15, 0), lc + Vector2(0, 15), lc + Vector2(-15, 0)]), Color(0.12, 0.1, 0.08))
+		_text_c(str(p.level), lc + Vector2(0, 5), 14, GOLD, 3)
+		# the crest crowns the bar
+		var crest := _ui("bar_crest")
+		if crest != null:
+			var cw2: float = crest.get_width() * 0.42
+			var ch2: float = crest.get_height() * 0.42
+			draw_texture_rect(crest, Rect2(Vector2(plate.get_center().x - cw2 / 2.0, plate.position.y - ch2 * 0.62), Vector2(cw2, ch2)), false)
 		if xr.grow(4).has_point(mouse):
 			tip = {"name": "Experience", "desc": "Max level" if p.level >= GD.MAX_LEVEL else "XP %d / %d" % [p.xp, need], "meta": ""}
 			tip_rect = xr
@@ -763,12 +819,10 @@ class HudDraw extends Control:
 		var pc := life_c + Vector2(66, -62)
 		_round_button(pc, 25.0)
 		_icon("potion", Rect2(pc - Vector2(18, 20), Vector2(36, 40)), Color.WHITE if p.potions > 0 else Color(0.4, 0.4, 0.4))
+		_round_frame(pc, 25.0)
 		draw_string_outline(font, pc + Vector2(14, 22), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 4, Color.BLACK)
 		draw_string(font, pc + Vector2(14, 22), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color.WHITE)
-		var qk := Rect2(pc + Vector2(26, -36), Vector2(20, 19))
-		draw_rect(qk, Color(0.05, 0.05, 0.07))
-		draw_rect(qk, Color("bdb6a6"), false, 1.5)
-		_text_c("Q", qk.get_center() + Vector2(0, 5), 13, Color("f2e6d0"), 0)
+		_keycap(pc + Vector2(36, -26), "Q", 22.0)
 		if pc.distance_to(mouse) < 26.0:
 			tip = {"name": "Health Potion", "desc": "Restore 45% of your life.", "meta": "%d of 5" % p.potions}
 			tip_rect = Rect2(pc - Vector2(26, 26), Vector2(52, 52))
@@ -778,15 +832,20 @@ class HudDraw extends Control:
 		_round_button(ec, 25.0)
 		var ecd: float = p.cds.get("evade", 0.0)
 		var ready: bool = ecd <= 0.0
-		if String(ev["type"]) == "roll":
+		var roll_tex := _ui("evade_roll")
+		if String(ev["type"]) == "roll" and roll_tex != null:
+			draw_texture_rect(roll_tex, Rect2(ec - Vector2(25, 25), Vector2(50, 50)), false, Color.WHITE if ready else Color(0.5, 0.5, 0.55))
+		elif String(ev["type"]) == "roll":
 			Icons.draw_foot(self, ec, Color("efe6d2") if ready else Color(0.55, 0.55, 0.55))
 		else:
 			Icons.draw_icon(self, "blink", Rect2(ec - Vector2(22, 22), Vector2(44, 44)), Color("cfe2ff"))
 		if not ready:
-			Icons.draw_cooldown_circle(self, ec, 22.0, ecd / maxf(0.01, float(p.cd_full.get("evade", 1.0))))
-		else:
-			draw_arc(ec, 23.0, 0.0, TAU, 40, Color(1.0, 0.9, 0.6, 0.35 + 0.25 * sin(Time.get_ticks_msec() / 300.0)), 2.0, true)
-		Icons.draw_spacebar(self, ec + Vector2(-50, -26), Color("bdb6a6"))
+			Icons.draw_cooldown_circle(self, ec, 25.0, ecd / maxf(0.01, float(p.cd_full.get("evade", 1.0))))
+			_text_c("%.1f" % ecd, ec + Vector2(0, 6), 15, Color.WHITE, 4)
+		_round_frame(ec, 25.0)
+		if ready:
+			draw_arc(ec, 33.0, 0.0, TAU, 48, Color(1.0, 0.86, 0.5, 0.25 + 0.2 * sin(Time.get_ticks_msec() / 300.0)), 3.0, true)
+		_keycap(ec + Vector2(-50, -26), "Space", 50.0)
 		if ec.distance_to(mouse) < 26.0:
 			tip = {"name": ev["name"], "desc": ev["desc"], "meta": "Space  ·  %ss cooldown  ·  untouchable %ss" % [str(ev["cd"]), str(ev["iframes"])]}
 			tip_rect = Rect2(ec - Vector2(26, 26), Vector2(52, 52))

@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "headless_assertions": 825,
+  "extra_native_mouse_assertions": 6,
+  "distinct_assertions": 831,
+  "suites": [
+    {
+      "suite": "inventory_ui",
+      "checks": 110,
+      "failures": 0,
+      "success": true,
+      "display": "X11/Xvfb software OpenGL",
+      "engine": "Godot 4.6.3",
+      "audio_driver": "Dummy"
+    },
+    {
+      "suite": "town_ui",
+      "checks": 71,
+      "failures": 0,
+      "success": true,
+      "display": "X11/Xvfb software OpenGL",
+      "engine": "Godot 4.6.3",
+      "audio_driver": "Dummy"
+    },
+    {
+      "suite": "grid_alignment",
+      "checks": 66,
+      "failures": 0,
+      "success": true,
+      "display": "X11/Xvfb software OpenGL",
+      "engine": "Godot 4.6.3",
+      "audio_driver": "Dummy"
+    },
+    {
+      "suite": "loot",
+      "checks": 78,
+      "failures": 0,
+      "success": true,
+      "display": "X11/Xvfb software OpenGL",
+      "engine": "Godot 4.6.3",
+      "audio_driver": "Dummy"
+    },
+    {
+      "suite": "selected_art",
+      "checks": 76,
+      "failures": 0,
+      "success": true,
+      "display": "X11/Xvfb software OpenGL",
+      "engine": "Godot 4.6.3",
+      "audio_driver": "Dummy"
+    }
+  ]
+}

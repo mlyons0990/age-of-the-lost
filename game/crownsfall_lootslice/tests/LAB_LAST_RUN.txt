@@ -1,0 +1,30 @@
+Godot 4.6.3-stable (official) / headless
+PASS Mage fixture created on authoritative mechanics
+PASS staff gear fixture equips before scene switch
+PASS F7 refuses to discard an active Scar encounter
+PASS F7 enters the real 3D lab scene
+PASS GLB scene instantiated under CharacterBody3D
+PASS imported runtime skeleton has 58 bones
+PASS runtime AnimationPlayer has all six named clips
+PASS clip library names resolve all required actions
+PASS locomotion and idle explicitly loop in-engine
+PASS Walk animation changes actual runtime bone poses
+PASS WASD input moves imported actor on the 3D floor
+PASS Shift changes real locomotion speed
+PASS 3D slash waits for its contact event
+PASS 3D slash applies one timed target impact
+PASS slash recovery does not reapply damage each frame
+PASS dodge plays and grants its bounded invulnerability
+PASS damage resumes after dodge invulnerability ends
+PASS 3D cast anticipation precedes damage
+PASS 3D cast resolves on its scheduled impact
+PASS inactive dummy cannot yield repeated kill credit
+PASS F7 returns from lab to 2D gameplay
+PASS return preserves chosen Mage class and player name
+PASS return preserves currency and potions
+PASS return preserves equipped staff UID
+PASS return preserves backpack and stash ownership exactly
+PASS lab return does not refill persistent gameplay resources
+PASS main-world cooldown remains frozen during independent lab session
+PASS return leaves gameplay unpaused without duplicate creation
+28 checks; 0 failures

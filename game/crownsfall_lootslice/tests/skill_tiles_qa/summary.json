@@ -1,0 +1,117 @@
+{
+  "project": "game/crownsfall_lootslice",
+  "platform": "linux",
+  "suites": [
+    {
+      "name": "warrior",
+      "success": true,
+      "expected_checks": 52,
+      "exit_code": 0,
+      "seconds": 3.715
+    },
+    {
+      "name": "mage",
+      "success": true,
+      "expected_checks": 57,
+      "exit_code": 0,
+      "seconds": 3.882
+    },
+    {
+      "name": "lab",
+      "success": true,
+      "expected_checks": 28,
+      "exit_code": 0,
+      "seconds": 5.466
+    },
+    {
+      "name": "art_audio",
+      "success": true,
+      "expected_checks": 19,
+      "exit_code": 0,
+      "seconds": 1.368
+    },
+    {
+      "name": "mastery",
+      "success": true,
+      "expected_checks": 86,
+      "exit_code": 0,
+      "seconds": 1.748
+    },
+    {
+      "name": "encounter",
+      "success": true,
+      "expected_checks": 60,
+      "exit_code": 0,
+      "seconds": 1.002
+    },
+    {
+      "name": "encounter_bouts",
+      "success": true,
+      "expected_checks": 15,
+      "exit_code": 0,
+      "seconds": 2.116
+    },
+    {
+      "name": "inventory_ui",
+      "success": true,
+      "expected_checks": 108,
+      "exit_code": 0,
+      "seconds": 1.561
+    },
+    {
+      "name": "town_ui",
+      "success": true,
+      "expected_checks": 69,
+      "exit_code": 0,
+      "seconds": 3.057
+    },
+    {
+      "name": "reliability",
+      "success": true,
+      "expected_checks": 77,
+      "exit_code": 0,
+      "seconds": 2.03
+    },
+    {
+      "name": "navigation",
+      "success": true,
+      "expected_checks": 36,
+      "exit_code": 0,
+      "seconds": 1.738
+    },
+    {
+      "name": "grid_alignment",
+      "success": true,
+      "expected_checks": 64,
+      "exit_code": 0,
+      "seconds": 1.753
+    },
+    {
+      "name": "loot",
+      "success": true,
+      "expected_checks": 78,
+      "exit_code": 0,
+      "seconds": 2.484
+    },
+    {
+      "name": "selected_art",
+      "success": true,
+      "expected_checks": 76,
+      "exit_code": 0,
+      "seconds": 1.277
+    },
+    {
+      "name": "skill_tiles",
+      "success": true,
+      "expected_checks": 75,
+      "exit_code": 0,
+      "seconds": 1.278
+    }
+  ],
+  "unique_assertions": 900,
+  "success": true,
+  "import": {
+    "exit_code": 0,
+    "seconds": 5.816
+  }
+}

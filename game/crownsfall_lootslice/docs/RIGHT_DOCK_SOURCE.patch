@@ -1,0 +1,279 @@
+--- a/scripts/hud.gd
++++ b/scripts/hud.gd
+@@ -61,6 +61,25 @@
+ 		overlay_buttons[i].size = Vector2(68, 68)
+ 
+ func _input(event: InputEvent) -> void:
++	if event is InputEventJoypadButton and event.pressed:
++		if start_panel!=null or choice_panel!=null or death_panel!=null or not inventory_active(): return
++		var shell: Control=inventory_shell
++		if not is_instance_valid(shell): return
++		match event.button_index:
++			JOY_BUTTON_DPAD_LEFT: shell.focus_step(-1,0)
++			JOY_BUTTON_DPAD_RIGHT: shell.focus_step(1,0)
++			JOY_BUTTON_DPAD_UP: shell.focus_step(0,-1)
++			JOY_BUTTON_DPAD_DOWN: shell.focus_step(0,1)
++			JOY_BUTTON_A: shell.focus_inspect()
++			JOY_BUTTON_X: shell.focus_inspect(true)
++			JOY_BUTTON_LEFT_SHOULDER: shell.set_tab("equipment")
++			JOY_BUTTON_RIGHT_SHOULDER: shell.set_tab("character")
++			JOY_BUTTON_B:
++				var current_focus: Control=get_viewport().gui_get_focus_owner()
++				if current_focus is LineEdit: current_focus.release_focus()
++				else: close_page()
++			_: return
++		get_viewport().set_input_as_handled(); return
+ 	if not event is InputEventKey or not event.pressed or event.echo: return
+ 	if start_panel != null or choice_panel != null or death_panel != null: return
+ 	var focus:=get_viewport().gui_get_focus_owner()
+@@ -69,6 +88,18 @@
+ 		return
+ 	if inventory_active() and event.ctrl_pressed and event.keycode==KEY_F:
+ 		inventory_shell.search.grab_focus(); inventory_shell.search.select_all(); get_viewport().set_input_as_handled(); return
++	if inventory_active() and is_instance_valid(inventory_shell):
++		var shell: Control=inventory_shell
++		match event.keycode:
++			KEY_LEFT: shell.focus_step(-1,0)
++			KEY_RIGHT: shell.focus_step(1,0)
++			KEY_UP: shell.focus_step(0,-1)
++			KEY_DOWN: shell.focus_step(0,1)
++			KEY_ENTER, KEY_KP_ENTER: shell.focus_inspect(event.shift_pressed)
++			KEY_TAB: shell.switch_tab()
++			_: pass
++		if event.keycode in [KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_DOWN,KEY_ENTER,KEY_KP_ENTER,KEY_TAB]:
++			get_viewport().set_input_as_handled(); return
+ 	match event.keycode:
+ 		KEY_ESCAPE:
+ 			if char_panel != null: close_page()
+@@ -182,8 +213,14 @@
+ func refresh_inventory() -> void:
+ 	var kind:=page if page in ["inventory","stash","merchant"] else "inventory"
+ 	var tab: String=inventory_shell.tab if is_instance_valid(inventory_shell) else "equipment"
++	var selected_cell: Vector2i=inventory_shell.focus_cell if is_instance_valid(inventory_shell) else Vector2i.ZERO
++	var keyboard_was_active: bool=inventory_shell.keyboard_mode if is_instance_valid(inventory_shell) else false
+ 	open_page(kind)
+-	if is_instance_valid(inventory_shell): inventory_shell.set_tab(tab)
++	if is_instance_valid(inventory_shell):
++		inventory_shell.set_tab(tab)
++		inventory_shell.focus_cell=selected_cell
++		inventory_shell.keyboard_mode=keyboard_was_active
++		inventory_shell.bag.queue_redraw()
+ 
+ func town_state() -> Dictionary:
+ 	return {"inventory":player.inventory,"stash":player.stash,"stock":main.merchant_stock,"buyback":main.buyback_stock,"gold":player.gold,"potions":player.potions}
+@@ -240,6 +277,15 @@
+ 			if plan.ok:
+ 				var before: Dictionary=player.stats(); var after:=Systems.derive(player.level,plan.gear,player.mods(),player.class_id)
+ 				inspector.add_child(_label("IF EQUIPPED · "+String(target).to_upper(),15,GOLD))
++				var replacements: String=""
++				for old_slot in player.gear:
++					var old_item: Variant=player.gear.get(old_slot)
++					var new_item: Variant=plan.gear.get(old_slot)
++					if old_item is Dictionary and (not new_item is Dictionary or String(old_item.uid)!=String(new_item.uid)):
++						replacements += (", " if replacements!="" else "")+String(old_item.name)
++				if replacements!="":
++					var warning:=_label("Moves to backpack: "+replacements,14,Color("d3b68b"))
++					warning.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; inspector.add_child(warning)
+ 				for row in [["Power",after.spell_power-before.spell_power if player.class_id=="mage" else after.dmg-before.dmg],["Life",after.max_hp-before.max_hp],["Mana",after.max_mp-before.max_mp],["Armour",after.armor-before.armor],["Crit %",(after.crit-before.crit)*100]]:
+ 					inspector.add_child(_label("%s   %+.2f" % [row[0],row[1]],17,Color("a5c993") if row[1]>0 else (Color("d48c84") if row[1]<0 else Color("97938b"))))
+ 			var action := _button("Equip → "+String(target).capitalize(),func() -> void: selected=index; _equip(target),Vector2(0,36))
+@@ -480,6 +526,9 @@
+ 			draw_texture_rect(ui._item_icon(item),Rect2(r.get_center()-Vector2.ONE*extent/2,Vector2.ONE*extent),false,Color.WHITE if visible_match else Color(1,1,1,0.18))
+ 			draw_rect(r,col.darkened(0.25) if visible_match else Color("39382f"),false,1.5)
+ 			if ui.inventory_active() and visible_match and ((container_id=="inventory" and ui.selected==i) or ui.inventory_shell.shown_key==container_id+":"+String(item.uid)): draw_rect(r.grow(-1),Color("e4c995"),false,2)
++		if ui.inventory_active() and container_id=="inventory" and is_instance_valid(ui.inventory_shell) and ui.inventory_shell.keyboard_mode:
++			var pos: Vector2=Vector2(ui.inventory_shell.focus_cell)*cell_size
++			draw_rect(Rect2(pos,Vector2.ONE*cell_size).grow(-1),Color("f3d793"),false,3)
+ 		if ui.inventory_active() and get_viewport().gui_is_dragging():
+ 			var data: Variant=get_viewport().gui_get_drag_data(); var item:=item_for(data)
+ 			if not item.is_empty():
+@@ -493,6 +542,7 @@
+ 		if not event is InputEventMouseButton or not event.pressed: return
+ 		var index:=index_at(event.position)
+ 		if event.button_index==MOUSE_BUTTON_LEFT:
++			if container_id=="inventory" and ui.inventory_active(): ui.inventory_shell.release_keyboard_cursor()
+ 			if index>=0:
+ 				if event.ctrl_pressed and ui.page in ["stash","merchant"]:
+ 					if container_id=="stash": ui.town_action("withdraw",source[index].uid)
+--- a/scripts/inventory_panel.gd
++++ b/scripts/inventory_panel.gd
+@@ -25,6 +25,8 @@
+ var character_tab: Button
+ var bag: Control
+ var scale_factor := 1.0
++var keyboard_mode := false
++var focus_cell := Vector2i(0, 0)
+ var font: SystemFont
+ 
+ func _ready() -> void:
+@@ -52,6 +54,10 @@
+ 	var st: Dictionary = ui.player.stats()
+ 	label(dock,"LIFE  %d / %d" % [ceili(ui.player.hp),st.max_hp],Rect2(76,491,252,28),18,Color("d98882"))
+ 	label(dock,"MANA  %d / %d" % [floori(ui.player.mp),st.max_mp],Rect2(350,491,290,28),18,Color("8faacb"))
++	var life_bar := ResourceMeter.new(); life_bar.ui=ui; life_bar.kind="life"
++	life_bar.position=Vector2(76,522); life_bar.size=Vector2(252,8); dock.add_child(life_bar)
++	var mana_bar := ResourceMeter.new(); mana_bar.ui=ui; mana_bar.kind="mana"
++	mana_bar.position=Vector2(350,522); mana_bar.size=Vector2(254,8); dock.add_child(mana_bar)
+ 	# One real potion resource, rather than decorative non-functional flask slots.
+ 	var potion := button(dock,"HEALTH POTIONS   %d / 5   ·   Q in the world" % ui.player.potions,Rect2(118,532,444,34),func() -> void: ui._status("Close the panel and press Q to drink a health potion."))
+ 	potion.add_theme_color_override("font_color",Color("c8958a"))
+@@ -67,7 +73,7 @@
+ 		else: ui._status("Could not arrange this bag; placements preserved."))
+ 	var hint_band:=ColorRect.new(); hint_band.color=Color(0.05,0.05,0.05,0.85)
+ 	hint_band.position=Vector2(70,967); hint_band.size=Vector2(540,40); hint_band.mouse_filter=Control.MOUSE_FILTER_IGNORE; dock.add_child(hint_band)
+-	ui.status_label = label(dock,("Ctrl-click: transfer · Drag between grids · Click: inspect" if ui.page=="stash" else ("Ctrl-click bag: sell · Buyback restores sold items" if ui.page=="merchant" else "Click: compare · Right-click: equip · Drag: move")),Rect2(76,969,528,38),14,MUTED)
++	ui.status_label = label(dock,("Ctrl-click: transfer · Drag between grids · Click: inspect" if ui.page=="stash" else ("Ctrl-click bag: sell · Buyback restores sold items" if ui.page=="merchant" else "Arrows / D-pad: select  ·  Enter / A: inspect  ·  Shift+Enter / X: equip")),Rect2(76,969,528,38),14,MUTED)
+ 	ui.status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ 	card = PanelContainer.new(); card.add_theme_stylebox_override("panel",style(Color("8b7356"),Color("111112"),16)); add_child(card)
+ 	card_scroll = ScrollContainer.new(); card_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED; card.add_child(card_scroll)
+@@ -91,6 +97,30 @@
+ 	b.add_theme_stylebox_override("hover",style(GOLD,Color("32302a")))
+ 	b.add_theme_stylebox_override("pressed",style(GOLD,Color("121210")))
+ 	b.pressed.connect(action); parent.add_child(b); return b
++func focus_step(dx: int, dy: int) -> void:
++	if pinned: unpin()
++	keyboard_mode = true
++	focus_cell = Vector2i(clampi(focus_cell.x + dx, 0, SYS.WIDTH - 1), clampi(focus_cell.y + dy, 0, SYS.HEIGHT - 1))
++	if is_instance_valid(bag): bag.queue_redraw()
++
++func focus_inspect(quick_equip := false) -> void:
++	keyboard_mode = true
++	if not is_instance_valid(bag): return
++	var center: Vector2 = (Vector2(focus_cell) + Vector2(0.5,0.5)) * bag.cell_size
++	var index: int = bag.index_at(center)
++	if index < 0:
++		ui._status("Empty backpack cell. Use the arrows to select an item.")
++		return
++	if quick_equip:
++		ui.selected = index
++		ui._equip(SYS.default_slot(ui.player.inventory[index]))
++	else:
++		show_bag_item(index,true)
++	if is_instance_valid(bag): bag.queue_redraw()
++
++func switch_tab() -> void:
++	set_tab("character" if tab=="equipment" else "equipment")
++
+ func occupied() -> int:
+ 	var cells:=0
+ 	for item in ui.player.inventory:
+@@ -109,18 +139,49 @@
+ 	equipment_tab.modulate=Color.WHITE if value=="equipment" else Color("8b8880")
+ 	character_tab.modulate=Color.WHITE if value=="character" else Color("8b8880")
+ 	unpin()
++func _stat_line(body: VBoxContainer, caption: String, value: String, help: String = "") -> void:
++	var line:=HBoxContainer.new(); line.add_theme_constant_override("separation",8); body.add_child(line)
++	var name:=ui._label(caption,16,Color("b9b5aa")); name.size_flags_horizontal=Control.SIZE_EXPAND_FILL
++	if help != "": name.tooltip_text=help; name.mouse_filter=Control.MOUSE_FILTER_PASS
++	line.add_child(name)
++	line.add_child(ui._label(value,16,Color("e1d8c6")))
++
+ func build_stats() -> void:
+-	var box:=VBoxContainer.new(); box.custom_minimum_size.x=516; box.add_theme_constant_override("separation",8); stats_area.add_child(box)
+-	var s: Dictionary=ui.player.stats(); var a: Dictionary=s.attributes
+-	box.add_child(ui._label("ATTRIBUTES",17,GOLD))
+-	var attrs:=GridContainer.new(); attrs.columns=3; attrs.add_theme_constant_override("h_separation",15); attrs.add_theme_constant_override("v_separation",6); box.add_child(attrs)
+-	for key in [["Strength",a.strength],["Dexterity",a.dexterity],["Vitality",a.vitality],["Intelligence",a.intelligence],["Wisdom",a.wisdom],["Charisma",a.charisma]]:
+-		var l: Label=ui._label("%s  %d" % [key[0],key[1]],17,Color("c7bda8")); l.custom_minimum_size.x=160; attrs.add_child(l)
+-	box.add_child(HSeparator.new())
+-	for stat in [["Maximum life",str(int(s.max_hp))],["Maximum mana",str(int(s.max_mp))],["Mana regeneration","%.2f / second" % s.mana_regen],["Spell power" if ui.player.class_id=="mage" else "Weapon power","%.1f" % (s.spell_power if ui.player.class_id=="mage" else s.dmg)],["Critical strike chance","%.2f%%" % (s.crit*100)],["Armour",str(int(s.armor))],["Cooldown reduction","%.0f%%" % (float(s.m.cdr)*100)]]:
+-		var row:=HBoxContainer.new(); box.add_child(row)
+-		var name: Label=ui._label(stat[0],17,Color("b9b5aa")); name.size_flags_horizontal=Control.SIZE_EXPAND_FILL; row.add_child(name)
+-		row.add_child(ui._label(stat[1],17,Color("e1d8c6")))
++	var body:=VBoxContainer.new(); body.custom_minimum_size.x=512
++	body.add_theme_constant_override("separation",7); stats_area.add_child(body)
++	var current: Dictionary=ui.player.stats()
++	var without_gear: Dictionary=SYS.derive(ui.player.level,{},ui.player.mods(),ui.player.class_id)
++	body.add_child(ui._label("PRIMARY ATTRIBUTES  ·  BASE + EQUIPMENT",16,GOLD))
++	var attributes:=GridContainer.new(); attributes.columns=2
++	attributes.add_theme_constant_override("h_separation",7)
++	attributes.add_theme_constant_override("v_separation",5); body.add_child(attributes)
++	for pair in [["Strength","strength"],["Dexterity","dexterity"],["Vitality","vitality"],["Intelligence","intelligence"],["Wisdom","wisdom"],["Charisma","charisma"]]:
++		var title: String=pair[0]; var id: String=pair[1]
++		var base_value: float=float(without_gear.attributes[id])
++		var total_value: float=float(current.attributes[id])
++		var bonus: float=total_value-base_value
++		var cell:=PanelContainer.new(); cell.custom_minimum_size.x=249
++		cell.add_theme_stylebox_override("panel",style(Color("443a2c"),Color("121619"),4))
++		attributes.add_child(cell)
++		var content:=VBoxContainer.new(); content.add_theme_constant_override("separation",0); cell.add_child(content)
++		content.add_child(ui._label("%s   %s" % [title,str(snappedf(total_value,0.1))],15,Color("e1d8c6")))
++		var suffix: String = " (no gear)" if is_zero_approx(bonus) else " (%s gear)" % ("%+.1f" % bonus)
++		content.add_child(ui._label("Base %s%s" % [str(snappedf(base_value,0.1)),suffix],13,Color("a5c993") if bonus>0 else MUTED))
++	body.add_child(HSeparator.new())
++	body.add_child(ui._label("OFFENSE",16,GOLD))
++	_stat_line(body,"Spell power" if ui.player.class_id=="mage" else "Weapon power", "%.1f" % (current.spell_power if ui.player.class_id=="mage" else current.dmg),"Derived from actual equipment, attributes and chosen talents")
++	_stat_line(body,"Critical strike chance","%.2f%%" % (current.crit*100.0),"Total current chance, including gear")
++	_stat_line(body,"Cooldown reduction","%.0f%%" % (float(current.m.cdr)*100.0),"Chosen abilities and progression modifiers")
++	body.add_child(HSeparator.new())
++	body.add_child(ui._label("DEFENSE AND RESOURCES",16,GOLD))
++	_stat_line(body,"Armour",str(int(current.armor)),"Armor rating; damage reduction depends on incoming hit size")
++	_stat_line(body,"Maximum life",str(int(current.max_hp)))
++	_stat_line(body,"Maximum mana",str(int(current.max_mp)))
++	_stat_line(body,"Mana regeneration","%.2f / second" % float(current.mana_regen))
++	body.add_child(HSeparator.new())
++	var note:=ui._label("Resistances, evasion and energy shield are not implemented in this build.",14,MUTED)
++	note.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; body.add_child(note)
++
+ func unpin() -> void:
+ 	pinned=false; shown_key=""; ui.selected=-1
+ 	if is_instance_valid(card): card.hide()
+@@ -133,6 +194,10 @@
+ 	if shown_key==key and card.visible: return
+ 	shown_key=key; ui.fill_inventory_details(item,SYS.default_slot(item),index)
+ 	card.show()
++func release_keyboard_cursor() -> void:
++	keyboard_mode=false
++	if is_instance_valid(bag): bag.queue_redraw()
++
+ func show_equipped(slot: String) -> void:
+ 	var item: Variant=ui.player.gear.get(slot)
+ 	if not item is Dictionary: return
+@@ -147,6 +212,23 @@
+ 		hover_index=i; bag.queue_redraw()
+ 		if i>=0: show_bag_item(i)
+ 		elif not pinned and (not is_instance_valid(service) or shown_key.begins_with("inventory:")): card.hide(); shown_key=""
++
++class ResourceMeter extends Control:
++	var ui: CanvasLayer
++	var kind := "life"
++	func _ready() -> void:
++		mouse_filter=Control.MOUSE_FILTER_IGNORE
++	func _process(_delta: float) -> void:
++		queue_redraw()
++	func _draw() -> void:
++		if not is_instance_valid(ui) or not is_instance_valid(ui.player): return
++		var stats: Dictionary=ui.player.stats()
++		var maximum: float=maxf(1.0,float(stats.max_hp if kind=="life" else stats.max_mp))
++		var current: float=clampf(float(ui.player.hp if kind=="life" else ui.player.mp),0.0,maximum)
++		var tint: Color=Color("ac5148") if kind=="life" else Color("4a7eb5")
++		draw_rect(Rect2(Vector2.ZERO,size),Color("070b11"))
++		draw_rect(Rect2(Vector2.ZERO,Vector2(size.x*current/maximum,size.y)),tint)
++		draw_rect(Rect2(Vector2.ZERO,size),Color("a38a62"),false,1.0)
+ 
+ class Frame extends Control:
+ 	var backplate: Texture2D
+--- a/tests/inventory_ui_integration.gd
++++ b/tests/inventory_ui_integration.gd
+@@ -89,6 +89,21 @@
+ 	check(shell.bag.visible and shell.bag.position.y>shell.stats_area.position.y+shell.stats_area.size.y,"backpack remains below the character sheet")
+ 	check(contains_text(shell.stats_area,"Strength") and contains_text(shell.stats_area,"Charisma") and contains_text(shell.stats_area,"Mana regeneration"),"character sheet exposes all supported attributes and resources")
+ 	check(contains_text(shell.stats_area,"%.1f" % p.stats().spell_power),"character sheet uses current authoritative gear-derived power")
++	check(contains_text(shell.stats_area,"PRIMARY ATTRIBUTES") and contains_text(shell.stats_area,"Base "),"new character layout separates base attributes from gear contributions")
++	check(contains_text(shell.stats_area,"Resistances") and contains_text(shell.stats_area,"not implemented"),"unsupported defenses are labeled as future systems, not fabricated")
++	var cursor_before: Vector2i=shell.focus_cell
++	shell.focus_step(1,0)
++	check(shell.keyboard_mode and shell.focus_cell==Vector2i(mini(cursor_before.x+1,SYS.WIDTH-1),cursor_before.y),"keyboard cursor navigates backpack cells without moving any items")
++	shell.focus_cell=Vector2i(SYS.WIDTH-1,SYS.HEIGHT-1)
++	shell.focus_step(1,1)
++	check(shell.focus_cell==Vector2i(SYS.WIDTH-1,SYS.HEIGHT-1),"focus cursor clamps to the preserved 10 by 6 backpack geometry")
++	var joy:=InputEventJoypadButton.new(); joy.pressed=true; joy.button_index=JOY_BUTTON_DPAD_LEFT
++	ui._input(joy)
++	check(shell.focus_cell==Vector2i(SYS.WIDTH-2,SYS.HEIGHT-1),"gamepad D-pad moves the same focus cursor")
++	shell.focus_cell=Vector2i(p.inventory[0].x,p.inventory[0].y)
++	shell.focus_inspect()
++	check(shell.pinned and shell.card.visible and ui.selected==0,"keyboard or gamepad inspect pins the real item card")
++	shell.unpin(); shell.release_keyboard_cursor()
+ 	await screenshot("03_right_docked_character")
+ 	shell.equipment_tab.pressed.emit(); await frames()
+ 	check(shell.tab=="equipment" and shell.stage.visible,"equipment tab restores the paper-doll layout")

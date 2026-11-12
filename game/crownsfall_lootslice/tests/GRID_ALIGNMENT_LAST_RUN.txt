@@ -1,0 +1,65 @@
+PASS mixed footprint display fixture is a valid actor and real ownership state
+PASS backpack and stash use the same real ten-by-six cell geometry
+PASS weapon art preserves aspect ratio inside exactly its occupied cells
+PASS weapon can be inspected from its last occupied cell
+PASS armor art preserves aspect ratio inside exactly its occupied cells
+PASS armor can be inspected from its last occupied cell
+PASS staff art preserves aspect ratio inside exactly its occupied cells
+PASS staff can be inspected from its last occupied cell
+PASS ring art preserves aspect ratio inside exactly its occupied cells
+PASS ring can be inspected from its last occupied cell
+PASS amulet art preserves aspect ratio inside exactly its occupied cells
+PASS amulet can be inspected from its last occupied cell
+PASS belt art preserves aspect ratio inside exactly its occupied cells
+PASS belt can be inspected from its last occupied cell
+PASS helm art preserves aspect ratio inside exactly its occupied cells
+PASS helm can be inspected from its last occupied cell
+PASS gloves art preserves aspect ratio inside exactly its occupied cells
+PASS gloves can be inspected from its last occupied cell
+PASS wand art preserves aspect ratio inside exactly its occupied cells
+PASS wand can be inspected from its last occupied cell
+PASS focus art preserves aspect ratio inside exactly its occupied cells
+PASS focus can be inspected from its last occupied cell
+PASS boots art preserves aspect ratio inside exactly its occupied cells
+PASS boots can be inspected from its last occupied cell
+PASS robe art preserves aspect ratio inside exactly its occupied cells
+PASS robe can be inspected from its last occupied cell
+PASS ring art preserves aspect ratio inside exactly its occupied cells
+PASS ring can be inspected from its last occupied cell
+PASS one-handed sword is vertical and its third cell selects the same UID
+PASS sword cannot claim a fourth row or second column
+PASS ring and amulet each resolve from their own one-by-one cell
+PASS jewellery has no second-row hit area
+PASS sword silhouette visibly reaches all three vertical cell rows
+PASS unique circlet uses the hood's same two-by-two footprint and portrait
+PASS third-cell sword drag cannot overlap chest armour
+PASS rejected overlap preserves every item coordinate and UID
+PASS bottom-grab sword cannot extend past the final row
+PASS cross-container validation rejects a sword over occupied stash cells
+PASS cross-container validation accepts a complete free one-by-three rectangle
+PASS sword inspector reports width then height
+PASS sword drag ghost matches displayed grid cells at (1280, 720)
+PASS drag ghost keeps its exact third-cell picked pixel at (1280, 720)
+PASS stash uses its own effective drag scale at (1280, 720)
+PASS exact item display stays within the right dock at (1280, 720)
+PASS sword drag ghost matches displayed grid cells at (1440, 810)
+PASS drag ghost keeps its exact third-cell picked pixel at (1440, 810)
+PASS stash uses its own effective drag scale at (1440, 810)
+PASS exact item display stays within the right dock at (1440, 810)
+PASS sword drag ghost matches displayed grid cells at (1920, 1080)
+PASS drag ghost keeps its exact third-cell picked pixel at (1920, 1080)
+PASS stash uses its own effective drag scale at (1920, 1080)
+PASS exact item display stays within the right dock at (1920, 1080)
+PASS sword drag ghost matches displayed grid cells at (2560, 1440)
+PASS drag ghost keeps its exact third-cell picked pixel at (2560, 1440)
+PASS stash uses its own effective drag scale at (2560, 1440)
+PASS exact item display stays within the right dock at (2560, 1440)
+PASS sword drag ghost matches displayed grid cells at (960, 720)
+PASS drag ghost keeps its exact third-cell picked pixel at (960, 720)
+PASS stash uses its own effective drag scale at (960, 720)
+PASS exact item display stays within the right dock at (960, 720)
+PASS legal drag saves the same sword UID at its exact requested anchor
+PASS moved sword's hit area follows exactly three rows
+PASS exact stash transfer retains the full sword rectangle and identity
+PASS save reload preserves mixed footprints and town ownership without currency changes
+GRID ALIGNMENT RESULT 64 checks; 0 failures

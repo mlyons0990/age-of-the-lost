@@ -1,0 +1,79 @@
+PASS schema six captures valid uncollected ground ownership
+PASS schema six requires its ground container
+PASS schema-five records remain valid imports without ground data
+PASS validator rejects malformed ground record: ["kind"]
+PASS validator rejects malformed ground record: ["uid"]
+PASS validator rejects malformed ground record: ["amount"]
+PASS validator rejects malformed ground record: ["x"]
+PASS validator rejects malformed ground record: ["x"]
+PASS validator rejects malformed ground record: ["y"]
+PASS validator rejects malformed ground record: ["kind", "item", "amount"]
+PASS validator rejects malformed ground record: ["kind", "item", "amount"]
+PASS validator rejects malformed ground record: ["kind", "item", "amount"]
+PASS validator rejects malformed ground record: ["kind", "item", "amount"]
+PASS floor validation rejects unsafe item display fields: ["rarity"]
+PASS floor validation rejects unsafe item display fields: ["rarity"]
+PASS floor validation rejects unsafe item display fields: ["rarity"]
+PASS floor validation rejects unsafe item display fields: ["name"]
+PASS floor validation rejects unsafe item display fields: ["level"]
+PASS floor validation rejects unsafe item display fields: ["uid"]
+PASS duplicate drop identities are rejected
+PASS different drop records cannot own the same item UID
+PASS backpack and floor cannot both own one item UID
+PASS equipped and ground item ownership are disjoint
+PASS merchant and floor cannot share item ownership
+PASS collection planning cannot mutate actor or ground records
+PASS successful pickup transfers ownership once and removes the exact drop
+PASS committed pickup keeps disk/live ownership and paid resources consistent
+PASS repeated pickup of a queued drop cannot duplicate items
+PASS gold cap collects only available room and preserves the remainder
+PASS partial pickup reports only the amount actually collected
+PASS partial gold remainder is committed with the wallet
+PASS full wallet leaves the remaining pile unchanged
+PASS potion stack collects only available capacity
+PASS full potion stack preserves floor quantity
+PASS fragmented/full bag preserves both item ownership and animation age
+PASS failed pickup reports the actual contiguous footprint needed
+PASS automatic retry uses a separate cooldown without replaying arrival or spamming notices
+PASS failed open rejects pickup
+PASS failed open preserves item, floor record, currency and committed primary
+PASS failed flush rejects pickup
+PASS failed flush preserves item, floor record, currency and committed primary
+PASS failed copy rejects pickup
+PASS failed copy preserves item, floor record, currency and committed primary
+PASS failed rename rejects pickup
+PASS failed rename preserves item, floor record, currency and committed primary
+PASS failed collection exposes the current save error
+PASS F5 retry saves current floor ownership without replaying rejected pickup
+PASS explicit pickup succeeds after storage recovery
+PASS post-commit backup warning applies the already-saved pickup once
+PASS protected-save mode cannot consume ground loot
+PASS dead actor cannot claim a drop
+PASS stale distant callbacks cannot remotely collect loot
+PASS real disk saves mixed floor drops
+PASS real reload restores stable drop IDs, positions, item UIDs and quantities
+PASS pre-reload node reference cannot collect the replacement record
+PASS restored loot does not replay its arrival animation
+PASS nearby loot and actual equipment/backpack are paired in one paused view
+PASS ground item comparison is pure and has an explicit Collect action
+PASS ground inspection changes no owned state or save bytes
+PASS Collect button transfers the selected ground record into the real bag
+PASS repeated Collect callback cannot duplicate its item
+PASS closed nearby-loot page rejects stale UI actions
+PASS N opens nearby loot through the actual HUD shortcut
+PASS combat blocks opening the collection modal without blocking automatic pickup
+PASS schema-five import starts with an empty floor without changing the actor
+PASS first upgrade preserves exact schema-five bytes before writing schema six
+PASS later saves never overwrite the pre-v6 recovery snapshot
+PASS failed pre-v6 snapshot blocks collection without touching the old primary
+PASS saved floor records allow guarded F7 entry
+PASS actual F7 round trip preserves ground ownership and current paid resources
+PASS near-cap ledger rejects new Scar before reserving an unsafe wave
+PASS automatic next-wave guard stops before creating enemies or excess rewards
+PASS full ledger rejects a new Cantor reward before combat starts
+PASS maximum-sized legal floor remains saveable
+PASS oversized serialized floor is rejected
+PASS internal drop API returns capacity failure without changing existing records
+PASS empty/unready navigation cannot strand a drop at the world origin
+PASS empty nearby-loot page has a readable state
+LOOT RESULT 78 checks; 0 failures

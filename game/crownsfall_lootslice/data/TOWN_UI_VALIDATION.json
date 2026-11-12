@@ -1,0 +1,42 @@
+{
+  "revision": "Crownsfall Paired Town Services",
+  "date": "2026-11-11",
+  "date_context": "America/New_York",
+  "engine": "Godot 4.6.3 Linux",
+  "headless_assertions": 434,
+  "rendered_inventory_assertions": 50,
+  "rendered_town_assertions": 71,
+  "distinct_assertions": 438,
+  "checks": {
+    "warrior": 52,
+    "mage": 57,
+    "lab": 28,
+    "art_audio": 19,
+    "mastery": 86,
+    "encounter": 60,
+    "encounter_bouts": 15,
+    "inventory_ui": 48,
+    "town_ui": 69
+  },
+  "native_cross_panel_drag_verified": true,
+  "buyback_save_and_scene_roundtrip_verified": true,
+  "exact_upgrade_snapshot_verified": true,
+  "save_schema": 5,
+  "import_schemas": [
+    2,
+    3,
+    4
+  ],
+  "legacy_save_filename": "crownsfall_encounter_v4.json",
+  "save_namespace": "AgeOfTheLost_Crownsfall_EncounterSlice",
+  "pre_upgrade_suffix": ".pre-v5",
+  "buyback_capacity": 12,
+  "bag_geometry": [
+    10,
+    6
+  ],
+  "original_canon_hashes_preserved": true,
+  "windows_tested": false,
+  "controller_tested": false,
+  "new_media_generation_jobs": 0
+}

@@ -1,0 +1,109 @@
+PASS inventory uses the actual modal pause lifecycle
+PASS opening inventory clears movement and attack intent
+PASS entire panel fits the right side of the visible viewport
+PASS inventory leaves the world visible without the former full-screen dimmer
+PASS default tab shows equipment above the bag
+PASS inventory grid sits below every equipment slot
+PASS all ten real equipment slots are present
+PASS helmet sits above body armour
+PASS main and off hand flank the body
+PASS gloves and boots sit below torso
+PASS displayed bag geometry exactly matches sixty persisted cells
+PASS actual ring inventory footprint is 1×1 cells
+PASS ring uses a correctly proportioned transparent item portrait
+PASS ring drag preview preserves actual cell width and height
+PASS actual amulet inventory footprint is 1×1 cells
+PASS amulet uses a correctly proportioned transparent item portrait
+PASS amulet drag preview preserves actual cell width and height
+PASS actual weapon inventory footprint is 1×3 cells
+PASS weapon uses a correctly proportioned transparent item portrait
+PASS weapon drag preview preserves actual cell width and height
+PASS actual armor inventory footprint is 2×3 cells
+PASS armor uses a correctly proportioned transparent item portrait
+PASS armor drag preview preserves actual cell width and height
+PASS actual robe inventory footprint is 2×3 cells
+PASS robe uses a correctly proportioned transparent item portrait
+PASS robe drag preview preserves actual cell width and height
+PASS actual staff inventory footprint is 2×4 cells
+PASS staff uses a correctly proportioned transparent item portrait
+PASS staff drag preview preserves actual cell width and height
+PASS actual wand inventory footprint is 1×2 cells
+PASS wand uses a correctly proportioned transparent item portrait
+PASS wand drag preview preserves actual cell width and height
+PASS actual focus inventory footprint is 1×2 cells
+PASS focus uses a correctly proportioned transparent item portrait
+PASS focus drag preview preserves actual cell width and height
+PASS actual belt inventory footprint is 2×1 cells
+PASS belt uses a correctly proportioned transparent item portrait
+PASS belt drag preview preserves actual cell width and height
+PASS actual helm inventory footprint is 2×2 cells
+PASS helm uses a correctly proportioned transparent item portrait
+PASS helm drag preview preserves actual cell width and height
+PASS actual offhand inventory footprint is 2×2 cells
+PASS offhand uses a correctly proportioned transparent item portrait
+PASS offhand drag preview preserves actual cell width and height
+PASS actual gloves inventory footprint is 2×2 cells
+PASS gloves uses a correctly proportioned transparent item portrait
+PASS gloves drag preview preserves actual cell width and height
+PASS actual boots inventory footprint is 2×2 cells
+PASS boots uses a correctly proportioned transparent item portrait
+PASS boots drag preview preserves actual cell width and height
+PASS actual hood inventory footprint is 2×2 cells
+PASS hood uses a correctly proportioned transparent item portrait
+PASS hood drag preview preserves actual cell width and height
+PASS actual wraps inventory footprint is 2×2 cells
+PASS wraps uses a correctly proportioned transparent item portrait
+PASS wraps drag preview preserves actual cell width and height
+PASS actual slippers inventory footprint is 2×2 cells
+PASS slippers uses a correctly proportioned transparent item portrait
+PASS slippers drag preview preserves actual cell width and height
+PASS vertical sword is selectable from its third occupied cell
+PASS ring occupies exactly one cell
+PASS amulet occupies exactly one cell
+PASS chest armor occupies its full 2×3 rectangle
+PASS cannot overlap the bottom cell of the sword
+PASS tall sword and chest armor cannot spill off the grid
+PASS panel shows actual currency and current resources
+PASS click pins an interactive item card beside the panel
+PASS comparison card stays left of the dock
+PASS item card displays an actual equipment plan and working equip action
+PASS hover previews do not select an item for accidental equipping
+PASS two-handed staff rejects focus drop before transaction
+PASS invalid equipment drop leaves ownership unchanged
+PASS comparison and drop planning are pure
+PASS matching legal wand can be dropped onto main hand
+PASS drop equips wand and preserves displaced staff in bag
+PASS wand loadout accepts a real focus offhand
+PASS offhand drop commits actual gear and derived stats
+PASS character tab replaces equipment within the same right panel
+PASS backpack remains below the character sheet
+PASS character sheet exposes all supported attributes and resources
+PASS character sheet uses current authoritative gear-derived power
+PASS new character layout separates base attributes from gear contributions
+PASS unsupported defenses are labeled as future systems, not fabricated
+PASS keyboard cursor navigates backpack cells without moving any items
+PASS focus cursor clamps to the preserved 10 by 6 backpack geometry
+PASS gamepad D-pad moves the same focus cursor
+PASS keyboard or gamepad inspect pins the real item card
+PASS equipment tab restores the paper-doll layout
+PASS dragging within bag validates actual item footprint
+PASS bag drop commits the requested cell placement
+PASS dragged item preserves the grabbed cell offset
+PASS negative and beyond-grid drops are rejected
+PASS malformed and stale item tokens are rejected
+PASS equipped item can be dragged into a fitting bag space
+PASS gear-to-bag drop preserves identity and exact target position
+PASS gear transactions preserve paid resources without a refill
+PASS right-click quick equip uses the same authoritative transaction
+PASS clicking equipped gear opens its actual item card
+PASS equipped item card has a real unequip action
+PASS occupied-cell gear drop is atomic and preserves equipment
+PASS full-backpack quick unequip preserves all sixty items
+PASS failed unequip gives a visible reason in the right panel
+PASS closing releases the pause state and dock reference
+PASS C switches the open right panel to character stats
+PASS I returns from character to equipment
+PASS I closes the equipment panel
+PASS dock remains within resized four-to-three viewport
+PASS new UI writes a valid unchanged schema-six ownership record
+INVENTORY UI RESULT 108 checks; 0 failures

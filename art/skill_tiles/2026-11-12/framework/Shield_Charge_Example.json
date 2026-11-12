@@ -1,0 +1,31 @@
+{
+  "asset_id": "aotl_skill_charge",
+  "status": "implemented_ability_art_request",
+  "ability": {
+    "name": "Shield Charge",
+    "action": "Charge toward the cursor, bashing every enemy in your path.",
+    "family": "physical",
+    "motif": "oversized iron shield, leather and momentum marks",
+    "id": "charge",
+    "implemented": true
+  },
+  "params": {
+    "model": "gpt_image_2_6",
+    "prompt": "Create one original Age of the Lost full-square skill illustration for Shield Charge. Visual family: physical. Dominant motif: oversized iron shield, leather and momentum marks. Action: Charge toward the cursor, bashing every enemy in your path..\nUse the initial AOTL batch as the painted-art framework, especially the rear-view Ember Aura mage and Cinder Thread. A mature illustrated finish, subtle material color, controlled painted light/shadow and crisp clean contours. Navy/brass/iron identity, darker grounded depth and strong school/action recognition. Oversize the actual subject and crop it by multiple square borders; supporting artwork continues through all corners. The entire square is artwork, without a centered emblem on a plain-color background. Include a3\u20134% beveled dark-metal frame with a near-black outer outline, clear lit/recessed edges and narrow restrained school-tinted inner trim. Keep the painting flush to that inner edge. No labels, letters, keybindings, fake UI, transparent margins, generic vector/3D gloss, coarse brush streaks, gritty/crackle/noise overlay, tiny particle clutter, ambient wisps or scenic landscape. Choose a distinct silhouette and direction that can be identified at32/64px beside the initial skills. Fully opaque PNG, complete1:1 square. This image request does not create or modify gameplay mechanics.\n",
+    "aspect_ratio": "1:1",
+    "quality": "medium",
+    "resolution": "2k",
+    "background": "opaque",
+    "output_format": "png",
+    "count": 1,
+    "use_unlim": true,
+    "medias": [
+      {
+        "role": "image",
+        "value": "88f63d60-3742-48ad-846b-640315582612"
+      }
+    ]
+  },
+  "preflight": "Use estimate_image_cost first; only submit with the existing unlimited allowance. Never switch to credits.",
+  "gameplay_changes": false
+}

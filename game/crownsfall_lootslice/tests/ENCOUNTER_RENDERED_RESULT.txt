@@ -1,0 +1,66 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PASS locked lane contains its center
+PASS sideways movement clears lane including actor radius
+PASS positions behind lane origin are safe
+PASS lane has a finite endpoint
+PASS actor-radius contact at lane edge is counted
+PASS seal volley holds three captured centers
+PASS moving away from captured seals is safe
+PASS ring center is a real safe zone
+PASS ring annulus damages occupied band
+PASS ring exterior is safe including actor radius
+PASS ring inner-edge collision includes actor radius
+PASS second-verse warnings retain at least 1.05 seconds
+PASS authored health curve scales from level one through sixty
+PASS encounter tuning clamps supported levels
+PASS Reality Scar blocks trial without spawning anything
+PASS protected save blocks trial rewards and entry
+PASS dead player cannot enter
+PASS entry requires dismissing the paused briefing
+PASS entry spawns one boss and two real fragments
+PASS entry preserves resources and cooldowns
+PASS repeated entry cannot duplicate boss or adds
+PASS active trial blocks mastery transactions
+PASS active trial blocks town merchant
+PASS active trial blocks F7 scene changes
+PASS inventory freezes encounter warnings and elapsed time
+PASS rotation starts with one committed line warning
+PASS moving after warning cannot retarget line
+PASS dodging live warning avoids damage at resolution
+PASS rotation advances to captured ground seals
+PASS standing in a seal damages through real armor resolver
+PASS impact art cannot apply repeated damage
+PASS half-health phase adds exactly two fragments
+PASS second verse cannot repeatedly spawn adds
+PASS R retreats instead of opening a concurrent Scar
+PASS retreat clears hazards and awards no gold
+PASS no delayed warning can damage after retreat
+PASS leaving arena ends trial without an invisible wall
+PASS long frames stop trial without resolving a damage backlog
+PASS lethal seal ends encounter and cleans every owned enemy
+PASS synchronous death cannot restore impact hazards after cleanup
+PASS real boss killing hit commits victory once
+PASS victory grants exact level-scaled gold
+PASS victory produces one valid collectable gear drop
+PASS victory awards XP and clears surviving fragments
+PASS duplicate terminal calls cannot duplicate rewards
+PASS victory count persists in valid schema-four save
+PASS earlier schema-four saves default to zero victories
+PASS save validation rejects negative fractional string and oversized records
+PASS loading cancels transient run and restores committed record
+PASS cinder_bloom enters trial with actual equipped aura
+PASS cinder_bloom paid pulse damages real rooted boss
+PASS Bloom turns burning trial fragment death into one live patch
+PASS patch boss kill safely cancels aura during patch iteration
+PASS cinder_bloom leaves no aura or patch after terminal cleanup
+PASS siphon_embers enters trial with actual equipped aura
+PASS siphon_embers paid pulse damages real rooted boss
+PASS Siphon restores bounded health from actual boss HP removed
+PASS siphon_embers leaves no aura or patch after terminal cleanup
+PASS trial briefing opens during combat with frozen warnings and retreat action
+PASS level-one Warrior can enter the same authored encounter
+ENCOUNTER RESULT 60 checks; 0 failures

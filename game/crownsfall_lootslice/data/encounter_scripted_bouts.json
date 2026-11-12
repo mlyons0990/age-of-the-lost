@@ -1,0 +1,103 @@
+{
+  "bouts": [
+    {
+      "aura_paid_pulses": 0,
+      "bloom_patch_seen": false,
+      "branch": "",
+      "casts": 36,
+      "class": "mage",
+      "end_hp": 87.6204000000004,
+      "level": 1,
+      "metrics": {
+        "adds_defeated": 4,
+        "contacts": 1,
+        "hp_removed": 13.0,
+        "resolved": 7,
+        "reward_gold": 128,
+        "warnings": 7
+      },
+      "minimum_mana": 64.0,
+      "potions_remaining": 3,
+      "seconds": 25.4,
+      "seed": 1001,
+      "start_hp": 92.0,
+      "total_positive_hp_changes": 8.62040000000044,
+      "won": true
+    },
+    {
+      "aura_paid_pulses": 0,
+      "bloom_patch_seen": false,
+      "branch": "",
+      "casts": 45,
+      "class": "warrior",
+      "end_hp": 100.0,
+      "level": 1,
+      "metrics": {
+        "adds_defeated": 4,
+        "contacts": 0,
+        "hp_removed": 0.0,
+        "resolved": 8,
+        "reward_gold": 128,
+        "warnings": 8
+      },
+      "minimum_mana": 49.0,
+      "potions_remaining": 3,
+      "seconds": 28.8,
+      "seed": 1002,
+      "start_hp": 100.0,
+      "total_positive_hp_changes": 12.0,
+      "won": true
+    },
+    {
+      "aura_paid_pulses": 26,
+      "bloom_patch_seen": true,
+      "branch": "cinder_bloom",
+      "casts": 21,
+      "class": "mage",
+      "end_hp": 367.696000000003,
+      "level": 40,
+      "metrics": {
+        "adds_defeated": 4,
+        "contacts": 0,
+        "hp_removed": 0.0,
+        "resolved": 3,
+        "reward_gold": 440,
+        "warnings": 4
+      },
+      "minimum_mana": 439.689999999997,
+      "potions_remaining": 3,
+      "seconds": 13.05,
+      "seed": 1040,
+      "start_hp": 280.0,
+      "total_positive_hp_changes": 87.6960000000033,
+      "won": true
+    },
+    {
+      "aura_paid_pulses": 27,
+      "bloom_patch_seen": false,
+      "branch": "siphon_embers",
+      "casts": 21,
+      "class": "mage",
+      "end_hp": 440.400000000003,
+      "level": 40,
+      "metrics": {
+        "adds_defeated": 4,
+        "contacts": 0,
+        "hp_removed": 0.0,
+        "resolved": 3,
+        "reward_gold": 440,
+        "warnings": 4
+      },
+      "minimum_mana": 439.689999999997,
+      "potions_remaining": 3,
+      "seconds": 13.5,
+      "seed": 2040,
+      "start_hp": 280.0,
+      "total_positive_hp_changes": 160.400000000003,
+      "won": true
+    }
+  ],
+  "engine": "4.6.3-stable (official)",
+  "method": "Scripted navigation and fixed-step production components; not human/hardware performance",
+  "step": 0.05
+}

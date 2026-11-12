@@ -1,0 +1,47 @@
+{
+  "source_drive_id": "1l4LbnxiHfCPAflUx6DzTo6QqnPK6SEDU",
+  "source_zip_sha256": "85533accf179f8b72193194b276e1969912494579e276fed413464d7f42ab769",
+  "base": "Age_of_the_Lost_Town_UI_2026-11-11.zip",
+  "method": "three-way merge against exact local Town baseline; checked persistence changes retained",
+  "imported_files": [
+    {
+      "path": "00_START_HERE_RightDock_Focus_Polish.md",
+      "sha256": "2f495db5138918df461c63b7a3494581b9c775e60ded62caa3f5dae62eab4b7e"
+    },
+    {
+      "path": "docs/RIGHT_DOCK_SOURCE.patch",
+      "sha256": "efef0014247416dcecb6029b5433c44096a376bfc90eab61f16c89b823673481"
+    },
+    {
+      "path": "docs/UI_FOCUS_AND_STATS.md",
+      "sha256": "41feae85e94a26eac93fe2bcccf5c5613b5186301006d90c3b6dcdeaf0609929"
+    },
+    {
+      "path": "scripts/hud.gd",
+      "sha256": "4b687b80ca8fd7e16799eeb7ee79941570de0162e90ea544a2cc5495048b78f7"
+    },
+    {
+      "path": "scripts/inventory_panel.gd",
+      "sha256": "8a75ebcdca06e0d5af75aa6b8dcae73f18057c67ed29a125e14863ee9d151160"
+    },
+    {
+      "path": "tests/UI_NAVIGATION_STATIC_RESULT.json",
+      "sha256": "80ab1da18059ddba9fb82da927df06fdb77850c3e7d992f9dd8cafc6c3d29ffa"
+    },
+    {
+      "path": "tests/inventory_ui_integration.gd",
+      "sha256": "5e4c6ee4a0e8d45136f6eec82a1a84a8153504d001e3f77d63a0d2d004915be0"
+    },
+    {
+      "path": "tools/verify_ui_navigation.py",
+      "sha256": "5203ae2b6f78524e0417443449a4e018752a9f5aae01efb96f70afd52700262a"
+    }
+  ],
+  "engine_fixes": [
+    "Explicit Label types for dynamic HUD calls",
+    "Correct armour explanation to attacker-level formula",
+    "Ignore gamepad equip/navigation while editing search",
+    "Allow focused Retry save to activate via keyboard"
+  ],
+  "tests": "tests/navigation_integration.gd, updated inventory suite and full isolated runner"
+}

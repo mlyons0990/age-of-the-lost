@@ -37,7 +37,12 @@ func _run() -> void:
 	check(hero.clip_names.size() == 16, "16 action keys accessible by controller")
 	var expected := ["Idle", "Walk", "Run", "Slash", "Dodge", "Cast", "HeavySlash", "Thrust", "HitReact", "CastRelease", "ShieldBlock", "Cleave", "DashStrike", "Jump", "Death", "Parry"]
 	for name in expected:
-		check(hero.clip_names.has(name) and hero.animation.has_animation(hero.clip_names[name]), "Resolved " + name)
+		var exists: bool = hero.clip_names.has(name) and hero.animation.has_animation(hero.clip_names[name])
+		check(exists, "Resolved " + name)
+		if exists:
+			var clip: Animation = hero.animation.get_animation(hero.clip_names[name])
+			check(clip.get_track_count() >= 100, "Clip has reconstructed bone tracks: " + name)
+			check(clip.track_get_key_count(0) >= 2, "Clip has endpoint keys: " + name)
 	check(hero.equipment_sockets.size() == 7, "Seven runtime BoneAttachment sockets")
 	for slot in ["weapon", "shield", "vfx_right", "vfx_left", "back", "head", "waist"]:
 		check(hero.equipment_sockets.has(slot), "Mounted " + slot)
@@ -62,11 +67,14 @@ func _run() -> void:
 	check(hero.set_equipment_visual("weapon", demo), "Runtime weapon attachment accepted")
 	check(demo.get_parent() == hero.equipment_sockets["weapon"], "Weapon parented under animated hand socket")
 	check(hero.clear_equipment_visual("weapon"), "Weapon visual reset safely")
-	check(not hero.set_equipment_visual("invalid_slot", MeshInstance3D.new()), "Unknown slot rejected")
+	var rejected_visual := MeshInstance3D.new()
+	check(not hero.set_equipment_visual("invalid_slot", rejected_visual), "Unknown slot rejected")
+	rejected_visual.free()
 	hero.animation.play(hero.clip_names["ShieldBlock"], 0)
 	hero.animation.advance(0.2)
 	check(hero.animation.is_playing(), "ShieldBlock runs as actual imported bone animation")
 	hero.animation.play(hero.clip_names["Death"], 0)
 	hero.animation.advance(0.3)
 	check(hero.animation.is_playing(), "Death clip runs in Godot")
+	await frames(4) # Allow queued demo weapon to be released before quitting.
 	finish()

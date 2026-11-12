@@ -22,6 +22,7 @@ jobs:
         run: |
           git lfs pull
           python game/crownsfall_lootslice/tools/restore_rig_v02.py
+          python game/crownsfall_lootslice/tools/restore_rig_v03.py
       - name: Install pinned Godot
         run: |
           curl -fLsS --retry 3 'https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip' -o /tmp/godot463.zip

@@ -48,6 +48,8 @@ const MERCHANT_POS := Vector2(918, 792)
 const MERCHANT_RANGE := 1.6   # ground units
 const MEMORY_RANGE := 1.4
 const MemoryPoint := preload("res://scripts/memory_point.gd")
+const Zones := preload("res://scripts/zones.gd")
+const Waystone := preload("res://scripts/waystone.gd")
 
 var world: Node2D
 var player: Node2D
@@ -57,6 +59,14 @@ var fx_ground: Node2D
 var fx_parts: Node2D
 var fx_text: Node2D
 var nav_region: NavigationRegion2D
+var bg: Sprite2D
+var zone := "plaza"          # id in zones.gd
+var zone_tex: Texture2D = PLAZA
+var zone_walk: Array = WALKABLE
+var occluder_nodes: Array = []
+var waystone: Node2D
+var going_to_portal := false
+var pack_timer := 2.0         # wild zones: seconds until the next roaming pack
 var debug_draw := false
 
 var enemies: Array = []
@@ -83,7 +93,7 @@ var full_warn := 0.0
 
 
 func _ready() -> void:
-	var bg := Sprite2D.new()
+	bg = Sprite2D.new()
 	bg.texture = PLAZA
 	bg.centered = false
 	bg.z_index = -10
@@ -96,7 +106,14 @@ func _ready() -> void:
 	world.y_sort_enabled = true
 	add_child(world)
 	for o in OCCLUDERS:
-		world.add_child(_make_occluder(o))
+		var on := _make_occluder(o)
+		world.add_child(on)
+		occluder_nodes.append(on)
+	waystone = Node2D.new()
+	waystone.set_script(Waystone)
+	waystone.position = Zones.ZONES["plaza"]["portal"]
+	waystone.dest_name = Zones.ZONES["whisperwood"]["name"]
+	world.add_child(waystone)
 
 	player = Player.new()
 	player.main = self
@@ -168,17 +185,22 @@ func _make_fx(mode: int, z: int) -> Node2D:
 
 func _build_navigation() -> void:
 	var poly := NavigationPolygon.new()
-	var verts := PackedVector2Array(WALKABLE)
+	var verts := PackedVector2Array(zone_walk)
 	poly.vertices = verts
 	var tris := Geometry2D.triangulate_polygon(verts)
 	for i in range(0, tris.size(), 3):
 		poly.add_polygon(PackedInt32Array([tris[i], tris[i + 1], tris[i + 2]]))
-	nav_region = NavigationRegion2D.new()
+	if nav_region == null:
+		nav_region = NavigationRegion2D.new()
+		add_child(nav_region)
 	nav_region.navigation_polygon = poly
-	add_child(nav_region)
 	# Spawn points: floor positions with some room around them.
-	for y in range(360, 1520, 40):
-		for x in range(820, 2320, 40):
+	open_points.clear()
+	var box := Rect2(verts[0], Vector2.ZERO)
+	for v in verts:
+		box = box.expand(v)
+	for y in range(int(box.position.y), int(box.end.y), 40):
+		for x in range(int(box.position.x), int(box.end.x), 40):
 			var p := Vector2(x, y)
 			var ok := true
 			for off in [Vector2.ZERO, Vector2(55, 0), Vector2(-55, 0), Vector2(0, 40), Vector2(0, -40)]:
@@ -198,7 +220,7 @@ func _make_occluder(o: Dictionary) -> Polygon2D:
 	p.position = Vector2(0, base)
 	p.polygon = local
 	p.uv = pts
-	p.texture = PLAZA
+	p.texture = zone_tex
 	return p
 
 
@@ -228,8 +250,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _draw() -> void:
 	if not debug_draw:
 		return
-	var pts := PackedVector2Array(WALKABLE)
-	pts.append(WALKABLE[0])
+	var pts := PackedVector2Array(zone_walk)
+	pts.append(zone_walk[0])
 	draw_polyline(pts, Color(0, 1, 0, 0.9), 3.0)
 	for o in OCCLUDERS:
 		var op := PackedVector2Array(o["points"])
@@ -305,6 +327,14 @@ func _process(delta: float) -> void:
 			l.queue_free()
 	full_warn = maxf(0.0, full_warn - delta)
 	_layout_loot_labels()
+	_wild_spawning(delta)
+	waystone.hot = pick_portal(get_global_mouse_position())
+	if going_to_portal and not player.dead:
+		if portal_in_reach():
+			going_to_portal = false
+			use_portal()
+		elif player.path.is_empty():
+			going_to_portal = false
 
 	hover_enemy = pick_enemy(get_global_mouse_position())
 	var mouse := get_global_mouse_position()
@@ -334,6 +364,9 @@ func _add_memory(id: String, at: Vector2) -> Node2D:
 	m.main = self
 	m.position = at
 	m.z_index = -3
+	# fixed memories belong to their zone; an elite's echo lingers where it fell
+	m.set_meta("zone", String(GD.LORE[id].get("zone", "plaza")) if GD.LORE[id].has("pos") else zone)
+	m.visible = String(m.get_meta("zone")) == zone
 	world.add_child(m)
 	memories.append(m)
 	return m
@@ -387,7 +420,7 @@ func pick_loot(at: Vector2) -> Node2D:
 
 func pick_memory(at: Vector2) -> Node2D:
 	for m in memories:
-		if m.pick_rect().has_point(at):
+		if m.visible and m.pick_rect().has_point(at):
 			return m
 	return null
 
@@ -395,6 +428,8 @@ func pick_memory(at: Vector2) -> Node2D:
 func memory_in_reach() -> Node2D:
 	var best: Node2D = null
 	for m in memories:
+		if not m.visible:
+			continue
 		var d := GD.gdist(player.position, m.position)
 		if d <= MEMORY_RANGE and (best == null or d < GD.gdist(player.position, best.position)):
 			best = m
@@ -422,12 +457,113 @@ func lorecast(m: Node2D) -> void:
 		m.queue_free()
 
 
+# ---------------------------------------------------------------- zones and Waystones
+## The Waystone the player can use right now, if they're standing at it.
+func portal_in_reach() -> bool:
+	return GD.gdist(player.position, waystone.position) <= Waystone.RANGE
+
+
+func pick_portal(at: Vector2) -> bool:
+	return waystone.pick_rect().has_point(at)
+
+
+func use_portal() -> void:
+	change_zone(String(Zones.ZONES[zone]["to"]))
+
+
+## Sets the background, walkable floor, props, Waystone and town features for a zone.
+func _apply_zone(id: String) -> void:
+	zone = id
+	var z: Dictionary = Zones.ZONES[id]
+	zone_tex = PLAZA if id == "plaza" else load(String(z["tex"]))
+	bg.texture = zone_tex
+	var own: bool = not (z["walk"] is String)
+	zone_walk = z["walk"] if own else WALKABLE
+	for n in occluder_nodes:
+		n.queue_free()
+	occluder_nodes.clear()
+	for o in (z.get("occluders", []) if own else OCCLUDERS):
+		var on := _make_occluder(o)
+		world.add_child(on)
+		occluder_nodes.append(on)
+	_build_navigation()
+	waystone.position = z["portal"]
+	waystone.dest_name = String(Zones.ZONES[z["to"]]["name"])
+	merchant.visible = id == "plaza"
+	for m in memories:
+		m.visible = String(m.get_meta("zone", "plaza")) == id
+	cam.limit_right = zone_tex.get_width()
+	cam.limit_bottom = zone_tex.get_height()
+
+
+## Travels to another zone. Enemies, loot and spells of the old zone are left behind.
+func change_zone(id: String) -> void:
+	if not Zones.ZONES.has(id) or id == zone:
+		return
+	if rift["active"]:
+		close_rift()
+	for e in enemies:
+		e.queue_free()
+	enemies.clear()
+	for l in loot:
+		l.queue_free()
+	loot.clear()
+	for c in world.get_children():
+		if c.get_script() == Bolt or c.get_script() == Hazard:
+			c.queue_free()
+	_apply_zone(id)
+	var z: Dictionary = Zones.ZONES[id]
+	player.position = z["arrive"]
+	player.path = PackedVector2Array()
+	player.target = null
+	going_to_portal = false
+	cam.reset_smoothing()
+	audio.play("rift_open", 0.0)
+	audio.play_music(String(z["music"]))
+	fx_ground.pillar(player.position, 0.9, Color("a070ff"))
+	hud.banner(String(z["name"]), "Roaming Unwritten haunt these ruins" if z.get("wild", false) else "")
+	pack_timer = 2.5
+	save_game()
+
+
+func is_wild() -> bool:
+	return bool(Zones.ZONES[zone].get("wild", false))
+
+
+## Wild zones: keep roaming packs coming while there's room.
+func _wild_spawning(delta: float) -> void:
+	if not is_wild() or player.dead:
+		return
+	var z: Dictionary = Zones.ZONES[zone]
+	pack_timer -= delta
+	if pack_timer > 0.0:
+		return
+	pack_timer = float(z["pack_every"])
+	var alive := 0
+	for e in enemies:
+		if e.dead_t < 0.0:
+			alive += 1
+	if alive >= int(z["pack_cap"]):
+		return
+	var at := _spawn_point()
+	for i in 20:
+		if GD.gdist(at, player.position) > 5.0:
+			break
+		at = open_points[randi() % open_points.size()]
+	var tier: int = 2 + player.level / 6
+	var n := randi_range(2, 4)
+	for i in n:
+		var off := GD.to_px(Vector2(randf_range(-1.2, 1.2), randf_range(-1.2, 1.2)))
+		var elite: bool = i == 0 and randf() < 0.12
+		spawn_enemy(wave_enemy(tier), elite, at + off, int(z.get("level_bonus", 0)))
+
+
 func pick_merchant(at: Vector2) -> bool:
-	return merchant.pick_rect().has_point(at)
+	return merchant.visible and merchant.pick_rect().has_point(at)
 
 
 func near_merchant() -> bool:
-	return GD.gdist(player.position, MERCHANT_POS) <= MERCHANT_RANGE
+	return merchant.visible and GD.gdist(player.position, MERCHANT_POS) <= MERCHANT_RANGE
 
 
 func pick_enemy(at: Vector2) -> Node2D:
@@ -448,14 +584,14 @@ func pick_enemy(at: Vector2) -> Node2D:
 
 
 # ---------------------------------------------------------------- enemies and the rift
-func spawn_enemy(key: String, elite: bool, at: Vector2) -> void:
+func spawn_enemy(key: String, elite: bool, at: Vector2, level_bonus := 0) -> void:
 	var e := Node2D.new()
 	e.set_script(Enemy)
 	e.main = self
 	e.player = player
 	# keep spawns on the walkable floor, so their first step doesn't snap them somewhere else
 	e.position = NavigationServer2D.map_get_closest_point(get_world_2d().navigation_map, at)
-	e.setup(key, elite, player.level)
+	e.setup(key, elite, player.level + level_bonus)
 	world.add_child(e)
 	enemies.append(e)
 	fx_ground.pillar(at, 0.8, Color("a070ff"))
@@ -550,6 +686,9 @@ func wave_enemy(wave: int) -> String:
 
 func toggle_rift() -> void:
 	if player.dead or get_tree().paused:
+		return
+	if zone != "plaza":
+		hud.toast("The Reality Scar can only be opened in Crownsfall", Color("d9c2ff"), true)
 		return
 	if rift["active"]:
 		close_rift("The Scar Closes")
@@ -748,6 +887,8 @@ func on_player_died() -> void:
 
 
 func respawn() -> void:
+	if zone != "plaza":
+		change_zone("plaza")
 	player.respawn(START)
 	player.last_attacker = ""
 	audio.play("respawn", 0.0)

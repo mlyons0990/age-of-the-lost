@@ -60,6 +60,7 @@ func _process(delta: float) -> void:
 	while toasts.size() > 0 and float(toasts[0]["t"]) > 2.8:
 		toasts.pop_front()
 	rift_btn.text = "Close Scar (R)" if main.rift["active"] else "Reality Scar (R)"
+	rift_btn.disabled = main.zone != "plaza"
 	top_row.visible = inv_window == null or not inv_window.left_open()
 	draw_ctl.queue_redraw()
 
@@ -535,13 +536,14 @@ class HudDraw extends Control:
 		if not right_cov:
 			var mm := Rect2(w - 284, 22, 260, 176)
 			var src_size := Vector2(1300, 880)
-			var tex: Texture2D = main.PLAZA
+			var tex: Texture2D = main.zone_tex
 			var src_pos: Vector2 = (p.position - src_size / 2.0).clamp(Vector2.ZERO, Vector2(tex.get_width(), tex.get_height()) - src_size)
 			draw_rect(mm.grow(4), BRONZE.darkened(0.3))
 			draw_texture_rect_region(tex, mm, Rect2(src_pos, src_size), Color(0.75, 0.75, 0.85))
 			var k: float = mm.size.x / src_size.x
 			if main.rift["active"]:
 				draw_circle(mm.position + (main.RIFT_POS - src_pos) * k, 6, Color("a070ff"))
+			draw_circle(mm.position + (main.waystone.position - src_pos) * k, 5, Color("b48cff"))
 			for e in main.enemies:
 				var ep: Vector2 = mm.position + (e.position - src_pos) * k
 				if mm.has_point(ep):
@@ -549,7 +551,7 @@ class HudDraw extends Control:
 			draw_circle(mm.position + (p.position - src_pos) * k, 4.5, Color.BLACK)
 			draw_circle(mm.position + (p.position - src_pos) * k, 3.5, Color("ffe9a8"))
 			draw_rect(mm, GOLD.darkened(0.2), false, 2.0)
-			var zone := "Crownsfall"
+			var zone := String(main.Zones.ZONES[main.zone]["name"])
 			if main.rift["active"]:
 				zone = "Reality Scar · Wave %d" % maxi(1, int(main.rift["wave"]))
 			_text_c(zone, Vector2(mm.get_center().x, mm.end.y + 28), 20, GOLD)

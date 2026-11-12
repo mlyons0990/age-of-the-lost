@@ -327,8 +327,9 @@ func _inventory_tests() -> void:
 	await _loot_label_tests()
 	await _death_tests()
 	await _anim_tests()
+	await _zone_tests()
 	await _stat_tests()
-	_check(finished.size() == 9, "every test section ran to the end (%s)" % ", ".join(finished))
+	_check(finished.size() == 10, "every test section ran to the end (%s)" % ", ".join(finished))
 	_note("sounds played during the test: %d" % main.audio.played_count)
 	_check(main.audio.played_count > 20, "sounds play during play")
 	_note("inventory and stat checks: %d run, %d failed" % [checks, fails])
@@ -342,7 +343,8 @@ func _lore_tests() -> void:
 	p.lore = []
 	p.position = main.START
 	await _wait(0.2)
-	_check(main.memories.size() == 3, "three memories linger in the plaza (%d)" % main.memories.size())
+	var in_plaza: int = main.memories.filter(func(m): return m.visible).size()
+	_check(in_plaza == 3 and main.memories.size() == 4, "three memories linger in the plaza, one in the Whisperwood (%d visible of %d)" % [in_plaza, main.memories.size()])
 	await _shot("g15_memory_plaza")
 	# click-walk to the statue memory
 	var lady: Node2D = null
@@ -1139,3 +1141,67 @@ func _anim_tests() -> void:
 		main.kill_enemy(x)
 	await _wait(1.6)
 	finished.append("_anim_tests")
+
+
+## Zones: the Waystone takes the knight to the Whisperwood Ruins and back.
+func _zone_tests() -> void:
+	var GD := load("res://scripts/game_data.gd")
+	var Z := load("res://scripts/zones.gd")
+	var p: Node2D = main.player
+	main.close_rift()
+	for e in main.enemies.duplicate():
+		main.kill_enemy(e)
+	await _wait(0.2)
+	# the Waystone stands on walkable floor in both zones
+	for zid in Z.ZONES:
+		var z: Dictionary = Z.ZONES[zid]
+		var walk: Array = main.WALKABLE if z["walk"] is String else z["walk"]
+		_check(Geometry2D.is_point_in_polygon(z["portal"], PackedVector2Array(walk)) and Geometry2D.is_point_in_polygon(z["arrive"], PackedVector2Array(walk)), "%s: Waystone and arrival point are on the floor" % zid)
+	# click the Waystone: the knight walks over and travels
+	p.position = main.waystone.position + GD.to_px(Vector2(-3.0, -1.0))
+	p.path = PackedVector2Array()
+	await _wait(0.2)
+	var screen: Vector2 = main.get_viewport().get_canvas_transform() * (main.waystone.position + Vector2(0, -90))
+	await _click(screen)
+	for i in 60:
+		await _wait(0.1)
+		if main.zone == "whisperwood":
+			break
+	_check(main.zone == "whisperwood", "clicking the Waystone walks the knight there and into the Whisperwood")
+	_check(not main.merchant.visible and main.bg.texture == main.zone_tex and main.zone_tex.get_width() == 2720, "the ruins replace the plaza and Maren stays in town")
+	_check(GD.gdist(p.position, Z.ZONES["whisperwood"]["arrive"]) < 1.0, "the knight arrives by the ruins' Waystone")
+	var sigils: Array = main.memories.filter(func(m): return m.visible)
+	_check(sigils.size() == 1 and sigils[0].lore_id == "sleeping_saint", "the Sleeping Saint's memory lingers in the ruins")
+	# the knight can walk the ruins (navigation rebuilt)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	var dest: Vector2 = Vector2(1330, 1000)
+	p._walk_to(dest, true)
+	for i in 40:
+		await _wait(0.1)
+		if GD.gdist(p.position, dest) < 0.6:
+			break
+	_check(GD.gdist(p.position, dest) < 0.8, "the knight walks to the centre of the ruins (%.2f away)" % GD.gdist(p.position, dest))
+	# roaming packs arrive on their own, a level above the knight
+	main.pack_timer = 0.0
+	await _wait(0.3)
+	_check(main.enemies.size() >= 2, "a roaming pack appears in the ruins (%d)" % main.enemies.size())
+	_check(main.enemies.all(func(e): return e.level >= p.level), "ruins monsters are at least the knight's level")
+	main.toggle_rift()
+	_check(not main.rift["active"], "the Reality Scar stays shut outside Crownsfall")
+	for x in main.enemies:
+		x.stun = 99.0
+	await _wait(0.6)
+	await _shot("g29_whisperwood")
+	# dying in the ruins brings you back to town
+	p.invuln = 0.0
+	for i in 50:
+		p.hurt(99999.0, 1, "Test Stag")
+		if p.dead:
+			break
+	await _wait(1.6)
+	await _key(KEY_ENTER)
+	await _wait(0.3)
+	_check(main.zone == "plaza" and not p.dead and main.merchant.visible, "rising again returns you to Crownsfall")
+	_check(main.enemies.is_empty(), "the ruins' monsters stay in the ruins")
+	finished.append("_zone_tests")

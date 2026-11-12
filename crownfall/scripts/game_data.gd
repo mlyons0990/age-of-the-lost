@@ -269,6 +269,12 @@ const LORE := {
 		"pos": Vector2(1880, 1290),
 		"text": "Among the bounties pinned to the board is a notice you are sure was not there a moment ago: a reward for any word of a royal guard, last seen descending beneath the cathedral. It is dated in a calendar no one in Crownsfall uses.\n\nWhen you look again, the paper is blank.",
 	},
+	"sleeping_saint": {
+		"title": "The Sleeping Saint",
+		"pos": Vector2(1530, 710),
+		"zone": "whisperwood",
+		"text": "The fallen statue is the same woman who stands veiled in the Crownsfall fountain, carved by the same hand. Here she lies on her back with her eyes open, and the moss has grown everywhere except the crown on her brow.\n\nSomeone has been cleaning it. The cloth is still damp.",
+	},
 	"echo_elite": {
 		"title": "Echo of the Fallen",
 		"text": "Ash and violet light gather where it fell. For a heartbeat you see a soldier in polished armour, laughing with someone just out of sight, a doorway with blue shutters, a child's hand.\n\nThen only the Scar, and the sense of something that wanted, very badly, to go home.",

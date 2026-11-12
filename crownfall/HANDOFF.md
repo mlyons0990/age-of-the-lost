@@ -47,6 +47,17 @@ for the knight and three painted enemy types:
   good item and triple gold, and counts on the character panel ("Wardens
   defeated", saved). Closing the Scar clears pending slams and bolts. Tuning:
   `warden` in `ETYPES` and `BOSS_EVERY` in `game_data.gd`.
+- **Zones and Waystones:** `scripts/zones.gd` lists each zone (painting, walkable
+  outline, props drawn in front, arrival point, Waystone and destination, music).
+  A Waystone in the plaza's lower-right exit leads to the **Whisperwood Ruins**
+  (Higgsfield painting `assets/zones/whisperwood.png`): a wild zone where roaming
+  packs of 2-4 keep arriving (up to 7 alive, monsters a level above you, 12%
+  elite leaders) with no Reality Scar needed. Click the Waystone or press E at it.
+  The Scar only opens in Crownsfall; dying anywhere rises you in Crownsfall; loot
+  and monsters stay in the zone you left. The ruins hold one Lorecasting memory,
+  "The Sleeping Saint". To add a zone: drop a 2720x1536 painting in
+  `assets/zones/`, add an entry with its walkable outline (image pixels), and
+  point a Waystone at it.
 - **Hovering an enemy** shows its health bar at the top, plus a line for each
   elite affix explaining what it does.
 - **Ground loot (Path of Exile style):** every drop gets a name plate in its
@@ -177,6 +188,8 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `scripts/player.gd` | Knight: movement, 8 facings, stats, skills, levels |
 | `scripts/enemy.gd` | Enemies: one painted sprite each, animated in code; melee chase, wind-up warning, strike; ranged casters keep distance and fire bolts |
 | `scripts/bolt.gd` | Enemy projectile: straight-line glowing orb that can be dodged |
+| `scripts/zones.gd`, `scripts/waystone.gd` | Zone data and the Waystone portal |
+| `assets/zones/whisperwood.png` | Whisperwood Ruins painting (Higgsfield) |
 | `scripts/hazard.gd` | Delayed ground blast with a warning ring (Molten elites; reusable for bosses) |
 | `scripts/game_data.gd` | Class, spec, enemy and item data (edit this to design classes) |
 | `scripts/fx.gd` | Slash arcs, rings, blasts, particles, floating numbers |
@@ -218,7 +231,7 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 153 checks covering
+(walk, fight a wave, level to 60 making each class choice, 165 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
@@ -228,7 +241,7 @@ the last check confirms every test section ran to the end (a GDScript error
 inside a section stops it without failing a check, so also look for
 "SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 153 of 153 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 165 of 165 checks. Not yet run on Windows.
 
 ## How the plaza works
 

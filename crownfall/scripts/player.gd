@@ -592,9 +592,18 @@ func _unhandled_input(event: InputEvent) -> void:
 				var e: Node2D = main.pick_enemy(at)
 				going_to_merchant = false
 				going_to_memory = null
+				main.going_to_portal = false
 				if e != null:
 					target = e
 					path = PackedVector2Array()
+				elif main.pick_portal(at):
+					# walk to the Waystone; main.gd sends us through on arrival
+					target = null
+					if main.portal_in_reach():
+						main.use_portal()
+					else:
+						main.going_to_portal = true
+						_walk_to(main.waystone.position, true)
 				elif main.pick_loot(at) != null:
 					# click a loot label: walk over it to pick it up
 					target = null
@@ -630,6 +639,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					main.lorecast(m)
 				elif main.near_merchant():
 					main.hud.open_inventory("merchant")
+				elif main.portal_in_reach():
+					main.use_portal()
 			KEY_Q:
 				drink_potion()
 

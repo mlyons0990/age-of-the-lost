@@ -29,7 +29,7 @@ func _run() -> void:
     _check(lab.camera.projection == Camera3D.PROJECTION_ORTHOGONAL, "camera uses orthographic perspective")
     _check(lab.player.visual_mode == "painted", "painted mode is default")
     _check(lab.player.visual.texture != null, "original painted texture loaded")
-    _check(lab.player.visual.texture.get_size() == Vector2i(384, 384), "original 384px idle asset used")
+    _check(lab.player.visual.texture.get_size() == Vector2(384, 384), "original 384px idle asset used")
     _check(lab.player.visual.hframes == 1, "idle frame splitting")
     lab.player.start_action("slash")
     lab.player._render_painted_frame("slash", true)

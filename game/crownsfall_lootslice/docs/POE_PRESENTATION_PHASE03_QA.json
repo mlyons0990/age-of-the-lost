@@ -1,0 +1,30 @@
+{
+  "phase": "AOTL Phase 03 - playable game PoE-edge HUD and wider camera",
+  "date": "2026-11-12",
+  "target": "User-approved AOTL Crownsfall isometric reference screenshot, Nov 12 2026",
+  "project": "game/crownsfall_lootslice/project.godot",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "linux_import": "pass_no_parse_errors_after_fix",
+  "new_presentation_test": {
+    "script": "res://tests/poe_presentation_integration.gd",
+    "checks": 43,
+    "passed": 43,
+    "exit_code": 0
+  },
+  "existing_regression": {
+    "suites": 16,
+    "assertions": 954,
+    "passed": 954,
+    "exit_code": 0
+  },
+  "render": {
+    "engine": "Godot 4.6.3 in Xvfb OpenGL llvmpipe software rasterizer",
+    "resolution": "1440x810",
+    "status": "pass_actual_playable_main_scene",
+    "capture_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/a3818d0d-2e5e-46a0-968a-3b85f572e2b0.jpg",
+    "note": "Hero displayed at level 25 for visual QA only; not a saved or shipped character state"
+  },
+  "unchanged": ["save schema 6", "inventory IDs/footprints", "five actual active skills", "class sprites", "painted plaza texture", "F7 3D rig lab", "independent 2.5D isometric test scene"],
+  "remaining": ["Four remaining flask equipment slots are not implemented", "User-approved screenshot uses higher-detail 3D town not included in main 2D build", "No Windows user playthrough performed", "No new animation sprite sheets added in this phase", "Human visual approval still pending"],
+  "billing": {"paid_higgsfield_credits_spent": 0}
+}

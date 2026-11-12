@@ -29,6 +29,8 @@ var status_label: Label
 var bag_view: Control
 var gear_buttons: Array = []
 var overlay_buttons: Array = []
+var action_menu_row: HBoxContainer
+var action_menu_button: Button
 
 func _exit_tree() -> void:
 	ART.icons.clear()
@@ -46,9 +48,19 @@ func _ready() -> void:
 	row.add_child(_button("Mastery [M]", func() -> void: open_page("mastery")))
 	row.add_child(_button("Cantor Trial [T]", func() -> void: open_page("trial")))
 	row.add_child(_button("Nearby loot [N]",func() -> void: open_page("loot")))
+	# Keep the world visible like the approved reference. All commands retain
+	# hotkeys, and the old toolbar is expandable with one small Menu button.
+	action_menu_row = row
+	action_menu_row.position = Vector2(24, 162)
+	action_menu_row.visible = false
+	action_menu_button = _button("Menu [F9]", func() -> void: _toggle_action_menu())
+	action_menu_button.position = Vector2(24, 118)
+	add_child(action_menu_button)
 	loot_hint=_label("",17,Color("edce91")); loot_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE; add_child(loot_hint)
-	# Transparent buttons intercept clicks over the drawn action bar.
-	for i in 6:
+	# Five live skill buttons plus five flask bank slots; only flask 1 (Q)
+	# is implemented by the existing item system. Other slots consume UI input
+	# rather than unintentionally clicking the world behind the HUD.
+	for i in 10:
 		var b := Button.new()
 		b.flat = true
 		b.focus_mode = Control.FOCUS_NONE
@@ -56,6 +68,7 @@ func _ready() -> void:
 		b.pressed.connect(func() -> void:
 			if get_tree().paused: return
 			if i == 5: player.drink_potion()
+			elif i > 5: toast("Flask slot unassigned — no item consumed.", Color("c6b39a"), true)
 			else: player.use_skill(["basic", "s1", "s2", "s3", "s4"][i], player.last_world_aim))
 		add_child(b)
 		overlay_buttons.append(b)
@@ -85,11 +98,18 @@ func _process(delta: float) -> void:
 		save_message.text=message; save_retry.disabled=main.save_blocked
 
 func _layout_bar() -> void:
-	var sz := get_viewport().get_visible_rect().size
-	var x0 := (sz.x - 460.0) / 2.0
+	var size: Vector2 = get_viewport().get_visible_rect().size
 	for i in overlay_buttons.size():
-		overlay_buttons[i].position = Vector2(x0 + i * 76 + (12 if i == 5 else 0), sz.y - 118)
-		overlay_buttons[i].size = Vector2(68, 68)
+		var rect: Rect2 = Layout.clickable_rect(size, i)
+		overlay_buttons[i].position = rect.position
+		overlay_buttons[i].size = rect.size
+
+
+func _toggle_action_menu() -> void:
+	if is_instance_valid(action_menu_row):
+		action_menu_row.visible = not action_menu_row.visible
+	if is_instance_valid(action_menu_button):
+		action_menu_button.text = ("Close menu [F9]" if action_menu_row.visible else "Menu [F9]")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton and event.pressed:
@@ -115,6 +135,8 @@ func _input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
 	if event.keycode==KEY_F5:
 		main.save_game(); get_viewport().set_input_as_handled(); return
+	if event.keycode==KEY_F9 and start_panel==null and choice_panel==null and death_panel==null:
+		_toggle_action_menu(); get_viewport().set_input_as_handled(); return
 	if start_panel != null or choice_panel != null or death_panel != null: return
 	var focus:=get_viewport().gui_get_focus_owner()
 	if focus==save_retry and event.keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE]:

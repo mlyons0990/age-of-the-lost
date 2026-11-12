@@ -47,6 +47,30 @@ jobs:
           fi
       - name: Run original 16-suite gameplay regression
         run: python game/crownsfall_lootslice/tools/run_checks.py --report-dir /tmp/aotl_v03_regressions
+      - name: Capture real OpenGL painted/rig/proxy 21m images + movement GIF
+        continue-on-error: true
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri
+          python -m pip install --quiet pillow
+          mkdir -p /tmp/aotl_v03_frames
+          xvfb-run --auto-servernum -s "-screen 0 1440x810x24" \
+            godot --path game/crownsfall_lootslice --rendering-driver opengl3 \
+            --script res://tests/humanoid_v03_visual_capture.gd -- --aotl-v03 2>&1 | tee /tmp/aotl_v03_visual.log
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('/tmp/aotl_v03_frames')
+          files=sorted(p.glob('walk_*.png'))
+          if len(files)!=9: raise RuntimeError(f'Expected 9 walk frames, got {len(files)}')
+          frames=[]
+          for path in files:
+              im=Image.open(path).convert('RGB')
+              im.thumbnail((960,540))
+              frames.append(im)
+          frames[0].save(p/'AOTL_V03_Higgsfield_Walk_21m.gif',save_all=True,append_images=frames[1:],duration=120,loop=0,optimize=True)
+          print('AOTL_V03_GIF_FRAMES',len(files))
+          PY
       - name: Preserve test evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,4 +80,6 @@ jobs:
             /tmp/aotl_phase02.log
             /tmp/aotl_v03.log
             /tmp/aotl_v03_regressions
+            /tmp/aotl_v03_frames/
+            /tmp/aotl_v03_visual.log
           if-no-files-found: ignore

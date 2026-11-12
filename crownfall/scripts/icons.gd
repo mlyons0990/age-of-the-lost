@@ -35,6 +35,66 @@ static func draw_cooldown(ci: CanvasItem, r: Rect2, frac: float) -> void:
 	ci.draw_line(c, pts[1], Color(1, 0.9, 0.6, 0.7), 2.0, true)
 
 
+## Same sweep for a round button.
+static func draw_cooldown_circle(ci: CanvasItem, c: Vector2, rad: float, frac: float) -> void:
+	frac = clampf(frac, 0.0, 1.0)
+	if frac <= 0.0:
+		return
+	var pts := PackedVector2Array([c])
+	var start := -PI / 2.0 + TAU * (1.0 - frac)
+	var steps := maxi(2, int(48 * frac))
+	for i in steps + 1:
+		var a := start + TAU * frac * i / steps
+		pts.append(c + Vector2(cos(a), sin(a)) * rad)
+	ci.draw_colored_polygon(pts, Color(0, 0, 0, 0.6))
+
+
+## A boot print for the evade button.
+static func draw_foot(ci: CanvasItem, c: Vector2, col: Color) -> void:
+	var boot := PackedVector2Array([c + Vector2(-7, -15), c + Vector2(4, -15), c + Vector2(4, 2), c + Vector2(14, 7),
+		c + Vector2(15, 13), c + Vector2(-8, 13), c + Vector2(-9, 2)])
+	ci.draw_colored_polygon(boot, col)
+	ci.draw_line(c + Vector2(-9, 9), c + Vector2(15, 9), Color(0, 0, 0, 0.45), 2.0)
+	ci.draw_line(c + Vector2(-7, -9), c + Vector2(4, -9), Color(0, 0, 0, 0.35), 2.0)
+	# motion lines
+	for k in 3:
+		var y := -10.0 + k * 8.0
+		ci.draw_line(c + Vector2(-20, y), c + Vector2(-13, y), Color(col.r, col.g, col.b, 0.6), 2.0, true)
+
+
+## A space-bar key cap.
+static func draw_spacebar(ci: CanvasItem, c: Vector2, col: Color) -> void:
+	var r := Rect2(c - Vector2(20, 7), Vector2(40, 14))
+	ci.draw_rect(r, Color(0.05, 0.05, 0.07))
+	ci.draw_rect(r, col, false, 1.5)
+	ci.draw_line(c + Vector2(-11, 2), c + Vector2(11, 2), col, 2.0)
+
+
+## A small mouse with the left or right button lit.
+static func draw_mouse(ci: CanvasItem, c: Vector2, left: bool, lit: Color) -> void:
+	var w := 9.0
+	var body := PackedVector2Array()
+	for k in 13:   # rounded top
+		var a := PI + PI * k / 12.0
+		body.append(c + Vector2(cos(a) * w, -4 + sin(a) * w))
+	body.append(c + Vector2(w, 6))
+	for k in 13:   # rounded bottom
+		var a2 := PI * k / 12.0
+		body.append(c + Vector2(cos(a2) * w, 6 + sin(a2) * w * 0.6))
+	body.append(c + Vector2(-w, -4))
+	ci.draw_colored_polygon(body, Color(0.78, 0.75, 0.68))
+	# the lit button: the top-left or top-right quarter
+	var btn := PackedVector2Array([c + Vector2(0, -4)])
+	for k in 7:
+		var a3: float = (PI + PI * 0.5 * k / 6.0) if left else (PI * 1.5 + PI * 0.5 * k / 6.0)
+		btn.append(c + Vector2(cos(a3) * w, -4 + sin(a3) * w))
+	ci.draw_colored_polygon(btn, lit)
+	ci.draw_line(c + Vector2(0, -13), c + Vector2(0, -4), Color(0.15, 0.15, 0.15), 1.5)
+	ci.draw_line(c + Vector2(-w, -4), c + Vector2(w, -4), Color(0.15, 0.15, 0.15), 1.5)
+	body.append(body[0])
+	ci.draw_polyline(body, Color(0.15, 0.15, 0.15), 1.5, true)
+
+
 static func draw_icon(ci: CanvasItem, id: String, r: Rect2, col: Color) -> void:
 	if id == "potion" and ResourceLoader.exists("res://assets/ui/potion.png"):
 		# painted potion bottle (Higgsfield), fitted inside the square

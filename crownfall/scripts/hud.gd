@@ -10,7 +10,10 @@ const InventoryWindow := preload("res://scripts/inventory_window.gd")
 const GOLD := Color("e8c77a")
 const BRONZE := Color(0.62, 0.47, 0.22)
 const DARK := Color(0.07, 0.06, 0.08, 0.92)
-const SLOTS := [["basic", "LMB"], ["s1", "1"], ["s2", "2"], ["s3", "3"], ["s4", "4"]]
+## Skill bar, left to right (Diablo 4 layout): keys 1-4, a gap, then the mouse buttons.
+## [skill slot, key label]. Right click currently uses the first skill (Cleave).
+const SLOTS := [["s1", "1"], ["s2", "2"], ["s3", "3"], ["s4", "4"], ["basic", "LMB"], ["s1", "RMB"]]
+const MOUSE_GROUP := 4   # index where the mouse-button group starts (after a gap)
 
 var main: Node2D
 var player: Node2D
@@ -526,6 +529,12 @@ class HudDraw extends Control:
 			draw_string_outline(font, at - Vector2(w / 2.0, 0), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, outline, Color(0, 0, 0, col.a * 0.9))
 		draw_string(font, at - Vector2(w / 2.0, 0), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, col)
 
+	## A small round button with a bronze rim (potion, evade).
+	func _round_button(c: Vector2, r: float) -> void:
+		draw_circle(c, r + 4, BRONZE.darkened(0.35))
+		draw_circle(c, r, Color(0.06, 0.06, 0.09))
+		draw_arc(c, r + 2, 0.0, TAU, 40, BRONZE, 2.0, true)
+
 	func _icon(id: String, r: Rect2, col: Color) -> void:
 		Icons.draw_icon(self, id, r, col)
 
@@ -598,45 +607,25 @@ class HudDraw extends Control:
 			draw_string(font, qr.position + Vector2(12, 26), main.quest_title(), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 18, GOLD)
 			draw_multiline_string(font, qr.position + Vector2(12, 48), main.quest_text(), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 15, 2, Color("efe6d2"))
 
-		# bottom: orbs, skill bar, xp
-		var cy := h - 84.0
-		var sz := 68.0
-		var gap := 8.0
-		var n := SLOTS.size() + 2   # skills, then the potion (Q) and the evade (Space)
-		var bar_w := n * sz + (n - 1) * gap + 12.0
+		# bottom: orbs, skill bar (1-4 | LMB RMB), xp, potion and evade buttons
+		var cy := h - 80.0
+		var sz := 64.0
+		var gap := 6.0
+		var group_gap := 26.0
+		var n := SLOTS.size()
+		var bar_w := n * sz + (n - 1) * gap + group_gap
 		var x0 := (w - bar_w) / 2.0
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), DARK)
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), BRONZE, false, 3.0)
+		var plate := Rect2(x0 - 14, cy - sz / 2 - 24, bar_w + 28, sz + 60)
+		draw_rect(plate, DARK)
+		draw_rect(plate, BRONZE, false, 3.0)
 		var cols: Array = p.fx_colors()
 		var mouse := get_local_mouse_position()
 		var tip: Dictionary = {}
 		var tip_rect := Rect2()
 		for i in n:
-			var r := Rect2(x0 + i * (sz + gap) + (12.0 if i >= n - 2 else 0.0), cy - sz / 2, sz, sz)
+			var rx: float = x0 + i * (sz + gap) + (group_gap if i >= MOUSE_GROUP else 0.0)
+			var r := Rect2(rx, cy - sz / 2, sz, sz)
 			draw_rect(r, Color(0.11, 0.11, 0.16))
-			if i == n - 1:
-				# evade on Space: the class's roll (or a spec's blink)
-				var ev: Dictionary = p.evade_def()
-				_icon("evade" if String(ev["type"]) == "roll" else "blink", r, Color.WHITE)
-				var ecd: float = p.cds.get("evade", 0.0)
-				if ecd > 0.0:
-					Icons.draw_cooldown(self, r, ecd / maxf(0.01, float(p.cd_full.get("evade", 1.0))))
-				draw_rect(Rect2(r.position + Vector2(3, 3), Vector2(44, 18)), Color(0.02, 0.02, 0.04, 0.78))
-				draw_string(font, r.position + Vector2(7, 17), "Space", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("f2e6d0"))
-				if r.has_point(mouse):
-					tip = {"name": ev["name"], "desc": ev["desc"], "meta": "%ss cooldown · untouchable %ss" % [str(ev["cd"]), str(ev["iframes"])]}
-					tip_rect = r
-				continue
-			if i == n - 2:
-				_icon("potion", r, Color.WHITE)
-				draw_string(font, r.position + Vector2(sz - 16, sz - 6), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color.WHITE)
-				draw_rect(r, BRONZE.darkened(0.25), false, 2.0)
-				draw_rect(Rect2(r.position + Vector2(3, 3), Vector2(16, 18)), Color(0.02, 0.02, 0.04, 0.78))
-				draw_string(font, r.position + Vector2(7, 17), "Q", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("f2e6d0"))
-				if r.has_point(mouse):
-					tip = {"name": "Health Potion", "desc": "Restore 45% of your life.", "meta": ""}
-					tip_rect = r
-				continue
 			var slot: String = SLOTS[i][0]
 			var sk: Dictionary = p.skill_def(slot)
 			if sk.is_empty():
@@ -653,7 +642,7 @@ class HudDraw extends Control:
 				if cd > 0.0:
 					Icons.draw_cooldown(self, r, cd / full)
 					if cd > 0.6 and slot != "basic":
-						_text_c(str(int(ceil(cd))), r.get_center() + Vector2(0, 9), 26, Color.WHITE, 6)
+						_text_c(str(int(ceil(cd))), r.get_center() + Vector2(0, 9), 24, Color.WHITE, 6)
 				var no_mana: bool = float(sk["mana"]) > 0.0 and p.mp < float(sk["mana"])
 				if no_mana:
 					draw_rect(r, Color(0.1, 0.2, 0.6, 0.35))
@@ -666,23 +655,66 @@ class HudDraw extends Control:
 						meta = "%d mana · %s" % [int(sk["mana"]), meta]
 					tip = {"name": sk["name"], "desc": sk["desc"], "meta": meta}
 					tip_rect = r
-			# key label on a small dark plate so it reads over bright art
+			# key label under the slot: a small key cap, or a mouse for LMB / RMB
+			var kc := Vector2(r.get_center().x, r.end.y + 15)
 			var key: String = SLOTS[i][1]
-			var kw := font.get_string_size(key, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
-			var kr := Rect2(r.position + Vector2(3, 3), Vector2(kw + 8, 18))
-			draw_rect(kr, Color(0.02, 0.02, 0.04, 0.78))
-			draw_rect(kr, BRONZE.darkened(0.2), false, 1.0)
-			draw_string(font, kr.position + Vector2(4, 14), key, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("f2e6d0"))
-		var max_mp: float = s["max_mp"]
-		_orb(Vector2(x0 - 100, cy - 8), 60, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
-		_orb(Vector2(x0 + bar_w + 100, cy - 8), 60, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
-		var xr := Rect2(x0 - 16, cy + sz / 2 + 18, bar_w + 32, 12)
+			if key == "LMB" or key == "RMB":
+				Icons.draw_mouse(self, kc, key == "LMB", GOLD)
+			else:
+				var kr := Rect2(kc - Vector2(11, 10), Vector2(22, 20))
+				draw_rect(kr, Color(0.05, 0.05, 0.07))
+				draw_rect(kr, Color("bdb6a6"), false, 1.5)
+				_text_c(key, kc + Vector2(0, 5), 14, Color("f2e6d0"), 0)
+		# xp along the top of the bar, with the level on a diamond at its left
+		var xr := Rect2(x0 + 20, cy - sz / 2 - 16, bar_w - 20, 8)
 		draw_rect(xr, Color(0.06, 0.06, 0.06))
 		var need: int = GD.xp_need(p.level)
 		var xf: float = 1.0 if p.level >= GD.MAX_LEVEL else float(p.xp) / need
 		draw_rect(Rect2(xr.position, Vector2(xr.size.x * xf, xr.size.y)), GOLD.darkened(0.15))
 		draw_rect(xr, BRONZE.darkened(0.25), false, 1.5)
-		_text_c("Max level" if p.level >= GD.MAX_LEVEL else "XP %d/%d" % [p.xp, need], xr.get_center() + Vector2(0, 5), 13, Color.WHITE, 4)
+		var lc := Vector2(x0 + 4, xr.get_center().y)
+		draw_colored_polygon(PackedVector2Array([lc + Vector2(0, -15), lc + Vector2(15, 0), lc + Vector2(0, 15), lc + Vector2(-15, 0)]), Color(0.12, 0.1, 0.08))
+		draw_polyline(PackedVector2Array([lc + Vector2(0, -15), lc + Vector2(15, 0), lc + Vector2(0, 15), lc + Vector2(-15, 0), lc + Vector2(0, -15)]), BRONZE, 2.0, true)
+		_text_c(str(p.level), lc + Vector2(0, 5), 14, GOLD, 0)
+		if xr.grow(4).has_point(mouse):
+			tip = {"name": "Experience", "desc": "Max level" if p.level >= GD.MAX_LEVEL else "XP %d / %d" % [p.xp, need], "meta": ""}
+			tip_rect = xr
+		var max_mp: float = s["max_mp"]
+		var life_c := Vector2(x0 - 96, cy - 6)
+		var mana_c := Vector2(x0 + bar_w + 96, cy - 6)
+		_orb(life_c, 62, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
+		_orb(mana_c, 62, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
+		# potion: a small round button on the life orb's upper right (Q)
+		var pc := life_c + Vector2(66, -62)
+		_round_button(pc, 25.0)
+		_icon("potion", Rect2(pc - Vector2(18, 20), Vector2(36, 40)), Color.WHITE if p.potions > 0 else Color(0.4, 0.4, 0.4))
+		draw_string_outline(font, pc + Vector2(14, 22), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 4, Color.BLACK)
+		draw_string(font, pc + Vector2(14, 22), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color.WHITE)
+		var qk := Rect2(pc + Vector2(26, -36), Vector2(20, 19))
+		draw_rect(qk, Color(0.05, 0.05, 0.07))
+		draw_rect(qk, Color("bdb6a6"), false, 1.5)
+		_text_c("Q", qk.get_center() + Vector2(0, 5), 13, Color("f2e6d0"), 0)
+		if pc.distance_to(mouse) < 26.0:
+			tip = {"name": "Health Potion", "desc": "Restore 45% of your life.", "meta": "%d of 5" % p.potions}
+			tip_rect = Rect2(pc - Vector2(26, 26), Vector2(52, 52))
+		# evade: a round button with a foot on the mana orb's lower left (Space)
+		var ev: Dictionary = p.evade_def()
+		var ec := mana_c + Vector2(-66, -62)   # mirrors the potion on the life orb
+		_round_button(ec, 25.0)
+		var ecd: float = p.cds.get("evade", 0.0)
+		var ready: bool = ecd <= 0.0
+		if String(ev["type"]) == "roll":
+			Icons.draw_foot(self, ec, Color("efe6d2") if ready else Color(0.55, 0.55, 0.55))
+		else:
+			Icons.draw_icon(self, "blink", Rect2(ec - Vector2(22, 22), Vector2(44, 44)), Color("cfe2ff"))
+		if not ready:
+			Icons.draw_cooldown_circle(self, ec, 22.0, ecd / maxf(0.01, float(p.cd_full.get("evade", 1.0))))
+		else:
+			draw_arc(ec, 23.0, 0.0, TAU, 40, Color(1.0, 0.9, 0.6, 0.35 + 0.25 * sin(Time.get_ticks_msec() / 300.0)), 2.0, true)
+		Icons.draw_spacebar(self, ec + Vector2(-50, -26), Color("bdb6a6"))
+		if ec.distance_to(mouse) < 26.0:
+			tip = {"name": ev["name"], "desc": ev["desc"], "meta": "Space  ·  %ss cooldown  ·  untouchable %ss" % [str(ev["cd"]), str(ev["iframes"])]}
+			tip_rect = Rect2(ec - Vector2(26, 26), Vector2(52, 52))
 
 		# skill tooltip
 		if not tip.is_empty():

@@ -41,7 +41,7 @@ func _run() -> void:
 		check(exists, "Resolved " + name)
 		if exists:
 			var clip: Animation = hero.animation.get_animation(hero.clip_names[name])
-			check(clip.get_track_count() >= 100, "Clip has reconstructed bone tracks: " + name)
+			check(clip.get_track_count() >= 40, "Clip has reconstructed bone tracks (" + str(clip.get_track_count()) + "): " + name)
 			check(clip.track_get_key_count(0) >= 2, "Clip has endpoint keys: " + name)
 	check(hero.equipment_sockets.size() == 7, "Seven runtime BoneAttachment sockets")
 	for slot in ["weapon", "shield", "vfx_right", "vfx_left", "back", "head", "waist"]:

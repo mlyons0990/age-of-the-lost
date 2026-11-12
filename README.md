@@ -5,6 +5,8 @@ AOTL Files
 
 [Open the complete Crownsfall LootSlice project](game/crownsfall_lootslice/README.md) in **Godot 4.6.3** after `git lfs pull`. The accepted Expansion02 designs now appear in gameplay: 12 equipment portraits, 19 ability icons and 11 service symbols. Equipment and inventory share matching, proportional art; the right-docked Character sheet and exact item-grid footprints remain intact.
 
+[Download playable source ZIP](https://drive.google.com/file/d/1PiBL4mpatK4GWrtUpGWSMkL-L5d-MSEP/view) · [Release files and verification](docs/releases/2026-11-12-art-integration/README.md).
+
 [Current development handoff](game/crownsfall_lootslice/docs/ART_INTEGRATION_HANDOFF.md) · [Five-page native-screen review](docs/reviews/AOTL_Playable_Art_Integration_Review_2026-11-12.pdf) · [QA logs and summaries](game/crownsfall_lootslice/tests/art_integration_qa/).
 
 Verified: 825 headless assertions plus six additional native mouse checks, **831 distinct assertions**. Existing gameplay, stat scaling, schema-six saves, original art and fallbacks are preserved. The Knight-focused Godot 4.3 import remains on its independent branch. This project is playable source; Windows export and human playtesting remain pending.

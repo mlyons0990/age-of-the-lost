@@ -41,6 +41,7 @@ var phase := 0.0
 var stun := 0.8
 var moving := false
 var struck := 0.0
+var recoil_side := 1.0
 
 
 func setup(key: String, is_elite: bool, player_level: int) -> void:
@@ -71,6 +72,7 @@ func take_hit(amount: int, crit: bool, from: Vector2, opt: Dictionary) -> float:
 	hp = maxf(0,hp-actual)
 	flash = 0.12
 	var dir := GD.ground(from, position).normalized()
+	recoil_side = signf(dir.x) if absf(dir.x) > 0.01 else -face
 	var k: float = float(opt.get("kb", 0.15)) * (0.4 if type_key == "brute" else 1.0) * (0.5 if elite else 1.0)
 	kb += dir * k * 10.0
 	if opt.has("stun"):
@@ -169,42 +171,14 @@ func _ellipse(c: Vector2, rx: float, ry: float, from := 0.0, to := TAU, n := 28)
 func _col(hex: String) -> Color:
 	return Color.WHITE if flash > 0.0 else Color(hex)
 
-
-func _draw() -> void:
-	var alpha := 1.0
-	if dead_t >= 0.0:
-		alpha = maxf(0.0, 1.0 - dead_t)
-	modulate.a = alpha
-	var sc: float = (1.25 if elite else 1.0) * 2.0
-	var tall: float = height()
-	var wind: float = 0.0
-	if state == "windup":
-		wind = 1.0 - wind_left / float(t["wind"])
-		# red warning wedge on the ground
-		var ang := GD.ground(position, player.position).angle()
-		var r: float = (float(t["range"]) + 0.3) * GD.U
-		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, GD.SQ))
-		var wedge := PackedVector2Array([Vector2.ZERO])
-		for i in 13:
-			var a := ang - 0.9 + 1.8 * i / 12.0
-			wedge.append(Vector2(cos(a), sin(a)) * r * wind)
-		if wind > 0.05:
-			draw_colored_polygon(wedge, Color(1.0, 0.16, 0.12, 0.14 + wind * 0.2))
-		draw_arc(Vector2.ZERO, r, ang - 0.9, ang + 0.9, 16, Color(1.0, 0.3, 0.24, 0.7), 3.0, true)
-	if struck > 0.0 and player != null:
-		var ang2 := GD.ground(position, player.position).angle()
-		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, GD.SQ))
-		draw_arc(Vector2.ZERO, (float(t["range"]) + 0.2) * GD.U, ang2 - 0.8, ang2 + 0.8, 16, Color(1.0, 0.24, 0.16, struck / 0.18 * 0.7), 14.0, true)
-
-	# shadow
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-	draw_colored_polygon(_ellipse(Vector2.ZERO, 22.0 * sc * (1.5 if type_key == "brute" else 1.0), 9.0 * sc), Color(0.1, 0.08, 0.2, 0.3))
-	if elite:
-		draw_circle(Vector2(0, -tall * 0.5), tall * 0.55, Color(1.0, 0.78, 0.3, 0.12))
-
-	# painted sprite (faces lower-right in the source art; mirrored when facing left)
-	var tex: Texture2D = TEX[type_key]
+## Pose only; AI, hit boxes, damage and reward ownership stay on the actor.
+func sprite_pose() -> Dictionary:
 	var k: float = float(DRAW_SCALE[type_key]) * (1.25 if elite else 1.0)
+	if dead_t >= 0:
+		var fall := smoothstep(0.0, 0.42, dead_t)
+		if type_key == "slime":
+			return {"offset":Vector2.ZERO,"rotation":0.0,"scale":Vector2(k * face * (1 + 0.35 * fall), k * (1 - 0.8 * fall)),"tint":Color.WHITE.lerp(Color(0.5,0.5,0.55),fall)}
+		return {"offset":Vector2(0,8 * fall),"rotation":face * 1.25 * fall,"scale":Vector2(k * face,k * (1 - 0.2 * fall)),"tint":Color.WHITE.lerp(Color(0.5,0.5,0.55),fall)}
 	var hop := 0.0
 	var squash := 1.0
 	var tilt := 0.0
@@ -218,11 +192,54 @@ func _draw() -> void:
 		"brute":
 			hop = absf(sin(phase * 5.0)) * 6.0 if moving else sin(phase * 2.0) * 2.0
 			tilt = sin(phase * 5.0) * 0.04 if moving else 0.0
-	# lean back while winding up, lunge forward on the strike
+	var wind: float = 1.0 - wind_left / float(t["wind"]) if state == "windup" else 0.0
 	tilt += (-0.22 * wind + (0.3 * struck / 0.18)) * face
+	var recoil := clampf(flash / 0.12, 0, 1)
+	tilt += recoil_side * recoil * 0.12
 	var tint := Color(2.2, 2.2, 2.2) if flash > 0.0 else (Color(1.0, 0.75, 0.6) if burn > 0.0 else Color.WHITE)
-	draw_set_transform(Vector2(struck / 0.18 * 14.0 * face, -hop), tilt, Vector2(k * face * squash, k / squash))
-	draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 8.0), tint)
+	return {"offset":Vector2(struck / 0.18 * 14.0 * face + recoil_side * recoil * 7, -hop),"rotation":tilt,"scale":Vector2(k * face * squash, k / squash),"tint":tint}
+
+func shows_attack_warning() -> bool:
+	return dead_t < 0 and state == "windup"
+
+
+func _draw() -> void:
+	var alpha := 1.0
+	if dead_t >= 0.0:
+		alpha = maxf(0.0, 1.0 - dead_t)
+	modulate.a = alpha
+	var sc: float = (1.25 if elite else 1.0) * 2.0
+	var tall: float = height()
+	var wind: float = 0.0
+	if shows_attack_warning():
+		wind = 1.0 - wind_left / float(t["wind"])
+		# red warning wedge on the ground
+		var ang := GD.ground(position, player.position).angle()
+		var r: float = (float(t["range"]) + 0.3) * GD.U
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, GD.SQ))
+		var wedge := PackedVector2Array([Vector2.ZERO])
+		for i in 13:
+			var a := ang - 0.9 + 1.8 * i / 12.0
+			wedge.append(Vector2(cos(a), sin(a)) * r * wind)
+		if wind > 0.05:
+			draw_colored_polygon(wedge, Color(1.0, 0.16, 0.12, 0.14 + wind * 0.2))
+		draw_arc(Vector2.ZERO, r, ang - 0.9, ang + 0.9, 16, Color(1.0, 0.3, 0.24, 0.7), 3.0, true)
+	if dead_t < 0 and struck > 0.0 and player != null:
+		var ang2 := GD.ground(position, player.position).angle()
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, GD.SQ))
+		draw_arc(Vector2.ZERO, (float(t["range"]) + 0.2) * GD.U, ang2 - 0.8, ang2 + 0.8, 16, Color(1.0, 0.24, 0.16, struck / 0.18 * 0.7), 14.0, true)
+
+	# shadow
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	draw_colored_polygon(_ellipse(Vector2.ZERO, 22.0 * sc * (1.5 if type_key == "brute" else 1.0), 9.0 * sc), Color(0.1, 0.08, 0.2, 0.3))
+	if elite and dead_t < 0:
+		draw_circle(Vector2(0, -tall * 0.5), tall * 0.55, Color(1.0, 0.78, 0.3, 0.12))
+
+	# painted sprite (faces lower-right in the source art; mirrored when facing left)
+	var tex: Texture2D = TEX[type_key]
+	var pose := sprite_pose()
+	draw_set_transform(pose.offset, pose.rotation, pose.scale)
+	draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 8.0), pose.tint)
 
 	# health bar and elite name
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

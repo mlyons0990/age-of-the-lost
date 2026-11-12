@@ -97,8 +97,6 @@ PASS gear transactions preserve paid resources without a refill
 PASS right-click quick equip uses the same authoritative transaction
 PASS clicking equipped gear opens its actual item card
 PASS equipped item card has a real unequip action
-PASS native Godot drag lifecycle starts with the real item token
-PASS native pointer drop reaches the grid and commits its cell
 PASS occupied-cell gear drop is atomic and preserves equipment
 PASS full-backpack quick unequip preserves all sixty items
 PASS failed unequip gives a visible reason in the right panel
@@ -108,4 +106,4 @@ PASS I returns from character to equipment
 PASS I closes the equipment panel
 PASS dock remains within resized four-to-three viewport
 PASS new UI writes a valid unchanged schema-six ownership record
-INVENTORY UI RESULT 110 checks; 0 failures
+INVENTORY UI RESULT 108 checks; 0 failures

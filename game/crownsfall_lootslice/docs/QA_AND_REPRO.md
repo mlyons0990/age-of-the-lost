@@ -1,6 +1,6 @@
 # Current QA and reproduction
 
-On Linux, `python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` runs import and all fifteen suites in separate disposable XDG directories, checks full logs and writes a JSON summary. This helper passes 900 headless assertions. The rendered UI suite adds two native mouse checks, along with two Town and two Grid native checks, totaling 906 distinct assertions. It is intentionally Linux-only; use an isolated project/user directory on other platforms.
+On Linux, `python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` runs import and all sixteen suites in separate disposable XDG directories, checks full logs and writes a JSON summary. This cycle passes **954 headless assertions**. The new actor-feedback suite also passes its 54 checks rendered; repeated assertions are not added to the total. Six extra native inventory/town/grid mouse checks remain historical and were not rerun in this cycle. The runner is intentionally Linux-only; use an isolated project/user directory on other platforms.
 
 Godot 4.6.3 stable on Linux. Rendered runs use X11/Xvfb, software OpenGL and Dummy audio. Tests operate real scripts, UI signals and scene changes; they are not human usability or native Windows validation.
 
@@ -21,7 +21,8 @@ Godot 4.6.3 stable on Linux. Rendered runs use X11/Xvfb, software OpenGL and Dum
 | `--script res://tests/loot_integration.gd` | 78 |
 | `--script res://tests/selected_art_integration.gd` | 76 |
 | `--script res://tests/skill_tiles_integration.gd` | 75 |
-| Total headless assertions | 900 |
+| `--script res://tests/actor_feedback_integration.gd` | 54 |
+| Total headless assertions | 954 |
 
 Use a project copy and isolated data directories. On Linux set XDG_DATA_HOME, XDG_CONFIG_HOME and XDG_CACHE_HOME to dedicated QA directories outside the source project. On Windows use a separate Custom User Dir Name. Suites intentionally create/alter their QA saves.
 
@@ -57,7 +58,7 @@ Read `RELIABILITY_HANDOFF.md` for the fault matrix and writer contract. The new 
 
 ## Exact item-grid alignment
 
-Current Inventory passes 108 headless / 110 rendered; Grid passes 64 headless / 66 rendered. Together with Town, six native mouse checks supplement 900 unique headless checks, for 906 distinct overall. See `GRID_ALIGNMENT_HANDOFF.md` for the complete dimensions, source references, five-resolution drag-scale tests and actual native third-cell sword drag.
+Inventory passes 108 headless / 110 rendered; Grid passes 64 headless / 66 rendered. The six additional native mouse checks across Inventory, Town and Grid were verified in the earlier UI cycles. See `GRID_ALIGNMENT_HANDOFF.md` for the complete dimensions, source references, five-resolution drag-scale tests and actual native third-cell sword drag. Current-cycle counts are listed at the top of this document.
 
 ## Persistent floor loot
 

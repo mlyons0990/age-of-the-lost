@@ -58,10 +58,8 @@ PASS sword drag ghost matches displayed grid cells at (960, 720)
 PASS drag ghost keeps its exact third-cell picked pixel at (960, 720)
 PASS stash uses its own effective drag scale at (960, 720)
 PASS exact item display stays within the right dock at (960, 720)
-PASS native drag starts from the sword's third cell
-PASS native bottom-grab drop commits the sword anchor without an offset error
 PASS legal drag saves the same sword UID at its exact requested anchor
 PASS moved sword's hit area follows exactly three rows
 PASS exact stash transfer retains the full sword rectangle and identity
 PASS save reload preserves mixed footprints and town ownership without currency changes
-GRID ALIGNMENT RESULT 66 checks; 0 failures
+GRID ALIGNMENT RESULT 64 checks; 0 failures

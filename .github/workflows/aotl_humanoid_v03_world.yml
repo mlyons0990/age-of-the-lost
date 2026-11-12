@@ -1,0 +1,59 @@
+name: AOTL V03 — PoE-world humanoid, IK and camera
+on:
+  pull_request:
+    paths:
+      - "game/crownsfall_lootslice/**"
+      - ".github/workflows/aotl_humanoid_v03_world.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  v03-character-world:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Restore original GLB from validated source hash
+        run: |
+          git lfs pull
+          python game/crownsfall_lootslice/tools/restore_rig_v02.py
+      - name: Install pinned Godot
+        run: |
+          curl -fLsS --retry 3 'https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip' -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp
+          sudo install -m 0755 /tmp/Godot_v4.6.3-stable_linux.x86_64 /usr/local/bin/godot
+          godot --version
+      - name: Godot import all scenes and the V03 model
+        run: godot --headless --path game/crownsfall_lootslice --editor --quit
+      - name: Preserve existing painted Phase02 camera and character
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/two_point_five_d_smoke.gd 2>&1 | tee /tmp/aotl_phase02.log
+          grep -q 'AOTL 2.5D SMOKE: 32 checks | PASS' /tmp/aotl_phase02.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_phase02.log; then exit 1; fi
+      - name: Test V03 humanoid in actual 21m courtyard
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/humanoid_v03_world_smoke.gd -- --aotl-v03 2>&1 | tee /tmp/aotl_v03.log
+          grep -q 'AOTL_V03_TEST_OK' /tmp/aotl_v03.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v03.log; then
+            echo 'Script errors found in V03 native run; fail instead of accepting misleading green assertions'
+            exit 1
+          fi
+      - name: Run original 16-suite gameplay regression
+        run: python game/crownsfall_lootslice/tools/run_checks.py --report-dir /tmp/aotl_v03_regressions
+      - name: Preserve test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v03-world-native-qa
+          path: |
+            /tmp/aotl_phase02.log
+            /tmp/aotl_v03.log
+            /tmp/aotl_v03_regressions
+          if-no-files-found: ignore

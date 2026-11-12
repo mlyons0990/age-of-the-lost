@@ -53,7 +53,13 @@ for the knight and three painted enemy types:
   cancels a swing in progress; bolts fly through you during the i-frames. The
   roll animation is the Higgsfield dodge clip (`assets/knight/roll_<se,ne>.png`,
   cut with `tools/make_roll_strip.py`, which re-centres each frame because the
-  game moves the knight). A Space slot on the skill bar shows its cooldown.
+  game moves the knight). A round boot button on the mana orb's upper left
+  (Space key cap beside it) shows the cooldown and glows when ready.
+- **Skill bar (Diablo 4 layout):** keys 1-4 on the left, a gap, then LMB and
+  RMB, with key caps or mouse icons under each slot (`SLOTS` in `hud.gd`; right
+  click uses the first skill until skills can be rebound). The level diamond
+  and XP bar run along the top of the bar; the potion is a round button on the
+  life orb's upper right (Q, with its count).
   `EVADE` in `game_data.gd` also defines a **Blink** (5.5 units, instant, 0.6 s
   i-frames, 2.5 s cooldown, 8 mana) for a future Mage: give that spec
   `"evade": "blink"` in `SPECS` and Space blinks instead.

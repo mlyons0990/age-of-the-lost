@@ -11,6 +11,7 @@ const Loot := preload("res://scripts/loot.gd")
 const Fx := preload("res://scripts/fx.gd")
 const Hud := preload("res://scripts/hud.gd")
 const PoeLayout := preload("res://scripts/poe_hud_layout.gd")
+const Live25D := preload("res://scripts/two_point_five_d/live_courtyard_bridge.gd")
 const SoundBank := preload("res://scripts/sound_bank.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const SAVE_SCHEMA := 6
@@ -47,6 +48,10 @@ const START := Vector2(1350, 1020)
 ## Where the Reality Scar opens: the centre of the engraved circle.
 const RIFT_POS := Vector2(1290, 1010)
 
+var plaza_art: Sprite2D
+var layered_occluders: Array[CanvasItem] = []
+var live_25d: CanvasLayer
+var live_25d_enabled := false
 var world: Node2D
 var sound
 var player: Node2D
@@ -98,6 +103,7 @@ func _ready() -> void:
 	bg.centered = false
 	bg.z_index = -10
 	add_child(bg)
+	plaza_art = bg
 
 	_build_navigation()
 
@@ -106,7 +112,9 @@ func _ready() -> void:
 	world.y_sort_enabled = true
 	add_child(world)
 	for o in OCCLUDERS:
-		world.add_child(_make_occluder(o))
+		var cutout := _make_occluder(o)
+		world.add_child(cutout)
+		layered_occluders.append(cutout)
 
 	player = Player.new()
 	player.main = self
@@ -125,6 +133,9 @@ func _ready() -> void:
 	cam.zoom = Vector2.ONE * PoeLayout.DEFAULT_ZOOM
 	player.add_child(cam)
 	cam.make_current()
+
+	# Live 2.5D is opt-in so the approved 2D painted town stays the safe default.
+	# Press F8 to show the same gameplay actors/systems over the 3D courtyard.
 
 	fx_parts = _make_fx(Fx.PARTICLES, 100)
 	fx_text = _make_fx(Fx.TEXT, 101)
@@ -295,12 +306,38 @@ func _unhandled_input(event: InputEvent) -> void:
 				toggle_rift()
 			KEY_F:
 				if not get_tree().paused: collect_nearest()
+			KEY_F8:
+				if not get_tree().paused:
+					toggle_live_25d()
+					get_viewport().set_input_as_handled()
 			KEY_F7:
 				_enter_articulation_lab()
 			KEY_F6:
 				# Tester shortcut: gain a level instantly.
 				player.xp = 0
 				player.level_up()
+
+
+
+func toggle_live_25d() -> bool:
+	if get_tree().paused or player == null:
+		return live_25d_enabled
+	if not live_25d_enabled:
+		if live_25d == null:
+			live_25d = Live25D.new()
+			live_25d.name = "LiveGameplay_3DSceneryBridge"
+			live_25d.game = self
+			live_25d.game_camera = cam
+			add_child(live_25d)
+		live_25d_enabled = true
+	else:
+		live_25d_enabled = false
+	plaza_art.visible = not live_25d_enabled
+	for cutout in layered_occluders:
+		cutout.visible = not live_25d_enabled
+	live_25d.set_active(live_25d_enabled)
+	hud.toast("Live 2.5D Crownsfall (F8) — original game systems active" if live_25d_enabled else "Original painted Crownsfall restored (F8)", Color("d4b26e"), true)
+	return live_25d_enabled
 
 
 func _enter_articulation_lab() -> void:

@@ -1,0 +1,54 @@
+name: AOTL Phase A Art Preview QA
+
+on:
+  pull_request:
+    paths:
+      - "game/crownsfall_lootslice/**"
+      - ".github/workflows/phase_a_preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  art-preview:
+    name: Godot 4.6.3 headless + inventory regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout source and art LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image QA dependency
+        run: python -m pip install pillow
+      - name: Stage Phase A art without modifying gameplay rules
+        run: |
+          git lfs pull
+          python game/crownsfall_lootslice/tools/stage_phase_a_art.py --stage
+          python game/crownsfall_lootslice/tools/stage_phase_a_art.py --verify
+      - name: Fetch pinned Godot 4.6.3 binary
+        run: |
+          curl --fail --location --silent --show-error --retry 3 \
+            'https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip' -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp
+          sudo install -m 0755 /tmp/Godot_v4.6.3-stable_linux.x86_64 /usr/local/bin/godot
+          godot --version
+      - name: Validate reversible art toggle in headless Godot
+        run: |
+          godot --headless --path game/crownsfall_lootslice --editor --quit
+          godot --headless --path game/crownsfall_lootslice --script res://tests/phase_a_preview_smoke.gd
+      - name: Run existing 16 gameplay regression suites in isolated saves
+        run: |
+          python game/crownsfall_lootslice/tools/run_checks.py --report-dir /tmp/aotl-phase-a-checks
+      - name: Upload QA report for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-phase-a-qa
+          path: /tmp/aotl-phase-a-checks/
+          if-no-files-found: ignore

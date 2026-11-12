@@ -41,7 +41,7 @@ Reviewed: [AOTL GitHub source](https://github.com/mlyons0990/age-of-the-lost), [
 - Warrior has no painted spellcasting animation. Until one is authored, the Warrior's 3D cast mechanic displays a borrowed attack sequence. Mage uses the existing cast sprites.
 - The torso/armor layering, swept silhouette and painterly highlights are as-good-as-existing painted sprite sources, but we have not matched the published six references pixel-for-pixel at every direction or pose.
 - No new gear attachments, proper 3D shadow receiver, depth-masked props, terrain navigation, background-aligned 3D architecture, IK, 3D VFX style pass, full RPG system migration, or release export in this phase.
-- **QA status:** source and sprite dimensions audited; new Godot scene and smoke tests authored. This tool session could not execute Godot (no local binary available). Do not claim the smoke tests or frame rendering passed until a real engine execution is recorded.
+- **QA status (Godot 4.6.3, Linux Higgsfield free sandbox, November 12):** full asset import exited 0; the 2.5D opt-in smoke passed 15/15 checks; the unchanged 16-suite full project regression passed 954/954 assertions (see `tools/run_checks.py`); Xvfb/llvmpipe software OpenGL opened the experimental scene and captured a 1440×810 PNG with exit code 0. Screenshot appearance has not been approved or visually compared to canon. Windows playtesting, controls and equipment visual fidelity are unverified.
 
 ## Next milestones (before using paid Higgsfield credits)
 

@@ -2,6 +2,7 @@ extends Node3D
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
 ## This deliberately does NOT replace the established 2D plaza; keep both.
 const HERO := preload("res://scripts/three_d/rig_controller.gd")
+const HERO_V02 := preload("res://scripts/three_d/rig_controller_v02.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
 const IVORY := Color("f3e8d3")
@@ -16,12 +17,14 @@ var info: Label
 var hpbar: ProgressBar
 var kills := 0
 var mode := "3D articulated rig lab"
+var rig_v02_enabled := false
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=true # This independent lab never changes the saved plaza actor.
+	rig_v02_enabled = OS.get_cmdline_user_args().has("--aotl-rig-v02")
 	_build_world()
 	player = CharacterBody3D.new()
-	player.set_script(HERO)
+	player.set_script(HERO_V02 if rig_v02_enabled else HERO)
 	player.position = Vector3(0, 0.08, 1.8)
 	add_child(player)
 	player.impact.connect(_on_impact)
@@ -148,7 +151,7 @@ func _build_hud() -> void:
 	var v := VBoxContainer.new()
 	top.add_child(v)
 	v.add_child(_hud_label("AOTL · 3D MOTION / COMBAT TESTBED", 25, GOLD))
-	v.add_child(_hud_label("58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
+	v.add_child(_hud_label("58-bone GLB · 16 animation clips · live sockets + blend tree" if rig_v02_enabled else "58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
 	info = _hud_label("Targets defeated: 0", 17)
 	v.add_child(info)
 	hpbar = ProgressBar.new()
@@ -171,7 +174,7 @@ func _build_hud() -> void:
 	var words := VBoxContainer.new()
 	bottom.add_child(words)
 	words.add_child(_hud_label("WASD move    Shift sprint    Space dodge    Left click slash    1 cleave    2 dash strike    3 lorecast burst", 19, GOLD))
-	words.add_child(_hud_label("Proxy geometry only. Final SAO-proportion character sculpt, skin weights, texture work, IK and cloth simulation still required.", 15))
+	words.add_child(_hud_label("V02 model: refined procedural rig; visual fidelity, foot IK and cloth still need production work." if rig_v02_enabled else "Proxy geometry only. Final SAO-proportion character sculpt, skin weights, texture work, IK and cloth simulation still required.", 15))
 
 func _process(delta: float) -> void:
 	if player == null: return

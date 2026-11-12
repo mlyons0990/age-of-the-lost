@@ -193,6 +193,9 @@ func create_character(class_id: String, chosen_name: String) -> bool:
 	merchant_stock.clear()
 	var pool := Systems.drop_pool(class_id)
 	for base in pool: merchant_stock.append(Systems.make_item(1, 0, base, class_id))
+	for art_id in Systems.shop_variants(class_id):
+		if merchant_stock.size() >= 60: break
+		merchant_stock.append(Systems.make_variant(1, String(art_id)))
 	player.hp = player.stats().max_hp; player.mp = player.stats().max_mp
 	player.refresh_visuals()
 	return true
@@ -815,7 +818,7 @@ func _valid_floor_point(point: Vector2) -> bool:
 
 func _valid_item(item: Variant) -> bool:
 	if not item is Dictionary or not Systems.NAMES.has(String(item.get("slot", ""))): return false
-	if not Systems.unique_valid(item): return false
+	if not Systems.unique_valid(item) or not Systems.variant_valid(item): return false
 	for key in Systems.ATTRS + ["dmg", "armor", "hp", "crit", "spell_power", "level", "rarity", "value", "x", "y"]:
 		if item.has(key) and (not item[key] is float and not item[key] is int): return false
 		if item.has(key) and not is_finite(float(item[key])): return false
@@ -882,6 +885,13 @@ func load_game() -> bool:
 	for raw in data.merchant_stock:
 		var item := Systems.clean_item(raw)
 		if not item.is_empty() and not used.has(item.uid): merchant_stock.append(item); used[item.uid] = true
+	# Additive vendor discovery for established saves: never rewrite their
+	# equipped/inventory objects or make older saves obsolete.
+	for art_id in Systems.shop_variants(p.class_id):
+		if merchant_stock.size() >= 60: break
+		if merchant_stock.any(func(it: Dictionary) -> bool: return String(it.get("art_id", "")) == art_id):
+			continue
+		merchant_stock.append(Systems.make_variant(mini(p.level, 60), String(art_id)))
 	buyback_stock.clear()
 	if int(data.schema)>=5:
 		for raw in data.buyback_stock:
@@ -914,3 +924,4 @@ func reset_save() -> void:
 		DirAccess.rename_absolute(absolute, absolute + ".reset-" + str(Time.get_unix_time_from_system()))
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+

@@ -241,7 +241,7 @@ func _item_icon(item: Dictionary) -> Texture2D:
 	return _item_portrait(item)
 
 func _item_portrait(item: Dictionary) -> Texture2D:
-	return ART.inventory_portrait(String(item.get("unique_id",item.slot)))
+	return ART.inventory_portrait(String(item.get("art_id",item.get("unique_id",item.slot))))
 
 func action_art(button: Button, id: String) -> Button:
 	button.icon=_icon("ui_"+id)
@@ -712,3 +712,4 @@ func _trial_page(box: VBoxContainer) -> void:
 		var begin := _button("Enter the Cantor trial",func() -> void:
 			close_page(); main.encounter.start())
 		begin.disabled = problem != ""; begin.tooltip_text = problem; box.add_child(begin)
+

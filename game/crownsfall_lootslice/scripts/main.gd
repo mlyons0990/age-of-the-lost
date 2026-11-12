@@ -10,6 +10,7 @@ const Enemy := preload("res://scripts/enemy.gd")
 const Loot := preload("res://scripts/loot.gd")
 const Fx := preload("res://scripts/fx.gd")
 const Hud := preload("res://scripts/hud.gd")
+const PoeLayout := preload("res://scripts/poe_hud_layout.gd")
 const SoundBank := preload("res://scripts/sound_bank.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const SAVE_SCHEMA := 6
@@ -119,6 +120,9 @@ func _ready() -> void:
 	cam.limit_bottom = PLAZA.get_height()
 	cam.position_smoothing_enabled = true
 	cam.position_smoothing_speed = 6.0
+	# The actual saved 2D game now shares Phase 02's wider ARPG framing.
+	# Camera zoom is presentation-only and NEVER written to schema-six saves.
+	cam.zoom = Vector2.ONE * PoeLayout.DEFAULT_ZOOM
 	player.add_child(cam)
 	cam.make_current()
 
@@ -258,9 +262,27 @@ func _make_occluder(o: Dictionary) -> Polygon2D:
 	return p
 
 
+func _set_gameplay_zoom(value: float) -> void:
+	cam.zoom = Vector2.ONE * clampf(value, PoeLayout.ZOOM_MIN, PoeLayout.ZOOM_MAX)
+
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and not get_tree().paused:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_set_gameplay_zoom(cam.zoom.x + 0.06)
+			get_viewport().set_input_as_handled()
+			return
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_set_gameplay_zoom(cam.zoom.x - 0.06)
+			get_viewport().set_input_as_handled()
+			return
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
+			KEY_HOME:
+				_set_gameplay_zoom(PoeLayout.DEFAULT_ZOOM)
+			KEY_EQUAL, KEY_KP_ADD:
+				if not get_tree().paused: _set_gameplay_zoom(cam.zoom.x + 0.06)
+			KEY_MINUS, KEY_KP_SUBTRACT:
+				if not get_tree().paused: _set_gameplay_zoom(cam.zoom.x - 0.06)
 			KEY_F11:
 				var w := get_window()
 				w.mode = Window.MODE_WINDOWED if w.mode == Window.MODE_FULLSCREEN else Window.MODE_FULLSCREEN

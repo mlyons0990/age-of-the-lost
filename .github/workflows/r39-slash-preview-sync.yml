@@ -1,0 +1,57 @@
+name: AOTL actual R47 Slash animation GIF backup
+
+on:
+  push:
+    branches: [dev/r39-weapon-sweep-v1]
+    paths:
+      - .github/workflows/r39-slash-preview-sync.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync_slash_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve checksum-pinned Blender Slash preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --max-time 100 \
+            "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/e88f439b-61e9-4a9f-b08e-37b2b73d170f.zip?download=AOTL_R47_Real_Slash_Preview.zip" -o /tmp/aotl-r47-slash-preview.zip
+          echo "e2c313bb00d44f4b58d063b81e28f64002fdab9ed594aea7591c44d60a8e6813  /tmp/aotl-r47-slash-preview.zip" | sha256sum -c
+          dest=game/crownsfall_lootslice/previews/warrior_r39
+          mkdir -p "$dest"
+          unzip -p /tmp/aotl-r47-slash-preview.zip AOTL_R47_Real_Slash_Contact_7frames.gif > "$dest/real_slash_contact_7frames.gif"
+          unzip -p /tmp/aotl-r47-slash-preview.zip AOTL_R47_Slash_GIF_Provenance.json > "$dest/slash_contact_provenance.json"
+          echo "841d0c337314b76a7e05b3ee265b147a8daf85574174dba80ce71f1d8bebd746  $dest/real_slash_contact_7frames.gif" | sha256sum -c
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('game/crownsfall_lootslice/previews/warrior_r39')
+          d=json.loads((p/'slash_contact_provenance.json').read_text())
+          assert d['source_frames']==[1,6,10,13,16,19,22]
+          assert d['synthetic_inbetween'] is False
+          gif=(p/'real_slash_contact_7frames.gif').read_bytes()
+          assert gif[:6] in (b'GIF87a',b'GIF89a')
+          print('Original Blender Slash GIF verified:',len(gif),'bytes')
+          PY
+      - name: Preserve real animation preview in GitHub
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/crownsfall_lootslice/previews/warrior_r39/
+          if ! git diff --cached --quiet; then
+            git commit -m "Backup real Blender R47 Slash contact GIF and exact frame provenance"
+            git push origin HEAD:dev/r39-weapon-sweep-v1
+          fi
+      - name: Publish original GIF package for Google backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R47-Real-Slash-Contact-Preview
+          path: /tmp/aotl-r47-slash-preview.zip
+          if-no-files-found: error
+          retention-days: 30

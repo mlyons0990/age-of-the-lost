@@ -7,6 +7,7 @@ extends CanvasLayer
 
 const COURTYARD := preload("res://scripts/two_point_five_d/crownsfall_courtyard_25d.gd")
 const GD := preload("res://scripts/game_data.gd")
+const LIVE_KNIGHT := preload("res://scripts/two_point_five_d/knight_depth_billboard.gd")
 const RIGHT := Vector3(0.70710678, 0.0, -0.70710678)
 const TOWARDS_CAMERA := Vector3(0.70710678, 0.0, 0.70710678)
 const VIEW_OFFSET := Vector3(12.8, 16.4, 12.8)
@@ -25,6 +26,8 @@ var scar_marker: MeshInstance3D
 var scar_material: StandardMaterial3D
 var is_ready := false
 var collision_audit: Dictionary = {}
+var knight_depth_avatar: Node3D = null
+var knight_depth_enabled := false
 
 func _ready() -> void:
     # CanvasLayer -1 draws under the real Node2D actors/HUD; not in the same world.
@@ -153,7 +156,38 @@ func _build_service_signposts() -> void:
     seal.position = to_3d(game.RIFT_POS) + Vector3.UP * 0.10
     scenery.add_child(seal)
 
+func set_knight_depth_enabled(enabled: bool) -> bool:
+    # This only swaps the visual path for the EXISTING Player AnimatedSprite2D.
+    # No new actor has physics/input/saves. F10 is an opt-in development toggle.
+    if not is_ready or not is_instance_valid(game) or not visible:
+        if not enabled:
+            knight_depth_enabled = false
+            if is_instance_valid(game) and game.player != null:
+                game.player.sprite.visible = true
+                game.player.shadow.visible = true
+            if knight_depth_avatar != null: knight_depth_avatar.visible = false
+        return false
+    if enabled and knight_depth_avatar == null:
+        knight_depth_avatar = LIVE_KNIGHT.new()
+        knight_depth_avatar.name = "SourcePaintedKnight_True3DDepth_Test"
+        scenery.add_child(knight_depth_avatar)
+    knight_depth_enabled = enabled
+    if knight_depth_avatar != null:
+        knight_depth_avatar.visible = enabled
+    game.player.sprite.visible = not enabled
+    game.player.shadow.visible = not enabled
+    if enabled: sync_knight_depth()
+    return enabled
+
+func toggle_knight_depth() -> bool:
+    return set_knight_depth_enabled(not knight_depth_enabled)
+
+func sync_knight_depth() -> void:
+    if knight_depth_enabled and knight_depth_avatar != null and is_instance_valid(game):
+        knight_depth_avatar.sync_from_player(game.player, Callable(self, "to_3d"))
+
 func set_active(active: bool) -> void:
+    if not active: set_knight_depth_enabled(false)
     visible = active
     set_process(active)
     if viewport_3d != null:
@@ -198,10 +232,13 @@ func sync_view() -> void:
 func _process(_delta: float) -> void:
     sync_view()
     sync_world_state()
+    sync_knight_depth()
 
 func status() -> Dictionary:
     return {
         "visual_only": true,
+        "knight_depth_enabled": knight_depth_enabled,
+        "knight_depth_avatar": knight_depth_avatar,
         "real_game": game,
         "real_player": game.player if is_instance_valid(game) else null,
         "real_hud": game.hud if is_instance_valid(game) else null,

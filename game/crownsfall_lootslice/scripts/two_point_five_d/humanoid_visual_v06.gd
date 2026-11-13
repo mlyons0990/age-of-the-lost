@@ -22,6 +22,8 @@ var facing_lock_active := false
 var turning_in_place := false
 var turn_sign := 0
 var toe_roll_enabled := true
+var disabled_stage_lights := 0
+var disabled_stage_cameras := 0
 
 # World-space stance anchors persist across character movement (the V03 solver did not).
 var gait_phase := 0.0
@@ -65,6 +67,7 @@ func _ready() -> void:
 		return
 	model_root = resource.instantiate() as Node3D
 	model_root.name = "AOTL_Humanoid_Master_V06"
+	_disable_imported_studio_nodes()
 	add_child(model_root)
 	animation = model_root.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	var all_skeletons: Array = model_root.find_children("*", "Skeleton3D", true, false)
@@ -81,6 +84,23 @@ func _ready() -> void:
 	if ready_to_compare:
 		_play_clip("Idle")
 	visible = false
+
+func _disable_imported_studio_nodes() -> void:
+	# Blender's exported lighting and camera are for Higgsfield turntable renders.
+	# Never let their 3 lights override the approved 21m Crownsfall world lighting.
+	for node in model_root.find_children("*", "Node3D", true, false):
+		if node is Light3D:
+			var stage_light := node as Light3D
+			stage_light.visible = false
+			stage_light.light_energy = 0.0
+			stage_light.process_mode = Node.PROCESS_MODE_DISABLED
+			disabled_stage_lights += 1
+		elif node is Camera3D:
+			var stage_camera := node as Camera3D
+			stage_camera.current = false
+			stage_camera.visible = false
+			stage_camera.process_mode = Node.PROCESS_MODE_DISABLED
+			disabled_stage_cameras += 1
 
 func _sample_track(source: Animation, index: int, at_time: float) -> Variant:
 	var v: Variant = null

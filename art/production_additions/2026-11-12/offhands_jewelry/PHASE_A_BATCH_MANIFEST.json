@@ -1,0 +1,80 @@
+{
+  "project": "Age of the Lost",
+  "phase": "A",
+  "batch": "Offhands and Jewelry",
+  "date": "2026-11-12",
+  "status": "art queue; no gameplay changes",
+  "base_review_pr": "https://github.com/mlyons0990/age-of-the-lost/pull/12",
+  "source_model": "Higgsfield gpt_image_2_6",
+  "budget_policy": "Unlimited generation only, do not spend paid credits",
+  "items": [
+    {
+      "id": "crownfall_aegis",
+      "name": "Crownfall Aegis",
+      "slot": "off_hand",
+      "grid": [
+        2,
+        2
+      ],
+      "generation_job_id": "5498a3b6-9090-4aef-bbc2-272b73ef66be",
+      "state": "submitted; needs QA"
+    },
+    {
+      "id": "chronicle_codex",
+      "name": "Chronicle Codex",
+      "slot": "off_hand",
+      "grid": [
+        2,
+        2
+      ],
+      "state": "queued; provider rate limit"
+    },
+    {
+      "id": "emberglass_focus",
+      "name": "Emberglass Focus",
+      "slot": "off_hand",
+      "grid": [
+        2,
+        2
+      ],
+      "state": "queued; provider rate limit"
+    },
+    {
+      "id": "oathkeeper_signet",
+      "name": "Oathkeeper Signet",
+      "slot": "ring",
+      "grid": [
+        1,
+        1
+      ],
+      "state": "queued; provider rate limit"
+    },
+    {
+      "id": "veilthorn_band",
+      "name": "Veilthorn Band",
+      "slot": "ring",
+      "grid": [
+        1,
+        1
+      ],
+      "state": "queued; provider rate limit"
+    },
+    {
+      "id": "wayfarers_locket",
+      "name": "Wayfarer's Locket",
+      "slot": "amulet",
+      "grid": [
+        1,
+        1
+      ],
+      "state": "queued; provider rate limit"
+    }
+  ],
+  "quality_gates": [
+    "Original asset retain full resolution",
+    "Transparent alpha export and 128px per cell art master",
+    "Review at 32px and 64px per cell",
+    "No inventory taxonomy, equip logic, item stats, or schema-six saves changed",
+    "Godot inventory and equipment checks before merge"
+  ]
+}

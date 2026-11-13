@@ -1,0 +1,130 @@
+name: AOTL V09 — topology-corrected 58-bone paint-ready humanoid
+on:
+  pull_request:
+    paths:
+      - "game/crownsfall_lootslice/**"
+      - ".github/workflows/aotl_humanoid_v09_topology.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  skin-and-gait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore all original rig versions and SHA-verified V09 quad geometry
+        run: |
+          git lfs pull
+          python game/crownsfall_lootslice/tools/restore_rig_v02.py
+          python game/crownsfall_lootslice/tools/restore_rig_v03.py
+          python game/crownsfall_lootslice/tools/restore_rig_v04.py
+          python game/crownsfall_lootslice/tools/restore_rig_v06.py
+          python game/crownsfall_lootslice/tools/restore_rig_v07.py
+          python game/crownsfall_lootslice/tools/restore_rig_v09.py
+      - name: Install pinned Godot 4.6.3
+        run: |
+          curl -fLsS --retry 3 'https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip' -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp
+          sudo install -m 0755 /tmp/Godot_v4.6.3-stable_linux.x86_64 /usr/local/bin/godot
+          godot --version
+      - name: Import original art and all humanoid models
+        run: godot --headless --path game/crownsfall_lootslice --editor --quit
+      - name: Original Phase02 painted camera baseline
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/two_point_five_d_smoke.gd 2>&1 | tee /tmp/aotl_v09_original.log
+          grep -q 'AOTL 2.5D SMOKE: 32 checks | PASS' /tmp/aotl_v09_original.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v09_original.log; then exit 1; fi
+      - name: Verify V09 58-bone topology, skin, UV atlases and foot planting
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/humanoid_v09_topology_smoke.gd -- --aotl-v09 2>&1 | tee /tmp/aotl_v09_grounded.log
+          grep -q 'AOTL_V09_TEST_OK' /tmp/aotl_v09_grounded.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v09_grounded.log; then
+            echo 'Found Godot script failure; refusing misleading green test'
+            exit 1
+          fi
+      - name: Check no gameplay or save regressions
+        run: python game/crownsfall_lootslice/tools/run_checks.py --report-dir /tmp/aotl_v09_regressions
+      - name: Render V09 portrait and 21m locomotion GIFs
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri
+          python -m pip install --quiet pillow
+          set -o pipefail
+          xvfb-run --auto-servernum -s "-screen 0 1440x810x24" \
+            godot --path game/crownsfall_lootslice --rendering-driver opengl3 \
+            --script res://tests/humanoid_v09_visual_capture.gd -- --aotl-v09 2>&1 | tee /tmp/aotl_v09_visual.log
+          grep -q 'AOTL_V09_CAPTURE_OK' /tmp/aotl_v09_visual.log
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('/tmp/aotl_v09_frames')
+          walk=sorted(p.glob('walk_*.png'))
+          assert len(walk)==9, f'Expected nine live walk frames, got {len(walk)}'
+          frames=[]
+          for fn in walk:
+              im=Image.open(fn).convert("RGB")
+              im.thumbnail((960,540))
+              frames.append(im)
+          frames[0].save(p/'AOTL_V09_PlantedWalk_21m.gif',save_all=True,append_images=frames[1:],duration=140,loop=0,optimize=True)
+          side=sorted(p.glob('strafe_*.png'))
+          assert len(side)==6, f'Expected six live strafe frames, got {len(side)}'
+          sideframes=[]
+          for fn in side:
+              im=Image.open(fn).convert("RGB")
+              im.thumbnail((960,540))
+              sideframes.append(im)
+          sideframes[0].save(p/'AOTL_V09_21m_Strafe.gif',save_all=True,append_images=sideframes[1:],duration=150,loop=0,optimize=True)
+          print("AOTL_V09_GIF_OK",len(frames),len(sideframes))
+          PY
+      - name: Protect original painted-world exposure from GLB studio lights
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('/tmp/aotl_v09_frames')
+          painted=Image.open(p/'01_painted_Warrior_21m.png').convert('RGB')
+          rigged=Image.open(p/'02_humanoid_idle_21m.png').convert('RGB')
+          stable_floor=[(300,300),(500,600),(1100,600),(1000,280),(1280,600),(300,600),(500,300),(1000,500)]
+          differences=[]
+          for xy in stable_floor:
+              old=painted.getpixel(xy); new=rigged.getpixel(xy)
+              differences.append(sum(abs(a-b) for a,b in zip(old,new))/3)
+          mean_delta=sum(differences)/len(differences)
+          worst_delta=max(differences)
+          print(f"AOTL_V09_WORLD_EXPOSURE_DELTA_MEAN={mean_delta:.2f} MAX={worst_delta:.2f} RGB levels")
+          assert mean_delta < 7.0 and worst_delta < 16.0, 'GLB stage lights/camera changed canonical Crownsfall exposure'
+          PY
+      - name: Preserve QA and render files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v09-topology-native-qa
+          path: |
+            /tmp/aotl_v09_original.log
+            /tmp/aotl_v09_grounded.log
+            /tmp/aotl_v09_visual.log
+            /tmp/aotl_v09_frames/
+            /tmp/aotl_v09_regressions/
+          if-no-files-found: ignore
+      - name: Build independent Windows gameplay test ZIP
+        if: success()
+        run: |
+          zip -q -r -9 /tmp/AOTL_V09_Windows_Standalone.zip game/crownsfall_lootslice \
+            -x '*/.godot/*' '*/.git/*' '*.blend1' '*__pycache__*'
+          unzip -tq /tmp/AOTL_V09_Windows_Standalone.zip | tail -1
+          ls -lh /tmp/AOTL_V09_Windows_Standalone.zip
+      - name: Deliver complete V07 standalone source
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v09-windows-complete
+          path: /tmp/AOTL_V09_Windows_Standalone.zip
+          compression-level: 0

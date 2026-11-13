@@ -55,6 +55,7 @@ func _run() -> void:
 	change_scene_to_file("res://main.tscn"); await frames(5)
 	main = current_scene; p = main.player; trial = main.encounter
 	main.sound.set_muted(true) # Cues have their own audible integration suite; deterministic stepping does not clock the mixer.
+	main.dialogue.set_voice_enabled(false) # Dialogue playback is exercised by its own integration suite.
 	main.set_process(false); p.set_physics_process(false); trial.set_process(false)
 	DirAccess.make_dir_recursive_absolute("res://previews/encounter")
 	reset_actor()

@@ -45,6 +45,7 @@ func start() -> bool:
 	main.world.add_child(boss); main.enemies.append(boss)
 	_spawn_adds()
 	main.hud.banner("The Unwritten Cantor","Read the floor · R to retreat · T for trial briefing")
+	main.dialogue.play_line("cantor_challenge")
 	queue_redraw()
 	return true
 func _spawn_adds() -> void:
@@ -74,6 +75,7 @@ func advance(delta: float) -> void:
 	if not is_instance_valid(boss) or boss.dead_t >= 0: return
 	if not second_phase and boss.hp <= boss.max_hp*0.5:
 		second_phase = true; _spawn_adds()
+		main.dialogue.play_line("cantor_second_verse")
 		main.hud.toast("Second verse · quicker warnings, two new fragments",Color("ffd5a2"),true)
 	next_attack -= delta
 	if next_attack <= 0 and warnings.is_empty() and boss.stun <= 0:
@@ -100,6 +102,7 @@ func on_defeated(e: Node2D) -> void:
 func finish(victory: bool, reason: String, persist := true) -> void:
 	if not active: return
 	active = false; warnings.clear(); impacts.clear()
+	main.dialogue.stop("encounter")
 	main.player.cancel_casts(); main.player.target = null
 	for e in main.enemies.duplicate():
 		if e.has_meta("cantor_trial"):

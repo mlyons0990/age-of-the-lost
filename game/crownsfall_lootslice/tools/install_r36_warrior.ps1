@@ -2,8 +2,8 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$SourceGlb,
     [string]$ProjectRoot = "",
-    [ValidateSet("AOTL_Warrior_R36.glb","AOTL_Warrior_R37.glb")]
-    [string]$TargetFileName = "AOTL_Warrior_R36.glb",
+    [ValidateSet("AOTL_Warrior_R36.glb","AOTL_Warrior_R37.glb","AOTL_Warrior_R39.glb","AOTL_Warrior_R40.glb")]
+    [string]$TargetFileName = "AOTL_Warrior_R40.glb",
     [switch]$RunImportAudit
 )
 
@@ -50,7 +50,7 @@ if (Test-Path $destination) {
     $existingSha = (Get-FileHash $destination -Algorithm SHA256).Hash.Substring(0, 12)
     $backupName = "$($TargetFileName.Replace('.glb',''))_$stamp" + "_$existingSha.glb"
     Copy-Item $destination (Join-Path $backupDir $backupName) -ErrorAction Stop
-    Write-Host "Previous R36 preserved in backups/models/$backupName"
+    Write-Host "Previous Warrior export preserved in backups/models/$backupName"
 }
 
 # Stage and rename in the SAME directory; old source and Git LFS proxy remain unchanged.

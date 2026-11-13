@@ -6,15 +6,21 @@ func _initialize() -> void:
 	var checks := 0
 	assert(is_equal_approx(IK_SCRIPT.circular_distance(0.99, 0.01), 0.02))
 	checks += 1
-	assert(IK_SCRIPT.stance_weight(7.0 / 24.0, "R", false) > 0.99)
+	assert(IK_SCRIPT.stance_weight(4.0 / 24.0, "R", false) > 0.99)
 	checks += 1
-	assert(IK_SCRIPT.stance_weight(19.0 / 24.0, "L", false) > 0.99)
+	assert(IK_SCRIPT.stance_weight(16.0 / 24.0, "L", false) > 0.99)
 	checks += 1
-	assert(IK_SCRIPT.stance_weight(6.0 / 18.0, "R", true) > 0.99)
+	assert(IK_SCRIPT.stance_weight(4.0 / 18.0, "R", true) > 0.99)
 	checks += 1
-	assert(IK_SCRIPT.stance_weight(15.0 / 18.0, "L", true) > 0.99)
+	assert(IK_SCRIPT.stance_weight(14.0 / 18.0, "L", true) > 0.99)
 	checks += 1
 	assert(IK_SCRIPT.stance_weight(0.54, "R", false) < 0.01)
+	checks += 1
+	assert(IK_SCRIPT.stance_weight(0.50, "R", false) < 0.01)
+	checks += 1
+	assert(is_equal_approx(IK_SCRIPT.contact_phase("R", false), 4.0 / 24.0))
+	checks += 1
+	assert(is_equal_approx(IK_SCRIPT.contact_phase("L", true), 14.0 / 18.0))
 	checks += 1
 	# Regression guard: proxy GLB or empty root must NOT force IK on.
 	var root := Node3D.new()

@@ -149,7 +149,7 @@ func _build_hud() -> void:
 	top.add_child(v)
 	v.add_child(_hud_label("AOTL · 3D MOTION / COMBAT TESTBED", 25, GOLD))
 	v.add_child(_hud_label("58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
-	v.add_child(_hud_label("F11: toggle experimental foot IK (off by default)", 15, GOLD))
+	v.add_child(_hud_label("F11: foot IK  |  F12: master rig animation review", 15, GOLD))
 	info = _hud_label("Targets defeated: 0", 17)
 	v.add_child(info)
 	hpbar = ProgressBar.new()
@@ -208,6 +208,9 @@ func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F12:
+		get_tree().change_scene_to_file("res://scenes/phase19_animation_review.tscn")
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F11:
 		player.toggle_foot_ik()
 		return

@@ -3,7 +3,7 @@
   "batch": "Relics / Consumables / Crafting Materials",
   "source": "Higgsfield GPT Image 2.6 Ultra unlimited",
   "date": "2026-11-13",
-  "status": "art generation started; not in game",
+  "status": "6 original illustrations complete; isolated Godot import 43/43 pass; not gameplay integrated",
   "source_branch": "feat/phase-a-armor-variants-integration",
   "schema_status": "Current systems.gd has no relic/consumable/material types; keep art-only until separate inventory taxonomy design and migration tests",
   "paid_credits_authorized": false,
@@ -17,7 +17,15 @@
         2
       ],
       "generation_job_id": "6b13e3c3-c83c-4f3b-981c-3d25dc8f99ab",
-      "status": "submitted"
+      "status": "source illustration generated, RGBA master/runtime exported and isolated Godot import tested",
+      "master_px": [
+        256,
+        256
+      ],
+      "runtime_px": [
+        128,
+        128
+      ]
     },
     {
       "id": "unwritten_seal",
@@ -27,7 +35,16 @@
         1,
         2
       ],
-      "status": "queued"
+      "status": "source illustration generated, RGBA master/runtime exported and isolated Godot import tested",
+      "generation_job_id": "f2c8183c-5e3c-46e5-be31-bbe54a504f71",
+      "master_px": [
+        128,
+        256
+      ],
+      "runtime_px": [
+        64,
+        128
+      ]
     },
     {
       "id": "embermend_phial",
@@ -37,7 +54,16 @@
         1,
         1
       ],
-      "status": "queued"
+      "status": "source illustration generated, RGBA master/runtime exported and isolated Godot import tested",
+      "generation_job_id": "1b09216a-f643-453e-bae9-5e1eb2839c26",
+      "master_px": [
+        128,
+        128
+      ],
+      "runtime_px": [
+        64,
+        64
+      ]
     },
     {
       "id": "moonglass_tonic",
@@ -47,7 +73,16 @@
         1,
         1
       ],
-      "status": "queued"
+      "status": "source illustration generated, RGBA master/runtime exported and isolated Godot import tested",
+      "generation_job_id": "80bdaf6c-bf51-4e2d-a57b-1cd622b0b854",
+      "master_px": [
+        128,
+        128
+      ],
+      "runtime_px": [
+        64,
+        64
+      ]
     },
     {
       "id": "epoch_iron_ore",
@@ -57,7 +92,16 @@
         1,
         1
       ],
-      "status": "queued"
+      "status": "source illustration generated, RGBA master/runtime exported and isolated Godot import tested",
+      "generation_job_id": "163c4b8f-df83-490c-a4b9-57a8add265cf",
+      "master_px": [
+        128,
+        128
+      ],
+      "runtime_px": [
+        64,
+        64
+      ]
     },
     {
       "id": "riftglass_shards",
@@ -67,7 +111,16 @@
         1,
         1
       ],
-      "status": "queued"
+      "status": "source illustration generated, RGBA master/runtime exported and isolated Godot import tested",
+      "generation_job_id": "93481538-162c-486f-ba11-5c87d7be863a",
+      "master_px": [
+        128,
+        128
+      ],
+      "runtime_px": [
+        64,
+        64
+      ]
     }
   ],
   "gates": [
@@ -77,5 +130,20 @@
     "Godot art import checks",
     "Separate prototype data model for proposed non-equipment slots",
     "No alteration of schema six or live loot rules"
-  ]
+  ],
+  "archive": {
+    "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/dafa0595-0e8d-42ea-8eb7-963139c0ed24.zip",
+    "media_id": "dafa0595-0e8d-42ea-8eb7-963139c0ed24",
+    "bytes": 9173268,
+    "entries": 27,
+    "integrity": "pass"
+  },
+  "test_results": {
+    "engine": "Godot 4.4.1 stable",
+    "asset_import": "43/43 PASS",
+    "visual_previews": "32/64px on light/dark backgrounds reviewed",
+    "non_equipment_runtime": "NOT IMPLEMENTED",
+    "save_schema": "unchanged",
+    "paid_credits_used": 0
+  }
 }

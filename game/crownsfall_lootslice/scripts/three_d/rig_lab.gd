@@ -21,10 +21,14 @@ var mode := "3D articulated rig lab"
 var strict_weapon_sweep := false
 var contact_samples: Array = []
 var contact_sample_limit := 24
+var sword_sweep_debug: MeshInstance3D
+var sword_sweep_lines: ImmediateMesh
+var sword_sweep_material: StandardMaterial3D
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=true # This independent lab never changes the saved plaza actor.
 	_build_world()
+	_create_sword_sweep_visualizer()
 	player = CharacterBody3D.new()
 	player.set_script(HERO)
 	player.position = Vector3(0, 0.08, 1.8)
@@ -46,6 +50,40 @@ func _ready() -> void:
 		add_child(e)
 		targets.append(e)
 	_build_hud()
+
+func _create_sword_sweep_visualizer() -> void:
+	sword_sweep_debug = MeshInstance3D.new()
+	sword_sweep_debug.name = "SwordSweepDebug"
+	sword_sweep_lines = ImmediateMesh.new()
+	sword_sweep_debug.mesh = sword_sweep_lines
+	sword_sweep_debug.visible = false
+	sword_sweep_debug.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	sword_sweep_material = StandardMaterial3D.new()
+	sword_sweep_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	sword_sweep_material.albedo_color = Color("ffca70")
+	add_child(sword_sweep_debug)
+
+func _draw_sword_sweep() -> void:
+	if sword_sweep_lines == null:
+		return
+	sword_sweep_lines.clear_surfaces()
+	sword_sweep_debug.visible = strict_weapon_sweep
+	if not strict_weapon_sweep or contact_samples.size() < 1:
+		return
+	sword_sweep_lines.surface_begin(Mesh.PRIMITIVE_LINES, sword_sweep_material)
+	for i in range(contact_samples.size()):
+		var sample: Dictionary = contact_samples[i]
+		var hilt: Vector3 = to_local(sample["hilt"])
+		var tip: Vector3 = to_local(sample["tip"])
+		sword_sweep_lines.surface_add_vertex(hilt)
+		sword_sweep_lines.surface_add_vertex(tip)
+		if i > 0:
+			var previous: Dictionary = contact_samples[i - 1]
+			sword_sweep_lines.surface_add_vertex(to_local(previous["hilt"]))
+			sword_sweep_lines.surface_add_vertex(hilt)
+			sword_sweep_lines.surface_add_vertex(to_local(previous["tip"]))
+			sword_sweep_lines.surface_add_vertex(tip)
+	sword_sweep_lines.surface_end()
 
 func _material(color: Color, metallic := 0.0, rough := 0.7) -> StandardMaterial3D:
 	var mat := StandardMaterial3D.new()
@@ -212,9 +250,11 @@ func _process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if player == null or not player.equipment_sockets_available or player.equipment_sockets == null:
 		contact_samples.clear()
+		_draw_sword_sweep()
 		return
 	if player.anim_state != "Slash" or player.attack_t <= 0.0:
 		contact_samples.clear()
+		_draw_sword_sweep()
 		return
 	var socket: BoneAttachment3D = player.equipment_sockets.get_socket("weapon")
 	var sample: Dictionary = WEAPON_SWEEP.blade_from_socket(socket)
@@ -223,6 +263,7 @@ func _physics_process(_delta: float) -> void:
 	contact_samples.append(sample)
 	if contact_samples.size() > contact_sample_limit:
 		contact_samples.pop_front()
+	_draw_sword_sweep()
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum
@@ -259,6 +300,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
 		strict_weapon_sweep = not strict_weapon_sweep
 		contact_samples.clear()
+		_draw_sword_sweep()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:
 		_back_to_plaza()

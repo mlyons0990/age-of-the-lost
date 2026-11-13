@@ -95,8 +95,10 @@ func _draw() -> void:
 				draw_circle(p["pos"] - Vector2(0, p["z"]), float(p["size"]) * (0.5 + 0.5 * k), c)
 		TEXT:
 			var font := ThemeDB.fallback_font
+			var camera := get_viewport().get_camera_2d()
+			var screen_scale := 1.0/maxf(0.01,camera.zoom.x) if camera != null else 1.0
 			for t in items:
-				var size: int = 38 if t["big"] else 26
+				var size: int = roundi((30 if t["big"] else 20)*screen_scale)
 				var a: float = minf(1.0, (t["life"] - t["t"]) * 2.5)
 				var pos: Vector2 = t["pos"] - Vector2(0, t["z"])
 				var s: String = t["str"]

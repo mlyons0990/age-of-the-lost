@@ -1,0 +1,55 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PASS large development menu starts collapsed
+PASS visible control toggles the real menu open
+PASS menu closes without pausing world simulation
+PASS potion cluster stays on screen at (1920.0, 1080.0)
+PASS all five skill paintings remain square and on screen at (1920.0, 1080.0)
+PASS left and right actions remain separated at (1920.0, 1080.0)
+PASS potion cluster stays on screen at (2560.0, 1080.0)
+PASS all five skill paintings remain square and on screen at (2560.0, 1080.0)
+PASS left and right actions remain separated at (2560.0, 1080.0)
+PASS potion cluster stays on screen at (1440.0, 1080.0)
+PASS all five skill paintings remain square and on screen at (1440.0, 1080.0)
+PASS left and right actions remain separated at (1440.0, 1080.0)
+PASS potion cluster stays on screen at (1280.0, 720.0)
+PASS all five skill paintings remain square and on screen at (1280.0, 720.0)
+PASS left and right actions remain separated at (1280.0, 720.0)
+PASS click target 0 matches the rendered rectangle
+PASS click target 1 matches the rendered rectangle
+PASS click target 2 matches the rendered rectangle
+PASS click target 3 matches the rendered rectangle
+PASS click target 4 matches the rendered rectangle
+PASS click target 5 matches the rendered rectangle
+PASS wide zoom clamps uniformly to painted world bounds
+PASS close zoom has a stable maximum
+PASS invalid zoom values leave the last valid camera intact
+PASS real viewport wheel event zooms the world
+PASS scrolling over a skill cannot zoom the world
+PASS camera ignores wheel input while inventory pauses the world
+PASS new left potion cluster invokes the real heal exactly once
+PASS potion click cannot steer the character
+PASS new right skill square invokes its actual equipped ability
+PASS skill click cannot steer the character
+PASS orb/minimap decoration absorbs pointer clicks at (158.0, 968.0)
+PASS orb/minimap decoration absorbs wheel input at (158.0, 968.0)
+PASS orb/minimap decoration absorbs pointer clicks at (1762.0, 968.0)
+PASS orb/minimap decoration absorbs wheel input at (1762.0, 968.0)
+PASS orb/minimap decoration absorbs pointer clicks at (1770.0, 100.0)
+PASS orb/minimap decoration absorbs wheel input at (1770.0, 100.0)
+PASS camera and HUD input leave world coordinates unchanged
+PASS default camera never shows beyond available artwork
+PASS all viewport edges stay inside the camera's painted bounds
+PASS camera keeps painted edges at walkable boundary (860.0, 350.0)
+PASS camera keeps painted edges at walkable boundary (2340.0, 1536.0)
+PASS camera keeps painted edges at walkable boundary (800.0, 1100.0)
+PASS camera keeps painted edges at walkable boundary (1820.0, 1536.0)
+PASS native resize keeps scenery coverage at (1280, 960)
+PASS native resize moves actual click target with its skill at (1280, 960)
+PASS native resize keeps scenery coverage at (1440, 600)
+PASS native resize moves actual click target with its skill at (1440, 600)
+PASS new presentation preserves valid progression saves
+CAMERA HUD RESULT 49 checks; 0 failures

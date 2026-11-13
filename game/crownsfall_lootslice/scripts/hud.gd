@@ -29,6 +29,7 @@ var status_label: Label
 var bag_view: Control
 var gear_buttons: Array = []
 var overlay_buttons: Array = []
+var hud_blockers: Array[Control] = []
 
 func _exit_tree() -> void:
 	ART.icons.clear()
@@ -38,21 +39,30 @@ func _exit_tree() -> void:
 func _ready() -> void:
 	super._ready()
 	draw_ctl.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
-	var row: HBoxContainer
-	for child in get_children():
-		if child is HBoxContainer: row = child; break
+	var row := menu_box
 	row.add_child(_button("Spellbook [K]", func() -> void: open_page("spells")))
 	row.add_child(_button("Pause [Esc]", func() -> void: open_page("pause")))
 	row.add_child(_button("Mastery [M]", func() -> void: open_page("mastery")))
 	row.add_child(_button("Cantor Trial [T]", func() -> void: open_page("trial")))
 	row.add_child(_button("Nearby loot [N]",func() -> void: open_page("loot")))
+	var controls := _label("LMB  Move / attack\nShift + LMB  Attack in place\nRMB / 1–4  Equipped skills\nQ  Health potion\nWheel  Camera distance\nHome  Reset camera\nE  Interact   ·   F  Collect", 17)
+	controls.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	controls.mouse_filter = Control.MOUSE_FILTER_STOP
+	row.add_child(controls)
 	loot_hint=_label("",17,Color("edce91")); loot_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE; add_child(loot_hint)
+	# Decorative HUD regions must absorb clicks and wheel events too.
+	for i in 6:
+		var blocker := Control.new()
+		blocker.mouse_filter = Control.MOUSE_FILTER_STOP
+		blocker.mouse_force_pass_scroll_events = false
+		add_child(blocker); hud_blockers.append(blocker)
 	# Transparent buttons intercept clicks over the drawn action bar.
 	for i in 6:
 		var b := Button.new()
 		b.flat = true
 		b.focus_mode = Control.FOCUS_NONE
 		b.mouse_filter = Control.MOUSE_FILTER_STOP
+		b.mouse_force_pass_scroll_events = false
 		b.pressed.connect(func() -> void:
 			if get_tree().paused: return
 			if i == 5: player.drink_potion()
@@ -76,20 +86,28 @@ func _process(delta: float) -> void:
 		var count: int=main.nearby_loot(false).size()
 		loot_hint.visible=count>0 and char_panel==null and start_panel==null and choice_panel==null and death_panel==null
 		loot_hint.text="%d nearby drops · F collect nearest · N inspect" % count
-		loot_hint.position=Vector2(24,get_viewport().get_visible_rect().size.y-165)
+		loot_hint.position=Vector2(24,get_viewport().get_visible_rect().size.y-250)
 	if not is_instance_valid(save_strip): return
 	var message: String=main.save_error if not main.save_error.is_empty() else (main.save_notice if main.save_blocked else main.save_warning)
 	save_strip.visible=not message.is_empty()
 	if save_strip.visible:
-		save_strip.position=Vector2(24,82); save_strip.size=Vector2(minf(760,get_viewport().get_visible_rect().size.x-48),0)
+		save_strip.position=Vector2(350,82); save_strip.size=Vector2(minf(760,get_viewport().get_visible_rect().size.x-400),0)
 		save_message.text=message; save_retry.disabled=main.save_blocked
 
 func _layout_bar() -> void:
-	var sz := get_viewport().get_visible_rect().size
-	var x0 := (sz.x - 460.0) / 2.0
+	var view := get_viewport().get_visible_rect().size
+	var layout := Layout.for_viewport(view)
+	var s: float = layout.scale
+	var blocks := [Rect2(0,view.y-280*s,270*s,280*s),Rect2(view.x-270*s,view.y-280*s,270*s,280*s),
+		Rect2(view.x-648*s,view.y-124*s,384*s,106*s),Rect2(272*s,view.y-124*s,254*s,106*s),
+		Rect2(view.x-284,14,270,316),Rect2(280*s,view.y-28*s,view.x-560*s,28*s)]
+	for i in hud_blockers.size():
+		hud_blockers[i].position = blocks[i].position
+		hud_blockers[i].size = blocks[i].size
 	for i in overlay_buttons.size():
-		overlay_buttons[i].position = Vector2(x0 + i * 76 + (12 if i == 5 else 0), sz.y - 118)
-		overlay_buttons[i].size = Vector2(68, 68)
+		var rect: Rect2 = layout.potion if i == 5 else layout.skills[i]
+		overlay_buttons[i].position = rect.position
+		overlay_buttons[i].size = rect.size
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton and event.pressed:
@@ -122,6 +140,10 @@ func _input(event: InputEvent) -> void:
 	if focus is LineEdit:
 		if event.keycode==KEY_ESCAPE: focus.release_focus(); get_viewport().set_input_as_handled()
 		return
+	if event.keycode == KEY_F2 and char_panel == null:
+		toggle_menu(); get_viewport().set_input_as_handled(); return
+	if event.keycode == KEY_HOME and char_panel == null:
+		main.cam.set_distance(main.cam.DEFAULT_ZOOM); get_viewport().set_input_as_handled(); return
 	if inventory_active() and event.ctrl_pressed and event.keycode==KEY_F:
 		inventory_shell.search.grab_focus(); inventory_shell.search.select_all(); get_viewport().set_input_as_handled(); return
 	if inventory_active() and is_instance_valid(inventory_shell):

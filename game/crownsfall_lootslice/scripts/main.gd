@@ -5,12 +5,14 @@ extends Node2D
 const Systems := preload("res://scripts/systems.gd")
 const GD := preload("res://scripts/game_data.gd")
 const PLAZA := preload("res://assets/plaza.png")
+const SCENERY := preload("res://assets/plaza_extension.jpg")
 const Player := preload("res://scripts/player.gd")
 const Enemy := preload("res://scripts/enemy.gd")
 const Loot := preload("res://scripts/loot.gd")
 const Fx := preload("res://scripts/fx.gd")
 const Hud := preload("res://scripts/hud.gd")
 const SoundBank := preload("res://scripts/sound_bank.gd")
+const WorldArt := preload("res://scripts/art_library.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const SAVE_SCHEMA := 6
 const LootRules := preload("res://scripts/loot_rules.gd")
@@ -93,10 +95,21 @@ func _ready() -> void:
 	get_tree().auto_accept_quit=false
 	sound = SoundBank.new()
 	add_child(sound)
+	var scenic := Sprite2D.new()
+	scenic.texture = SCENERY; scenic.centered = false; scenic.z_index = -11
+	var scenic_bounds: Rect2 = preload("res://scripts/plaza_camera.gd").SCENIC_BOUNDS
+	scenic.position = scenic_bounds.position
+	scenic.scale = scenic_bounds.size / SCENERY.get_size()
+	add_child(scenic)
 	var bg := Sprite2D.new()
 	bg.texture = PLAZA
 	bg.centered = false
 	bg.z_index = -10
+	# Feather only the decorative outer edge. Walkable coordinates and original
+	# foreground occluders remain exact; no navigation is invented by the painting.
+	var edge := ShaderMaterial.new()
+	edge.shader = preload("res://scripts/plaza_edge.gdshader")
+	bg.material = edge
 	add_child(bg)
 
 	_build_navigation()
@@ -113,11 +126,8 @@ func _ready() -> void:
 	player.position = START
 	world.add_child(player)
 
-	cam = Camera2D.new()
-	cam.limit_left = 0
-	cam.limit_top = 0
-	cam.limit_right = PLAZA.get_width()
-	cam.limit_bottom = PLAZA.get_height()
+	cam = preload("res://scripts/plaza_camera.gd").new()
+	cam.expanded_backdrop = true
 	cam.position_smoothing_enabled = true
 	cam.position_smoothing_speed = 6.0
 	player.add_child(cam)
@@ -305,10 +315,18 @@ func _draw() -> void:
 			var at: Vector2 = service.pos
 			var col := Color(String(service.color))
 			var near := GD.gdist(player.position, at) <= 1.8
-			draw_circle(at, 13, Color("111b30"))
-			draw_arc(at, 14, 0, TAU, 24, col, 2, true)
-			draw_string_outline(ThemeDB.fallback_font, at + Vector2(-55, -26), service.label + (" [E]" if near else ""), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 5, Color("111522"))
-			draw_string(ThemeDB.fallback_font, at + Vector2(-55, -26), service.label + (" [E]" if near else ""), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, col)
+			var camera_scale := 1.0 / cam.zoom.x if is_instance_valid(cam) else 1.0
+			draw_circle(at, 8*camera_scale, Color("111b30"))
+			draw_arc(at, 9*camera_scale, 0, TAU, 24, col, 1.5*camera_scale, true)
+			var marker: String = {"stash":"ui_stash","merchant":"ui_merchant","lore":"ui_inspect","board":"ui_interact"}[key]
+			draw_texture_rect(WorldArt.icon(marker),Rect2(at-Vector2.ONE*13*camera_scale,Vector2.ONE*26*camera_scale),false)
+			if not near and get_global_mouse_position().distance_to(at)>22*camera_scale: continue
+			var text: String = service.label + (" [E]" if near else "")
+			var font_size := roundi(16*camera_scale)
+			var width := ThemeDB.fallback_font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+			var baseline := at + Vector2(-width/2,-17*camera_scale)
+			draw_string_outline(ThemeDB.fallback_font,baseline,text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,roundi(4*camera_scale),Color("111522"))
+			draw_string(ThemeDB.fallback_font,baseline,text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,col)
 	if not debug_draw:
 		return
 	var pts := PackedVector2Array(WALKABLE)

@@ -5,6 +5,7 @@ extends CanvasLayer
 
 const GD := preload("res://scripts/game_data.gd")
 const ART := preload("res://scripts/art_library.gd")
+const Layout := preload("res://scripts/hud_layout.gd")
 const GOLD := Color("e8c77a")
 const BRONZE := Color(0.62, 0.47, 0.22)
 const DARK := Color(0.07, 0.06, 0.08, 0.92)
@@ -22,6 +23,8 @@ var char_panel: Control = null
 var start_panel: Control = null
 var death_panel: Control = null
 var rift_btn: Button
+var menu_box: VBoxContainer
+var menu_toggle: Button
 
 
 func _ready() -> void:
@@ -32,10 +35,15 @@ func _ready() -> void:
 	draw_ctl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(draw_ctl)
 
-	var row := HBoxContainer.new()
-	row.position = Vector2(24, 118)
-	row.add_theme_constant_override("separation", 8)
+	menu_toggle = _button("Controls & menus [F2]  +", toggle_menu)
+	menu_toggle.position = Vector2(24, 112)
+	add_child(menu_toggle)
+	var row := VBoxContainer.new()
+	menu_box = row
+	row.position = Vector2(24, 168)
+	row.add_theme_constant_override("separation", 3)
 	add_child(row)
+	row.hide()
 	row.add_child(_button("Inventory [I / C]", toggle_character))
 	rift_btn = _button("Reality Scar (R)", func() -> void: main.toggle_rift())
 	rift_btn.add_theme_color_override("font_color", Color("d9c2ff"))
@@ -43,6 +51,10 @@ func _ready() -> void:
 
 	if not main.had_save and not OS.get_cmdline_user_args().has("--autotest") and not OS.get_cmdline_user_args().has("--systems-test") and not OS.get_cmdline_user_args().has("--mage-test"):
 		_open_start()
+
+func toggle_menu() -> void:
+	menu_box.visible = not menu_box.visible
+	menu_toggle.text = "Controls & menus [F2]  " + ("−" if menu_box.visible else "+")
 
 
 func _process(delta: float) -> void:
@@ -151,7 +163,7 @@ func _open_start() -> void:
 	edit.custom_minimum_size = Vector2(320, 44)
 	edit.add_theme_font_size_override("font_size", 22)
 	box.add_child(edit)
-	var help := _label("Left click / hold: move or attack      Shift + click: attack in place\nRight click or 1 / 2 / 3 / 4: equipped skills      Q: potion\nQ: potion      R: open or close the Reality Scar      I / C: inventory      K: spellbook      E: nearby interaction\nF11: fullscreen      F3: show walk area      Esc: close panel or pause\n\nThe plaza is safe until you open the Reality Scar. Waves of the Unwritten then break through.\nDevelopment shortcut: F6 gains a level instantly.", 17, Color("cfc6b2"))
+	var help := _label("Left click / hold: move or attack      Shift + click: attack in place\nRight click or 1 / 2 / 3 / 4: equipped skills      Q: potion\nMouse wheel: camera distance      Home: reset camera      F2: menus\nR: open or close the Reality Scar      I / C: inventory      K: spellbook      E: nearby interaction\nF11: fullscreen      F3: show walk area      Esc: close panel or pause\n\nThe plaza is safe until you open the Reality Scar. Waves of the Unwritten then break through.\nDevelopment shortcut: F6 gains a level instantly.", 17, Color("cfc6b2"))
 	box.add_child(help)
 	var begin := func() -> void:
 		var n := edit.text.strip_edges()
@@ -307,6 +319,10 @@ func show_death() -> void:
 
 # ================================================================ drawn HUD
 class HudDraw extends Control:
+	const TITLE_FONT := preload("res://assets/fonts/Cinzel.ttf")
+	const HEALTH_FLASK := preload("res://assets/ui/corner_hud/health_flask.png")
+	const LIFE_FRAME := preload("res://assets/ui/corner_hud/life_frame.png")
+	const MANA_FRAME := preload("res://assets/ui/corner_hud/mana_frame.png")
 	var icon_cache := {}
 	var hud: CanvasLayer
 
@@ -314,19 +330,25 @@ class HudDraw extends Control:
 		draw_circle(c, r + 10, BRONZE.darkened(0.35))
 		draw_circle(c, r + 4, Color(0.03, 0.03, 0.05))
 		frac = clampf(frac, 0.0, 1.0)
-		if frac >= 0.995:
-			draw_circle(c, r, col)
-		elif frac > 0.01:
-			var y0: float = r * (1.0 - 2.0 * frac)
-			var a0: float = asin(clampf(y0 / r, -1.0, 1.0))
-			var pts := PackedVector2Array()
-			for i in 33:
-				var a: float = a0 + (PI - 2.0 * a0) * i / 32.0
-				pts.append(c + Vector2(cos(a), sin(a)) * r)
-			draw_colored_polygon(pts, col)
-		draw_circle(c + Vector2(-r * 0.3, -r * 0.38), r * 0.26, Color(1, 1, 1, 0.22))
-		draw_arc(c, r + 7, 0, TAU, 64, BRONZE, 4.0, true)
-		_text_c(label, c + Vector2(0, 7), 20, Color.WHITE)
+		# Layered curved liquid retains a fixed surface as its volume drains.
+		var surface := r*(1.0-2.0*frac)
+		for layer in 24:
+			var rr := r*(1.0-float(layer)/31.0)
+			if surface >= rr: continue
+			var color := col.darkened(0.72).lerp(col.lightened(0.12),float(layer)/24.0)
+			if surface <= -rr: draw_circle(c,rr,color)
+			else:
+				var a0 := asin(clampf(surface/rr,-1,1))
+				var pts := PackedVector2Array()
+				for i in 49:
+					var a := a0+(PI-2*a0)*i/48.0
+					pts.append(c+Vector2(cos(a),sin(a))*rr)
+				draw_colored_polygon(pts,color)
+		if frac > 0.7:
+			draw_circle(c+Vector2(-r*0.3,-r*0.38),r*0.14,Color(1,1,1,0.16))
+			draw_circle(c+Vector2(-r*0.33,-r*0.42),r*0.065,Color(1,1,1,0.4))
+		draw_arc(c,r+3,0,TAU,64,BRONZE.darkened(0.4),2,true)
+		if not label.is_empty(): _text_c(label,c+Vector2(0,7),20,Color.WHITE)
 
 	func _text_c(s: String, at: Vector2, size: int, col: Color, outline := 5) -> void:
 		var font := ThemeDB.fallback_font
@@ -400,74 +422,73 @@ class HudDraw extends Control:
 		if p.hp / max_hp < 0.3 and not p.dead:
 			draw_rect(Rect2(Vector2.ZERO, size), Color(0.6, 0.0, 0.0, 0.1 + 0.08 * sin(now * 6.0)), false, 60.0)
 
-		# top-left: name, level, class
-		draw_circle(Vector2(62, 62), 42, BRONZE.darkened(0.3))
-		draw_circle(Vector2(62, 62), 37, Color(0.08, 0.08, 0.14))
-		_text_c(str(p.level), Vector2(62, 73), 30, GOLD)
-		draw_string_outline(font, Vector2(118, 54), p.hero_name, HORIZONTAL_ALIGNMENT_LEFT, -1, 26, 6, Color(0, 0, 0, 0.9))
-		draw_string(font, Vector2(118, 54), p.hero_name, HORIZONTAL_ALIGNMENT_LEFT, -1, 26, Color("efe6d2"))
-		var sub: String = p.title()
-		if p.ward_time > 0.0 and p.ward_amount > 0:
-			sub += "   ·   Ward %d / %.1fs" % [p.ward_amount, p.ward_time]
-		if p.rally > 0.0:
-			sub += "   ·   Rallied %ds" % int(ceil(p.rally))
-		draw_string_outline(font, Vector2(118, 82), sub, HORIZONTAL_ALIGNMENT_LEFT, -1, 19, 5, Color(0, 0, 0, 0.9))
-		draw_string(font, Vector2(118, 82), sub, HORIZONTAL_ALIGNMENT_LEFT, -1, 19, Color("cfc6b2"))
+		var layout := Layout.for_viewport(size)
+		var scale: float = layout.scale
+		# A quiet corner wordmark; actual menus expand below it on demand.
+		draw_string_outline(TITLE_FONT, Vector2(26, 53), "AGE OF THE LOST", HORIZONTAL_ALIGNMENT_LEFT, -1, 34, 6, Color("141015"))
+		draw_string(TITLE_FONT, Vector2(26, 53), "AGE OF THE LOST", HORIZONTAL_ALIGNMENT_LEFT, -1, 34, Color("e5dfd0"))
+		draw_line(Vector2(26, 70), Vector2(324, 70), BRONZE, 1.0)
+		draw_string(font, Vector2(65, 93), "C R O W N S F A L L", HORIZONTAL_ALIGNMENT_LEFT, -1, 17, GOLD)
+		# Identity follows the actual actor/camera, including camera shake and zoom.
+		var actor_height: float = 246.0 if p.class_id == "mage" else 286.0
+		var at: Vector2 = p.get_global_transform_with_canvas().origin - Vector2(0, actor_height*main.cam.zoom.y+18)
+		_text_c(p.hero_name, at-Vector2(0,15), 18, Color("efe6d2"), 4)
+		draw_circle(at-Vector2(64,1), 15, DARK)
+		draw_arc(at-Vector2(64,1), 15, 0, TAU, 32, BRONZE, 2, true)
+		_text_c(str(p.level), at-Vector2(64,-5), 15, GOLD, 2)
+		for resource in 2:
+			var bar := Rect2(at+Vector2(-44,resource*8),Vector2(100,6))
+			var fraction: float = p.hp/max_hp if resource == 0 else p.mp/float(s.max_mp)
+			draw_rect(bar.grow(1), Color("17151a"))
+			draw_rect(Rect2(bar.position,Vector2(bar.size.x*clampf(fraction,0,1),bar.size.y)),Color("648b48") if resource == 0 else Color("416da5"))
+		var status := ""
+		if p.ward_time > 0 and p.ward_amount > 0: status = "Ward %d" % p.ward_amount
+		if p.rally > 0: status += "  Rallied %ds" % int(ceil(p.rally))
+		if not status.is_empty(): _text_c(status,at+Vector2(0,31),15,GOLD)
 
-		# top-right: minimap, zone, quest
-		var mm := Rect2(w - 284, 22, 260, 176)
-		var src_size := Vector2(1300, 880)
-		var tex: Texture2D = main.PLAZA
-		var src_pos: Vector2 = (p.position - src_size / 2.0).clamp(Vector2.ZERO, Vector2(tex.get_width(), tex.get_height()) - src_size)
-		draw_rect(mm.grow(4), BRONZE.darkened(0.3))
-		draw_texture_rect_region(tex, mm, Rect2(src_pos, src_size), Color(0.75, 0.75, 0.85))
-		var k: Vector2 = mm.size / src_size
-		if main.rift["active"]:
-			draw_circle(mm.position + (main.RIFT_POS - src_pos) * k, 6, Color("a070ff"))
+		# Map geometry is the actual navigable plaza, not invented corridors.
+		var mm := Rect2(w-284, 14, 270, 194)
+		draw_rect(mm, DARK)
+		draw_rect(mm, BRONZE, false, 2)
+		draw_string(font,mm.position+Vector2(12,23),"Crownsfall",HORIZONTAL_ALIGNMENT_LEFT,-1,18,GOLD)
+		draw_string(font,mm.position+Vector2(12,43),"Central Plaza",HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("c4bdaf"))
+		var map_area := Rect2(mm.position+Vector2(14,56),mm.size-Vector2(28,70))
+		var src_pos := Vector2(700,260)
+		var src_size := Vector2(1740,1340)
+		var k := map_area.size/src_size
+		var polygon := PackedVector2Array()
+		for vertex in main.WALKABLE: polygon.append(map_area.position+(vertex-src_pos)*k)
+		draw_colored_polygon(polygon,Color("494443"))
+		polygon.append(polygon[0]); draw_polyline(polygon,Color("b0a48c"),1.4,true)
+		if main.rift["active"]: draw_circle(map_area.position+(main.RIFT_POS-src_pos)*k,5,Color("a070ff"))
 		for e in main.enemies:
-			var ep: Vector2 = mm.position + (e.position - src_pos) * k
-			if mm.has_point(ep):
-				draw_circle(ep, 4.5 if e.elite else 3.0, Color("ff9a2e") if e.elite else Color("e23b3b"))
-		draw_circle(mm.position + (p.position - src_pos) * k, 4.5, Color.BLACK)
-		draw_circle(mm.position + (p.position - src_pos) * k, 3.5, Color("ffe9a8"))
-		draw_rect(mm, GOLD.darkened(0.2), false, 2.0)
-		var zone := "Crownsfall"
-		if main.rift["active"]:
-			zone = "Reality Scar · Wave %d" % maxi(1, int(main.rift["wave"]))
+			var ep: Vector2 = map_area.position+(e.position-src_pos)*k
+			if map_area.has_point(ep): draw_circle(ep,3.5 if e.elite else 2.5,Color("ff9a2e") if e.elite else Color("e23b3b"))
+		var marker: Vector2 = map_area.position+(p.position-src_pos)*k
+		draw_circle(marker,5,Color.BLACK); draw_circle(marker,3.5,Color("ffe9a8"))
+		var zone := ""
+		if main.rift["active"]: zone = "Reality Scar · Wave %d" % maxi(1,int(main.rift["wave"]))
 		var in_trial: bool = is_instance_valid(main.encounter) and main.encounter.active
 		if in_trial: zone = "Cantor Trial · Verse %d" % (2 if main.encounter.second_phase else 1)
-		_text_c(zone, Vector2(mm.get_center().x, mm.end.y + 28), 20, GOLD)
-		var qr := Rect2(mm.position.x, mm.end.y + 42, mm.size.x, 78)
-		draw_rect(qr, DARK)
-		draw_rect(qr, BRONZE, false, 2.0)
-		draw_string(font, qr.position + Vector2(12, 26), ("Silence the Cantor" if in_trial else main.quest_title()), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 18, GOLD)
-		draw_multiline_string(font, qr.position + Vector2(12, 48), ("Read the seals. R to retreat." if in_trial else main.quest_text()), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 15, 2, Color("efe6d2"))
+		var qr := Rect2(mm.position.x,mm.end.y+12,mm.size.x,108 if not zone.is_empty() else 82)
+		draw_rect(qr,Color(0.06,0.055,0.07,0.78))
+		draw_line(qr.position,qr.position+Vector2(qr.size.x,0),BRONZE,1)
+		draw_string(font,qr.position+Vector2(12,26),("Silence the Cantor" if in_trial else main.quest_title()),HORIZONTAL_ALIGNMENT_LEFT,qr.size.x-20,18,GOLD)
+		draw_multiline_string(font,qr.position+Vector2(12,49),("Read the seals. R to retreat." if in_trial else main.quest_text()),HORIZONTAL_ALIGNMENT_LEFT,qr.size.x-20,15,2,Color("efe6d2"))
+		if not zone.is_empty(): draw_string(font,qr.position+Vector2(12,94),zone,HORIZONTAL_ALIGNMENT_LEFT,qr.size.x-20,15,Color("d3b5e1"))
 
-		# bottom: orbs, skill bar, xp
-		var cy := h - 84.0
-		var sz := 68.0
-		var gap := 8.0
-		var n := SLOTS.size() + 1
-		var bar_w := n * sz + (n - 1) * gap + 12.0
-		var x0 := (w - bar_w) / 2.0
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), DARK)
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), BRONZE, false, 3.0)
+		# Corner HUD: approved square skill art, shared draw/click geometry.
+		var sz: float = 64*scale
+		var n := SLOTS.size()
+		var bar := Rect2(layout.skills[0].position-Vector2(8,8)*scale,Vector2(368,104)*scale)
+		draw_rect(bar,DARK); draw_rect(bar,BRONZE,false,2)
 		var cols: Array = p.fx_colors()
 		var mouse := get_local_mouse_position()
 		var tip: Dictionary = {}
 		var tip_rect := Rect2()
 		for i in n:
-			var r := Rect2(x0 + i * (sz + gap) + (12.0 if i == n - 1 else 0.0), cy - sz / 2, sz, sz)
-			draw_rect(r, Color(0.11, 0.11, 0.16))
-			if i == n - 1:
-				_icon("potion", r, Color.WHITE)
-				draw_string(font, r.position + Vector2(5, 17), "Q", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
-				draw_string(font, r.position + Vector2(sz - 16, sz - 6), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Color.WHITE)
-				draw_rect(r, BRONZE.darkened(0.25), false, 2.0)
-				if hud.char_panel==null and r.has_point(mouse):
-					tip = {"name": "Health Potion", "desc": "Restore 45% of your life.", "meta": ""}
-					tip_rect = r
-				continue
+			var r: Rect2 = layout.skills[i]
+			draw_rect(r,Color(0.11,0.11,0.16))
 			var slot: String = SLOTS[i][0]
 			var sk: Dictionary = p.skill_def(slot)
 			if sk.is_empty():
@@ -496,17 +517,35 @@ class HudDraw extends Control:
 						meta = "%d mana · %s" % [int(sk["mana"]), meta]
 					tip = {"name": sk["name"], "desc": sk["desc"], "meta": meta}
 					tip_rect = r
-			draw_string(font, r.position + Vector2(5, 17), SLOTS[i][1], HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
+			_text_c(SLOTS[i][1],Vector2(r.get_center().x,r.end.y+23*scale),maxi(12,int(17*scale)),Color("d5c9b3"),3)
+		var potion: Rect2 = layout.potion
+		draw_rect(potion.grow(8*scale),DARK); draw_rect(potion.grow(8*scale),BRONZE,false,2)
+		# Five vessels visualize the existing shared health-potion charges.
+		# They are not five independently bound or new mana-potion systems.
+		for i in 5:
+			var bottle := Rect2(potion.position+Vector2((i*48-10)*scale,0),Vector2(64,64)*scale)
+			draw_texture_rect(HEALTH_FLASK,bottle,false,Color.WHITE if i<p.potions else Color(0.26,0.25,0.24,0.65))
+		_text_c("Q  ·  Health  %d" % p.potions,Vector2(potion.get_center().x,potion.end.y+23*scale),maxi(12,int(17*scale)),Color("d5c9b3"),3)
+		if hud.char_panel == null and potion.has_point(mouse):
+			tip = {"name":"Health Potion","desc":"Restore 45% of your life. Five vessels show remaining charges.","meta":"Q or click · %d remaining" % p.potions}
+			tip_rect = potion
 		var max_mp: float = s["max_mp"]
-		_orb(Vector2(x0 - 100, cy - 8), 60, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
-		_orb(Vector2(x0 + bar_w + 100, cy - 8), 60, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
-		var xr := Rect2(x0 - 16, cy + sz / 2 + 18, bar_w + 32, 12)
-		draw_rect(xr, Color(0.06, 0.06, 0.06))
+		_orb(layout.life,layout.radius,Color(0.56,0.025,0.05),p.hp/max_hp,"")
+		_orb(layout.mana,layout.radius,Color(0.055,0.19,0.56),p.mp/max_mp,"")
+		var frame_scale: float = layout.radius/190.0
+		draw_texture_rect(LIFE_FRAME,Rect2(layout.life-Vector2(359,393.5)*frame_scale,Vector2(672,760)*frame_scale),false)
+		draw_texture_rect(MANA_FRAME,Rect2(layout.mana-Vector2(298,393.5)*frame_scale,Vector2(672,760)*frame_scale),false)
+		_text_c("HP %d / %d" % [int(ceil(p.hp)),int(max_hp)],Vector2(potion.get_center().x,potion.position.y-24*scale),maxi(12,int(17*scale)),Color("eee1cd"),4)
+		_text_c("MP %d / %d" % [int(p.mp),int(max_mp)],Vector2(bar.get_center().x,bar.position.y-16*scale),maxi(12,int(17*scale)),Color("eee1cd"),4)
+		var xr: Rect2 = layout.xp
+		draw_rect(xr,Color(0.025,0.025,0.03))
 		var need: int = GD.xp_need(p.level)
-		var xf: float = 1.0 if p.level >= GD.MAX_LEVEL else float(p.xp) / need
-		draw_rect(Rect2(xr.position, Vector2(xr.size.x * xf, xr.size.y)), GOLD.darkened(0.15))
-		draw_rect(xr, BRONZE.darkened(0.25), false, 1.5)
-		_text_c("Max level" if p.level >= GD.MAX_LEVEL else "XP %d/%d" % [p.xp, need], xr.get_center() + Vector2(0, 5), 13, Color.WHITE, 4)
+		var xf: float = 1.0 if p.level>=GD.MAX_LEVEL else clampf(float(p.xp)/need,0,1)
+		draw_rect(Rect2(xr.position,Vector2(xr.size.x*xf,xr.size.y)),Color("784fb1"))
+		draw_rect(xr,BRONZE,false,1.5)
+		draw_rect(Rect2(w/2-40,xr.position.y-27,80,23),DARK)
+		_text_c("Lv. %d" % p.level,Vector2(w/2,xr.position.y-7),15,Color("e1d8c7"),4)
+		if xr.has_point(mouse): _text_c("Max level" if p.level>=GD.MAX_LEVEL else "XP %d / %d" % [p.xp,need],Vector2(w/2,xr.position.y-30),16,GOLD)
 
 		# skill tooltip
 		if not tip.is_empty():

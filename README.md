@@ -1,6 +1,12 @@
 # age-of-the-lost
 AOTL Files
 
+## Reference camera and corner HUD
+
+[Camera/HUD handoff](game/crownsfall_lootslice/docs/REFERENCE_CAMERA_HUD_HANDOFF.md) · [Higgsfield artwork and provenance](art/ui_camera/2026-11-12/README.md).
+
+The playable scene now uses the approved wider zoomable camera, corner life/mana orbs, left health-flask charges, right skill squares, overhead resource bars, XP strip and top-right map/quests. Wheel zoom and Home reset preserve the original navigation. The camera/HUD checkpoint passes 1,039 headless assertions and 49 native camera/HUD checks; no credits were spent.
+
 ## Selective dialogue pilot
 
 [Dialogue handoff](game/crownsfall_lootslice/docs/SELECTIVE_DIALOGUE_HANDOFF.md) · [Grady pilot provenance](audio/dialogue_pilot/2026-11-12/README.md).

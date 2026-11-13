@@ -1,0 +1,91 @@
+{
+  "schema": "aotl-r36-export-contract-v1",
+  "source": {
+    "provider": "Higgsfield 3D Jutsu",
+    "project_id": "088e8199-50e8-4554-b0be-b108a6b2203a",
+    "revision": 36,
+    "web_url": "https://higgsfield.ai/3d-jutsu/088e8199-50e8-4554-b0be-b108a6b2203a"
+  },
+  "glb": {
+    "expected_byte_length": 6946144,
+    "etag": "5160a9e2c05a9d576615b107fbeaa42b",
+    "target": "game/crownsfall_lootslice/models/AOTL_Warrior_R36.glb",
+    "installed": false
+  },
+  "rig": {
+    "armature": "RIG_AOTL_Master_Humanoid_58",
+    "bone_count": 62,
+    "skinned_mesh_count": 92,
+    "required_bones": [
+      "Root",
+      "Hips",
+      "ThighL",
+      "KneeL",
+      "ShinL",
+      "AnkleL",
+      "FootL",
+      "ThighR",
+      "KneeR",
+      "ShinR",
+      "AnkleR",
+      "FootR"
+    ],
+    "auxiliary_ik_controls": [
+      "IK_FootTarget_L",
+      "IK_FootTarget_R",
+      "IK_KneePole_L",
+      "IK_KneePole_R"
+    ]
+  },
+  "animation_actions": {
+    "Idle": [
+      1,
+      48
+    ],
+    "Walk": [
+      1,
+      25
+    ],
+    "Run": [
+      1,
+      19
+    ],
+    "Dodge": [
+      1,
+      24
+    ],
+    "Slash": [
+      1,
+      23
+    ],
+    "Cast": [
+      1,
+      42
+    ],
+    "V33_KneeStable_IK_Comparison": [
+      1,
+      25
+    ],
+    "V36_StepUp_PlantedWindow": [
+      1,
+      25
+    ]
+  },
+  "art": {
+    "packed_textures": true,
+    "image_count_at_least": 14,
+    "paint_placeholder_textures": [
+      "V08_BODY_PaintPlaceholder_2K",
+      "V08_GEAR_PaintPlaceholder_2K"
+    ],
+    "final_approved_art_match_verified": false
+  },
+  "validation": {
+    "source_scene_inspected": true,
+    "export_bytes_downloaded_into_project": false,
+    "godot_runtime_tested": false,
+    "github_binary_uploaded": false,
+    "google_drive_binary_uploaded": false
+  },
+  "notes": "Metadata grounded in Higgsfield Revision 36 bpy audit; asset requires install and in-engine acceptance. No actual GLB payload in GitHub or Drive yet."
+}

@@ -12,6 +12,7 @@ on:
       - 'game/crownsfall_lootslice/tests/citadel_art_import_v15.gd'
       - 'game/crownsfall_lootslice/tests/citadel_art_swap_v16.gd'
       - 'game/crownsfall_lootslice/tests/citadel_masonry_v17.gd'
+      - 'game/crownsfall_lootslice/tests/citadel_nav_hardening_v19.gd'
       - 'game/crownsfall_lootslice/tests/test_citadel_masonry_v17.py'
       - 'game/crownsfall_lootslice/tests/test_phase18_citadel_recovery_audit.py'
       - 'game/crownsfall_lootslice/tests/test_phase18_citadel_immutable_backup.py'
@@ -90,6 +91,8 @@ jobs:
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_art_swap_v16.gd
       - name: Phase 17 isolated GLB import and non-destructive visual route tests
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_masonry_v17.gd
+      - name: Phase 19 adaptive navigation gap and shoulder checks in Godot
+        run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_nav_hardening_v19.gd
       - name: Render original Phase 16 Citadel fallback baseline in Godot
         run: |
           which xvfb-run || (sudo apt-get update -qq && sudo apt-get install -y xvfb)

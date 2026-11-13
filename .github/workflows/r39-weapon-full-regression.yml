@@ -5,6 +5,8 @@ on:
     branches: [dev/r39-weapon-sweep-v1]
     paths:
       - .github/workflows/r39-weapon-full-regression.yml
+      - game/crownsfall_lootslice/tests/lab_roundtrip.gd
+      - game/crownsfall_lootslice/scripts/three_d/rig_controller.gd
   workflow_dispatch:
 
 permissions:

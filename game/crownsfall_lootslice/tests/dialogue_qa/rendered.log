@@ -1,0 +1,46 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PASS only the selected quartermaster and Cantor pilot lines are installed
+PASS quartermaster_greeting imports as bounded real audio
+PASS cantor_challenge imports as bounded real audio
+PASS cantor_second_verse imports as bounded real audio
+PASS unknown dialogue is safely rejected
+PASS opening actual quartermaster starts its selected greeting while the world is paused
+PASS voice and attributed subtitle start together
+PASS dialogue does not change the independent sound-effect setting
+PASS merchant conversation advances inside the paused service screen
+PASS subtitle overlay cannot intercept inventory clicks
+PASS the full caption rectangle stays inside its background from the first frame
+PASS merchant subtitle starts at readable two-line height rather than an oversized layout
+PASS merchant subtitle clears the inventory panel
+PASS leaving service immediately cancels voice and subtitle
+PASS reopening the vendor during cooldown does not repeat the greeting
+PASS greeting becomes eligible again after its cooldown
+PASS voice mute immediately stops sound without losing subtitles
+PASS subtitle preference immediately hides the caption
+PASS actual Cantor encounter starts
+PASS encounter entry triggers the selected enemy line
+PASS pause menu suspends enemy voice and subtitle together
+PASS resume restores the same line without replaying it
+PASS real half-health transition interrupts with the higher-priority second verse
+PASS lower-priority/repeated lines cannot interrupt the current verse
+PASS retreat cancels encounter dialogue without leaving queued speech
+PASS muted encounter retains readable subtitles and unchanged gameplay
+PASS player death cancels the selected voice immediately
+PASS dead player cannot start a stale conversation
+PASS missing recording falls back to the same subtitle without an engine error
+PASS finished line clears subtitle and playback resource
+PASS pause menu exposes a separate voice-volume slider
+PASS actual slider updates voice level
+PASS actual voice toggle rebuilds pause controls correctly
+PASS actual subtitle toggle changes the preference
+PASS dialogue preferences never rewrite character progression
+PASS voice and subtitle preferences survive controller recreation
+PASS negative voice volume clamps to silence
+PASS excess voice volume clamps to one
+PASS non-finite volume is ignored
+PASS dialogue leaves schema-six saves valid
+DIALOGUE RESULT 40 checks; 0 failures

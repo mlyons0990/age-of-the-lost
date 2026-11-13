@@ -48,6 +48,7 @@ const RIFT_POS := Vector2(1290, 1010)
 
 var world: Node2D
 var sound
+var dialogue
 var player: Node2D
 var cam: Camera2D
 var hud: CanvasLayer
@@ -141,6 +142,8 @@ func _ready() -> void:
 	hud.main = self
 	hud.player = player
 	add_child(hud)
+	dialogue = preload("res://scripts/dialogue_controller.gd").new()
+	dialogue.main = self; add_child(dialogue)
 	encounter = Node2D.new()
 	encounter.set_script(preload("res://scripts/encounter_director.gd"))
 	encounter.main = self; encounter.z_index = -3
@@ -209,6 +212,7 @@ func request_exit() -> bool:
 	return true
 
 func quit_game(exit_code := 0) -> void:
+	if dialogue != null: dialogue.stop()
 	await sound.drain()
 	get_tree().quit(exit_code)
 
@@ -642,6 +646,7 @@ func on_choice_made(kind: String, label: String, color: Color) -> void:
 
 
 func on_player_died() -> void:
+	if dialogue != null: dialogue.stop()
 	if is_instance_valid(encounter): encounter.finish(false,"Defeated")
 	close_rift()
 	hud.show_death()

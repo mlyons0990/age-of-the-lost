@@ -171,6 +171,7 @@ func toggle_character() -> void:
 	else: open_page("inventory")
 
 func close_page() -> void:
+	if main.dialogue != null: main.dialogue.stop("merchant")
 	inventory_shell = null
 	if char_panel != null:
 		char_panel.queue_free()
@@ -193,6 +194,7 @@ func open_page(kind: String) -> void:
 		inventory_shell.ui = self; char_panel = inventory_shell; add_child(inventory_shell)
 		player.path = PackedVector2Array(); player.target = null; player.mouse_held = false
 		_refresh_pause()
+		if kind == "merchant": main.dialogue.play_line("quartermaster_greeting")
 		return
 	var m := _modal()
 	char_panel = m[0]
@@ -211,6 +213,19 @@ func open_page(kind: String) -> void:
 			box.add_child(_label("Explore the plaza, recover a stone memory, equip your discoveries,\nthen open the Scar when you are ready.", 18))
 			box.add_child(_button("Read the Cantor trial briefing [T]",func() -> void: open_page("trial")))
 		"pause":
+			box.add_child(_button("Dialogue voices: " + ("On" if main.dialogue.voice_enabled else "Off"), func() -> void:
+				main.dialogue.set_voice_enabled(not main.dialogue.voice_enabled); open_page("pause"), Vector2(0,42)))
+			var volume_row := HBoxContainer.new(); box.add_child(volume_row)
+			var volume_label := _label("Voice volume: %d%%" % roundi(main.dialogue.voice_volume*100),18)
+			volume_label.custom_minimum_size.x = 190; volume_row.add_child(volume_label)
+			var voice_slider := HSlider.new(); voice_slider.name = "VoiceVolume"
+			voice_slider.min_value = 0; voice_slider.max_value = 100; voice_slider.step = 5
+			voice_slider.value = main.dialogue.voice_volume*100; voice_slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			voice_slider.value_changed.connect(func(value: float) -> void:
+				main.dialogue.set_voice_volume(value/100); volume_label.text = "Voice volume: %d%%" % roundi(value))
+			volume_row.add_child(voice_slider)
+			box.add_child(_button("Dialogue subtitles: " + ("On" if main.dialogue.subtitles_enabled else "Off"), func() -> void:
+				main.dialogue.set_subtitles(not main.dialogue.subtitles_enabled); open_page("pause"), Vector2(0,42)))
 			box.add_child(_button("Sound effects: " + ("Off" if main.sound.muted else "On"), func() -> void:
 				main.sound.set_muted(not main.sound.muted)
 				open_page("pause"), Vector2(0, 42)))

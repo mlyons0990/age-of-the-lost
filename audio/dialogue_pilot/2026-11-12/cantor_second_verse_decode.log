@@ -1,0 +1,22 @@
+Input #0, mp3, from 'game/crownsfall_lootslice/assets/audio/dialogue/cantor_second_verse.mp3':
+  Metadata:
+    encoder         : Lavf63.1.102
+  Duration: 00:00:03.00, start: 0.025057, bitrate: 129 kb/s
+  Stream #0:0: Audio: mp3 (mp3float), 44100 Hz, mono, fltp, 128 kb/s
+[Parsed_volumedetect_0 @ 0x55a071efdd80] n_samples: 0
+Stream mapping:
+  Stream #0:0 -> #0:0 (mp3 (mp3float) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf61.7.103
+  Stream #0:0: Audio: pcm_s16le, 44100 Hz, mono, s16, 705 kb/s
+      Metadata:
+        encoder         : Lavc61.19.101 pcm_s16le
+[Parsed_volumedetect_0 @ 0x7f6ccc001d40] n_samples: 130536
+[Parsed_volumedetect_0 @ 0x7f6ccc001d40] mean_volume: -17.4 dB
+[Parsed_volumedetect_0 @ 0x7f6ccc001d40] max_volume: -2.7 dB
+[Parsed_volumedetect_0 @ 0x7f6ccc001d40] histogram_2db: 12
+[Parsed_volumedetect_0 @ 0x7f6ccc001d40] histogram_3db: 138
+[out#0/null @ 0x55a071efe080] video:0KiB audio:255KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:02.96 bitrate=N/A speed= 776x

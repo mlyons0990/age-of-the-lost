@@ -26,7 +26,7 @@ November 12, 2026. All nineteen implemented base abilities plus Ember Aura now u
 | F5 | Save current state / retry a storage error |
 | F6; F7 | Development level shortcut; independent 3D lab |
 
-The Grimoire's list and long effect/assignment column scroll independently. Audio can be muted from Pause; its preference is separate from progression.
+The Grimoire's list and long effect/assignment column scroll independently. Pause has independent sound-effects and dialogue settings, including voice volume and subtitles; preferences are separate from progression. The Quartermaster greeting and two Cantor lines form the selected [dialogue pilot](docs/SELECTIVE_DIALOGUE_HANDOFF.md).
 
 ## Included work
 
@@ -61,7 +61,7 @@ godot --headless --path . --script res://tests/art_audio_integration.gd
 godot --headless --path . --script res://tests/mastery_integration.gd
 ```
 
-Current total: **954 headless assertions across 16 suites**, including 54 actor-feedback checks and 75 skill-art checks. The actor-feedback suite also passes its 54 checks rendered, with seven native review captures. Current complete logs are in `tests/actor_feedback_qa/`; prior skill-art logs remain in `tests/skill_tiles_qa/`. Earlier native inventory/town/grid tests add six historical pointer assertions; those were not rerun in this cycle. The source ZIP excludes caches and live progress. Tuning exports and validated example builds remain under `data/`.
+Current total: **994 headless assertions across 17 suites**, including 40 dialogue checks, 54 actor-feedback checks and 75 skill-art checks. The actor-feedback suite also passes its 54 checks rendered, with seven native review captures. Current complete logs are in `tests/dialogue_qa/`; prior skill-art logs remain in `tests/skill_tiles_qa/`. Earlier native inventory/town/grid tests add six historical pointer assertions; those were not rerun in this cycle. The source ZIP excludes caches and live progress. Tuning exports and validated example builds remain under `data/`.
 
 Remaining production work includes human encounter/economy tuning and audio review, Windows export/target hardware testing, additional character animation, real gear attachment visuals and the production 3D Mage. Current 2D clothing/staff are baked into the sprites. The lab remains an independent proxy testbed.
 

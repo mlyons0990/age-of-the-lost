@@ -1,6 +1,12 @@
 # age-of-the-lost
 AOTL Files
 
+## Selective dialogue pilot
+
+[Dialogue handoff](game/crownsfall_lootslice/docs/SELECTIVE_DIALOGUE_HANDOFF.md) · [Grady pilot provenance](audio/dialogue_pilot/2026-11-12/README.md).
+
+The Quartermaster greeting and two Cantor encounter lines now use the selected Grady voice, with speaker subtitles, separate voice volume, repeat cooldowns, pause/resume and cancellation on exit or death. All three ElevenLabs clips were generated at zero credits. This is a selected NPC/enemy pilot; human listening and casting review remain pending.
+
 ## Latest development: actor feedback and selective voice reference
 
 [Actor feedback handoff and QA](game/crownsfall_lootslice/docs/ACTOR_FEEDBACK_HANDOFF.md) · [Grady voice reference](audio/voice_auditions/2026-11-12/README.md).

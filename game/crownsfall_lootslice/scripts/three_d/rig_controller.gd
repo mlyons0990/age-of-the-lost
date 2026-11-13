@@ -34,15 +34,45 @@ var terrain_foot_ik: Node3D = null
 var terrain_ik_available := false
 var active_model_source := "legacy_proxy"
 
+func _production_model_is_valid(candidate: Node3D) -> bool:
+	# Do not switch the playable actor solely because an R36 file exists.
+	var rigs := candidate.find_children("*", "Skeleton3D", true, false)
+	if rigs.is_empty():
+		return false
+	var sk := rigs[0] as Skeleton3D
+	if sk == null:
+		return false
+	for bone_name in ["Root", "Hips", "ThighL", "KneeL", "ShinL", "AnkleL", "ThighR", "KneeR", "ShinR", "AnkleR"]:
+		if sk.find_bone(bone_name) < 0:
+			return false
+	var player := candidate.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if player == null:
+		return false
+	var available: Dictionary = {}
+	for anim_name in player.get_animation_list():
+		var short_name := String(anim_name).get_file()
+		short_name = short_name.get_slice("|", short_name.get_slice_count("|") - 1)
+		available[short_name] = true
+	for required_clip in ["Idle", "Walk", "Run", "Dodge", "Slash", "Cast"]:
+		if not available.has(required_clip):
+			return false
+	return true
+
 func _ready() -> void:
-	# Revision 36 is preferred, but the Git-LFS legacy proxy remains a permanent fallback.
-	var selected_model: PackedScene = LEGACY_MODEL
+	# Production rig is opt-in only when structurally usable; previous GLB is permanent fallback.
+	body = LEGACY_MODEL.instantiate()
 	if ResourceLoader.exists(WARRIOR_R36):
 		var imported_model := ResourceLoader.load(WARRIOR_R36, "PackedScene") as PackedScene
 		if imported_model != null:
-			selected_model = imported_model
-			active_model_source = "warrior_r36"
-	body = selected_model.instantiate()
+			var candidate := imported_model.instantiate() as Node3D
+			if candidate != null and _production_model_is_valid(candidate):
+				body.free()
+				body = candidate
+				active_model_source = "warrior_r36"
+			else:
+				if candidate != null:
+					candidate.free()
+				push_warning("AOTL Warrior R36 failed the skeleton/clip gate; using backed-up proxy.")
 	add_child(body)
 	animation = body.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if animation != null:

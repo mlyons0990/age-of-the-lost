@@ -69,6 +69,17 @@ func _run() -> void:
     _check(not bridge._citadel_lane_inside_authoritative_nav(
         hairline_gap, start_px, end_px),
         "exact indexed polygon edge crossings expose hairline centerline gap")
+    # Test multiple gap positions/widths, including a 4mm slit that cannot
+    # be reliably detected by fixed-interval point sampling alone.
+    for gap_start in [0.45, 2.337, 4.77, 8.14]:
+        for gap_width in [0.004, 0.02, 0.07, 0.14]:
+            var tiny_split := _nav_from_rects(bridge, [
+                [Vector2(-5,-1),Vector2(5,gap_start)],
+                [Vector2(-5,gap_start+gap_width),Vector2(5,10)]])
+            _check(not bridge._citadel_route_inside_navigation(
+                start_px,end_px,tiny_split,7.5),
+                "route rejects gap at %0.3fm with width %0.3fm" % [gap_start,gap_width])
+            tiny_split.queue_free()
     var clipped := _nav_from_rects(bridge, [
         [Vector2(-3.38,-1),Vector2(3.38,10)]])
     _check(not bridge._citadel_route_inside_navigation(start_px,end_px,clipped,7.5),

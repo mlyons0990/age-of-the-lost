@@ -1239,7 +1239,7 @@ func _draw_inventory(mouse: Vector2) -> Variant:
 			Icons.draw_icon(self, "potion", fr, Color.WHITE)
 		else:
 			draw_arc(fr.get_center() + Vector2(0, 6), 12, 0, TAU, 20, Color(0.3, 0.3, 0.32), 1.5, true)
-	_text(pr.position + Vector2(-26, 34), "Q", 15, MUTED)
+	_text(pr.position + Vector2(-34, 34), "1-5", 15, MUTED)
 	# backpack
 	var bo := _bag_origin()
 	var h2 = _draw_grid(bo, Inv.BAG_COLS, Inv.BAG_ROWS, player.bag, mouse)

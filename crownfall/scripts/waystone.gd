@@ -1,5 +1,5 @@
 extends Node2D
-## A Waystone: a rune circle with a floating crystal. Click it (or press E next to it)
+## A Waystone: a rune circle with a floating crystal. Click it (or press F next to it)
 ## to travel to the zone it links to.
 
 const GD := preload("res://scripts/game_data.gd")

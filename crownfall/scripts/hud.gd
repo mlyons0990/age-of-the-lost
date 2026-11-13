@@ -13,7 +13,7 @@ const DARK := Color(0.07, 0.06, 0.08, 0.92)
 ## Skill bar, left to right (Diablo 4 layout): keys 1-4, a gap, then the mouse buttons.
 ## What sits in each slot is player.bindings; drag skills from the spellbook (P) or
 ## between slots to rearrange, drag one off the bar to empty its slot.
-const MOUSE_GROUP := 4   # index where the mouse-button group starts (after a gap)
+const MOUSE_GROUP := 5   # index where the mouse-button group starts (after a gap)
 var bar_rects: Array = []      # screen rects of the six slots, set while drawing
 var bar_plate := Rect2()
 var belt_plate := Rect2()
@@ -60,7 +60,7 @@ func _ready() -> void:
 	top_row.add_child(_button("Inventory (I)", func() -> void: open_inventory("inventory")))
 	top_row.add_child(_button("Stash (K)", func() -> void: open_inventory("stash")))
 	top_row.add_child(_button("Skills (P)", func() -> void: toggle_left("spellbook")))
-	rift_btn = _button("Reality Scar (R)", func() -> void: main.toggle_rift())
+	rift_btn = _button("Reality Scar (G)", func() -> void: main.toggle_rift())
 	rift_btn.add_theme_color_override("font_color", Color("d9c2ff"))
 	top_row.add_child(rift_btn)
 
@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 		t["t"] += delta
 	while toasts.size() > 0 and float(toasts[0]["t"]) > 2.8:
 		toasts.pop_front()
-	rift_btn.text = "Close Scar (R)" if main.rift["active"] else "Reality Scar (R)"
+	rift_btn.text = "Close Scar (G)" if main.rift["active"] else "Reality Scar (G)"
 	rift_btn.disabled = main.zone != "plaza"
 	top_row.visible = inv_window == null or not inv_window.left_open()
 	draw_ctl.queue_redraw()
@@ -360,7 +360,7 @@ func _open_start() -> void:
 	edit.custom_minimum_size = Vector2(320, 44)
 	edit.add_theme_font_size_override("font_size", 22)
 	box.add_child(edit)
-	var help := _label("Left click / hold: move or attack      Shift + click: attack in place\nRight click or 1: Cleave      2: Shield Charge      3: Rallying Cry      4: Spec skill\nQ: potion      R: Reality Scar      C: character      I: inventory      K: stash      E: trade or Lorecast      J: journal      M: mute\nDrag items or click to pick up and put down. Sell to Maren at the market stalls.\nF11: fullscreen      F3: show walk area      Esc: save and quit\n\nThe plaza is safe until you open the Reality Scar. Waves of the Unwritten then break through.\nTester shortcut: L gains a level instantly.", 17, Color("cfc6b2"))
+	var help := _label("Left click / hold: move or attack      Shift + click: attack in place\nSkills: Q W E R T and right click (drag skills from the spellbook, P, to rearrange)      Space: dodge roll\n1-5: health potion      G: Reality Scar      C: character      I: inventory      K: stash      F: trade, Lorecast or Waystone      J: journal      M: mute\nDrag items or click to pick up and put down. Sell to Maren at the market stalls.\nF11: fullscreen      F3: show walk area      Esc: save and quit\n\nThe plaza is safe until you open the Reality Scar. Waves of the Unwritten then break through.\nTester shortcut: L gains a level instantly.", 17, Color("cfc6b2"))
 	box.add_child(help)
 	var begin := func() -> void:
 		var n := edit.text.strip_edges()
@@ -708,8 +708,18 @@ class HudDraw extends Control:
 		# bottom: orbs, skill bar (1-4 | LMB RMB), xp, potion and evade buttons
 		# layout: life orb + potion belt bottom left, skills + mana orb bottom right, xp across the bottom
 		var orb_r := 74.0
-		var life_c := Vector2(118, h - 112)
-		var mana_c := Vector2(w - 118, h - 112)
+		var life_c := Vector2(178, h - 112)
+		var mana_c := Vector2(w - 178, h - 112)
+		# ornate base across the full width, with gothic pillars at the screen edges
+		var strip := _ui("base_strip")
+		if strip != null:
+			draw_texture_rect(strip, Rect2(0, h - 132, w, 132), false)
+		var pil := _ui("edge_pillar")
+		if pil != null:
+			var ph := 250.0
+			var pw: float = pil.get_width() * ph / pil.get_height()
+			draw_texture_rect(pil, Rect2(6, h - ph - 8, pw, ph), false)
+			draw_texture_rect(pil, Rect2(w - 6, h - ph - 8, -pw, ph), false)
 		var cy := h - 100.0
 		var sz := 64.0
 		var gap := 6.0
@@ -828,7 +838,7 @@ class HudDraw extends Control:
 		var max_mp: float = s["max_mp"]
 		_orb(life_c, orb_r, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
 		_orb(mana_c, orb_r, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
-		# potion belt beside the life orb: one bottle per potion carried (Q drinks)
+		# potion belt beside the life orb: one bottle per potion carried (keys 1-5 drink)
 		var bs := 56.0
 		var bgap := 6.0
 		var belt_w := 5 * bs + 4 * bgap
@@ -843,14 +853,14 @@ class HudDraw extends Control:
 		hud.belt_plate = belt
 		for k in 5:
 			var pr := Rect2(bx0 + k * (bs + bgap), cy - bs / 2 + 4, bs, bs)
+			_keycap(Vector2(pr.get_center().x, pr.end.y + 15), str(k + 1))
 			var sock3 := _ui("slot_socket")
 			if sock3 != null:
 				draw_texture_rect(sock3, pr, false)
 			_icon("potion", pr.grow(-7), Color.WHITE if k < p.potions else Color(0.25, 0.25, 0.28, 0.6))
-		_keycap(Vector2(belt.get_center().x, cy + bs / 2 + 22), "Q", 22.0)
-		_text_c("%d / 5" % p.potions, Vector2(belt.get_center().x + 46, cy + bs / 2 + 27), 13, Color("efe6d2"), 3)
+
 		if belt.has_point(mouse):
-			tip = {"name": "Health Potions", "desc": "Q drinks one, restoring 45% of your life. Maren sells more.", "meta": "%d of 5" % p.potions}
+			tip = {"name": "Health Potions", "desc": "Keys 1-5 drink one, restoring 45% of your life. Maren sells more.", "meta": "%d of 5" % p.potions}
 			tip_rect = belt
 		# evade: a round button with a foot on the mana orb's lower left (Space)
 		var ev: Dictionary = p.evade_def()

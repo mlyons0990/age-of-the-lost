@@ -27,10 +27,11 @@ OUT = os.path.join(HERE, "..", "assets", "ui")
 SS = 4  # supersampling for hand-drawn pieces
 
 # skill bar plate size in HUD pixels (must match hud.gd: bar_w + 80 by sz + 78)
-SZ, GAP, GROUP_GAP, SLOTS = 64, 6, 26, 6
+SZ, GAP, GROUP_GAP, SLOTS = 64, 6, 26, 7
 BAR_W = SLOTS * SZ + (SLOTS - 1) * GAP + GROUP_GAP
 PLATE = (BAR_W + 80, SZ + 78)
-BELT = (5 * 56 + 4 * 6 + 80, SZ + 78)   # potion belt plate (hud.gd: belt_w + 80 by sz + 78)
+BELT = (5 * 56 + 4 * 6 + 80, SZ + 78)
+STRIP = (1920, 132)   # full-width base under the HUD (stretched to the window width)   # potion belt plate (hud.gd: belt_w + 80 by sz + 78)
 
 
 def nine_slice(src, m, size, k):
@@ -70,6 +71,23 @@ def bar_plate(panel, size=None):
     ImageDraw.Draw(a).rounded_rectangle([2, 2, tw - 3, th - 3], radius=18, fill=255)
     plate.putalpha(ImageChops.multiply(plate.getchannel("A"), a.filter(ImageFilter.GaussianBlur(2))))
     return plate
+
+
+def base_strip(panel):
+    """The long ornate base that runs the full width of the screen under the orbs and plates."""
+    return bar_plate(panel, STRIP)
+
+
+def edge_pillar(panel):
+    """The gothic pillar from the frame's top-left corner, keyed off the dark background,
+    to stand at the screen edges beside the life and mana orbs."""
+    c = panel.crop((4, 0, 100, 404))
+    hsv = np.asarray(c.convert("HSV")).astype(float)
+    v, sat = hsv[..., 2], hsv[..., 1]
+    alpha = np.clip(np.maximum(v - 62, 0) * 2.4 + np.maximum(sat - 80, 0) * 1.0, 0, 255)
+    out = c.copy()
+    out.putalpha(Image.fromarray(alpha.astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.6)))
+    return out
 
 
 def crest(panel):
@@ -330,6 +348,8 @@ def main():
     bar_plate(panel).save(os.path.join(OUT, "bar_plate.png"))
     crest(panel).save(os.path.join(OUT, "bar_crest.png"))
     bar_plate(panel, BELT).save(os.path.join(OUT, "belt_plate.png"))
+    base_strip(panel).save(os.path.join(OUT, "base_strip.png"))
+    edge_pillar(panel).save(os.path.join(OUT, "edge_pillar.png"))
     socket().save(os.path.join(OUT, "slot_socket.png"))
     keycap().save(os.path.join(OUT, "keycap.png"))
     mouse(True).save(os.path.join(OUT, "mouse_l.png"))

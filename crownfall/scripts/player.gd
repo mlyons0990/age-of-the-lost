@@ -82,10 +82,10 @@ var lore: Array = []      # ids of memories uncovered by Lorecasting (saved)
 var spent := {"str": 0, "dex": 0, "vit": 0, "int": 0, "wis": 0}   # stat points placed by hand
 var buyback: Array = []   # items sold this session, newest first (not saved)
 var dash := {}
-## Skill bar: which skill (basic, s1..s4) sits in each slot, in bar order 1, 2, 3, 4, LMB, RMB.
+## Skill bar: which skill (basic, s1..s4) sits in each slot, in bar order Q, W, E, R, T, LMB, RMB.
 ## Any skill can go in any slot; a skill appears at most once. "" is an empty slot.
-const BIND_KEYS := ["1", "2", "3", "4", "LMB", "RMB"]
-const DEFAULT_BINDINGS := ["s2", "s3", "s4", "", "basic", "s1"]
+const BIND_KEYS := ["Q", "W", "E", "R", "T", "LMB", "RMB"]
+const DEFAULT_BINDINGS := ["s2", "s3", "s4", "", "", "basic", "s1"]
 var bindings: Array = DEFAULT_BINDINGS.duplicate()
 var rolling := {}            # active dodge roll: {"dir": ground dir, "left": units, "speed": units/s}
 var evade_override := ""     # forces an evade type (tests; a future class could set it too)
@@ -687,24 +687,28 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif main.pick_merchant(at):
 					talk_to_merchant()
 				elif mb.shift_pressed:
-					use_bound(4, at)
+					use_bound(5, at)
 				else:
 					target = null
 					_walk_to(at, true)
 		elif mb.button_index == MOUSE_BUTTON_RIGHT and mb.pressed:
-			use_bound(5, get_global_mouse_position())
+			use_bound(6, get_global_mouse_position())
 	elif event is InputEventKey and event.pressed and not event.echo:
 		var at2 := get_global_mouse_position()
 		match (event as InputEventKey).keycode:
-			KEY_1:
+			KEY_Q:
 				use_bound(0, at2)
-			KEY_2:
+			KEY_W:
 				use_bound(1, at2)
-			KEY_3:
-				use_bound(2, at2)
-			KEY_4:
-				use_bound(3, at2)
 			KEY_E:
+				use_bound(2, at2)
+			KEY_R:
+				use_bound(3, at2)
+			KEY_T:
+				use_bound(4, at2)
+			KEY_1, KEY_2, KEY_3, KEY_4, KEY_5:
+				drink_potion()
+			KEY_F:
 				var m: Node2D = main.memory_in_reach()
 				if m != null:
 					main.lorecast(m)
@@ -714,12 +718,10 @@ func _unhandled_input(event: InputEvent) -> void:
 					main.use_portal()
 			KEY_SPACE:
 				evade(at2)
-			KEY_Q:
-				drink_potion()
 
 
 # ---------------------------------------------------------------- skill bar bindings
-## Uses whatever skill sits in bar slot i (0-3 = keys 1-4, 4 = LMB, 5 = RMB).
+## Uses whatever skill sits in bar slot i (0-4 = keys Q W E R T, 5 = LMB, 6 = RMB).
 func use_bound(i: int, aim: Vector2) -> bool:
 	var slot: String = bindings[i] if i < bindings.size() else ""
 	if slot == "":
@@ -732,7 +734,7 @@ func use_bound(i: int, aim: Vector2) -> bool:
 
 ## The skill on LMB, used when attacking a clicked enemy (Slash if LMB is empty or locked).
 func lmb_skill() -> String:
-	var slot: String = bindings[4]
+	var slot: String = bindings[5]
 	return slot if slot != "" and not skill_def(slot).is_empty() else "basic"
 
 

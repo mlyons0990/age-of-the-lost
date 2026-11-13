@@ -242,7 +242,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_F3:
 				debug_draw = not debug_draw
 				queue_redraw()
-			KEY_R:
+			KEY_G:
 				toggle_rift()
 			KEY_M:
 				audio.toggle_mute()

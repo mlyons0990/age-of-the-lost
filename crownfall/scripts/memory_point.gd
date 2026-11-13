@@ -1,6 +1,6 @@
 extends Node2D
 ## A Lorecasting point: a faint sigil on the ground where a lost memory lingers.
-## Walk up and press E (or click it) to Lorecast and read what it remembers.
+## Walk up and press F (or click it) to Lorecast and read what it remembers.
 
 const GD := preload("res://scripts/game_data.gd")
 
@@ -53,7 +53,7 @@ func _draw() -> void:
 	if hovered or not seen:
 		var font := ThemeDB.fallback_font
 		var title: String = GD.LORE[lore_id]["title"] if seen else "Lingering memory"
-		var sub := "E or click to Lorecast" if not seen else "E or click to remember"
+		var sub := "F or click to Lorecast" if not seen else "F or click to remember"
 		for line in [[title, 23, Color("e6d8ff")], [sub, 17, Color("cfc6b2")]]:
 			var w := font.get_string_size(line[0], HORIZONTAL_ALIGNMENT_LEFT, -1, line[1]).x
 			var y := -136.0 if line[1] == 23 else -112.0

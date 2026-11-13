@@ -371,8 +371,8 @@ func _lore_tests() -> void:
 	_check(hud.lore_panel == null and not get_tree().paused, "Esc closes the memory")
 	# reading it again gives no more experience
 	var xp1: int = p.xp
-	await _key(KEY_E)
-	_check(hud.lore_panel != null and p.xp == xp1 and p.lore.size() == 1, "E rereads it without more experience")
+	await _key(KEY_F)
+	_check(hud.lore_panel != null and p.xp == xp1 and p.lore.size() == 1, "F rereads it without more experience")
 	hud.close_lore()
 	# journal
 	await _key(KEY_J)
@@ -489,8 +489,8 @@ func _merchant_tests() -> void:
 	main.close_rift()
 	_check(main.shop.size() == main.SHOP_SIZE and main.shop[0] != old_first, "stock refreshes after clearing waves")
 	# E opens the merchant when standing next to her
-	await _key(KEY_E)
-	_check(hud.inv_window != null and hud.inv_window.mode == "merchant", "E opens the merchant up close")
+	await _key(KEY_F)
+	_check(hud.inv_window != null and hud.inv_window.mode == "merchant", "F opens the merchant up close")
 	await _key(KEY_ESCAPE)
 	await _wait(0.2)
 	await _shot("g12_merchant_world")
@@ -1287,23 +1287,27 @@ func _binding_tests() -> void:
 	p.mp = 999.0
 	p.cds.clear()
 	await _wait(0.2)
-	_check(p.bindings == ["s2", "s3", "s4", "", "basic", "s1"], "default bar: Charge, Rally, spec skill, empty | Slash, Cleave")
+	_check(p.bindings == ["s2", "s3", "s4", "", "", "basic", "s1"], "default bar: Q Charge, W Rally, E spec skill, R and T empty | Slash, Cleave")
 	# keys follow the bar
-	await _key(KEY_2)
-	_check(float(p.cds.get("s3", 0.0)) > 0.0, "key 2 uses what is in slot 2 (Rallying Cry)")
+	await _key(KEY_W)
+	_check(float(p.cds.get("s3", 0.0)) > 0.0, "W uses what is in slot W (Rallying Cry)")
+	p.potions = 3
+	p.hp = 10.0
+	await _key(KEY_3)
+	_check(p.potions == 2 and p.hp > 10.0, "number keys 1-5 drink a health potion")
 	# drag slot 1 onto slot 4: they swap (slot 4 was empty)
 	var r: Array = hud.bar_rects
 	await _drag((r[0] as Rect2).get_center(), (r[3] as Rect2).get_center())
 	_check(p.bindings[0] == "" and p.bindings[3] == "s2", "dragging a skill to another slot moves it (%s)" % str(p.bindings))
-	await _drag((r[3] as Rect2).get_center(), (r[4] as Rect2).get_center())
-	_check(p.bindings[3] == "basic" and p.bindings[4] == "s2", "dropping on a filled slot swaps the two (%s)" % str(p.bindings))
+	await _drag((r[3] as Rect2).get_center(), (r[5] as Rect2).get_center())
+	_check(p.bindings[3] == "basic" and p.bindings[5] == "s2", "dropping on a filled slot swaps the two (%s)" % str(p.bindings))
 	# drag off the bar to empty a slot
-	await _drag((r[5] as Rect2).get_center(), (r[5] as Rect2).get_center() + Vector2(0, -320))
-	_check(p.bindings[5] == "", "dragging a skill off the bar empties its slot")
+	await _drag((r[6] as Rect2).get_center(), (r[6] as Rect2).get_center() + Vector2(0, -320))
+	_check(p.bindings[6] == "", "dragging a skill off the bar empties its slot")
 	# from the spellbook: pick up Cleave and drop it on RMB
 	await _key(KEY_P)
 	hud.start_skill_drag("s1")
-	var at: Vector2 = (r[5] as Rect2).get_center()
+	var at: Vector2 = (r[6] as Rect2).get_center()
 	Input.warp_mouse(at)
 	var up := InputEventMouseButton.new()
 	up.button_index = MOUSE_BUTTON_LEFT
@@ -1313,7 +1317,7 @@ func _binding_tests() -> void:
 	Input.parse_input_event(up)
 	await get_tree().process_frame
 	await get_tree().process_frame
-	_check(p.bindings[5] == "s1", "a skill dragged from the spellbook lands in the slot")
+	_check(p.bindings[6] == "s1", "a skill dragged from the spellbook lands in the slot")
 	hud.start_skill_drag("s1")
 	var at2: Vector2 = (r[0] as Rect2).get_center()
 	var up2 := up.duplicate()
@@ -1322,11 +1326,11 @@ func _binding_tests() -> void:
 	Input.parse_input_event(up2)
 	await get_tree().process_frame
 	await get_tree().process_frame
-	_check(p.bindings[0] == "s1" and p.bindings[5] == "", "placing a skill already on the bar moves it there (no duplicates)")
+	_check(p.bindings[0] == "s1" and p.bindings[6] == "", "placing a skill already on the bar moves it there (no duplicates)")
 	await _shot("g31_skill_binding")
 	await _key(KEY_P)
 	# LMB attacks with whatever is on LMB
-	p.bindings = ["s2", "s3", "s4", "basic", "s1", ""]
+	p.bindings = ["s2", "s3", "s4", "basic", "", "s1", ""]
 	p.cds.clear()
 	p.mp = 999.0
 	main.spawn_enemy("brute", false, p.position + GD.to_px(Vector2(1.6, 0.0)))
@@ -1344,7 +1348,7 @@ func _binding_tests() -> void:
 	main.save_game()
 	p.bindings = p.DEFAULT_BINDINGS.duplicate()
 	main.load_game()
-	_check(p.bindings == ["s2", "s3", "s4", "basic", "s1", ""], "the bar layout survives save and load")
+	_check(p.bindings == ["s2", "s3", "s4", "basic", "", "s1", ""], "the bar layout survives save and load")
 	p.bindings = p.DEFAULT_BINDINGS.duplicate()
 	await _wait(1.6)
 	finished.append("_binding_tests")

@@ -59,18 +59,20 @@ for the knight and three painted enemy types:
   `CAM_ZOOM` 0.72 in `main.gd` (the paintings are 2720 wide, so this shows
   nearly a whole zone); world text (names, loot, memories, damage numbers) is
   drawn larger to stay readable. Bottom left: the life orb in the corner and a
-  belt of five potion bottles (Q drinks; clicking the belt drinks too). Bottom
+  belt of five potion bottles (keys 1-5 drink; clicking the belt drinks too). Bottom
   right: the skill plate and the mana orb in the corner, the dodge button above.
   The XP bar runs across the bottom between the orbs with "Lv. N" in the middle.
   The plaza and ruins Waystones moved up so the HUD never covers them.
-- **Skill bar (Diablo 4 layout):** keys 1-4 on the left, a gap, then LMB and
-  RMB, with key caps or mouse icons under each slot. **Any skill goes in any
+- **Skill bar:** keys Q W E R T, a gap, then LMB and RMB, with key caps or mouse icons under each slot. **Any skill goes in any
   slot:** drag a skill's icon from the spellbook (P) onto a slot, drag between
   slots to swap, drag one off the bar to empty its slot. A skill sits on the bar
   at most once (placing it again moves it). Clicking an enemy attacks with the
   LMB skill (Slash fills in while it is on cooldown or short of mana). Layout is
-  `player.bindings` (saved; order 1, 2, 3, 4, LMB, RMB; default Charge, Rally,
-  spec skill, empty | Slash, Cleave). The level diamond
+  `player.bindings` (saved; order Q, W, E, R, T, LMB, RMB; default Charge,
+  Rally, spec skill, empty, empty | Slash, Cleave). Keys: F talks to Maren /
+  Lorecasts / uses a Waystone, G opens or closes the Reality Scar. An ornate
+  full-width base (`assets/ui/base_strip.png`) and gothic edge pillars
+  (`edge_pillar.png`), both from the Higgsfield panel frame, frame the HUD. The level diamond
   and XP bar run along the top of the bar; the potion is a round button on the
   life orb's upper right (Q, with its count).
   `EVADE` in `game_data.gd` also defines a **Blink** (5.5 units, instant, 0.6 s

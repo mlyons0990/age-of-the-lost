@@ -6,6 +6,7 @@ signal action_impact(kind: String, at: Vector3, forward: Vector3)
 signal visual_changed(description: String)
 
 const HUMANOID_V03 := preload("res://scripts/two_point_five_d/humanoid_visual_v03.gd")
+const HUMANOID_V04 := preload("res://scripts/two_point_five_d/humanoid_visual_v04.gd")
 const FRAME := 384
 const ATTACK_FRAME := 512
 const PIXEL_SIZE := 0.0053  # 384px painting ~2.04 world metres before transparent margins.
@@ -28,6 +29,9 @@ var visual_mode := "painted"
 var visual: Sprite3D
 var humanoid_visual
 var humanoid_v03_opt_in := false
+var humanoid_v04_opt_in := false
+var horizontal_acceleration := 24.0
+var horizontal_braking := 32.0
 var skeleton_visual: Node3D
 var skeleton_anims: AnimationPlayer
 var skeleton_clips: Dictionary = {}
@@ -125,9 +129,10 @@ func _ready() -> void:
                     skeleton_clips[short_name] = library_clip
                     if short_name in ["Idle", "Walk", "Run"]:
                         skeleton_anims.get_animation(library_clip).loop_mode = Animation.LOOP_LINEAR
-    humanoid_v03_opt_in = OS.get_cmdline_user_args().has("--aotl-v03")
+    humanoid_v04_opt_in = OS.get_cmdline_user_args().has("--aotl-v04")
+    humanoid_v03_opt_in = OS.get_cmdline_user_args().has("--aotl-v03") or humanoid_v04_opt_in
     if humanoid_v03_opt_in:
-        humanoid_visual = HUMANOID_V03.new()
+        humanoid_visual = HUMANOID_V04.new() if humanoid_v04_opt_in else HUMANOID_V03.new()
         add_child(humanoid_visual)
     _render_painted_frame("idle", true)
     visual_changed.emit("Painted sprites · Warrior")
@@ -153,7 +158,7 @@ func change_visual_mode() -> void:
     active_proxy_clip = ""
     var description := "Original painted sprite"
     if visual_mode == "humanoid":
-        description = "Higgsfield V03 animated humanoid (Warrior base model)"
+        description = "Higgsfield V04 grounded humanoid (Warrior base model)" if humanoid_v04_opt_in else "Higgsfield V03 animated humanoid (Warrior base model)"
     elif visual_mode == "proxy":
         description = "Original geometric proxy"
     visual_changed.emit(description + " · " + player_class.capitalize())
@@ -188,6 +193,9 @@ func start_dodge() -> void:
     # serves only as a readable placeholder; never label it a finished painted roll.
 
 func _physics_process(delta: float) -> void:
+    # Only the opt-in V04 comparison has acceleration/braking inertia.
+    # Existing painted 2.5D and the original V03 modes retain their motion.
+    var previous_horizontal_velocity := Vector2(velocity.x, velocity.z)
     dodge_cd = maxf(0.0, dodge_cd - delta)
     var direct := Vector2.ZERO
     if Input.is_key_pressed(KEY_A): direct.x -= 1.0
@@ -235,6 +243,14 @@ func _physics_process(delta: float) -> void:
         velocity.x = travel.x * speed
         velocity.z = travel.z * speed
         motion_state = "run" if travel.length_squared() > 0.01 and sprint else ("walk" if travel.length_squared() > 0.01 else "idle")
+    if humanoid_v04_opt_in and visual_mode == "humanoid" and dodge_t <= 0.0:
+        var desired := Vector2(velocity.x, velocity.z)
+        var accelerating := desired.length_squared() > previous_horizontal_velocity.length_squared() + 0.001
+        var response := horizontal_acceleration if accelerating else horizontal_braking
+        # Acceleration is deliberately faster than human walking, but no longer instantaneous.
+        var smoothed := previous_horizontal_velocity.move_toward(desired, response * delta)
+        velocity.x = smoothed.x
+        velocity.z = smoothed.y
     velocity.y = -GRAVITY if is_on_floor() else velocity.y - GRAVITY * delta
     move_and_slide()
     frame_clock += delta

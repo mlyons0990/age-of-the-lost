@@ -5,7 +5,6 @@
   "previous_revision": 6,
   "revision": 7,
   "mesh_count": 571,
-  "original_approved_route_treads": 9,
   "route_width_m": 7.5,
   "original_gothic_voussoirs": 32,
   "phase18_rosettes": 18,
@@ -53,9 +52,10 @@
   },
   "godot_navigation": {
     "test": "tests/citadel_nav_hardening_v19.gd",
-    "assertions_passed": "16/16",
-    "ci_run_url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43403598779",
-    "route_edge_continuity": "exact indexed polygon-edge interval test in addition to 0.15m adaptive 5-lane sampling"
+    "assertions_passed": "32/32",
+    "ci_run_url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617236",
+    "route_edge_continuity": "exact indexed polygon-edge interval test in addition to 0.15m adaptive 5-lane sampling",
+    "deterministic_gap_fuzz": "16 explicit 4mm–140mm disconnected gap cases"
   },
   "unverified": [
     "Authentic locally approved Phase11 F5 route",
@@ -64,5 +64,19 @@
     "production performance and occlusion",
     "provider GLB imported to full Godot game"
   ],
-  "status": "CANDIDATE_KEEP_DRAFT"
+  "status": "CANDIDATE_KEEP_DRAFT",
+  "source_sculpt_treads": 9,
+  "actual_user_approved_phase11_scene_available": false,
+  "godot_toggle_stress": {
+    "assertions_passed": "273/273",
+    "cycles": 32,
+    "checks": "original 64 collision bodies, GLB/procedural visual exclusivity, F8 painted fallback and safe reactivation",
+    "ci_run_url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617236"
+  },
+  "ci_related_runs": {
+    "phase15": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617183",
+    "phase16": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617205",
+    "phase17_phase19": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617236"
+  },
+  "phase18_python_safety_tests": "22/22"
 }

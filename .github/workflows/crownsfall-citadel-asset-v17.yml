@@ -36,6 +36,7 @@ on:
       - 'game/crownsfall_lootslice/tools/phase21_thin_bevel_export_lod.py'
       - 'game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb'
       - 'game/crownsfall_lootslice/tests/citadel_visual_capture_v22.gd'
+      - 'game/crownsfall_lootslice/tests/citadel_material_grade_v22.gd'
       - 'game/crownsfall_lootslice/tools/phase20_uv_preserving_decor_batch.py'
       - 'game/crownsfall_lootslice/tools/validate_citadel_sculpt_v20_v09.py'
       - 'game/crownsfall_lootslice/tools/build_citadel_art_v17.py'
@@ -128,6 +129,8 @@ jobs:
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_external_glb_import_v21.gd -- --model=res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb --variant=v17
       - name: Phase 22 real optimized Higgsfield v10 GLB imported by Godot 4.6.3
         run: timeout 120s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_external_glb_import_v21.gd -- --model=res://assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb --variant=v10
+      - name: Phase 22 real GLB materials and nine step heights in Godot
+        run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_material_grade_v22.gd
       - name: Phase 19 adaptive navigation gap and shoulder checks in Godot
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_nav_hardening_v19.gd
       - name: Phase 19 repeated 3D art and collision fallback stress

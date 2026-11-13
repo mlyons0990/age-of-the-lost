@@ -13,6 +13,7 @@ const Fx := preload("res://scripts/fx.gd")
 const Hud := preload("res://scripts/hud.gd")
 const PoeLayout := preload("res://scripts/poe_hud_layout.gd")
 const Live25D := preload("res://scripts/two_point_five_d/live_courtyard_bridge.gd")
+const CityDistrict07 := preload("res://scripts/two_point_five_d/crownsfall_royal_promenade_v07.gd")
 const SoundBank := preload("res://scripts/sound_bank.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const SAVE_SCHEMA := 6
@@ -62,6 +63,7 @@ var fx_ground: Node2D
 var fx_parts: Node2D
 var fx_text: Node2D
 var nav_region: NavigationRegion2D
+var city_district_07: Node2D
 var debug_draw := false
 
 var enemies: Array = []
@@ -107,6 +109,9 @@ func _ready() -> void:
 	plaza_art = bg
 
 	_build_navigation()
+	# This is an extension of the SAME saved city, not a new wilderness region.
+	city_district_07 = CityDistrict07.new()
+	add_child(city_district_07)
 
 	fx_ground = _make_fx(Fx.GROUND, -4)
 	world = Node2D.new()
@@ -125,8 +130,8 @@ func _ready() -> void:
 	cam = Camera2D.new()
 	cam.limit_left = 0
 	cam.limit_top = 0
-	cam.limit_right = PLAZA.get_width()
-	cam.limit_bottom = PLAZA.get_height()
+	cam.limit_right = maxi(PLAZA.get_width(), int(CityDistrict07.ORIGIN.x + CityDistrict07.DIMENSIONS.x))
+	cam.limit_bottom = maxi(PLAZA.get_height(), int(CityDistrict07.ORIGIN.y + CityDistrict07.DIMENSIONS.y))
 	cam.position_smoothing_enabled = true
 	cam.position_smoothing_speed = 6.0
 	# The actual saved 2D game now shares Phase 02's wider ARPG framing.
@@ -339,6 +344,7 @@ func toggle_live_25d() -> bool:
 	else:
 		live_25d_enabled = false
 	plaza_art.visible = not live_25d_enabled
+	if city_district_07 != null: city_district_07.set_painted_background(not live_25d_enabled)
 	for cutout in layered_occluders:
 		# Existing y-sorted painted buildings/columns now remain in front of the
 		# original 2D character when the 3D ground is active. Alpha feathering
@@ -877,6 +883,7 @@ func _valid_save(data: Dictionary) -> bool:
 	return true
 
 func _valid_floor_point(point: Vector2) -> bool:
+	if CityDistrict07.contains(point): return true
 	if Geometry2D.is_point_in_polygon(point,PackedVector2Array(WALKABLE)): return true
 	for i in WALKABLE.size():
 		if Geometry2D.get_closest_point_to_segment(point,WALKABLE[i],WALKABLE[(i+1)%WALKABLE.size()]).distance_to(point)<=1.0: return true

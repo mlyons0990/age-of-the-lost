@@ -6,6 +6,7 @@ extends CanvasLayer
 ## F8 toggles this renderer; the approved painted plaza is always recoverable.
 
 const COURTYARD := preload("res://scripts/two_point_five_d/crownsfall_courtyard_25d.gd")
+const CITY_DISTRICT3D := preload("res://scripts/two_point_five_d/crownsfall_royal_promenade_3d_v07.gd")
 const GD := preload("res://scripts/game_data.gd")
 const LIVE_KNIGHT := preload("res://scripts/two_point_five_d/knight_depth_billboard.gd")
 const RIGHT := Vector3(0.70710678, 0.0, -0.70710678)
@@ -19,6 +20,7 @@ var game_camera: Camera2D
 var viewport_3d: SubViewport
 var camera_3d: Camera3D
 var scenery: Node3D
+var city_district_3d: Node3D
 var screen: SubViewportContainer
 var service_nodes: Array[Node3D] = []
 var service_markers: Dictionary = {}
@@ -56,6 +58,9 @@ func _ready() -> void:
     # The rendered walkable surface and navigation polygon now share one source.
     # In particular, this is not a hand-drawn second area the player could fall off.
     scenery.install_painted_walkway(PackedVector2Array(game.WALKABLE), Callable(self, "to_3d"))
+    city_district_3d = CITY_DISTRICT3D.new()
+    scenery.add_child(city_district_3d)
+    city_district_3d.install(Callable(self, "to_3d"))
     collision_audit = audit_visual_collision_footprints()
     camera_3d = Camera3D.new()
     camera_3d.name = "Follow_OriginalPlayer2D_NoIndependentMovement"
@@ -246,6 +251,7 @@ func status() -> Dictionary:
         "scenery_ready": is_ready,
         "service_count": service_nodes.size(),
         "has_3d_world": viewport_3d != null and viewport_3d.own_world_3d,
+        "adjacent_royal_promenade": city_district_3d.status() if city_district_3d != null else {},
         "camera_size": camera_3d.size if camera_3d != null else 0.0,
         "painted_walkway_triangles": scenery.painted_walkway_triangle_count if is_instance_valid(scenery) else 0,
         "painted_walkway_area_px2": scenery.painted_walkway_area_pixels if is_instance_valid(scenery) else 0.0,

@@ -1,0 +1,28 @@
+{
+  "title": "Age of the Lost — Crownsfall connected city masterplan",
+  "version": "07.experimental",
+  "canon_reference": "2026-11-12 Crownsfall PoE-framed blue/gold city gameplay mockup and Royal Wayfarer character sheet",
+  "world_policy": "complete Crownsfall and the first master character pipeline before adding wilderness zones",
+  "authority": "existing Godot main.gd Player, NavigationServer2D, quests, inventory and save schema 6",
+  "districts": [
+    {"id":"central_plaza","name":"Central Plaza","status":"playable existing baseline","gateway":"royal_promenade","has_original_painting":true,"has_live_2_5d":true},
+    {"id":"royal_promenade","name":"Royal Promenade / Lantern Market Road","status":"new connected playable technical and art blockout","origin_px":[1500,1536],"size_px":[1500,1410],"entry_px":[2070,1536],"walkable_nav_source":"scripts/two_point_five_d/crownsfall_royal_promenade_v07.gd","painted_art":"assets/25d/crownsfall_royal_promenade_v07.png","3d_environment":"scripts/two_point_five_d/crownsfall_royal_promenade_3d_v07.gd","acceptance":"art still preliminary, no dedicated quest or shop NPC, collision edges and Windows performance pending"},
+    {"id":"citadel_steps","name":"Citadel Steps and Royal Gate","status":"planned, not playable","priority":2,"acceptance":"actual navigable stair elevation, connected 2D/3D collision, original canon masonry"},
+    {"id":"market_quarter","name":"Merchants' Quarter","status":"planned, not playable","priority":3,"acceptance":"town services, vendors, blue/gold textile market geometry, NPC dialogue"},
+    {"id":"archivists_terrace","name":"Lore Archives and Unwritten Chapel","status":"planned, not playable","priority":4,"acceptance":"Lorecasting quest path, cathedral entrance and sunken library"},
+    {"id":"moon_garden","name":"Moon Garden and Canal Bridges","status":"planned, not playable","priority":5,"acceptance":"walkable gardens, water boundaries, bridge collision, painterly reflections"},
+    {"id":"craftsmen_foundry","name":"Foundry and Craftsmen's Ring","status":"planned, not playable","priority":6,"acceptance":"weapon crafting vendors, forge ambience, nav and collision"},
+    {"id":"lower_gate","name":"Outer Lower City and Departure Gate","status":"planned, not playable","priority":7,"acceptance":"future quest-driven wilderness exit only after city signoff"}
+  ],
+  "do_not_claim_complete_until": [
+    "approved 2D and 3D comparison at actual PoE-scale camera",
+    "production knight mesh/skin/rig matching six canonical images, not generic placeholder",
+    "eight authored directional roll/dodge sets with foot contacts and gameplay hit timing",
+    "all main-city nav districts connected and collision footprints validated",
+    "3D opaque occlusion on player, NPC and hostile actors",
+    "merchant/stash/lore/quests and equipment appearance polished",
+    "all assets licensed/provenance recorded",
+    "Windows 1080p/1440p performance and save-compatibility tests",
+    "user visual approval"
+  ]
+}

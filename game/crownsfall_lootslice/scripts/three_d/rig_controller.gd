@@ -182,7 +182,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if ik_available:
 		var speed := Vector2(velocity.x, velocity.z).length()
-		foot_ik.update_foot_placement(delta, attack_t <= 0.0 and dodge_t <= 0.0 and is_on_floor(), speed)
+		foot_ik.update_foot_placement(delta, attack_t <= 0.0 and dodge_t <= 0.0 and is_on_floor(), speed, last_face, [get_rid()])
 
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return

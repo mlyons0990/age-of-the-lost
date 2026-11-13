@@ -2,6 +2,8 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$SourceGlb,
     [string]$ProjectRoot = "",
+    [ValidateSet("AOTL_Warrior_R36.glb","AOTL_Warrior_R37.glb")]
+    [string]$TargetFileName = "AOTL_Warrior_R36.glb",
     [switch]$RunImportAudit
 )
 
@@ -11,7 +13,7 @@ if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
 }
 $source = (Resolve-Path $SourceGlb).Path
 $models = Join-Path $ProjectRoot 'models'
-$destination = Join-Path $models 'AOTL_Warrior_R36.glb'
+$destination = Join-Path $models $TargetFileName
 $backupDir = Join-Path $ProjectRoot 'backups\models'
 New-Item -Path $models -ItemType Directory -Force | Out-Null
 New-Item -Path $backupDir -ItemType Directory -Force | Out-Null
@@ -41,18 +43,18 @@ if ($null -ne $py) {
 if ($LASTEXITCODE -ne 0) {
     throw 'GLB skeleton/animation validation failed. The installed Warrior was not replaced.'
 }
-Write-Host 'R36 binary skeleton and animation validation PASSED.'
+Write-Host 'Warrior GLB skeleton and animation validation PASSED.'
 
 if (Test-Path $destination) {
     $stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
     $existingSha = (Get-FileHash $destination -Algorithm SHA256).Hash.Substring(0, 12)
-    $backupName = "AOTL_Warrior_R36_$stamp" + "_$existingSha.glb"
+    $backupName = "$($TargetFileName.Replace('.glb',''))_$stamp" + "_$existingSha.glb"
     Copy-Item $destination (Join-Path $backupDir $backupName) -ErrorAction Stop
     Write-Host "Previous R36 preserved in backups/models/$backupName"
 }
 
 # Stage and rename in the SAME directory; old source and Git LFS proxy remain unchanged.
-$staging = Join-Path $models 'AOTL_Warrior_R36.glb.incoming'
+$staging = Join-Path $models ($TargetFileName + '.incoming')
 Copy-Item $source $staging -Force
 if ((Get-FileHash $staging -Algorithm SHA256).Hash -ne (Get-FileHash $source -Algorithm SHA256).Hash) {
     Remove-Item $staging -Force
@@ -71,7 +73,7 @@ if ($RunImportAudit) {
     } else {
         & $godot.Source --headless --path $ProjectRoot --editor --quit
         if ($LASTEXITCODE -ne 0) { throw 'Godot import failed; prior model backup remains available.' }
-        & $godot.Source --headless --path $ProjectRoot --script 'res://tests/verify_warrior_r36_import.gd'
-        if ($LASTEXITCODE -ne 0) { throw 'R36 rig import audit failed; restore from backups/models if needed.' }
+        & $godot.Source --headless --path $ProjectRoot --script 'res://tests/verify_warrior_r36_import.gd' --model=$TargetFileName
+        if ($LASTEXITCODE -ne 0) { throw 'Warrior rig import audit failed; restore from backups/models if needed.' }
     }
 }

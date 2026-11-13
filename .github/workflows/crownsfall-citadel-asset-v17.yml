@@ -85,7 +85,7 @@ jobs:
       - name: Render standalone Citadel art in real Godot OpenGL under virtual X display
         run: |
           which xvfb-run || (sudo apt-get update -qq && sudo apt-get install -y xvfb)
-          timeout 90s xvfb-run -a godot --path game/crownsfall_lootslice --rendering-method gl_compatibility --script res://tests/citadel_visual_capture_v16.gd
+          timeout 90s xvfb-run -a godot --path game/crownsfall_lootslice --rendering-method gl_compatibility --script res://tests/citadel_visual_capture_v17.gd
       - name: Archive actual renderer screenshot
         if: always()
         uses: actions/upload-artifact@v4

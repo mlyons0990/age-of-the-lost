@@ -47,9 +47,11 @@ func _ready() -> void:
 	animation = body.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if animation != null:
 		for name in animation.get_animation_list():
-			var logical := String(name).get_file()
+			var logical := String(name).get_file().get_slice("|", String(name).get_file().get_slice_count("|") - 1)
 			clip_names[logical] = name
-			if logical in ["Idle", "Walk", "Run"]:
+			if logical in ["Idle", "Walk", "Run", "V33_KneeStable_IK_Comparison"]:
+				if logical == "V33_KneeStable_IK_Comparison":
+					clip_names["WalkIK_Test"] = name
 				animation.get_animation(name).loop_mode = Animation.LOOP_LINEAR
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.26

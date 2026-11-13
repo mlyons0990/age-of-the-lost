@@ -1,0 +1,65 @@
+{
+  "schema": "aotl.crownsfall.citadel-sculpt.v14",
+  "status": "editable_blender_asset_in_higgsfield_not_yet_integrated_into_godot",
+  "created": "2026-11-13",
+  "authoritative_source": {
+    "service": "Higgsfield 3D Jutsu",
+    "project_url": "https://higgsfield.ai/3d-jutsu/0361ff9b-2829-4595-a64e-564f39e1eeac",
+    "project_id": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+    "revision": 3,
+    "editor": "Blender 5.2.0 LTS",
+    "asset_format": [
+      ".blend",
+      ".glb"
+    ]
+  },
+  "concept_reference": {
+    "provider": "Higgsfield GPT Image 2.6 unlimited",
+    "generation_id": "4ee0f245-bd08-46fd-bee8-6e08c6480493",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261113_071206_4ee0f245-bd08-46fd-bee8-6e08c6480493.png",
+    "notes": "Concept only. It is not automatically loaded as a texture in the Blender asset."
+  },
+  "coordinates": {
+    "blender_units": "meters",
+    "blender": "X lateral, +Y north from stair top, +Z up",
+    "godot_visual_core": "X lateral, +Z route heading, +Y up",
+    "stair_begin_blender_y": -9,
+    "stair_begin_godot_route_z": 0,
+    "north_coordinate_mapping": "GodotRouteZ = BlenderY + 9.0 (after glTF axis conversion and rotation about up axis)"
+  },
+  "walkability": {
+    "treads": 9,
+    "step_run_m": 1,
+    "step_rise_m": 0.2,
+    "total_ascent_m": 1.8,
+    "clear_stair_width_m": 7.5,
+    "upper_landing_length_m": 4,
+    "northern_upper_floor_height_m": 1.8
+  },
+  "gateway": {
+    "center_blender_y_m": 3.25,
+    "center_godot_route_z_m": 12.25,
+    "clear_span_m": 8.1,
+    "pier_centers_abs_x_m": 4.69,
+    "arch_voussoirs": 32,
+    "spring_height_world_m": 5.94,
+    "apex_height_world_m": 7.85,
+    "arch_profile_exponent": 0.77,
+    "minimum_headroom_m": 4.14
+  },
+  "qa": {
+    "blender_revision3_numeric_checks_passed": 10,
+    "blender_revision3_numeric_checks_total": 10,
+    "render_generated": true,
+    "human_visual_review": "not available in this tool runtime",
+    "godot_runtime_tested": false,
+    "git_versioned": true,
+    "paid_higgsfield_credits_used": 0
+  },
+  "integration": {
+    "required_phase11_source": true,
+    "fallback": "Keep existing F8 painted and opt-in F4 geometry disabled until source recovery, route/nav audit and real Godot screenshots",
+    "expected_glb_path": "assets/25d/citadel/AOTL_Citadel_Sculpt_v14.glb",
+    "warning": "A raw scene GLB may contain cameras/lights; use an art-only export and correct axis/offset before wiring it to the live game"
+  }
+}

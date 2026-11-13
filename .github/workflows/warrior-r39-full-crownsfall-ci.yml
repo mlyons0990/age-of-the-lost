@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/warrior-r39-full-crownsfall-ci.yml
       - game/crownsfall_lootslice/tests/lab_roundtrip.gd
+      - game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb.import
   workflow_dispatch:
 
 permissions:

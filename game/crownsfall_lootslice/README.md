@@ -2,7 +2,7 @@
 
 November 12, 2026. All nineteen implemented base abilities plus Ember Aura now use crisp grimdark full-square artwork in the action bar and Grimoire. Each image uses a tightly cropped action composition, with the subject and supporting artwork extending to the edges of the square inside the thin button frame. Clean contours and controlled shading preserve readability. Each icon has its own beveled metal frame, following the user-approved AOTL standard. Hotkeys, cooldown shading/numbers, active-aura ON state and low-mana borders remain live overlays. Earlier approved symbols and equipment artwork remain preserved.
 
-[Latest actor-feedback handoff](docs/ACTOR_FEEDBACK_HANDOFF.md) covers damage recoil, charge lean, death/corpse poses and respawn resets. [Skill-art handoff](docs/FULL_SKILL_BUTTONS_HANDOFF.md) explains the approved source atlas, exact IDs and reproduction. The right-docked equipment/character sheet, exact inventory footprints, stat scaling and schema-six saves remain included. The earlier [art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) records the preceding cycle.
+[Latest handoff: Dodge Roll](docs/DODGE_ROLL_HANDOFF.md) adds a Space-bound evasive roll with a HUD button. [Actor-feedback handoff](docs/ACTOR_FEEDBACK_HANDOFF.md) covers damage recoil, charge lean, death/corpse poses and respawn resets. [Skill-art handoff](docs/FULL_SKILL_BUTTONS_HANDOFF.md) explains the approved source atlas, exact IDs and reproduction. The right-docked equipment/character sheet, exact inventory footprints, stat scaling and schema-six saves remain included. The earlier [art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) records the preceding cycle.
 
 ## Play
 
@@ -19,6 +19,7 @@ November 12, 2026. All nineteen implemented base abilities plus Ember Aura now u
 | LMB / hold; Shift+LMB | Move or primary action; primary in place |
 | RMB / 1; 2; 3; 4 | Four additional equipped slots |
 | Q | Health potion |
+| Space | Dodge Roll toward the cursor |
 | I; C; K / B; M | Equipment; character stats; Grimoire; Mage mastery graph |
 | F; N | Collect nearest drop; inspect nearby loot beside backpack |
 | E; R; T | Nearby service; open/close Scar or retreat from trial; trial briefing |

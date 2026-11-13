@@ -1,0 +1,70 @@
+PASS warrior roll starts toward the aim point
+PASS warrior roll replaces walking and targeting
+PASS warrior roll costs no mana and leaves combat packets valid
+PASS warrior roll grants its invulnerability window and starts its cooldown
+PASS warrior damage during the window is ignored without a false recoil
+PASS warrior a second roll cannot start mid-roll
+PASS warrior abilities cannot be used mid-roll and nothing is spent
+PASS warrior artwork tumbles and tucks at mid-roll
+PASS warrior full roll travels its exact ground distance along the aim
+PASS warrior full roll takes its stated time
+PASS warrior roll ends on walkable floor
+PASS warrior finished roll leaves no residual pose
+PASS warrior cooldown blocks an immediate second roll
+PASS warrior invulnerability ends shortly after the roll
+PASS warrior damage applies again once the window has passed
+PASS warrior roll is ready again after the cooldown
+PASS warrior roll may cut short attack recovery
+PASS warrior primary ability starts for the commitment check
+PASS warrior roll cannot interrupt a committed swing or cast windup
+PASS warrior refused roll leaves the committed action untouched
+PASS warrior aiming at oneself still rolls
+PASS warrior a self-aimed roll goes the way the actor faces
+PASS warrior roll toward a wall starts
+PASS warrior a wall stops the roll on the floor instead of passing through
+PASS warrior roll is unavailable while the game is paused
+PASS warrior roll keeps an active ward
+PASS warrior death ends an active roll
+PASS warrior a fallen actor cannot roll
+PASS warrior respawn clears the roll and its cooldown
+PASS warrior roll state is transient and schema-six saves stay valid
+PASS mage roll starts toward the aim point
+PASS mage roll replaces walking and targeting
+PASS mage roll costs no mana and leaves combat packets valid
+PASS mage roll grants its invulnerability window and starts its cooldown
+PASS mage damage during the window is ignored without a false recoil
+PASS mage a second roll cannot start mid-roll
+PASS mage abilities cannot be used mid-roll and nothing is spent
+PASS mage artwork tumbles and tucks at mid-roll
+PASS mage full roll travels its exact ground distance along the aim
+PASS mage full roll takes its stated time
+PASS mage roll ends on walkable floor
+PASS mage finished roll leaves no residual pose
+PASS mage cooldown blocks an immediate second roll
+PASS mage invulnerability ends shortly after the roll
+PASS mage damage applies again once the window has passed
+PASS mage roll is ready again after the cooldown
+PASS mage roll may cut short attack recovery
+PASS mage primary ability starts for the commitment check
+PASS mage roll cannot interrupt a committed swing or cast windup
+PASS mage refused roll leaves the committed action untouched
+PASS mage aiming at oneself still rolls
+PASS mage a self-aimed roll goes the way the actor faces
+PASS mage roll toward a wall starts
+PASS mage a wall stops the roll on the floor instead of passing through
+PASS mage roll is unavailable while the game is paused
+PASS mage roll keeps an active ward
+PASS mage death ends an active roll
+PASS mage a fallen actor cannot roll
+PASS mage respawn clears the roll and its cooldown
+PASS mage roll state is transient and schema-six saves stay valid
+PASS roll cannot start during Shield Charge
+PASS Space starts a roll
+PASS HUD roll button matches the drawn circle and sits inside the screen
+PASS HUD roll button does not overlap the ability or potion buttons
+PASS the drawn HUD holds its own reference to the roll icon
+PASS HUD roll button uses the 128px Dodge Roll icon
+PASS runtime icon matches the published art-library file
+PASS clicking the HUD button rolls toward the last aim point
+PASS the HUD button does nothing while paused
+DODGE ROLL RESULT 69 checks; 0 failures

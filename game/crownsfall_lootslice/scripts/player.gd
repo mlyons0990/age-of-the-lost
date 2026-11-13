@@ -20,6 +20,13 @@ const ATTACK_FRAME := 512      # attack strips use larger frames so the sword sw
 const ATTACK_FPS := 28.0
 const ATTACK_TIME := 0.5       # how long a swing roots the knight
 const HIT_DELAY := 0.2         # the blow lands this long after the swing starts
+## Dodge Roll: a short, free evasive roll shared by every class. It is not a
+## hotbar skill, deals no damage and is never saved.
+const DODGE_DISTANCE := 2.6    # ground units travelled by a full roll
+const DODGE_TIME := 0.28       # seconds a full roll takes
+const DODGE_INVULN := 0.32     # seconds of invulnerability from the start of the roll
+const DODGE_COOLDOWN := 2.5
+const DODGE_PIVOT := Vector2(0, -96)  # the artwork tumbles around the body, not the boots
 
 ## Which attack strip to use for each of the 8 facings, and whether to mirror it.
 ## Only the two diagonal strips exist, so the other facings borrow the nearest one.
@@ -97,6 +104,8 @@ var clock := 0.0
 var dead := false
 var target: Node2D = null
 var dash := {}
+var dodge := {}        # active roll: dir (ground), left (ground units), time (seconds)
+var dodge_cd := 0.0
 var mouse_held := false
 var repath := 0.0
 var mana_warn := 0.0
@@ -153,6 +162,7 @@ func _reset_visual_feedback() -> void:
 
 func visual_state() -> String:
 	if dead: return "dead"
+	if not dodge.is_empty(): return "dodge"
 	if hurt_visual_left > 0: return "hurt"
 	if not dash.is_empty(): return "charge"
 	if cast_remaining > 0 or visual_cast_time > 0: return "cast"
@@ -187,6 +197,14 @@ func _advance_visual_feedback(delta: float) -> void:
 		shadow.modulate.a = lerpf(0.38, 0.2, fall)
 		return
 	hurt_visual_left = maxf(0, hurt_visual_left - maxf(0, delta))
+	if not dodge.is_empty():
+		# One forward tumble, tucked at the midpoint. Presentation only.
+		var k := clampf(float(dodge["time"]) / DODGE_TIME, 0.0, 1.0)
+		var tuck := 1.0 - 0.24 * sin(k * PI)
+		var roll := Transform2D(side * TAU * k, Vector2(tuck, tuck), 0.0, Vector2.ZERO)
+		roll.origin = DODGE_PIVOT - roll.basis_xform(DODGE_PIVOT)
+		visual_root.transform = roll
+		return
 	if hurt_visual_left > 0:
 		var recoil := hurt_visual_left / 0.18
 		visual_root.rotation = -side * 0.10 * recoil
@@ -477,7 +495,7 @@ func cancel_casts() -> void:
 	if aura != null: aura.stop("cancelled")
 	visual_cast_time = 0
 	pending_t = 0; pending_hit = Callable(); swinging = 0; cast_remaining = 0
-	cast_definition.clear(); cast_packet.clear(); dash.clear()
+	cast_definition.clear(); cast_packet.clear(); dash.clear(); dodge.clear()
 	ward_time = 0; ward_amount = 0
 
 func damage_multiplier(sk: Dictionary) -> float:
@@ -555,7 +573,7 @@ func use_skill(slot: String, aim: Vector2) -> bool:
 	if dead or get_tree().paused: return false
 	var sk := skill_def(slot)
 	if sk.get("type", "") == "aura" and aura.running: aura.stop("toggle"); return true
-	if swinging > 0 or pending_t > 0 or cast_remaining > 0 or attack_anim > 0.05 or not dash.is_empty(): return false
+	if swinging > 0 or pending_t > 0 or cast_remaining > 0 or attack_anim > 0.05 or not dash.is_empty() or not dodge.is_empty(): return false
 	if sk.is_empty() or not sk.type in ["melee", "arc", "dash", "buff", "nova", "cone", "ground", "projectile", "blink", "ward", "aura"]: return false
 	if float(cds.get(sk.id, 0)) > 0: return false
 	var validated := _validated_aim(sk, aim)
@@ -647,6 +665,27 @@ func _execute_skill(sk: Dictionary, aim: Vector2, packet: Dictionary) -> void:
 				main.fx_parts.burst(aim, 40, [c1, c2, Color.WHITE], 5.0, 15.0, 8.0)
 				main.shake = maxf(main.shake, 6))
 
+func dodge_ready() -> bool:
+	return not dead and dodge.is_empty() and dodge_cd <= 0.0 and dash.is_empty() and cast_remaining <= 0.0 and swinging <= 0.0 and pending_t <= 0.0
+
+## Roll toward `aim` (a world position). Costs nothing, briefly ignores damage
+## and may cut short the recovery after an attack, but never a committed
+## swing, cast windup or Shield Charge. Returns false if the roll did not start.
+func dodge_roll(aim: Vector2) -> bool:
+	if get_tree().paused or not dodge_ready(): return false
+	var gv := GD.ground(position, aim)
+	var dir := gv.normalized() if gv.length() >= 0.05 else Vector2.from_angle(facing * PI / 4.0)
+	dodge = {"dir": dir, "left": DODGE_DISTANCE, "time": 0.0}
+	dodge_cd = DODGE_COOLDOWN
+	invuln = maxf(invuln, DODGE_INVULN)
+	attack_anim = 0.0
+	target = null
+	path = PackedVector2Array()
+	_face(GD.to_px(dir) * 100.0)
+	main.sound.play_cue("dodge_roll")
+	main.fx_ground.ring(position, 0.2, 0.9, 0.25, Color("e8dcc0"))
+	return true
+
 func primary_reach() -> float:
 	var sk := skill_def("basic")
 	if sk.is_empty() or sk.type in ["buff", "ward", "nova", "aura"]: return 0.0
@@ -712,6 +751,8 @@ func respawn(at: Vector2) -> void:
 	pending_t = 0.0
 	pending_hit = Callable()
 	dash = {}
+	dodge = {}
+	dodge_cd = 0.0
 	swinging = 0.0
 	var s := stats()
 	hp = s["max_hp"]
@@ -758,6 +799,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				use_skill("s4", at2)
 			KEY_Q:
 				drink_potion()
+			KEY_SPACE:
+				dodge_roll(at2)
 
 
 func _walk_to(goal_px: Vector2, show_marker: bool) -> void:
@@ -790,6 +833,7 @@ func _physics_process(delta: float) -> void:
 	for k in cds.keys():
 		cds[k] = maxf(0.0, float(cds[k]) - delta)
 	rally = maxf(0.0, rally - delta)
+	dodge_cd = maxf(0.0, dodge_cd - delta)
 	invuln = maxf(0.0, invuln - delta)
 	attack_anim = maxf(0.0, attack_anim - delta)
 	mana_warn = maxf(0.0, mana_warn - delta)
@@ -799,7 +843,7 @@ func _physics_process(delta: float) -> void:
 		if pending_t <= 0.0 and pending_hit.is_valid() and not dead:
 			pending_hit.call()
 			pending_hit = Callable()
-	sprite.modulate.a = 0.6 if (invuln > 0.0 and dash.is_empty() and int(clock * 20.0) % 2 == 1) else 1.0
+	sprite.modulate.a = 0.6 if (invuln > 0.0 and dash.is_empty() and dodge.is_empty() and int(clock * 20.0) % 2 == 1) else 1.0
 	if dead:
 		swinging = 0.0
 		pending_t = 0.0
@@ -812,6 +856,24 @@ func _physics_process(delta: float) -> void:
 	hp = minf(float(s["max_hp"]), hp + float(s["max_hp"]) * (0.012 if clock - last_hurt > 4.0 else 0.002) * delta)
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or get_viewport().gui_get_hovered_control() != null:
 		mouse_held = false
+
+	# Dodge Roll
+	if not dodge.is_empty():
+		var roll_step: float = minf(float(dodge["left"]), DODGE_DISTANCE / DODGE_TIME * delta)
+		var roll_dir: Vector2 = dodge["dir"]
+		var roll_to := position + GD.to_px(roll_dir * roll_step)
+		var roll_floor := NavigationServer2D.map_get_closest_point(get_world_2d().navigation_map, roll_to)
+		if roll_floor.distance_to(roll_to) < 6.0:
+			position = roll_to
+			dodge["left"] = float(dodge["left"]) - roll_step
+		else:
+			dodge["left"] = 0.0   # stopped by a wall or ledge
+		dodge["time"] = float(dodge["time"]) + delta
+		main.fx_parts.spark(position, Vector2.ZERO, randf_range(10, 60), 0.0, 0.0, 0.25, Color("e8dcc0"), 6.0)
+		if float(dodge["left"]) <= 0.0:
+			dodge = {}
+		_play("walk")
+		return
 
 	# Shield Charge
 	if not dash.is_empty():

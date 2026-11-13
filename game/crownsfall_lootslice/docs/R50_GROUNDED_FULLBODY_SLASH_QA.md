@@ -32,7 +32,7 @@ These values reflect world-space pose displacement from the beginning of the ani
 
 ## Real Blender source and seven-clip model
 
-- **Editable Blender source:** `game/crownsfall_lootslice/source_blender/AOTL_R51_R50_FullBody_Slash_Source.blend` (Higgsfield revision 51)
+- **Editable Blender source:** `art/character_sources/AOTL_R51_R50_FullBody_Slash_Source.blend` (Higgsfield revision 51)
   - SHA-256: `7e6c43e40fad74f747c0c925e8f23bf7076f976a5bf39b632b90c04f8fb74c01`
   - Size: 24,334,240 bytes
   - Preserves `Slash`, `R48_Slash_FullBody_WeightTransfer_V1`, `R49_Slash_PlantConstrained_V2`, and `R50_Slash_Grounded_IKBaked_V3`.
@@ -54,7 +54,8 @@ The 3D rig lab has a corresponding inspector property `use_r50_fullbody_slash_ca
 - [Real R50 glTF animation import](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43410127449) — **18/18 checks passed**. Verified all seven clips, mesh count, pelvis rotation, moving knees, stable feet, and actual weapon motion in Godot 4.6.3.
 - [Playable R50 controller](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43410934959) — **16/16 checks passed**. Opt-in selection, original model preservation, foot IK, equipment sockets, authored Slash playback and single impact.
 - [Full Crownsfall regression](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43410934976) — **994/994 checks across 17 suites passed**.
-- The expanded R50 rig-lab strict-sword test and subsequent full-project regression are separate acceptance gates; consult their latest workflow outcomes before claiming this optional model is cleared for broad production use.
+- [R50 rig lab baseline plus strict physical sword collision](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43412531968) — **13/13 checks passed**. Confirms real R50 model, terrain IK, equipment sockets, 32-damage Slash, no duplicate hit, opt-in F8 swept blade at 0.65m, and working fallback.
+- [Final R50 full Crownsfall regression after relocating source outside Godot](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43412351322) — **994/994 checks across 17 suites passed**.
 
 ## Honest visual quality caveat
 
@@ -65,3 +66,15 @@ The current Warrior still uses procedural, relatively blocky geometry and does n
 - Leave `enable_r50_fullbody_slash_candidate` and `use_r50_fullbody_slash_candidate` unchecked to retain stable R39 gameplay.
 - If an R50 visual or collision regression appears, remove the separate R50 GLB or revert the draft branch. The existing R39 model, original six clips, original `Slash`, all prior Higgsfield revisions and playable Godot project remain intact.
 - Keep all work in this draft development branch until desktop visual review and full gameplay QA.
+
+## Source-backup import incident and resolution
+
+An initial GitHub source backup mistakenly placed the editable `.blend` inside the Godot game project. Headless Godot attempted to auto-import it without Blender configured, causing an editor import failure. The source was moved to `art/character_sources/`, outside Godot's `res://` tree, **without changing its Git LFS SHA-256**. The original game project and stable asset remained unchanged. Both the complete 17-suite full regression and the live 3D rig-lab strict combat test passed after relocation.
+
+### Final review state
+
+- All earlier character assets and the complete Blender action history are preserved.
+- This R50 GLB stays optional. The user-facing default remains the previously verified R39/R40 gameplay path.
+- Both the actual `.blend` and the 7-clip `.glb` are backed up in GitHub LFS and Google Drive.
+- The R50 GIF and R47-to-R50 comparison GIF were generated from actual keyframed Blender render frames; they are not AI video generations.
+- Approved for *developer testing*, not declared a final AAA-quality character asset or merged into stable main.

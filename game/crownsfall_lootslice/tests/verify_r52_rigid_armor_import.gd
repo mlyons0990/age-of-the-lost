@@ -52,6 +52,26 @@ func only_one_bone_per_vertex(mesh: MeshInstance3D) -> Dictionary:
 			count += 1
 	return {"ok": bad == 0 and count > 100, "count": count, "bad": bad, "stride": last_stride}
 
+func primary_weighted_bone(mesh: MeshInstance3D, skeleton: Skeleton3D) -> String:
+	if mesh == null or mesh.skin == null or mesh.mesh == null:
+		return ""
+	var surface: Array = mesh.mesh.surface_get_arrays(0)
+	var bones = surface[Mesh.ARRAY_BONES]
+	var weights: PackedFloat32Array = surface[Mesh.ARRAY_WEIGHTS]
+	for i in range(mini(bones.size(), weights.size())):
+		if weights[i] < 0.999:
+			continue
+		var bind: int = int(bones[i])
+		if bind < 0 or bind >= mesh.skin.get_bind_count():
+			return ""
+		var name: String = String(mesh.skin.get_bind_name(bind))
+		if not name.is_empty():
+			return name
+		var skeleton_index: int = mesh.skin.get_bind_bone(bind)
+		if skeleton_index >= 0 and skeleton_index < skeleton.get_bone_count():
+			return String(skeleton.get_bone_name(skeleton_index))
+	return ""
+
 func get_poses(skeleton: Skeleton3D, anim: AnimationPlayer, action: String) -> Dictionary:
 	var out: Dictionary = {}
 	var indices: Dictionary = {}
@@ -110,6 +130,9 @@ func _run() -> void:
 		check(mesh != null, "Rigid armor imported: " + part)
 		var report := only_one_bone_per_vertex(mesh)
 		check(report["ok"], "All vertices rigidly skinned: " + part)
+		var expected_bone: String = ("Chest" if part == "LayeredCuirass" else "UpperArmL" if part == "ShoulderPlateL" else "UpperArmR")
+		var actual_bone: String = primary_weighted_bone(mesh, rig)
+		check(actual_bone == expected_bone, "Armor weights bind to actual bone " + expected_bone + " (got " + actual_bone + ")")
 		print("R52 ARMOR WEIGHTS ", part, " = ", JSON.stringify(report))
 	var previous: Dictionary = get_poses(rig, animation, "Slash")
 	var updated: Dictionary = get_poses(rig, animation, "Slash_FullBody_R50")

@@ -25,7 +25,16 @@ func _run() -> void:
 	lab._draw_sword_sweep()
 	verify(lab.sword_sweep_debug.visible, "Strict F8 mode exposes actual contact path")
 	var dummy = lab.targets[0]
+	verify(dummy.hurtbox != null and dummy.hurtbox.collision_layer == 4, "Target owns independent damageable physics layer")
 	dummy.global_position = warrior.global_position + Vector3(0,0,-0.65)
+	await physics_frame
+	var query := PhysicsPointQueryParameters3D.new()
+	query.position = dummy.damage_center()
+	query.collision_mask = 4
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	var overlaps := lab.get_world_3d().direct_space_state.intersect_point(query)
+	verify(not overlaps.is_empty(), "Physics query resolves actual target hurtbox")
 	dummy.hp = 100.0
 	warrior._attack("Slash",0.72)
 	await root.get_tree().create_timer(0.75).timeout

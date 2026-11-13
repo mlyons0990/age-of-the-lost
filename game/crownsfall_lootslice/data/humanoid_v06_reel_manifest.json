@@ -1,0 +1,176 @@
+{
+  "schema": 2,
+  "title": "AOTL Humanoid Master V06 - Directional Gait and Toe Roll",
+  "source": "Higgsfield 3D Jutsu / Blender 5.2",
+  "source_project": "088e8199-50e8-4554-b0be-b108a6b2203a",
+  "source_revision": 11,
+  "source_glb_sha256": "ba7725cd0f6a2891f0553e0ba8688b515a19932715cc961872132ff5a75284bb",
+  "source_gzip_sha256": "ea4124d6c47de246adb3ae0d02e1bf075ffe8e241b5ae9dfc4e5fd90dda75657",
+  "joints": 58,
+  "fps": 30,
+  "reel_animation": "RIG_AOTL_Master_Humanoid_58",
+  "sockets": {
+    "main_hand": "WeaponRoot",
+    "off_hand": "ShieldRoot",
+    "vfx_right": "HandR",
+    "vfx_left": "HandL",
+    "back": "UpperChest",
+    "head": "Head",
+    "waist": "Hips"
+  },
+  "clips": [
+    {
+      "name": "Idle",
+      "start_frame": 1,
+      "end_frame": 48,
+      "loop": true
+    },
+    {
+      "name": "Walk",
+      "start_frame": 51,
+      "end_frame": 75,
+      "loop": true
+    },
+    {
+      "name": "Run",
+      "start_frame": 78,
+      "end_frame": 96,
+      "loop": true
+    },
+    {
+      "name": "Slash",
+      "start_frame": 99,
+      "end_frame": 121,
+      "loop": false
+    },
+    {
+      "name": "Dodge",
+      "start_frame": 124,
+      "end_frame": 147,
+      "loop": false
+    },
+    {
+      "name": "Cast",
+      "start_frame": 150,
+      "end_frame": 191,
+      "loop": false
+    },
+    {
+      "name": "HeavySlash",
+      "start_frame": 194,
+      "end_frame": 227,
+      "loop": false
+    },
+    {
+      "name": "Thrust",
+      "start_frame": 230,
+      "end_frame": 254,
+      "loop": false
+    },
+    {
+      "name": "HitReact",
+      "start_frame": 257,
+      "end_frame": 273,
+      "loop": false
+    },
+    {
+      "name": "CastRelease",
+      "start_frame": 276,
+      "end_frame": 296,
+      "loop": false
+    },
+    {
+      "name": "ShieldBlock",
+      "start_frame": 299,
+      "end_frame": 324,
+      "loop": false
+    },
+    {
+      "name": "Cleave",
+      "start_frame": 327,
+      "end_frame": 357,
+      "loop": false
+    },
+    {
+      "name": "DashStrike",
+      "start_frame": 360,
+      "end_frame": 385,
+      "loop": false
+    },
+    {
+      "name": "Jump",
+      "start_frame": 388,
+      "end_frame": 415,
+      "loop": false
+    },
+    {
+      "name": "Death",
+      "start_frame": 418,
+      "end_frame": 465,
+      "loop": false
+    },
+    {
+      "name": "Parry",
+      "start_frame": 468,
+      "end_frame": 486,
+      "loop": false
+    },
+    {
+      "name": "V06_WalkForward",
+      "start_frame": 489,
+      "end_frame": 513,
+      "loop": true
+    },
+    {
+      "name": "V06_RunForward",
+      "start_frame": 516,
+      "end_frame": 534,
+      "loop": true
+    },
+    {
+      "name": "V06_StrafeLeft",
+      "start_frame": 537,
+      "end_frame": 561,
+      "loop": true
+    },
+    {
+      "name": "V06_StrafeRight",
+      "start_frame": 564,
+      "end_frame": 588,
+      "loop": true
+    },
+    {
+      "name": "V06_WalkBackward",
+      "start_frame": 591,
+      "end_frame": 615,
+      "loop": true
+    },
+    {
+      "name": "V06_PivotLeft",
+      "start_frame": 618,
+      "end_frame": 642,
+      "loop": true
+    },
+    {
+      "name": "V06_PivotRight",
+      "start_frame": 645,
+      "end_frame": 669,
+      "loop": true
+    }
+  ],
+  "notes": [
+    "All authored source actions remain in Higgsfield editable .blend.",
+    "Godot reconstructs clips at runtime from export reel because Higgsfield scene GLB exports a single animation.",
+    "No game save or permanent item definition changes. Prototype render and human animation fidelity review still needed.",
+    "V06 directional/turn actions use explicit knee flexion and toe roll from Hinggsfield revision 11; preserve original 16 actions and 58-joint skeleton."
+  ],
+  "skeletal_gait_notes": {
+    "original_clips_kept": 16,
+    "added_clips": 7,
+    "foot_skin_vertices_reweighted": 28,
+    "original_reel_end_frame": 486,
+    "reel_end_frame": 669,
+    "stance_anchors": "Godot V06 supports world-space planted IK",
+    "source_blend_sha256": "af5ad799a4984da07fd4e9d8873a1023942e5ccec1dd89627c4f87ffc798815f"
+  }
+}

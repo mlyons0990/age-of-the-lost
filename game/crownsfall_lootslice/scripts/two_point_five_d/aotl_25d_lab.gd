@@ -147,7 +147,7 @@ func _build_hud() -> void:
     summary = _small_label("", 13)
     v.add_child(summary)
     v.add_child(_small_label("WASD / click move · Shift run · Space dodge · 1/2/3 attacks", 13, GOLD))
-    var mode_hint := "Wheel or +/- zoom · Home reset · V painted/rig/proxy · Tab class" if (OS.get_cmdline_user_args().has("--aotl-v03") or OS.get_cmdline_user_args().has("--aotl-v04") or OS.get_cmdline_user_args().has("--aotl-v05")) else "Wheel or +/- zoom · Home reset · V proxy · Tab class"
+    var mode_hint := "Wheel or +/- zoom · Home reset · V painted/rig/proxy · Tab class" if (OS.get_cmdline_user_args().has("--aotl-v03") or OS.get_cmdline_user_args().has("--aotl-v04") or OS.get_cmdline_user_args().has("--aotl-v05") or OS.get_cmdline_user_args().has("--aotl-v06")) else "Wheel or +/- zoom · Home reset · V proxy · Tab class"
     v.add_child(_small_label(mode_hint, 13, GOLD))
     v.add_child(_small_label("P: show / hide approved art reference", 13, IVORY))
     zoom_label = _small_label("", 13, Color("b0d3fb"))
@@ -203,6 +203,11 @@ func _on_player_impact(kind: String, where: Vector3, forward: Vector3) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
     if player == null:
+        return
+    # V06-only hold-to-lock facing: move sideways/backwards with WASD while
+    # looking toward the current combat target. Right-click was unused here.
+    if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and player.humanoid_v06_opt_in:
+        player.set_v06_facing_lock(event.pressed)
         return
     if event is InputEventMouseButton and event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
         _set_camera_zoom(camera_target_size + (-1.5 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.5))

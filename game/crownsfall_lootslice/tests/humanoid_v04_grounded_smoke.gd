@@ -108,7 +108,7 @@ func _run() -> void:
 		average_ankle_slip /= float(ankle_slip_samples.size())
 	print("V04_ANKLE_WORLD_SLIP_MEAN_M %.4f (%d frames)" % [average_ankle_slip, ankle_slip_samples.size()])
 	verify(ankle_slip_samples.size() >= 4, "actual ankle/world contact sampled at least four times")
-	verify(average_ankle_slip < 0.40, "animated ankle stays reasonably close to world-locked stance position")
+	verify(average_ankle_slip < 0.20, "mean animated ankle drift below 20cm during planted stance")
 	var sampled_weight := 0.0
 	for side in ["L","R"]:
 		sampled_weight=maxf(sampled_weight,float(rig.foot_ik[side].influence))

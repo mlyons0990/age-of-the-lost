@@ -288,8 +288,8 @@ func _physics_process(_delta: float) -> void:
 		if not TARGETING.can_hit(get_world_3d(), player,
 				player.global_position, direction, target.global_position, player.attack_type):
 			continue
-		var center: Vector3 = target.global_position + Vector3.UP * 1.2
-		if not WEAPON_SWEEP.swept_samples_touch_target(recent, center):
+		var center: Vector3 = target.damage_center()
+		if not WEAPON_SWEEP.swept_samples_touch_target(recent, center, target.damage_radius()):
 			continue
 		sweep_hit_instances[target.get_instance_id()] = true
 		var dead: bool = target.hit(TARGETING.damage_for(player.attack_type))

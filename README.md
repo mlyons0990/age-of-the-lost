@@ -1,6 +1,10 @@
 # age-of-the-lost
 AOTL Files
 
+## Latest development: Dodge Roll
+
+[Dodge Roll handoff and QA](game/crownsfall_lootslice/docs/DODGE_ROLL_HANDOFF.md). Space, or a new round HUD button, rolls Warrior or Mage toward the cursor with a brief invulnerability window and a 2.5 second cooldown. The roll pose is procedural and there is no roll sound yet. Verified on Linux with Godot 4.6.3: 1063 headless assertions across 18 suites, the 69 new ones also rendered. Not yet played by a human; the owner's new HUD layout and camera are not part of this change.
+
 ## Selective dialogue pilot
 
 [Dialogue handoff](game/crownsfall_lootslice/docs/SELECTIVE_DIALOGUE_HANDOFF.md) · [Grady pilot provenance](audio/dialogue_pilot/2026-11-12/README.md).

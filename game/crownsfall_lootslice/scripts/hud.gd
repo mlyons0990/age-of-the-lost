@@ -29,6 +29,7 @@ var status_label: Label
 var bag_view: Control
 var gear_buttons: Array = []
 var overlay_buttons: Array = []
+var dodge_button: Button
 
 func _exit_tree() -> void:
 	ART.icons.clear()
@@ -59,6 +60,13 @@ func _ready() -> void:
 			else: player.use_skill(["basic", "s1", "s2", "s3", "s4"][i], player.last_world_aim))
 		add_child(b)
 		overlay_buttons.append(b)
+	dodge_button = Button.new()
+	dodge_button.flat = true
+	dodge_button.focus_mode = Control.FOCUS_NONE
+	dodge_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	dodge_button.pressed.connect(func() -> void:
+		if not get_tree().paused: player.dodge_roll(player.last_world_aim))
+	add_child(dodge_button)
 	get_viewport().size_changed.connect(_layout_bar)
 	_layout_bar()
 	save_strip=PanelContainer.new(); save_strip.z_index=100
@@ -90,6 +98,9 @@ func _layout_bar() -> void:
 	for i in overlay_buttons.size():
 		overlay_buttons[i].position = Vector2(x0 + i * 76 + (12 if i == 5 else 0), sz.y - 118)
 		overlay_buttons[i].size = Vector2(68, 68)
+	var dodge_rect := dodge_button_rect(sz)
+	dodge_button.position = dodge_rect.position
+	dodge_button.size = dodge_rect.size
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton and event.pressed:
@@ -229,7 +240,7 @@ func open_page(kind: String) -> void:
 			box.add_child(_button("Sound effects: " + ("Off" if main.sound.muted else "On"), func() -> void:
 				main.sound.set_muted(not main.sound.muted)
 				open_page("pause"), Vector2(0, 42)))
-			box.add_child(_label("Crownsfall / Systems expansion\n\nLMB: move or attack · Shift+LMB: first equipped skill\nRMB / 1 / 2 / 3 / 4: skills · Q: potion\nE: nearby service · I: equipment · C: character · K/B: spellbook\nR: training Scar · F11: fullscreen · F3: navigation outline\nF6: gain a level (development shortcut)", 20))
+			box.add_child(_label("Crownsfall / Systems expansion\n\nLMB: move or attack · Shift+LMB: first equipped skill\nRMB / 1 / 2 / 3 / 4: skills · Q: potion · Space: dodge roll\nE: nearby service · I: equipment · C: character · K/B: spellbook\nR: training Scar · F11: fullscreen · F3: navigation outline\nF6: gain a level (development shortcut)", 20))
 			box.add_child(_button("Save and quit", func() -> void:
 				main.request_exit(), Vector2(0, 42)))
 			if not main.save_error.is_empty() or main.save_blocked:
@@ -571,7 +582,7 @@ func _open_start() -> void:
 		paths.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; paths.custom_minimum_size.x = 500; card.add_child(paths)
 	creation_details = VBoxContainer.new(); box.add_child(creation_details)
 	_refresh_creation_details()
-	box.add_child(_label("LMB: move or use primary skill  ·  1 / 2 / 3 / 4: active abilities  ·  Q: potion\nI: inventory  ·  K: Grimoire  ·  E: nearby services  ·  R: training Scar  ·  Esc: pause", 17, Color("9daec5")))
+	box.add_child(_label("LMB: move or use primary skill  ·  1 / 2 / 3 / 4: active abilities  ·  Q: potion  ·  Space: dodge roll\nI: inventory  ·  K: Grimoire  ·  E: nearby services  ·  R: training Scar  ·  Esc: pause", 17, Color("9daec5")))
 	var begin := func() -> void:
 		if start_panel == null: return
 		if not main.create_character(creation_class, name_edit.text): return

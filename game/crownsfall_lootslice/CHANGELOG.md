@@ -1,3 +1,11 @@
+# November 12, 2026 — Dodge Roll
+
+- Added a Space-bound Dodge Roll for Warrior and Mage: 2.6 ground units in 0.28s, 0.32s of invulnerability, no mana, 2.5s cooldown, stopped by walls.
+- It can cut attack recovery but not a committed swing, cast windup or Shield Charge; abilities are locked mid-roll.
+- Added a round HUD button with the Higgsfield Dodge Roll icon, cooldown sweep and tooltip, to the right of the mana orb.
+- Roll pose is procedural on the existing presentation pivot. Roll state is transient; save schema remains six.
+- Added 69 assertions (headless and rendered); full headless total 1063 across 18 suites, including the dialogue suite.
+
 # November12,2026 — Approved framed Higgsfield skill-art standard
 
 - Selected20 full-bleed painted skill images, with distinct beveled borders and restrained school trim, as the user-approved style for future AOTL action-bar spells.

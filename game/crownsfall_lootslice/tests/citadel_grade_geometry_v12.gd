@@ -31,6 +31,14 @@ func _run() -> void:
     var stat: Dictionary = preview.status()
     _check(stat.treads == 9, "nine real tread meshes")
     _check(stat.arch_voussoirs == 32, "thirty-two actual arch stones")
+    _check(is_equal_approx(stat.gate_center_along_route_m, 12.25),
+        "sculpt and procedural gateway centers align")
+    _check(is_equal_approx(stat.arch_clear_span_m, 8.10),
+        "sourcing the sculpt's 8.10m arch aperture")
+    _check(is_equal_approx(stat.upper_landing_m, 4.0),
+        "sourcing the 4m landing for the sculpted gateway")
+    _check(is_equal_approx(stat.arch_spring_above_upper_floor_m, 4.14),
+        "matching the sculpt's Gothic spring height")
     _check(stat.physics_3d_colliders == 9 + 18 + 1 + 2 + 2 + 32,
         "tread, parapet, landing, pier and arch colliders")
     _check(stat.navigation_authority == "existing NavigationRegion2D",

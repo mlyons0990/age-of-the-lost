@@ -5,7 +5,7 @@
   "godot_version_tested": "4.4.1 Linux headless",
   "checks": {
     "stance_classifier": {
-      "pass": 17,
+      "pass": 20,
       "fail": 0
     },
     "ik_import_smoke": {
@@ -18,6 +18,23 @@
       "observed_plants": 2,
       "observed_releases": 1,
       "ray_hits": 98
+    },
+    "run_floor_contact": {
+      "pass": 11,
+      "fail": 0,
+      "observed_plants": 2,
+      "observed_releases": 2,
+      "ray_hits": 122
+    },
+    "terrain_slope": {
+      "pass": 6,
+      "fail": 0,
+      "steep_rejections": 2
+    },
+    "ik_lifetime": {
+      "pass": 9,
+      "fail": 0,
+      "toggles_tested": 100
     },
     "prior_phase21_gait": {
       "pass": 14,
@@ -40,13 +57,19 @@
   ],
   "production_scripts_unchanged": 43,
   "changed_files": [
+    "PHASE22_MANIFEST.json",
+    "PHASE22_READ_ME_FIRST.md",
     "game/crownsfall_lootslice/docs/PHASE22_GROUND_CONTACT.md",
     "game/crownsfall_lootslice/project.godot",
     "game/crownsfall_lootslice/scripts/three_d/phase18_foot_ik.gd",
     "game/crownsfall_lootslice/scripts/three_d/phase22_contact_classifier.gd",
     "game/crownsfall_lootslice/scripts/three_d/rig_controller.gd",
+    "game/crownsfall_lootslice/tests/PHASE22_QA_REPORT.json",
     "game/crownsfall_lootslice/tests/phase22_contact_classifier_test.gd",
     "game/crownsfall_lootslice/tests/phase22_ik_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase22_run_ik_integration.gd",
+    "game/crownsfall_lootslice/tests/phase22_solver_lifetime_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase22_terrain_slope_smoke.gd",
     "game/crownsfall_lootslice/tests/phase22_walk_ik_integration.gd"
   ],
   "removed_files": []

@@ -13,6 +13,14 @@ const GREEN := Color("62805c")
 const GREEN_DARK := Color("41573b")
 const WATER := Color("77c4cc")
 const FLOWER := Color("f6e5bb")
+const ORIGINAL_PLAZA_PAINTING: Texture2D = preload("res://assets/plaza.png")
+const SOFT_WALKING_MASK: Texture2D = preload("res://assets/25d/crownsfall_nav_floor_softmask.png")
+const ORIGINAL_STONE_PAVER: Texture2D = preload("res://assets/25d/crownsfall_ivory_paver_from_approved_art.png")
+
+var collision_footprints: Array[Dictionary] = []
+var painted_walkway: MeshInstance3D
+var painted_walkway_triangle_count := 0
+var painted_walkway_area_pixels := 0.0
 
 func _ready() -> void:
     name = "Crownsfall_2P5D_Procedural_Courtyard"
@@ -46,6 +54,8 @@ func _block(label: String, pos: Vector3, dimensions: Vector3, color: Color, meta
     return node
 
 func _solid(label: String, pos: Vector3, dimensions: Vector3, color: Color) -> void:
+    # Record identical XZ footprints for the real 2D nav vs 3D prop audit.
+    collision_footprints.append({"id": label, "x": pos.x, "z": pos.z, "width": dimensions.x, "depth": dimensions.z})
     _block(label, pos, dimensions, color)
     var object := StaticBody3D.new()
     object.name = label + "_collision"
@@ -86,22 +96,84 @@ func _cylinder(label: String, pos: Vector3, radius: float, height: float, color:
     add_child(item)
     return item
 
+func install_painted_walkway(original_floor_outline: PackedVector2Array, world_from_2d: Callable) -> void:
+    # UV-map the *actual approved AOTL painted plaza floor* onto the identical
+    # polygon used by the saved game's NavigationRegion2D. This is a 3D mesh
+    # rendered from the locked painting, not a flat screenshot/background card.
+    # The painting itself is not modified and remains the fallback on F8 off.
+    if painted_walkway != null:
+        return
+    if original_floor_outline.size() < 3 or not world_from_2d.is_valid():
+        push_error("AOTL painted floor requires the original WALKABLE polygon")
+        return
+    var tris: PackedInt32Array = Geometry2D.triangulate_polygon(original_floor_outline)
+    if tris.size() < 3:
+        push_error("AOTL original game navigation outline failed triangulation")
+        return
+    var builder := SurfaceTool.new()
+    builder.begin(Mesh.PRIMITIVE_TRIANGLES)
+    var texturing_size := Vector2(float(ORIGINAL_PLAZA_PAINTING.get_width()), float(ORIGINAL_PLAZA_PAINTING.get_height()))
+    for vertex_index in tris:
+        var atlas_point: Vector2 = original_floor_outline[vertex_index]
+        var ground_point: Vector3 = world_from_2d.call(atlas_point)
+        builder.set_uv(atlas_point / texturing_size)
+        builder.set_normal(Vector3.UP)
+        builder.add_vertex(ground_point + Vector3.UP * 0.042)
+    var mat := ShaderMaterial.new()
+    mat.resource_name = "Art_Direction_PaintedFloor_SoftNavigationFalloff"
+    var shader := Shader.new()
+    shader.code = """shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_never, blend_mix;
+uniform sampler2D aotl_plaza : source_color, filter_linear_mipmap;
+uniform sampler2D nav_soft_mask : filter_linear_mipmap;
+void fragment() {
+    vec4 paint = texture(aotl_plaza, UV);
+    ALBEDO = paint.rgb;
+    ALPHA = texture(nav_soft_mask, UV).r;
+}
+"""
+    mat.shader = shader
+    mat.set_shader_parameter("aotl_plaza", ORIGINAL_PLAZA_PAINTING)
+    mat.set_shader_parameter("nav_soft_mask", SOFT_WALKING_MASK)
+    builder.set_material(mat)
+    painted_walkway = MeshInstance3D.new()
+    painted_walkway.name = "Original_AOTL_Painted_NavMesh_Floor"
+    painted_walkway.mesh = builder.commit()
+    add_child(painted_walkway)
+    # The original paint contains a complete ornate floor crest; the geometry
+    # mock-up's oversized gold disc would otherwise float over that original art.
+    for child in get_children():
+        if child is MeshInstance3D and (child.name.begins_with("Plaza_Royal_Seal") or child.name.begins_with("Seal_Brass_Ray")):
+            child.visible = false
+    painted_walkway_triangle_count = tris.size() / 3
+    var signed_area := 0.0
+    for i in original_floor_outline.size():
+        var a: Vector2 = original_floor_outline[i]
+        var b: Vector2 = original_floor_outline[(i + 1) % original_floor_outline.size()]
+        signed_area += a.cross(b)
+    painted_walkway_area_pixels = absf(signed_area) * 0.5
+
+func collidable_world_footprints() -> Array[Dictionary]:
+    # These include non-walkable Citadel walls, railings, stone columns, gardens,
+    # and fountain plinths. Validation is performed by the read-only bridge.
+    return collision_footprints.duplicate(true)
+
 func _lighting() -> void:
     var env := WorldEnvironment.new()
     env.name = "Crownsfall_ArtDirection_Atmosphere"
     var settings := Environment.new()
     settings.background_mode = Environment.BG_COLOR
-    settings.background_color = Color("c5ced6")
+    settings.background_color = Color("9eafbf")
     settings.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-    settings.ambient_light_color = Color("e8decc")
-    settings.ambient_light_energy = 0.42
+    settings.ambient_light_color = Color("d1c2af")
+    settings.ambient_light_energy = 0.34
     env.environment = settings
     add_child(env)
     var sun := DirectionalLight3D.new()
     sun.name = "Sun_Warm_Ivory_Stone"
     sun.rotation_degrees = Vector3(-58, -42, 0)
     sun.light_color = Color("fff0d4")
-    sun.light_energy = 0.82
+    sun.light_energy = 0.71
     sun.shadow_enabled = true
     add_child(sun)
 
@@ -117,17 +189,19 @@ func _paving() -> void:
     add_child(floor)
     _block("Limestone_Underlay", Vector3(0, -0.228, 0), Vector3(60, 0.44, 60), WARM_STONE)
 
-    # Multimesh instead of ~900 separately rendered box nodes, to keep the zoomed-out camera efficient.
+    # Four times the cobble density at roughly the same scene draw-call cost.
+    # A genuine diffuse grain texture is derived from the user's *original*
+    # Crownsfall painting instead of making every stone a flat white box.
     var positions := [[], [], []]
-    for ix in range(-15, 16):
-        for iz in range(-15, 16):
+    for ix in range(-30, 31):
+        for iz in range(-30, 31):
             var color_variant := posmod(ix * 7 + iz * 11, 11)
             var slot := 0 if color_variant < 3 else (1 if color_variant < 8 else 2)
-            positions[slot].append(Vector3(float(ix) * 1.89, 0.012, float(iz) * 1.89))
-    var palette := [IVORY, Color("bfb09c"), LIMESTONE]
+            positions[slot].append(Vector3(float(ix) * 0.966, 0.012, float(iz) * 0.966))
+    var palette := [Color("c2b6a6"), Color("d0c2ae"), Color("b3a698")]
     for variant in 3:
         var paving := BoxMesh.new()
-        paving.size = Vector3(1.85, 0.025, 1.85)
+        paving.size = Vector3(0.944, 0.025, 0.944)
         var multi := MultiMesh.new()
         multi.transform_format = MultiMesh.TRANSFORM_3D
         multi.mesh = paving
@@ -137,7 +211,10 @@ func _paving() -> void:
         var rendered := MultiMeshInstance3D.new()
         rendered.name = "Paved_Cobblestones_%02d" % variant
         rendered.multimesh = multi
-        rendered.material_override = _mat(palette[variant])
+        var material := _mat(palette[variant])
+        material.albedo_texture = ORIGINAL_STONE_PAVER
+        material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+        rendered.material_override = material
         add_child(rendered)
 
 func _center_inlay() -> void:
@@ -186,7 +263,7 @@ func _royal_gate() -> void:
 
 func _market() -> void:
     var left := Vector3(-9.8, 0, -7.9)
-    _block("Market_Counter", left + Vector3(0, .88, 0), Vector3(5.4, 1.1, 1.35), WARM_STONE)
+    _solid("Market_Counter", left + Vector3(0, .88, 0), Vector3(5.4, 1.1, 1.35), WARM_STONE)
     _block("Merchant_Display", left + Vector3(0, 1.47, 0), Vector3(5.7, .19, 1.62), LIMESTONE)
     for x in [left.x - 2.3, left.x + 2.3]:
         for z in [left.z - 1.4, left.z + 1.4]:

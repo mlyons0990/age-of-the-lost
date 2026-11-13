@@ -5,7 +5,7 @@ Date: 2026-11-13. Branch: `feature/phase13-citadel-depth-bridge`.
 ## Real changes
 - The existing live 2.5D scenery bridge now knows how to install the Phase 12 3D masonry module only when the caller provides **measured Citadel stair endpoints** and its **actual NavigationRegion2D**.
 - It rejects blocked / unknown routes using 17 samples of the path center and both shoulders. It does not create or replace a gameplay navigation region.
-- Geometry is **disabled by default** and can be enabled and disabled with `set_citadel_grade_preview(true/false)`; call from Phase 11's real F4 handler once its source is restored.
+- Geometry is **disabled by default** and can be enabled and disabled with `set_citadel_grade_preview(true/false)`; call from Phase 11's real F4 handler once its source is restored. Preview off also disables the actual StaticBody3D collision layers, preventing invisible physical blockers.
 - F10 knight mirror is offset vertically by the grade sample after its original painted-frame/foot-position calibration. Original 2D player, collision, saves, skills and inventory are untouched.
 - Service markers and painted town NPC depth mirrors get matching non-accumulating Y offsets. On toggling off, presentation returns to its original ground plane.
 - Any 3D mesh occludes the F10 Sprite3D through its existing depth test. No extra fake sprite actor is created.

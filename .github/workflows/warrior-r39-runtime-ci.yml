@@ -1,4 +1,4 @@
-name: AOTL R39 playable controller acceptance
+name: AOTL R39 playable controller and slope acceptance
 
 on:
   push:
@@ -7,6 +7,8 @@ on:
       - .github/workflows/warrior-r39-runtime-ci.yml
       - game/crownsfall_lootslice/tests/verify_warrior_r39_runtime_controller.gd
       - game/crownsfall_lootslice/tests/terrain_ik_collision_r39.gd
+      - game/crownsfall_lootslice/tests/terrain_foot_ik_integration.gd
+      - game/crownsfall_lootslice/scripts/three_d/terrain_foot_ik.gd
   workflow_dispatch:
 
 permissions:
@@ -26,13 +28,13 @@ jobs:
           git lfs install --local
           git lfs pull --include="game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb,game/crownsfall_lootslice/models/AOTL_Wayfarer_Articulated_Proxy.glb" --exclude=""
           echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum --check -
-      - name: Download official Godot 4.3
+      - name: Download official Godot 4.6.3
         run: |
           set -euo pipefail
-          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
           mkdir -p /tmp/godot
           unzip -q /tmp/godot.zip -d /tmp/godot
-          chmod +x /tmp/godot/Godot_v4.3-stable_linux.x86_64
+          chmod +x /tmp/godot/Godot_v4.6.3-stable_linux.x86_64
       - name: Build non-destructive minimal controller integration project
         shell: bash
         run: |
@@ -46,6 +48,7 @@ jobs:
           cp game/crownsfall_lootslice/scripts/three_d/equipment_sockets3d.gd "$p/scripts/three_d/"
           cp game/crownsfall_lootslice/tests/verify_warrior_r39_runtime_controller.gd "$p/tests/"
           cp game/crownsfall_lootslice/tests/terrain_ik_collision_r39.gd "$p/tests/"
+          cp game/crownsfall_lootslice/tests/terrain_foot_ik_integration.gd "$p/tests/"
           cat > "$p/project.godot" <<'EOF'
           config_version=5
           [application]
@@ -65,6 +68,12 @@ jobs:
           grep -q "AOTL R39 RUNTIME CONTROLLER PASS" /tmp/aotl-controller-runtime.log
           "$GODOT" --headless --path /tmp/aotl-r39-runtime --script res://tests/terrain_ik_collision_r39.gd 2>&1 | tee /tmp/aotl-terrain-physics.log
           grep -q "AOTL R39 TERRAIN PHYSICS PASS" /tmp/aotl-terrain-physics.log
+          "$GODOT" --headless --path /tmp/aotl-r39-runtime --script res://tests/terrain_foot_ik_integration.gd 2>&1 | tee /tmp/aotl-terrain-math.log
+          grep -q "AOTL terrain-foot-IK logic checks passed" /tmp/aotl-terrain-math.log
+          if grep -E "^ERROR:" /tmp/aotl-controller-runtime.log /tmp/aotl-terrain-physics.log /tmp/aotl-terrain-math.log; then
+            echo "Godot reported engine errors in 4.6.3; refusing production QA green status."
+            exit 1
+          fi
       - name: Preserve runtime QA logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -74,5 +83,6 @@ jobs:
             /tmp/aotl-controller-import.log
             /tmp/aotl-controller-runtime.log
             /tmp/aotl-terrain-physics.log
+            /tmp/aotl-terrain-math.log
           if-no-files-found: warn
           retention-days: 30

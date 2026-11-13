@@ -5,8 +5,8 @@ import base64, gzip, hashlib, pathlib, sys
 HERE = pathlib.Path(__file__).resolve().parent.parent
 SRC = HERE / "models/source/AOTL_Humanoid_Master_V04.glb.gz.b64"
 DEST = HERE / "models/AOTL_Humanoid_Master_V04.glb"
-GLB_SHA256 = "7e2af108e09539ed4a3dc192e7790e2a8cf8fed3989048a2cb07a017221d365f"
-GZIP_SHA256 = "f331a6830a7c5825471140e0619d4f7a76e450fd4e595423a7d6fee0e1319081"
+GLB_SHA256 = "7aa9d0bb641480d3cac35958e1ba7ce759f12e3b41aafe898f4f055d953d75cf"
+GZIP_SHA256 = "73835cf9c81aaefd0f3092fee5f2b692398363f1ae71340f416e517e89be701c"
 def sha(blob: bytes) -> str: return hashlib.sha256(blob).hexdigest()
 def main() -> int:
     packed = base64.b64decode(SRC.read_text(encoding="ascii").strip(), validate=True)

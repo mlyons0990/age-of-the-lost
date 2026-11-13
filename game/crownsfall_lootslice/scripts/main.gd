@@ -94,6 +94,11 @@ const SERVICES := {
 	"merchant": {"pos": Vector2(1540, 900), "label": "Quartermaster", "color": "8de5ba"},
 	"lore": {"pos": Vector2(1080, 900), "label": "Stone memory", "color": "bdb0ff"},
 	"board": {"pos": Vector2(1280, 750), "label": "Noticeboard", "color": "90c9ff"},
+	# Royal Promenade delegates to the SAME existing town services/pages.
+	# No extra inventory economy, save fields or duplicate service controller.
+	"promenade_smith": {"pos": Vector2(1960, 1990), "label": "Lantern Quartermaster", "color": "e8c77a", "page": "merchant"},
+	"promenade_archivist": {"pos": Vector2(2520, 2220), "label": "Archivist Envoy", "color": "bdb0ff", "page": "lore"},
+	"promenade_caravan": {"pos": Vector2(2120, 2610), "label": "Caravan Stash", "color": "9edccc", "page": "stash"},
 }
 
 
@@ -126,6 +131,7 @@ func _ready() -> void:
 	player.main = self
 	player.position = START
 	world.add_child(player)
+	_install_promenade_npc_art()
 
 	cam = Camera2D.new()
 	cam.limit_left = 0
@@ -660,6 +666,31 @@ func _pick_up(drop: Node2D, automatic := false) -> bool:
 	sound.play_cue("pickup"); hud.toast(loot_notice,Color("c7d9b1"),true)
 	return true
 
+func _install_promenade_npc_art() -> void:
+	# Painted sprite stand-ins for three gameplay-connected service characters.
+	# This scene uses the official class animation art until unique NPC skins
+	# are approved. The service point itself is the E-interaction authority.
+	for npc in [
+		{"id":"promenade_smith","sheet":"knight","anim":"idle_down"},
+		{"id":"promenade_archivist","sheet":"mage","anim":"idle_se"},
+		{"id":"promenade_caravan","sheet":"knight","anim":"idle_se"},
+	]:
+		var group := Node2D.new()
+		group.name = "ArtOnly_NPC_" + String(npc.id)
+		group.position = SERVICES[String(npc.id)].pos + Vector2(0, -18)
+		var sprite := Sprite2D.new()
+		sprite.name = "CanonClassIdle_ProvisionalNPC"
+		var image: Texture2D = load("res://assets/" + String(npc.sheet) + "/" + String(npc.anim) + ".png")
+		var atlas := AtlasTexture.new()
+		atlas.atlas = image
+		atlas.region = Rect2(0, 0, 384, 384)
+		sprite.texture = atlas
+		sprite.scale = Vector2.ONE * 0.52
+		sprite.offset = Vector2(0, -138)
+		group.add_child(sprite)
+		world.add_child(group)
+
+
 func interact() -> void:
 	if player.dead or get_tree().paused: return
 	var closest := ""
@@ -669,7 +700,9 @@ func interact() -> void:
 		if d <= distance:
 			distance = d; closest = key
 	if closest == "": hud.toast("Move near a labeled service, then press E.", Color("b3c4dc"), true)
-	else: hud.open_page(closest)
+	else:
+		var page_name: String = String(SERVICES[closest].get("page", closest))
+		hud.open_page(page_name)
 
 
 # ---------------------------------------------------------------- progression

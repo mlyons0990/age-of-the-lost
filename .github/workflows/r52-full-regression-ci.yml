@@ -12,6 +12,9 @@ on:
       - game/crownsfall_lootslice/tests/verify_r50_rig_lab_optin.gd
       - game/crownsfall_lootslice/tests/verify_r50_runtime_optin.gd
       - game/crownsfall_lootslice/tests/verify_r52_live_rig_lab.gd
+      - game/crownsfall_lootslice/tests/verify_r52_scene_entry.gd
+      - game/crownsfall_lootslice/scenes/r52_rigid_armor_combat_lab.tscn
+      - game/crownsfall_lootslice/tests/verify_r52_rigid_armor_import.gd
       - game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.audit.json
   workflow_dispatch:
 

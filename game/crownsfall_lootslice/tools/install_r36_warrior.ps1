@@ -73,7 +73,7 @@ if ($RunImportAudit) {
     } else {
         & $godot.Source --headless --path $ProjectRoot --editor --quit
         if ($LASTEXITCODE -ne 0) { throw 'Godot import failed; prior model backup remains available.' }
-        & $godot.Source --headless --path $ProjectRoot --script 'res://tests/verify_warrior_r36_import.gd' --model=$TargetFileName
+        & $godot.Source --headless --path $ProjectRoot --script 'res://tests/verify_warrior_r36_import.gd' -- --model=$TargetFileName
         if ($LASTEXITCODE -ne 0) { throw 'Warrior rig import audit failed; restore from backups/models if needed.' }
     }
 }

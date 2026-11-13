@@ -37,10 +37,15 @@ func _run() -> void:
 	verify(not overlaps.is_empty(), "Physics query resolves actual target hurtbox")
 	dummy.hp = 100.0
 	warrior._attack("Slash",0.72)
-	await root.get_tree().create_timer(0.75).timeout
+	await root.get_tree().create_timer(0.62).timeout
 	verify(is_equal_approx(dummy.hp,68.0), "Animation-swept blade hits dummy at reachable 0.65 meter range")
 	verify(lab.sweep_hit_instances.has(dummy.get_instance_id()), "Damaged target recorded once for current swing")
-	await root.get_tree().create_timer(0.25).timeout
+	verify(warrior.attack_t > 0.0, "Mode-change test occurs inside original active swing")
+	lab.strict_weapon_sweep = false
+	lab._on_impact(dummy.global_position, "Slash", Vector3.FORWARD)
+	verify(is_equal_approx(dummy.hp,68.0), "Switching to baseline mid-swing cannot damage target twice")
+	lab.strict_weapon_sweep = true
+	await root.get_tree().create_timer(0.38).timeout
 	verify(is_equal_approx(dummy.hp,68.0), "Follow-through does not hit dummy twice")
 	dummy.global_position = warrior.global_position + Vector3(0,0,-1.35)
 	dummy.hp = 100.0

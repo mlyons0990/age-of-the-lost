@@ -1,7 +1,7 @@
 {
   "schema": "aotl.citadel.phase23.painterly_material_pass.v1",
   "date_utc": "2026-11-13",
-  "status": "isolated_material_candidate_CI_in_progress",
+  "status": "isolated_blender_and_godot_CI_success_unmerged",
   "source_higgsfield_project": "0361ff9b-2829-4595-a64e-564f39e1eeac",
   "source_revision_before": 12,
   "new_revision": 13,
@@ -79,5 +79,55 @@
   "higgsfield_unlimited_reference_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261113_153546_b01661dd-c70c-47ca-87cd-9643001408fa.png",
   "reference_is_canon": false,
   "quality_caveat": "Upgraded texture resolution and color variation do not guarantee painterly art quality; broad facade shapes remain coarse and approved camera/gameplay tests needed",
-  "main_merge_allowed": false
+  "main_merge_allowed": false,
+  "github_verified_binary": {
+    "path": "game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_Painterly_v13.glb",
+    "blob_sha": "b0056b3a47fa30b4a9fe3fbb7978bcbc77d9abc0",
+    "sha256": "49b4c70ae15949931cef3b1b044f23c024cba9451c3be0fa643942ac45591974",
+    "bytes": 4839768,
+    "storage": "GitHub private draft branch, true binary Git blob"
+  },
+  "google_drive_verified_bundle": {
+    "file_id": "1YdHjQ_aLRD7nPgekSBeS8qXO3LHRN7r2",
+    "name": "AOTL_Phase23_Painterly_Complete_Godot_Build.zip",
+    "bytes": 15612148,
+    "folder": "/Google Drive/Age of the Lost — Expanded Project and Handoff — 2026-11-11",
+    "contains": [
+      "editable Blender file",
+      "binary GLB",
+      "GLB QA manifest",
+      "Godot baseline and painted captures 1920x1080, 2560x1440"
+    ]
+  },
+  "isolated_ci": {
+    "url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43457702858",
+    "conclusion": "success",
+    "actual_painted_glb_direct_godot_import": "50/50",
+    "painted_atlas_and_grade": "60/60",
+    "python_binary_uv_checks": "12/12",
+    "engine": "Godot 4.6.3",
+    "render_1080": {
+      "pixels_sampled": 2040,
+      "changed_gt_2pct_rgb": 145,
+      "fraction": 0.07107843137254902,
+      "painted_unique_tones": 42,
+      "baseline_unique_tones": 37
+    },
+    "render_1440": {
+      "pixels_sampled": 3600,
+      "changed_gt_2pct_rgb": 276,
+      "fraction": 0.07666666666666666,
+      "painted_unique_tones": 58,
+      "baseline_unique_tones": 54
+    },
+    "material_count": 10,
+    "mesh_count": 309,
+    "embedded_painterly_images": 3,
+    "textured_surfaces": 202
+  },
+  "backup_live_approved_game_changed": false,
+  "live_phase11_F5_gameplay_integrated": false,
+  "actual_player_IK_on_painted_citadel_verified": false,
+  "aesthetic_canon_approved": false,
+  "next_art_direction": "The actual 1080p screenshots remain coarse, flat, blocky architecture with simple sky. Improve building silhouettes, arches, rooflines, props, lighting, character occlusion and painterly detail before seeking art approval. Textures alone do not solve geometry and setting."
 }

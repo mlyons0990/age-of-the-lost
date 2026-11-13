@@ -21,4 +21,4 @@ Run `godot --headless --path game/crownsfall_lootslice --script res://tests/phas
 - Physical 70-degree incline: 9 checks, 2 steep-ground rejects; 20-degree ground accepted; raised step avoids burying feet, no locks.
 - Component lifecycle (100 toggles + clean teardown): 9 checks.
 - Phase21 gait (14), stride math (11), missing-master fallback (3): 28 regression checks.
-Total **100 passing assertions**. No Godot 4.6.3 Windows verification was executed in this environment.
+Plus 6 actual rig-lab keyboard dispatch checks (F11 on/off, F10 cadence, F8 reset). Total **106 passing assertions**. No Godot 4.6.3 Windows verification was executed in this environment.

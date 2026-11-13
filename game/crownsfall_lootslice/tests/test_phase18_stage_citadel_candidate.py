@@ -86,6 +86,18 @@ class StagingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"art-only"):
             self.planning()
 
+    def test_rejects_symlinked_candidate_parent_escaping_project(self):
+        parent=self.game/"assets"/"25d"
+        parent.mkdir(parents=True)
+        outside=self.base/"outside_citadel"
+        outside.mkdir()
+        try:
+            (parent/"citadel").symlink_to(outside,target_is_directory=True)
+        except (OSError, NotImplementedError):
+            self.skipTest("symlinks unavailable")
+        with self.assertRaisesRegex(ValueError,"escapes approved project"):
+            self.planning()
+
     def test_rejects_modified_backup_integrity(self):
         self.zip.write_bytes(b"bad archive")
         with self.assertRaises(Exception):

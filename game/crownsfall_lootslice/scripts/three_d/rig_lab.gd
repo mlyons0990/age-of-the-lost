@@ -194,7 +194,7 @@ func _build_hud() -> void:
 	layer.add_child(bottom)
 	var words := VBoxContainer.new()
 	bottom.add_child(words)
-	words.add_child(_hud_label("WASD move    Shift run    Space dodge    F9 IK on/off    F10 foot targets    Click slash    1 cleave    2 dash    3 cast", 18, GOLD))
+	words.add_child(_hud_label("WASD move    Shift run    Space dodge    F9 IK    F10 IK targets    F11 equipment sockets    Click slash    1/2/3 skills", 18, GOLD))
 	words.add_child(_hud_label("Foot IK automatically enables only on compatible leg bones. Current proxy may use the original animation. Terrain IK and cloth require further QA.", 15))
 
 func _process(delta: float) -> void:
@@ -202,7 +202,7 @@ func _process(delta: float) -> void:
 	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
-	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
+	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum

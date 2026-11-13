@@ -61,6 +61,14 @@ func _run() -> void:
         bridge.to_2d(Vector3(0.0,0,4.0))), "upper island valid")
     _check(not bridge._citadel_inside_authoritative_polygon(narrow_gap,
         bridge.to_2d(Vector3(0.0,0,3.20))), "center gap truly non-walkable")
+    var hairline_gap := _nav_from_rects(bridge, [
+        [Vector2(-5,-1),Vector2(5,3.171)],
+        [Vector2(-5,3.191),Vector2(5,10)]])
+    _check(not bridge._citadel_route_inside_navigation(start_px,end_px,hairline_gap,7.5),
+        "20mm disconnected nav gap cannot hide between 0.15m samples")
+    _check(not bridge._citadel_lane_inside_authoritative_nav(
+        hairline_gap, start_px, end_px),
+        "exact indexed polygon edge crossings expose hairline centerline gap")
     var clipped := _nav_from_rects(bridge, [
         [Vector2(-3.38,-1),Vector2(3.38,10)]])
     _check(not bridge._citadel_route_inside_navigation(start_px,end_px,clipped,7.5),
@@ -84,7 +92,7 @@ func _run() -> void:
     _check(not bridge.install_verified_citadel_grade(start_px,end_px,narrow_gap),
         "invalid disconnected route never creates a physical stair")
     _check(bridge.citadel_grade == null, "no geometry installed on invalid route")
-    for nav in [full,narrow_gap,clipped,turned,long_nav]:
+    for nav in [full,narrow_gap,hairline_gap,clipped,turned,long_nav]:
         nav.queue_free()
     bridge.scenery.free()
     bridge.free()

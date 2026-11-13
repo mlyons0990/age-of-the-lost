@@ -106,7 +106,7 @@ class ExternalGlbGateTests(unittest.TestCase):
             self.gate()
 
     def test_invalid_embedded_image_signature_rejected(self):
-        self.bin=b"\\x00"*36+b"bad-image-dat" + bytes([137,80,78,71,13,10,26,10])
+        self.bin=bytes(36)+b"bad-image-dat" + bytes([137,80,78,71,13,10,26,10])
         self.doc["buffers"][0]["byteLength"]=len(self.bin)
         with self.assertRaisesRegex(gate.GlbRejected,"PNG signature"):
             self.gate()

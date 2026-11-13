@@ -174,9 +174,17 @@ func _build_locomotion() -> void:
 	locomotion.name = "V03_Idle_Walk_Run_ContinuousBlend"
 	model_root.add_child(locomotion)
 	locomotion.anim_player = locomotion.get_path_to(animation)
-	locomotion.tree_root = blend
+	# Godot 4.6-compatible speed control: AnimationNodeTimeScale in BlendTree.
+	# The tree has Movement -> Rate -> output; no invalid AnimationTree.speed_scale.
+	var graph := AnimationNodeBlendTree.new()
+	graph.add_node("Movement", blend)
+	graph.add_node("Rate", AnimationNodeTimeScale.new())
+	graph.connect_node("Rate", 0, "Movement")
+	graph.connect_node("output", 0, "Rate")
+	locomotion.tree_root = graph
 	locomotion.active = true
-	locomotion.set("parameters/blend_position", 0.0)
+	locomotion.set("parameters/Movement/blend_position", 0.0)
+	locomotion.set("parameters/Rate/scale", 1.0)
 
 func _build_sockets() -> void:
 	var bones := {
@@ -289,9 +297,9 @@ func sync_actor(state: String, look: Vector3, delta: float) -> void:
 	if key != current_clip:
 		_play_clip(key)
 	if locomotion != null and locomotion.active:
-		var current := float(locomotion.get("parameters/blend_position"))
-		locomotion.set("parameters/blend_position", move_toward(current, locomotion_target, delta * 3.8))
-		locomotion.speed_scale = gait_animation_rate
+		var current := float(locomotion.get("parameters/Movement/blend_position"))
+		locomotion.set("parameters/Movement/blend_position", move_toward(current, locomotion_target, delta * 3.8))
+		locomotion.set("parameters/Rate/scale", gait_animation_rate)
 	if previous_state == "dodge" and state != "dodge":
 		recovered_from_dodge += 1
 		action_recovery_progress = 0.0

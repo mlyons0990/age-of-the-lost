@@ -15,7 +15,7 @@ var run_length_m := 0.0
 var ascent_m := 0.0
 var width_m := 0.0
 var steps := 0
-var landing_length_m := 3.0
+## Matches the sculpt's 4m upper gate apron (Phase 14 asset).\nvar landing_length_m := 4.0
 var installed := false
 ## Toggling off must disable collision too, not just hide meshes.
 var collider_nodes: Array[StaticBody3D] = []
@@ -137,17 +137,17 @@ func _build_stairs() -> void:
 func _pointed_arch_height(x_m: float, half_clear_m: float,
         spring_height_m: float, point_height_m: float) -> float:
     var fraction := clampf(absf(x_m) / half_clear_m, 0.0, 1.0)
-    return spring_height_m + (point_height_m - spring_height_m) * (1.0 - pow(fraction, 1.42))
+    return spring_height_m + (point_height_m - spring_height_m) * (1.0 - pow(fraction, 0.77))
 
 func _build_gateway() -> void:
     var pale := _material(IVORY)
     var shadow := _material(LIMESTONE)
     var highlight := _material(GOLD)
-    var half_clear := width_m * 0.5 + 0.65
-    var gate_z := run_length_m + landing_length_m * 0.72
-    var pier_height := 4.45
+    var half_clear := width_m * 0.5 + 0.30
+    ## Sculpt uses Y=3.25m north of the ninth stair: +9m in route frame.\n    var gate_z := run_length_m + 3.25
+    var pier_height := 4.14
     for side in [-1, 1]:
-        var x := float(side) * (half_clear + 0.53)
+        var x := float(side) * (half_clear + 0.64)
         _masonry(assembly, "Citadel_GatePier_%d" % side,
             Vector3(x, ascent_m + pier_height * 0.5, gate_z),
             Vector3(1.0, pier_height, 1.45), pale)
@@ -156,7 +156,7 @@ func _build_gateway() -> void:
             Vector3(1.15, 0.24, 1.62), highlight, false)
     var total := 32
     var segment_width := (half_clear * 2.0) / float(total)
-    var point_height := 7.1
+    var point_height := 6.05
     for i in range(total):
         var x := -half_clear + (float(i) + 0.5) * segment_width
         var height_at_x := _pointed_arch_height(x, half_clear, pier_height, point_height)
@@ -165,7 +165,7 @@ func _build_gateway() -> void:
         var tilt := atan2(next_height - height_at_x, segment_width * 0.3)
         _masonry(assembly, "Actual_ArchVoussoir_%02d" % i,
             Vector3(x, ascent_m + height_at_x, gate_z),
-            Vector3(segment_width * 1.20, 0.60, 1.40),
+            Vector3(segment_width * 1.20, 0.70, 1.40),
             pale if i % 3 != 0 else shadow, true, tilt)
         arch_stones += 1
     _masonry(assembly, "BlueGold_Keystone_Relief",
@@ -220,6 +220,11 @@ func status() -> Dictionary:
         "total_ascent_m": ascent_m,
         "run_length_m": run_length_m,
         "upper_landing_m": landing_length_m,
+        "gate_center_along_route_m": run_length_m + 3.25,
+        "arch_clear_span_m": width_m + 0.60,
+        "arch_spring_above_upper_floor_m": 4.14,
+        "arch_apex_above_upper_floor_m": 6.05,
+        "sculpt_reference": "AOTL_Citadel_Sculpt_Phase14",
         "real_player_height_integration": false,
         "painted_default_unchanged": true
     }

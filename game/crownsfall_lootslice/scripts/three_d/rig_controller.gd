@@ -12,6 +12,7 @@ const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
 const TERRAIN_IK := preload("res://scripts/three_d/terrain_foot_ik.gd")
 const EQUIPMENT_SOCKETS := preload("res://scripts/three_d/equipment_sockets3d.gd")
+const WEAPON_SWEEP := preload("res://scripts/three_d/weapon_sweep3d.gd")
 const WALK_SPEED := 4.3
 const RUN_SPEED := 6.7
 const DODGE_SPEED := 10.5
@@ -265,7 +266,17 @@ func _physics_process(delta: float) -> void:
 		if attack_type == "Dash":
 			velocity.x = last_face.x * 8.0
 			velocity.z = last_face.z * 8.0
-		if not has_impacted and elapsed >= (0.54 if attack_type == "Cast" else 0.25):
+		# Prefer the real imported animation playhead over a fixed 0.25 s
+		# shortcut. The R39/R47 WeaponRoot trajectory places slash contact
+		# near 57% of the Slash clip, after the windup.
+		var expected_animation := "Cast" if attack_type == "Cast" else "Slash"
+		var clip_phase := -1.0
+		if animation != null and anim_state == expected_animation and animation.current_animation_length > 0.0:
+			clip_phase = animation.current_animation_position / animation.current_animation_length
+		# A missing/unloaded animation never makes combat permanently inert.
+		# Fallback at 85% of the requested attack duration only.
+		var contact_due := (clip_phase >= WEAPON_SWEEP.attack_contact_phase(attack_type) if clip_phase >= 0.0 else elapsed >= attack_duration * 0.85)
+		if not has_impacted and contact_due:
 			has_impacted = true
 			impact.emit(global_position + last_face * (2.2 if attack_type == "Cast" else 1.4), attack_type, last_face)
 		if attack_t <= 0.0: anim_state = ""

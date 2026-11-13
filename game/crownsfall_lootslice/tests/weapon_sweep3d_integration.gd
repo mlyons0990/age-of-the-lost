@@ -11,6 +11,9 @@ func check(ok: bool, description: String) -> void:
 	print(("PASS " if ok else "FAIL ") + description)
 
 func _initialize() -> void:
+	call_deferred("_run")
+
+func _run() -> void:
 	var a := Vector3(0, 0, -0.2)
 	var b := Vector3(0, 0, -1.2)
 	check(is_equal_approx(SWEEP.nearest_fraction(a, b, Vector3(0, 0, -0.7)), 0.5), "Closest segment fraction")

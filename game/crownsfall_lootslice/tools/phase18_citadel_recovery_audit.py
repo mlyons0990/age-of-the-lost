@@ -39,7 +39,7 @@ def audit(root: Path) -> dict:
     candidate_scenes = []
     matches = {name: [] for name in ARTIFACT_NAMES}
     for p in sorted(root.rglob("*")):
-        if not p.is_file() or any(part in BANNED_PARTS for part in p.relative_to(root).parts):
+        if p.is_symlink() or not p.is_file() or any(part in BANNED_PARTS for part in p.relative_to(root).parts):
             continue
         relative = p.relative_to(root).as_posix()
         entry = {"path": relative, "bytes": p.stat().st_size, "sha256": digest(p)}

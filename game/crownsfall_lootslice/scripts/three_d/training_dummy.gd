@@ -1,5 +1,6 @@
 extends Node3D
 const HURTBOX := preload("res://scripts/three_d/hurtbox3d.gd")
+const HURT_RADIUS_M := 0.45
 ## Resettable sword target for testing attack timing and 3D FX.
 var hp := 100.0
 var max_hp := 100.0
@@ -51,6 +52,12 @@ func _ready() -> void:
 	title.pixel_size = 0.0045
 	title.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	add_child(title)
+
+func damage_center() -> Vector3:
+	return hurtbox.global_position if is_instance_valid(hurtbox) else global_position + Vector3.UP * 1.2
+
+func damage_radius() -> float:
+	return HURT_RADIUS_M
 
 func _process(delta: float) -> void:
 	time += delta

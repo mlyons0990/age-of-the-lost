@@ -208,6 +208,9 @@ func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F12:
+		get_tree().change_scene_to_file("res://scenes/phase19_animation_review.tscn")
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F11:
 		player.toggle_foot_ik()
 		return

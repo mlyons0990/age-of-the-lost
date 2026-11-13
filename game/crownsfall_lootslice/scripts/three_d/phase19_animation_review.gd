@@ -2,6 +2,7 @@ extends Node3D
 ## Independent animation review. The master GLB is an optional Higgsfield export.
 ## No save files or production gameplay are touched by this scene.
 const MASTER_PATH := "res://models/AOTL_Master_Rig_R38_AllSix.glb"
+const MASTER_R46_PATH := "res://models/AOTL_Master_Rig_R46_AllSix.glb"
 const REQUIRED := ["Idle", "Walk", "Run", "Slash", "Dodge", "Cast"]
 const GOLD := Color("e6c17c")
 const METRICS := preload("res://scripts/three_d/phase20_motion_metrics.gd")
@@ -106,11 +107,12 @@ func _build_hud() -> void:
 	column.add_child(stride_label)
 
 func _load_optional_master() -> void:
-	if not ResourceLoader.exists(MASTER_PATH):
-		message = "Optional model missing. Extract the separate six-animation GLB into models/AOTL_Master_Rig_R38_AllSix.glb, then reopen this scene. The Phase 18 proxy is unchanged."
+	var selected_path := MASTER_R46_PATH if ResourceLoader.exists(MASTER_R46_PATH) else MASTER_PATH
+	if not ResourceLoader.exists(selected_path):
+		message = "Optional model missing. Install six-animation Higgsfield R46 or R38 GLB into models/ (name it AOTL_Master_Rig_R46_AllSix.glb or AOTL_Master_Rig_R38_AllSix.glb). Phase 18 proxy unchanged."
 		_refresh_status()
 		return
-	var resource := load(MASTER_PATH) as PackedScene
+	var resource := load(selected_path) as PackedScene
 	if resource == null:
 		message = "Export is not a readable Godot scene. Keep the verified Phase 18 proxy."
 		_refresh_status()
@@ -139,7 +141,7 @@ func _load_optional_master() -> void:
 		model = null
 		_refresh_status()
 		return
-	message = "Export accepted: %d bones · six animation clips. Visual deformation quality still requires inspection." % armature.get_bone_count()
+	message = "Export %s accepted: %d bones · six animation clips. Visual deformation quality still requires inspection." % [selected_path.get_file(), armature.get_bone_count()]
 	play_clip("Idle")
 	_create_foot_markers()
 	_refresh_status()

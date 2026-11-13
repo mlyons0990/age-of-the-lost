@@ -43,7 +43,7 @@ jobs:
           GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
           "$GODOT" --headless --path "$p" --editor --quit 2>&1 | tee /tmp/aotl-weapon-import.log
           "$GODOT" --headless --path "$p" --script res://tests/weapon_sweep3d_integration.gd 2>&1 | tee /tmp/aotl-weapon-geometry.log
-          grep -q 'AOTL WEAPON SWEEP RESULT 18 checks; 0 failures' /tmp/aotl-weapon-geometry.log
+          grep -q 'AOTL WEAPON SWEEP RESULT 23 checks; 0 failures' /tmp/aotl-weapon-geometry.log
           if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-weapon-import.log /tmp/aotl-weapon-geometry.log; then exit 1; fi
       - name: Preserve tests
         if: always()

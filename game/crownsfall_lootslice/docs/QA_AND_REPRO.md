@@ -1,6 +1,6 @@
 # Current QA and reproduction
 
-On Linux, `python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` runs import and all seventeen suites in separate disposable XDG directories, checks full logs and writes a JSON summary. This cycle passes **1023 headless assertions**. The new Dodge Roll suite also passes its 69 checks rendered. The new actor-feedback suite also passes its 54 checks rendered; repeated assertions are not added to the total. Six extra native inventory/town/grid mouse checks remain historical and were not rerun in this cycle. The runner is intentionally Linux-only; use an isolated project/user directory on other platforms.
+On Linux, `python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` runs import and all eighteen suites in separate disposable XDG directories, checks full logs and writes a JSON summary. This cycle passes **1063 headless assertions**. The new Dodge Roll suite also passes its 69 checks rendered, and the dialogue suite its 40; repeated assertions are not added to the total. Six extra native inventory/town/grid mouse checks remain historical and were not rerun in this cycle. The runner is intentionally Linux-only; use an isolated project/user directory on other platforms.
 
 Godot 4.6.3 stable on Linux. Rendered runs use X11/Xvfb, software OpenGL and Dummy audio. Tests operate real scripts, UI signals and scene changes; they are not human usability or native Windows validation.
 
@@ -22,8 +22,9 @@ Godot 4.6.3 stable on Linux. Rendered runs use X11/Xvfb, software OpenGL and Dum
 | `--script res://tests/selected_art_integration.gd` | 76 |
 | `--script res://tests/skill_tiles_integration.gd` | 75 |
 | `--script res://tests/actor_feedback_integration.gd` | 54 |
+| `--script res://tests/dialogue_integration.gd` | 40 |
 | `--script res://tests/dodge_roll_integration.gd` | 69 |
-| Total headless assertions | 1023 |
+| Total headless assertions | 1063 |
 
 Use a project copy and isolated data directories. On Linux set XDG_DATA_HOME, XDG_CONFIG_HOME and XDG_CACHE_HOME to dedicated QA directories outside the source project. On Windows use a separate Custom User Dir Name. Suites intentionally create/alter their QA saves.
 

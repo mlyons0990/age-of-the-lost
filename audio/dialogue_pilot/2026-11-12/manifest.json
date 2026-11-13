@@ -1,0 +1,73 @@
+{
+  "provider": "ElevenLabs via Higgsfield",
+  "model": "text2speech_v2",
+  "variant": "elevenlabs",
+  "voice_name": "Grady",
+  "voice_id": "e2a2d2e6-9ed2-59cd-82af-feaa27f8a678",
+  "voice_type": "preset",
+  "use_unlim": true,
+  "quoted_credits": 0,
+  "human_listening_review": false,
+  "files": [
+    {
+      "id": "cantor_challenge",
+      "path": "game/crownsfall_lootslice/assets/audio/dialogue/cantor_challenge.mp3",
+      "sha256": "8e0255fa14cbba3bc2c7c69b0e7f220df4bb4f6e51000fe65d1df7760a4c9752",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1
+          }
+        ],
+        "format": {
+          "duration": "2.037551",
+          "size": "33061"
+        }
+      }
+    },
+    {
+      "id": "cantor_second_verse",
+      "path": "game/crownsfall_lootslice/assets/audio/dialogue/cantor_second_verse.mp3",
+      "sha256": "7adaab71337433380d4601aa7555e62390be1b718a0425caac8f6c22b8a5ae2f",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1
+          }
+        ],
+        "format": {
+          "duration": "3.004082",
+          "size": "48526"
+        }
+      }
+    },
+    {
+      "id": "quartermaster_greeting",
+      "path": "game/crownsfall_lootslice/assets/audio/dialogue/quartermaster_greeting.mp3",
+      "sha256": "304b908513222b91a7c8563245be5afa2a6aa4082f8dc52de040e06e1f6e1e03",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1
+          }
+        ],
+        "format": {
+          "duration": "4.440816",
+          "size": "71514"
+        }
+      }
+    }
+  ]
+}

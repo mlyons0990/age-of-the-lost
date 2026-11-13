@@ -25,12 +25,12 @@ All numbers are constants at the top of `scripts/player.gd` (`DODGE_DISTANCE`, `
 | `scripts/hud.gd` | transparent click target over the drawn button, help text |
 | `assets/ui/dodge_roll.png` | 128px runtime icon, byte-identical to `art/ability_icons/dodge_roll/2026-11-12/dodge_roll_128.png`; stored as a normal Git file, not LFS, via a `.gitattributes` exception |
 | `tests/dodge_roll_integration.gd` | 69 assertions |
-| `tools/run_checks.py` | seventeenth suite |
+| `tools/run_checks.py` | eighteenth suite (after dialogue) |
 | `docs/releases/2026-11-12-dodge-roll/` (repository root) | cropped engine captures; the full-size captures written to `previews/dodge_roll/` are not committed |
 
 ## Verification
 
-`python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` passes **1023 headless assertions across 17 suites**: the previous 954 unchanged plus 69 new. The new suite also passes all 69 rendered under Xvfb with software OpenGL at 1920x1080. Tested on Linux with Godot 4.6.3 only.
+`python3 tools/run_checks.py --report-dir /tmp/aotl-qa-report` passes **1063 headless assertions across 18 suites**: the previous 994 (including the 40 dialogue checks merged just before this) unchanged plus 69 new. The new suite also passes all 69 rendered under Xvfb with software OpenGL at 1920x1080. Tested on Linux with Godot 4.6.3 only.
 
 The 69 checks cover, for both classes: start conditions, exact distance and duration, ending on walkable floor, the invulnerability window and its end, cooldown, no mana or packet changes, mid-roll ability lock-out, recovery cancel, refusal during a committed swing or cast with that action left intact, self-aimed rolls, wall stops, pause, ward retention, death and respawn, and save validity. Shared checks cover Shield Charge exclusion, the Space key, HUD button placement and non-overlap, icon size and hash, button clicks, and the HUD keeping its own icon reference.
 
@@ -42,4 +42,4 @@ The rendered run found one defect that headless checks could not: the icon was l
 - No painted roll animation and no roll sound (the `dodge_roll` cue is requested but no audio file exists, so it is silent).
 - The HUD still uses the existing centred layout. The owner's target layout (orbs in the corners, flasks 1-5, skills Q W E R T, wider zoomable camera) is not implemented here, and that reference shows flask and skill bindings that conflict with its own controls list; those bindings need the owner's decision first.
 - The 2.5D and 3D lab scenes on other branches have their own separate dodge code; nothing here is shared with them.
-- This branch and the open dialogue pull request (#28) both add a seventeenth suite to `tools/run_checks.py` and edit the QA totals, so whichever merges second needs a small manual merge there.
+- The selective-dialogue work merged to `main` while this was in progress. Its suite and this one were combined in `tools/run_checks.py` and the QA totals, and all 18 suites were re-run together after that merge.

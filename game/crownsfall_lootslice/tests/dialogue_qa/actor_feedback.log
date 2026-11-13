@@ -1,0 +1,57 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS warrior actual damage starts a visible hit reaction
+PASS warrior recoil affects artwork without moving the actor
+PASS warrior reaction returns cleanly to neutral
+PASS warrior invulnerability prevents both damage and false recoil
+PASS warrior a fully absorbed ward hit does not pretend health was lost
+PASS warrior charge pose does not advance the dash
+PASS warrior finished charge leaves no residual lean
+PASS warrior nonfatal recoil preserves scheduled combat callbacks
+PASS warrior lethal damage settles into a stopped fallen pose
+PASS warrior death cancels attacks and movement
+PASS warrior dead actor cannot release a pending hit or move
+PASS warrior existing death and respawn interface remains available
+PASS warrior respawn immediately restores the complete visual transform
+PASS warrior existing respawn resources and grace period are preserved
+PASS warrior transient presentation state leaves schema-six saves valid
+PASS mage actual damage starts a visible hit reaction
+PASS mage recoil affects artwork without moving the actor
+PASS mage reaction returns cleanly to neutral
+PASS mage invulnerability prevents both damage and false recoil
+PASS mage a fully absorbed ward hit does not pretend health was lost
+PASS mage charge pose does not advance the dash
+PASS mage finished charge leaves no residual lean
+PASS mage nonfatal recoil preserves scheduled combat callbacks
+PASS mage lethal damage settles into a stopped fallen pose
+PASS mage death cancels attacks and movement
+PASS mage dead actor cannot release a pending hit or move
+PASS mage existing death and respawn interface remains available
+PASS mage respawn immediately restores the complete visual transform
+PASS mage existing respawn resources and grace period are preserved
+PASS mage transient presentation state leaves schema-six saves valid
+PASS real mage cast starts
+PASS hit presentation leaves mage windup and packet validity intact
+PASS opening a pause menu freezes hit feedback with the world
+PASS slime living windup retains its warning
+PASS slime real hit recoils visually away from its source
+PASS slime death rewards once and removes combat targeting immediately
+PASS slime dying windup cannot display a live attack warning
+PASS slime fallen pose ignores live bobbing and attack lunge
+PASS slime has the appropriate collapse silhouette
+PASS slime corpse expires on the existing timer without attacking
+PASS revenant living windup retains its warning
+PASS revenant real hit recoils visually away from its source
+PASS revenant death rewards once and removes combat targeting immediately
+PASS revenant dying windup cannot display a live attack warning
+PASS revenant fallen pose ignores live bobbing and attack lunge
+PASS revenant has the appropriate collapse silhouette
+PASS revenant corpse expires on the existing timer without attacking
+PASS brute living windup retains its warning
+PASS brute real hit recoils visually away from its source
+PASS brute death rewards once and removes combat targeting immediately
+PASS brute dying windup cannot display a live attack warning
+PASS brute fallen pose ignores live bobbing and attack lunge
+PASS brute has the appropriate collapse silhouette
+PASS brute corpse expires on the existing timer without attacking
+ACTOR FEEDBACK RESULT 54 checks; 0 failures

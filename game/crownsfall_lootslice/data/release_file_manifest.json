@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8294,
-      "sha256": "dde4ae2bb5b25aadd5f1061178e8cfe5abc67f59d800effa53009bac1a158151"
+      "bytes": 8492,
+      "sha256": "9c59523d96116b2fa438337c63d7cb309f1122d090f726315769e2c3b3286d2b"
     },
     {
       "path": "assets/art_expansion02/icons/arcane_fold.png",
@@ -245,6 +245,21 @@
       "path": "assets/audio/cinder_thread.wav",
       "bytes": 15038,
       "sha256": "f5ed18f5aa9a0a865601c405ec09f6c454cc1854bd93fd583fc334accf7cb28b"
+    },
+    {
+      "path": "assets/audio/dialogue/cantor_challenge.mp3",
+      "bytes": 33061,
+      "sha256": "8e0255fa14cbba3bc2c7c69b0e7f220df4bb4f6e51000fe65d1df7760a4c9752"
+    },
+    {
+      "path": "assets/audio/dialogue/cantor_second_verse.mp3",
+      "bytes": 48526,
+      "sha256": "7adaab71337433380d4601aa7555e62390be1b718a0425caac8f6c22b8a5ae2f"
+    },
+    {
+      "path": "assets/audio/dialogue/quartermaster_greeting.mp3",
+      "bytes": 71514,
+      "sha256": "304b908513222b91a7c8563245be5afa2a6aa4082f8dc52de040e06e1f6e1e03"
     },
     {
       "path": "assets/audio/epoch_lance.wav",
@@ -1132,6 +1147,11 @@
       "sha256": "9e9ff559b8c57218d39d8e54026a6638ed2679923b7d1dbc334bad22a684ad1e"
     },
     {
+      "path": "data/dialogue_lines.json",
+      "bytes": 647,
+      "sha256": "e8fa044afc05d0676bd8eca51e9c9c444545959971a82048a34d168547288358"
+    },
+    {
       "path": "data/encounter_rules.json",
       "bytes": 1888,
       "sha256": "9a19201f7e8bc19c5c227a88a42a8cad0e9312bba523c384f2a469e4757728ba"
@@ -1403,8 +1423,8 @@
     },
     {
       "path": "docs/QA_AND_REPRO.md",
-      "bytes": 9637,
-      "sha256": "95529e0e4d1eebc49a7575719d9d92ea57ec37756767371256892cbe48c3caf1"
+      "bytes": 9689,
+      "sha256": "8d85fa37bffc3f07c23d6ce21ee101f81388eb96328996fbf2211bb0183aea24"
     },
     {
       "path": "docs/RELIABILITY_HANDOFF.md",
@@ -1415,6 +1435,11 @@
       "path": "docs/RIGHT_DOCK_SOURCE.patch",
       "bytes": 17925,
       "sha256": "efef0014247416dcecb6029b5433c44096a376bfc90eab61f16c89b823673481"
+    },
+    {
+      "path": "docs/SELECTIVE_DIALOGUE_HANDOFF.md",
+      "bytes": 3023,
+      "sha256": "61ce2fdad99f99a634a536d16611da331be683ee21afaf920df9e538ee028c74"
     },
     {
       "path": "docs/TOWN_UI_HANDOFF.md",
@@ -1660,6 +1685,21 @@
       "path": "previews/art_integration/warrior_inventory.png",
       "bytes": 2069605,
       "sha256": "0e0ce89a91b19578a7af44e567eb0177748d1a7ed2febf6249d33adaf887e7c2"
+    },
+    {
+      "path": "previews/dialogue/cantor_second_verse.png",
+      "bytes": 2446625,
+      "sha256": "45bca3577c6554e84c09cee4bbba21da422ff42cb1ac1bca15fb9ee56f32b371"
+    },
+    {
+      "path": "previews/dialogue/dialogue_settings.png",
+      "bytes": 1384522,
+      "sha256": "29fde13acd9a11cbf36efdb20747358893660ddb13e36c2efeefb2163924f9f4"
+    },
+    {
+      "path": "previews/dialogue/quartermaster_subtitle.png",
+      "bytes": 1381448,
+      "sha256": "4f05fc816a42837647f233c472be002f1e4501ab0ed95398d4465235a7074b44"
     },
     {
       "path": "previews/encounter/cantor_briefing.png",
@@ -1957,6 +1997,16 @@
       "sha256": "b299e550e75d3e55091d72f16282d4792ea535ee8235a5062bc8a42a17b841f9"
     },
     {
+      "path": "scripts/dialogue_controller.gd",
+      "bytes": 5287,
+      "sha256": "61c268e09945aec10b8b34cec7901920d432b34f56f522c80c3ee80392871091"
+    },
+    {
+      "path": "scripts/dialogue_controller.gd.uid",
+      "bytes": 20,
+      "sha256": "a2b8666f7bb66f57ce7974236d15f9634bc37fd20a0375a35145bbc0ca6df1d3"
+    },
+    {
       "path": "scripts/effect_resolver.gd",
       "bytes": 3222,
       "sha256": "39070a2ddc045d9e2dd2386814a4770d8c9a9a364e1f6ac528bad44aea358eef"
@@ -1968,8 +2018,8 @@
     },
     {
       "path": "scripts/encounter_director.gd",
-      "bytes": 7160,
-      "sha256": "a2c8148c3fb6bfc2af83ccab47a844b5debc74a5b7d1d133a8764afb7bd764d7"
+      "bytes": 7287,
+      "sha256": "a74267706b1f3efe556324bb02142590d78d5aae8e6d6bd647c4265d311dba6b"
     },
     {
       "path": "scripts/encounter_director.gd.uid",
@@ -2018,8 +2068,8 @@
     },
     {
       "path": "scripts/hud.gd",
-      "bytes": 42836,
-      "sha256": "36c91f348026d1ae2b1748bfe42c167d9a6a685895b0b667305694fd615247f7"
+      "bytes": 44140,
+      "sha256": "beb84b1c97ed8100cbfbdc397e82b6f3d56f85575572f28a8d232b5d7d939ec5"
     },
     {
       "path": "scripts/hud.gd.uid",
@@ -2078,8 +2128,8 @@
     },
     {
       "path": "scripts/main.gd",
-      "bytes": 38100,
-      "sha256": "add1553b53759bd923fcf978f23375fa7db0be49add49b1c69b0ee5a88fc8837"
+      "bytes": 38298,
+      "sha256": "4525037c62b5cb7b739d62dc845dbc1cffecb38e355f1bb4a86d273ab40fb4df"
     },
     {
       "path": "scripts/main.gd.uid",
@@ -2255,6 +2305,11 @@
       "path": "tests/CHECK_RUNNER_RESULT.json",
       "bytes": 1978,
       "sha256": "23c921ab966fc4d973b2011ebec95037193a3302b5072c923c7d0496cab80271"
+    },
+    {
+      "path": "tests/DIALOGUE_LAST_RUN.txt",
+      "bytes": 2413,
+      "sha256": "0ee239b205e6770ef783b8338081ab2bead06718c9d31c87c655593ed86d2540"
     },
     {
       "path": "tests/ENCOUNTER_BOUTS_HEADLESS_RESULT.txt",
@@ -2677,9 +2732,119 @@
       "sha256": "dad7afb78bf8923825aafa7fa6106915ac516ceead8ff2bb5604c677aa746975"
     },
     {
+      "path": "tests/dialogue_integration.gd",
+      "bytes": 7241,
+      "sha256": "217919fa26ee0c34620e754f4114a95d498f73416577ac69eff64ed90a6f454c"
+    },
+    {
+      "path": "tests/dialogue_integration.gd.uid",
+      "bytes": 20,
+      "sha256": "6f0d1133c3b9ab70d4c6881d1da21dce861419d0cebf0fc4c87f455428a7c173"
+    },
+    {
+      "path": "tests/dialogue_qa/actor_feedback.log",
+      "bytes": 3349,
+      "sha256": "f67b6b26670a8bfce1ca12c3b23a012ad24358f51c079696dcbbf0cb29c03083"
+    },
+    {
+      "path": "tests/dialogue_qa/art_audio.log",
+      "bytes": 1230,
+      "sha256": "0d35974308ac275c91368f810b771028015dd8a2ff6dcf40b68bfaf5166ba0dc"
+    },
+    {
+      "path": "tests/dialogue_qa/dialogue.log",
+      "bytes": 2486,
+      "sha256": "53812bba7d694da1996479db0c83192d56b7a24a4c882bb7bc23ec58a4034408"
+    },
+    {
+      "path": "tests/dialogue_qa/encounter.log",
+      "bytes": 3285,
+      "sha256": "aacee2abe89e5a71d9abca9f822468c06974f12ea266fda55c1283f17cbc84a7"
+    },
+    {
+      "path": "tests/dialogue_qa/encounter_bouts.log",
+      "bytes": 2488,
+      "sha256": "f58c57849b3f6810ad200f7287f574ee1bc95654d9b7aacd752a0fb66627cdab"
+    },
+    {
+      "path": "tests/dialogue_qa/grid_alignment.log",
+      "bytes": 4281,
+      "sha256": "34015b621bc9e04f91aecbcde86d9e9cb887cf1946e8cf4a309fa0ae986acc35"
+    },
+    {
+      "path": "tests/dialogue_qa/import.log",
+      "bytes": 1294,
+      "sha256": "88a65891fcfd1b9f913a70de3df0508e5bc3ce83dca9418150bf4d7ac5d341b2"
+    },
+    {
+      "path": "tests/dialogue_qa/inventory_ui.log",
+      "bytes": 6381,
+      "sha256": "3e5489a5439d8623eeaa9c6e5b7e250d18522ad4f1d4c1a85da071140e92378e"
+    },
+    {
+      "path": "tests/dialogue_qa/lab.log",
+      "bytes": 1528,
+      "sha256": "e9dc7809077922664368303d91d9ebce0c412fe4dd340c9c51baf7109e6a45e2"
+    },
+    {
+      "path": "tests/dialogue_qa/loot.log",
+      "bytes": 4990,
+      "sha256": "f2f49936f71c5117631dfd6fa995e304a1ebf7f3886310bda532b6f0bdb73285"
+    },
+    {
+      "path": "tests/dialogue_qa/mage.log",
+      "bytes": 3122,
+      "sha256": "a39c4ffa326d017300995498f54d2c7610d090bdb268acdf271bab31ff3e51e5"
+    },
+    {
+      "path": "tests/dialogue_qa/mastery.log",
+      "bytes": 5718,
+      "sha256": "571a6a5b2e72adae0d22ca54c6b937ded460a1a41d4d805ff8b9fbd280f50f06"
+    },
+    {
+      "path": "tests/dialogue_qa/navigation.log",
+      "bytes": 2413,
+      "sha256": "0cdfc679517d7604127c0b1d76f7482cfb67d7047297e9028bb242711f0bca7c"
+    },
+    {
+      "path": "tests/dialogue_qa/reliability.log",
+      "bytes": 5279,
+      "sha256": "71cbbe79925519345979cacbed6c10810d5c980eeaaa990e731af0466335e01d"
+    },
+    {
+      "path": "tests/dialogue_qa/rendered.log",
+      "bytes": 2781,
+      "sha256": "d4f5ffe0738192590e30e5faa1d6f6aaf40d0ceebee5022cc29c6c5b286492bf"
+    },
+    {
+      "path": "tests/dialogue_qa/selected_art.log",
+      "bytes": 5104,
+      "sha256": "bdeee7219e2f762ba3678557674d120f278f9ca83fbf552ad3d8bf932b921591"
+    },
+    {
+      "path": "tests/dialogue_qa/skill_tiles.log",
+      "bytes": 4434,
+      "sha256": "a7d22aec95810ff02db600b11606f58b965d6d9b54721bef998ef3c52adb81d2"
+    },
+    {
+      "path": "tests/dialogue_qa/summary.json",
+      "bytes": 2568,
+      "sha256": "9fb94c25ad1c27cae717f2f35c9c02923132622167850f078a5e993932db94fe"
+    },
+    {
+      "path": "tests/dialogue_qa/town_ui.log",
+      "bytes": 4004,
+      "sha256": "f0676af6b919620b393276e21accd002fd5919c3d6538fa2c234f3f33b29555c"
+    },
+    {
+      "path": "tests/dialogue_qa/warrior.log",
+      "bytes": 2339,
+      "sha256": "92fe1fcaad6285c14edadef87990f18daaba46693fac34fd4ed4f3b05d4ad828"
+    },
+    {
       "path": "tests/encounter_integration.gd",
-      "bytes": 12635,
-      "sha256": "2f08afaf3053306a526b2f4cebb08044ef35988b9692a124bd9005aefff7a82f"
+      "bytes": 12738,
+      "sha256": "44d19592bffddbd8432484daef3420d454c4d736e9d70ee8d9538517cc808819"
     },
     {
       "path": "tests/encounter_integration.gd.uid",
@@ -3043,8 +3208,8 @@
     },
     {
       "path": "tools/run_checks.py",
-      "bytes": 4768,
-      "sha256": "21e6648ea9a7bf73877fea67ef45a940ac386bc4a67e4029f8fd42086f13430c"
+      "bytes": 4857,
+      "sha256": "eedff1daef18efb85c93e8187ec5c66b8ec040d53145d8a89c1de17415dd34b0"
     },
     {
       "path": "tools/verify_footprint_ui.py",

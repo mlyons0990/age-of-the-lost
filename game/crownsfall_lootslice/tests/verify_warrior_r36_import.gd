@@ -3,11 +3,11 @@ extends SceneTree
 ## godot --headless --path game/crownsfall_lootslice --script res://tests/verify_warrior_r36_import.gd
 
 const R36 := "res://models/AOTL_Warrior_R36.glb"
-const REQUIRED_BONES := PackedStringArray([
+const REQUIRED_BONES = [
 	"Root", "Hips", "ThighL", "KneeL", "ShinL", "AnkleL", "FootL",
 	"ThighR", "KneeR", "ShinR", "AnkleR", "FootR"
-])
-const REQUIRED_CLIPS := PackedStringArray(["Idle", "Walk", "Run", "Dodge", "Slash"])
+]
+const REQUIRED_CLIPS = ["Idle", "Walk", "Run", "Dodge", "Slash"]
 
 func _initialize() -> void:
 	if not ResourceLoader.exists(R36):

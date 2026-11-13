@@ -7,6 +7,7 @@ extends CanvasLayer
 
 const COURTYARD := preload("res://scripts/two_point_five_d/crownsfall_courtyard_25d.gd")
 const CITY_DISTRICT3D := preload("res://scripts/two_point_five_d/crownsfall_royal_promenade_3d_v07.gd")
+const CITY_DISTRICT08_3D := preload("res://scripts/two_point_five_d/crownsfall_merchants_quarter_3d_v08.gd")
 const GD := preload("res://scripts/game_data.gd")
 const LIVE_KNIGHT := preload("res://scripts/two_point_five_d/knight_depth_billboard.gd")
 const RIGHT := Vector3(0.70710678, 0.0, -0.70710678)
@@ -21,6 +22,7 @@ var viewport_3d: SubViewport
 var camera_3d: Camera3D
 var scenery: Node3D
 var city_district_3d: Node3D
+var market_district_3d: Node3D
 var screen: SubViewportContainer
 var service_nodes: Array[Node3D] = []
 var service_markers: Dictionary = {}
@@ -30,6 +32,11 @@ var is_ready := false
 var collision_audit: Dictionary = {}
 var knight_depth_avatar: Node3D = null
 var knight_depth_enabled := false
+## No separate town NPC simulation. These are depth-tested visual proxies
+## of the SAME already-instantiated painted NPC nodes in main.world.
+var npc_depth_mirrors: Dictionary = {}
+var npc_depth_sources: Dictionary = {}
+
 
 func _ready() -> void:
     # CanvasLayer -1 draws under the real Node2D actors/HUD; not in the same world.
@@ -61,6 +68,10 @@ func _ready() -> void:
     city_district_3d = CITY_DISTRICT3D.new()
     scenery.add_child(city_district_3d)
     city_district_3d.install(Callable(self, "to_3d"))
+    market_district_3d = CITY_DISTRICT08_3D.new()
+    scenery.add_child(market_district_3d)
+    market_district_3d.install(Callable(self, "to_3d"))
+
     collision_audit = audit_visual_collision_footprints()
     camera_3d = Camera3D.new()
     camera_3d.name = "Follow_OriginalPlayer2D_NoIndependentMovement"
@@ -68,6 +79,7 @@ func _ready() -> void:
     viewport_3d.add_child(camera_3d)
     camera_3d.current = true
     _build_service_signposts()
+    _build_town_npc_mirrors()
     is_ready = true
     sync_view()
 
@@ -119,6 +131,59 @@ func audit_visual_collision_footprints() -> Dictionary:
         push_warning("AOTL: physical 3D props overlap original 2D nav; collision authoring required: " + str(overlapping))
     return {"audited": count, "inside_walkable": overlapping, "nav_authoritative": true, "screen_projection_px": 1.0, "closest_edge_px": nearest_edge_px}
 
+func audit_combined_city_collision() -> Dictionary:
+    # A district cannot ignore a neighboring district's nav polygon. The
+    # Phase 07 eastern Royal wall originally occupied Phase 08's new street.
+    # Audit existing plaza props and ALL facades against the full connected
+    # city, not just the polygon owned by a particular visual script.
+    var regions: Array[Dictionary] = [
+        {"id":"plaza","outline":PackedVector2Array(game.WALKABLE)},
+        {"id":"royal_promenade","outline":game.city_district_07.navigation.navigation_polygon.vertices},
+        {"id":"merchants_quarter","outline":game.city_district_08.navigation.navigation_polygon.vertices}
+    ]
+    var candidates: Array[Dictionary] = []
+    for physical in scenery.collidable_world_footprints():
+        var x: float = physical.x
+        var z: float = physical.z
+        var hx: float = physical.width * .5
+        var hz: float = physical.depth * .5
+        var rect := PackedVector2Array([
+            to_2d(Vector3(x-hx,0,z-hz)),to_2d(Vector3(x+hx,0,z-hz)),
+            to_2d(Vector3(x+hx,0,z+hz)),to_2d(Vector3(x-hx,0,z+hz))
+        ])
+        candidates.append({"id":"plaza/"+String(physical.id),"outline":rect})
+    for source in [
+        {"id":"promenade","shells":city_district_3d.collidable_footprints},
+        {"id":"merchants","shells":market_district_3d.collidable_footprints}
+    ]:
+        for physical in source.shells:
+            var pos: Vector2 = physical.center
+            var hx: float = physical.half_x
+            var hy: float = physical.half_y
+            candidates.append({
+                "id":String(source.id)+"/"+String(physical.id),
+                "outline":PackedVector2Array([
+                    pos+Vector2(-hx,-hy),pos+Vector2(hx,-hy),
+                    pos+Vector2(hx,hy),pos+Vector2(-hx,hy)
+                ])
+            })
+    var intersects: Array[String] = []
+    for candidate in candidates:
+        for region in regions:
+            var pieces: Array[PackedVector2Array] = Geometry2D.intersect_polygons(candidate.outline,region.outline)
+            for piece in pieces:
+                var twice_area := 0.0
+                for i in piece.size():
+                    twice_area += piece[i].cross(piece[(i+1)%piece.size()])
+                if absf(twice_area) > 1.0:
+                    intersects.append(String(candidate.id) + " intrudes " + String(region.id))
+    return {
+        "districts":regions.size(),
+        "audited_colliders":candidates.size(),
+        "overlaps":intersects
+    }
+
+
 func _build_service_signposts() -> void:
     # Their centers come from main.SERVICES, the real E-interaction locations,
     # not independent lookalike coordinates. 2D service text remains functional.
@@ -161,6 +226,46 @@ func _build_service_signposts() -> void:
     seal.position = to_3d(game.RIFT_POS) + Vector3.UP * 0.10
     scenery.add_child(seal)
 
+func _build_town_npc_mirrors() -> void:
+    # The existing game already owns all service art (and E interactions).
+    # We reuse exactly those AtlasTextures in one real World3D. No extra actor,
+    # no new collision body and no independent game state.
+    for id in game.SERVICES:
+        var original_name := "ArtOnly_NPC_" + String(id)
+        if not game.world.has_node(original_name):
+            continue
+        var source: Node2D = game.world.get_node(original_name)
+        var original: Sprite2D = source.get_node("CanonClassIdle_ProvisionalNPC")
+        if original.texture == null:
+            continue
+        var mirror := Sprite3D.new()
+        mirror.name = "PaintedNPC_DepthMirror_" + String(id)
+        mirror.texture = original.texture
+        mirror.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+        mirror.shaded = false
+        mirror.double_sided = true
+        mirror.no_depth_test = false
+        mirror.render_priority = 12
+        mirror.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+        mirror.pixel_size = absf(original.scale.x) / GD.U
+        # Full 384px source sheet at 0.52 scale: visible height ~2.27m.
+        # Place the feet on the ground, not halfway under the 3D painted floor.
+        mirror.position = to_3d(game.SERVICES[id].pos) + Vector3.UP * 1.14
+        mirror.modulate = original.modulate
+        mirror.visible = false
+        scenery.add_child(mirror)
+        npc_depth_mirrors[id] = mirror
+        npc_depth_sources[id] = original
+
+func _set_npc_depth_enabled(enabled: bool) -> void:
+    for id in npc_depth_mirrors:
+        var mirror: Sprite3D = npc_depth_mirrors[id]
+        var source: Sprite2D = npc_depth_sources[id]
+        if not is_instance_valid(mirror) or not is_instance_valid(source):
+            continue
+        mirror.visible = enabled
+        source.visible = not enabled
+
 func set_knight_depth_enabled(enabled: bool) -> bool:
     # This only swaps the visual path for the EXISTING Player AnimatedSprite2D.
     # No new actor has physics/input/saves. F10 is an opt-in development toggle.
@@ -171,6 +276,7 @@ func set_knight_depth_enabled(enabled: bool) -> bool:
                 game.player.sprite.visible = true
                 game.player.shadow.visible = true
             if knight_depth_avatar != null: knight_depth_avatar.visible = false
+            _set_npc_depth_enabled(false)
         return false
     if enabled and knight_depth_avatar == null:
         knight_depth_avatar = LIVE_KNIGHT.new()
@@ -181,6 +287,7 @@ func set_knight_depth_enabled(enabled: bool) -> bool:
         knight_depth_avatar.visible = enabled
     game.player.sprite.visible = not enabled
     game.player.shadow.visible = not enabled
+    _set_npc_depth_enabled(enabled)
     if enabled: sync_knight_depth()
     return enabled
 
@@ -243,6 +350,8 @@ func status() -> Dictionary:
     return {
         "visual_only": true,
         "knight_depth_enabled": knight_depth_enabled,
+        "painted_town_npc_mirrors": npc_depth_mirrors.size(),
+        "town_npc_depth_enabled": knight_depth_enabled,
         "knight_depth_avatar": knight_depth_avatar,
         "real_game": game,
         "real_player": game.player if is_instance_valid(game) else null,
@@ -252,6 +361,8 @@ func status() -> Dictionary:
         "service_count": service_nodes.size(),
         "has_3d_world": viewport_3d != null and viewport_3d.own_world_3d,
         "adjacent_royal_promenade": city_district_3d.status() if city_district_3d != null else {},
+        "adjacent_merchants_quarter": market_district_3d.status() if market_district_3d != null else {},
+        "connected_city_collision": audit_combined_city_collision() if is_ready else {},
         "camera_size": camera_3d.size if camera_3d != null else 0.0,
         "painted_walkway_triangles": scenery.painted_walkway_triangle_count if is_instance_valid(scenery) else 0,
         "painted_walkway_area_px2": scenery.painted_walkway_area_pixels if is_instance_valid(scenery) else 0.0,

@@ -10,10 +10,13 @@ Experimental update based on the user-verified Phase 21 source. F11 activates/de
    `godot --headless --path game/crownsfall_lootslice --script res://tests/phase22_contact_classifier_test.gd`
    `godot --headless --path game/crownsfall_lootslice --script res://tests/phase22_ik_smoke.gd`
    `godot --headless --path game/crownsfall_lootslice --script res://tests/phase22_walk_ik_integration.gd`
+   `godot --headless --path game/crownsfall_lootslice --script res://tests/phase22_run_ik_integration.gd`
+   `godot --headless --path game/crownsfall_lootslice --script res://tests/phase22_terrain_slope_smoke.gd`
+   `godot --headless --path game/crownsfall_lootslice --script res://tests/phase22_solver_lifetime_smoke.gd`
 
 ## Scope and caveats
-Implemented stance confirmation from backwards moving foot-bone velocities; threshold hysteresis; terrain slope rejection; world-ground anchoring and overstretch release; contact time limit + reacquisition cooldown; owner-collider exclusion and teleport reset. Previous Phase 21 walk/run cadence behavior remains untouched.
+Implemented stance confirmation from backwards moving foot-bone velocities; threshold hysteresis; terrain slope rejection; world-ground anchoring and overstretch release including anatomy-derived hip-to-foot maximum reach; contact time limit + reacquisition cooldown; owner-collider exclusion and teleport reset. Previous Phase 21 walk/run cadence behavior remains untouched.
 
-Engine validation: Godot 4.4.1 Linux, headless. 66 assertions from new and prior tests, with 2 observed contact acquisitions, 1 contact release and 98 ray hits in the animated-gait integration. These tests do **not** certify final visuals or Windows 4.6.3 performance. This is a development candidate only. See `docs/PHASE22_GROUND_CONTACT.md` and `tests/PHASE22_QA_REPORT.json`.
+Engine validation: Godot 4.4.1 Linux, headless. 95 assertions from new and prior tests; walk produced two plants, one release, 98 ray hits; run produced two plants, two releases, 122 ray hits. Steep 70-degree terrain rejected both contacts and 100 enable/disable toggles cleaned up. These tests do **not** certify final visuals or Windows 4.6.3 performance. This is a development candidate only. See `docs/PHASE22_GROUND_CONTACT.md` and `tests/PHASE22_QA_REPORT.json`.
 
 Backups: previous Phase21 full source remains intact; independent Phase22 user save directory. Code branch is intentionally separate and must not be production-merged before visual QA. No paid generation credits required.

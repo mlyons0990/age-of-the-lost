@@ -26,7 +26,7 @@ Never merge the older Phase 08 scene over a newer local Phase 11 playable build.
 ```bash
 godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_grade_geometry_v12.gd
 ```
-Test rejects invalid setup, confirms 9 treads, 32 arch stones, 64 colliders, guard rails outside the central walkway, nondecreasing elevation, landing height, and out-of-region sentinel. A local Godot runtime was **not available** to execute this test when committed.
+Test rejects invalid setup, confirms 9 treads, 32 arch stones and 64 colliders; checks the sampled foot elevation against the physical center of every tread, verifies nondecreasing elevation, landing height and the out-of-region sentinel. Visual railing/route clearance still requires the real Phase 11 scene. A local Godot runtime was **not available** to execute this test when committed.
 
 ## Production gate
 - [ ] Latest complete Phase 11 playable full-source ZIP/backups synchronized to GitHub/Drive

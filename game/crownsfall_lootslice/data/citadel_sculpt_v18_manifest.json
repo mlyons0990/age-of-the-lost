@@ -1,0 +1,38 @@
+{
+  "schema": "aotl.citadel.sculpt.phase18.v1",
+  "date_utc": "2026-11-13",
+  "scene_provider": "Higgsfield 3D Jutsu",
+  "scene_project_id": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "scene_revision": 5,
+  "scene_url": "https://higgsfield.ai/3d-jutsu/0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "editable_blend_provider_backup": true,
+  "portable_glb_provider_backup": true,
+  "external_glb_uploaded_to_github": false,
+  "external_blend_uploaded_to_google_drive": false,
+  "reproducible_source": "tools/phase18_higgsfield_citadel_rosettes_v05.py",
+  "qa": {
+    "test_engine": "Blender 5.2 via Higgsfield",
+    "mesh_count": 481,
+    "art_only_rosette_count": 18,
+    "shared_rosette_mesh": true,
+    "stair_treads": 9,
+    "route_clear_width_m": 7.5,
+    "rosette_outer_x_extent_m": 4.23,
+    "colliders_created": 0,
+    "packed_images": 2,
+    "unpacked_images": 0,
+    "static_checks_passed": true,
+    "render_exists": true,
+    "render_resolution": [
+      800,
+      450
+    ],
+    "render_agent_visually_approved": false,
+    "actual_godot_f5_verified": false
+  },
+  "quality_gate": "candidate_not_canon",
+  "phase11_source_recovered": false,
+  "phase17_procedural_asset_distinct": true,
+  "automatic_merge_allowed": false,
+  "paid_higgsfield_credits_used": 0
+}

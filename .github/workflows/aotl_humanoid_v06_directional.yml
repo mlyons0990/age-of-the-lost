@@ -1,0 +1,110 @@
+name: AOTL V06 — directional 2D locomotion, knee magnets and skinned toe roll
+on:
+  pull_request:
+    paths:
+      - "game/crownsfall_lootslice/**"
+      - ".github/workflows/aotl_humanoid_v06_grounded.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  skin-and-gait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore V02/V03/V04 rollback and V06 23-clip 58-joint model
+        run: |
+          git lfs pull
+          python game/crownsfall_lootslice/tools/restore_rig_v02.py
+          python game/crownsfall_lootslice/tools/restore_rig_v03.py
+          python game/crownsfall_lootslice/tools/restore_rig_v04.py
+          python game/crownsfall_lootslice/tools/restore_rig_v06.py
+      - name: Install pinned Godot 4.6.3
+        run: |
+          curl -fLsS --retry 3 'https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip' -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp
+          sudo install -m 0755 /tmp/Godot_v4.6.3-stable_linux.x86_64 /usr/local/bin/godot
+          godot --version
+      - name: Import original art and all humanoid models
+        run: godot --headless --path game/crownsfall_lootslice --editor --quit
+      - name: Original Phase02 painted camera baseline
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/two_point_five_d_smoke.gd 2>&1 | tee /tmp/aotl_v06_original.log
+          grep -q 'AOTL 2.5D SMOKE: 32 checks | PASS' /tmp/aotl_v06_original.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v06_original.log; then exit 1; fi
+      - name: Require cadence-matched footsteps and low measured ankle sliding
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/humanoid_v06_directional_smoke.gd -- --aotl-v06 2>&1 | tee /tmp/aotl_v06_grounded.log
+          grep -q 'AOTL_V06_TEST_OK' /tmp/aotl_v06_grounded.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v06_grounded.log; then
+            echo 'Found Godot script failure; refusing misleading green test'
+            exit 1
+          fi
+      - name: Check no gameplay or save regressions
+        run: python game/crownsfall_lootslice/tools/run_checks.py --report-dir /tmp/aotl_v06_regressions
+      - name: Graphical before-after 21m stride and dodge GIF
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri
+          python -m pip install --quiet pillow
+          set -o pipefail
+          xvfb-run --auto-servernum -s "-screen 0 1440x810x24" \
+            godot --path game/crownsfall_lootslice --rendering-driver opengl3 \
+            --script res://tests/humanoid_v06_visual_capture.gd -- --aotl-v06 2>&1 | tee /tmp/aotl_v06_visual.log
+          grep -q 'AOTL_V06_CAPTURE_OK' /tmp/aotl_v06_visual.log
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('/tmp/aotl_v06_frames')
+          walk=sorted(p.glob('walk_*.png'))
+          assert len(walk)==9, f'Expected nine live walk frames, got {len(walk)}'
+          frames=[]
+          for fn in walk:
+              im=Image.open(fn).convert("RGB")
+              im.thumbnail((960,540))
+              frames.append(im)
+          frames[0].save(p/'AOTL_V06_PlantedWalk_21m.gif',save_all=True,append_images=frames[1:],duration=140,loop=0,optimize=True)
+          side=sorted(p.glob('strafe_*.png'))
+          assert len(side)==6, f'Expected six live strafe frames, got {len(side)}'
+          sideframes=[]
+          for fn in side:
+              im=Image.open(fn).convert("RGB")
+              im.thumbnail((960,540))
+              sideframes.append(im)
+          sideframes[0].save(p/'AOTL_V06_21m_Strafe.gif',save_all=True,append_images=sideframes[1:],duration=150,loop=0,optimize=True)
+          print("AOTL_V06_GIF_OK",len(frames),len(sideframes))
+          PY
+      - name: Preserve QA and render files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v06-grounded-native-qa
+          path: |
+            /tmp/aotl_v06_original.log
+            /tmp/aotl_v06_grounded.log
+            /tmp/aotl_v06_visual.log
+            /tmp/aotl_v06_frames/
+            /tmp/aotl_v06_regressions/
+          if-no-files-found: ignore
+      - name: Build independent Windows gameplay test ZIP
+        if: success()
+        run: |
+          zip -q -r -9 /tmp/AOTL_V06_Windows_Standalone.zip game/crownsfall_lootslice \
+            -x '*/.godot/*' '*/.git/*' '*.blend1' '*__pycache__*'
+          unzip -tq /tmp/AOTL_V06_Windows_Standalone.zip | tail -1
+          ls -lh /tmp/AOTL_V06_Windows_Standalone.zip
+      - name: Deliver complete V06 standalone source
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v06-windows-complete
+          path: /tmp/AOTL_V06_Windows_Standalone.zip
+          compression-level: 0

@@ -8,6 +8,7 @@ signal visual_changed(description: String)
 const HUMANOID_V03 := preload("res://scripts/two_point_five_d/humanoid_visual_v03.gd")
 const HUMANOID_V04 := preload("res://scripts/two_point_five_d/humanoid_visual_v04.gd")
 const HUMANOID_V05 := preload("res://scripts/two_point_five_d/humanoid_visual_v05.gd")
+const HUMANOID_V06 := preload("res://scripts/two_point_five_d/humanoid_visual_v06.gd")
 const FRAME := 384
 const ATTACK_FRAME := 512
 const PIXEL_SIZE := 0.0053  # 384px painting ~2.04 world metres before transparent margins.
@@ -32,6 +33,8 @@ var humanoid_visual
 var humanoid_v03_opt_in := false
 var humanoid_v04_opt_in := false
 var humanoid_v05_opt_in := false
+var humanoid_v06_opt_in := false
+var v06_facing_locked := false
 var horizontal_acceleration := 24.0
 var horizontal_braking := 32.0
 var skeleton_visual: Node3D
@@ -131,11 +134,12 @@ func _ready() -> void:
                     skeleton_clips[short_name] = library_clip
                     if short_name in ["Idle", "Walk", "Run"]:
                         skeleton_anims.get_animation(library_clip).loop_mode = Animation.LOOP_LINEAR
-    humanoid_v05_opt_in = OS.get_cmdline_user_args().has("--aotl-v05")
+    humanoid_v06_opt_in = OS.get_cmdline_user_args().has("--aotl-v06")
+    humanoid_v05_opt_in = OS.get_cmdline_user_args().has("--aotl-v05") or humanoid_v06_opt_in
     humanoid_v04_opt_in = OS.get_cmdline_user_args().has("--aotl-v04") or humanoid_v05_opt_in
     humanoid_v03_opt_in = OS.get_cmdline_user_args().has("--aotl-v03") or humanoid_v04_opt_in
     if humanoid_v03_opt_in:
-        humanoid_visual = HUMANOID_V05.new() if humanoid_v05_opt_in else (HUMANOID_V04.new() if humanoid_v04_opt_in else HUMANOID_V03.new())
+        humanoid_visual = HUMANOID_V06.new() if humanoid_v06_opt_in else (HUMANOID_V05.new() if humanoid_v05_opt_in else (HUMANOID_V04.new() if humanoid_v04_opt_in else HUMANOID_V03.new()))
         add_child(humanoid_visual)
     _render_painted_frame("idle", true)
     visual_changed.emit("Painted sprites · Warrior")
@@ -161,7 +165,7 @@ func change_visual_mode() -> void:
     active_proxy_clip = ""
     var description := "Original painted sprite"
     if visual_mode == "humanoid":
-        description = "Higgsfield V05 cadence-synchronized Warrior" if humanoid_v05_opt_in else ("Higgsfield V04 grounded humanoid (Warrior base model)" if humanoid_v04_opt_in else "Higgsfield V03 animated humanoid (Warrior base model)")
+        description = "Higgsfield V06 directional/strife Warrior" if humanoid_v06_opt_in else ("Higgsfield V05 cadence-synchronized Warrior" if humanoid_v05_opt_in else ("Higgsfield V04 grounded humanoid (Warrior base model)" if humanoid_v04_opt_in else "Higgsfield V03 animated humanoid (Warrior base model)"))
     elif visual_mode == "proxy":
         description = "Original geometric proxy"
     visual_changed.emit(description + " · " + player_class.capitalize())
@@ -223,7 +227,7 @@ func _physics_process(delta: float) -> void:
                 has_target = false
             else:
                 travel = delta_to.normalized()
-    if travel.length_squared() > 0.01:
+    if travel.length_squared() > 0.01 and not v06_facing_locked:
         facing_world = travel
     if dodge_t > 0.0:
         dodge_t = maxf(0.0, dodge_t - delta)
@@ -344,3 +348,10 @@ func _render_proxy_animation(state: String, delta: float) -> void:
         active_proxy_clip = clip
     var yaw := atan2(-facing_world.x, -facing_world.z)
     skeleton_visual.rotation.y = lerp_angle(skeleton_visual.rotation.y, yaw, minf(1.0, delta * 13.0))
+func set_v06_facing_lock(enabled: bool) -> void:
+    # Hold right mouse while in the experimental humanoid view to strafe/backpedal.
+    # No change to the painted character, older V03–V05 modes or save-bearing main.
+    v06_facing_locked = enabled and humanoid_v06_opt_in and visual_mode == "humanoid"
+
+func is_v06_facing_locked() -> bool:
+    return v06_facing_locked

@@ -5,6 +5,7 @@ on:
     branches: [dev/r39-weapon-sweep-v1]
     paths:
       - .github/workflows/r39-weapon-source-backup.yml
+      - game/crownsfall_lootslice/docs/R39_WEAPON_SWEEP_CONTACT_QA_2026-11-13.md
   workflow_dispatch:
 
 permissions:
@@ -23,6 +24,7 @@ jobs:
           set -euo pipefail
           mkdir -p /tmp/aotl-weapon-snapshot
           git archive --format=zip --output=/tmp/aotl-weapon-snapshot/AOTL_R39_Weapon_Sweep_Source_2026-11-13.zip HEAD \
+            .github/workflows/r39-weapon-source-backup.yml \
             .github/workflows/r39-weapon-alignment-ci.yml \
             .github/workflows/r39-weapon-full-regression.yml \
             .github/workflows/r39-weapon-live-ci.yml \

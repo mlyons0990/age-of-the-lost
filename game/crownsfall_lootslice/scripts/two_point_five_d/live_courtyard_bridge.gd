@@ -128,12 +128,18 @@ func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
         return false
     axis = axis.normalized()
     var side := Vector3(axis.z, 0.0, -axis.x)
-    # Test the center and shoulders of 17 cross-sections against the same
-    # NavigationRegion2D that the live player uses. No new navigation authority.
-    for i in range(17):
-        var t := float(i) / 16.0
+    # Phase19 safety: the original 17 cross-sections can miss a small
+    # disconnected gap between two consecutive samples. Sample no farther
+    # than 0.15m along the full measured route; still require 17 minimum.
+    # Five lateral lanes reach near both corridor edges, not just its center.
+    # Fail closed for implausibly long routes instead of silently undersampling.
+    var segments := maxi(16, ceili(axis.length() / 0.15))
+    if segments > 512:
+        return false
+    for i in range(segments + 1):
+        var t := float(i) / float(segments)
         var center_3d := from_ground.lerp(to_ground, t)
-        for fraction in [-0.40, 0.0, 0.40]:
+        for fraction in [-0.48, -0.24, 0.0, 0.24, 0.48]:
             var sample_3d := center_3d + side * clear_width_m * float(fraction)
             var sample_world := to_2d(sample_3d)
             if not _citadel_inside_authoritative_polygon(route_nav, sample_world):

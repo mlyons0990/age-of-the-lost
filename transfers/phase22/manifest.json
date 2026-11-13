@@ -1,0 +1,84 @@
+{
+  "schema": "aotl.citadel.phase22.transfer_parts.v1",
+  "status": "TEMPORARY_DO_NOT_MERGE",
+  "revision": 10,
+  "carrier_revision": 11,
+  "source_glb_sha256": "91468793913600410d1665bfed0f3acdf6d733ed5f3ab13b0c8796f944329a64",
+  "glb_size_bytes": 2181764,
+  "base64_chars": 2909020,
+  "chunk_chars": 210000,
+  "chunk_count": 14,
+  "segments": [
+    {
+      "index": 0,
+      "path": "transfers/phase22/segment_00.b64",
+      "chars": 210000
+    },
+    {
+      "index": 1,
+      "path": "transfers/phase22/segment_01.b64",
+      "chars": 210000
+    },
+    {
+      "index": 2,
+      "path": "transfers/phase22/segment_02.b64",
+      "chars": 210000
+    },
+    {
+      "index": 3,
+      "path": "transfers/phase22/segment_03.b64",
+      "chars": 210000
+    },
+    {
+      "index": 4,
+      "path": "transfers/phase22/segment_04.b64",
+      "chars": 210000
+    },
+    {
+      "index": 5,
+      "path": "transfers/phase22/segment_05.b64",
+      "chars": 210000
+    },
+    {
+      "index": 6,
+      "path": "transfers/phase22/segment_06.b64",
+      "chars": 210000
+    },
+    {
+      "index": 7,
+      "path": "transfers/phase22/segment_07.b64",
+      "chars": 210000
+    },
+    {
+      "index": 8,
+      "path": "transfers/phase22/segment_08.b64",
+      "chars": 210000
+    },
+    {
+      "index": 9,
+      "path": "transfers/phase22/segment_09.b64",
+      "chars": 210000
+    },
+    {
+      "index": 10,
+      "path": "transfers/phase22/segment_10.b64",
+      "chars": 210000
+    },
+    {
+      "index": 11,
+      "path": "transfers/phase22/segment_11.b64",
+      "chars": 210000
+    },
+    {
+      "index": 12,
+      "path": "transfers/phase22/segment_12.b64",
+      "chars": 210000
+    },
+    {
+      "index": 13,
+      "path": "transfers/phase22/segment_13.b64",
+      "chars": 179020
+    }
+  ],
+  "note": "Transport chunks are temporary; assemble to real binary Git blob and remove from HEAD after verifying SHA256. No main branch changes. Original Blender sculpt v10 preserved."
+}

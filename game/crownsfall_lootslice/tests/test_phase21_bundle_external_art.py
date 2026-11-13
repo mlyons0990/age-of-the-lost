@@ -39,7 +39,7 @@ class PortableBundleTests(unittest.TestCase):
         result=self.create()
         self.assertEqual(result["files"],2)
         self.assertEqual(result["model_meshes"],309)
-        self.assertEqual(bundle.verify(self.out)["model_triangles"],1)
+        self.assertEqual(bundle.verify(self.out)["model_triangles"],309)
         self.assertEqual(len(result["sha256"]),64)
         with zipfile.ZipFile(self.out) as z:
             self.assertIn(bundle.MANIFEST_NAME,z.namelist())

@@ -1,0 +1,60 @@
+name: AOTL R39 actual walk animation preview backup
+
+on:
+  push:
+    branches: [assets/warrior-r39-sixclip]
+    paths:
+      - .github/workflows/warrior-r39-walk-preview-sync.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aotl-r39-walk-preview
+  cancel-in-progress: false
+
+jobs:
+  backup_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download original Blender-rendered frames and preview package
+        shell: bash
+        env:
+          ASSET_URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/26adfe3d-f3f0-4ecf-8e30-7919c33fac57.zip?download=AOTL_R39_Real_Walk_Preview_Package.zip
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --max-time 90 "$ASSET_URL" -o /tmp/aotl-r39-walk-preview.zip
+          echo "0416520e46062033b3b6d3bcbfdf115e896fd9094a92ec17e2103434861aa983  /tmp/aotl-r39-walk-preview.zip" | sha256sum -c
+          mkdir -p game/crownsfall_lootslice/previews/warrior_r39
+          unzip -p /tmp/aotl-r39-walk-preview.zip AOTL_R39_Real_Walk_Cycle_8frames.gif > game/crownsfall_lootslice/previews/warrior_r39/real_walk_cycle_8frames.gif
+          unzip -p /tmp/aotl-r39-walk-preview.zip AOTL_R39_Walk_Preview_Metadata.json > game/crownsfall_lootslice/previews/warrior_r39/walk_preview_metadata.json
+          echo "5c3674908766a68d0e67005fede086f9a025e48d5a96b185d02a5be0f9d3a962  game/crownsfall_lootslice/previews/warrior_r39/real_walk_cycle_8frames.gif" | sha256sum -c
+          python3 - <<'PY'
+          import json,pathlib
+          root=pathlib.Path('game/crownsfall_lootslice/previews/warrior_r39')
+          data=json.loads((root/'walk_preview_metadata.json').read_text())
+          gif=(root/'real_walk_cycle_8frames.gif').read_bytes()
+          assert gif[:6] in (b'GIF87a',b'GIF89a')
+          assert data['frame_count']==8 and data['frame_duration_ms']==110
+          print('Real Blender walk preview backed up:',len(gif),'bytes')
+          PY
+      - name: Commit real animation preview with original model intact
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add game/crownsfall_lootslice/previews/warrior_r39/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --cached --quiet; then
+            git commit -m "Back up actual Blender Warrior R39 walk-cycle GIF with frame provenance"
+            git push origin HEAD:assets/warrior-r39-sixclip
+          fi
+      - name: Retain original rendered PNG frames for Google Drive handoff
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-Real-Walk-Preview-Frames
+          path: /tmp/aotl-r39-walk-preview.zip
+          if-no-files-found: error
+          retention-days: 30

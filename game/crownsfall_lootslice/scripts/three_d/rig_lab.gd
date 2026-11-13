@@ -149,7 +149,7 @@ func _build_hud() -> void:
 	top.add_child(v)
 	v.add_child(_hud_label("AOTL · 3D MOTION / COMBAT TESTBED", 25, GOLD))
 	v.add_child(_hud_label("58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
-	v.add_child(_hud_label("F11: toggle experimental foot IK (off by default)", 15, GOLD))
+	v.add_child(_hud_label("F11: foot IK  |  F12: master rig animation review", 15, GOLD))
 	info = _hud_label("Targets defeated: 0", 17)
 	v.add_child(info)
 	hpbar = ProgressBar.new()

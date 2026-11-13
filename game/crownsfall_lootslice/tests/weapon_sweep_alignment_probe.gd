@@ -63,6 +63,23 @@ func _run() -> void:
 			"intersects_0_57m":SWEEP.swept_samples_touch_target(samples_by_axis[label],center,0.45,0.12)})
 	report.sort_custom(func(a,b):return a["min_distance_m"] < b["min_distance_m"])
 	print("AOTL R39 BLADE AXIS REPORT ", JSON.stringify(report))
+	var proximity_report: Array = []
+	for distance_m in [0.65, 0.85, 1.05, 1.35]:
+		var center_at_reach: Vector3 = actor.global_position + Vector3(0,1.2,-distance_m)
+		var candidates: Array = []
+		for axis in DIRECTIONS:
+			var axis_samples: Array = samples_by_axis[axis]
+			var nearest := 999.0
+			for sample in axis_samples:
+				nearest = minf(nearest, sqrt(SWEEP.point_segment_distance_squared(
+					center_at_reach, sample["hilt"], sample["tip"])))
+			candidates.append({"axis":axis,
+				"distance":snapped(nearest,0.001),
+				"hit":SWEEP.swept_samples_touch_target(axis_samples,center_at_reach,0.45,0.12)})
+		candidates.sort_custom(func(a,b): return a["distance"] < b["distance"])
+		proximity_report.append({"target_range_m":distance_m,"top_axes":candidates.slice(0,2)})
+	print("AOTL R39 BLADE RANGE REPORT ", JSON.stringify(proximity_report))
+
 	if contact_samples < 4:
 		push_error("BLADE ALIGNMENT PROBE FAIL: insufficient real animation contact frames")
 		quit(1)

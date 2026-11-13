@@ -67,6 +67,10 @@ def verify(archive: Path) -> dict:
 
 def create(glb: Path, blend: Path, output: Path,
            approved_project: Path|None=None) -> dict:
+    if glb.expanduser().is_symlink() or blend.expanduser().is_symlink():
+        raise ValueError("Input symlinks are not acceptable")
+    if output.expanduser().is_symlink():
+        raise FileExistsError("Refusing symlinked output destination")
     glb=glb.expanduser().resolve(strict=True)
     blend=blend.expanduser().resolve(strict=True)
     output=output.expanduser().resolve()
@@ -76,8 +80,6 @@ def create(glb: Path, blend: Path, output: Path,
         raise FileExistsError("Refusing to overwrite an existing bundle")
     if output.suffix.lower()!=".zip":
         raise ValueError("Output must have .zip suffix")
-    if glb.is_symlink() or blend.is_symlink():
-        raise ValueError("Input symlinks are not acceptable")
     if approved_project is not None:
         approved=approved_project.expanduser().resolve(strict=True)
         if not (approved/"project.godot").is_file():

@@ -35,6 +35,7 @@ var terrain_foot_ik: Node3D = null
 var terrain_ik_available := false
 var active_model_source := "legacy_proxy"
 var terrain_ik_enabled := true
+var terrain_ik_debug := false
 
 func _production_model_is_valid(candidate: Node3D) -> bool:
 	# Do not switch the playable actor solely because an R36 file exists.
@@ -115,6 +116,12 @@ func _toggle_terrain_ik() -> void:
 	terrain_foot_ik.reset_contact_state()
 
 
+func _toggle_terrain_ik_debug() -> void:
+	if not terrain_ik_available:
+		return
+	terrain_ik_debug = not terrain_ik_debug
+	terrain_foot_ik.set_debug_visible(terrain_ik_debug)
+
 func _play(clip: String) -> void:
 	if animation == null or not clip_names.has(clip):
 		return
@@ -131,6 +138,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventKey:
 		match event.keycode:
 			KEY_F9: _toggle_terrain_ik()
+			KEY_F10: _toggle_terrain_ik_debug()
 			KEY_SPACE: _dodge()
 			KEY_1: _attack("Cleave", 0.76)
 			KEY_2: _attack("Dash", 0.68)

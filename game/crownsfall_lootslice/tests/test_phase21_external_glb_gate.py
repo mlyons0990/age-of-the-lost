@@ -55,13 +55,14 @@ class ExternalGlbGateTests(unittest.TestCase):
         self.path.write_bytes(encode(self.doc,self.bin))
     def gate(self):
         self.write()
-        return gate.inspect_glb(self.path,mesh_nodes=309,max_triangles=1,min_images=2)
+        return gate.inspect_glb(self.path,mesh_nodes=309,max_triangles=310,min_images=2)
 
     def test_valid_minimal_embedded_asset(self):
         result=self.gate()
         self.assertEqual(result["status"],"PASS")
         self.assertEqual(result["mesh_nodes"],309)
-        self.assertEqual(result["actual_exported_triangles"],1)
+        self.assertEqual(result["actual_exported_triangles"],309)
+        self.assertEqual(result["unique_mesh_definition_triangles"],1)
         self.assertEqual(result["embedded_images"],2)
         self.assertFalse(result["real_godot_import_verified"])
 
@@ -76,9 +77,9 @@ class ExternalGlbGateTests(unittest.TestCase):
             self.gate()
 
     def test_more_than_allowed_triangles_rejected(self):
-        self.doc["accessors"][0]["count"]=6
+        self.write()
         with self.assertRaisesRegex(gate.GlbRejected,"exceed"):
-            self.gate()
+            gate.inspect_glb(self.path,mesh_nodes=309,max_triangles=308,min_images=2)
 
     def test_broken_external_image_rejected(self):
         self.doc["images"][0]={"uri":"https://tracker.example/art.png"}

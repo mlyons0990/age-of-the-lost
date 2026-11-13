@@ -27,14 +27,14 @@ func _run() -> void:
 	target.global_position = actor.global_position + Vector3(0,0,-1.30)
 	await physics_frame
 	actor._attack("Slash", 0.72)
-	await get_tree().create_timer(0.12).timeout
+	await root.get_tree().create_timer(0.12).timeout
 	verify(actor.attack_t > 0.0 and not actor.has_impacted, "Slash windup has not registered early impact")
 	verify(lab.contact_samples.size() >= 2, "Real moving weapon socket generated consecutive sweep samples")
 	verify(actor.anim_state == "Slash", "Imported Slash animation actively plays")
-	await get_tree().create_timer(0.56).timeout
+	await root.get_tree().create_timer(0.56).timeout
 	verify(actor.has_impacted, "Slash event fired after animation contact point")
 	verify(is_equal_approx(target.hp,68.0), "One valid Slash hit deals exactly 32 damage")
-	await get_tree().create_timer(0.35).timeout
+	await root.get_tree().create_timer(0.35).timeout
 	verify(is_equal_approx(target.hp,68.0), "No duplicate Slash hit during follow-through")
 	lab.strict_weapon_sweep = true
 	verify(lab.strict_weapon_sweep, "F8 strict sweep comparison can be enabled independently")

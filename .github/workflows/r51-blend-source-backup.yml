@@ -30,14 +30,14 @@ jobs:
             "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/17c0da85-237c-411b-b575-2efb4b17a64f.zip?download=AOTL_R51_Rig_Source_Protected_Backup.zip" \
             -o /tmp/r51-rig-backup.zip
           echo "6944fd7d9466d99df452fbde4138ad5011296e29216fef29d8c3cd6acf2d02d6  /tmp/r51-rig-backup.zip" | sha256sum --check -
-          dest=game/crownsfall_lootslice/source_blender
+          dest=art/character_sources
           mkdir -p "$dest"
           unzip -p /tmp/r51-rig-backup.zip AOTL_R51_R50_FullBody_Slash_Source.blend > "$dest/AOTL_R51_R50_FullBody_Slash_Source.blend"
           unzip -p /tmp/r51-rig-backup.zip AOTL_R51_Rig_Source_Manifest.json > "$dest/AOTL_R51_Rig_Source_Manifest.json"
           echo "7e6c43e40fad74f747c0c925e8f23bf7076f976a5bf39b632b90c04f8fb74c01  $dest/AOTL_R51_R50_FullBody_Slash_Source.blend" | sha256sum --check -
           python3 - <<'PY'
           import json,pathlib
-          p=pathlib.Path('game/crownsfall_lootslice/source_blender')
+          p=pathlib.Path('art/character_sources')
           b=(p/'AOTL_R51_R50_FullBody_Slash_Source.blend').read_bytes()
           assert b.startswith(b'BLENDER')
           meta=json.loads((p/'AOTL_R51_Rig_Source_Manifest.json').read_text())
@@ -49,10 +49,10 @@ jobs:
         run: |
           set -euo pipefail
           git lfs install --local
-          git lfs track "game/crownsfall_lootslice/source_blender/*.blend"
+          git lfs track "art/character_sources/*.blend"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .gitattributes game/crownsfall_lootslice/source_blender/
+          git add .gitattributes art/character_sources/
           if ! git diff --cached --quiet; then
             git commit -m "Preserve complete editable R51 Blender Warrior source with 4 Slash version actions"
             git push origin HEAD:dev/r50-slash-weighttransfer-ik-v1

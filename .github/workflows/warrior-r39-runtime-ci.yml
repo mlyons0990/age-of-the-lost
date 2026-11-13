@@ -1,0 +1,73 @@
+name: AOTL R39 playable controller acceptance
+
+on:
+  push:
+    branches: [assets/warrior-r39-sixclip]
+    paths:
+      - .github/workflows/warrior-r39-runtime-ci.yml
+      - game/crownsfall_lootslice/tests/verify_warrior_r39_runtime_controller.gd
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Restore verified R39 and original proxy from Git LFS
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git lfs pull --include="game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb,game/crownsfall_lootslice/models/AOTL_Wayfarer_Articulated_Proxy.glb" --exclude=""
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum --check -
+      - name: Download official Godot 4.3
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          mkdir -p /tmp/godot
+          unzip -q /tmp/godot.zip -d /tmp/godot
+          chmod +x /tmp/godot/Godot_v4.3-stable_linux.x86_64
+      - name: Build non-destructive minimal controller integration project
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=/tmp/aotl-r39-runtime
+          mkdir -p "$p/models" "$p/scripts/three_d" "$p/tests"
+          cp game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb "$p/models/"
+          cp game/crownsfall_lootslice/models/AOTL_Wayfarer_Articulated_Proxy.glb "$p/models/"
+          cp game/crownsfall_lootslice/scripts/three_d/rig_controller.gd "$p/scripts/three_d/"
+          cp game/crownsfall_lootslice/scripts/three_d/terrain_foot_ik.gd "$p/scripts/three_d/"
+          cp game/crownsfall_lootslice/scripts/three_d/equipment_sockets3d.gd "$p/scripts/three_d/"
+          cp game/crownsfall_lootslice/tests/verify_warrior_r39_runtime_controller.gd "$p/tests/"
+          cat > "$p/project.godot" <<'EOF'
+          config_version=5
+          [application]
+          config/name="AOTL R39 Controller QA"
+          config/features=PackedStringArray("4.3", "GL Compatibility")
+          [rendering]
+          renderer/rendering_method="gl_compatibility"
+          renderer/rendering_method.mobile="gl_compatibility"
+          EOF
+      - name: Run actual imported Warrior controller and IK/sockets integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          GODOT=/tmp/godot/Godot_v4.3-stable_linux.x86_64
+          "$GODOT" --headless --path /tmp/aotl-r39-runtime --editor --quit 2>&1 | tee /tmp/aotl-controller-import.log
+          "$GODOT" --headless --path /tmp/aotl-r39-runtime --script res://tests/verify_warrior_r39_runtime_controller.gd 2>&1 | tee /tmp/aotl-controller-runtime.log
+          grep -q "AOTL R39 RUNTIME CONTROLLER PASS" /tmp/aotl-controller-runtime.log
+      - name: Preserve runtime QA logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-Playable-Controller-QA
+          path: |
+            /tmp/aotl-controller-import.log
+            /tmp/aotl-controller-runtime.log
+          if-no-files-found: warn
+          retention-days: 30

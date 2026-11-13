@@ -26,3 +26,16 @@ This is not a visual shoulder-deformation test. It does not measure armor inters
 2. Build side-by-side shoulder deformation renders in Blender at rest, mid-swing, contact and recovery.
 3. Separate rigid armor elements from deforming underlayers where necessary; adjust vertex group weights without changing 62-joint naming or seven-clip animation layout.
 4. Add an opt-in R53 candidate only after Godot import, gameplay regression, visual comparison and authored GIF verification. Keep R39 as default.
+
+## Source pose-review utility added
+
+`tools/r52_blender_pose_review.py` is a Blender-only, read-only source inspection step. It selects the saved `R50_Slash_Grounded_IKBaked_V3` action and samples source frames 1, 5, 9, 12, 15, 19, 23. For each frame it renders front, three-quarter and side PNGs from actual evaluated Blender geometry, and records selected bone world positions plus world-space mesh bounds into `r52_pose_review.json`. This creates **21 actual source images** when successfully executed; it does not substitute generative imagery for deformation evidence.
+
+Example in Blender 5.2:
+```bash
+blender -b art/character_sources/AOTL_R51_R50_FullBody_Slash_Source.blend \
+  --python game/crownsfall_lootslice/tools/r52_blender_pose_review.py -- \
+  --output /tmp/aotl_r52_pose_review
+```
+
+**Validation caveat:** Blender 5.2 and Godot 4.6.3 were unavailable to this development environment at implementation time. The image outputs do not exist yet and no mesh, vertex-group, armor, or cloth changes are being claimed. GitHub CI syntax-checks the utility but does not execute Blender. Subsequent R53 rigging edits must be based on actual review output rather than assumed topology.

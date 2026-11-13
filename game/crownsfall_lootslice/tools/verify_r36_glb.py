@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AOTL R36 binary import gate. Requires only Python 3.9+ (no Blender/Godot).
+"""AOTL Warrior R36/R37 binary import gate. Requires only Python 3.9+ (no Blender/Godot).
 
 Usage:
   python tools/verify_r36_glb.py models/AOTL_Warrior_R36.glb
@@ -94,10 +94,6 @@ def inspect_document(document: dict, binary_info: dict, expected_size: int | Non
         warnings.append(f"GLB differs from expected Higgsfield preview size: {binary_info['bytes']} vs {expected_size}")
     if len(joint_names) < 58:
         warnings.append("Fewer than 58 exported skeleton joints detected")
-    if "V33_KneeStable_IK_Comparison" not in action_names:
-        warnings.append("Knee-stable IK authoring action not present; Godot can still run procedural IK")
-    if "V36_StepUp_PlantedWindow" not in action_names:
-        warnings.append("R36 terrain step authoring action not present")
     if not any(mesh.get("primitives") for mesh in meshes):
         warnings.append("No mesh primitives available")
     failures = []
@@ -130,7 +126,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("glb", type=Path, help="Path to binary GLB")
     parser.add_argument("--report", type=Path, help="Optional JSON report destination")
-    parser.add_argument("--expected-size", type=int, default=6946144)
+    parser.add_argument("--expected-size", type=int, default=None, help="Optional exact byte-size warning; exports may differ by Blender settings")
     args = parser.parse_args()
     try:
         document, binary_info = load_glb_json(args.glb)

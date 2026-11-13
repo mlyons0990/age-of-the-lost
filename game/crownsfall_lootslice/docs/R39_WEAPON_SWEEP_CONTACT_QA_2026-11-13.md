@@ -88,3 +88,15 @@ An independent Blender R47 `Slash` skeletal-motion audit (original frames 1, 6, 
 The verified preview therefore shows a strong arm swing with **no leg-driven weight transfer or hip rotation**. This is an authentic quality limitation, not a rendering issue. It does not meet the user's ultimate Hades-like movement / modern anime proportion goal.
 
 **Recommendation for the next visual animation pass:** preserve R47/R39 as tested production backups; create a new reversible Blender action candidate with pelvis/hip counter-rotation, controlled stride adjustment, knee articulation, planted feet, shoulder timing, sword recovery and native GIF review. Do not merge that candidate until Godot deformation and collision tests pass.
+
+## Final correction and completed acceptance (2026-11-13)
+
+The additional mid-swing F8 regression exposed a GDScript type-inference error in `rig_lab.gd`. It was fixed by declaring the active-strike guard explicitly as `bool`; no earlier stable branch or R39 GLB data was changed.
+
+**Corrected commit `b9b8e879` passed all three new full-project CI gates:**
+
+- [Godot strict blade + hurtbox + F8 mid-swing dedup](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43406447757): **14 checks / zero failures**
+- [Actual imported R39 Slash timing + sword debug](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43406447896): **13 checks / zero failures**
+- [Full Crownsfall regression](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43406447910): **994/994 across all 17 suites**
+
+The final passing log archives and the actual Slash GIF were uploaded to the existing AOTL Google Drive handoff folder. The source remains in an isolated draft PR until visual combat/hurtbox review, and the strict blade comparison remains **off by default**.

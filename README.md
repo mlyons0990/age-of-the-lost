@@ -1,6 +1,10 @@
 # age-of-the-lost
 AOTL Files
 
+## Target UI layout and camera distance (owner direction)
+
+[Open the UI and camera target reference](docs/reference/ui_camera_target/2026-11-12/README.md): the owner's image for the new HUD layout and the new, wider camera distance with mouse-wheel zoom. Use it for UI and camera work going forward. Reference only; no game code changed.
+
 ## Latest development: actor feedback and selective voice reference
 
 [Actor feedback handoff and QA](game/crownsfall_lootslice/docs/ACTOR_FEEDBACK_HANDOFF.md) · [Grady voice reference](audio/voice_auditions/2026-11-12/README.md).

@@ -16,3 +16,4 @@ docs/reviews/*.pdf filter=lfs diff=lfs merge=lfs -text
 art/skill_tiles/**/*.png filter=lfs diff=lfs merge=lfs -text
 art/skill_tiles/**/*.pdf filter=lfs diff=lfs merge=lfs -text
 game/crownsfall_lootslice/source_blender/*.blend filter=lfs diff=lfs merge=lfs -text
+art/character_sources/*.blend filter=lfs diff=lfs merge=lfs -text

@@ -3,6 +3,7 @@ extends RefCounted
 ## Pure math: physics raycasting and skeleton IK are handled by the separate lab script.
 ## Distinguishes low swinging feet from low feet traveling backwards relative to body.
 
+const MIN_ALLOWED_PENETRATION_M := -0.09
 const ENTER_HEIGHT := 0.105
 const EXIT_HEIGHT := 0.205
 const MIN_REARWARD_SPEED := 0.22
@@ -40,7 +41,8 @@ static func decide(old: Dictionary, dt: float, foot_height: float, ground_valid:
     var velocity: Vector3 = _xz(relative_velocity)
     var rearward: float = -velocity.dot(forward)
     var locomotion := can_locomo and actor_speed >= MIN_ACTOR_SPEED and forward.length_squared() > 0.25
-    var height_gate: bool = foot_height <= (EXIT_HEIGHT if planted else ENTER_HEIGHT)
+    var penetrating: bool = foot_height < MIN_ALLOWED_PENETRATION_M
+    var height_gate: bool = foot_height <= (EXIT_HEIGHT if planted else ENTER_HEIGHT) and not penetrating
     var breaks: bool = not valid or not locomotion or not height_gate or target_error > MAX_TARGET_ERROR_M
     if breaks:
         planted = false
@@ -48,6 +50,7 @@ static func decide(old: Dictionary, dt: float, foot_height: float, ground_valid:
         state["plant_s"] = 0.0
         if not valid: reason = "no-ground-or-steep"
         elif not locomotion: reason = "not-locomoting"
+        elif penetrating: reason = "penetrating-ground"
         elif not height_gate: reason = "lifted"
         else: reason = "overstretched"
     elif planted:

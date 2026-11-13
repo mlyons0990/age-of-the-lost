@@ -1,9 +1,11 @@
 extends Node3D
-## Optional Phase 19 rig QA: never replaces the production actor or changes saves.
+## Independent animation review. The master GLB is an optional Higgsfield export.
+## No save files or production gameplay are touched by this scene.
 const MASTER_PATH := "res://models/AOTL_Master_Rig_R38_AllSix.glb"
 const REQUIRED := ["Idle", "Walk", "Run", "Slash", "Dodge", "Cast"]
 const GOLD := Color("e6c17c")
 const METRICS := preload("res://scripts/three_d/phase20_motion_metrics.gd")
+const STRIDE := preload("res://scripts/three_d/phase21_stride_fit.gd")
 var model: Node3D
 var animator: AnimationPlayer
 var armature: Skeleton3D
@@ -11,11 +13,15 @@ var status_label: Label
 var active_clip := "Idle"
 var message := ""
 var motion_report: Dictionary = {}
+var stride_report: Dictionary = {}
+var stride_label: Label
 var audit_label: Label
 var speed_label: Label
 var slow_motion := false
 var show_foot_markers := true
 var markers: Array[MeshInstance3D] = []
+var marker_labels: Array[Label3D] = []
+
 
 func _ready() -> void:
 	_build_stage()
@@ -82,7 +88,7 @@ func _build_hud() -> void:
 	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(status_label)
 	var instructions := Label.new()
-	instructions.text = "1–6: clips   7: foot markers   8: slow motion   9: motion audit   0: reset   F7: IK lab"
+	instructions.text = "1–6 clips · 7 markers · 8 slow · 9 motion audit · F9 stride fit · 0 reset · F7 lab"
 	instructions.add_theme_color_override("font_color", GOLD)
 	column.add_child(instructions)
 	audit_label = Label.new()
@@ -93,6 +99,11 @@ func _build_hud() -> void:
 	speed_label.add_theme_font_size_override("font_size", 14)
 	speed_label.add_theme_color_override("font_color", GOLD)
 	column.add_child(speed_label)
+	stride_label = Label.new()
+	stride_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	stride_label.add_theme_font_size_override("font_size", 14)
+	stride_label.add_theme_color_override("font_color", Color("9edac6"))
+	column.add_child(stride_label)
 
 func _load_optional_master() -> void:
 	if not ResourceLoader.exists(MASTER_PATH):
@@ -163,6 +174,15 @@ func run_motion_audit(clip_name: String = "") -> Dictionary:
 	_refresh_status()
 	return motion_report
 
+func run_stride_fit(clip_name: String = "") -> Dictionary:
+	if model == null or animator == null or armature == null:
+		return {"ok": false, "reason": "optional master GLB not loaded"}
+	var selected: String = clip_name if clip_name != "" else active_clip
+	var report: Dictionary = run_motion_audit(selected)
+	stride_report = STRIDE.analyze_report(report, model.global_basis * Vector3.FORWARD)
+	_refresh_status()
+	return stride_report
+
 func _create_foot_markers() -> void:
 	if armature == null:
 		return
@@ -185,8 +205,9 @@ func _create_foot_markers() -> void:
 		label.pixel_size = 0.003
 		label.position.y = 0.12
 		marker.add_child(label)
+		marker_labels.append(label)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if model == null or markers.size() != 2:
 		return
 	for index in range(2):
@@ -196,6 +217,8 @@ func _process(_delta: float) -> void:
 		markers[index].visible = show_foot_markers
 
 func _refresh_status() -> void:
+	if stride_label != null:
+		stride_label.text = STRIDE.diagnostic_line(stride_report) if not stride_report.is_empty() else "F9: estimate a diagnostic stride-speed fit (no gameplay changes)."
 	if status_label != null:
 		status_label.text = message + ("\nPreview: " + active_clip if model != null else "")
 	if speed_label != null:
@@ -204,9 +227,9 @@ func _refresh_status() -> void:
 		if motion_report.get("ok", false):
 			var left: Dictionary = motion_report["left"]
 			var right: Dictionary = motion_report["right"]
-			audit_label.text = "Audited %s (%d samples): vertical range L %.3fm / R %.3fm; low-foot travel L %.3fm / R %.3fm.\nIndicators only — not proof of ground contact." % [motion_report["clip"], motion_report["samples"], left["vertical_range_m"], right["vertical_range_m"], left["low_foot_path_m"], right["low_foot_path_m"]]
+			audit_label.text = "Audited %s (%d samples): vertical range L %.3fm / R %.3fm; low-foot travel L %.3fm / R %.3fm.\nThese are trajectory indicators, NOT a verdict on visual sliding." % [motion_report["clip"], motion_report["samples"], left["vertical_range_m"], right["vertical_range_m"], left["low_foot_path_m"], right["low_foot_path_m"]]
 		else:
-			audit_label.text = "Press 9 to sample each foot trajectory without altering your save."
+			audit_label.text = "Press 9 to sample each foot's trajectory without altering the game."
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and not event.echo):
@@ -226,6 +249,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		play_clip(REQUIRED[n])
 		return
 	match event.keycode:
+		KEY_F9:
+			run_stride_fit()
 		KEY_7:
 			show_foot_markers = not show_foot_markers
 		KEY_8:
@@ -240,4 +265,5 @@ func _unhandled_input(event: InputEvent) -> void:
 				animator.speed_scale = 1.0
 			slow_motion = false
 			motion_report = {}
+			stride_report = {}
 			play_clip("Idle")

@@ -25,6 +25,10 @@ on:
       - 'game/crownsfall_lootslice/tools/validate_citadel_sculpt_v20_v08.py'
       - 'game/crownsfall_lootslice/tests/test_phase20_batch_manifest.py'
       - 'game/crownsfall_lootslice/data/citadel_phase20_batch_manifest.json'
+      - 'game/crownsfall_lootslice/data/citadel_phase20_uv_batch_v09_manifest.json'
+      - 'game/crownsfall_lootslice/tests/test_phase20_uv_batch_manifest.py'
+      - 'game/crownsfall_lootslice/tools/phase20_uv_preserving_decor_batch.py'
+      - 'game/crownsfall_lootslice/tools/validate_citadel_sculpt_v20_v09.py'
       - 'game/crownsfall_lootslice/tools/build_citadel_art_v17.py'
       - 'game/crownsfall_lootslice/scripts/two_point_five_d/**'
       - '.github/workflows/crownsfall-citadel-asset-v17.yml'
@@ -81,6 +85,7 @@ jobs:
         run: |
           cd game/crownsfall_lootslice
           python -m unittest discover -s tests -p 'test_phase20_batch_manifest.py' -v
+          python -m unittest discover -s tests -p 'test_phase20_uv_batch_manifest.py' -v
       - name: Install Godot 4.6.3
         uses: solarlabyrinth/action-setup-godot@v3
         with:

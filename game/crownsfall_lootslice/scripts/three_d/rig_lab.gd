@@ -319,7 +319,12 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 			# Blade contacts are resolved continuously in _physics_process,
 			# not at a separate one-shot event (prevents early/duplicate hits).
 			continue
+		var actively_swinging := kind != "Cast" and player.attack_t > 0.0 and player.anim_state == "Slash"
+		if actively_swinging and sweep_hit_instances.has(target.get_instance_id()):
+			continue
 		if allowed:
+			if actively_swinging:
+				sweep_hit_instances[target.get_instance_id()] = true
 			var dead: bool = target.hit(TARGETING.damage_for(kind))
 			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
 			if dead: kills += 1
@@ -331,7 +336,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
 		strict_weapon_sweep = not strict_weapon_sweep
 		contact_samples.clear()
-		sweep_hit_instances.clear()
+		# Do not reset the per-swing hit ledger on mode change: that could
+		# apply damage twice to a target during one uninterrupted swing.
 		_draw_sword_sweep()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:

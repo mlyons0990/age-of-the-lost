@@ -15,3 +15,15 @@ static func make_variant(id: String, level: int = 1) -> Dictionary:
 	var item: Dictionary = SYS.make_item(level,0.0,String(meta.base),String(meta["class"]))
 	item.name = String(meta.name)
 	return item
+
+static func merchant_selection(class_id: String, level: int = 1) -> Array:
+	# New-character showcase stock only; no mutation of saved merchants or drop rates.
+	var result: Array = []
+	for id in VARIANTS:
+		var meta: Dictionary = VARIANTS[id]
+		var base: String = String(meta.base)
+		if not SYS.drop_pool(class_id).has(base): continue
+		var item: Dictionary = SYS.make_item(level,0.0,base,class_id)
+		item.name = String(meta.name)
+		result.append(item)
+	return result

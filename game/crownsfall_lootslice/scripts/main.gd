@@ -13,6 +13,7 @@ const Fx := preload("res://scripts/fx.gd")
 const Hud := preload("res://scripts/hud.gd")
 const PoeLayout := preload("res://scripts/poe_hud_layout.gd")
 const Live25D := preload("res://scripts/two_point_five_d/live_courtyard_bridge.gd")
+const CityDistrict07 := preload("res://scripts/two_point_five_d/crownsfall_royal_promenade_v07.gd")
 const SoundBank := preload("res://scripts/sound_bank.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const SAVE_SCHEMA := 6
@@ -62,6 +63,7 @@ var fx_ground: Node2D
 var fx_parts: Node2D
 var fx_text: Node2D
 var nav_region: NavigationRegion2D
+var city_district_07: Node2D
 var debug_draw := false
 
 var enemies: Array = []
@@ -92,6 +94,11 @@ const SERVICES := {
 	"merchant": {"pos": Vector2(1540, 900), "label": "Quartermaster", "color": "8de5ba"},
 	"lore": {"pos": Vector2(1080, 900), "label": "Stone memory", "color": "bdb0ff"},
 	"board": {"pos": Vector2(1280, 750), "label": "Noticeboard", "color": "90c9ff"},
+	# Royal Promenade delegates to the SAME existing town services/pages.
+	# No extra inventory economy, save fields or duplicate service controller.
+	"promenade_smith": {"pos": Vector2(1960, 1990), "label": "Lantern Quartermaster", "color": "e8c77a", "page": "merchant"},
+	"promenade_archivist": {"pos": Vector2(2520, 2220), "label": "Archivist Envoy", "color": "bdb0ff", "page": "lore"},
+	"promenade_caravan": {"pos": Vector2(2120, 2610), "label": "Caravan Stash", "color": "9edccc", "page": "stash"},
 }
 
 
@@ -107,6 +114,9 @@ func _ready() -> void:
 	plaza_art = bg
 
 	_build_navigation()
+	# This is an extension of the SAME saved city, not a new wilderness region.
+	city_district_07 = CityDistrict07.new()
+	add_child(city_district_07)
 
 	fx_ground = _make_fx(Fx.GROUND, -4)
 	world = Node2D.new()
@@ -121,12 +131,13 @@ func _ready() -> void:
 	player.main = self
 	player.position = START
 	world.add_child(player)
+	_install_promenade_npc_art()
 
 	cam = Camera2D.new()
 	cam.limit_left = 0
 	cam.limit_top = 0
-	cam.limit_right = PLAZA.get_width()
-	cam.limit_bottom = PLAZA.get_height()
+	cam.limit_right = maxi(PLAZA.get_width(), int(CityDistrict07.ORIGIN.x + CityDistrict07.DIMENSIONS.x))
+	cam.limit_bottom = maxi(PLAZA.get_height(), int(CityDistrict07.ORIGIN.y + CityDistrict07.DIMENSIONS.y))
 	cam.position_smoothing_enabled = true
 	cam.position_smoothing_speed = 6.0
 	# The actual saved 2D game now shares Phase 02's wider ARPG framing.
@@ -339,6 +350,7 @@ func toggle_live_25d() -> bool:
 	else:
 		live_25d_enabled = false
 	plaza_art.visible = not live_25d_enabled
+	if city_district_07 != null: city_district_07.set_painted_background(not live_25d_enabled)
 	for cutout in layered_occluders:
 		# Existing y-sorted painted buildings/columns now remain in front of the
 		# original 2D character when the 3D ground is active. Alpha feathering
@@ -654,6 +666,31 @@ func _pick_up(drop: Node2D, automatic := false) -> bool:
 	sound.play_cue("pickup"); hud.toast(loot_notice,Color("c7d9b1"),true)
 	return true
 
+func _install_promenade_npc_art() -> void:
+	# Painted sprite stand-ins for three gameplay-connected service characters.
+	# This scene uses the official class animation art until unique NPC skins
+	# are approved. The service point itself is the E-interaction authority.
+	for npc in [
+		{"id":"promenade_smith","sheet":"knight","anim":"idle_down"},
+		{"id":"promenade_archivist","sheet":"mage","anim":"idle_se"},
+		{"id":"promenade_caravan","sheet":"knight","anim":"idle_se"},
+	]:
+		var group := Node2D.new()
+		group.name = "ArtOnly_NPC_" + String(npc.id)
+		group.position = SERVICES[String(npc.id)].pos + Vector2(0, -18)
+		var sprite := Sprite2D.new()
+		sprite.name = "CanonClassIdle_ProvisionalNPC"
+		var image: Texture2D = load("res://assets/" + String(npc.sheet) + "/" + String(npc.anim) + ".png")
+		var atlas := AtlasTexture.new()
+		atlas.atlas = image
+		atlas.region = Rect2(0, 0, 384, 384)
+		sprite.texture = atlas
+		sprite.scale = Vector2.ONE * 0.52
+		sprite.offset = Vector2(0, -138)
+		group.add_child(sprite)
+		world.add_child(group)
+
+
 func interact() -> void:
 	if player.dead or get_tree().paused: return
 	var closest := ""
@@ -663,7 +700,9 @@ func interact() -> void:
 		if d <= distance:
 			distance = d; closest = key
 	if closest == "": hud.toast("Move near a labeled service, then press E.", Color("b3c4dc"), true)
-	else: hud.open_page(closest)
+	else:
+		var page_name: String = String(SERVICES[closest].get("page", closest))
+		hud.open_page(page_name)
 
 
 # ---------------------------------------------------------------- progression
@@ -877,6 +916,7 @@ func _valid_save(data: Dictionary) -> bool:
 	return true
 
 func _valid_floor_point(point: Vector2) -> bool:
+	if CityDistrict07.contains(point): return true
 	if Geometry2D.is_point_in_polygon(point,PackedVector2Array(WALKABLE)): return true
 	for i in WALKABLE.size():
 		if Geometry2D.get_closest_point_to_segment(point,WALKABLE[i],WALKABLE[(i+1)%WALKABLE.size()]).distance_to(point)<=1.0: return true

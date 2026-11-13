@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse,json,os,re,shutil,subprocess,sys,tempfile,time
 
 SUITES=[
- ('warrior',['--','--systems-test'],'RESULT',52),
+ ('warrior',['--','--systems-test'],'RESULT',55),
  ('mage',['--','--mage-test'],'MAGE RESULT',57),
  ('lab',['--script','res://tests/lab_roundtrip.gd'],'LAB RESULT',28),
  ('art_audio',['--script','res://tests/art_audio_integration.gd'],'ART AUDIO RESULT',19),

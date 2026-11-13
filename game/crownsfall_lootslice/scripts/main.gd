@@ -14,6 +14,7 @@ const Hud := preload("res://scripts/hud.gd")
 const PoeLayout := preload("res://scripts/poe_hud_layout.gd")
 const Live25D := preload("res://scripts/two_point_five_d/live_courtyard_bridge.gd")
 const CityDistrict07 := preload("res://scripts/two_point_five_d/crownsfall_royal_promenade_v07.gd")
+const CityDistrict08 := preload("res://scripts/two_point_five_d/crownsfall_merchants_quarter_v08.gd")
 const SoundBank := preload("res://scripts/sound_bank.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const SAVE_SCHEMA := 6
@@ -64,6 +65,8 @@ var fx_parts: Node2D
 var fx_text: Node2D
 var nav_region: NavigationRegion2D
 var city_district_07: Node2D
+var city_district_08: Node2D
+var market_seam: Sprite2D
 var debug_draw := false
 
 var enemies: Array = []
@@ -99,6 +102,9 @@ const SERVICES := {
 	"promenade_smith": {"pos": Vector2(1960, 1990), "label": "Lantern Quartermaster", "color": "e8c77a", "page": "merchant"},
 	"promenade_archivist": {"pos": Vector2(2520, 2220), "label": "Archivist Envoy", "color": "bdb0ff", "page": "lore"},
 	"promenade_caravan": {"pos": Vector2(2120, 2610), "label": "Caravan Stash", "color": "9edccc", "page": "stash"},
+	"market_tailor": {"pos": Vector2(3290, 2250), "label": "Blue Banner Tailor", "color": "e5bf74", "page": "merchant"},
+	"market_notice": {"pos": Vector2(3730, 2310), "label": "Merchant Guild Board", "color": "90c9ff", "page": "board"},
+	"market_caravan": {"pos": Vector2(3090, 2320), "label": "Market Caravan Chest", "color": "9edccc", "page": "stash"},
 }
 
 
@@ -117,6 +123,20 @@ func _ready() -> void:
 	# This is an extension of the SAME saved city, not a new wilderness region.
 	city_district_07 = CityDistrict07.new()
 	add_child(city_district_07)
+	# Third district of the SAME city world. Its NavigationRegion2D is joined
+	# to Royal Promenade, not another gameplay scene or save namespace.
+	city_district_08 = CityDistrict08.new()
+	add_child(city_district_08)
+	# Painterly seam is EXACTLY the overlapping world region between districts.
+	# The RGB at each edge equals its source painting, keeping roads continuous
+	# without requiring a replacement of approved Crownsfall Plaza art.
+	market_seam = Sprite2D.new()
+	market_seam.name = "Crownsfall_Painterly_DistrictBoundary_Blend"
+	market_seam.texture = preload("res://assets/25d/crownsfall_promenade_market_seam_v08.webp")
+	market_seam.centered = false
+	market_seam.position = Vector2(2580, 1650)
+	market_seam.z_index = -10
+	add_child(market_seam)
 
 	fx_ground = _make_fx(Fx.GROUND, -4)
 	world = Node2D.new()
@@ -136,8 +156,12 @@ func _ready() -> void:
 	cam = Camera2D.new()
 	cam.limit_left = 0
 	cam.limit_top = 0
-	cam.limit_right = maxi(PLAZA.get_width(), int(CityDistrict07.ORIGIN.x + CityDistrict07.DIMENSIONS.x))
-	cam.limit_bottom = maxi(PLAZA.get_height(), int(CityDistrict07.ORIGIN.y + CityDistrict07.DIMENSIONS.y))
+	cam.limit_right = maxi(PLAZA.get_width(), int(maxf(
+		CityDistrict07.ORIGIN.x + CityDistrict07.DIMENSIONS.x,
+		CityDistrict08.ORIGIN.x + CityDistrict08.DIMENSIONS.x)))
+	cam.limit_bottom = maxi(PLAZA.get_height(), int(maxf(
+		CityDistrict07.ORIGIN.y + CityDistrict07.DIMENSIONS.y,
+		CityDistrict08.ORIGIN.y + CityDistrict08.DIMENSIONS.y)))
 	cam.position_smoothing_enabled = true
 	cam.position_smoothing_speed = 6.0
 	# The actual saved 2D game now shares Phase 02's wider ARPG framing.
@@ -351,6 +375,8 @@ func toggle_live_25d() -> bool:
 		live_25d_enabled = false
 	plaza_art.visible = not live_25d_enabled
 	if city_district_07 != null: city_district_07.set_painted_background(not live_25d_enabled)
+	if city_district_08 != null: city_district_08.set_painted_background(not live_25d_enabled)
+	if market_seam != null: market_seam.visible = not live_25d_enabled
 	for cutout in layered_occluders:
 		# Existing y-sorted painted buildings/columns now remain in front of the
 		# original 2D character when the 3D ground is active. Alpha feathering
@@ -674,6 +700,9 @@ func _install_promenade_npc_art() -> void:
 		{"id":"promenade_smith","sheet":"knight","anim":"idle_down"},
 		{"id":"promenade_archivist","sheet":"mage","anim":"idle_se"},
 		{"id":"promenade_caravan","sheet":"knight","anim":"idle_se"},
+		{"id":"market_tailor","sheet":"knight","anim":"idle_se"},
+		{"id":"market_notice","sheet":"mage","anim":"idle_down"},
+		{"id":"market_caravan","sheet":"knight","anim":"idle_down"},
 	]:
 		var group := Node2D.new()
 		group.name = "ArtOnly_NPC_" + String(npc.id)
@@ -917,6 +946,7 @@ func _valid_save(data: Dictionary) -> bool:
 
 func _valid_floor_point(point: Vector2) -> bool:
 	if CityDistrict07.contains(point): return true
+	if CityDistrict08.contains(point): return true
 	if Geometry2D.is_point_in_polygon(point,PackedVector2Array(WALKABLE)): return true
 	for i in WALKABLE.size():
 		if Geometry2D.get_closest_point_to_segment(point,WALKABLE[i],WALKABLE[(i+1)%WALKABLE.size()]).distance_to(point)<=1.0: return true

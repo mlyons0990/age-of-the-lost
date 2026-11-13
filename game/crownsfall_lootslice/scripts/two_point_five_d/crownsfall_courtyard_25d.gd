@@ -253,8 +253,15 @@ func _royal_gate() -> void:
         _column(x, -11.0, 4.6)
         _banner(x, -10.48, 3.4)
     for x in [-20.5, 20.5]:
-        _solid("Limestone_Parapet", Vector3(x, 1.13, -7.0), Vector3(.72, 2.26, 18.0), LIMESTONE)
-        _block("Parapet_GoldCoping", Vector3(x, 2.28, -7.0), Vector3(.92, .12, 18.2), GOLD)
+        # When the Royal Promenade became a traversable street, the eastern
+        # old plaza parapet extended across that entrance. Shorten only the
+        # positive-X span to leave a physical gate; retain the west wall.
+        var z_mid: float = -11.55 if x > 0 else -7.0
+        var z_length: float = 8.9 if x > 0 else 18.0
+        _solid("Limestone_Parapet", Vector3(x, 1.13, z_mid),
+            Vector3(.72, 2.26, z_length), LIMESTONE)
+        _block("Parapet_GoldCoping", Vector3(x, 2.28, z_mid),
+            Vector3(.92, .12, z_length + .2), GOLD)
     for x in [-7.5, 7.5]:
         _column(x, -9.9, 3.6)
         _banner(x, -9.36, 2.42)

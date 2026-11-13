@@ -145,7 +145,9 @@ func install(conv: Callable) -> void:
     for idx in range(6):
         var sy: float = 1675.0+float(idx)*185.0
         _house(Vector2(1310.0,sy),conv,true,idx)
-        _house(Vector2(3100.0,sy+70),conv,false,idx+6)
+        # East exterior shell is pushed beyond the now-open Merchants Quarter.
+        # No invisible old Royal wall may block the new public street.
+        _house(Vector2(4500.0,sy+70),conv,false,idx+6)
         _light(Vector2(1610.0,sy),conv,idx)
         _light(Vector2(2850.0,sy+55),conv,idx+6)
     # Distinct gate threshold visible from the original Central Plaza.

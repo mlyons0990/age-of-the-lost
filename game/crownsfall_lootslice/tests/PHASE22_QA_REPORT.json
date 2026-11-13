@@ -1,0 +1,53 @@
+{
+  "phase": 22,
+  "source_baseline": "user-verified Phase 21",
+  "classification": "experimental independent 3D rig lab",
+  "godot_version_tested": "4.4.1 Linux headless",
+  "checks": {
+    "stance_classifier": {
+      "pass": 17,
+      "fail": 0
+    },
+    "ik_import_smoke": {
+      "pass": 10,
+      "fail": 0
+    },
+    "animated_floor_contact": {
+      "pass": 11,
+      "fail": 0,
+      "observed_plants": 2,
+      "observed_releases": 1,
+      "ray_hits": 98
+    },
+    "prior_phase21_gait": {
+      "pass": 14,
+      "fail": 0
+    },
+    "prior_phase21_stride_math": {
+      "pass": 11,
+      "fail": 0
+    },
+    "prior_phase21_master_fallback": {
+      "pass": 3,
+      "fail": 0
+    }
+  },
+  "known_limits": [
+    "Windows Godot 4.6.3 visual test pending",
+    "painted 3D mesh not production-quality",
+    "world-space planted foot cannot prove visually zero sliding",
+    "uphill ramp and moving platforms remain future work"
+  ],
+  "production_scripts_unchanged": 43,
+  "changed_files": [
+    "game/crownsfall_lootslice/docs/PHASE22_GROUND_CONTACT.md",
+    "game/crownsfall_lootslice/project.godot",
+    "game/crownsfall_lootslice/scripts/three_d/phase18_foot_ik.gd",
+    "game/crownsfall_lootslice/scripts/three_d/phase22_contact_classifier.gd",
+    "game/crownsfall_lootslice/scripts/three_d/rig_controller.gd",
+    "game/crownsfall_lootslice/tests/phase22_contact_classifier_test.gd",
+    "game/crownsfall_lootslice/tests/phase22_ik_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase22_walk_ik_integration.gd"
+  ],
+  "removed_files": []
+}

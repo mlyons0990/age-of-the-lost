@@ -7,6 +7,7 @@ signal visual_changed(description: String)
 
 const HUMANOID_V03 := preload("res://scripts/two_point_five_d/humanoid_visual_v03.gd")
 const HUMANOID_V04 := preload("res://scripts/two_point_five_d/humanoid_visual_v04.gd")
+const HUMANOID_V05 := preload("res://scripts/two_point_five_d/humanoid_visual_v05.gd")
 const FRAME := 384
 const ATTACK_FRAME := 512
 const PIXEL_SIZE := 0.0053  # 384px painting ~2.04 world metres before transparent margins.
@@ -30,6 +31,7 @@ var visual: Sprite3D
 var humanoid_visual
 var humanoid_v03_opt_in := false
 var humanoid_v04_opt_in := false
+var humanoid_v05_opt_in := false
 var horizontal_acceleration := 24.0
 var horizontal_braking := 32.0
 var skeleton_visual: Node3D
@@ -129,10 +131,11 @@ func _ready() -> void:
                     skeleton_clips[short_name] = library_clip
                     if short_name in ["Idle", "Walk", "Run"]:
                         skeleton_anims.get_animation(library_clip).loop_mode = Animation.LOOP_LINEAR
-    humanoid_v04_opt_in = OS.get_cmdline_user_args().has("--aotl-v04")
+    humanoid_v05_opt_in = OS.get_cmdline_user_args().has("--aotl-v05")
+    humanoid_v04_opt_in = OS.get_cmdline_user_args().has("--aotl-v04") or humanoid_v05_opt_in
     humanoid_v03_opt_in = OS.get_cmdline_user_args().has("--aotl-v03") or humanoid_v04_opt_in
     if humanoid_v03_opt_in:
-        humanoid_visual = HUMANOID_V04.new() if humanoid_v04_opt_in else HUMANOID_V03.new()
+        humanoid_visual = HUMANOID_V05.new() if humanoid_v05_opt_in else (HUMANOID_V04.new() if humanoid_v04_opt_in else HUMANOID_V03.new())
         add_child(humanoid_visual)
     _render_painted_frame("idle", true)
     visual_changed.emit("Painted sprites · Warrior")
@@ -158,7 +161,7 @@ func change_visual_mode() -> void:
     active_proxy_clip = ""
     var description := "Original painted sprite"
     if visual_mode == "humanoid":
-        description = "Higgsfield V04 grounded humanoid (Warrior base model)" if humanoid_v04_opt_in else "Higgsfield V03 animated humanoid (Warrior base model)"
+        description = "Higgsfield V05 cadence-synchronized Warrior" if humanoid_v05_opt_in else ("Higgsfield V04 grounded humanoid (Warrior base model)" if humanoid_v04_opt_in else "Higgsfield V03 animated humanoid (Warrior base model)")
     elif visual_mode == "proxy":
         description = "Original geometric proxy"
     visual_changed.emit(description + " · " + player_class.capitalize())

@@ -320,7 +320,7 @@ func _update_feet(state: String, delta: float) -> void:
 		var floor_y: float = float(ray.position.y)
 		var natural := Vector3(ankle_world.x, floor_y + 0.10, ankle_world.z)
 		var side_phase := fposmod(gait_phase + (0.0 if side == "L" else 0.50), 1.0)
-		var stance_window := 0.34 if state == "run" else 0.41
+		var stance_window := 0.24 if state == "run" else 0.31
 		# Speed-based stride timing + explicit swing/stance; never lock dodge feet.
 		var stance: bool = calm or guarding or (moving and side_phase < stance_window)
 		if state == "dodge":
@@ -343,14 +343,14 @@ func _update_feet(state: String, delta: float) -> void:
 			var upper_leg_id := skeleton.find_bone("Thigh" + side)
 			var hip_world: Vector3 = skeleton.to_global(skeleton.get_bone_global_pose(upper_leg_id).origin)
 			var xz_reach := Vector2(anchor.x - hip_world.x, anchor.z - hip_world.z).length()
-			if xz_reach > 0.77 or absf(hip_world.y - anchor.y) > 1.05:
+			if xz_reach > 0.63 or absf(hip_world.y - anchor.y) > 1.05:
 				locked_foot[side] = false
 				planted_world.erase(side)
 				contact_release_count += 1
 			else:
 				target_world = anchor
 				planted_frames[side] = int(planted_frames[side]) + 1
-				wanted_influence = 0.91 if calm else (0.78 if state == "walk" else (0.63 if state == "run" else 0.67))
+				wanted_influence = 1.0 if calm else (0.99 if state == "walk" else (0.92 if state == "run" else 0.92))
 				peak_plant_error_m = maxf(peak_plant_error_m, target_world.distance_to(anchor))
 		if not bool(locked_foot[side]):
 			# Swing foot follows its sampled animated ankle with a real clearance arc.
@@ -359,7 +359,7 @@ func _update_feet(state: String, delta: float) -> void:
 			target_world = natural + Vector3.UP * clearance
 			if moving:
 				target_world += horizontal_forward * (0.055 * sin(swing_t * PI))
-			wanted_influence = 0.13 if moving else 0.0
+			wanted_influence = 0.07 if moving else 0.0
 		if state == "dodge":
 			wanted_influence = 0.0
 		# Prevent the new anchor itself from lerping away during stance. The solver
@@ -368,7 +368,7 @@ func _update_feet(state: String, delta: float) -> void:
 			marker.global_position = target_world
 		else:
 			marker.global_position = marker.global_position.lerp(target_world, clampf(delta * 18.0, 0.0, 1.0))
-		solver.influence = move_toward(solver.influence, wanted_influence, delta * 5.5)
+		solver.influence = move_toward(solver.influence, wanted_influence, delta * 12.0)
 	# Small center-of-mass settle and subtle forward lean; actual foot targets remain
 	# anchored in world space and do not inherit screen-facing sprite offsets.
 	var motion_factor := clampf(speed / 6.7, 0.0, 1.0) if moving else 0.0

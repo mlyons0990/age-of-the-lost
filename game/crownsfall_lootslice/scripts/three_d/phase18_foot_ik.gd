@@ -16,6 +16,9 @@ var skeleton: Skeleton3D
 var ik_nodes: Array[SkeletonIK3D] = []
 var targets: Array[Marker3D] = []
 var foot_bones: Array[int] = []
+var hip_bones: Array[int] = []
+var leg_reach_m: Array[float] = []
+var reach_releases := 0
 var stance_positions: Array[Vector3] = []
 var last_local_foot: Array[Vector3] = []
 var last_actor_position := Vector3.ZERO
@@ -29,9 +32,14 @@ var plant_events := 0
 var rejected_steep := 0
 
 func bind_rig(model: Node3D) -> bool:
+    if not ik_nodes.is_empty():
+        return false # Duplicate solvers must never be installed on the same skeleton.
     skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
     if skeleton == null:
         return false
+    for descriptor in PAIRS:
+        if skeleton.find_bone(String(descriptor["root"])) < 0 or skeleton.find_bone(String(descriptor["tip"])) < 0:
+            return false # Prevalidate both chains to prevent partial solver installation.
     for descriptor in PAIRS:
         var hip: int = skeleton.find_bone(String(descriptor["root"]))
         var foot: int = skeleton.find_bone(String(descriptor["tip"]))
@@ -54,6 +62,8 @@ func bind_rig(model: Node3D) -> bool:
         ik_nodes.append(ik)
         targets.append(marker)
         foot_bones.append(foot)
+        hip_bones.append(hip)
+        leg_reach_m.append(skeleton.get_bone_global_rest(hip).origin.distance_to(skeleton.get_bone_global_rest(foot).origin))
         stance_positions.append(p)
         last_local_foot.append(skeleton.get_bone_global_pose(foot).origin)
         states.append(CLASSIFIER.fresh())
@@ -81,6 +91,10 @@ func update_foot_placement(delta: float, locomotion: bool, planar_speed: float, 
         set_active(active)
     last_actor_position = skeleton.global_position
     var movement := Vector3(movement_direction.x, 0.0, movement_direction.z).normalized()
+    var collision_exclusions: Array[RID] = []
+    for object_rid in exclude:
+        if object_rid is RID:
+            collision_exclusions.append(object_rid)
     for index in range(2):
         var local_foot: Vector3 = skeleton.get_bone_global_pose(foot_bones[index]).origin
         var foot: Vector3 = skeleton.global_transform * local_foot
@@ -89,10 +103,6 @@ func update_foot_placement(delta: float, locomotion: bool, planar_speed: float, 
         last_local_foot[index] = local_foot
         var query := PhysicsRayQueryParameters3D.create(foot + Vector3.UP * RAY_START, foot - Vector3.UP * RAY_REACH)
         query.collide_with_areas = false
-        var collision_exclusions: Array[RID] = []
-        for object_rid in exclude:
-            if object_rid is RID:
-                collision_exclusions.append(object_rid)
         query.exclude = collision_exclusions
         var hit: Dictionary = space.intersect_ray(query)
         var candidate := foot
@@ -110,9 +120,13 @@ func update_foot_placement(delta: float, locomotion: bool, planar_speed: float, 
                 rejected_steep += 1
                 valid = false
         var prev: bool = bool(states[index].get("planted", false))
+        var hip_world: Vector3 = skeleton.global_transform * skeleton.get_bone_global_pose(hip_bones[index]).origin
+        var exceeds_reach: bool = prev and CLASSIFIER.exceeds_leg_reach(hip_world, stance_positions[index], leg_reach_m[index])
+        if exceeds_reach:
+            reach_releases += 1
         states[index] = CLASSIFIER.decide(states[index], delta, height, valid, normal,
             local_velocity, movement, planar_speed, active and locomotion,
-            (foot.distance_to(stance_positions[index]) if bool(states[index].get("planted", false)) else 0.0))
+            ((CLASSIFIER.MAX_TARGET_ERROR_M + 1.0 if exceeds_reach else foot.distance_to(stance_positions[index])) if prev else 0.0))
         var plant: bool = bool(states[index]["planted"])
         if plant and not prev:
             stance_positions[index] = candidate
@@ -132,6 +146,9 @@ func get_status() -> String:
         foot_state[0], foot_state[1], plant_events, release_events]
 
 func _exit_tree() -> void:
+    for solver in ik_nodes:
+        if is_instance_valid(solver):
+            solver.queue_free()
     for marker in targets:
         if is_instance_valid(marker):
             marker.queue_free()

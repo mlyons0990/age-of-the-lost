@@ -1,0 +1,46 @@
+{
+  "schema": "aotl-warrior-r37-production-export-v1",
+  "source": {
+    "project_id": "088e8199-50e8-4554-b0be-b108a6b2203a",
+    "production_revision": 37,
+    "full_authoring_backup_revision": 36,
+    "project_url": "https://higgsfield.ai/3d-jutsu/088e8199-50e8-4554-b0be-b108a6b2203a"
+  },
+  "production": {
+    "target_game_file": "game/crownsfall_lootslice/models/AOTL_Warrior_R37.glb",
+    "source_scene_bone_count": 62,
+    "mesh_count": 92,
+    "skin_count": 1,
+    "core_animation_names": [
+      "Idle",
+      "Walk",
+      "Run",
+      "Dodge",
+      "Slash",
+      "Cast"
+    ],
+    "exported_animation_channel_count_each": 186,
+    "temporary_export_size_bytes": 6892744,
+    "higgsfield_revision_preview_size_bytes": 6810532,
+    "exported_glb_header_valid": true,
+    "exported_core_actions_verified": true,
+    "all_required_skin_joints_verified": true,
+    "temp_export_duration_seconds": 7.343,
+    "blender_export_options": "GLB, ACTIONS mode, six core actions, 4 authoring IK constraints removed in R37"
+  },
+  "backup": {
+    "previous_revision": 36,
+    "preserved": true,
+    "experimental_actions_removed_only_in_new_revision": 37,
+    "original_legacy_proxy_preserved_in_github": true
+  },
+  "qa": {
+    "higgsfield_bpy_export_and_json_readback_passed": true,
+    "standalone_binary_validator_synthetic_tests_passed": true,
+    "github_asset_binary_present": false,
+    "google_drive_asset_binary_present": false,
+    "godot_runtime_passed": false,
+    "visual_style_final_approved": false
+  },
+  "notes": "Full all-action source export exceeded 300-second execution budget. Clean export R37 eliminates unsupported constraint baking and retains six core actions. Temporary GLB was parsed inside Higgsfield; signed binary transfer into GitHub/Drive remains incomplete."
+}

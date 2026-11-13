@@ -6,6 +6,8 @@ on:
     paths:
       - .github/workflows/r50-full-crownsfall-ci.yml
       - game/crownsfall_lootslice/scripts/three_d/rig_controller.gd
+      - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
+      - game/crownsfall_lootslice/tests/verify_r50_rig_lab_optin.gd
       - game/crownsfall_lootslice/tests/verify_r50_runtime_optin.gd
   workflow_dispatch:
 

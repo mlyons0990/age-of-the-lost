@@ -194,7 +194,7 @@ func _build_hud() -> void:
 	layer.add_child(bottom)
 	var words := VBoxContainer.new()
 	bottom.add_child(words)
-	words.add_child(_hud_label("WASD move    Shift sprint    Space dodge    F9 foot IK    Left click slash    1 cleave    2 dash strike    3 cast", 18, GOLD))
+	words.add_child(_hud_label("WASD move    Shift run    Space dodge    F9 IK on/off    F10 foot targets    Click slash    1 cleave    2 dash    3 cast", 18, GOLD))
 	words.add_child(_hud_label("Foot IK automatically enables only on compatible leg bones. Current proxy may use the original animation. Terrain IK and cloth require further QA.", 15))
 
 func _process(delta: float) -> void:

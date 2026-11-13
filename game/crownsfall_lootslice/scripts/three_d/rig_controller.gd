@@ -63,12 +63,13 @@ func _play(clip: String) -> void:
 		anim_state = clip
 
 func toggle_foot_ik() -> bool:
-    if not ik_available: return false
-    foot_ik.set_active(not foot_ik.active)
-    return foot_ik.active
+	if not ik_available:
+		return false
+	foot_ik.set_active(not foot_ik.active)
+	return foot_ik.active
 
 func foot_ik_status() -> String:
-    return foot_ik.get_status() if ik_available else "Foot IK unavailable: skeleton / bone names"
+	return foot_ik.get_status() if ik_available else "Foot IK unavailable: skeleton / bone names"
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():

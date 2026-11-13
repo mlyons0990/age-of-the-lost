@@ -42,6 +42,7 @@ func _run() -> void:
 	anchor.position = Vector3(2, 1, -1)
 	root.add_child(anchor)
 	check(SWEEP.blade_from_socket(anchor).has("tip"), "Bone attachment sampler accepts a Node3D")
+	check(is_equal_approx(float(SWEEP.blade_from_socket(anchor,0.85)["tip"].y), float(anchor.global_position.y - 0.85)), "R39 blade tip follows measured local negative-Y axis")
 	check(SWEEP.blade_from_socket(null).is_empty(), "Missing weapon socket falls back safely")
 	var path_samples: Array = [
 		{"hilt": Vector3(-1,1,0), "tip": Vector3(-1,1,-1)},

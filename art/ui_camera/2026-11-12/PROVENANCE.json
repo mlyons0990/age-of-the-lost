@@ -1,0 +1,135 @@
+{
+  "local_date": "2026-11-12",
+  "timezone": "America/New_York",
+  "provider": "Higgsfield",
+  "payment": {
+    "use_unlim": true,
+    "credits_spent": 0,
+    "all_preflights_credits": 0,
+    "credit_fallback": false
+  },
+  "reference": {
+    "owner_layout": "docs/reference/ui_camera_target/2026-11-12/aotl_ui_camera_target.png",
+    "plaza": "game/crownsfall_lootslice/assets/plaza.png",
+    "padded_input_drive_id": "12WpvJ7H2YTu5ZhybL64_BicjNPf5UZvC",
+    "mask_drive_id": "1g4Lip1e4NVS3ldT4IqwIeao7INwLK52O"
+  },
+  "generations": [
+    {
+      "kind": "guardian_orb_frames",
+      "job_id": "3a2d6dc1-e09b-455a-8fe2-2d23bff418d8",
+      "params": {
+        "model": "gpt_image_2_6",
+        "quality": "medium",
+        "resolution": "2k",
+        "background": "transparent",
+        "output_format": "png",
+        "aspect_ratio": "16:9",
+        "count": 1,
+        "use_unlim": true,
+        "prompt": "Create a production-ready transparent PNG UI asset sheet for Age of the Lost, a grimdark hand-painted fantasy action RPG. EXACTLY TWO separate ornate circular orb FRAMES, arranged side by side, each fully contained in its own half of the canvas. Left frame: tarnished antique brass circular bezel with a solemn small carved ivory-stone female guardian on its OUTER LEFT edge, flowing stone robes around its base. Right frame: matching tarnished brass circular bezel with a solemn carved ivory-stone male knight guardian on its OUTER RIGHT edge. The designs mirror in balance, not identical statues. Each circular OPENING must be a perfect EMPTY TRANSPARENT HOLE, no glass, no colored orb, no fill, no shadow or backdrop inside the opening. The entire surrounding background must also be genuinely transparent alpha, no checkerboard painted into the image. Large open circular holes each about 60 percent of its half-canvas width. Fine crisp clean painted sculptural detail, dark aged stone recesses, restrained worn gold highlights, rich depth; no grain overlay, no brush streak filter, no cartoon outlines, no glowing magic, no text, no symbols, no UI screenshot. Front-on orthographic flat HUD ornaments for the bottom left and bottom right of a game screen. Keep generous separation between the two assets. Keep both rings the same size and horizontal centerline. Original AOTL designs with a somber navy, brass and aged stone palette."
+      },
+      "selected": true
+    },
+    {
+      "kind": "plaza_initial_extension",
+      "job_id": "4bd0be15-5cca-425f-91ba-377d565bf374",
+      "params": {
+        "prompt": "Extend the supplied Age of the Lost painted isometric medieval plaza into a wider environment plate. Treat the supplied image as the EXACT CENTRAL 62.5 percent of both width and height of the new canvas, centered. Keep its complete architectural composition, paving, light direction, perspective and colors recognizable at that smaller central size. Paint substantial CONTINUATION beyond all FOUR edges: more cobbled terraces and ruined noble stonework with navy and aged-gold banners, distant red autumn trees, solemn old walls and rooflines. The result is a large clean navigable-looking isometric environment painting at the same fixed high camera angle as the input, viewed much farther away. No horizon or sky, no framing border, no vignette, no HUD, no logo, no labels, no characters, no blur or grain filter. Match the input's crisp painted AOTL architectural style and stone palette, with restrained warm light and shadow. Environment continuation for a zoomed-out action RPG; the original central map will remain a separate exact overlay at runtime.",
+        "aspect_ratio": "16:9",
+        "reference_images": [
+          "94ccee50-f006-4eb6-85ad-83e8f38d324f"
+        ],
+        "quality": "medium",
+        "resolution": "2k",
+        "background": "opaque",
+        "output_format": "png"
+      },
+      "selected": false,
+      "reason": "Rejected in native review: upper and lower rectangular composition joins."
+    },
+    {
+      "kind": "plaza_mask_guided",
+      "job_id": "ff6573ba-ad26-4e03-b42f-0bfc971a0390",
+      "params": {
+        "prompt": "REFERENCE 1 is the padded image to complete; REFERENCE 2 is a black/white edit-area guide, not artwork. OUTPAINT the image using the supplied mask. The unmasked black-mask CENTRAL rectangle is an existing finished Age of the Lost isometric game background: preserve ALL of its pixels, its position, its scale, its architecture and its lighting exactly. Paint only the white-mask OUTSIDE region currently dark brown in the input. Continue the existing geometry seamlessly across each of its four edges. At the top continue the tall gothic facades and rooflines UPWARD, no floor courtyards cut across building tops. At bottom continue existing descending stairs, masonry foundations and terraces at exactly their current scale and direction. At sides continue architecture, canal water and solemn stonework; restrained dark red autumn trees and navy/gold banners. Match existing clean realistic painted architecture and detailed muted stone colors. Continuous isometric perspective, no sky, no horizon, no overhead map rotation, no repeated central plaza, no picture within picture, no rectangle seams, no border, no characters, no HUD, no text. Do not shrink, move, repaint or redesign the central image. This is scenery for the existing game world, so all edges must meet precisely.",
+        "aspect_ratio": "16:9",
+        "reference_images": [
+          "b11a3a5f-3303-46f4-8a00-78d981143442",
+          "ad642f63-6374-445b-a268-f20ebeed1026"
+        ],
+        "resolution": "2k",
+        "is_inpaint": false
+      },
+      "selected": false,
+      "reason": "Preserves courtyard placement more accurately; upper facade seam needs repair. Mask passed as a reference guide because connector canonical media roles do not expose a hard mask."
+    },
+    {
+      "kind": "health_flask",
+      "job_id": "bc4bf74c-09f0-42c2-92cc-bbcedcb3f19b",
+      "params": {
+        "model": "gpt_image_2_6",
+        "quality": "medium",
+        "resolution": "1k",
+        "background": "transparent",
+        "output_format": "png",
+        "aspect_ratio": "1:1",
+        "count": 1,
+        "use_unlim": true,
+        "prompt": "One original AOTL health potion flask for a grimdark fantasy action RPG HUD. Single upright narrow faceted glass vial with a short dark tarnished brass cap, filled with deep ruby red restorative liquid. Crisp clean hand-painted realistic dimensional game item, subtle luminous red glass, aged brass metal, controlled bright glass edge highlights. Full object occupies 85 percent of image height and 45 percent width, isolated with true transparent alpha outside the glass bottle, no cast shadow beyond bottle, no floor, no background, no text, no frame. Clearly legible at 24 by 48 pixels. Somber medieval quality, no cartoon, no brushstroke/grain/noise filter."
+      },
+      "selected": true
+    },
+    {
+      "kind": "plaza_seam_repair",
+      "job_id": "08a39b34-131c-4151-8e5a-dd7d4936f2ba",
+      "params": {
+        "model": "gpt_image_2_6",
+        "quality": "medium",
+        "resolution": "2k",
+        "background": "opaque",
+        "output_format": "png",
+        "aspect_ratio": "16:9",
+        "count": 1,
+        "use_unlim": true,
+        "medias": [
+          {
+            "role": "image",
+            "value": "ff6573ba-ad26-4e03-b42f-0bfc971a0390"
+          }
+        ],
+        "prompt": "Repair this existing AOTL game environment painting into ONE seamless, unified architectural scene. Preserve the positions, exact scale, color and design of the CENTRAL AND LOWER courtyard: market left, circular paving medallion center, pale guardian fountain right, lampposts and lower stairs. The defect to fix is ONLY the highly visible horizontal rectangular pasted-image edge across the upper scene at about 18 percent image height, extending from about 19 to 81 percent of width. The inner rectangle's sky and abruptly severed facade clash with the taller buildings behind it. Eliminate that straight rectangular join completely. Integrate the upper facade columns, windows and rooftops into continuous three-dimensional gothic architecture. Replace the inset sky patch with properly connected pale stone walls, roofs and distant architectural depth. This must read as one naturally continuous painted scene, never a pasted rectangle or inset picture. Extend arches upward naturally; keep courtyard scale and lower two-thirds composition fixed. Match crisp realistic clean AOTL stonework, navy/gold banners and red autumn foliage. No HUD, no lettering, no people, no fog/blur hiding the error, no frame, no brushstroke/grain filter."
+      },
+      "selected": true,
+      "review": "Reviewed original and native composite; selected for surrounding scenery."
+    }
+  ],
+  "notes": [
+    "Rejected 429 requests produced no job IDs and no assets. Retries followed definitive rejection.",
+    "Original approved skill tiles and character artwork are unchanged.",
+    "No new voices generated during camera/HUD work. Existing three-line Grady pilot retained."
+  ],
+  "reviewed_date": "2026-11-13",
+  "files": {
+    "art/ui_camera/2026-11-12/health_flask_source.png": {
+      "bytes": 991200,
+      "sha256": "3457322889c3fbc008229f6149c584fa9f800bd09530bf0de027c30605b31c2d"
+    },
+    "art/ui_camera/2026-11-12/plaza_extension_source.png": {
+      "bytes": 9916259,
+      "sha256": "a2b13f012c30a71b09e69df2d0992a9a02734402f8eb73f602986fea573d8b95"
+    },
+    "art/ui_camera/2026-11-12/plaza_seam_repaired_source.png": {
+      "bytes": 8594968,
+      "sha256": "31a167f09c5a5d7cd275bf010e194a42345c7e106479c0cf5b73dae94d279771"
+    },
+    "art/ui_camera/2026-11-12/guardian_orb_frames_source.png": {
+      "bytes": 5182235,
+      "sha256": "18e71385eb896691f1263520016694950a6bab4e9bd290b35046bebf98aa987d"
+    },
+    "art/ui_camera/2026-11-12/plaza_outpaint_source.png": {
+      "bytes": 8623457,
+      "sha256": "c19a05715753e65d112f74f2962941b2957f4844b8dc734161697a43e6f2e4b6"
+    }
+  }
+}

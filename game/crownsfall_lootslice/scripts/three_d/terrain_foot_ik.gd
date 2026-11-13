@@ -10,6 +10,8 @@ extends Node3D
 @export var weight_speed: float = 12.0
 @export var target_speed: float = 18.0
 @export var max_step_m: float = 0.28
+@export var max_horizontal_reach_m: float = 0.52
+@export var max_normal_tilt_degrees: float = 49.0
 @export var enabled: bool = true
 
 var actor: CharacterBody3D
@@ -21,17 +23,24 @@ var ankles: Dictionary = {}
 var planted: Dictionary = {}
 var planted_world: Dictionary = {}
 var last_phase: float = 0.0
+var contact_releases: int = 0
+var invalid_surface_skips: int = 0
 var active: bool = false
 
 static func circular_distance(a: float, b: float) -> float:
 	return absf(fposmod(a - b + 0.5, 1.0) - 0.5)
 
+static func contact_phase(side: String, running: bool) -> float:
+	# Blender V27 contact markers: Walk (frame 5 R, 17 L; frames 1..25)
+	# Run (frame 5 R, 15 L; frames 1..19). Phase is zero-based.
+	if running:
+		return 14.0 / 18.0 if side == "L" else 4.0 / 18.0
+	return 16.0 / 24.0 if side == "L" else 4.0 / 24.0
+
 static func stance_weight(phase: float, side: String, running: bool) -> float:
-	# Contact centres derived from the existing 25f walk and 19f run clips.
-	var centre := (15.0 / 18.0 if side == "L" else 6.0 / 18.0) if running else (19.0 / 24.0 if side == "L" else 7.0 / 24.0)
-	var d := circular_distance(phase, centre)
-	var inner := 0.075 if running else 0.085
-	var outer := 0.14 if running else 0.16
+	var d := circular_distance(phase, contact_phase(side, running))
+	var inner := 0.055 if running else 0.07
+	var outer := 0.11 if running else 0.135
 	return 1.0 - smoothstep(inner, outer, d)
 
 func configure(model_root: Node3D, character: CharacterBody3D, player: AnimationPlayer) -> bool:
@@ -105,7 +114,7 @@ func update_foot_ik(delta: float, clip: String, phase: float) -> void:
 			var surface: Vector3 = hit["position"]
 			var surface_normal: Vector3 = hit["normal"]
 			var correction := surface.y + foot_clearance_m - animated.y
-			if surface_normal.dot(Vector3.UP) >= 0.65 and absf(correction) <= max_step_m:
+			if surface_normal.dot(Vector3.UP) >= cos(deg_to_rad(max_normal_tilt_degrees)) and absf(correction) <= max_step_m:
 				desired_weight = stance_weight(phase, side, running)
 				if desired_weight >= 0.98 and not bool(planted[side]):
 					# Save a true WORLD position so translating the actor cannot drag a planted foot.
@@ -114,11 +123,21 @@ func update_foot_ik(delta: float, clip: String, phase: float) -> void:
 				elif desired_weight <= 0.15:
 					planted[side] = false
 				if bool(planted[side]):
-					goal = planted_world[side]
+					var lock: Vector3 = planted_world[side]
+					var horizontal := Vector2(animated.x - lock.x, animated.z - lock.z).length()
+					# Never ask a leg to reach an unreachable planted target.
+					if horizontal > max_horizontal_reach_m:
+						planted[side] = false
+						contact_releases += 1
+						desired_weight = 0.0
+						goal = animated
+					else:
+						goal = lock
 				else:
 					goal = Vector3(animated.x, surface.y + foot_clearance_m, animated.z)
 			else:
 				planted[side] = false
+				invalid_surface_skips += 1
 		else:
 			planted[side] = false
 		# World-space targets and influence are eased separately to prevent a hard plant/release pop.

@@ -1,0 +1,91 @@
+name: Diagnose AOTL R39 mesh LOD import
+
+on:
+  push:
+    branches: [assets/warrior-r39-sixclip]
+    paths:
+      - .github/workflows/warrior-r39-lod-diagnostics.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lod_diagnosis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Fetch exactly the R39 GLB from Git LFS
+        run: |
+          git lfs install --local
+          git lfs pull --include="game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" --exclude=""
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum -c
+      - name: Download Godot 4.3 importer for controlled comparison
+        run: |
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          mkdir -p /tmp/godot
+          unzip -q /tmp/godot.zip -d /tmp/godot
+          chmod +x /tmp/godot/Godot_v4.3-stable_linux.x86_64
+      - name: Run default and LOD-disabled imports in separate test projects
+        shell: bash
+        run: |
+          set -euo pipefail
+          GODOT=/tmp/godot/Godot_v4.3-stable_linux.x86_64
+          for variant in default no_lods; do
+            p="/tmp/r39-lod-$variant"
+            mkdir -p "$p/models"
+            cp game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb "$p/models/"
+            cat > "$p/project.godot" <<'EOF'
+          config_version=5
+          [application]
+          config/name="AOTL R39 LOD QA"
+          config/features=PackedStringArray("4.3", "GL Compatibility")
+          [rendering]
+          renderer/rendering_method="gl_compatibility"
+          EOF
+            if [ "$variant" = no_lods ]; then
+              # Let Godot create the canonical .import format first.
+              "$GODOT" --headless --path "$p" --editor --quit > /tmp/r39-lod-first-import.log 2>&1
+              python3 - "$p/models/AOTL_Warrior_R39.glb.import" <<'PY'
+          import sys,pathlib,re
+          p=pathlib.Path(sys.argv[1])
+          text=p.read_text()
+          if '[params]' not in text:
+              raise SystemExit('No [params] in Godot-generated import descriptor')
+          if re.search(r'^meshes/generate_lods=.*$', text, flags=re.M):
+              text=re.sub(r'^meshes/generate_lods=.*$', 'meshes/generate_lods=false', text, flags=re.M)
+          else:
+              text=text.replace('[params]', '[params]\nmeshes/generate_lods=false',1)
+          p.write_text(text)
+          print('LOD import parameter:',next(line for line in text.splitlines() if line.startswith('meshes/generate_lods=')))
+          PY
+              rm -rf "$p/.godot/imported"
+            fi
+            "$GODOT" --headless --path "$p" --editor --quit 2>&1 | tee "/tmp/r39-lod-$variant.log"
+          done
+          python3 - <<'PY'
+          import json,pathlib
+          result={}
+          for variant in ('default','no_lods'):
+              log=pathlib.Path(f'/tmp/r39-lod-{variant}.log').read_text()
+              result[variant]={
+                  'nonfinite_lod_warnings':log.count('Ignoring face with non-finite normal'),
+                  'other_errors':[line for line in log.splitlines() if line.startswith('ERROR:')],
+              }
+          pathlib.Path('/tmp/r39-lod-comparison.json').write_text(json.dumps(result,indent=2))
+          print(json.dumps(result,indent=2))
+          PY
+      - name: Preserve actual LOD experiment logs and generated import options
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-LOD-Controlled-Experiment
+          path: |
+            /tmp/r39-lod-*.log
+            /tmp/r39-lod-comparison.json
+            /tmp/r39-lod-no_lods/models/AOTL_Warrior_R39.glb.import
+          if-no-files-found: warn
+          retention-days: 30

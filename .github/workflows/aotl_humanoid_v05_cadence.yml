@@ -41,7 +41,7 @@ jobs:
       - name: Require cadence-matched footsteps and low measured ankle sliding
         run: |
           set -o pipefail
-          godot --headless --path game/crownsfall_lootslice --script res://tests/humanoid_v05_grounded_smoke.gd -- --aotl-v05 2>&1 | tee /tmp/aotl_v05_grounded.log
+          godot --headless --path game/crownsfall_lootslice --script res://tests/humanoid_v05_cadence_smoke.gd -- --aotl-v05 2>&1 | tee /tmp/aotl_v05_grounded.log
           grep -q 'AOTL_V05_TEST_OK' /tmp/aotl_v05_grounded.log
           if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v05_grounded.log; then
             echo 'Found Godot script failure; refusing misleading green test'

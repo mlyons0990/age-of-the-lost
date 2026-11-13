@@ -124,7 +124,8 @@ func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
     var to_ground := to_3d(end_px)
     var axis := to_ground - from_ground
     axis.y = 0.0
-    if axis.length() < 0.5:
+    var route_length_m := axis.length()
+    if route_length_m < 0.5:
         return false
     axis = axis.normalized()
     var side := Vector3(axis.z, 0.0, -axis.x)
@@ -133,7 +134,7 @@ func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
     # than 0.15m along the full measured route; still require 17 minimum.
     # Five lateral lanes reach near both corridor edges, not just its center.
     # Fail closed for implausibly long routes instead of silently undersampling.
-    var segments := maxi(16, ceili(axis.length() / 0.15))
+    var segments := maxi(16, ceili(route_length_m / 0.15))
     if segments > 512:
         return false
     for i in range(segments + 1):

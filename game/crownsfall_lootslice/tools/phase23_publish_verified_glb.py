@@ -66,6 +66,7 @@ def main():
     blob=request("POST","git/blobs",{"content":encoded,"encoding":"base64"})
     blob_sha=blob["sha"]
     ref_endpoint="git/ref/heads/"+quote(BRANCH,safe="/")
+    update_endpoint="git/refs/heads/"+quote(BRANCH,safe="/")
     for attempt in range(2):
         current=request("GET",ref_endpoint)["object"]["sha"]
         prior=request("GET","git/commits/"+current)
@@ -80,13 +81,13 @@ def main():
             "message":"Phase23: preserve CI-verified real painted Citadel v13 GLB and Blender QA (draft only)",
             "tree":tree["sha"],"parents":[current]})
         try:
-            updated=request("PATCH",ref_endpoint,{"sha":commit["sha"],"force":False})
+            updated=request("PATCH",update_endpoint,{"sha":commit["sha"],"force":False})
             print(json.dumps({"published":True,"commit":commit["sha"],
                 "blob_sha":blob_sha,"sha256":actual_hash,"bytes":len(payload),
                 "branch":BRANCH,"main_untouched":True},indent=2))
             return
         except RuntimeError:
-            if attempt:return
+            if attempt:raise
             # Retry once only if another draft-branch commit raced the ref.
     raise RuntimeError("GitHub branch changed concurrently; no unsafe force update")
 

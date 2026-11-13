@@ -1,0 +1,86 @@
+{
+  "schema": "aotl.citadel.phase22.real_binary_import.v1",
+  "revision_date_utc": "2026-11-13",
+  "branch": "feature/phase17-citadel-masonry-texture-and-occlusion",
+  "merge_to_main_allowed": false,
+  "asset_source": {
+    "provider": "Higgsfield 3D Jutsu",
+    "project_id": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+    "original_optimized_scene_revision": 10,
+    "scene_mesh_objects": 309,
+    "source_mesh_triangles": 8820,
+    "unique_glb_mesh_triangles": 26452,
+    "instanced_exported_scene_triangles": 26724,
+    "embedded_image_count": 2,
+    "material_count": 10,
+    "gothic_voussoirs": 32,
+    "graded_stair_treads": 9
+  },
+  "backups": {
+    "github_glb_path": "game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb",
+    "github_glb_blob_sha": "01a7f5a5fef26bf6781f93e7d89d9cb2fe8a27d4",
+    "binary_glb_sha256": "91468793913600410d1665bfed0f3acdf6d733ed5f3ab13b0c8796f944329a64",
+    "binary_glb_size_bytes": 2181764,
+    "google_drive_zip_id": "1Cu4HwhhJXFCICBi96dYJvEvul-0ZeDDK",
+    "google_drive_zip_url": "https://drive.google.com/file/d/1Cu4HwhhJXFCICBi96dYJvEvul-0ZeDDK/view",
+    "google_zip_bytes": 1578916,
+    "zip_sha256": "cb3e0a77155f00c816cba5271631302b0c5a7d954c5659e5ab288411407a42b9",
+    "contains_binary_glb": true,
+    "contains_1080_and_1440_screenshots": true,
+    "editable_blend_binary_on_github": false,
+    "editable_blend_binary_on_google_drive": false,
+    "editable_blend_still_at_higgsfield": true
+  },
+  "godot": {
+    "engine": "4.6.3 stable",
+    "v10_real_glb_import_assertions": "50/50",
+    "v10_real_material_grade_assertions": "58/58",
+    "distinct_imported_materials": 10,
+    "unique_embedded_albedo_textures": 2,
+    "textured_surfaces": 150,
+    "grade_heights_m": [
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      1,
+      1.2,
+      1.4,
+      1.6,
+      1.8
+    ],
+    "collision_nodes_in_asset": 0,
+    "render_1080": {
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "d50e87a8c5136ac4bb523e36ff6371f1fdb46e6f77ae5c8adfbe42e1387ec873",
+      "nonflat": true
+    },
+    "render_1440": {
+      "size": [
+        2560,
+        1440
+      ],
+      "sha256": "64ceee5e72290eb5822f32c148452ef0ab7cb98959ed0223485e3c717f2d2948",
+      "nonflat": true
+    },
+    "ci_run_url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43436313743"
+  },
+  "known_limits": {
+    "user_approved_phase11_f5_project_integrated": false,
+    "actual_player_ik_on_v10_route_verified": false,
+    "shadows_character_occlusion_verified": false,
+    "canonical_painterly_art_match": false,
+    "visual_quality_assessment": "Coarse blocky beige prototype under flat blue sky in actual Godot screenshots, far below approved painterly anime quality; technical integration candidate only",
+    "godot_frame_time_profiled": false,
+    "authoritative_navigation_overwritten": false,
+    "save_schema_changed": false
+  },
+  "supporting_tests": {
+    "v17_fixture_nav": "32/32",
+    "v17_fixture_toggle_stress": "273/273",
+    "scope_note": "nav and fallback tests run on isolated V17 fixture, not on authentic locally approved playable Phase11 source"
+  }
+}

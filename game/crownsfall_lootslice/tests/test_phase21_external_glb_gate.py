@@ -22,12 +22,12 @@ def minimal_payload():
     landmarks=[f"STAIR_Tread_{i:02d}" for i in range(1,10)]
     landmarks.extend(f"GATE_Gothic_Voussoir_{i:02d}" for i in range(1,33))
     names=landmarks+[f"PH21_Decorative_{i:03d}" for i in range(309-len(landmarks))]
-    binary=b"\x00"*24
+    binary=b"\x00"*36+bytes([137,80,78,71,13,10,26,10])*2
     doc={"asset":{"version":"2.0"},
          "buffers":[{"byteLength":len(binary)}],
-         "bufferViews":[{"buffer":0,"byteOffset":0,"byteLength":12},
-                        {"buffer":0,"byteOffset":12,"byteLength":4},
-                        {"buffer":0,"byteOffset":16,"byteLength":4}],
+         "bufferViews":[{"buffer":0,"byteOffset":0,"byteLength":36},
+                        {"buffer":0,"byteOffset":36,"byteLength":8},
+                        {"buffer":0,"byteOffset":44,"byteLength":8}],
          "accessors":[{"bufferView":0,"componentType":5126,"count":3,
                        "type":"VEC3"}],
          "materials":[{"name":"original_test_mat"}],
@@ -88,6 +88,27 @@ class ExternalGlbGateTests(unittest.TestCase):
     def test_external_binary_buffer_rejected(self):
         self.doc["buffers"][0]["uri"]="../evil.bin"
         with self.assertRaisesRegex(gate.GlbRejected,"embedded BIN"):
+            self.gate()
+
+    def test_too_short_accessor_view_rejected(self):
+        self.doc["bufferViews"][0]["byteLength"]=12
+        with self.assertRaisesRegex(gate.GlbRejected,"exceeds its declared bufferView"):
+            self.gate()
+
+    def test_invalid_component_alignment_rejected(self):
+        self.doc["accessors"][0]["byteOffset"]=1
+        with self.assertRaisesRegex(gate.GlbRejected,"alignment"):
+            self.gate()
+
+    def test_collision_extras_rejected(self):
+        self.doc["nodes"][100]["extras"]={"AOTL_collision":True}
+        with self.assertRaisesRegex(gate.GlbRejected,"collision authority"):
+            self.gate()
+
+    def test_invalid_embedded_image_signature_rejected(self):
+        self.bin=b"\\x00"*36+b"bad-image-dat" + bytes([137,80,78,71,13,10,26,10])
+        self.doc["buffers"][0]["byteLength"]=len(self.bin)
+        with self.assertRaisesRegex(gate.GlbRejected,"PNG signature"):
             self.gate()
 
     def test_node_with_collision_name_rejected(self):

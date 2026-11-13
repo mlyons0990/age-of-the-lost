@@ -1,0 +1,82 @@
+{
+  "schema": "aotl.citadel.phase19.sculpt_v07.qa.v1",
+  "provider": "Higgsfield 3D Jutsu",
+  "project_id": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "previous_revision": 6,
+  "revision": 7,
+  "mesh_count": 571,
+  "route_width_m": 7.5,
+  "original_gothic_voussoirs": 32,
+  "phase18_rosettes": 18,
+  "phase19_fountain_visual_meshes": 26,
+  "phase19_arch_relief_meshes": 64,
+  "generator_scripts": [
+    "tools/build_citadel_fountains_v19.py",
+    "tools/build_citadel_arch_relief_v19.py"
+  ],
+  "v7_validator": "tools/validate_citadel_sculpt_v19_v07.py",
+  "validator_result": "PASS",
+  "fingerprint_reconstruction": {
+    "fountains": "26 of 26 matching geometry vertex fingerprints",
+    "arch_relief": "64 of 64 matching geometry vertex fingerprints"
+  },
+  "render_comparison": {
+    "fountain_audit": {
+      "resolution": [
+        640,
+        360
+      ],
+      "pixel_changed_threshold": 0.04,
+      "changed_pixels": 2504,
+      "changed_fraction_percent": 1.087
+    },
+    "arch_detail_audit": {
+      "resolution": [
+        640,
+        360
+      ],
+      "pixel_changed_threshold": 0.025,
+      "changed_pixels": 134,
+      "changed_fraction_percent": 0.0582
+    },
+    "interpretation": "At current wide delivery camera, arch-detail impact is small; maintain closeup QA and consider mesh batching/LOD rather than blindly adding draw calls."
+  },
+  "artifacts": {
+    "provider_glb_retained": true,
+    "provider_blend_retained": true,
+    "git_source_committed": true,
+    "drive_source_mirrored": true,
+    "github_glb_binary_uploaded": false,
+    "drive_glb_binary_uploaded": false,
+    "unlimited_higgsfield_reference_generation_job": "3d526385-3207-4e67-a757-bf156f45992c"
+  },
+  "godot_navigation": {
+    "test": "tests/citadel_nav_hardening_v19.gd",
+    "assertions_passed": "32/32",
+    "ci_run_url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617236",
+    "route_edge_continuity": "exact indexed polygon-edge interval test in addition to 0.15m adaptive 5-lane sampling",
+    "deterministic_gap_fuzz": "16 explicit 4mm–140mm disconnected gap cases"
+  },
+  "unverified": [
+    "Authentic locally approved Phase11 F5 route",
+    "F4 F8 F10 full game state",
+    "visual sign-off against official canon",
+    "production performance and occlusion",
+    "provider GLB imported to full Godot game"
+  ],
+  "status": "CANDIDATE_KEEP_DRAFT",
+  "source_sculpt_treads": 9,
+  "actual_user_approved_phase11_scene_available": false,
+  "godot_toggle_stress": {
+    "assertions_passed": "273/273",
+    "cycles": 32,
+    "checks": "original 64 collision bodies, GLB/procedural visual exclusivity, F8 painted fallback and safe reactivation",
+    "ci_run_url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617236"
+  },
+  "ci_related_runs": {
+    "phase15": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617183",
+    "phase16": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617205",
+    "phase17_phase19": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43405617236"
+  },
+  "phase18_python_safety_tests": "22/22"
+}

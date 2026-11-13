@@ -1,0 +1,136 @@
+{
+  "schema": "aotl.citadel.phase20.batching.v1",
+  "date": "2026-11-13",
+  "user_approved_phase11_scene_available": false,
+  "provider": "Higgsfield 3D Jutsu",
+  "project_id": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "sculpt_revision": 8,
+  "source_revision": 7,
+  "project_url": "https://higgsfield.ai/3d-jutsu/0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "geometry": {
+    "original_scene_mesh_objects": 571,
+    "decorative_source_mesh_objects": 90,
+    "new_optimized_batch_objects": 12,
+    "optimized_scene_mesh_objects": 493,
+    "object_count_reduction": 78,
+    "object_reduction_percent": 13.66,
+    "total_triangles_before": 8820,
+    "total_triangles_after": 8820,
+    "original_stair_treads": 9,
+    "original_gothic_stones": 32,
+    "phase18_rosettes": 18,
+    "packed_images": 2,
+    "unused_external_images": 0,
+    "all_ornamental_worldspace_vertices_sha_verified": true
+  },
+  "groups": [
+    {
+      "name": "PH20_Batched_Arch_Whole_AOTLPhase17PackedPaintedIvory",
+      "source_meshes": 32,
+      "vertices": 160,
+      "triangles": 128,
+      "vertex_sha256": "f822c36ef6831166827a35dbf8af3cf224b235c41428937073d219f9e1ffc8eb"
+    },
+    {
+      "name": "PH20_Batched_Arch_Whole_AOTLPhase17PackedPatina",
+      "source_meshes": 32,
+      "vertices": 128,
+      "triangles": 64,
+      "vertex_sha256": "912ebb7687d0ff94f52ae79bc47a3c22cf11fd702ed5a89797a412f444b33a61"
+    },
+    {
+      "name": "PH20_Batched_Fountain_L_AOTLPhase17PackedPatina",
+      "source_meshes": 2,
+      "vertices": 73,
+      "triangles": 108,
+      "vertex_sha256": "966cb5adabd5be5d792c9c89e49d58bfcc812a957fe5caaf88a9d5dd5a1c532a"
+    },
+    {
+      "name": "PH20_Batched_Fountain_L_BrushedRoyalBrass",
+      "source_meshes": 1,
+      "vertices": 8,
+      "triangles": 12,
+      "vertex_sha256": "ffd711b7253fdf3bcaa1b3e3228b346feb55d5efbb071bc7162892bf037a9987"
+    },
+    {
+      "name": "PH20_Batched_Fountain_L_Phase19FountainWater",
+      "source_meshes": 1,
+      "vertices": 38,
+      "triangles": 36,
+      "vertex_sha256": "e73d9b90d3977cdcf1f11bbf476696d9bb44ed74e759b0d9211c053d0e9eb4ab"
+    },
+    {
+      "name": "PH20_Batched_Fountain_L_SunlitPaleStone",
+      "source_meshes": 6,
+      "vertices": 48,
+      "triangles": 72,
+      "vertex_sha256": "0a503524ab30d4c81e7a7c61ed36528c808cc152b97c89202d695828655fc420"
+    },
+    {
+      "name": "PH20_Batched_Fountain_L_WhitePinkFlowers",
+      "source_meshes": 3,
+      "vertices": 51,
+      "triangles": 48,
+      "vertex_sha256": "1ccdf068737e890979c50580e78d870bd28466c93349e19bed48d9d2978cc794"
+    },
+    {
+      "name": "PH20_Batched_Fountain_R_AOTLPhase17PackedPatina",
+      "source_meshes": 2,
+      "vertices": 73,
+      "triangles": 108,
+      "vertex_sha256": "767d8a76f6347126197cc79591881c5f9b3a9785ede1e750e6ae63ae1a1db6db"
+    },
+    {
+      "name": "PH20_Batched_Fountain_R_BrushedRoyalBrass",
+      "source_meshes": 1,
+      "vertices": 8,
+      "triangles": 12,
+      "vertex_sha256": "7c5d0d0029dc5428d65e224bea98ac67b8ee9d76fee73581938b3d3e5dac99ed"
+    },
+    {
+      "name": "PH20_Batched_Fountain_R_Phase19FountainWater",
+      "source_meshes": 1,
+      "vertices": 38,
+      "triangles": 36,
+      "vertex_sha256": "b3e4582acf74e9dfc2398ae3010124c69a510a67a26005f1b25704a5777f0547"
+    },
+    {
+      "name": "PH20_Batched_Fountain_R_SunlitPaleStone",
+      "source_meshes": 6,
+      "vertices": 48,
+      "triangles": 72,
+      "vertex_sha256": "2b872ec3a047e69a687148eb6e07c4c4197a059ca36dc424f909bd839307bb0d"
+    },
+    {
+      "name": "PH20_Batched_Fountain_R_WhitePinkFlowers",
+      "source_meshes": 3,
+      "vertices": 51,
+      "triangles": 48,
+      "vertex_sha256": "d6c0c1a35c297d43bed9397ddc4d0c06789e256508f2bf017b9ad1629e144fba"
+    }
+  ],
+  "render_validation": {
+    "camera": "CAM_Main_Production",
+    "resolution": [
+      640,
+      360
+    ],
+    "pixels_compared": 230400,
+    "pixels_with_rgb_delta_gt_0_02": 0,
+    "pixels_with_rgb_delta_gt_0_005": 198,
+    "maximum_rgb_channel_delta": 0.0157,
+    "interpretation": "At fixed wide camera, no pixel differs by over 2% in an RGB channel; nearly identical but not mathematically identical. No Godot GPU performance benchmark."
+  },
+  "blender_validator": "tools/validate_citadel_sculpt_v20_v08.py",
+  "source_generator": "tools/phase20_batch_sculpt_details.py",
+  "performance_claim": "object_count reduction only; not actual runtime drawcall or frame-time measurement",
+  "glb_retained_at_provider": true,
+  "blend_retained_at_provider": true,
+  "git_source_saved": true,
+  "drive_source_saved": false,
+  "external_glb_bin_uploaded_to_github": false,
+  "external_glb_bin_uploaded_to_google": false,
+  "actual_local_godot_f5_test": false,
+  "canonical_art_approved": false,
+  "merge_into_main_allowed": false
+}

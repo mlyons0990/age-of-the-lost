@@ -1,0 +1,58 @@
+{
+  "schema": "aotl.citadel.phase19.scaffold.v1",
+  "record_date": "2026-11-13",
+  "user_canonical_painted_scene_changed": false,
+  "live_phase11_godot_source_recovered": false,
+  "art": {
+    "provider": "Higgsfield 3D Jutsu",
+    "project_id": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+    "revision": 6,
+    "source_revision": 5,
+    "mesh_count": 507,
+    "new_visual_meshes": 26,
+    "description": "Twin ornamental stone terrace fountains, each with carved back relief, plinth, bowl, brass spout, running-water ribbon, mosaic and floral detailing",
+    "tread_count": 9,
+    "stair_rise_each_m": 0.2,
+    "route_clear_width_m": 7.5,
+    "gothic_arch_voussoirs": 32,
+    "prior_rosettes": 18,
+    "mesh_generator": "tools/build_citadel_fountains_v19.py",
+    "validator": "tools/validate_citadel_sculpt_v19.py",
+    "tested_blender": true,
+    "geometry_validator_pass": true,
+    "deterministic_reproduction": "26/26 exact geometry vertex fingerprints matched after reconstruction in temporary Blender scene",
+    "render_created": true,
+    "render_resolution": [
+      960,
+      540
+    ],
+    "render_agent_visually_reviewed": false,
+    "higgsfield_artifact_blend_size_bytes": 4823887,
+    "higgsfield_artifact_glb_size_bytes": 2512648,
+    "higgsfield_binary_backed_up_to_provider": true,
+    "github_binary_copy": false,
+    "google_drive_binary_copy": false
+  },
+  "navigation": {
+    "bridge": "scripts/two_point_five_d/live_courtyard_bridge.gd",
+    "adaptive_step_m": 0.15,
+    "sampled_lateral_fractions": [
+      -0.48,
+      -0.24,
+      0,
+      0.24,
+      0.48
+    ],
+    "exact_indexed_polygon_edge_interval_check": true,
+    "test": "tests/citadel_nav_hardening_v19.gd",
+    "real_phase11_navigation_verified": false
+  },
+  "safety": {
+    "default_painted_fallback_preserved": true,
+    "no_gameplay_save_changes": true,
+    "no_new_gameplay_colliders": true,
+    "automatic_merge_allowed": false,
+    "f5_authentic_scene_verification": false
+  },
+  "higgsfield_paid_credits_consumed_scene_edits": 0
+}

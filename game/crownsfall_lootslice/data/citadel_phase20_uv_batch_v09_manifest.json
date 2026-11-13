@@ -1,0 +1,599 @@
+{
+  "schema": "aotl.citadel.phase20.uv_batch_v9.v1",
+  "created_utc": "2026-11-13",
+  "higgsfield_project": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "sculpt_revision": 9,
+  "base_revision": 8,
+  "optimizations": {
+    "original_mesh_count": 571,
+    "phase20_v8_mesh_count": 493,
+    "phase20_v9_mesh_count": 309,
+    "saved_mesh_objects_total": 262,
+    "total_reduction_pct": 45.88,
+    "uv_detail_source_count": 222,
+    "uv_groups": 34,
+    "uv_singletons": 4,
+    "phase19_mesh_batches": 12,
+    "triangles_preserved": 8820,
+    "uv_faces_verified_exactly": true,
+    "position_tolerance_m": 0.0001,
+    "packed_textures": 2
+  },
+  "groups": [
+    {
+      "name": "PH20_UVBatch_Arch_L_B+00_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_Arch_Capital_ChiselLine_L_00",
+        "PH17_Arch_Capital_ChiselLine_L_01",
+        "PH17_Arch_Capital_ChiselLine_L_02",
+        "PH17_Arch_Capital_ChiselLine_L_03",
+        "PH17_Arch_Capital_ChiselLine_L_04",
+        "PH17_Arch_Capital_ChiselLine_L_05"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 72,
+      "uv_face_sha256": "454a1041136d0bc5a172aa18f837509d731e9f98151dee021fc86b9adf2c191a",
+      "vertices": 48
+    },
+    {
+      "name": "PH20_UVBatch_Arch_R_B+00_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_Arch_Capital_ChiselLine_R_00",
+        "PH17_Arch_Capital_ChiselLine_R_01",
+        "PH17_Arch_Capital_ChiselLine_R_02",
+        "PH17_Arch_Capital_ChiselLine_R_03",
+        "PH17_Arch_Capital_ChiselLine_R_04",
+        "PH17_Arch_Capital_ChiselLine_R_05"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 72,
+      "uv_face_sha256": "454a1041136d0bc5a172aa18f837509d731e9f98151dee021fc86b9adf2c191a",
+      "vertices": 48
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_L_B+00_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_L_00",
+        "PH17_ClimbingIvy_L_04",
+        "PH17_ClimbingIvy_L_10",
+        "PH17_ClimbingIvy_L_16",
+        "PH17_ClimbingIvy_L_23",
+        "PH17_ClimbingIvy_L_24",
+        "PH17_ClimbingIvy_L_26",
+        "PH17_ClimbingIvy_L_27"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 160,
+      "uv_face_sha256": "df71f3a7655161b410a06852ce51396958206c441d9ed753a39a211ff7171e4a",
+      "vertices": 96
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_L_B+01_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_L_02",
+        "PH17_ClimbingIvy_L_18",
+        "PH17_ClimbingIvy_L_22"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 60,
+      "uv_face_sha256": "f6c78c2e2611a22ada03757bd4d2eaace2f766f0ddfce13bac09fcd0e96365a2",
+      "vertices": 36
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_L_B-01_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_L_01",
+        "PH17_ClimbingIvy_L_05",
+        "PH17_ClimbingIvy_L_08",
+        "PH17_ClimbingIvy_L_09",
+        "PH17_ClimbingIvy_L_11",
+        "PH17_ClimbingIvy_L_12",
+        "PH17_ClimbingIvy_L_13",
+        "PH17_ClimbingIvy_L_15",
+        "PH17_ClimbingIvy_L_19",
+        "PH17_ClimbingIvy_L_20",
+        "PH17_ClimbingIvy_L_25"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 220,
+      "uv_face_sha256": "979d354ed4526ae5c374d1299138022457d08ea86030f3bcec595388a1988da0",
+      "vertices": 132
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_L_B-02_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_L_03",
+        "PH17_ClimbingIvy_L_06",
+        "PH17_ClimbingIvy_L_07",
+        "PH17_ClimbingIvy_L_14",
+        "PH17_ClimbingIvy_L_17",
+        "PH17_ClimbingIvy_L_21"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 120,
+      "uv_face_sha256": "6ca0c62102205fd2a48f75ebc0fddc9d4417326c10703af868a1d7879d37e755",
+      "vertices": 72
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_R_B+00_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_R_00",
+        "PH17_ClimbingIvy_R_01",
+        "PH17_ClimbingIvy_R_09",
+        "PH17_ClimbingIvy_R_11",
+        "PH17_ClimbingIvy_R_24",
+        "PH17_ClimbingIvy_R_26"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 120,
+      "uv_face_sha256": "6ca0c62102205fd2a48f75ebc0fddc9d4417326c10703af868a1d7879d37e755",
+      "vertices": 72
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_R_B+01_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_R_02",
+        "PH17_ClimbingIvy_R_03",
+        "PH17_ClimbingIvy_R_04",
+        "PH17_ClimbingIvy_R_05",
+        "PH17_ClimbingIvy_R_06",
+        "PH17_ClimbingIvy_R_07",
+        "PH17_ClimbingIvy_R_17",
+        "PH17_ClimbingIvy_R_20",
+        "PH17_ClimbingIvy_R_21",
+        "PH17_ClimbingIvy_R_22",
+        "PH17_ClimbingIvy_R_27"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 220,
+      "uv_face_sha256": "979d354ed4526ae5c374d1299138022457d08ea86030f3bcec595388a1988da0",
+      "vertices": 132
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_R_B-01_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_R_08",
+        "PH17_ClimbingIvy_R_10",
+        "PH17_ClimbingIvy_R_12",
+        "PH17_ClimbingIvy_R_13",
+        "PH17_ClimbingIvy_R_14",
+        "PH17_ClimbingIvy_R_19",
+        "PH17_ClimbingIvy_R_23"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 140,
+      "uv_face_sha256": "243dfc4ef320705846be71fac2fa9c10e7fee92784466d6b9443f161bf592e1b",
+      "vertices": 84
+    },
+    {
+      "name": "PH20_UVBatch_ClimbingIvy_R_B-02_Ivy_Leaves",
+      "source_names": [
+        "PH17_ClimbingIvy_R_15",
+        "PH17_ClimbingIvy_R_16",
+        "PH17_ClimbingIvy_R_18",
+        "PH17_ClimbingIvy_R_25"
+      ],
+      "material": "MAT_Ivy_Leaves",
+      "triangles": 80,
+      "uv_face_sha256": "c25d7be182dd3a4bd70bdadc941cc703cbd019915761c3720dd781916bd5fb5d",
+      "vertices": 48
+    },
+    {
+      "name": "PH20_UVBatch_Gate_L_B+00_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Gate_FiligreeGoldBorder_L",
+        "PH17_Gate_OrnateRosette_L_00",
+        "PH17_Gate_OrnateRosette_L_01",
+        "PH17_Gate_OrnateRosette_L_02",
+        "PH17_Gate_OrnateRosette_L_03",
+        "PH17_Gate_OrnateRosette_L_04"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 112,
+      "uv_face_sha256": "b56cb038c2275b182bb4ad889ec4d9ccfff52a6abf1dcca45ff4091e6647b1db",
+      "vertices": 68
+    },
+    {
+      "name": "PH20_UVBatch_Gate_R_B+00_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Gate_FiligreeGoldBorder_R",
+        "PH17_Gate_OrnateRosette_R_00",
+        "PH17_Gate_OrnateRosette_R_01",
+        "PH17_Gate_OrnateRosette_R_02",
+        "PH17_Gate_OrnateRosette_R_03",
+        "PH17_Gate_OrnateRosette_R_04"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 112,
+      "uv_face_sha256": "b56cb038c2275b182bb4ad889ec4d9ccfff52a6abf1dcca45ff4091e6647b1db",
+      "vertices": 68
+    },
+    {
+      "name": "PH20_UVBatch_IndigoLancetGlass_L_B+01_Royal_Banner_DeepBlue",
+      "source_names": [
+        "PH17_IndigoLancetGlass_L_00",
+        "PH17_IndigoLancetGlass_L_01"
+      ],
+      "material": "MAT_Royal_Banner_DeepBlue",
+      "triangles": 24,
+      "uv_face_sha256": "ff8c87c1f2129e8ce9b129326f9aa73153e1362fc1643df0948c08ec9b23fe7b",
+      "vertices": 16
+    },
+    {
+      "name": "PH20_UVBatch_IndigoLancetGlass_R_B+01_Royal_Banner_DeepBlue",
+      "source_names": [
+        "PH17_IndigoLancetGlass_R_00",
+        "PH17_IndigoLancetGlass_R_01"
+      ],
+      "material": "MAT_Royal_Banner_DeepBlue",
+      "triangles": 24,
+      "uv_face_sha256": "ff8c87c1f2129e8ce9b129326f9aa73153e1362fc1643df0948c08ec9b23fe7b",
+      "vertices": 16
+    },
+    {
+      "name": "PH20_UVBatch_Royal_L_B+00_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Royal_Upper_StoneInlay_L_00",
+        "PH17_Royal_Upper_StoneInlay_L_01",
+        "PH17_Royal_Upper_StoneInlay_L_02"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 36,
+      "uv_face_sha256": "2382389ca1c9b9134ee8364b38a62172410460b8d5303b81108cc67a6830ae38",
+      "vertices": 24
+    },
+    {
+      "name": "PH20_UVBatch_Royal_L_B+01_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Royal_Upper_StoneInlay_L_03",
+        "PH17_Royal_Upper_StoneInlay_L_04",
+        "PH17_Royal_Upper_StoneInlay_L_05",
+        "PH17_Royal_Upper_StoneInlay_L_06",
+        "PH17_Royal_Upper_StoneInlay_L_07",
+        "PH17_Royal_Upper_StoneInlay_L_08",
+        "PH17_Royal_Upper_StoneInlay_L_09"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 84,
+      "uv_face_sha256": "91059d6868dc4682ae354a5d7c2453fbb293ddb5819b645271905b350f3177ce",
+      "vertices": 56
+    },
+    {
+      "name": "PH20_UVBatch_Royal_L_B+02_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Royal_Upper_StoneInlay_L_10",
+        "PH17_Royal_Upper_StoneInlay_L_11",
+        "PH17_Royal_Upper_StoneInlay_L_12",
+        "PH17_Royal_Upper_StoneInlay_L_13"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 48,
+      "uv_face_sha256": "b04d6e2d2a3f0bffcc3f1aa37d6f57060dad1c3a60df73870cd05ca5a8c6137c",
+      "vertices": 32
+    },
+    {
+      "name": "PH20_UVBatch_Royal_R_B+00_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Royal_Upper_StoneInlay_R_00",
+        "PH17_Royal_Upper_StoneInlay_R_01",
+        "PH17_Royal_Upper_StoneInlay_R_02"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 36,
+      "uv_face_sha256": "2382389ca1c9b9134ee8364b38a62172410460b8d5303b81108cc67a6830ae38",
+      "vertices": 24
+    },
+    {
+      "name": "PH20_UVBatch_Royal_R_B+01_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Royal_Upper_StoneInlay_R_03",
+        "PH17_Royal_Upper_StoneInlay_R_04",
+        "PH17_Royal_Upper_StoneInlay_R_05",
+        "PH17_Royal_Upper_StoneInlay_R_06",
+        "PH17_Royal_Upper_StoneInlay_R_07",
+        "PH17_Royal_Upper_StoneInlay_R_08",
+        "PH17_Royal_Upper_StoneInlay_R_09"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 84,
+      "uv_face_sha256": "91059d6868dc4682ae354a5d7c2453fbb293ddb5819b645271905b350f3177ce",
+      "vertices": 56
+    },
+    {
+      "name": "PH20_UVBatch_Royal_R_B+02_Brushed_Royal_Brass",
+      "source_names": [
+        "PH17_Royal_Upper_StoneInlay_R_10",
+        "PH17_Royal_Upper_StoneInlay_R_11",
+        "PH17_Royal_Upper_StoneInlay_R_12",
+        "PH17_Royal_Upper_StoneInlay_R_13"
+      ],
+      "material": "MAT_Brushed_Royal_Brass",
+      "triangles": 48,
+      "uv_face_sha256": "b04d6e2d2a3f0bffcc3f1aa37d6f57060dad1c3a60df73870cd05ca5a8c6137c",
+      "vertices": 32
+    },
+    {
+      "name": "PH20_UVBatch_StoneRail_L_B-01_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_StoneRail_Fleur_L_06",
+        "PH17_StoneRail_Fleur_L_07",
+        "PH17_StoneRail_Fleur_L_08",
+        "PH17_StoneRail_Fleur_L_09",
+        "PH17_StoneRail_Fleur_L_10"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 100,
+      "uv_face_sha256": "46a8bd0d0d3f5a523ba994f1e18efdd0797f8471463216e2b8bd275e38ee2f3d",
+      "vertices": 60
+    },
+    {
+      "name": "PH20_UVBatch_StoneRail_L_B-02_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_StoneRail_Fleur_L_00",
+        "PH17_StoneRail_Fleur_L_01",
+        "PH17_StoneRail_Fleur_L_02",
+        "PH17_StoneRail_Fleur_L_03",
+        "PH17_StoneRail_Fleur_L_04",
+        "PH17_StoneRail_Fleur_L_05"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 120,
+      "uv_face_sha256": "6ca0c62102205fd2a48f75ebc0fddc9d4417326c10703af868a1d7879d37e755",
+      "vertices": 72
+    },
+    {
+      "name": "PH20_UVBatch_StoneRail_R_B-01_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_StoneRail_Fleur_R_06",
+        "PH17_StoneRail_Fleur_R_07",
+        "PH17_StoneRail_Fleur_R_08",
+        "PH17_StoneRail_Fleur_R_09",
+        "PH17_StoneRail_Fleur_R_10"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 100,
+      "uv_face_sha256": "46a8bd0d0d3f5a523ba994f1e18efdd0797f8471463216e2b8bd275e38ee2f3d",
+      "vertices": 60
+    },
+    {
+      "name": "PH20_UVBatch_StoneRail_R_B-02_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_StoneRail_Fleur_R_00",
+        "PH17_StoneRail_Fleur_R_01",
+        "PH17_StoneRail_Fleur_R_02",
+        "PH17_StoneRail_Fleur_R_03",
+        "PH17_StoneRail_Fleur_R_04",
+        "PH17_StoneRail_Fleur_R_05"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 120,
+      "uv_face_sha256": "6ca0c62102205fd2a48f75ebc0fddc9d4417326c10703af868a1d7879d37e755",
+      "vertices": 72
+    },
+    {
+      "name": "PH20_UVBatch_Stone_L_B+01_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_Stone_LancetMullion_L_00",
+        "PH17_Stone_LancetMullion_L_01"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 24,
+      "uv_face_sha256": "ff8c87c1f2129e8ce9b129326f9aa73153e1362fc1643df0948c08ec9b23fe7b",
+      "vertices": 16
+    },
+    {
+      "name": "PH20_UVBatch_Stone_R_B+01_Sunlit_Pale_Stone",
+      "source_names": [
+        "PH17_Stone_LancetMullion_R_00",
+        "PH17_Stone_LancetMullion_R_01"
+      ],
+      "material": "MAT_Sunlit_Pale_Stone",
+      "triangles": 24,
+      "uv_face_sha256": "ff8c87c1f2129e8ce9b129326f9aa73153e1362fc1643df0948c08ec9b23fe7b",
+      "vertices": 16
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_L_B+00_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_L_00_0",
+        "PH17_WhiteBloom_L_00_1",
+        "PH17_WhiteBloom_L_00_2",
+        "PH17_WhiteBloom_L_00_3",
+        "PH17_WhiteBloom_L_24_0",
+        "PH17_WhiteBloom_L_24_1",
+        "PH17_WhiteBloom_L_24_2",
+        "PH17_WhiteBloom_L_24_3",
+        "PH17_WhiteBloom_L_27_0",
+        "PH17_WhiteBloom_L_27_1",
+        "PH17_WhiteBloom_L_27_2",
+        "PH17_WhiteBloom_L_27_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 240,
+      "uv_face_sha256": "a8c5ddafd05f8f4b64e52e347f9d13474b57ff3c675ac0f5200ed8bef0649108",
+      "vertices": 144
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_L_B+01_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_L_18_0",
+        "PH17_WhiteBloom_L_18_1",
+        "PH17_WhiteBloom_L_18_2",
+        "PH17_WhiteBloom_L_18_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 80,
+      "uv_face_sha256": "c25d7be182dd3a4bd70bdadc941cc703cbd019915761c3720dd781916bd5fb5d",
+      "vertices": 48
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_L_B-01_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_L_09_0",
+        "PH17_WhiteBloom_L_09_1",
+        "PH17_WhiteBloom_L_09_2",
+        "PH17_WhiteBloom_L_09_3",
+        "PH17_WhiteBloom_L_12_0",
+        "PH17_WhiteBloom_L_12_1",
+        "PH17_WhiteBloom_L_12_2",
+        "PH17_WhiteBloom_L_12_3",
+        "PH17_WhiteBloom_L_15_0",
+        "PH17_WhiteBloom_L_15_1",
+        "PH17_WhiteBloom_L_15_2",
+        "PH17_WhiteBloom_L_15_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 240,
+      "uv_face_sha256": "a8c5ddafd05f8f4b64e52e347f9d13474b57ff3c675ac0f5200ed8bef0649108",
+      "vertices": 144
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_L_B-02_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_L_03_0",
+        "PH17_WhiteBloom_L_03_1",
+        "PH17_WhiteBloom_L_03_2",
+        "PH17_WhiteBloom_L_03_3",
+        "PH17_WhiteBloom_L_06_0",
+        "PH17_WhiteBloom_L_06_1",
+        "PH17_WhiteBloom_L_06_2",
+        "PH17_WhiteBloom_L_06_3",
+        "PH17_WhiteBloom_L_21_0",
+        "PH17_WhiteBloom_L_21_1",
+        "PH17_WhiteBloom_L_21_2",
+        "PH17_WhiteBloom_L_21_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 240,
+      "uv_face_sha256": "a8c5ddafd05f8f4b64e52e347f9d13474b57ff3c675ac0f5200ed8bef0649108",
+      "vertices": 144
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_R_B+00_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_R_00_0",
+        "PH17_WhiteBloom_R_00_1",
+        "PH17_WhiteBloom_R_00_2",
+        "PH17_WhiteBloom_R_00_3",
+        "PH17_WhiteBloom_R_09_0",
+        "PH17_WhiteBloom_R_09_1",
+        "PH17_WhiteBloom_R_09_2",
+        "PH17_WhiteBloom_R_09_3",
+        "PH17_WhiteBloom_R_24_0",
+        "PH17_WhiteBloom_R_24_1",
+        "PH17_WhiteBloom_R_24_2",
+        "PH17_WhiteBloom_R_24_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 240,
+      "uv_face_sha256": "a8c5ddafd05f8f4b64e52e347f9d13474b57ff3c675ac0f5200ed8bef0649108",
+      "vertices": 144
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_R_B+01_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_R_03_0",
+        "PH17_WhiteBloom_R_03_1",
+        "PH17_WhiteBloom_R_03_2",
+        "PH17_WhiteBloom_R_03_3",
+        "PH17_WhiteBloom_R_06_0",
+        "PH17_WhiteBloom_R_06_1",
+        "PH17_WhiteBloom_R_06_2",
+        "PH17_WhiteBloom_R_06_3",
+        "PH17_WhiteBloom_R_21_0",
+        "PH17_WhiteBloom_R_21_1",
+        "PH17_WhiteBloom_R_21_2",
+        "PH17_WhiteBloom_R_21_3",
+        "PH17_WhiteBloom_R_27_0",
+        "PH17_WhiteBloom_R_27_1",
+        "PH17_WhiteBloom_R_27_2",
+        "PH17_WhiteBloom_R_27_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 320,
+      "uv_face_sha256": "d925a9e6341acafa89d48e574d2ffb1d00658d6644c311bd7f99e3e0f8b0decc",
+      "vertices": 192
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_R_B-01_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_R_12_0",
+        "PH17_WhiteBloom_R_12_1",
+        "PH17_WhiteBloom_R_12_2",
+        "PH17_WhiteBloom_R_12_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 80,
+      "uv_face_sha256": "c25d7be182dd3a4bd70bdadc941cc703cbd019915761c3720dd781916bd5fb5d",
+      "vertices": 48
+    },
+    {
+      "name": "PH20_UVBatch_WhiteBloom_R_B-02_White_Pink_Flowers",
+      "source_names": [
+        "PH17_WhiteBloom_R_15_0",
+        "PH17_WhiteBloom_R_15_1",
+        "PH17_WhiteBloom_R_15_2",
+        "PH17_WhiteBloom_R_15_3",
+        "PH17_WhiteBloom_R_18_0",
+        "PH17_WhiteBloom_R_18_1",
+        "PH17_WhiteBloom_R_18_2",
+        "PH17_WhiteBloom_R_18_3"
+      ],
+      "material": "MAT_White_Pink_Flowers",
+      "triangles": 160,
+      "uv_face_sha256": "df71f3a7655161b410a06852ce51396958206c441d9ed753a39a211ff7171e4a",
+      "vertices": 96
+    }
+  ],
+  "remaining_singletons": [
+    "PH17_IndigoLancetGlass_L_02",
+    "PH17_IndigoLancetGlass_R_02",
+    "PH17_Stone_LancetMullion_L_02",
+    "PH17_Stone_LancetMullion_R_02"
+  ],
+  "proof": {
+    "source": "tools/phase20_uv_preserving_decor_batch.py",
+    "qa": "tools/validate_citadel_sculpt_v20_v09.py",
+    "blender_uv_integrity": "PASS",
+    "wide_camera_render_visual_signoff": "PENDING",
+    "actual_godot_f5_import": "NOT_TESTED",
+    "runtime_fps": "NOT_MEASURED",
+    "standalone_blender_validator": "PASS at exact 3D Jutsu revision9",
+    "render_960x540": {
+      "completed": true,
+      "operation_id": "phase20-v09-960x540-delivery-render-01"
+    },
+    "render_1280x720": {
+      "completed": true,
+      "operation_id": "phase20-v09-1280x720-production-frame-01",
+      "duration_seconds_in_higgsfield_worker": 95.82,
+      "note": "Blender offline still-frame duration is not an in-game frame-time benchmark"
+    },
+    "ci_runs": {
+      "phase20_and_godot": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43409082194",
+      "phase15": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43409082184",
+      "phase16": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43409082726"
+    },
+    "python_manifest_tests": "14/14 (v8 and v9 separate 7-test suites)",
+    "godot_nav_hardening": "32/32 isolated checks",
+    "godot_visual_collider_toggle": "273/273 isolated checks"
+  },
+  "safety": {
+    "approved_local_phase11_available": false,
+    "branch_draft": true,
+    "main_merge_allowed": false,
+    "active_game_asset_swap": false,
+    "glb_binary_in_higgsfield": true,
+    "glb_binary_in_github": false,
+    "glb_binary_in_drive": false
+  },
+  "artifact_sizes": {
+    "higgsfield_v7_glb_bytes": 2568576,
+    "higgsfield_v8_glb_bytes": 2522040,
+    "higgsfield_v9_glb_bytes": 2462652,
+    "higgsfield_v7_blend_bytes": 5201327,
+    "higgsfield_v9_blend_bytes": 3658555,
+    "glb_percent_reduction_v7_to_v9": 4.12,
+    "blend_percent_reduction_v7_to_v9": 29.66
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "AOTL_Citadel_MasonryArt_v17",
+  "status": "art_candidate_not_canon_not_higgsfield_export",
+  "source": "tools/build_citadel_art_v17.py",
+  "derived_from": "Phase15 verified GLB art generator",
+  "world_space": "X_lateral_Y_up_Z_north",
+  "base_origin": "bottom_of_stair_center",
+  "nodes": 1197,
+  "tread_count": 9,
+  "step_run_m": 1.0,
+  "step_rise_m": 0.2,
+  "stair_width_m": 7.5,
+  "total_ascent_m": 1.8,
+  "arch_stones": 32,
+  "arch_aperture_m": 8.1,
+  "gate_center_z_m": 12.25,
+  "has_gameplay_colliders": false,
+  "has_player_or_npc_state": false,
+  "has_cameras": false,
+  "artist_review": "pending",
+  "godot_runtime_validation": "pending",
+  "glb_bytes": 2304848,
+  "glb_sha256": "84989a6e572dde75f406c2ce2c8cb435015c55ea0bb79571061930e0c2119ca2",
+  "texture_atlas_seed": 171113,
+  "stats": {
+    "paving_stones": 340,
+    "gothic_detail_segments": 104,
+    "flowering_components": 328,
+    "water_highlights": 20,
+    "textured_stone_nodes": 604,
+    "embedded_stone_textures": 4
+  },
+  "warnings": [
+    "No full current Phase11 source synchronized",
+    "No final knight IK/occlusion or artist sign-off"
+  ]
+}

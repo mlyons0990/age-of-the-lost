@@ -13,6 +13,8 @@ const LIVE_KNIGHT := preload("res://scripts/two_point_five_d/knight_depth_billbo
 const CITADEL_GRADE := preload("res://scripts/two_point_five_d/citadel_grade_geometry_v12.gd")
 const CITADEL_ART_SCENE := "res://assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.glb"
 const CITADEL_ART_MANIFEST := "res://assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.json"
+const CITADEL_MASONRY_SCENE_V17 := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb"
+const CITADEL_MASONRY_MANIFEST_V17 := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.json"
 const RIGHT := Vector3(0.70710678, 0.0, -0.70710678)
 const TOWARDS_CAMERA := Vector3(0.70710678, 0.0, 0.70710678)
 const VIEW_OFFSET := Vector3(12.8, 16.4, 12.8)
@@ -50,6 +52,7 @@ var citadel_grade_foot_samples := 0
 var citadel_art_root: Node3D = null
 var citadel_art_enabled := false
 var citadel_art_mesh_count := 0
+var citadel_art_variant := "none"
 
 
 func _ready() -> void:
@@ -121,20 +124,75 @@ func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
     var to_ground := to_3d(end_px)
     var axis := to_ground - from_ground
     axis.y = 0.0
-    if axis.length() < 0.5:
+    var route_length_m := axis.length()
+    if route_length_m < 0.5:
         return false
     axis = axis.normalized()
     var side := Vector3(axis.z, 0.0, -axis.x)
-    # Test the center and shoulders of 17 cross-sections against the same
-    # NavigationRegion2D that the live player uses. No new navigation authority.
-    for i in range(17):
-        var t := float(i) / 16.0
+    # Phase19 safety: the original 17 cross-sections can miss a small
+    # disconnected gap between two consecutive samples. Sample no farther
+    # than 0.15m along the full measured route; still require 17 minimum.
+    # Five lateral lanes reach near both corridor edges, not just its center.
+    # Fail closed for implausibly long routes instead of silently undersampling.
+    var segments := maxi(16, ceili(route_length_m / 0.15))
+    if segments > 512:
+        return false
+    for i in range(segments + 1):
+        var t := float(i) / float(segments)
         var center_3d := from_ground.lerp(to_ground, t)
-        for fraction in [-0.40, 0.0, 0.40]:
+        for fraction in [-0.48, -0.24, 0.0, 0.24, 0.48]:
             var sample_3d := center_3d + side * clear_width_m * float(fraction)
             var sample_world := to_2d(sample_3d)
             if not _citadel_inside_authoritative_polygon(route_nav, sample_world):
                 return false
+    # Boundary-exact lane coverage catches even centimeter-wide gaps between
+    # sample sections. This only READS the authoritative existing polygon.
+    for fraction in [-0.48, -0.24, 0.0, 0.24, 0.48]:
+        var lateral := side * clear_width_m * float(fraction)
+        if not _citadel_lane_inside_authoritative_nav(
+                route_nav, to_2d(from_ground + lateral),
+                to_2d(to_ground + lateral)):
+            return false
+    return true
+
+func _citadel_lane_inside_authoritative_nav(nav: NavigationRegion2D,
+        from_px: Vector2, to_px: Vector2) -> bool:
+    # Enumerate true indexed polygon-edge crossings. Test each interval
+    # midpoint against the union of walkable indexed polygons rather than
+    # assuming 17/61 point samples prove continuous connectivity.
+    if nav == null or not is_instance_valid(nav) or nav.navigation_polygon == null:
+        return false
+    var a := nav.to_local(from_px)
+    var b := nav.to_local(to_px)
+    var span: Vector2 = b - a
+    var sq_len := span.length_squared()
+    if sq_len < 0.000001:
+        return false
+    var dividers: Array[float] = [0.0, 1.0]
+    var shape: NavigationPolygon = nav.navigation_polygon
+    var verts: PackedVector2Array = shape.vertices
+    for polygon_index in range(shape.get_polygon_count()):
+        var indices: PackedInt32Array = shape.get_polygon(polygon_index)
+        for edge_i in range(indices.size()):
+            var i0: int = indices[edge_i]
+            var i1: int = indices[(edge_i + 1) % indices.size()]
+            if i0 < 0 or i1 < 0 or i0 >= verts.size() or i1 >= verts.size():
+                return false
+            var crossing: Variant = Geometry2D.segment_intersects_segment(
+                a, b, verts[i0], verts[i1])
+            if crossing is Vector2:
+                var along: float = (crossing - a).dot(span) / sq_len
+                if along > 0.000001 and along < 0.999999:
+                    dividers.append(along)
+    dividers.sort()
+    if not _citadel_inside_authoritative_polygon(nav, from_px) or not (
+            _citadel_inside_authoritative_polygon(nav, to_px)):
+        return false
+    for i in range(dividers.size() - 1):
+        var midpoint_t: float = (dividers[i] + dividers[i + 1]) * 0.5
+        if not _citadel_inside_authoritative_polygon(nav,
+                nav.to_global(a.lerp(b, midpoint_t))):
+            return false
     return true
 
 func _citadel_inside_authoritative_polygon(
@@ -195,21 +253,37 @@ func _collect_citadel_art_meshes(node: Node, out: Dictionary) -> void:
         _collect_citadel_art_meshes(child, out)
 
 func install_verified_citadel_art() -> bool:
-    ## Explicit Phase 16 opt-in. The Phase 11 game must provide the real
-    ## Citadel endpoints to install_verified_citadel_grade() beforehand.
+    ## Preserve the proven Phase16 entrypoint and its 220-mesh fallback.
+    return _install_verified_citadel_asset(
+        CITADEL_ART_SCENE, CITADEL_ART_MANIFEST, "v15")
+
+func install_verified_citadel_masonry_v17() -> bool:
+    ## Separate feature gate. Never replace approved painterly default.
+    return _install_verified_citadel_asset(
+        CITADEL_MASONRY_SCENE_V17, CITADEL_MASONRY_MANIFEST_V17, "v17")
+
+func _install_verified_citadel_asset(scene_path: String,
+        manifest_path: String, variant: String) -> bool:
+    # IMPORTANT: trusted variants only. No arbitrary untrusted ResourceLoader path.
+    if variant != "v15" and variant != "v17":
+        return false
     if citadel_art_root != null or citadel_grade == null:
         return false
     if not is_instance_valid(citadel_grade):
         return false
-    if not ResourceLoader.exists(CITADEL_ART_SCENE):
+    if not ResourceLoader.exists(scene_path):
         return false
-    if not FileAccess.file_exists(CITADEL_ART_MANIFEST):
+    if not FileAccess.file_exists(manifest_path):
         return false
     var meta: Variant = JSON.parse_string(
-        FileAccess.get_file_as_string(CITADEL_ART_MANIFEST))
+        FileAccess.get_file_as_string(manifest_path))
     if not (meta is Dictionary):
         return false
-    if int(meta.get("nodes", 0)) != 220:
+    var expected_count := 220 if variant == "v15" else 1197
+    if int(meta.get("nodes", 0)) != expected_count:
+        return false
+    if variant == "v17" and String(meta.get("status", "")) != (
+            "art_candidate_not_canon_not_higgsfield_export"):
         return false
     if bool(meta.get("has_gameplay_colliders", true)):
         return false
@@ -224,7 +298,7 @@ func install_verified_citadel_art() -> bool:
     if not is_equal_approx(float(meta.get("step_run_m", 0.0)) *
             float(meta.get("tread_count", 0)), float(citadel_grade.run_length_m)):
         return false
-    var packed: PackedScene = ResourceLoader.load(CITADEL_ART_SCENE) as PackedScene
+    var packed: PackedScene = ResourceLoader.load(scene_path) as PackedScene
     if packed == null:
         return false
     var instance: Node = packed.instantiate()
@@ -234,7 +308,7 @@ func install_verified_citadel_art() -> bool:
     var art: Node3D = instance as Node3D
     var meshes: Dictionary = {}
     _collect_citadel_art_meshes(art, meshes)
-    if meshes.size() != 220 or not meshes.has("STAIR_Tread_01") or not meshes.has(
+    if meshes.size() != expected_count or not meshes.has("STAIR_Tread_01") or not meshes.has(
             "STAIR_Tread_09") or not meshes.has("GATE_GothicVoussoir_32"):
         art.free()
         return false
@@ -244,11 +318,12 @@ func install_verified_citadel_art() -> bool:
         art.free()
         return false
     assembly.add_child(art)
-    art.name = "Citadel_Phase15_220Mesh_ArtOnly_OptIn"
+    art.name = "Citadel_%s_%dMesh_ArtOnly_OptIn" % [variant, expected_count]
     art.transform = Transform3D.IDENTITY
     art.visible = false
     citadel_art_root = art
     citadel_art_mesh_count = meshes.size()
+    citadel_art_variant = variant
     citadel_art_enabled = false
     return true
 
@@ -588,6 +663,7 @@ func status() -> Dictionary:
         "citadel_art_available": citadel_art_root != null,
         "citadel_art_enabled": citadel_art_enabled,
         "citadel_art_mesh_count": citadel_art_mesh_count,
+        "citadel_art_variant": citadel_art_variant,
         "citadel_art_visual_path": "imported_glb" if citadel_art_enabled else "procedural",
         "citadel_grade_height_samples": citadel_grade_foot_samples,
         "citadel_uses_existing_nav": citadel_grade_nav != null,

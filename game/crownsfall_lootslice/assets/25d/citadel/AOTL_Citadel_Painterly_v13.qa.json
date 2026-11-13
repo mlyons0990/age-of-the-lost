@@ -1,0 +1,37 @@
+{
+  "schema": "aotl.citadel.phase23.rebuilt_glb.v1",
+  "original_v10_bytes": 2181764,
+  "output_glb": "/home/runner/work/age-of-the-lost/age-of-the-lost/game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_Painterly_v13.glb",
+  "output_bytes": 4839768,
+  "output_sha256": "49b4c70ae15949931cef3b1b044f23c024cba9451c3be0fa643942ac45591974",
+  "mesh_count": 309,
+  "new_textures": [
+    {
+      "material": "MAT_AOTL_Phase17_Packed_PaintedIvory",
+      "image": "AOTL_Ph23_IvoryStone_1024",
+      "size": 1024,
+      "png_sha256": "60ee2f7a50b232cda3a71e63d1f3a66f42f1677ee24f9c41dcef83ebe0cb6e30",
+      "packed_bytes": 1433551,
+      "source": "AOTL_Crownsfall_StoneIvory_v04"
+    },
+    {
+      "material": "MAT_AOTL_Phase17_Packed_Patina",
+      "image": "AOTL_Ph23_WeatheredPatina_1024",
+      "size": 1024,
+      "png_sha256": "63bef3fd89d9bf1ba63e40c7306c30a786c225973fa0dad39737abb45d9b34ea",
+      "packed_bytes": 1381301,
+      "source": "AOTL_Crownsfall_StonePatina_v04"
+    },
+    {
+      "material": "MAT_Ivy_Leaves",
+      "image": "AOTL_Ph23_PaintedIvy_512",
+      "size": 512,
+      "png_sha256": "c2ea2d5387d74fb63d510174cff10524afe67853fe01d05e782210b79e09da9f",
+      "packed_bytes": 296502,
+      "source": null
+    }
+  ],
+  "packed_atlas_count": 3,
+  "original_game_modified": false,
+  "real_godot_import_tested": false
+}

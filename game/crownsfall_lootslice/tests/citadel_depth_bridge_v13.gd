@@ -76,6 +76,12 @@ func _execute() -> void:
         "height restored after preview is disabled")
     _check(bridge.citadel_grade.status().physics_3d_colliders == 64,
         "phase12 physical masonry retained")
+    # Release the isolated bridge and its 64 physics/Nav RIDs before process exit.
+    # Tests run without a real SceneTree parent, so this cleanup is essential.
+    bridge.scenery.free()
+    bridge.free()
+    narrow.free()
+    wide.free()
     if errors.is_empty():
         print("CITADEL_DEPTH_BRIDGE_V13 PASS %d/%d" % [assertions, assertions])
         quit(0)

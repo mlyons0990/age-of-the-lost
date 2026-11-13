@@ -71,6 +71,18 @@ class Phase18AuditSafetyTests(unittest.TestCase):
                  for p in self.project.rglob("*") if p.is_file()}
         self.assertEqual(self.original, after)
 
+    def test_symlinked_external_file_is_not_inventoried(self):
+        outside = self.base / "private_external.txt"
+        outside.write_text("DO NOT LEAK EXTERNAL FILE", encoding="utf-8")
+        link = self.project / "external.txt"
+        try:
+            link.symlink_to(outside)
+        except (OSError, NotImplementedError):
+            self.skipTest("symlinks unavailable on this system")
+        report = module.audit(self.project)
+        self.assertNotIn("external.txt", [x["path"] for x in report["files"]])
+        self.assertEqual(report["file_count"], 3)
+
     def test_missing_source_fails_without_creating_output(self):
         out = self.base / "out.json"
         p = subprocess.run([sys.executable, str(SCRIPT),

@@ -6,6 +6,7 @@ signal impact(at: Vector3, kind: String, direction: Vector3)
 signal health_changed(current: float, maximum: float)
 
 const MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const TERRAIN_IK := preload("res://scripts/three_d/terrain_foot_ik.gd")
 const WALK_SPEED := 4.3
 const RUN_SPEED := 6.7
 const DODGE_SPEED := 10.5
@@ -28,6 +29,8 @@ var invulnerable := 0.0
 var last_face := Vector3(0, 0, -1)
 var anim_state := ""
 var clip_names: Dictionary = {}
+var terrain_foot_ik: Node3D = null
+var terrain_ik_available := false
 
 func _ready() -> void:
 	body = MODEL.instantiate()
@@ -47,6 +50,11 @@ func _ready() -> void:
 	col.position = Vector3(0, 1, 0)
 	add_child(col)
 	_play("Idle")
+	# Optional: older proxy skeletons continue running without terrain IK.
+	terrain_foot_ik = TERRAIN_IK.new()
+	terrain_foot_ik.name = "TerrainFootIK"
+	add_child(terrain_foot_ik)
+	terrain_ik_available = terrain_foot_ik.configure(body, self, animation)
 
 func _play(clip: String) -> void:
 	if animation == null or not clip_names.has(clip):
@@ -141,6 +149,11 @@ func _physics_process(delta: float) -> void:
 		body.rotation.y = lerp_angle(body.rotation.y, desired_yaw, minf(1.0, delta * 13.0))
 	velocity.y = -GRAVITY if is_on_floor() else velocity.y - GRAVITY * delta
 	move_and_slide()
+	if terrain_ik_available and animation != null:
+		var cycle_phase := 0.0
+		if animation.current_animation_length > 0.0:
+			cycle_phase = fposmod(animation.current_animation_position / animation.current_animation_length, 1.0)
+		terrain_foot_ik.update_foot_ik(delta, anim_state, cycle_phase)
 
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return

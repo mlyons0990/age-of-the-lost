@@ -178,6 +178,7 @@ func _create_foot_markers() -> void:
 		surface.albedo_color = Color("50d5ff") if index == 0 else Color("ffb763")
 		marker.material_override = surface
 		add_child(marker)
+		markers.append(marker)
 		var label := Label3D.new()
 		label.text = "L" if index == 0 else "R"
 		label.font_size = 80

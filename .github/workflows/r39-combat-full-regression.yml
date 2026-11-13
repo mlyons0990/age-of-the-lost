@@ -1,0 +1,61 @@
+name: AOTL R39 combat branch full Crownsfall regression
+
+on:
+  push:
+    branches: [dev/r39-3d-combat-geometry-v1]
+    paths:
+      - .github/workflows/r39-combat-full-regression.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full_crownsfall:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Download Godot 4.6.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+          /tmp/Godot_v4.6.3-stable_linux.x86_64 --headless --version
+      - name: Verify unchanged R39 production asset
+        run: |
+          set -euo pipefail
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum -c
+      - name: Run all 17 isolated Crownsfall suites
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 game/crownsfall_lootslice/tools/run_checks.py \
+            --project game/crownsfall_lootslice \
+            --godot /tmp/Godot_v4.6.3-stable_linux.x86_64 \
+            --report-dir /tmp/aotl-r39-combat-full-qa 2>&1 | tee /tmp/aotl-r39-combat-console.log
+      - name: Confirm 994 assertions passed
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          r=json.load(open('/tmp/aotl-r39-combat-full-qa/summary.json'))
+          assert r['success'], r
+          assert r['unique_assertions']==994, r
+          assert len(r['suites'])==17, r
+          print('AOTL R39 COMBAT FULL REGRESSION PASS 994/994 assertions across 17 suites')
+          PY
+      - name: Preserve QA logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-Combat-Full-Crownsfall-994-QA
+          path: |
+            /tmp/aotl-r39-combat-full-qa/
+            /tmp/aotl-r39-combat-console.log
+          if-no-files-found: warn
+          retention-days: 30

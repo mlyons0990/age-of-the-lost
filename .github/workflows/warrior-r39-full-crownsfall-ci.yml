@@ -1,0 +1,58 @@
+name: AOTL R39 full Crownsfall regression
+
+on:
+  push:
+    branches: [assets/warrior-r39-sixclip]
+    paths:
+      - .github/workflows/warrior-r39-full-crownsfall-ci.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aotl-r39-full-crownsfall
+  cancel-in-progress: false
+
+jobs:
+  full_game:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Download official Godot 4.6.3 (matching tested Crownsfall version)
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 \
+            "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp/
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+          /tmp/Godot_v4.6.3-stable_linux.x86_64 --headless --version
+      - name: Validate exact R39 production binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum -c
+          python3 game/crownsfall_lootslice/tools/verify_r36_glb.py game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb > /tmp/r39-binary-gate.json
+      - name: Run existing 17-suite Crownsfall integration regressions
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 game/crownsfall_lootslice/tools/run_checks.py \
+            --project game/crownsfall_lootslice \
+            --godot /tmp/Godot_v4.6.3-stable_linux.x86_64 \
+            --report-dir /tmp/aotl-r39-crownsfall-reports 2>&1 | tee /tmp/aotl-r39-suite-console.log
+      - name: Preserve actual game QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-Full-Crownsfall-17-Suite-Logs
+          path: |
+            /tmp/aotl-r39-crownsfall-reports/
+            /tmp/aotl-r39-suite-console.log
+            /tmp/r39-binary-gate.json
+          if-no-files-found: warn
+          retention-days: 30

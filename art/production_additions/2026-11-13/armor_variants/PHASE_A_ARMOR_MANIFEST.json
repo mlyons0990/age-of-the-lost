@@ -1,0 +1,86 @@
+{
+  "project": "Age of the Lost",
+  "phase": "A",
+  "batch": "Armor variants — six original designs",
+  "date": "2026-11-13",
+  "source_model": "Higgsfield gpt_image_2_6",
+  "credits_policy": "use_unlim true only; no paid credits",
+  "merge_policy": "Draft art branch, unchanged gameplay and saves",
+  "items": [
+    {
+      "id": "crownwarden_cuirass",
+      "name": "Crownwarden Cuirass",
+      "base": "armor",
+      "grid": [
+        2,
+        3
+      ],
+      "allowed": "warrior",
+      "job_id": "176297ce-7dc9-4693-8cbf-bdb4a1fee8ef",
+      "state": "submitted"
+    },
+    {
+      "id": "epochweave_robe",
+      "name": "Epochweave Robe",
+      "base": "robe",
+      "grid": [
+        2,
+        3
+      ],
+      "allowed": "mage",
+      "state": "queued"
+    },
+    {
+      "id": "bastion_sallet",
+      "name": "Bastion Sallet",
+      "base": "helm",
+      "grid": [
+        2,
+        2
+      ],
+      "allowed": "warrior",
+      "state": "queued"
+    },
+    {
+      "id": "veilbound_hood",
+      "name": "Veilbound Hood",
+      "base": "hood",
+      "grid": [
+        2,
+        2
+      ],
+      "allowed": "mage",
+      "state": "queued"
+    },
+    {
+      "id": "dawnsteel_gauntlets",
+      "name": "Dawnsteel Gauntlets",
+      "base": "gloves",
+      "grid": [
+        2,
+        2
+      ],
+      "allowed": "warrior",
+      "state": "queued"
+    },
+    {
+      "id": "wayfarer_greaves",
+      "name": "Wayfarer's Greaves",
+      "base": "boots",
+      "grid": [
+        2,
+        2
+      ],
+      "allowed": "warrior",
+      "state": "queued"
+    }
+  ],
+  "quality_gates": [
+    "Preserve original 1024px source",
+    "Transparent edge QA",
+    "64px per inventory cell previews",
+    "Exact base footprint and class compatibility",
+    "Godot texture/import + grid and equip tests",
+    "Never modify schema-six saves or merge until runtime confirmed"
+  ]
+}

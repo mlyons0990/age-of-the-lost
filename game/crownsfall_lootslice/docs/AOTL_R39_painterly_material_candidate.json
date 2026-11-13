@@ -1,0 +1,62 @@
+{
+  "project": "Age of the Lost",
+  "asset": "Warrior PBR Surface Response Candidate",
+  "source_project_id": "088e8199-50e8-4554-b0be-b108a6b2203a",
+  "parent_revision": 38,
+  "candidate_revision": 39,
+  "production_fallback_revision": 37,
+  "authoring_backup_revision": 36,
+  "status": "experimental visual candidate; numerical checks passed; visual review pending",
+  "principles": "Retain original packed paint image data and UV links; adjust only metallic and roughness inputs on seven material nodes",
+  "materials": {
+    "V08_BODY_Cloth_PaintCarrier": {
+      "metallic": 0,
+      "roughness": 0.93
+    },
+    "V08_BODY_Skin_PaintCarrier": {
+      "metallic": 0,
+      "roughness": 0.81
+    },
+    "V08_BODY_Hair_PaintCarrier": {
+      "metallic": 0,
+      "roughness": 0.78
+    },
+    "V08_GEAR_Cloth_PaintCarrier": {
+      "metallic": 0,
+      "roughness": 0.93
+    },
+    "V08_GEAR_Enamel_PaintCarrier": {
+      "metallic": 0.27,
+      "roughness": 0.62
+    },
+    "V08_GEAR_Leather_PaintCarrier": {
+      "metallic": 0.015,
+      "roughness": 0.85
+    },
+    "V08_GEAR_Metal_PaintCarrier": {
+      "metallic": 0.66,
+      "roughness": 0.51
+    }
+  },
+  "QA": {
+    "skeleton_bones": 62,
+    "mesh_objects": 92,
+    "core_animations": [
+      "Cast",
+      "Dodge",
+      "Idle",
+      "Run",
+      "Slash",
+      "Walk"
+    ],
+    "packed_original_2k_images_preserved": true,
+    "painted_albedo_links_preserved": 7,
+    "eevee_preview_rendered": true,
+    "preview_artifact_id": "d8d6427a5e72f9c0a2da6aecbc9ba2ae",
+    "in_engine_QA": false,
+    "visual_style_approved": false,
+    "github_glb_uploaded": false,
+    "drive_glb_uploaded": false
+  },
+  "next": "Compare render against approved canonical Crownsfall character art and Godot test after binary transfer; keep R37 as default until approved."
+}

@@ -5,7 +5,13 @@ extends CharacterBody3D
 signal impact(at: Vector3, kind: String, direction: Vector3)
 signal health_changed(current: float, maximum: float)
 
-const MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const LEGACY_MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const WARRIOR_R40 := "res://models/AOTL_Warrior_R40.glb"
+const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
+const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
+const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
+const TERRAIN_IK := preload("res://scripts/three_d/terrain_foot_ik.gd")
+const EQUIPMENT_SOCKETS := preload("res://scripts/three_d/equipment_sockets3d.gd")
 const WALK_SPEED := 4.3
 const RUN_SPEED := 6.7
 const DODGE_SPEED := 10.5
@@ -28,16 +34,73 @@ var invulnerable := 0.0
 var last_face := Vector3(0, 0, -1)
 var anim_state := ""
 var clip_names: Dictionary = {}
+var terrain_foot_ik: Node3D = null
+var terrain_ik_available := false
+var active_model_source := "legacy_proxy"
+var terrain_ik_enabled := true
+var terrain_ik_debug := false
+var equipment_sockets: Node = null
+var equipment_sockets_available := false
+var equipment_debug_equipped := false
+
+func _production_model_is_valid(candidate: Node3D) -> bool:
+	# Do not switch the playable actor solely because an R36 file exists.
+	var rigs := candidate.find_children("*", "Skeleton3D", true, false)
+	if rigs.is_empty():
+		return false
+	var sk := rigs[0] as Skeleton3D
+	if sk == null:
+		return false
+	for bone_name in ["Root", "Hips", "ThighL", "KneeL", "ShinL", "AnkleL", "ThighR", "KneeR", "ShinR", "AnkleR"]:
+		if sk.find_bone(bone_name) < 0:
+			return false
+	var player := candidate.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if player == null:
+		return false
+	var available: Dictionary = {}
+	for anim_name in player.get_animation_list():
+		var short_name := String(anim_name).get_file()
+		short_name = short_name.get_slice("|", short_name.get_slice_count("|") - 1)
+		available[short_name] = true
+	for required_clip in ["Idle", "Walk", "Run", "Dodge", "Slash", "Cast"]:
+		if not available.has(required_clip):
+			return false
+	return true
 
 func _ready() -> void:
-	body = MODEL.instantiate()
+	# R40 is the full-pose six-clip candidate. Retain every earlier export as fallback.
+	body = LEGACY_MODEL.instantiate()
+	for option in [
+		{"path": WARRIOR_R40, "source": "warrior_r40"},
+		{"path": WARRIOR_R39, "source": "warrior_r39"},
+		{"path": WARRIOR_R37, "source": "warrior_r37"},
+		{"path": WARRIOR_R36, "source": "warrior_r36"}
+	]:
+		var path: String = option["path"]
+		if not ResourceLoader.exists(path):
+			continue
+		var packed := ResourceLoader.load(path, "PackedScene") as PackedScene
+		if packed == null:
+			continue
+		var candidate := packed.instantiate() as Node3D
+		if candidate != null and _production_model_is_valid(candidate):
+			body.free()
+			body = candidate
+			active_model_source = option["source"]
+			break
+		if candidate != null:
+			candidate.free()
+		push_warning("AOTL asset rejected at runtime: " + path + " (missing required skeleton or clips).")
+
 	add_child(body)
 	animation = body.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if animation != null:
 		for name in animation.get_animation_list():
-			var logical := String(name).get_file()
+			var logical := String(name).get_file().get_slice("|", String(name).get_file().get_slice_count("|") - 1)
 			clip_names[logical] = name
-			if logical in ["Idle", "Walk", "Run"]:
+			if logical in ["Idle", "Walk", "Run", "V33_KneeStable_IK_Comparison"]:
+				if logical == "V33_KneeStable_IK_Comparison":
+					clip_names["WalkIK_Test"] = name
 				animation.get_animation(name).loop_mode = Animation.LOOP_LINEAR
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.26
@@ -47,6 +110,79 @@ func _ready() -> void:
 	col.position = Vector3(0, 1, 0)
 	add_child(col)
 	_play("Idle")
+	# Optional: older proxy skeletons continue running without terrain IK.
+	terrain_foot_ik = TERRAIN_IK.new()
+	terrain_foot_ik.name = "TerrainFootIK"
+	add_child(terrain_foot_ik)
+	terrain_ik_available = terrain_foot_ik.configure(body, self, animation)
+	# Optional equipment sockets. Old proxies without attachment bones remain playable.
+	equipment_sockets = EQUIPMENT_SOCKETS.new()
+	equipment_sockets.name = "WarriorEquipmentSockets"
+	add_child(equipment_sockets)
+	equipment_sockets_available = equipment_sockets.configure(body)
+
+
+func _toggle_terrain_ik() -> void:
+	if not terrain_ik_available:
+		return
+	terrain_ik_enabled = not terrain_ik_enabled
+	terrain_foot_ik.enabled = terrain_ik_enabled
+	terrain_foot_ik.reset_contact_state()
+
+
+func _toggle_terrain_ik_debug() -> void:
+	if not terrain_ik_available:
+		return
+	terrain_ik_debug = not terrain_ik_debug
+	terrain_foot_ik.set_debug_visible(terrain_ik_debug)
+
+
+func equip_weapon_scene(scene: PackedScene, local_offset: Transform3D = Transform3D.IDENTITY) -> bool:
+	if not equipment_sockets_available:
+		return false
+	return equipment_sockets.equip_scene("weapon", scene, local_offset)
+
+func equip_offhand_scene(scene: PackedScene, local_offset: Transform3D = Transform3D.IDENTITY) -> bool:
+	if not equipment_sockets_available:
+		return false
+	return equipment_sockets.equip_scene("offhand", scene, local_offset)
+
+func unequip_slot(slot: String) -> void:
+	if equipment_sockets_available:
+		equipment_sockets.unequip(slot)
+
+func _debug_equipment_item(slot: String) -> MeshInstance3D:
+	var debug := MeshInstance3D.new()
+	debug.name = "Debug_" + slot
+	var mesh := BoxMesh.new()
+	if slot == "weapon":
+		mesh.size = Vector3(0.075, 0.075, 0.8)
+	else:
+		mesh.size = Vector3(0.42, 0.6, 0.08)
+	debug.mesh = mesh
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.albedo_color = Color("e9bf70") if slot == "weapon" else Color("6fa4df")
+	debug.material_override = mat
+	debug.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	return debug
+
+func _toggle_equipment_socket_preview() -> void:
+	if not equipment_sockets_available:
+		return
+	equipment_debug_equipped = not equipment_debug_equipped
+	if not equipment_debug_equipped:
+		equipment_sockets.unequip_all()
+		return
+	for slot in ["weapon", "offhand"]:
+		if equipment_sockets.has_slot(slot):
+			var offset := Transform3D.IDENTITY
+			if slot == "weapon":
+				offset.origin = Vector3(0, 0.0, -0.38)
+			else:
+				offset.origin = Vector3(0, -0.08, 0)
+			equipment_sockets.equip_node(slot, _debug_equipment_item(slot), offset)
+
 
 func _play(clip: String) -> void:
 	if animation == null or not clip_names.has(clip):
@@ -63,6 +199,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			_attack("Slash", 0.72)
 	elif event is InputEventKey:
 		match event.keycode:
+			KEY_F9: _toggle_terrain_ik()
+			KEY_F10: _toggle_terrain_ik_debug()
+			KEY_F11: _toggle_equipment_socket_preview()
 			KEY_SPACE: _dodge()
 			KEY_1: _attack("Cleave", 0.76)
 			KEY_2: _attack("Dash", 0.68)
@@ -141,6 +280,11 @@ func _physics_process(delta: float) -> void:
 		body.rotation.y = lerp_angle(body.rotation.y, desired_yaw, minf(1.0, delta * 13.0))
 	velocity.y = -GRAVITY if is_on_floor() else velocity.y - GRAVITY * delta
 	move_and_slide()
+	if terrain_ik_available and animation != null:
+		var cycle_phase := 0.0
+		if animation.current_animation_length > 0.0:
+			cycle_phase = fposmod(animation.current_animation_position / animation.current_animation_length, 1.0)
+		terrain_foot_ik.update_foot_ik(delta, anim_state, cycle_phase)
 
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return

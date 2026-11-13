@@ -1,0 +1,149 @@
+{
+  "schema": "aotl-warrior-r40-animation-integration-v1",
+  "higgsfield": {
+    "project_id": "088e8199-50e8-4554-b0be-b108a6b2203a",
+    "project_url": "https://higgsfield.ai/3d-jutsu/088e8199-50e8-4554-b0be-b108a6b2203a",
+    "current_candidate_revision": 40,
+    "previous_revisions_backed_up": [
+      39,
+      38,
+      37,
+      36
+    ],
+    "asset_type": "62-bone skinned Warrior",
+    "preview_export_size_bytes": 6810040
+  },
+  "source_correction": {
+    "problem": "Sparse action channels left pose state in unanimated bones; after Dodge, other actions inherited a 2pi hip rotation and raised feet unnaturally.",
+    "solution": "Insert neutral pose location and Euler-rotation keys at each clip's first/last frame ONLY for bones that lack keyed channels in that clip.",
+    "preserve_authored_dodge_roll": true,
+    "six_actions": [
+      "Idle",
+      "Walk",
+      "Run",
+      "Dodge",
+      "Slash",
+      "Cast"
+    ],
+    "source_file_not_overwritten": true,
+    "script": "tools/normalize_warrior_actions.py"
+  },
+  "measured_heights_after_fix_m": {
+    "Idle": {
+      "left": [
+        0.1,
+        0.1
+      ],
+      "right": [
+        0.1,
+        0.1
+      ]
+    },
+    "Walk": {
+      "left": [
+        0.1,
+        0.2143
+      ],
+      "right": [
+        0.1,
+        0.2143
+      ]
+    },
+    "Run": {
+      "left": [
+        0.1,
+        0.3435
+      ],
+      "right": [
+        0.1,
+        0.3435
+      ]
+    },
+    "Dodge": {
+      "left": [
+        0.0997,
+        1.5302
+      ],
+      "right": [
+        0.0997,
+        1.5302
+      ]
+    },
+    "Slash": {
+      "left": [
+        0.1,
+        0.1
+      ],
+      "right": [
+        0.1,
+        0.1
+      ]
+    },
+    "Cast": {
+      "left": [
+        0.1,
+        0.1
+      ],
+      "right": [
+        0.1,
+        0.1
+      ]
+    }
+  },
+  "independent_gltf_export": {
+    "source_revision": 40,
+    "glb_header_valid": true,
+    "temporary_export_bytes": 6892936,
+    "elapsed_seconds": 5.59,
+    "joints": 62,
+    "meshes": 92,
+    "skins": 1,
+    "clips": [
+      "Cast",
+      "Dodge",
+      "Idle",
+      "Run",
+      "Slash",
+      "Walk"
+    ],
+    "channels_per_clip": 186,
+    "required_skin_joints_present": true
+  },
+  "playback_media": {
+    "operation_id": "aotl-r40-walk-and-dodge-motion-clips",
+    "walk_artifact_id": "8536d089abff0024a51a90971c295cea",
+    "dodge_artifact_id": "5ca37876767f73442d45b4602c39533",
+    "note": "Actual rig-rendered MP4 previews. Independent visual inspection not claimed."
+  },
+  "godot": {
+    "preferred_name": "AOTL_Warrior_R40.glb",
+    "automatic_fallback_order": [
+      "AOTL_Warrior_R40.glb",
+      "AOTL_Warrior_R39.glb",
+      "AOTL_Warrior_R37.glb",
+      "AOTL_Warrior_R36.glb",
+      "AOTL_Wayfarer_Articulated_Proxy.glb"
+    ],
+    "runtime_integration_branch": "dev/terrain-foot-ik-v01",
+    "binary_committed_to_github": false,
+    "binary_uploaded_to_drive": false,
+    "verified_in_engine_by_assistant": false,
+    "user_verified_previous_build": true
+  },
+  "new_equipment_support": {
+    "sockets": [
+      "WeaponRoot",
+      "ShieldRoot"
+    ],
+    "godot_component": "scripts/three_d/equipment_sockets3d.gd",
+    "controls": "F11 equips reversible debugging sword/shield meshes; original imported weapon and shield meshes are restored when unequipped",
+    "test": "tests/equipment_socket_integration.gd",
+    "ci": ".github/workflows/aotl-warrior-3d-qa.yml"
+  },
+  "next_gates": [
+    "Transfer actual R40 GLB into Godot project through backed-up importer",
+    "Run Godot 4.3 headless QA and verify GitHub Actions",
+    "Visually inspect full-body poses and compare approved AOTL art",
+    "Connect item IDs and equipment transforms to real Crownsfall inventory and save data"
+  ]
+}

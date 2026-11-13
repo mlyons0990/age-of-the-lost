@@ -165,9 +165,11 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
         missing=[name for name in expected if name not in names]
         if missing:
             reject(f"Missing Citadel source landmarks: {missing[:6]}")
-    triangles=0
+    definition_triangles=0
     primitives=0
+    mesh_triangle_counts=[]
     for i,mesh in enumerate(meshes):
+        mesh_total=0
         for prim in mesh.get("primitives",[]):
             primitives+=1
             if prim.get("mode",4)!=4:
@@ -191,9 +193,15 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
             count=int(accessors[index_accessor]["count"])
             if count%3:
                 reject(f"Mesh {i} triangle index count is not divisible by 3")
-            triangles+=count//3
-    if max_triangles is not None and triangles>max_triangles:
-        reject(f"Actual exported GLB triangles {triangles} exceed {max_triangles}")
+            mesh_total+=count//3
+        mesh_triangle_counts.append(mesh_total)
+        definition_triangles+=mesh_total
+    # glTF permits multiple nodes to instance the same mesh definition. Count
+    # *each occurrence* for actual scene geometry budget, not unique definitions.
+    instanced_triangles=sum(mesh_triangle_counts[node["mesh"]] for node in nodes
+                            if "mesh" in node)
+    if max_triangles is not None and instanced_triangles>max_triangles:
+        reject(f"Instanced exported GLB triangles {instanced_triangles} exceed {max_triangles}")
     return {
         "schema":"aotl.citadel.phase21.glb_gate.v1",
         "status":"PASS",
@@ -203,7 +211,9 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
         "mesh_nodes":len(mesh_name_rows),
         "mesh_definitions":len(meshes),
         "primitives":primitives,
-        "actual_exported_triangles":triangles,
+        "actual_exported_triangles":instanced_triangles,
+        "unique_mesh_definition_triangles":definition_triangles,
+        "instanced_mesh_scene_triangles":instanced_triangles,
         "embedded_images":len(images),
         "materials":len(materials),
         "textures":len(document.get("textures",[])),

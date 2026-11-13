@@ -10,6 +10,7 @@ const CITY_DISTRICT3D := preload("res://scripts/two_point_five_d/crownsfall_roya
 const CITY_DISTRICT08_3D := preload("res://scripts/two_point_five_d/crownsfall_merchants_quarter_3d_v08.gd")
 const GD := preload("res://scripts/game_data.gd")
 const LIVE_KNIGHT := preload("res://scripts/two_point_five_d/knight_depth_billboard.gd")
+const CITADEL_GRADE := preload("res://scripts/two_point_five_d/citadel_grade_geometry_v12.gd")
 const RIGHT := Vector3(0.70710678, 0.0, -0.70710678)
 const TOWARDS_CAMERA := Vector3(0.70710678, 0.0, 0.70710678)
 const VIEW_OFFSET := Vector3(12.8, 16.4, 12.8)
@@ -36,6 +37,12 @@ var knight_depth_enabled := false
 ## of the SAME already-instantiated painted NPC nodes in main.world.
 var npc_depth_mirrors: Dictionary = {}
 var npc_depth_sources: Dictionary = {}
+## Phase 13 adapter: no guessed geometry placement. A verified Citadel
+## NavigationRegion2D must be supplied by the recovered Phase 11 scene.
+var citadel_grade: Node3D = null
+var citadel_grade_nav: NavigationRegion2D = null
+var citadel_grade_preview := false
+var citadel_grade_foot_samples := 0
 
 
 func _ready() -> void:
@@ -91,6 +98,97 @@ func to_3d(painted_world: Vector2) -> Vector3:
 
 func to_2d(ground_point: Vector3) -> Vector2:
     return WORLD_ORIGIN + Vector2(ground_point.dot(RIGHT) * GD.U, ground_point.dot(TOWARDS_CAMERA) * GD.U * VIEW_ELEVATION_SINE)
+
+func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
+        route_nav: NavigationRegion2D, clear_width_m: float) -> bool:
+    # Fail closed if the actual route is not loaded. Never infer a path from
+    # a painting: route and corridor width are measured in the Phase 11 scene.
+    if route_nav == null or not is_instance_valid(route_nav):
+        return false
+    if route_nav.navigation_polygon == null or clear_width_m <= 2.0:
+        return false
+    var outline: PackedVector2Array = route_nav.navigation_polygon.vertices
+    if outline.size() < 3:
+        return false
+    var from_ground := to_3d(start_px)
+    var to_ground := to_3d(end_px)
+    var axis := to_ground - from_ground
+    axis.y = 0.0
+    if axis.length() < 0.5:
+        return false
+    axis = axis.normalized()
+    var side := Vector3(axis.z, 0.0, -axis.x)
+    # Test the center and shoulders of 17 cross-sections against the same
+    # NavigationRegion2D that the live player uses. No new navigation authority.
+    for i in range(17):
+        var t := float(i) / 16.0
+        var center_3d := from_ground.lerp(to_ground, t)
+        for fraction in [-0.40, 0.0, 0.40]:
+            var sample_3d := center_3d + side * clear_width_m * float(fraction)
+            var sample_world := to_2d(sample_3d)
+            if not Geometry2D.is_point_in_polygon(
+                    route_nav.to_local(sample_world), outline):
+                return false
+    return true
+
+func install_verified_citadel_grade(start_px: Vector2, end_px: Vector2,
+        route_nav: NavigationRegion2D, steps: int = 9,
+        rise_m: float = 1.8, clear_width_m: float = 7.5) -> bool:
+    # Call this only from a recovered Phase 11 Citadel scene integration.
+    # Does not touch gameplay NavigationServer2D, saves or world districts.
+    if citadel_grade != null or not is_ready or not is_instance_valid(scenery):
+        return false
+    if steps < 2 or rise_m <= 0.0:
+        return false
+    if not _citadel_route_inside_navigation(start_px, end_px,
+            route_nav, clear_width_m):
+        push_warning("AOTL: Citadel route not inside authoritative nav corridor")
+        return false
+    var grade: Node3D = CITADEL_GRADE.new()
+    grade.name = "Citadel_PhysicalGrade_OptIn_PaintedDefaultSafe"
+    scenery.add_child(grade)
+    if not grade.install(start_px, end_px, Callable(self, "to_3d"),
+            steps, rise_m, clear_width_m):
+        grade.queue_free()
+        return false
+    citadel_grade = grade
+    citadel_grade_nav = route_nav
+    citadel_grade.set_preview_enabled(false)
+    citadel_grade_preview = false
+    return true
+
+func set_citadel_grade_preview(enabled: bool) -> bool:
+    # F4 caller in the *actual* Phase 11 bridge may opt into this, never
+    # force it into the Phase 08 default painted/live modes.
+    if citadel_grade == null or not is_instance_valid(citadel_grade):
+        return false
+    citadel_grade_preview = enabled
+    citadel_grade.set_preview_enabled(enabled)
+    _sync_citadel_service_height()
+    sync_knight_depth()
+    return citadel_grade_preview
+
+func _citadel_height_at(painted_point: Vector2) -> float:
+    if not citadel_grade_preview or citadel_grade == null:
+        return 0.0
+    if not is_instance_valid(citadel_grade):
+        return 0.0
+    var sampled: float = citadel_grade.elevation_at(painted_point)
+    return maxf(sampled, 0.0)
+
+func _sync_citadel_service_height() -> void:
+    if not is_ready or not is_instance_valid(game):
+        return
+    # Recompute absolute presentation transforms each time; never accumulate
+    # Y offsets. Keeps both service markers and their F10 NPC sprites grounded.
+    for id in service_markers:
+        var sign: MeshInstance3D = service_markers[id]
+        var at: Vector2 = game.SERVICES[id].pos
+        sign.position = to_3d(at) + Vector3.UP * (0.16 + _citadel_height_at(at))
+    for id in npc_depth_mirrors:
+        var npc: Sprite3D = npc_depth_mirrors[id]
+        var at: Vector2 = game.SERVICES[id].pos
+        npc.position = to_3d(at) + Vector3.UP * (1.14 + _citadel_height_at(at))
 
 func audit_visual_collision_footprints() -> Dictionary:
     # Every existing 3D collision pedestal/column is tested against the exact
@@ -297,6 +395,12 @@ func toggle_knight_depth() -> bool:
 func sync_knight_depth() -> void:
     if knight_depth_enabled and knight_depth_avatar != null and is_instance_valid(game):
         knight_depth_avatar.sync_from_player(game.player, Callable(self, "to_3d"))
+        # The 2D Player position is read-only; only the rendered F10 proxy
+        # climbs the authored physical 3D stair, including its contact shadow.
+        var ground_rise := _citadel_height_at(game.player.global_position)
+        knight_depth_avatar.global_position.y += ground_rise
+        if ground_rise > 0.0:
+            citadel_grade_foot_samples += 1
 
 func set_active(active: bool) -> void:
     if not active: set_knight_depth_enabled(false)
@@ -316,6 +420,8 @@ func sync_world_state() -> void:
     if scar_material != null:
         scar_material.emission_energy_multiplier = 1.40 if scar_active else 0.20
         scar_material.albedo_color = Color(0.65, 0.32, 0.90, 0.92) if scar_active else Color(0.40, 0.26, 0.68, 0.68)
+    if citadel_grade != null:
+        _sync_citadel_service_height()
     for id in service_markers:
         var marker: MeshInstance3D = service_markers[id]
         var material: StandardMaterial3D = marker.material_override
@@ -350,6 +456,11 @@ func status() -> Dictionary:
     return {
         "visual_only": true,
         "knight_depth_enabled": knight_depth_enabled,
+        "citadel_grade_installed": citadel_grade != null,
+        "citadel_geometry_preview": citadel_grade_preview,
+        "citadel_grade_height_samples": citadel_grade_foot_samples,
+        "citadel_uses_existing_nav": citadel_grade_nav != null,
+        "citadel_physical_geometry": citadel_grade.status() if citadel_grade != null else {},
         "painted_town_npc_mirrors": npc_depth_mirrors.size(),
         "town_npc_depth_enabled": knight_depth_enabled,
         "knight_depth_avatar": knight_depth_avatar,

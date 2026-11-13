@@ -8,6 +8,7 @@ on:
       - "game/crownsfall_lootslice/tools/audit_r52_warrior_skinning.py"
       - "game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb"
       - ".github/workflows/r52-warrior-skinning-audit.yml"
+      - "game/crownsfall_lootslice/tools/r52_blender_pose_review.py"
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -17,6 +18,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
+      - name: Syntax-check both R52 analysis utilities
+        run: |
+          python -m py_compile game/crownsfall_lootslice/tools/audit_r52_warrior_skinning.py game/crownsfall_lootslice/tools/r52_blender_pose_review.py
       - name: Verify GLB is real, not Git LFS pointer
         run: |
           python - <<'PY'

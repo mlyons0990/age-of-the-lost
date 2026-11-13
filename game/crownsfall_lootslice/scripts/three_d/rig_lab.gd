@@ -5,6 +5,7 @@ const HERO := preload("res://scripts/three_d/rig_controller.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
+const WEAPON_SWEEP := preload("res://scripts/three_d/weapon_sweep3d.gd")
 const IVORY := Color("f3e8d3")
 const GOLD := Color("e5bf72")
 const BLUE := Color("274f99")
@@ -17,6 +18,9 @@ var info: Label
 var hpbar: ProgressBar
 var kills := 0
 var mode := "3D articulated rig lab"
+var strict_weapon_sweep := false
+var contact_samples: Array = []
+var contact_sample_limit := 24
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=true # This independent lab never changes the saved plaza actor.
@@ -195,7 +199,7 @@ func _build_hud() -> void:
 	layer.add_child(bottom)
 	var words := VBoxContainer.new()
 	bottom.add_child(words)
-	words.add_child(_hud_label("WASD move    Shift run    Space dodge    F9 IK    F10 IK targets    F11 equipment sockets    Click slash    1/2/3 skills", 18, GOLD))
+	words.add_child(_hud_label("WASD move    Shift run    Space dodge    F8 sword sweep    F9 IK    F10 IK targets    F11 equipment sockets    Click slash    1/2/3 skills", 18, GOLD))
 	words.add_child(_hud_label("Foot IK automatically enables only on compatible leg bones. Current proxy may use the original animation. Terrain IK and cloth require further QA.", 15))
 
 func _process(delta: float) -> void:
@@ -203,7 +207,22 @@ func _process(delta: float) -> void:
 	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
-	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
+	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Sweep: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), ("STRICT" if strict_weapon_sweep else "baseline"), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
+
+func _physics_process(_delta: float) -> void:
+	if player == null or not player.equipment_sockets_available or player.equipment_sockets == null:
+		contact_samples.clear()
+		return
+	if player.anim_state != "Slash" or player.attack_t <= 0.0:
+		contact_samples.clear()
+		return
+	var socket: BoneAttachment3D = player.equipment_sockets.get_socket("weapon")
+	var sample: Dictionary = WEAPON_SWEEP.blade_from_socket(socket)
+	if sample.is_empty():
+		return
+	contact_samples.append(sample)
+	if contact_samples.size() > contact_sample_limit:
+		contact_samples.pop_front()
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum
@@ -222,7 +241,13 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	# responsive even when a nearby target is safely screened by cover.
 	for target in targets:
 		if target.inactive_t > 0: continue
-		if TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind):
+		var allowed := TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind)
+		if allowed and strict_weapon_sweep and kind != "Cast":
+			# Developer comparison mode (F8). Only count targets actually
+			# intersecting sampled weapon motion, never through a wall.
+			var target_center: Vector3 = target.global_position + Vector3.UP * 1.2
+			allowed = WEAPON_SWEEP.swept_samples_touch_target(contact_samples, target_center)
+		if allowed:
 			var dead: bool = target.hit(TARGETING.damage_for(kind))
 			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
 			if dead: kills += 1
@@ -231,5 +256,9 @@ func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
+		strict_weapon_sweep = not strict_weapon_sweep
+		contact_samples.clear()
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:
 		_back_to_plaza()

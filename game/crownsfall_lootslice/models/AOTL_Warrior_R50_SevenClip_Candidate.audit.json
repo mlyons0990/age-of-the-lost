@@ -1,0 +1,29 @@
+{
+  "status": "BINARY_VALIDATED_IMPORT_PENDING",
+  "name": "AOTL_Warrior_R50_SevenClip_Candidate.glb",
+  "bytes": 7080664,
+  "sha256": "b1a600ca144ccfc7a868d6e4936964a74c3afe55882c5e8166e3f65a26561a16",
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Dodge",
+    "Slash",
+    "Cast",
+    "Slash_FullBody_R50"
+  ],
+  "new_clip_duration": 0.7333333333333333,
+  "new_clip_channels": 186,
+  "skins": 1,
+  "skin_joints": 62,
+  "meshes": 92,
+  "source_glb_sha256": "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55",
+  "candidate_single_clip_sha256": "30e002d3146532c401f9fae5f34a02735bb4cc9dade5499a5c572df61628c966",
+  "validation": [
+    "GLB readback valid",
+    "Original six animation names preserved",
+    "Mesh geometry and skin references preserved",
+    "Seventh animation uses independently copied accessor and view bytes"
+  ],
+  "remaining": "Godot animation import, visual articulation and playback QA"
+}

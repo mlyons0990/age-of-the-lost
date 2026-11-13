@@ -149,7 +149,7 @@ func _build_hud() -> void:
 	top.add_child(v)
 	v.add_child(_hud_label("AOTL · 3D MOTION / COMBAT TESTBED", 25, GOLD))
 	v.add_child(_hud_label("58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
-	v.add_child(_hud_label("F11: foot IK  |  F12: master rig animation review", 15, GOLD))
+	v.add_child(_hud_label("F8 reset stride · F9/F10 gait rate −/+ · F11 IK · F12 master review", 15, GOLD))
 	info = _hud_label("Targets defeated: 0", 17)
 	v.add_child(info)
 	hpbar = ProgressBar.new()
@@ -179,7 +179,7 @@ func _process(delta: float) -> void:
 	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
-	info.text = "Targets defeated: %d  ·  Dodge invuln: %.1f s   ·  Cast cooldown: %.1f s\n%s" % [kills, player.invulnerable, player.spell_cd, player.foot_ik_status()]
+	info.text = "Targets defeated: %d  ·  Dodge invuln: %.1f s   ·  Cast cooldown: %.1f s\n%s" % [kills, player.invulnerable, player.spell_cd, player.foot_ik_status() + "\n" + player.stride_rate_status()]
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum
@@ -208,6 +208,15 @@ func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
+		player.reset_stride_rate()
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F9:
+		player.adjust_stride_rate(-0.1)
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F10:
+		player.adjust_stride_rate(0.1)
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F12:
 		get_tree().change_scene_to_file("res://scenes/phase19_animation_review.tscn")
 		return

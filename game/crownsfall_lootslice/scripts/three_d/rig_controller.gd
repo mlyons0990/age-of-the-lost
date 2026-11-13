@@ -6,6 +6,7 @@ signal impact(at: Vector3, kind: String, direction: Vector3)
 signal health_changed(current: float, maximum: float)
 
 const MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const IK_GATE := preload("res://scripts/three_d/phase18_foot_ik.gd")
 const WALK_SPEED := 4.3
 const RUN_SPEED := 6.7
 const DODGE_SPEED := 10.5
@@ -28,6 +29,8 @@ var invulnerable := 0.0
 var last_face := Vector3(0, 0, -1)
 var anim_state := ""
 var clip_names: Dictionary = {}
+var foot_ik: Node3D
+var ik_available := false
 
 func _ready() -> void:
 	body = MODEL.instantiate()
@@ -46,6 +49,10 @@ func _ready() -> void:
 	col.shape = capsule
 	col.position = Vector3(0, 1, 0)
 	add_child(col)
+	foot_ik = IK_GATE.new()
+	foot_ik.name = "Phase18_Optional_FootContact_IK"
+	add_child(foot_ik)
+	ik_available = foot_ik.bind_rig(body)
 	_play("Idle")
 
 func _play(clip: String) -> void:
@@ -54,6 +61,15 @@ func _play(clip: String) -> void:
 	if anim_state != clip:
 		animation.play(clip_names[clip], 0.16)
 		anim_state = clip
+
+func toggle_foot_ik() -> bool:
+	if not ik_available:
+		return false
+	foot_ik.set_active(not foot_ik.active)
+	return foot_ik.active
+
+func foot_ik_status() -> String:
+	return foot_ik.get_status() if ik_available else "Foot IK unavailable: skeleton / bone names"
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
@@ -141,6 +157,9 @@ func _physics_process(delta: float) -> void:
 		body.rotation.y = lerp_angle(body.rotation.y, desired_yaw, minf(1.0, delta * 13.0))
 	velocity.y = -GRAVITY if is_on_floor() else velocity.y - GRAVITY * delta
 	move_and_slide()
+	if ik_available:
+		var speed := Vector2(velocity.x,velocity.z).length()
+		foot_ik.update_foot_placement(delta,attack_t <= 0.0 and dodge_t <= 0.0 and is_on_floor(),speed)
 
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return

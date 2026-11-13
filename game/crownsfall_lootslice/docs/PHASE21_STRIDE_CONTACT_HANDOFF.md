@@ -11,3 +11,11 @@ The original 12×5 inventory and all seven-schema saves are untouched. All modif
 ## Save isolation
 
 Phase21 uses `AgeOfTheLost_Crownsfall_Phase21_StrideCalibrationTest` as its own Godot user directory. Earlier Phase20 test saves remain untouched.
+
+## Updated optional Higgsfield model — revision 46
+
+A refreshed six-animation export was created from Higgsfield master revision 46, without modifying the master Blender project. It passed a separate Godot 4.4.1 import and 13 model-integration checks. Download from:
+
+https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/260125af-3418-42ae-858a-354aab7d206a.zip
+
+Extract `AOTL_Master_Rig_R46_Six_Animations.glb`, rename to `AOTL_Master_Rig_R46_AllSix.glb`, and put into `game/crownsfall_lootslice/models/`. The reviewer now prefers R46 when both R46 and R38 are installed; R38 still works as a tested fallback. Neither is substituted for the live player. Model media is hosted separately, not bundled in this full-source ZIP.

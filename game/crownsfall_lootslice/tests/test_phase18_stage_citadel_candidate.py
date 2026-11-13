@@ -57,8 +57,8 @@ class StagingTests(unittest.TestCase):
                              (self.src/stage_tool.SOURCE_SUBDIR/name).read_bytes())
         self.assertEqual((self.game/"approved_phase11.tscn").read_bytes(),self.original)
         self.assertEqual((self.game/"project.godot").read_text(),"config_version=5\n")
-        with self.assertRaises(ValueError):
-            self.applying()  # project inventory now differs from backup
+        with self.assertRaises(FileExistsError):
+            self.applying()  # previously staged file cannot be overwritten
 
     def test_rejects_wrong_glb_hash(self):
         with self.assertRaisesRegex(ValueError,"GLB checksum mismatch"):

@@ -26,6 +26,8 @@ var last_phase: float = 0.0
 var contact_releases: int = 0
 var invalid_surface_skips: int = 0
 var active: bool = false
+var debug_visible: bool = false
+var debug_markers: Dictionary = {}
 
 static func circular_distance(a: float, b: float) -> float:
 	return absf(fposmod(a - b + 0.5, 1.0) - 0.5)
@@ -63,6 +65,21 @@ func configure(model_root: Node3D, character: CharacterBody3D, player: Animation
 		target.name = "TerrainFootTarget" + side
 		add_child(target)
 		target.global_position = _animated_ankle(side)
+		# Editor QA markers: hidden by default, parented to actual solved targets.
+		var marker := MeshInstance3D.new()
+		marker.name = "IKTargetDebugMarker" + side
+		var marker_mesh := SphereMesh.new()
+		marker_mesh.radius = 0.055
+		marker_mesh.height = 0.11
+		marker.mesh = marker_mesh
+		var marker_material := StandardMaterial3D.new()
+		marker_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		marker_material.albedo_color = Color("6fafff") if side == "L" else Color("ffcb6e")
+		marker.material_override = marker_material
+		marker.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		marker.visible = false
+		target.add_child(marker)
+		debug_markers[side] = marker
 		var ik := SkeletonIK3D.new()
 		ik.name = "TerrainLegIK" + side
 		ik.root_bone = "Thigh" + side
@@ -95,6 +112,11 @@ func _ground_below(world_ankle: Vector3) -> Dictionary:
 func _reset_locks() -> void:
 	for side in ["L", "R"]:
 		planted[side] = false
+
+func set_debug_visible(should_show: bool) -> void:
+	debug_visible = should_show
+	for marker in debug_markers.values():
+		(marker as MeshInstance3D).visible = should_show
 
 func reset_contact_state() -> void:
 	_reset_locks()

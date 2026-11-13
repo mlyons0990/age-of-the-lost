@@ -43,6 +43,14 @@ func _run() -> void:
         "at final riser height is 1.8m")
     _check(is_equal_approx(preview.elevation_at(Vector2(0, 1100)), 1.8),
         "upper landing holds final elevation")
+    for step in range(9):
+        # The foot height must equal the actual collision-tread surface
+        # at its center, not float through or sink below the painted step.
+        var center_z: float = (float(step) + 0.5) * 100.0
+        var ground_height: float = preview.elevation_at(Vector2(0.0, center_z))
+        var physical_top: float = float(step + 1) * 1.8 / 9.0
+        _check(absf(ground_height - physical_top) < 0.0001,
+            "painted feet coincide with tread %d top" % (step + 1))
     _check(preview.elevation_at(Vector2(700, 400)) < 0.0,
         "outside corridor returns sentinel")
     _check(preview.elevation_at(Vector2(0, -300)) < 0.0,

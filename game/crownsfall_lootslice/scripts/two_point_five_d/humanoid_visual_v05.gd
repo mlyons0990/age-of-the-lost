@@ -163,8 +163,9 @@ func _build_locomotion() -> void:
 	var blend := AnimationNodeBlendSpace1D.new()
 	blend.min_space = 0.0
 	blend.max_space = 1.0
-	# Normalize walk/run loop phases while blending different source durations.
-	blend.sync_mode = AnimationNodeBlendSpace1D.SYNC_MODE_CYCLIC_MUTABLE
+	# Godot 4.6.3 supports sync=true; cyclic sync modes arrive in 4.7.
+	# Keep inactive blend points advancing, with our physics-derived speed_scale.
+	blend.sync = true
 	for pair in [["Idle", 0.0], ["Walk", 0.55], ["Run", 1.0]]:
 		var node := AnimationNodeAnimation.new()
 		node.animation = clips[String(pair[0])]

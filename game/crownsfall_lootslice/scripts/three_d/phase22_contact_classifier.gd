@@ -22,6 +22,11 @@ static func fresh() -> Dictionary:
 static func _xz(vector: Vector3) -> Vector3:
     return Vector3(vector.x, 0.0, vector.z)
 
+static func exceeds_leg_reach(hip_position: Vector3, anchored_foot: Vector3,
+        nominal_length_m: float, extra_m: float = 0.08) -> bool:
+    # A locked sole must not drag the pelvis past the leg's natural extension.
+    return nominal_length_m > 0.1 and hip_position.distance_to(anchored_foot) > nominal_length_m * 1.03 + extra_m
+
 static func decide(old: Dictionary, dt: float, foot_height: float, ground_valid: bool,
         ground_normal: Vector3, relative_velocity: Vector3, actor_heading: Vector3,
         actor_speed: float, can_locomo: bool, target_error: float) -> Dictionary:

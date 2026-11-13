@@ -1,6 +1,10 @@
 # age-of-the-lost
 AOTL Files
 
+## Target UI layout and camera distance (owner direction)
+
+[Open the UI and camera target reference](docs/reference/ui_camera_target/2026-11-12/README.md): the owner's image for the new HUD layout and the new, wider camera distance with mouse-wheel zoom. Use it for UI and camera work going forward. Reference only; no game code changed.
+
 ## Dodge Roll ability icon
 
 [Open the Dodge Roll icon](art/ability_icons/dodge_roll/2026-11-12/README.md): one round UI icon (winged ivory and gold boot with speed lines on a navy disc) in 1024, 256, 128, 64 and 48px, with the exact Higgsfield source, prompt and job ID. Artwork only; no ability or game data was added. Stored as normal Git files, not Git LFS.

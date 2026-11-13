@@ -1,0 +1,81 @@
+{
+  "phase": "A",
+  "batch": "Relics / Consumables / Crafting Materials",
+  "source": "Higgsfield GPT Image 2.6 Ultra unlimited",
+  "date": "2026-11-13",
+  "status": "art generation started; not in game",
+  "source_branch": "feat/phase-a-armor-variants-integration",
+  "schema_status": "Current systems.gd has no relic/consumable/material types; keep art-only until separate inventory taxonomy design and migration tests",
+  "paid_credits_authorized": false,
+  "items": [
+    {
+      "id": "chronicle_heart",
+      "name": "Chronicle Heart",
+      "category": "relic",
+      "grid": [
+        2,
+        2
+      ],
+      "generation_job_id": "6b13e3c3-c83c-4f3b-981c-3d25dc8f99ab",
+      "status": "submitted"
+    },
+    {
+      "id": "unwritten_seal",
+      "name": "Unwritten Seal",
+      "category": "relic",
+      "grid": [
+        1,
+        2
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "embermend_phial",
+      "name": "Embermend Phial",
+      "category": "consumable",
+      "grid": [
+        1,
+        1
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "moonglass_tonic",
+      "name": "Moonglass Tonic",
+      "category": "consumable",
+      "grid": [
+        1,
+        1
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "epoch_iron_ore",
+      "name": "Epoch Iron Ore",
+      "category": "material",
+      "grid": [
+        1,
+        1
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "riftglass_shards",
+      "name": "Riftglass Shards",
+      "category": "material",
+      "grid": [
+        1,
+        1
+      ],
+      "status": "queued"
+    }
+  ],
+  "gates": [
+    "Six original source illustrations",
+    "Alpha cutout / 128px-cell master / 64px-cell preview",
+    "32/64px on light/dark silhouettes",
+    "Godot art import checks",
+    "Separate prototype data model for proposed non-equipment slots",
+    "No alteration of schema six or live loot rules"
+  ]
+}

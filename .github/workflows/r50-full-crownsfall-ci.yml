@@ -5,6 +5,8 @@ on:
     branches: [dev/r50-slash-weighttransfer-ik-v1]
     paths:
       - .github/workflows/r50-full-crownsfall-ci.yml
+      - .gitattributes
+      - art/character_sources/**
       - game/crownsfall_lootslice/scripts/three_d/rig_controller.gd
       - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
       - game/crownsfall_lootslice/tests/verify_r50_rig_lab_optin.gd

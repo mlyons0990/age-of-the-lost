@@ -82,6 +82,24 @@ jobs:
           sideframes[0].save(p/'AOTL_V06_21m_Strafe.gif',save_all=True,append_images=sideframes[1:],duration=150,loop=0,optimize=True)
           print("AOTL_V06_GIF_OK",len(frames),len(sideframes))
           PY
+      - name: Protect original painted-world exposure from GLB studio lights
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('/tmp/aotl_v06_frames')
+          painted=Image.open(p/'01_painted_Warrior_21m.png').convert('RGB')
+          rigged=Image.open(p/'02_humanoid_idle_21m.png').convert('RGB')
+          stable_floor=[(300,300),(500,600),(1100,600),(1000,280),(1280,600),(300,600),(500,300),(1000,500)]
+          differences=[]
+          for xy in stable_floor:
+              old=painted.getpixel(xy); new=rigged.getpixel(xy)
+              differences.append(sum(abs(a-b) for a,b in zip(old,new))/3)
+          mean_delta=sum(differences)/len(differences)
+          worst_delta=max(differences)
+          print(f"AOTL_V06_WORLD_EXPOSURE_DELTA_MEAN={mean_delta:.2f} MAX={worst_delta:.2f} RGB levels")
+          assert mean_delta < 7.0 and worst_delta < 16.0, 'GLB stage lights/camera changed canonical Crownsfall exposure'
+          PY
       - name: Preserve QA and render files
         if: always()
         uses: actions/upload-artifact@v4

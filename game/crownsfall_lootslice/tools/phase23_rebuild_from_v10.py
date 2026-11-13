@@ -39,6 +39,20 @@ def process(source:Path,output:Path,blend_output:Path|None=None) -> dict:
     sys.modules[spec.name]=module
     spec.loader.exec_module(module)
     paint=module.install()
+    # glTF importer splits some source materials into ".001" clones for objects
+    # with no TEXCOORD_0. Update every clone still pointing to the old image;
+    # otherwise a false "5 embedded maps" export silently preserves v10 PNGs.
+    for material_name,old_name,new_name,size,seed,kind in module.PHASE23_MAPS:
+        if not old_name:
+            continue
+        for material in bpy.data.materials:
+            if material.name!=material_name and not material.name.startswith(material_name+"."):
+                continue
+            if not material.use_nodes:
+                continue
+            for tex in (n for n in material.node_tree.nodes if n.type=="TEX_IMAGE"):
+                if tex.image and tex.image.name==old_name:
+                    tex.image=bpy.data.images[new_name]
     expected_images={entry["image"] for entry in paint["textures"]}
     for name in expected_images:
         if name not in bpy.data.images or not bpy.data.images[name].packed_file:

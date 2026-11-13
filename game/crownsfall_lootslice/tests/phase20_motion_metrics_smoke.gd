@@ -19,6 +19,8 @@ func run_checks() -> void:
 	checks += 1
 	assert(sample["near_lowest_samples"] == 2)
 	checks += 1
+	assert(sample["loop_seam_m"] > 0.0)
+	checks += 1
 	var app := REVIEW.new()
 	root.add_child(app)
 	await process_frame

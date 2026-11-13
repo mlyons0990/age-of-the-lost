@@ -58,6 +58,8 @@ func _run() -> void:
 	original = target.hp
 	lab._on_impact(target.global_position, "Slash", Vector3.FORWARD)
 	require(is_equal_approx(target.hp, original), "Live Slash never damages target behind Warrior")
+	target.hp = 100.0
+	original = target.hp
 	lab._on_impact(target.global_position, "Cast", Vector3.FORWARD)
 	require(is_equal_approx(target.hp, original - 53.0), "Live AoE Cast keeps full-circle area effect and expected damage")
 	print("AOTL LIVE R39 COMBAT RESULT %d checks; %d failures" % [checked, failed])

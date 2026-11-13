@@ -1,0 +1,70 @@
+name: AOTL R39 directional combat geometry QA
+
+on:
+  push:
+    branches: [dev/r39-3d-combat-geometry-v1]
+    paths:
+      - .github/workflows/r39-combat-targeting-ci.yml
+      - game/crownsfall_lootslice/scripts/three_d/combat_targeting3d.gd
+      - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
+      - game/crownsfall_lootslice/tests/combat_targeting3d_integration.gd
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  combat_geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Download Godot 4.6.3, matching verified Crownsfall
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 \
+            "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+          /tmp/Godot_v4.6.3-stable_linux.x86_64 --headless --version
+      - name: Prepare isolated physics test project
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=/tmp/aotl-combat-geometry-qa
+          mkdir -p "$p/scripts/three_d" "$p/tests"
+          cp game/crownsfall_lootslice/scripts/three_d/combat_targeting3d.gd "$p/scripts/three_d/"
+          cp game/crownsfall_lootslice/tests/combat_targeting3d_integration.gd "$p/tests/"
+          cat > "$p/project.godot" <<'EOF'
+          config_version=5
+          [application]
+          config/name="AOTL Combat Geometry QA"
+          config/features=PackedStringArray("4.6", "GL Compatibility")
+          [rendering]
+          renderer/rendering_method="gl_compatibility"
+          renderer/rendering_method.mobile="gl_compatibility"
+          EOF
+      - name: Run real physics-backed attack geometry checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
+          "$GODOT" --headless --path /tmp/aotl-combat-geometry-qa --editor --quit 2>&1 | tee /tmp/aotl-combat-import.log
+          "$GODOT" --headless --path /tmp/aotl-combat-geometry-qa --script res://tests/combat_targeting3d_integration.gd 2>&1 | tee /tmp/aotl-combat-physics.log
+          grep -q "AOTL 3D COMBAT TARGETING RESULT 16 checks; 0 failures" /tmp/aotl-combat-physics.log
+          if grep -E "^ERROR:|SCRIPT ERROR|^FAIL " /tmp/aotl-combat-import.log /tmp/aotl-combat-physics.log; then
+            exit 1
+          fi
+      - name: Preserve actual Godot combat logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-Combat-Targeting-Physics-QA
+          path: |
+            /tmp/aotl-combat-import.log
+            /tmp/aotl-combat-physics.log
+          if-no-files-found: warn
+          retention-days: 30

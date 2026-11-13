@@ -25,6 +25,7 @@ var max_hp := 130.0
 var hp := 130.0
 var attack_t := 0.0
 var attack_duration := 0.72
+var attack_serial := 0
 var attack_type := "Slash"
 var has_impacted := false
 var dodge_t := 0.0
@@ -213,6 +214,7 @@ func _attack(kind: String, duration: float) -> void:
 		return
 	if kind == "Cast" and spell_cd > 0.0:
 		return
+	attack_serial += 1
 	attack_t = duration
 	attack_duration = duration
 	attack_type = kind

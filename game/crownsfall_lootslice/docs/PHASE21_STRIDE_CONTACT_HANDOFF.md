@@ -7,3 +7,7 @@ The master review viewer adds **F9**, which estimates horizontal speed from low-
 Run standalone test: `godot --headless --path game/crownsfall_lootslice --script res://tests/phase21_stride_fit_test.gd`.
 
 The original 12×5 inventory and all seven-schema saves are untouched. All modifications are confined to the optional review scene, a new pure fit module and tests.
+
+## Save isolation
+
+Phase21 uses `AgeOfTheLost_Crownsfall_Phase21_StrideCalibrationTest` as its own Godot user directory. Earlier Phase20 test saves remain untouched.

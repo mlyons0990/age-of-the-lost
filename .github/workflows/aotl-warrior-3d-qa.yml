@@ -1,0 +1,59 @@
+name: AOTL Warrior 3D integration QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/crownsfall_lootslice/scripts/three_d/**'
+      - 'game/crownsfall_lootslice/tests/**'
+      - 'game/crownsfall_lootslice/tools/**'
+      - '.github/workflows/aotl-warrior-3d-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  warrior-python-validation:
+    name: Python GLB structural checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run six GLB validator unit tests
+        working-directory: game/crownsfall_lootslice
+        run: python -m unittest discover -s tests -p 'test_verify_r36_glb.py' -v
+
+  warrior-godot-headless:
+    name: Godot 4.3 integration checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Download official Godot 4.3 stable engine
+        run: |
+          curl --fail --location --retry 3 \
+            'https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip' \
+            --output /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.3-stable_linux.x86_64
+          sudo install /tmp/Godot_v4.3-stable_linux.x86_64 /usr/local/bin/godot
+      - name: Godot project import
+        run: godot --headless --path game/crownsfall_lootslice --editor --quit
+      - name: Run IK contact-phase and reach tests
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/terrain_foot_ik_integration.gd
+      - name: Run production model fallback tests
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/warrior_model_selection_integration.gd
+      - name: Run weapon/offhand socket tests
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/equipment_socket_integration.gd
+      - name: Report missing production GLB gate
+        shell: bash
+        run: |
+          if [[ -f game/crownsfall_lootslice/models/AOTL_Warrior_R37.glb ]]; then
+            godot --headless --path game/crownsfall_lootslice --script res://tests/verify_warrior_r36_import.gd -- --model=AOTL_Warrior_R37.glb
+          else
+            echo 'R37 GLB binary not in repository; strict real-asset QA blocked.' >> "$GITHUB_STEP_SUMMARY"
+          fi

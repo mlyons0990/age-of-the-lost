@@ -41,6 +41,8 @@ func _nav_from_rects(bridge: Node, rects: Array, offset: Vector2 = Vector2.ZERO,
 
 func _run() -> void:
     var bridge := BRIDGE.new()
+    bridge.scenery = Node3D.new()
+    bridge.is_ready = true
     var start_px: Vector2 = bridge.to_2d(Vector3.ZERO)
     var end_px: Vector2 = bridge.to_2d(Vector3(0.0, 0.0, 9.0))
     var full := _nav_from_rects(bridge, [[Vector2(-5,-1),Vector2(5,10)]])
@@ -84,6 +86,7 @@ func _run() -> void:
     _check(bridge.citadel_grade == null, "no geometry installed on invalid route")
     for nav in [full,narrow_gap,clipped,turned,long_nav]:
         nav.queue_free()
+    bridge.scenery.free()
     bridge.free()
     await process_frame
     if failures.is_empty():

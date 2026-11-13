@@ -73,6 +73,7 @@ func _run() -> void:
 	var player_start: Vector3 = hero.global_position
 	hero.move_to_ground(hero.global_position + Vector3(0,0,-6.0))
 	var previous: Dictionary = {}
+	var ankle_slip_samples: Array[float] = []
 	var held_count := 0
 	var xz_motion := 0.0
 	for i in range(68):
@@ -80,6 +81,11 @@ func _run() -> void:
 		for side in ["L","R"]:
 			if rig.is_foot_planted(side):
 				var anchor: Vector3 = rig.get_plant_position(side)
+				var ankle_index: int = rig.skeleton.find_bone("Ankle"+side)
+				var actual: Vector3 = rig.skeleton.to_global(rig.skeleton.get_bone_global_pose(ankle_index).origin)
+				var slip := Vector2(actual.x-anchor.x, actual.z-anchor.z).length()
+				if rig.get_plant_stance_frames(side) >= 2:
+					ankle_slip_samples.append(slip)
 				if previous.has(side):
 					var prev: Vector3 = previous[side]
 					if anchor.distance_to(prev) < 0.002:
@@ -94,7 +100,15 @@ func _run() -> void:
 	verify(rig.contact_release_count >= 1, "swing phase released locked stance foot")
 	verify(held_count >= 3, "world-space foot anchor held across multiple moving physics frames")
 	verify(rig.get_foot_contact_count() >= 1, "ground raycast detects walkable collision")
-	verify(rig.peak_plant_error_m < .01, "planted foot target has negligible world slip")
+	verify(rig.peak_plant_error_m < .01, "world-space foot IK target stays fixed during stance")
+	var average_ankle_slip := 0.0
+	if ankle_slip_samples.size()>0:
+		for number in ankle_slip_samples:
+			average_ankle_slip += number
+		average_ankle_slip /= float(ankle_slip_samples.size())
+	print("V04_ANKLE_WORLD_SLIP_MEAN_M %.4f (%d frames)" % [average_ankle_slip, ankle_slip_samples.size()])
+	verify(ankle_slip_samples.size() >= 4, "actual ankle/world contact sampled at least four times")
+	verify(average_ankle_slip < 0.40, "animated ankle stays reasonably close to world-locked stance position")
 	var sampled_weight := 0.0
 	for side in ["L","R"]:
 		sampled_weight=maxf(sampled_weight,float(rig.foot_ik[side].influence))

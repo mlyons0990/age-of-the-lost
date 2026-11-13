@@ -30,7 +30,9 @@ static func summarize_path(positions: Array[Vector3], contact_band: float = CONT
 			path_m += segment
 			if positions[i].y <= min_height + contact_band and positions[i - 1].y <= min_height + contact_band:
 				contact_path_m += segment
+	var seam_m := positions[0].distance_to(positions[-1])
 	return {
+		"loop_seam_m": seam_m,
 		"samples": positions.size(),
 		"min_y": min_height,
 		"max_y": max_height,

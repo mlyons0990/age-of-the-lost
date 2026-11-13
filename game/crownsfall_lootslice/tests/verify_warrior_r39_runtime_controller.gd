@@ -12,7 +12,7 @@ func _fail(reason: String) -> void:
 	quit(1)
 
 func _verify_controller() -> void:
-	var player := CONTROLLER.new() as CharacterBody3D
+	var player = CONTROLLER.new()
 	if player == null:
 		_fail("controller did not instantiate")
 		return

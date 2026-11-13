@@ -153,7 +153,7 @@ func install_verified_citadel_grade(start_px: Vector2, end_px: Vector2,
         return false
     citadel_grade = grade
     citadel_grade_nav = route_nav
-    citadel_grade.visible = false
+    citadel_grade.set_preview_enabled(false)
     citadel_grade_preview = false
     return true
 
@@ -163,7 +163,7 @@ func set_citadel_grade_preview(enabled: bool) -> bool:
     if citadel_grade == null or not is_instance_valid(citadel_grade):
         return false
     citadel_grade_preview = enabled
-    citadel_grade.visible = enabled
+    citadel_grade.set_preview_enabled(enabled)
     _sync_citadel_service_height()
     sync_knight_depth()
     return citadel_grade_preview

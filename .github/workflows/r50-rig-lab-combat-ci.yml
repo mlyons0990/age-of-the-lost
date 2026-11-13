@@ -5,6 +5,8 @@ on:
     branches: [dev/r50-slash-weighttransfer-ik-v1]
     paths:
       - .github/workflows/r50-rig-lab-combat-ci.yml
+      - .gitattributes
+      - art/character_sources/**
       - game/crownsfall_lootslice/tests/verify_r50_rig_lab_optin.gd
       - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
   workflow_dispatch:
@@ -40,8 +42,8 @@ jobs:
           export XDG_CONFIG_HOME=/tmp/aotl-r50-riglab-config
           export XDG_CACHE_HOME=/tmp/aotl-r50-riglab-cache
           GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
-          "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-r50-lab-import.log
-          "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/verify_r50_rig_lab_optin.gd 2>&1 | tee /tmp/aotl-r50-lab-combat.log
+          timeout 150s "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-r50-lab-import.log
+          timeout 100s "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/verify_r50_rig_lab_optin.gd 2>&1 | tee /tmp/aotl-r50-lab-combat.log
           grep -q 'AOTL R50 RIG LAB RESULT 13 checks; 0 failures' /tmp/aotl-r50-lab-combat.log
           if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-r50-lab-import.log /tmp/aotl-r50-lab-combat.log; then exit 1; fi
       - name: Preserve full R50 combat logs

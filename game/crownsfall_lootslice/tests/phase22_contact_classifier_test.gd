@@ -51,5 +51,8 @@ func run_checks() -> void:
     expect(not empty.planted,"foot above acquisition height not locked")
     empty = tick(empty,0.04,Vector3(0,0,1.2),3.0,true,Vector3.UP,false)
     expect(not empty.planted,"attacks and dodges do not lock")
+    expect(C.exceeds_leg_reach(Vector3(0,0.9,0), Vector3(0,0.0,0.6), 0.86), "extended leg reach limit")
+    expect(not C.exceeds_leg_reach(Vector3(0,0.9,0), Vector3(0,0.05,0.2), 0.86), "normal leg stride remains in reach")
+    expect(not C.exceeds_leg_reach(Vector3.ZERO, Vector3.ONE, 0.0), "unset leg length does not reject")
     print("PHASE22_CONTACT_CLASSIFIER %d passed; %d failed" % [checks,failures])
     quit(0 if failures == 0 else 1)

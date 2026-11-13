@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
-      XDG_DATA_HOME: ${{ runner.temp }}/aotl-ci-data
-      XDG_CACHE_HOME: ${{ runner.temp }}/aotl-ci-cache
-      XDG_CONFIG_HOME: ${{ runner.temp }}/aotl-ci-config
+      XDG_DATA_HOME: /tmp/aotl-ci-data
+      XDG_CACHE_HOME: /tmp/aotl-ci-cache
+      XDG_CONFIG_HOME: /tmp/aotl-ci-config
     steps:
       - name: Checkout all Crownsfall game assets
         uses: actions/checkout@v4

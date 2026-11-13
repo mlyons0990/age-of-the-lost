@@ -5,6 +5,7 @@ on:
     branches: [assets/warrior-r39-sixclip]
     paths:
       - .github/workflows/warrior-r39-full-crownsfall-ci.yml
+      - game/crownsfall_lootslice/tests/lab_roundtrip.gd
   workflow_dispatch:
 
 permissions:

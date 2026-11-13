@@ -28,6 +28,16 @@ func _initialize() -> void:
 	checks += 1
 	assert(IK_SCRIPT.is_reach_safe(Vector3(0, 5, 0), Vector3(0, 0, 0), 0.52))
 	checks += 1
+	assert(IK_SCRIPT.is_surface_usable(Vector3.UP, 0.12, 49.0, 0.28))
+	checks += 1
+	assert(IK_SCRIPT.is_surface_usable(Vector3.UP.rotated(Vector3.RIGHT, deg_to_rad(30.0)), 0.12, 49.0, 0.28))
+	checks += 1
+	assert(not IK_SCRIPT.is_surface_usable(Vector3.UP.rotated(Vector3.RIGHT, deg_to_rad(65.0)), 0.12, 49.0, 0.28))
+	checks += 1
+	assert(not IK_SCRIPT.is_surface_usable(Vector3.UP, 0.36, 49.0, 0.28))
+	checks += 1
+	assert(not IK_SCRIPT.is_surface_usable(Vector3.ZERO, 0.0, 49.0, 0.28))
+	checks += 1
 	# Regression guard: proxy GLB or empty root must NOT force IK on.
 	var root := Node3D.new()
 	var actor := CharacterBody3D.new()

@@ -8,6 +8,8 @@ on:
       - game/crownsfall_lootslice/tests/weapon_sweep_strict_live_integration.gd
       - game/crownsfall_lootslice/scripts/three_d/weapon_sweep3d.gd
       - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
+      - game/crownsfall_lootslice/scripts/three_d/hurtbox3d.gd
+      - game/crownsfall_lootslice/scripts/three_d/training_dummy.gd
   workflow_dispatch:
 
 permissions:
@@ -38,7 +40,7 @@ jobs:
           GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
           "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-r39-strict-import.log
           "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/weapon_sweep_strict_live_integration.gd 2>&1 | tee /tmp/aotl-r39-strict-live.log
-          grep -q 'AOTL R39 STRICT BLADE RESULT 10 checks; 0 failures' /tmp/aotl-r39-strict-live.log
+          grep -q 'AOTL R39 STRICT BLADE RESULT 12 checks; 0 failures' /tmp/aotl-r39-strict-live.log
           if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-r39-strict-import.log /tmp/aotl-r39-strict-live.log; then exit 1; fi
       - name: Preserve strict physical collision evidence
         if: always()

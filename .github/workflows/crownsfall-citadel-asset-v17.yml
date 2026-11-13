@@ -28,6 +28,7 @@ on:
       - 'game/crownsfall_lootslice/data/citadel_phase20_uv_batch_v09_manifest.json'
       - 'game/crownsfall_lootslice/tests/test_phase20_uv_batch_manifest.py'
       - 'game/crownsfall_lootslice/tests/test_phase21_external_glb_gate.py'
+      - 'game/crownsfall_lootslice/tests/citadel_external_glb_import_v21.gd'
       - 'game/crownsfall_lootslice/tools/phase21_external_glb_gate.py'
       - 'game/crownsfall_lootslice/tools/phase21_thin_bevel_export_lod.py'
       - 'game/crownsfall_lootslice/tools/phase20_uv_preserving_decor_batch.py'
@@ -112,6 +113,8 @@ jobs:
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_art_swap_v16.gd
       - name: Phase 17 isolated GLB import and non-destructive visual route tests
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_masonry_v17.gd
+      - name: Phase 21 standalone GLTFDocument import gate on isolated V17 fixture
+        run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_external_glb_import_v21.gd -- --model=res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb --variant=v17
       - name: Phase 19 adaptive navigation gap and shoulder checks in Godot
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_nav_hardening_v19.gd
       - name: Phase 19 repeated 3D art and collision fallback stress

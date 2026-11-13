@@ -262,6 +262,12 @@ const PHASE_A_VARIANTS := {
 	"Oathkeeper Signet": {"slot":"ring", "id":"phase_a/oathkeeper_signet"},
 	"Veilthorn Band": {"slot":"ring", "id":"phase_a/veilthorn_band"},
 	"Wayfarer's Locket": {"slot":"amulet", "id":"phase_a/wayfarers_locket"},
+	"Crownwarden Cuirass": {"slot":"armor","id":"phase_a_armor/crownwarden_cuirass"},
+	"Epochweave Robe": {"slot":"robe","id":"phase_a_armor/epochweave_robe"},
+	"Bastion Sallet": {"slot":"helm","id":"phase_a_armor/bastion_sallet"},
+	"Veilbound Hood": {"slot":"hood","id":"phase_a_armor/veilbound_hood"},
+	"Dawnsteel Gauntlets": {"slot":"gloves","id":"phase_a_armor/dawnsteel_gauntlets"},
+	"Wayfarer's Greaves": {"slot":"boots","id":"phase_a_armor/wayfarer_greaves"},
 }
 func _item_portrait(item: Dictionary) -> Texture2D:
 	# Named variant illustrations do not modify the authoritative equipment IDs,

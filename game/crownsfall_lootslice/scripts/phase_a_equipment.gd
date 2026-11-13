@@ -8,6 +8,12 @@ const VARIANTS := {
 	"oathkeeper_signet": {"name":"Oathkeeper Signet","base":"ring","class":"warrior"},
 	"veilthorn_band": {"name":"Veilthorn Band","base":"ring","class":"mage"},
 	"wayfarers_locket": {"name":"Wayfarer's Locket","base":"amulet","class":"mage"},
+	"crownwarden_cuirass": {"name":"Crownwarden Cuirass","base":"armor","class":"warrior"},
+	"epochweave_robe": {"name":"Epochweave Robe","base":"robe","class":"mage"},
+	"bastion_sallet": {"name":"Bastion Sallet","base":"helm","class":"warrior"},
+	"veilbound_hood": {"name":"Veilbound Hood","base":"hood","class":"mage"},
+	"dawnsteel_gauntlets": {"name":"Dawnsteel Gauntlets","base":"gloves","class":"warrior"},
+	"wayfarer_greaves": {"name":"Wayfarer's Greaves","base":"boots","class":"warrior"},
 }
 static func make_variant(id: String, level: int = 1) -> Dictionary:
 	if not VARIANTS.has(id): return {}

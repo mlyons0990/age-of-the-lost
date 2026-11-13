@@ -1,0 +1,55 @@
+name: Archive AOTL R39 weapon-sweep source and QA handoff
+
+on:
+  push:
+    branches: [dev/r39-weapon-sweep-v1]
+    paths:
+      - .github/workflows/r39-weapon-source-backup.yml
+      - game/crownsfall_lootslice/docs/R39_WEAPON_SWEEP_CONTACT_QA_2026-11-13.md
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Generate reproducible code-and-proof snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/aotl-weapon-snapshot
+          git archive --format=zip --output=/tmp/aotl-weapon-snapshot/AOTL_R39_Weapon_Sweep_Source_2026-11-13.zip HEAD \
+            .github/workflows/r39-weapon-source-backup.yml \
+            .github/workflows/r39-weapon-alignment-ci.yml \
+            .github/workflows/r39-weapon-full-regression.yml \
+            .github/workflows/r39-weapon-live-ci.yml \
+            .github/workflows/r39-weapon-strict-ci.yml \
+            .github/workflows/r39-weapon-sweep-ci.yml \
+            game/crownsfall_lootslice/docs/R39_WEAPON_SWEEP_CONTACT_QA_2026-11-13.md \
+            game/crownsfall_lootslice/previews/warrior_r39/real_slash_contact_7frames.gif \
+            game/crownsfall_lootslice/previews/warrior_r39/slash_contact_provenance.json \
+            game/crownsfall_lootslice/scripts/three_d/hurtbox3d.gd \
+            game/crownsfall_lootslice/scripts/three_d/rig_controller.gd \
+            game/crownsfall_lootslice/scripts/three_d/rig_lab.gd \
+            game/crownsfall_lootslice/scripts/three_d/training_dummy.gd \
+            game/crownsfall_lootslice/scripts/three_d/weapon_sweep3d.gd \
+            game/crownsfall_lootslice/tests/lab_roundtrip.gd \
+            game/crownsfall_lootslice/tests/weapon_sweep3d_integration.gd \
+            game/crownsfall_lootslice/tests/weapon_sweep_alignment_probe.gd \
+            game/crownsfall_lootslice/tests/weapon_sweep_live_integration.gd \
+            game/crownsfall_lootslice/tests/weapon_sweep_strict_live_integration.gd
+          git rev-parse HEAD > /tmp/aotl-weapon-snapshot/GitCommit.txt
+          sha256sum /tmp/aotl-weapon-snapshot/*.zip > /tmp/aotl-weapon-snapshot/Checksums.sha256
+          unzip -t /tmp/aotl-weapon-snapshot/*.zip | tail -2
+      - name: Publish complete development source backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-Weapon-Sweep-Code-and-Preview-Backup
+          path: /tmp/aotl-weapon-snapshot/
+          if-no-files-found: error
+          retention-days: 30

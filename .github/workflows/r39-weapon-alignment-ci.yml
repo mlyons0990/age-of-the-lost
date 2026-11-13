@@ -1,0 +1,50 @@
+name: AOTL R39 real weapon socket alignment probe
+
+on:
+  push:
+    branches: [dev/r39-weapon-sweep-v1]
+    paths:
+      - .github/workflows/r39-weapon-alignment-ci.yml
+      - game/crownsfall_lootslice/tests/weapon_sweep_alignment_probe.gd
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install Godot 4.6.3
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+      - name: Evaluate six directions against actual animated WeaponRoot
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum --check -
+          export XDG_DATA_HOME=/tmp/aotl-weapon-align-data
+          export XDG_CONFIG_HOME=/tmp/aotl-weapon-align-config
+          export XDG_CACHE_HOME=/tmp/aotl-weapon-align-cache
+          GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
+          "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-weapon-align-import.log
+          "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/weapon_sweep_alignment_probe.gd 2>&1 | tee /tmp/aotl-weapon-align-probe.log
+          grep -q 'AOTL R39 BLADE ALIGNMENT PROBE PASS' /tmp/aotl-weapon-align-probe.log
+          if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-weapon-align-import.log /tmp/aotl-weapon-align-probe.log; then exit 1; fi
+      - name: Preserve measured socket directions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-WeaponRoot-Slash-Alignment-Probe
+          path: |
+            /tmp/aotl-weapon-align-import.log
+            /tmp/aotl-weapon-align-probe.log
+          if-no-files-found: warn
+          retention-days: 30

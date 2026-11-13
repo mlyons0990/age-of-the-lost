@@ -105,7 +105,7 @@ func _run() -> void:
 	rig._attack("Slash", 0.72)
 	await wait(0.12)
 	check(target.hp == hp_before, "3D slash waits for its contact event")
-	await wait(0.23)
+	await wait(0.38)
 	check(target.hp == hp_before - 32, "3D slash applies one timed target impact")
 	await wait(0.45)
 	check(target.hp == hp_before - 32, "slash recovery does not reapply damage each frame")
@@ -125,7 +125,7 @@ func _run() -> void:
 	check(target.hp == hp_before - 53, "3D cast resolves on its scheduled impact")
 	await wait(0.85)
 	target.hp = 1
-	rig._attack("Slash", 0.72); await wait(0.4)
+	rig._attack("Slash", 0.72); await wait(0.55)
 	var kills_before: int = lab.kills
 	lab._on_impact(rig.global_position, "Slash", rig.last_face)
 	check(target.inactive_t > 0 and lab.kills == kills_before, "inactive dummy cannot yield repeated kill credit")

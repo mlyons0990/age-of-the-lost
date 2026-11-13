@@ -5,6 +5,7 @@ const HERO := preload("res://scripts/three_d/rig_controller.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
+const WEAPON_SWEEP := preload("res://scripts/three_d/weapon_sweep3d.gd")
 const IVORY := Color("f3e8d3")
 const GOLD := Color("e5bf72")
 const BLUE := Color("274f99")
@@ -17,10 +18,19 @@ var info: Label
 var hpbar: ProgressBar
 var kills := 0
 var mode := "3D articulated rig lab"
+var strict_weapon_sweep := false
+var contact_samples: Array = []
+var contact_sample_limit := 24
+var last_sampled_attack_serial := -1
+var sweep_hit_instances: Dictionary = {}
+var sword_sweep_debug: MeshInstance3D
+var sword_sweep_lines: ImmediateMesh
+var sword_sweep_material: StandardMaterial3D
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=true # This independent lab never changes the saved plaza actor.
 	_build_world()
+	_create_sword_sweep_visualizer()
 	player = CharacterBody3D.new()
 	player.set_script(HERO)
 	player.position = Vector3(0, 0.08, 1.8)
@@ -42,6 +52,40 @@ func _ready() -> void:
 		add_child(e)
 		targets.append(e)
 	_build_hud()
+
+func _create_sword_sweep_visualizer() -> void:
+	sword_sweep_debug = MeshInstance3D.new()
+	sword_sweep_debug.name = "SwordSweepDebug"
+	sword_sweep_lines = ImmediateMesh.new()
+	sword_sweep_debug.mesh = sword_sweep_lines
+	sword_sweep_debug.visible = false
+	sword_sweep_debug.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	sword_sweep_material = StandardMaterial3D.new()
+	sword_sweep_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	sword_sweep_material.albedo_color = Color("ffca70")
+	add_child(sword_sweep_debug)
+
+func _draw_sword_sweep() -> void:
+	if sword_sweep_lines == null:
+		return
+	sword_sweep_lines.clear_surfaces()
+	sword_sweep_debug.visible = strict_weapon_sweep
+	if not strict_weapon_sweep or contact_samples.size() < 1:
+		return
+	sword_sweep_lines.surface_begin(Mesh.PRIMITIVE_LINES, sword_sweep_material)
+	for i in range(contact_samples.size()):
+		var sample: Dictionary = contact_samples[i]
+		var hilt: Vector3 = to_local(sample["hilt"])
+		var tip: Vector3 = to_local(sample["tip"])
+		sword_sweep_lines.surface_add_vertex(hilt)
+		sword_sweep_lines.surface_add_vertex(tip)
+		if i > 0:
+			var previous: Dictionary = contact_samples[i - 1]
+			sword_sweep_lines.surface_add_vertex(to_local(previous["hilt"]))
+			sword_sweep_lines.surface_add_vertex(hilt)
+			sword_sweep_lines.surface_add_vertex(to_local(previous["tip"]))
+			sword_sweep_lines.surface_add_vertex(tip)
+	sword_sweep_lines.surface_end()
 
 func _material(color: Color, metallic := 0.0, rough := 0.7) -> StandardMaterial3D:
 	var mat := StandardMaterial3D.new()
@@ -195,7 +239,7 @@ func _build_hud() -> void:
 	layer.add_child(bottom)
 	var words := VBoxContainer.new()
 	bottom.add_child(words)
-	words.add_child(_hud_label("WASD move    Shift run    Space dodge    F9 IK    F10 IK targets    F11 equipment sockets    Click slash    1/2/3 skills", 18, GOLD))
+	words.add_child(_hud_label("WASD move    Shift run    Space dodge    F8 sword sweep    F9 IK    F10 IK targets    F11 equipment sockets    Click slash    1/2/3 skills", 18, GOLD))
 	words.add_child(_hud_label("Foot IK automatically enables only on compatible leg bones. Current proxy may use the original animation. Terrain IK and cloth require further QA.", 15))
 
 func _process(delta: float) -> void:
@@ -203,7 +247,55 @@ func _process(delta: float) -> void:
 	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
-	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
+	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Sweep: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), ("STRICT" if strict_weapon_sweep else "baseline"), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
+
+func _physics_process(_delta: float) -> void:
+	if player == null or not player.equipment_sockets_available or player.equipment_sockets == null:
+		contact_samples.clear()
+		_draw_sword_sweep()
+		return
+	if player.anim_state != "Slash" or player.attack_t <= 0.0:
+		contact_samples.clear()
+		_draw_sword_sweep()
+		return
+	if player.attack_serial != last_sampled_attack_serial:
+		last_sampled_attack_serial = player.attack_serial
+		contact_samples.clear()
+		sweep_hit_instances.clear()
+	var socket: BoneAttachment3D = player.equipment_sockets.get_socket("weapon")
+	var sample: Dictionary = WEAPON_SWEEP.blade_from_socket(socket)
+	if sample.is_empty():
+		return
+	contact_samples.append(sample)
+	if contact_samples.size() > contact_sample_limit:
+		contact_samples.pop_front()
+	_draw_sword_sweep()
+	if not strict_weapon_sweep or contact_samples.size() < 2:
+		return
+	var phase := -1.0
+	if player.animation != null and player.animation.current_animation_length > 0:
+		phase = player.animation.current_animation_position / player.animation.current_animation_length
+	if not WEAPON_SWEEP.in_contact_window(player.attack_type, phase):
+		return
+	# Physics-frame swept damage is independent from the single animation
+	# impact event, so targets only connect when the blade actually crosses.
+	# Track instance IDs to prevent repeated damage through the active swing.
+	var recent: Array = contact_samples.slice(-2)
+	var direction: Vector3 = player.last_face
+	for target in targets:
+		if target.inactive_t > 0 or sweep_hit_instances.has(target.get_instance_id()):
+			continue
+		if not TARGETING.can_hit(get_world_3d(), player,
+				player.global_position, direction, target.global_position, player.attack_type):
+			continue
+		var center: Vector3 = target.damage_center()
+		if not WEAPON_SWEEP.swept_samples_touch_target(recent, center, target.damage_radius()):
+			continue
+		sweep_hit_instances[target.get_instance_id()] = true
+		var dead: bool = target.hit(TARGETING.damage_for(player.attack_type))
+		effects.sparks(target.global_position + Vector3.UP, Color("ffca70"), 12)
+		if dead:
+			kills += 1
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum
@@ -222,7 +314,17 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	# responsive even when a nearby target is safely screened by cover.
 	for target in targets:
 		if target.inactive_t > 0: continue
-		if TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind):
+		var allowed := TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind)
+		if strict_weapon_sweep and kind != "Cast":
+			# Blade contacts are resolved continuously in _physics_process,
+			# not at a separate one-shot event (prevents early/duplicate hits).
+			continue
+		var actively_swinging: bool = kind != "Cast" and player.attack_t > 0.0 and player.anim_state == "Slash"
+		if actively_swinging and sweep_hit_instances.has(target.get_instance_id()):
+			continue
+		if allowed:
+			if actively_swinging:
+				sweep_hit_instances[target.get_instance_id()] = true
 			var dead: bool = target.hit(TARGETING.damage_for(kind))
 			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
 			if dead: kills += 1
@@ -231,5 +333,12 @@ func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
+		strict_weapon_sweep = not strict_weapon_sweep
+		contact_samples.clear()
+		# Do not reset the per-swing hit ledger on mode change: that could
+		# apply damage twice to a target during one uninterrupted swing.
+		_draw_sword_sweep()
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:
 		_back_to_plaza()

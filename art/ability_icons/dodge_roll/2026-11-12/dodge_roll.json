@@ -1,0 +1,71 @@
+{
+  "id": "dodge_roll",
+  "name": "Dodge Roll",
+  "kind": "ability_icon",
+  "status": "art only - not yet wired into gameplay",
+  "provider": "Higgsfield",
+  "model": "gpt_image_2_6",
+  "job_id": "9e7c5fc8-a976-457a-85b6-eb1f6c04de19",
+  "cost": "0 credits (free unlimited allowance)",
+  "generated": "2026-11-12",
+  "aspect_ratio": "1:1",
+  "references": [],
+  "prompt": "A single game UI ability icon for a \"Dodge Roll\" button: one simple stylized boot in side view, toe pointing to the RIGHT, with a small gold wing at the back of the ankle and three clean swept speed lines trailing behind the heel to the left. Simple bold readable shapes, painted fantasy style with soft shading, ivory and gold boot with a dark outline, on a deep navy circular background. Centered with generous padding, no text, no frame, no border. Must stay readable at 48 pixels.",
+  "processing": "dodge_roll_source_1024.png is the exact Higgsfield output. The other files only add a circular alpha mask (white corners outside the navy disc made transparent) and Lanczos downsampling; no repainting.",
+  "files": {
+    "dodge_roll_1024.png": {
+      "pixels": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 932445,
+      "sha256": "189240aa0e176a928e4674478c2465328eae7685ab069095870c97e65519ca12"
+    },
+    "dodge_roll_128.png": {
+      "pixels": [
+        128,
+        128
+      ],
+      "mode": "RGBA",
+      "bytes": 22588,
+      "sha256": "764d12caad6efd99c37bbb13a099b7803740504c7dd6d6de0e565e55a65309e0"
+    },
+    "dodge_roll_256.png": {
+      "pixels": [
+        256,
+        256
+      ],
+      "mode": "RGBA",
+      "bytes": 72576,
+      "sha256": "6e149014f5da7d0b7930b07033ccdfb48001a81fac3aba5402619729d048fb68"
+    },
+    "dodge_roll_48.png": {
+      "pixels": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "bytes": 4617,
+      "sha256": "fb4e1b7f03da290c93c7ffcad8a5b0fd6a2f2a5513e0bdcdab380d6c077c4c43"
+    },
+    "dodge_roll_64.png": {
+      "pixels": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "bytes": 7394,
+      "sha256": "8a117861aaa25802235c3407dd5cbfb596b824156f466b1de87e402182c52e92"
+    },
+    "dodge_roll_source_1024.png": {
+      "pixels": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "bytes": 1032637,
+      "sha256": "a0e69a278531a14d565905ffa4a7a5c03e075cb432596bfe0c427dfe9a1dbfaa"
+    }
+  }
+}

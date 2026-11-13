@@ -3,6 +3,8 @@
   "base": "Phase21 user-verified",
   "changed_files": [
     "PHASE22_MANIFEST.json",
+    "PHASE22_MANIFEST.json",
+    "PHASE22_READ_ME_FIRST.md",
     "PHASE22_READ_ME_FIRST.md",
     "game/crownsfall_lootslice/docs/PHASE22_GROUND_CONTACT.md",
     "game/crownsfall_lootslice/project.godot",
@@ -10,8 +12,12 @@
     "game/crownsfall_lootslice/scripts/three_d/phase22_contact_classifier.gd",
     "game/crownsfall_lootslice/scripts/three_d/rig_controller.gd",
     "game/crownsfall_lootslice/tests/PHASE22_QA_REPORT.json",
+    "game/crownsfall_lootslice/tests/PHASE22_QA_REPORT.json",
     "game/crownsfall_lootslice/tests/phase22_contact_classifier_test.gd",
     "game/crownsfall_lootslice/tests/phase22_ik_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase22_run_ik_integration.gd",
+    "game/crownsfall_lootslice/tests/phase22_solver_lifetime_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase22_terrain_slope_smoke.gd",
     "game/crownsfall_lootslice/tests/phase22_walk_ik_integration.gd"
   ],
   "preserved_production_scripts": 43

@@ -15,7 +15,8 @@ var run_length_m := 0.0
 var ascent_m := 0.0
 var width_m := 0.0
 var steps := 0
-## Matches the sculpt's 4m upper gate apron (Phase 14 asset).\nvar landing_length_m := 4.0
+## Matches the sculpt's 4m upper gate apron (Phase 14 asset).
+var landing_length_m := 4.0
 var installed := false
 ## Toggling off must disable collision too, not just hide meshes.
 var collider_nodes: Array[StaticBody3D] = []
@@ -144,7 +145,8 @@ func _build_gateway() -> void:
     var shadow := _material(LIMESTONE)
     var highlight := _material(GOLD)
     var half_clear := width_m * 0.5 + 0.30
-    ## Sculpt uses Y=3.25m north of the ninth stair: +9m in route frame.\n    var gate_z := run_length_m + 3.25
+    ## Sculpt uses Y=3.25m north of the ninth stair: +9m in route frame.
+    var gate_z := run_length_m + 3.25
     var pier_height := 4.14
     for side in [-1, 1]:
         var x := float(side) * (half_clear + 0.64)

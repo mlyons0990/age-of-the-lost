@@ -1,0 +1,90 @@
+name: AOTL R52 rigid armor seven-clip Godot import QA
+
+on:
+  push:
+    branches: [dev/r52-armor-rigidity-v1]
+    paths:
+      - .github/workflows/r52-rigid-armor-import-ci.yml
+      - game/crownsfall_lootslice/tests/verify_r52_rigid_armor_import.gd
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aotl-r52-rigid-import
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Download provenance-pinned R52 hard armor and seven-clip GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 160 "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/ebd7aff9-1759-4999-9d4c-d4122f3b2743.zip?download=AOTL_R52_RigidArmor_GLB_Validated.zip" -o /tmp/aotl-r52-candidate.zip
+          echo "ee37eb97c937ecb3136c346033c9c22580b39d09b7d78c5d171f1dfaf94a85d0  /tmp/aotl-r52-candidate.zip" | sha256sum -c
+          mkdir -p game/crownsfall_lootslice/models
+          unzip -p /tmp/aotl-r52-candidate.zip AOTL_Warrior_R52_RigidArmor_SevenClip.glb > game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb
+          unzip -p /tmp/aotl-r52-candidate.zip AOTL_Warrior_R52_RigidArmor_SevenClip.audit.json > game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.audit.json
+          echo "0d2812d9ae6d6ab666b237e9e5813cd00d89fb9a070fab74de75df4ccdeea06c  game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb" | sha256sum -c
+      - name: Install official Godot 4.6.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+      - name: Run real skin-weight, joint, animation and foot-contact checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=/tmp/aotl-r52-rigid-armor-godot
+          mkdir -p "$p/models" "$p/tests"
+          cp game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb "$p/models/"
+          cp game/crownsfall_lootslice/tests/verify_r52_rigid_armor_import.gd "$p/tests/"
+          cat > "$p/project.godot" <<'EOF'
+          config_version=5
+          [application]
+          config/name="AOTL R52 Armor Rigidity Import QA"
+          config/features=PackedStringArray("4.6", "GL Compatibility")
+          [rendering]
+          renderer/rendering_method="gl_compatibility"
+          EOF
+          export XDG_DATA_HOME=/tmp/aotl-r52-data
+          export XDG_CONFIG_HOME=/tmp/aotl-r52-config
+          export XDG_CACHE_HOME=/tmp/aotl-r52-cache
+          GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
+          timeout 150s "$GODOT" --headless --path "$p" --editor --quit 2>&1 | tee /tmp/r52-import.log
+          timeout 120s "$GODOT" --headless --path "$p" --script res://tests/verify_r52_rigid_armor_import.gd 2>&1 | tee /tmp/r52-skin-weights.log
+          grep -Eq 'AOTL R52 GODOT RIGID ARMOR IMPORT RESULT [0-9]+ checks; 0 failures' /tmp/r52-skin-weights.log
+          if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/r52-import.log /tmp/r52-skin-weights.log; then exit 1; fi
+      - name: Commit checked R52 model as Git LFS asset (do not modify R50)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb
+          git add game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Preserve Godot-verified R52 rigid armor seven-clip GLB"
+            git push origin HEAD:dev/r52-armor-rigidity-v1
+          fi
+      - name: Archive source candidate and real Godot logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R52-Rigid-Armor-Godot-Skin-QA
+          path: |
+            /tmp/aotl-r52-candidate.zip
+            /tmp/r52-import.log
+            /tmp/r52-skin-weights.log
+          if-no-files-found: warn
+          retention-days: 30

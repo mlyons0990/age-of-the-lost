@@ -2,6 +2,8 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$ExportUrl,
     [string]$ProjectRoot = "",
+    [ValidateSet("AOTL_Warrior_R36.glb","AOTL_Warrior_R37.glb")]
+    [string]$TargetFileName = "AOTL_Warrior_R37.glb",
     [switch]$RunImportAudit
 )
 
@@ -33,7 +35,7 @@ try {
         throw "Downloaded file is not a GLB. Confirm the signed link has not expired."
     }
     $installer = Join-Path $tools "install_r36_warrior.ps1"
-    & $installer -SourceGlb $downloadPath -ProjectRoot $ProjectRoot -RunImportAudit:$RunImportAudit
+    & $installer -SourceGlb $downloadPath -ProjectRoot $ProjectRoot -TargetFileName $TargetFileName -RunImportAudit:$RunImportAudit
     if (-not $?) {
         throw "Local R36 installer did not succeed."
     }

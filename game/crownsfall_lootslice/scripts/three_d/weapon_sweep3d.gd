@@ -81,3 +81,27 @@ static func crossed_contact_event(previous_phase: float, current_phase: float,
 	if current_phase < previous_phase:
 		return false
 	return previous_phase < marker and current_phase >= marker
+
+static func blade_from_socket(socket: Node3D, length_m: float = 0.85) -> Dictionary:
+	if socket == null or length_m <= 0.0:
+		return {}
+	var hilt := socket.global_position
+	var tip := socket.to_global(Vector3(0.0, 0.0, -length_m))
+	if not hilt.is_finite() or not tip.is_finite():
+		return {}
+	return {"hilt": hilt, "tip": tip}
+
+static func swept_samples_touch_target(samples: Array, target: Vector3,
+		target_radius: float = 0.45, blade_radius: float = 0.12) -> bool:
+	if samples.size() < 2:
+		return false
+	for i in range(1, samples.size()):
+		var previous: Dictionary = samples[i - 1]
+		var current: Dictionary = samples[i]
+		if not (previous.has("hilt") and previous.has("tip") and current.has("hilt") and current.has("tip")):
+			continue
+		if touches_swept_blade(target, target_radius,
+				previous["hilt"], previous["tip"],
+				current["hilt"], current["tip"], blade_radius):
+			return true
+	return false

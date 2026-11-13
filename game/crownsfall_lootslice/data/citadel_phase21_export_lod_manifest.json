@@ -1,0 +1,80 @@
+{
+  "schema": "aotl.citadel.phase21.export_lod.v1",
+  "date_utc": "2026-11-13",
+  "source": "Higgsfield editable 3D Jutsu",
+  "project_id": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "base_sculpt_revision": 9,
+  "optimized_revision": 10,
+  "project_url": "https://higgsfield.ai/3d-jutsu/0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "changes": {
+    "modified_bevel_objects": 44,
+    "modifier_from_segments": 2,
+    "modifier_to_segments": 1,
+    "selection": "PH20_UVBatch_* and GATE_Gothic_Voussoir_* with bevel width <=0.015 m",
+    "edit_script": "tools/phase21_thin_bevel_export_lod.py",
+    "source_mesh_count": 309,
+    "source_mesh_triangles": 8820,
+    "source_mesh_geometry_untouched": true,
+    "colliders_added": 0,
+    "navigation_changed": false,
+    "auto_art_swap": false
+  },
+  "geometry": {
+    "v09_evaluated_triangles": 32596,
+    "v10_evaluated_triangles": 26724,
+    "v09_exported_triangles": 32324,
+    "v10_exported_triangles": 26452,
+    "exported_triangles_saved": 5872,
+    "exported_triangle_reduction_percent": 18.17,
+    "real_glb_node_count": 309,
+    "real_glb_mesh_definitions": 292,
+    "embedded_images": 2,
+    "embedded_textures": 2,
+    "materials": 10,
+    "no_external_images": true,
+    "no_collision_named_nodes": true
+  },
+  "qa": {
+    "render_resolution": [
+      640,
+      360
+    ],
+    "render_pixels": 230400,
+    "pixels_changed_over_2_percent_rgb": 16,
+    "pixels_changed_over_1_percent_rgb": 398,
+    "changed_over_2_percent_fraction": 0.0069,
+    "maximum_rgb_channel_difference": 0.039216,
+    "average_max_channel_difference": 0.0001022,
+    "render_interpretation": "Tiny small bevel edge difference at one 640x360 camera; does not prove all viewing angles indistinguishable.",
+    "independent_export_glb_sha256": "967b9d43e5c117e0f9028d2f9cef6436e3737bec35137e7b0d64034b52f91714",
+    "independent_export_glb_size_bytes": 2181764,
+    "independent_glb_gate_inspection": "PASS",
+    "provider_exact_glb_sha256": "UNAVAILABLE",
+    "provider_glb_size_bytes": 2218580,
+    "provider_glb_reduction_percent_from_v9": 9.91,
+    "provider_blend_size_bytes": 3676639,
+    "driver": "Blender 5.2 via Higgsfield; real Godot optimized v10 import not completed"
+  },
+  "lineage": {
+    "godot_v17_fixture_cannot_certify_v10": true,
+    "source_version9_preserved_at_provider": true,
+    "version10_source_preserved_at_provider": true,
+    "code_committed_to_github": true,
+    "code_mirrored_to_drive": false,
+    "glb_binary_on_github": false,
+    "blend_binary_on_github": false,
+    "glb_binary_on_google_drive": false,
+    "blend_binary_on_google_drive": false
+  },
+  "required_live_gates": [
+    "Real approved Phase11 source recovery",
+    "Optimized exact v10 GLB transfer to project copy",
+    "Direct Godot GLTFDocument import test for v10",
+    "1080p/1440p player movement and IK test",
+    "F4/F8/F10 toggle and shader/collision safety",
+    "Compare visual quality against canonical six painted references",
+    "Actual render frame-time benchmark"
+  ],
+  "main_merge_allowed": false,
+  "canonical_art_approved": false
+}

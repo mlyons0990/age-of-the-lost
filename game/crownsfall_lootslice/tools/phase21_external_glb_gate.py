@@ -20,7 +20,7 @@ from typing import Any
 
 MAGIC=b"glTF"
 JSON_CHUNK=b"JSON"
-BIN_CHUNK=b"BIN\\x00"
+BIN_CHUNK=b"BIN"+bytes([0])
 GLB_HEADER=12
 CHUNK_HEADER=8
 FORBIDDEN_NODES=("collisionshape","staticbody","rigidbody","navigationregion",

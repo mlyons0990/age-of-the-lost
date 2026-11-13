@@ -24,6 +24,25 @@ $bytes = (Get-Item $source).Length
 if ($bytes -lt 1000000) {
     throw 'Source GLB is unexpectedly small; refusing replacement.'
 }
+# Require a real skinned, animated Warrior, not merely any file with glTF magic.
+$validator = Join-Path $PSScriptRoot 'verify_r36_glb.py'
+if (-not (Test-Path $validator)) {
+    throw 'Required GLB validator is missing. No asset replacement was performed.'
+}
+$py = Get-Command py -ErrorAction SilentlyContinue
+$python = Get-Command python -ErrorAction SilentlyContinue
+if ($null -ne $py) {
+    & $py.Source -3 $validator $source
+} elseif ($null -ne $python) {
+    & $python.Source $validator $source
+} else {
+    throw 'Python 3 is required to verify the skeleton and animation clips before installing.'
+}
+if ($LASTEXITCODE -ne 0) {
+    throw 'GLB skeleton/animation validation failed. The installed Warrior was not replaced.'
+}
+Write-Host 'R36 binary skeleton and animation validation PASSED.'
+
 if (Test-Path $destination) {
     $stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
     $existingSha = (Get-FileHash $destination -Algorithm SHA256).Hash.Substring(0, 12)

@@ -45,7 +45,7 @@ jobs:
           blender --background --factory-startup --python-exit-code 1 --python tools/phase23_rebuild_from_v10.py -- \
             --source assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb \
             --output assets/25d/citadel/AOTL_Citadel_Painterly_v13.glb \
-            --blend-output artifacts/phase23/AOTL_Citadel_Painterly_v13_Editable.blend
+            --blend-output "$RUNNER_TEMP/AOTL_Citadel_Painterly_v13_Editable.blend"
       - name: Verify source unchanged, 3 true embedded PNG maps, UV and arch/stair integrity
         run: |
           cd game/crownsfall_lootslice
@@ -91,7 +91,7 @@ jobs:
           path: |
             game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_Painterly_v13.glb
             game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_Painterly_v13.qa.json
-            game/crownsfall_lootslice/artifacts/phase23/AOTL_Citadel_Painterly_v13_Editable.blend
+            ${{ runner.temp }}/AOTL_Citadel_Painterly_v13_Editable.blend
             game/crownsfall_lootslice/citadel_phase23_baseline_1920x1080.png
             game/crownsfall_lootslice/citadel_phase23_painted_1920x1080.png
             game/crownsfall_lootslice/citadel_phase23_baseline_2560x1440.png

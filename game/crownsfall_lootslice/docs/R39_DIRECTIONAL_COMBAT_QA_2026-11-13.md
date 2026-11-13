@@ -24,7 +24,7 @@ Replace the original 3D rig-lab dummy-hit test (range and a permissive facing ch
 
 **Full live rig-lab suite:** [GitHub Actions 43400310844](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43400310844) — **8 checks, 0 failures**. Loaded real R39 Warrior in Godot 4.6.3 with IK and equipment sockets. Slash hit a visible dummy, failed through a physics-blocking wall, hit after cover removal, and refused a rear target. Cast retained its intended area effect and damage. The live test used the real game project in an isolated disposable data directory.
 
-**Parent baseline:** [Full Crownsfall 994-assertion suite](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43398978398) passed before this combat branch. Those 994 assertions have **not** been rerun on this new branch; do not report them as the new branch's regression result.
+**Parent baseline:** [Full Crownsfall 994-assertion suite](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43398978398) passed before this combat branch. The new combat branch has now also passed [all 17 Crownsfall suites](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43400823955): **994 of 994 assertions**, zero failures. The earlier parent run remains a separate historical baseline.
 
 **Original R39 model:** [Verified six-clip asset PR #53](https://github.com/mlyons0990/age-of-the-lost/pull/53); same existing GLB and SHA-256 `6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55`.
 
@@ -43,3 +43,11 @@ Replace the original 3D rig-lab dummy-hit test (range and a permissive facing ch
 2. Add enemy faction / shield / destructible-obstacle layers and distinguish intentionally transparent geometry from cover.
 3. Align contact timing to the actual weapon's animation frames; benchmark frame-to-hit for Walk/Run/Slash/Cast/Dodge.
 4. Re-run all 17 baseline regression suites after any changes to shared game systems, and capture a player-visible 3D combat demonstration.
+
+## Final branch regression acceptance
+
+- **Complete 17-suite Crownsfall QA: 994/994 PASS** on `dev/r39-3d-combat-geometry-v1` under Godot 4.6.3.
+- Workflow run: https://github.com/mlyons0990/age-of-the-lost/actions/runs/43400823955
+- Google Drive full console and per-suite logs: https://drive.google.com/file/d/1FSXLUE2nM-NsCEtIaadVBB5AoRyerPN7/view
+- Total new 3D-specific assertions: **24/24** (16 isolated geometry, 8 real rig-lab tests).
+- No merge to production main has been performed. Desktop visual/audio review and enemy-specific hurtboxes remain necessary.

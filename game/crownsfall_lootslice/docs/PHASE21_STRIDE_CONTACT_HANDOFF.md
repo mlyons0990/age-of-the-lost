@@ -19,3 +19,7 @@ A refreshed six-animation export was created from Higgsfield master revision 46,
 https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/260125af-3418-42ae-858a-354aab7d206a.zip
 
 Extract `AOTL_Master_Rig_R46_Six_Animations.glb`, rename to `AOTL_Master_Rig_R46_AllSix.glb`, and put into `game/crownsfall_lootslice/models/`. The reviewer now prefers R46 when both R46 and R38 are installed; R38 still works as a tested fallback. Neither is substituted for the live player. Model media is hosted separately, not bundled in this full-source ZIP.
+
+## Phase 21 QA limits
+
+Headless Godot 4.4.1 tests passed: 11/11 stride math, 14/14 walk/run/idle/cast/dodge cadence, 13/13 master R38 fitting, 13/13 master R46 fitting, 3/3 optional missing model fallback, and 3/3 R46 priority selection. See `game/crownsfall_lootslice/tests/PHASE21_QA_RESULTS.json`. These tests do not replace a visual quality review in Windows Godot 4.6.3.

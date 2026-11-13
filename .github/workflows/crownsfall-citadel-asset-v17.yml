@@ -29,6 +29,9 @@ on:
       - 'game/crownsfall_lootslice/tests/test_phase20_uv_batch_manifest.py'
       - 'game/crownsfall_lootslice/tests/test_phase21_external_glb_gate.py'
       - 'game/crownsfall_lootslice/tests/citadel_external_glb_import_v21.gd'
+      - 'game/crownsfall_lootslice/tools/phase21_bundle_external_art.py'
+      - 'game/crownsfall_lootslice/tests/test_phase21_bundle_external_art.py'
+      - 'game/crownsfall_lootslice/data/citadel_phase21_export_lod_manifest.json'
       - 'game/crownsfall_lootslice/tools/phase21_external_glb_gate.py'
       - 'game/crownsfall_lootslice/tools/phase21_thin_bevel_export_lod.py'
       - 'game/crownsfall_lootslice/tools/phase20_uv_preserving_decor_batch.py'
@@ -94,6 +97,7 @@ jobs:
         run: |
           cd game/crownsfall_lootslice
           python -m unittest discover -s tests -p 'test_phase21_external_glb_gate.py' -v
+          python -m unittest discover -s tests -p 'test_phase21_bundle_external_art.py' -v
       - name: Install Godot 4.6.3
         uses: solarlabyrinth/action-setup-godot@v3
         with:

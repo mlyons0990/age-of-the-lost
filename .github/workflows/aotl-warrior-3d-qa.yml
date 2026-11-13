@@ -52,8 +52,8 @@ jobs:
       - name: Report missing production GLB gate
         shell: bash
         run: |
-          if [[ -f game/crownsfall_lootslice/models/AOTL_Warrior_R37.glb ]]; then
-            godot --headless --path game/crownsfall_lootslice --script res://tests/verify_warrior_r36_import.gd -- --model=AOTL_Warrior_R37.glb
+          if [[ -f game/crownsfall_lootslice/models/AOTL_Warrior_R40.glb ]]; then
+            godot --headless --path game/crownsfall_lootslice --script res://tests/verify_warrior_r36_import.gd -- --model=AOTL_Warrior_R40.glb
           else
-            echo 'R37 GLB binary not in repository; strict real-asset QA blocked.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'R40 GLB binary not in repository; strict real-asset QA blocked.' >> "$GITHUB_STEP_SUMMARY"
           fi

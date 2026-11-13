@@ -1,0 +1,51 @@
+{
+  "result": "PASS",
+  "file": "AOTL_Warrior_R39_Gameplay6.glb",
+  "bytes": 7028800,
+  "sha256": "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55",
+  "skins": 1,
+  "skin_joints": 62,
+  "meshes": 92,
+  "actions": [
+    {
+      "name": "Idle",
+      "duration_seconds": 1.56667,
+      "channels": 186,
+      "imported_accessors": 134
+    },
+    {
+      "name": "Walk",
+      "duration_seconds": 0.8,
+      "channels": 186,
+      "imported_accessors": 140
+    },
+    {
+      "name": "Run",
+      "duration_seconds": 0.6,
+      "channels": 186,
+      "imported_accessors": 146
+    },
+    {
+      "name": "Dodge",
+      "duration_seconds": 0.76667,
+      "channels": 186,
+      "imported_accessors": 138
+    },
+    {
+      "name": "Slash",
+      "duration_seconds": 0.73333,
+      "channels": 186,
+      "imported_accessors": 134
+    },
+    {
+      "name": "Cast",
+      "duration_seconds": 1.36667,
+      "channels": 186,
+      "imported_accessors": 134
+    }
+  ],
+  "known_limitations": [
+    "Structural validation is not a Godot rendering or gameplay test.",
+    "Visual material fidelity requires manual Godot comparison."
+  ]
+}

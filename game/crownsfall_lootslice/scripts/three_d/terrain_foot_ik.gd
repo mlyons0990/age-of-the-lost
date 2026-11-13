@@ -128,6 +128,12 @@ func reset_contact_state() -> void:
 		var target: Node3D = targets[side]
 		target.global_position = _animated_ankle(side)
 
+static func is_surface_usable(normal: Vector3, vertical_correction_m: float, max_tilt_degrees: float, max_step_height_m: float) -> bool:
+	# Prevent foot targets on cliffs, over-high steps or badly formed surface normals.
+	if not normal.is_finite() or normal.length_squared() < 0.95 or normal.length_squared() > 1.05:
+		return false
+	return normal.dot(Vector3.UP) >= cos(deg_to_rad(max_tilt_degrees)) and absf(vertical_correction_m) <= max_step_height_m
+
 static func is_reach_safe(animated_ankle: Vector3, locked_foot: Vector3, max_horizontal_m: float) -> bool:
 	var horizontal_offset := Vector2(animated_ankle.x - locked_foot.x, animated_ankle.z - locked_foot.z)
 	return horizontal_offset.length() <= max_horizontal_m
@@ -151,7 +157,7 @@ func update_foot_ik(delta: float, clip: String, phase: float) -> void:
 			var surface: Vector3 = hit["position"]
 			var surface_normal: Vector3 = hit["normal"]
 			var correction := surface.y + foot_clearance_m - animated.y
-			if surface_normal.dot(Vector3.UP) >= cos(deg_to_rad(max_normal_tilt_degrees)) and absf(correction) <= max_step_m:
+			if is_surface_usable(surface_normal, correction, max_normal_tilt_degrees, max_step_m):
 				desired_weight = stance_weight(phase, side, running)
 				if desired_weight >= 0.98 and not bool(planted[side]):
 					# Save a true WORLD position so translating the actor cannot drag a planted foot.

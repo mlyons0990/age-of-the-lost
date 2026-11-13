@@ -1,0 +1,61 @@
+name: Import validated AOTL Warrior R39 GLB
+
+on:
+  push:
+    branches: [assets/warrior-r39-sixclip]
+    paths:
+      - .github/workflows/warrior-r39-asset-sync.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aotl-warrior-r39-sixclip
+  cancel-in-progress: false
+
+jobs:
+  import_warrior:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          lfs: false
+
+      - name: Download checksum-pinned Higgsfield export
+        shell: bash
+        env:
+          ASSET_URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/d0eb1e43-458b-475f-b525-c894967614ad.zip?download=AOTL_Warrior_R39_Gameplay6_Validated.zip
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --max-time 120 "$ASSET_URL" -o /tmp/aotl-r39.zip
+          echo "cd1e2396d480eee7339ec063acb961cfe5d7d32de6a21b8837b647878186f873  /tmp/aotl-r39.zip" | sha256sum --check -
+          mkdir -p game/crownsfall_lootslice/models game/crownsfall_lootslice/docs
+          unzip -p /tmp/aotl-r39.zip AOTL_Warrior_R39_Gameplay6.glb > game/crownsfall_lootslice/models/AOTL_Warrior_R39_Gameplay6.glb
+          unzip -p /tmp/aotl-r39.zip AOTL_Warrior_R39_Gameplay6.audit.json > game/crownsfall_lootslice/docs/AOTL_R39_gameplay6_binary_audit.json
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39_Gameplay6.glb" | sha256sum --check -
+          python3 game/crownsfall_lootslice/tools/verify_r36_glb.py game/crownsfall_lootslice/models/AOTL_Warrior_R39_Gameplay6.glb
+          python3 -m unittest discover -s game/crownsfall_lootslice/tests -p 'test_verify_r36_glb.py'
+
+      - name: Attach verified GLB to this development branch using Git LFS
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git add game/crownsfall_lootslice/models/AOTL_Warrior_R39_Gameplay6.glb
+          git add game/crownsfall_lootslice/docs/AOTL_R39_gameplay6_binary_audit.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --cached --quiet; then
+            git commit -m "Import checksum-verified six-clip Warrior R39 GLB via Git LFS"
+            git push origin HEAD:assets/warrior-r39-sixclip
+          fi
+
+      - name: Publish verified package for Google Drive handoff
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-Warrior-R39-Gameplay6-Validated
+          path: /tmp/aotl-r39.zip
+          if-no-files-found: error
+          retention-days: 30

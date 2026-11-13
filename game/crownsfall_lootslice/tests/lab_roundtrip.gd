@@ -64,7 +64,18 @@ func _run() -> void:
 	var rig: CharacterBody3D = lab.player
 	check(rig != null and rig.body != null, "GLB scene instantiated under CharacterBody3D")
 	var skeletons: Array = rig.body.find_children("*", "Skeleton3D", true, false)
-	check(skeletons.size() == 1 and skeletons[0].get_bone_count() == 58, "imported runtime skeleton has 58 bones")
+	# The original proxy had exactly 58 bones; the skinned R39 asset imports 69.
+	# Require structural compatibility, not a legacy bone count.
+	var skeleton_compatible := skeletons.size() == 1
+	if skeleton_compatible:
+		var sk := skeletons[0] as Skeleton3D
+		skeleton_compatible = sk != null and sk.get_bone_count() >= 58
+		if skeleton_compatible:
+			for bone_name in ["Root", "Hips", "ThighL", "KneeL", "ShinL", "AnkleL", "ThighR", "KneeR", "ShinR", "AnkleR"]:
+				if sk.find_bone(bone_name) < 0:
+					skeleton_compatible = false
+					break
+	check(skeleton_compatible, "imported runtime skeleton has articulated leg chains and at least 58 bones")
 	check(rig.animation != null and rig.clip_names.size() == 6, "runtime AnimationPlayer has all six named clips")
 	var required := ["Idle", "Walk", "Run", "Slash", "Dodge", "Cast"]
 	check(required.all(func(name: String) -> bool: return rig.clip_names.has(name)), "clip library names resolve all required actions")

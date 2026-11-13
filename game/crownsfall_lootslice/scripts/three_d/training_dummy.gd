@@ -1,4 +1,5 @@
 extends Node3D
+const HURTBOX := preload("res://scripts/three_d/hurtbox3d.gd")
 ## Resettable sword target for testing attack timing and 3D FX.
 var hp := 100.0
 var max_hp := 100.0
@@ -6,8 +7,11 @@ var time := 0.0
 var inactive_t := 0.0
 var mesh: MeshInstance3D
 var title: Label3D
+var hurtbox: Area3D
 
 func _ready() -> void:
+	hurtbox = HURTBOX.new()
+	add_child(hurtbox)
 	var body := CylinderMesh.new()
 	body.top_radius = 0.33
 	body.bottom_radius = 0.47

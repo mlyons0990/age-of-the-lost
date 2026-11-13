@@ -1,0 +1,73 @@
+name: Crownsfall Citadel V15 — asset and Godot import
+
+on:
+  push:
+    branches:
+      - feature/phase15-citadel-art-import-pipeline
+  pull_request:
+    paths:
+      - 'game/crownsfall_lootslice/tools/build_citadel_art_glb_v15.py'
+      - 'game/crownsfall_lootslice/tools/requirements_citadel_v15.txt'
+      - 'game/crownsfall_lootslice/tests/test_citadel_art_glb_v15.py'
+      - 'game/crownsfall_lootslice/tests/citadel_art_import_v15.gd'
+      - 'game/crownsfall_lootslice/scripts/two_point_five_d/**'
+      - '.github/workflows/crownsfall-citadel-asset-v15.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-art-mesh-and-godot-import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      XDG_DATA_HOME: /tmp/aotl-ci-data
+      XDG_CACHE_HOME: /tmp/aotl-ci-cache
+      XDG_CONFIG_HOME: /tmp/aotl-ci-config
+    steps:
+      - name: Checkout all Crownsfall game assets
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Python 3.11 for reproducible art asset build
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deterministic mesh exporter
+        run: python -m pip install -r game/crownsfall_lootslice/tools/requirements_citadel_v15.txt
+      - name: Build real GLB + manifest from source
+        run: |
+          cd game/crownsfall_lootslice
+          python tools/build_citadel_art_glb_v15.py
+      - name: Validate binary mesh, landings, topology, and no gameplay authority
+        run: |
+          cd game/crownsfall_lootslice
+          python tests/test_citadel_art_glb_v15.py 2>&1 | tee citadel_v15_static.log
+      - name: Install Godot 4.6.3
+        uses: solarlabyrinth/action-setup-godot@v3
+        with:
+          version: 4.6.3-stable
+          export-templates: false
+      - name: Confirm engine version
+        run: godot --version
+      - name: Import Godot source and built GLB
+        run: godot --headless --path game/crownsfall_lootslice --editor --import --quit
+      - name: Verify imported GLB scene in real engine
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_art_import_v15.gd
+      - name: Phase 12 stair geometry headless checks
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_grade_geometry_v12.gd
+      - name: Phase 13 grade bridge headless checks
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_depth_bridge_v13.gd
+      - name: Preserve portable GLB for engine integration
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-citadel-v15-geometry-and-qa
+          path: |
+            game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.glb
+            game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.json
+            game/crownsfall_lootslice/citadel_v15_static.log
+          if-no-files-found: warn
+          retention-days: 30

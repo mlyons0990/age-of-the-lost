@@ -62,7 +62,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          GODOT=/tmp/godot/Godot_v4.3-stable_linux.x86_64
+          GODOT=/tmp/godot/Godot_v4.6.3-stable_linux.x86_64
           "$GODOT" --headless --path /tmp/aotl-r39-runtime --editor --quit 2>&1 | tee /tmp/aotl-controller-import.log
           "$GODOT" --headless --path /tmp/aotl-r39-runtime --script res://tests/verify_warrior_r39_runtime_controller.gd 2>&1 | tee /tmp/aotl-controller-runtime.log
           grep -q "AOTL R39 RUNTIME CONTROLLER PASS" /tmp/aotl-controller-runtime.log

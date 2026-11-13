@@ -675,6 +675,14 @@ func wave_enemy(wave: int) -> String:
 		weights["skeleton"] = minf(2.0, 0.8 + wave * 0.12)
 	if wave >= 4:
 		weights["stag"] = minf(1.5, 0.5 + wave * 0.1)
+	if wave >= 5:
+		weights["wolf"] = minf(2.0, 0.6 + wave * 0.12)
+	if wave >= 7:
+		weights["wraith"] = minf(1.4, 0.4 + wave * 0.08)
+	if is_wild():
+		# the Whisperwood is the wolves' and wraiths' home
+		weights["wolf"] = 3.0
+		weights["wraith"] = 1.6
 	var total := 0.0
 	for k in weights:
 		total += float(weights[k])
@@ -752,6 +760,10 @@ func kill_enemy(e: Node2D) -> void:
 		cols = [Color("7dffc8"), Color("1f4a3c"), Color("c8ffe8")]
 	elif e.type_key == "skeleton":
 		cols = [Color("d8cfc0"), Color("7a1f1f"), Color("2a2a30")]
+	elif e.type_key == "wolf":
+		cols = [Color("b46cff"), Color("2a1640"), Color("e6c8ff")]
+	elif e.type_key == "wraith":
+		cols = [Color("c58cff"), Color("3a2a5a"), Color("ffd27a")]
 	elif e.type_key == "stag":
 		cols = [Color("c9d48a"), Color("6a4a8a"), Color("e8e0c8")]
 	fx_parts.burst(e.position, 40 if e.elite else 18, cols, 5.0, 60.0, 8.0)

@@ -169,6 +169,11 @@ const ETYPES := {
 	# Armoured skeleton swordsman (wave 3+) and a fast antlered charger (wave 4+), both animated from Higgsfield clips.
 	"skeleton": {"name": "Dread Legionnaire", "hp": 62.0, "dmg": 12.0, "speed": 2.2, "range": 1.4, "atk_cd": 1.8, "wind": 0.55, "rad": 0.42, "xp": 1.35, "h": 96.0},
 	"stag": {"name": "Root-bone Stag", "hp": 72.0, "dmg": 14.0, "speed": 3.3, "range": 1.5, "atk_cd": 2.2, "wind": 0.6, "rad": 0.55, "xp": 1.5, "h": 96.0},
+	# Fast pack hunter of the wilds; low life, pounces (Higgsfield void-glass wolf).
+	"wolf": {"name": "Void-glass Wolf", "hp": 38.0, "dmg": 9.0, "speed": 3.8, "range": 1.3, "atk_cd": 1.5, "wind": 0.35, "rad": 0.45, "xp": 1.0, "h": 80.0},
+	# Floating lantern ghost: keeps its distance and throws violet lantern fire.
+	"wraith": {"name": "Lantern Wraith", "hp": 44.0, "dmg": 13.0, "speed": 1.9, "range": 6.5, "keep": 3.6, "atk_cd": 2.8, "wind": 0.85, "rad": 0.4, "xp": 1.45, "h": 96.0,
+		"ranged": true, "bolt_speed": 6.0, "bolt_color": "c58cff"},
 	"brute": {"name": "Thornhide Brute", "hp": 95.0, "dmg": 16.0, "speed": 1.7, "range": 1.6, "atk_cd": 2.3, "wind": 0.7, "rad": 0.6, "xp": 2.0, "h": 92.0},
 }
 const ELITE_PREFIX := ["Vile", "Dread", "Blighted", "Ancient", "Frenzied", "Gloomborn"]

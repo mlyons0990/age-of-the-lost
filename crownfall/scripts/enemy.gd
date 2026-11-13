@@ -10,12 +10,14 @@ const TEX := {
 	"caster": preload("res://assets/enemies/hexcaller.png"),
 	"skeleton": preload("res://assets/enemies/skeleton.png"),
 	"stag": preload("res://assets/enemies/stag.png"),
+	"wolf": preload("res://assets/enemies/wolf.png"),
+	"wraith": preload("res://assets/enemies/wraith.png"),
 }
 const EA := preload("res://scripts/enemy_anims.gd")
 const DEATH_TIME := 1.5     # seconds a death animation plays
 const STRIKE_TIME := 0.42   # seconds the strike animation plays
 ## On-screen scale of each sprite, tuned against the knight's height.
-const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88, "caster": 0.82, "warden": 1.45, "skeleton": 0.84, "stag": 0.86}
+const DRAW_SCALE := {"slime": 0.8, "revenant": 0.84, "brute": 0.88, "caster": 0.82, "warden": 1.45, "skeleton": 0.84, "stag": 0.86, "wolf": 0.8, "wraith": 0.84}
 
 var main: Node2D
 var player: Node2D
@@ -43,6 +45,7 @@ var phase := 0.0
 var stun := 0.8
 var moving := false
 var struck := 0.0
+var last_step := Vector2.RIGHT   # last ground step, to pick the facing of the walk cycle
 var strike_t := 0.0   # counts down while the strike animation plays
 static var _sheets := {}
 var affixes: Array = []   # elite affix ids, see GD.ELITE_AFFIXES
@@ -158,6 +161,8 @@ func _move(g: Vector2) -> void:
 	var np := position + GD.to_px(g)
 	var map := get_world_2d().navigation_map
 	position = NavigationServer2D.map_get_closest_point(map, np)
+	if g.length() > 0.0005:
+		last_step = g
 
 
 func _process(delta: float) -> void:
@@ -246,7 +251,8 @@ func _ranged_ai(delta: float, to_p: Vector2, d_p: float) -> void:
 			atk_cd = float(t["atk_cd"]) * attack_mult() * randf_range(0.85, 1.15)
 			struck = 0.18
 			strike_t = STRIKE_TIME
-			main.fire_bolt(position, player.position, dmg, level, float(t["bolt_speed"]), float(t["range"]), ename)
+			var b: Node2D = main.fire_bolt(position, player.position, dmg, level, float(t["bolt_speed"]), float(t["range"]), ename)
+			b.col = bolt_color()
 		return
 	if d_p > float(t["range"]):
 		_move(to_p / d_p * minf(spd, d_p - float(t["range"]) + 0.1))
@@ -292,6 +298,10 @@ func _boss_specials(delta: float) -> void:
 		struck = 0.18
 		strike_t = STRIKE_TIME
 		main.audio.play("enemy_swing", 0.0)
+
+
+func bolt_color() -> Color:
+	return Color(String(t.get("bolt_color", "7dffc8")))
 
 
 func _start_cast() -> void:
@@ -355,7 +365,10 @@ func current_frame() -> Array:
 	if A.has("walk"):
 		if moving:
 			var n4: int = A["walk"]["frames"]
-			return ["walk", int(phase * 10.0 * speed_mult()) % n4]
+			# walking up the screen: the up-right cycle (mirrored by face when heading up-left)
+			var up: bool = last_step.y < -0.25 * absf(last_step.x) and A.has("walkne")
+			var wa := "walkne" if up else "walk"
+			return [wa, int(phase * 10.0 * speed_mult()) % int(A[wa]["frames"])]
 		return ["walk", 0]
 	return []
 
@@ -375,8 +388,9 @@ func _draw() -> void:
 		var g := GD.ground(position, player.position).normalized()
 		var reach: float = float(t["range"]) + 1.5
 		var end := GD.to_px(g * reach)
-		draw_line(Vector2.ZERO, end, Color(0.5, 1.0, 0.8, 0.12 + 0.2 * wind), 10.0, true)
-		draw_line(Vector2.ZERO, end * wind, Color(0.6, 1.0, 0.85, 0.55), 3.0, true)
+		var bc := bolt_color()
+		draw_line(Vector2.ZERO, end, Color(bc.r, bc.g, bc.b, 0.12 + 0.2 * wind), 10.0, true)
+		draw_line(Vector2.ZERO, end * wind, Color(bc.lightened(0.2), 0.55), 3.0, true)
 	elif state == "windup":
 		wind = 1.0 - wind_left / (float(t["wind"]) * attack_mult())
 		# red warning wedge on the ground
@@ -440,7 +454,7 @@ func _draw() -> void:
 		var cw: float = meta["cw"]
 		var chh: float = meta["ch"]
 		var src := Rect2((fr[1] % cols) * cw, (fr[1] / cols) * chh, cw, chh)
-		var float_up: float = (10.0 + sin(phase * 2.4) * 7.0) if type_key == "caster" else 0.0
+		var float_up: float = (10.0 + sin(phase * 2.4) * 7.0) if type_key in ["caster", "wraith"] else 0.0
 		draw_set_transform(Vector2(0, -float_up), 0.0, Vector2(k * face, k))
 		draw_texture_rect_region(sheet(art_key(), fr[0]), Rect2(Vector2(-float(meta["ax"]), -float(meta["ay"]) + 8.0), Vector2(cw, chh)), src, tint)
 	else:
@@ -461,8 +475,9 @@ func _draw() -> void:
 	if state == "windup" and t.get("ranged", false):
 		var hc := Vector2(30.0 * face, -tall * 0.55 - hop)
 		var rr := 4.0 + 12.0 * wind
-		draw_circle(hc, rr * 1.8, Color(0.5, 1.0, 0.8, 0.2))
-		draw_circle(hc, rr, Color("7dffc8"))
+		var oc := bolt_color()
+		draw_circle(hc, rr * 1.8, Color(oc.r, oc.g, oc.b, 0.2))
+		draw_circle(hc, rr, oc)
 		draw_circle(hc, rr * 0.45, Color("f2fff9"))
 
 	# health bar and elite name

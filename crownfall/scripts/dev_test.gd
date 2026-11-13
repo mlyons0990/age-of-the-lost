@@ -1131,6 +1131,26 @@ func _anim_tests() -> void:
 	await _shot("g26_legionnaire_death")
 	await _wait(1.3)
 	_check(not is_instance_valid(e), "and is removed once it finishes")
+	# wolves and wraiths join later waves; enemies walking up the screen use the up-right cycle
+	var later := {}
+	for i in 500:
+		later[main.wave_enemy(8)] = true
+	_check(later.has("wolf") and later.has("wraith"), "wave 8 can bring Void-glass Wolves and Lantern Wraiths (%s)" % str(later.keys()))
+	main.spawn_enemy("revenant", false, main.RIFT_POS)
+	var rv: Node2D = main.enemies[main.enemies.size() - 1]
+	rv.stun = 99.0
+	rv.moving = true
+	rv.last_step = Vector2(0.2, -1.0)
+	_check(rv.current_frame()[0] == "walkne", "walking up the screen uses the up-right walk (%s)" % str(rv.current_frame()))
+	rv.last_step = Vector2(1.0, 0.4)
+	_check(rv.current_frame()[0] == "walk", "and walking down uses the down-right walk")
+	main.kill_enemy(rv)
+	main.spawn_enemy("wraith", false, main.RIFT_POS + GD.to_px(Vector2(3.0, 0.0)))
+	var wr: Node2D = main.enemies[main.enemies.size() - 1]
+	var b: Node2D = main.fire_bolt(wr.position, p.position, 1.0, 1, 6.0, 6.0, wr.ename)
+	b.col = wr.bolt_color()
+	_check(b.col.is_equal_approx(Color("c58cff")), "the Wraith throws violet lantern fire")
+	main.spawn_enemy("wolf", false, main.RIFT_POS + GD.to_px(Vector2(-1.0, 1.4)))
 	# a Stag in a screenshot for review
 	main.spawn_enemy("stag", false, main.RIFT_POS + GD.to_px(Vector2(1.0, 1.0)))
 	main.spawn_enemy("brute", false, main.RIFT_POS + GD.to_px(Vector2(-0.5, 1.6)))

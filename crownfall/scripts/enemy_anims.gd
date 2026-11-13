@@ -28,6 +28,14 @@ const ANIMS := {
 			"ax": 205.0,
 			"ay": 365.0
 		},
+		"walkne": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 322,
+			"ch": 356,
+			"ax": 165.0,
+			"ay": 339.0
+		},
 		"wind": {
 			"frames": 8,
 			"cols": 6,
@@ -54,6 +62,14 @@ const ANIMS := {
 			"ax": 139.0,
 			"ay": 311.0
 		},
+		"walkne": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 275,
+			"ch": 311,
+			"ax": 140.0,
+			"ay": 306.0
+		},
 		"wind": {
 			"frames": 6,
 			"cols": 6,
@@ -79,6 +95,14 @@ const ANIMS := {
 			"ch": 321,
 			"ax": 139.0,
 			"ay": 311.0
+		},
+		"walkne": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 275,
+			"ch": 311,
+			"ax": 140.0,
+			"ay": 306.0
 		},
 		"wind": {
 			"frames": 6,
@@ -114,6 +138,14 @@ const ANIMS := {
 			"ax": 126.0,
 			"ay": 308.0
 		},
+		"walkne": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 269,
+			"ch": 327,
+			"ax": 135.0,
+			"ay": 313.0
+		},
 		"wind": {
 			"frames": 6,
 			"cols": 6,
@@ -148,6 +180,14 @@ const ANIMS := {
 			"ax": 90.0,
 			"ay": 176.0
 		},
+		"walkne": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 205,
+			"ch": 194,
+			"ax": 107.0,
+			"ay": 181.0
+		},
 		"wind": {
 			"frames": 6,
 			"cols": 6,
@@ -158,6 +198,14 @@ const ANIMS := {
 		}
 	},
 	"stag": {
+		"death": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 362,
+			"ch": 385,
+			"ax": 190.0,
+			"ay": 331.0
+		},
 		"strike": {
 			"frames": 6,
 			"cols": 6,
@@ -174,6 +222,14 @@ const ANIMS := {
 			"ax": 128.0,
 			"ay": 295.0
 		},
+		"walkne": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 219,
+			"ch": 307,
+			"ax": 112.0,
+			"ay": 296.0
+		},
 		"wind": {
 			"frames": 6,
 			"cols": 6,
@@ -181,6 +237,74 @@ const ANIMS := {
 			"ch": 331,
 			"ax": 174.0,
 			"ay": 327.0
+		}
+	},
+	"wolf": {
+		"death": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 438,
+			"ch": 344,
+			"ax": 219.0,
+			"ay": 321.0
+		},
+		"strike": {
+			"frames": 8,
+			"cols": 6,
+			"cw": 357,
+			"ch": 513,
+			"ax": 144.0,
+			"ay": 437.0
+		},
+		"walk": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 296,
+			"ch": 243,
+			"ax": 149.0,
+			"ay": 239.0
+		},
+		"wind": {
+			"frames": 4,
+			"cols": 4,
+			"cw": 345,
+			"ch": 489,
+			"ax": 198.0,
+			"ay": 395.0
+		}
+	},
+	"wraith": {
+		"death": {
+			"frames": 10,
+			"cols": 6,
+			"cw": 270,
+			"ch": 284,
+			"ax": 129.0,
+			"ay": 278.0
+		},
+		"strike": {
+			"frames": 6,
+			"cols": 6,
+			"cw": 367,
+			"ch": 329,
+			"ax": 184.0,
+			"ay": 324.0
+		},
+		"walk": {
+			"frames": 12,
+			"cols": 6,
+			"cw": 279,
+			"ch": 310,
+			"ax": 143.0,
+			"ay": 304.0
+		},
+		"wind": {
+			"frames": 6,
+			"cols": 6,
+			"cw": 367,
+			"ch": 324,
+			"ax": 184.0,
+			"ay": 324.0
 		}
 	}
 }

@@ -242,6 +242,7 @@ F11 fullscreen, F3 walkable outline, Esc save and quit.
 | `assets/items/<slot>.png` | Fallback item icons (weapon, offhand, helm, armor, gloves, belt, boots, ring, amulet), sized to each footprint. Made by `tools/make_item_icons.py`; replace any with a painted portrait of the same aspect and the game uses it |
 | `tools/make_item_icons.py` | Paints the item icons (gradients, outlines, highlights) in the knight's palette |
 | `assets/enemies/anim/<key>_<walk,wind,strike,death>.png` | Enemy animation sheets cut from the Higgsfield clips (`art/higgsfield_trial` branch) by `tools/make_enemy_anim.py`: green keyed, scaled to the still, feet anchored, cells cropped to fit all frames. `tools/collect_enemy_anims.py` writes their layout to `scripts/enemy_anims.gd`. Revenant/Gravecaller (recoloured), Hollowling, Brute (also the Warden), Legionnaire, Stag. Walk loops while moving, wind-up frames follow the warning, strike frames play when the blow lands, death frames play for 1.5 s (Revenant, Gravecaller and Stag still fade) |
+| `assets/enemies/<wolf,wraith>.png` | Void-glass Wolf (fast pack hunter: waves 5+, common in the Whisperwood) and Lantern Wraith (floating caster with violet lantern-fire bolts: waves 7+, Whisperwood), with walk/wind/strike/death sheets. Enemies walking up the screen use `walkne` cycles (Revenant, Gravecaller, Hollowling, Brute, Legionnaire, Stag), mirrored when heading up-left; the Stag now has a death animation |
 | `assets/enemies/<skeleton,stag>.png` | Stills for the Dread Legionnaire (wave 3+) and the Root-bone Stag (wave 4+, fast) |
 | `assets/enemies/hexcaller.png` | Placeholder Gravecaller: the Revenant recoloured spectral green. Replace with real art when available |
 
@@ -255,7 +256,7 @@ by 0.72 vertically (`U` and `SQ` in `game_data.gd`).
 ## Testing
 
 `godot --path . -- --autotest --shots=<folder>` plays a scripted session
-(walk, fight a wave, level to 60 making each class choice, 183 checks covering
+(walk, fight a wave, level to 60 making each class choice, 187 checks covering
 inventory, stash, drag and drop, merchant and shop, stats and stat points,
 Lorecasting, sound and music driven by simulated mouse clicks, save and reload),
 add `--invonly` to run just the inventory checks,
@@ -265,7 +266,7 @@ the last check confirms every test section ran to the end (a GDScript error
 inside a section stops it without failing a check, so also look for
 "SCRIPT ERROR" in the output),
 prints results and saves screenshots. Last run on Godot 4.3 (Linux, software
-renderer, November 12): passed with no script errors and 183 of 183 checks. Not yet run on Windows.
+renderer, November 12): passed with no script errors and 187 of 187 checks. Not yet run on Windows.
 
 ## How the plaza works
 

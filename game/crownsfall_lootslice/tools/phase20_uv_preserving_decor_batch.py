@@ -18,22 +18,49 @@ BATCH_PREFIX="PH20_UVBatch_"
 EXPECTED_SCENE_MESH_COUNT=493
 EXPECTED_SOURCE_DETAIL_COUNT=222
 
-def uv_world_fingerprint(objects):
+def uv_world_records(objects):
     faces=[]
+    loops=defaultdict(list)
     for obj in objects:
         if len(obj.data.uv_layers)!=1:
             raise RuntimeError(f"Missing exactly one UV layer: {obj.name}")
         uv=obj.data.uv_layers[0].data
         for polygon in obj.data.polygons:
-            corners=[]
+            face_uv=[]
             for loopid in polygon.loop_indices:
                 index=obj.data.loops[loopid].vertex_index
                 world=obj.matrix_world @ obj.data.vertices[index].co
                 tex=uv[loopid].uv
-                corners.append(tuple(round(float(v),4)
-                    for v in (world.x,world.y,world.z,tex.x,tex.y)))
-            faces.append(tuple(corners))
-    return hashlib.sha256(repr(sorted(faces)).encode()).hexdigest()
+                key=tuple(round(float(v),6) for v in tex)
+                face_uv.append(key)
+                loops[key].append((float(world.x),float(world.y),float(world.z)))
+            faces.append(tuple(face_uv))
+    return {"faces":faces,"loops":loops}
+
+def verify_uv_world_preserved(before,after,tolerance_m=0.0001):
+    # Blender's applied world transforms use float32 and can shift values by
+    # ~1 micron even when the UV and actual geometry are visually identical.
+    # Compare exact per-face UVs and measure numeric spatial displacement,
+    # never use fragile rounded coordinate hashes as a substitute.
+    if sorted(before["faces"])!=sorted(after["faces"]):
+        raise RuntimeError("UV face winding, coordinates or topology changed")
+    if set(before["loops"])!=set(after["loops"]):
+        raise RuntimeError("UV loop dictionary changed")
+    max_error=0.0
+    for key,source in before["loops"].items():
+        remaining=list(after["loops"][key])
+        if len(remaining)!=len(source):
+            raise RuntimeError("UV loop multiplicity changed")
+        for p in source:
+            distances=[math.dist(p,q) for q in remaining]
+            index=min(range(len(distances)),key=lambda i:distances[i])
+            error=distances[index]
+            if error>tolerance_m:
+                raise RuntimeError(f"Geometry drift {error}m above {tolerance_m}m")
+            max_error=max(max_error,error)
+            remaining.pop(index)
+    uv_digest=hashlib.sha256(repr(sorted(after["faces"])).encode()).hexdigest()
+    return uv_digest,max_error
 
 def mesh_tris(objects):
     return sum(sum(len(p.vertices)-2 for p in obj.data.polygons)
@@ -67,7 +94,7 @@ def optimize_uv_details():
             out["retained_singletons"].append(members[0].name)
             continue
         members=sorted(members,key=lambda o:o.name)
-        before_hash=uv_world_fingerprint(members)
+        before_records=uv_world_records(members)
         before_triangles=mesh_tris(members)
         sample_names=[o.name for o in members]
         bpy.ops.object.select_all(action="DESELECT")
@@ -85,15 +112,16 @@ def optimize_uv_details():
             raise RuntimeError(f"Material slot changed for {batch.name}")
         if batch.data.materials[0].name!=material:
             raise RuntimeError(f"Material changed for {batch.name}")
-        after_hash=uv_world_fingerprint([batch])
-        if before_hash!=after_hash:
-            raise RuntimeError(f"UV/world-space face hash mismatch {batch.name}")
+        after_records=uv_world_records([batch])
+        after_hash,max_worldspace_drift=verify_uv_world_preserved(
+            before_records,after_records)
         after_triangles=mesh_tris([batch])
         if before_triangles!=after_triangles:
             raise RuntimeError(f"Triangle count mismatch {batch.name}")
         out["groups"].append({"batch":batch.name,"source_count":len(sample_names),
              "source_names":sample_names,"material":material,
              "triangles":before_triangles,"face_uv_sha256":after_hash,
+             "maximum_position_error_m":max_worldspace_drift,
              "side":side,"depth_band_4m":band})
     remaining=[o for o in bpy.data.objects if o.type=="MESH"]
     out["optimized_objects"]=len(remaining)

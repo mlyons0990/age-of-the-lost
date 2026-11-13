@@ -2,12 +2,12 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$ExportUrl,
     [string]$ProjectRoot = "",
-    [ValidateSet("AOTL_Warrior_R36.glb","AOTL_Warrior_R37.glb")]
-    [string]$TargetFileName = "AOTL_Warrior_R37.glb",
+    [ValidateSet("AOTL_Warrior_R36.glb","AOTL_Warrior_R37.glb","AOTL_Warrior_R39.glb","AOTL_Warrior_R40.glb")]
+    [string]$TargetFileName = "AOTL_Warrior_R40.glb",
     [switch]$RunImportAudit
 )
 
-# Download a signed Higgsfield R36 GLB and invoke the already backup-safe installer.
+# Download a signed Higgsfield Warrior GLB and invoke the already backup-safe installer.
 # Signed links expire; request a fresh one immediately before running.
 $ErrorActionPreference = "Stop"
 $tools = $PSScriptRoot
@@ -37,7 +37,7 @@ try {
     $installer = Join-Path $tools "install_r36_warrior.ps1"
     & $installer -SourceGlb $downloadPath -ProjectRoot $ProjectRoot -TargetFileName $TargetFileName -RunImportAudit:$RunImportAudit
     if (-not $?) {
-        throw "Local R36 installer did not succeed."
+        throw "Local Warrior installer did not succeed."
     }
 } finally {
     if (Test-Path $downloadPath) {

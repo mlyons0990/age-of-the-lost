@@ -6,6 +6,7 @@ signal impact(at: Vector3, kind: String, direction: Vector3)
 signal health_changed(current: float, maximum: float)
 
 const LEGACY_MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
 const TERRAIN_IK := preload("res://scripts/three_d/terrain_foot_ik.gd")
 const WALK_SPEED := 4.3
@@ -59,20 +60,28 @@ func _production_model_is_valid(candidate: Node3D) -> bool:
 	return true
 
 func _ready() -> void:
-	# Production rig is opt-in only when structurally usable; previous GLB is permanent fallback.
+	# R37 is the production six-clip export. Never remove the validated fallbacks.
 	body = LEGACY_MODEL.instantiate()
-	if ResourceLoader.exists(WARRIOR_R36):
-		var imported_model := ResourceLoader.load(WARRIOR_R36, "PackedScene") as PackedScene
-		if imported_model != null:
-			var candidate := imported_model.instantiate() as Node3D
-			if candidate != null and _production_model_is_valid(candidate):
-				body.free()
-				body = candidate
-				active_model_source = "warrior_r36"
-			else:
-				if candidate != null:
-					candidate.free()
-				push_warning("AOTL Warrior R36 failed the skeleton/clip gate; using backed-up proxy.")
+	for option in [
+		{"path": WARRIOR_R37, "source": "warrior_r37"},
+		{"path": WARRIOR_R36, "source": "warrior_r36"}
+	]:
+		var path: String = option["path"]
+		if not ResourceLoader.exists(path):
+			continue
+		var packed := ResourceLoader.load(path, "PackedScene") as PackedScene
+		if packed == null:
+			continue
+		var candidate := packed.instantiate() as Node3D
+		if candidate != null and _production_model_is_valid(candidate):
+			body.free()
+			body = candidate
+			active_model_source = option["source"]
+			break
+		if candidate != null:
+			candidate.free()
+		push_warning("AOTL asset rejected at runtime: " + path + " (missing required skeleton or clips).")
+
 	add_child(body)
 	animation = body.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if animation != null:

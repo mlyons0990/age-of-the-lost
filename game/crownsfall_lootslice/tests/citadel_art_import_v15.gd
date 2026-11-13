@@ -78,7 +78,7 @@ func _run() -> void:
         _check(absf(_top_of(meshes["ENV_UpperStoneCourt"]) - 1.8) < 0.007,
             "upper court matches landing")
     for side in ["L", "R"]:
-        var pier := "GATE_Pier_" + side
+        var pier: String = "GATE_Pier_" + String(side)
         _check(meshes.has(pier), "gate pier %s imported" % side)
     _check(instance is Node3D, "imported root remains a transformable 3D scene")
     instance.queue_free()

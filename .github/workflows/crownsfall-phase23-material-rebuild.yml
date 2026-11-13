@@ -37,12 +37,12 @@ jobs:
       - name: Install Blender and virtual display for isolated material rebuild
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends blender xvfb
+          sudo apt-get install -y --no-install-recommends blender xvfb python3-numpy
           blender --version
       - name: Generate Phase 23 packed 1024px stone and 512px ivy maps in Blender
         run: |
           cd game/crownsfall_lootslice
-          blender --background --factory-startup --python tools/phase23_rebuild_from_v10.py -- \
+          blender --background --factory-startup --python-exit-code 1 --python tools/phase23_rebuild_from_v10.py -- \
             --source assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb \
             --output assets/25d/citadel/AOTL_Citadel_Painterly_v13.glb \
             --blend-output artifacts/phase23/AOTL_Citadel_Painterly_v13_Editable.blend

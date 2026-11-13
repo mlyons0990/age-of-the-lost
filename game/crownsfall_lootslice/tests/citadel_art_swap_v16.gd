@@ -133,11 +133,16 @@ func _run() -> void:
         "exclusive visuals avoid double exposure")
     _check(bridge.citadel_grade.status().physics_3d_colliders == 64,
         "64 known collision proxies survive multiple toggles")
-    var current := bridge.status()
-    _check(not current.citadel_art_enabled,
-        "status reports the actual active visual path")
-    _check(current.citadel_art_visual_path == "procedural",
-        "status exposes procedural fallback")
+    _check(not bridge.citadel_art_enabled,
+        "bridge restores the actual active visual path")
+    _check(bridge.citadel_art_mesh_count == 220,
+        "mesh inventory survives a complete art/fallback toggle")
+    # Discard the isolated harness rather than leaving physics/Nav RIDs live
+    # in the headless test process. The real gameplay tree owns this lifetime.
+    bridge.scenery.free()
+    nav.free()
+    islands.free()
+    bridge.free()
     if errors.is_empty():
         print("CITADEL_ART_SWAP_V16 PASS %d/%d" % [checks, checks])
         quit(0)

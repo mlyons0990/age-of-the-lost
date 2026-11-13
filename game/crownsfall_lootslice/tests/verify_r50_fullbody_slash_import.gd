@@ -70,7 +70,7 @@ func _verify() -> void:
 	if player == null:
 		quit(1)
 		return
-	var clips: Array = player.get_animation_list()
+	var clips: PackedStringArray = player.get_animation_list()
 	for label in REQUIRED:
 		verify(clips.has(label), "Imported action: " + label)
 	if failures > 0:

@@ -9,6 +9,7 @@ const LEGACY_MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
 const TERRAIN_IK := preload("res://scripts/three_d/terrain_foot_ik.gd")
+const EQUIPMENT_SOCKETS := preload("res://scripts/three_d/equipment_sockets3d.gd")
 const WALK_SPEED := 4.3
 const RUN_SPEED := 6.7
 const DODGE_SPEED := 10.5
@@ -36,6 +37,9 @@ var terrain_ik_available := false
 var active_model_source := "legacy_proxy"
 var terrain_ik_enabled := true
 var terrain_ik_debug := false
+var equipment_sockets: Node = null
+var equipment_sockets_available := false
+var equipment_debug_equipped := false
 
 func _production_model_is_valid(candidate: Node3D) -> bool:
 	# Do not switch the playable actor solely because an R36 file exists.
@@ -107,6 +111,12 @@ func _ready() -> void:
 	terrain_foot_ik.name = "TerrainFootIK"
 	add_child(terrain_foot_ik)
 	terrain_ik_available = terrain_foot_ik.configure(body, self, animation)
+	# Optional equipment sockets. Old proxies without attachment bones remain playable.
+	equipment_sockets = EQUIPMENT_SOCKETS.new()
+	equipment_sockets.name = "WarriorEquipmentSockets"
+	add_child(equipment_sockets)
+	equipment_sockets_available = equipment_sockets.configure(body)
+
 
 func _toggle_terrain_ik() -> void:
 	if not terrain_ik_available:
@@ -121,6 +131,54 @@ func _toggle_terrain_ik_debug() -> void:
 		return
 	terrain_ik_debug = not terrain_ik_debug
 	terrain_foot_ik.set_debug_visible(terrain_ik_debug)
+
+
+func equip_weapon_scene(scene: PackedScene, local_offset: Transform3D = Transform3D.IDENTITY) -> bool:
+	if not equipment_sockets_available:
+		return false
+	return equipment_sockets.equip_scene("weapon", scene, local_offset)
+
+func equip_offhand_scene(scene: PackedScene, local_offset: Transform3D = Transform3D.IDENTITY) -> bool:
+	if not equipment_sockets_available:
+		return false
+	return equipment_sockets.equip_scene("offhand", scene, local_offset)
+
+func unequip_slot(slot: String) -> void:
+	if equipment_sockets_available:
+		equipment_sockets.unequip(slot)
+
+func _debug_equipment_item(slot: String) -> MeshInstance3D:
+	var debug := MeshInstance3D.new()
+	debug.name = "Debug_" + slot
+	var mesh := BoxMesh.new()
+	if slot == "weapon":
+		mesh.size = Vector3(0.075, 0.075, 0.8)
+	else:
+		mesh.size = Vector3(0.42, 0.6, 0.08)
+	debug.mesh = mesh
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.albedo_color = Color("e9bf70") if slot == "weapon" else Color("6fa4df")
+	debug.material_override = mat
+	debug.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	return debug
+
+func _toggle_equipment_socket_preview() -> void:
+	if not equipment_sockets_available:
+		return
+	equipment_debug_equipped = not equipment_debug_equipped
+	if not equipment_debug_equipped:
+		equipment_sockets.unequip_all()
+		return
+	for slot in ["weapon", "offhand"]:
+		if equipment_sockets.has_slot(slot):
+			var offset := Transform3D.IDENTITY
+			if slot == "weapon":
+				offset.origin = Vector3(0, 0.0, -0.38)
+			else:
+				offset.origin = Vector3(0, -0.08, 0)
+			equipment_sockets.equip_node(slot, _debug_equipment_item(slot), offset)
+
 
 func _play(clip: String) -> void:
 	if animation == null or not clip_names.has(clip):
@@ -139,6 +197,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		match event.keycode:
 			KEY_F9: _toggle_terrain_ik()
 			KEY_F10: _toggle_terrain_ik_debug()
+			KEY_F11: _toggle_equipment_socket_preview()
 			KEY_SPACE: _dodge()
 			KEY_1: _attack("Cleave", 0.76)
 			KEY_2: _attack("Dash", 0.68)

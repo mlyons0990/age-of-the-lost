@@ -38,7 +38,15 @@ func _run() -> void:
 	if rig == null or not rig.ready_to_compare:
 		finish()
 		return
-	verify(rig.model_root.name == "AOTL_Humanoid_Master_V06", "new revision10 GLB loaded rather than V03")
+	verify(rig.model_root.name == "AOTL_Humanoid_Master_V06", "Higgsfield revision11 weighted GLB loaded")
+	verify(rig.disabled_stage_lights == 3, "three imported turntable lights isolated from Crownsfall")
+	verify(rig.disabled_stage_cameras == 1, "imported Blender studio camera isolated")
+	verify(lab.camera.current, "original approved gameplay camera remains active")
+	var studio_lights_disabled := true
+	for node in rig.model_root.find_children("*", "Node3D", true, false):
+		if node is Light3D and (node.visible or (node as Light3D).light_energy > 0.0001):
+			studio_lights_disabled = false
+	verify(studio_lights_disabled, "no Higgsfield light brightens the Crownsfall world")
 	verify(rig.skeleton.get_bone_count() == 58, "all 58 bone joints intact")
 	verify(rig.clips.size() == 23, "all 16 clips intact")
 	verify(rig.equipment.size() == 7, "gear and VFX mounts preserved")

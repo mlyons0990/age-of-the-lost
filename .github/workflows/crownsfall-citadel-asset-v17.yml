@@ -21,6 +21,10 @@ on:
       - 'game/crownsfall_lootslice/tools/phase18_stage_citadel_candidate.py'
       - 'game/crownsfall_lootslice/tests/test_phase18_stage_citadel_candidate.py'
       - 'game/crownsfall_lootslice/tools/phase18_citadel_recovery_audit.py'
+      - 'game/crownsfall_lootslice/tools/phase20_batch_sculpt_details.py'
+      - 'game/crownsfall_lootslice/tools/validate_citadel_sculpt_v20_v08.py'
+      - 'game/crownsfall_lootslice/tests/test_phase20_batch_manifest.py'
+      - 'game/crownsfall_lootslice/data/citadel_phase20_batch_manifest.json'
       - 'game/crownsfall_lootslice/tools/build_citadel_art_v17.py'
       - 'game/crownsfall_lootslice/scripts/two_point_five_d/**'
       - '.github/workflows/crownsfall-citadel-asset-v17.yml'
@@ -73,6 +77,10 @@ jobs:
           python -m unittest discover -s tests -p 'test_phase18_citadel_recovery_audit.py' -v
           python -m unittest discover -s tests -p 'test_phase18_citadel_immutable_backup.py' -v
           python -m unittest discover -s tests -p 'test_phase18_stage_citadel_candidate.py' -v
+      - name: Phase 20 optimized mesh provenance checks
+        run: |
+          cd game/crownsfall_lootslice
+          python -m unittest discover -s tests -p 'test_phase20_batch_manifest.py' -v
       - name: Install Godot 4.6.3
         uses: solarlabyrinth/action-setup-godot@v3
         with:

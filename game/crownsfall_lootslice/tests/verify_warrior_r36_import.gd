@@ -2,7 +2,7 @@ extends SceneTree
 ## Required model import gate (not the optional fallback test).
 ## godot --headless --path game/crownsfall_lootslice --script res://tests/verify_warrior_r36_import.gd
 
-const DEFAULT_MODEL := "res://models/AOTL_Warrior_R37.glb"
+const DEFAULT_MODEL := "res://models/AOTL_Warrior_R40.glb"
 const REQUIRED_BONES = [
 	"Root", "Hips", "ThighL", "KneeL", "ShinL", "AnkleL", "FootL",
 	"ThighR", "KneeR", "ShinR", "AnkleR", "FootR"
@@ -14,25 +14,25 @@ func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--model="):
 			var requested := arg.trim_prefix("--model=")
-			if requested in ["AOTL_Warrior_R36.glb", "AOTL_Warrior_R37.glb"]:
+			if requested in ["AOTL_Warrior_R36.glb", "AOTL_Warrior_R37.glb", "AOTL_Warrior_R39.glb", "AOTL_Warrior_R40.glb"]:
 				selected = "res://models/" + requested
 			else:
 				push_error("Invalid Warrior model name: " + requested)
 				quit(1)
 				return
 	if not ResourceLoader.exists(selected):
-		push_error("Missing R36 GLB: copy the exact exported model to " + selected)
+		push_error("Missing Warrior GLB: copy the exact exported model to " + selected)
 		quit(1)
 		return
 	var packed := ResourceLoader.load(selected, "PackedScene") as PackedScene
 	if packed == null:
-		push_error("R36 GLB could not be imported as a PackedScene")
+		push_error("Warrior GLB could not be imported as a PackedScene")
 		quit(1)
 		return
 	var model := packed.instantiate()
 	var rigs := model.find_children("*", "Skeleton3D", true, false)
 	if rigs.is_empty():
-		push_error("No imported Skeleton3D in R36")
+		push_error("No imported Skeleton3D in Warrior GLB")
 		model.free()
 		quit(1)
 		return

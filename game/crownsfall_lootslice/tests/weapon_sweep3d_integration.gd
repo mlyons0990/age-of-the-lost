@@ -37,6 +37,7 @@ func _initialize() -> void:
 	check(SWEEP.attack_contact_phase("Slash") > SWEEP.attack_contact_phase("Cast"), "Sword timing follows cast timing")
 	var anchor := Node3D.new()
 	anchor.position = Vector3(2, 1, -1)
+	root.add_child(anchor)
 	check(SWEEP.blade_from_socket(anchor).has("tip"), "Bone attachment sampler accepts a Node3D")
 	check(SWEEP.blade_from_socket(null).is_empty(), "Missing weapon socket falls back safely")
 	var path_samples: Array = [

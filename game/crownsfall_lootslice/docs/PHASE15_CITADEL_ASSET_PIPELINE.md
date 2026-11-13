@@ -45,6 +45,6 @@ Generated manifest: `assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.json`
 
 ## QA result and limitations
 
-The standalone Python asset gates passed 8/8 suites on the generated 220-mesh GLB; all nine stair top heights and Gothic voussoir topology were examined as actual binary glTF geometry. The Godot import smoke-test script and CI workflow are included but not yet engine-verified from this execution environment. A true engine result must come from a Godot-equipped Windows development system or a successfully executed GitHub Actions runner.
+The standalone Python asset gates passed 8/8 suites on the generated 220-mesh GLB; all nine stair top heights and Gothic voussoir topology were examined as actual binary glTF geometry. GitHub Actions run **43389153600** passed the complete headless gate on actual **Godot 4.6.3**: GLB import 35/35, Phase 12 graded stairs 119/119, Phase 13 depth bridge 20/20, plus eight successful Python static mesh test groups. This is verifiable engine evidence, not an assertion that the actual user-approved Phase 11 F5 Citadel scene has been visually or interactively tested.
 
 No paid Higgsfield generation credits were used for this pass. The approved original painterly art remains the final quality reference. There are still no wilderness zones in this branch.

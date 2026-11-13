@@ -8,6 +8,7 @@ signal health_changed(current: float, maximum: float)
 const LEGACY_MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
 const WARRIOR_R40 := "res://models/AOTL_Warrior_R40.glb"
 const WARRIOR_R50_SLASH_CANDIDATE := "res://models/AOTL_Warrior_R50_SevenClip_Candidate.glb"
+const WARRIOR_R52_RIGID_ARMOR_CANDIDATE := "res://models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb"
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
@@ -47,6 +48,7 @@ var equipment_sockets_available := false
 var equipment_debug_equipped := false
 # Opt-in only; preserve the existing validated R39/R40 model by default.
 @export var enable_r50_fullbody_slash_candidate := false
+@export var enable_r52_rigid_armor_candidate := false
 
 func _production_model_is_valid(candidate: Node3D) -> bool:
 	# Do not switch the playable actor solely because an R36 file exists.
@@ -83,6 +85,8 @@ func _ready() -> void:
 	]
 	if enable_r50_fullbody_slash_candidate:
 		model_candidates.push_front({"path": WARRIOR_R50_SLASH_CANDIDATE, "source": "warrior_r50_opt_in"})
+	if enable_r52_rigid_armor_candidate:
+		model_candidates.push_front({"path": WARRIOR_R52_RIGID_ARMOR_CANDIDATE, "source": "warrior_r52_opt_in"})
 	for option in model_candidates:
 		var path: String = option["path"]
 		if not ResourceLoader.exists(path):
@@ -112,7 +116,7 @@ func _ready() -> void:
 				animation.get_animation(name).loop_mode = Animation.LOOP_LINEAR
 	# Remap only the opt-in R50's Slash. The original Slash remains in the
 	# GLB and the older models' animation mappings are never altered.
-	if active_model_source == "warrior_r50_opt_in" and clip_names.has("Slash_FullBody_R50"):
+	if active_model_source in ["warrior_r50_opt_in", "warrior_r52_opt_in"] and clip_names.has("Slash_FullBody_R50"):
 		clip_names["Slash"] = clip_names["Slash_FullBody_R50"]
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.26

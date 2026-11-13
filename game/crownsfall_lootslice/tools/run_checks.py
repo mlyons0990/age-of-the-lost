@@ -1,4 +1,4 @@
-"""Run the eighteen suites with separate, disposable Linux user-data directories.
+"""Run the twenty suites with separate, disposable Linux user-data directories.
 
 Usage: python3 tools/run_checks.py --report-dir /tmp/aotl-reports
 The project cache/result text files are updated; actual progress is not used.
@@ -24,7 +24,9 @@ SUITES=[
  ('skill_tiles',['--script','res://tests/skill_tiles_integration.gd'],'SKILL TILES RESULT',75),
  ('actor_feedback',['--script','res://tests/actor_feedback_integration.gd'],'ACTOR FEEDBACK RESULT',54),
  ('dialogue',['--script','res://tests/dialogue_integration.gd'],'DIALOGUE RESULT',40),
- ('camera_hud',['--script','res://tests/camera_hud_integration.gd'],'CAMERA HUD RESULT',45)]
+ ('camera_hud',['--script','res://tests/camera_hud_integration.gd'],'CAMERA HUD RESULT',45),
+ ('dodge_roll',['--script','res://tests/dodge_roll_integration.gd'],'DODGE ROLL RESULT',71),
+ ('dodge_corner',['--script','res://tests/dodge_corner_integration.gd'],'DODGE CORNER RESULT',16)]
 
 def main():
  parser=argparse.ArgumentParser(description=__doc__)

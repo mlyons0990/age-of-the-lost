@@ -29,10 +29,10 @@ PASS new left potion cluster invokes the real heal exactly once
 PASS potion click cannot steer the character
 PASS new right skill square invokes its actual equipped ability
 PASS skill click cannot steer the character
-PASS orb/minimap decoration absorbs pointer clicks at (158.0, 968.0)
-PASS orb/minimap decoration absorbs wheel input at (158.0, 968.0)
-PASS orb/minimap decoration absorbs pointer clicks at (1762.0, 968.0)
-PASS orb/minimap decoration absorbs wheel input at (1762.0, 968.0)
+PASS orb/minimap decoration absorbs pointer clicks at (158.0, 1808.0)
+PASS orb/minimap decoration absorbs wheel input at (158.0, 1808.0)
+PASS orb/minimap decoration absorbs pointer clicks at (1762.0, 1808.0)
+PASS orb/minimap decoration absorbs wheel input at (1762.0, 1808.0)
 PASS orb/minimap decoration absorbs pointer clicks at (1770.0, 100.0)
 PASS orb/minimap decoration absorbs wheel input at (1770.0, 100.0)
 PASS camera and HUD input leave world coordinates unchanged
@@ -42,9 +42,5 @@ PASS camera keeps painted edges at walkable boundary (860.0, 350.0)
 PASS camera keeps painted edges at walkable boundary (2340.0, 1536.0)
 PASS camera keeps painted edges at walkable boundary (800.0, 1100.0)
 PASS camera keeps painted edges at walkable boundary (1820.0, 1536.0)
-PASS native resize keeps scenery coverage at (1280, 960)
-PASS native resize moves actual click target with its skill at (1280, 960)
-PASS native resize keeps scenery coverage at (1440, 600)
-PASS native resize moves actual click target with its skill at (1440, 600)
 PASS new presentation preserves valid progression saves
-CAMERA HUD RESULT 49 checks; 0 failures
+CAMERA HUD RESULT 45 checks; 0 failures

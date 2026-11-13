@@ -7,6 +7,10 @@ AOTL Files
 
 The playable scene now uses the approved wider zoomable camera, corner life/mana orbs, left health-flask charges, right skill squares, overhead resource bars, XP strip and top-right map/quests. Wheel zoom and Home reset preserve the original navigation. The camera/HUD checkpoint passes 1,039 headless assertions and 49 native camera/HUD checks; no credits were spent.
 
+## Dodge Roll with the approved corner HUD
+
+[Combined Dodge/HUD handoff](game/crownsfall_lootslice/docs/DODGE_CORNER_HANDOFF.md). Space or the round button beside the left health flasks rolls Warrior or Mage with a brief invulnerability window and 2.5-second cooldown. The approved wider camera, corner layout, skill art and Grady dialogue are retained. All 1,126 headless checks across 20 suites pass, along with 71 native roll checks and 20 native corner-control checks. The tumble remains procedural; dedicated painted roll frames and roll audio remain future work.
+
 ## Selective dialogue pilot
 
 [Dialogue handoff](game/crownsfall_lootslice/docs/SELECTIVE_DIALOGUE_HANDOFF.md) · [Grady pilot provenance](audio/dialogue_pilot/2026-11-12/README.md).
@@ -19,7 +23,7 @@ The Quartermaster greeting and two Cantor encounter lines now use the selected G
 
 ## Dodge Roll ability icon
 
-[Open the Dodge Roll icon](art/ability_icons/dodge_roll/2026-11-12/README.md): one round UI icon (winged ivory and gold boot with speed lines on a navy disc) in 1024, 256, 128, 64 and 48px, with the exact Higgsfield source, prompt and job ID. Artwork only; no ability or game data was added. Stored as normal Git files, not Git LFS.
+[Open the Dodge Roll icon](art/ability_icons/dodge_roll/2026-11-12/README.md): one round UI icon (winged ivory and gold boot with speed lines on a navy disc) in 1024, 256, 128, 64 and 48px, with the exact Higgsfield source, prompt and job ID. The original art-only release is preserved; the playable Dodge Roll now uses its exact 128px image. Stored as normal Git files, not Git LFS.
 
 ## Latest development: actor feedback and selective voice reference
 

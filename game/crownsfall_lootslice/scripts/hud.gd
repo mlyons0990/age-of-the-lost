@@ -30,6 +30,7 @@ var bag_view: Control
 var gear_buttons: Array = []
 var overlay_buttons: Array = []
 var hud_blockers: Array[Control] = []
+var dodge_button: Button
 
 func _exit_tree() -> void:
 	ART.icons.clear()
@@ -45,7 +46,7 @@ func _ready() -> void:
 	row.add_child(_button("Mastery [M]", func() -> void: open_page("mastery")))
 	row.add_child(_button("Cantor Trial [T]", func() -> void: open_page("trial")))
 	row.add_child(_button("Nearby loot [N]",func() -> void: open_page("loot")))
-	var controls := _label("LMB  Move / attack\nShift + LMB  Attack in place\nRMB / 1–4  Equipped skills\nQ  Health potion\nWheel  Camera distance\nHome  Reset camera\nE  Interact   ·   F  Collect", 17)
+	var controls := _label("LMB  Move / attack\nShift + LMB  Attack in place\nRMB / 1–4  Equipped skills\nQ  Health potion   ·   Space  Dodge\nWheel  Camera distance\nHome  Reset camera\nE  Interact   ·   F  Collect", 17)
 	controls.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	controls.mouse_filter = Control.MOUSE_FILTER_STOP
 	row.add_child(controls)
@@ -69,6 +70,14 @@ func _ready() -> void:
 			else: player.use_skill(["basic", "s1", "s2", "s3", "s4"][i], player.last_world_aim))
 		add_child(b)
 		overlay_buttons.append(b)
+	dodge_button = Button.new()
+	dodge_button.flat = true
+	dodge_button.focus_mode = Control.FOCUS_NONE
+	dodge_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	dodge_button.mouse_force_pass_scroll_events = false
+	dodge_button.pressed.connect(func() -> void:
+		if not get_tree().paused: player.dodge_roll(player.last_world_aim))
+	add_child(dodge_button)
 	get_viewport().size_changed.connect(_layout_bar)
 	_layout_bar()
 	save_strip=PanelContainer.new(); save_strip.z_index=100
@@ -108,6 +117,9 @@ func _layout_bar() -> void:
 		var rect: Rect2 = layout.potion if i == 5 else layout.skills[i]
 		overlay_buttons[i].position = rect.position
 		overlay_buttons[i].size = rect.size
+	var dodge_rect := dodge_button_rect(view)
+	dodge_button.position = dodge_rect.position
+	dodge_button.size = dodge_rect.size
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton and event.pressed:
@@ -251,7 +263,7 @@ func open_page(kind: String) -> void:
 			box.add_child(_button("Sound effects: " + ("Off" if main.sound.muted else "On"), func() -> void:
 				main.sound.set_muted(not main.sound.muted)
 				open_page("pause"), Vector2(0, 42)))
-			box.add_child(_label("Crownsfall / Systems expansion\n\nLMB: move or attack · Shift+LMB: first equipped skill\nRMB / 1 / 2 / 3 / 4: skills · Q: potion\nE: nearby service · I: equipment · C: character · K/B: spellbook\nR: training Scar · F11: fullscreen · F3: navigation outline\nF6: gain a level (development shortcut)", 20))
+			box.add_child(_label("Crownsfall / Systems expansion\n\nLMB: move or attack · Shift+LMB: first equipped skill\nRMB / 1 / 2 / 3 / 4: skills · Q: potion · Space: dodge roll\nE: nearby service · I: equipment · C: character · K/B: spellbook\nR: training Scar · F11: fullscreen · F3: navigation outline\nF6: gain a level (development shortcut)", 20))
 			box.add_child(_button("Save and quit", func() -> void:
 				main.request_exit(), Vector2(0, 42)))
 			if not main.save_error.is_empty() or main.save_blocked:
@@ -593,7 +605,7 @@ func _open_start() -> void:
 		paths.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; paths.custom_minimum_size.x = 500; card.add_child(paths)
 	creation_details = VBoxContainer.new(); box.add_child(creation_details)
 	_refresh_creation_details()
-	box.add_child(_label("LMB: move or use primary skill  ·  1 / 2 / 3 / 4: active abilities  ·  Q: potion\nI: inventory  ·  K: Grimoire  ·  E: nearby services  ·  R: training Scar  ·  Esc: pause", 17, Color("9daec5")))
+	box.add_child(_label("LMB: move or use primary skill  ·  1 / 2 / 3 / 4: active abilities  ·  Q: potion  ·  Space: dodge roll\nI: inventory  ·  K: Grimoire  ·  E: nearby services  ·  R: training Scar  ·  Esc: pause", 17, Color("9daec5")))
 	var begin := func() -> void:
 		if start_panel == null: return
 		if not main.create_character(creation_class, name_edit.text): return
@@ -739,7 +751,7 @@ func _trial_page(box: VBoxContainer) -> void:
 	copy.add_child(_label("Severing Line: step sideways. Falling Seals: leave the three circles.\nUnmaking Ring: stand inside the small ring or beyond the outer edge.\nWarnings lock their positions when drawn. A committed seal survives stun.",17,Color("ffd5b0")))
 	var t: Dictionary = preload("res://scripts/encounter_rules.gd").tuning(player.level)
 	box.add_child(_label("Level %d · %d boss health · %d gold + 20%% level XP + one gear drop per victory" % [player.level,int(t.boss_hp),int(t.gold)],18))
-	box.add_child(_label("Gear stays on the floor if you cannot collect it. Loot on the floor is not saved.\nR retreats with no reward. Leaving the marked arena or a long frame ends the run.\nPause and inventory freeze the encounter. Town services, mastery changes and F7 wait until it ends.",16,Color("b9c4d7")))
+	box.add_child(_label("Gear stays on the floor if you cannot collect it. Ground loot is saved.\nR retreats with no reward. Leaving the marked arena or a long frame ends the run.\nPause and inventory freeze the encounter. Town services, mastery changes and F7 wait until it ends.",16,Color("b9c4d7")))
 	box.add_child(_label("Recorded victories: %d · %s" % [main.encounter_wins,main.encounter.last_result],16,Color("d9c2ff")))
 	if main.encounter.active:
 		box.add_child(_button("Retreat from the trial",func() -> void:

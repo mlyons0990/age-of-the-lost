@@ -1,0 +1,39 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS navigation fixture has a committed actor before pure inspection
+PASS arrow key events enter navigation mode and move the real cell cursor
+PASS Tab switches to the character sheet without replacing the backpack
+PASS second Tab restores equipment
+PASS right shoulder chooses character tab
+PASS left shoulder chooses equipment tab
+PASS D-pad routes through the same clamped navigation state
+PASS Enter inspects the actual item at the cursor
+PASS gamepad A pins the same real item card
+PASS navigation, tabbing and inspection cannot change ownership, progression or disk bytes
+PASS keyboard clamps at bottom-right boundary
+PASS keyboard clamps at top-left boundary
+PASS focused text input prevents keyboard navigation and controller quick-equip
+PASS first gamepad B releases search focus without closing inventory
+PASS next gamepad B closes and resumes the world
+PASS Shift+Enter equips through the authoritative gear transaction
+PASS successful gear refresh preserves navigation mode and selected coordinate
+PASS keyboard equip is persisted with exact current resources
+PASS gamepad X quick-equips a legal focus through the same transaction
+PASS staff comparison names the displaced offhand before any swap
+PASS refreshing a focus inspector preserves the actor and navigation mode
+PASS pointer selection returns the backpack to mouse mode
+PASS Mage fractional base Dexterity is derived and rendered without integer truncation
+PASS character offense comes from the actual equipped build
+PASS character and backpack stay fully right-docked at (1280, 720)
+PASS character resources and real bag remain available at (1280, 720)
+PASS character and backpack stay fully right-docked at (1440, 810)
+PASS character resources and real bag remain available at (1440, 810)
+PASS character and backpack stay fully right-docked at (1920, 1080)
+PASS character resources and real bag remain available at (1920, 1080)
+PASS character and backpack stay fully right-docked at (2560, 1440)
+PASS character resources and real bag remain available at (2560, 1440)
+PASS character and backpack stay fully right-docked at (960, 720)
+PASS character resources and real bag remain available at (960, 720)
+PASS Warrior sheet uses its weapon-based offense instead of Mage power
+PASS navigation leaves an importable schema-six actor
+NAVIGATION RESULT 36 checks; 0 failures

@@ -1,0 +1,79 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS twelve selected equipment variants are registered
+PASS nineteen skill and eleven service icons are registered
+PASS runtime ability coverage comes from all nineteen implemented definitions
+PASS implemented ability echo_strike loads its selected icon
+PASS implemented ability frost_ring loads its selected icon
+PASS implemented ability ember_cone loads its selected icon
+PASS implemented ability dawnfall loads its selected icon
+PASS implemented ability cinder_thread loads its selected icon
+PASS implemented ability glacial_stitch loads its selected icon
+PASS implemented ability arcane_fold loads its selected icon
+PASS implemented ability ashen_ward loads its selected icon
+PASS implemented ability starfall_script loads its selected icon
+PASS implemented ability slash loads its selected icon
+PASS implemented ability cleave loads its selected icon
+PASS implemented ability charge loads its selected icon
+PASS implemented ability rally loads its selected icon
+PASS implemented ability hammer loads its selected icon
+PASS implemented ability harvest loads its selected icon
+PASS implemented ability breath loads its selected icon
+PASS implemented ability solar_writ loads its selected icon
+PASS implemented ability winter_crown loads its selected icon
+PASS implemented ability epoch_lance loads its selected icon
+PASS service artwork ui_inventory resolves without fallback
+PASS service artwork ui_character resolves without fallback
+PASS service artwork ui_stash resolves without fallback
+PASS service artwork ui_merchant resolves without fallback
+PASS service artwork ui_blacksmith resolves without fallback
+PASS service artwork ui_pickup resolves without fallback
+PASS service artwork ui_transfer resolves without fallback
+PASS service artwork ui_equip resolves without fallback
+PASS service artwork ui_compare resolves without fallback
+PASS service artwork ui_inspect resolves without fallback
+PASS service artwork ui_interact resolves without fallback
+PASS selected weapon portrait preserves authoritative inventory dimensions
+PASS selected offhand portrait preserves authoritative inventory dimensions
+PASS selected helm portrait preserves authoritative inventory dimensions
+PASS selected armor portrait preserves authoritative inventory dimensions
+PASS selected gloves portrait preserves authoritative inventory dimensions
+PASS selected boots portrait preserves authoritative inventory dimensions
+PASS selected wand portrait preserves authoritative inventory dimensions
+PASS selected focus portrait preserves authoritative inventory dimensions
+PASS selected robe portrait preserves authoritative inventory dimensions
+PASS selected hood portrait preserves authoritative inventory dimensions
+PASS selected ring portrait preserves authoritative inventory dimensions
+PASS selected belt portrait preserves authoritative inventory dimensions
+PASS unknown artwork remains readable through vector fallback
+PASS a missing selected icon falls back to its original vector
+PASS a missing selected portrait falls back to the preserved original
+PASS warrior weapon fitted equipment art keeps aspect and caption clearance
+PASS warrior offhand fitted equipment art keeps aspect and caption clearance
+PASS warrior armor fitted equipment art keeps aspect and caption clearance
+PASS warrior helm fitted equipment art keeps aspect and caption clearance
+PASS warrior gloves fitted equipment art keeps aspect and caption clearance
+PASS warrior belt fitted equipment art keeps aspect and caption clearance
+PASS warrior boots fitted equipment art keeps aspect and caption clearance
+PASS warrior ring1 fitted equipment art keeps aspect and caption clearance
+PASS warrior equipment and backpack share the same selected artwork
+PASS warrior right-panel tabs show the selected service symbols
+PASS warrior real equipment action retains its selected symbol
+PASS warrior Grimoire list uses the selected active ability icon
+PASS mage weapon fitted equipment art keeps aspect and caption clearance
+PASS mage offhand fitted equipment art keeps aspect and caption clearance
+PASS mage armor fitted equipment art keeps aspect and caption clearance
+PASS mage helm fitted equipment art keeps aspect and caption clearance
+PASS mage gloves fitted equipment art keeps aspect and caption clearance
+PASS mage belt fitted equipment art keeps aspect and caption clearance
+PASS mage boots fitted equipment art keeps aspect and caption clearance
+PASS mage ring1 fitted equipment art keeps aspect and caption clearance
+PASS mage equipment and backpack share the same selected artwork
+PASS mage right-panel tabs show the selected service symbols
+PASS mage real equipment action retains its selected symbol
+PASS mage Grimoire list uses the selected active ability icon
+PASS existing Lorecast action shows the interaction symbol
+PASS decorated discovery callback still commits and reveals the crafting symbol
+PASS unique circlet retains its original dedicated portrait
+PASS art selection leaves a valid schema-six gameplay save
+SELECTED ART RESULT 76 checks; 0 failures

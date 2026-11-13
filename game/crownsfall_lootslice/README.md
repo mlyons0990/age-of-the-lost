@@ -4,7 +4,7 @@ November 13, 2026. The approved wider camera and corner HUD are implemented; see
 
 All nineteen implemented base abilities plus Ember Aura now use crisp grimdark full-square artwork in the action bar and Grimoire. Each image uses a tightly cropped action composition, with the subject and supporting artwork extending to the edges of the square inside the thin button frame. Clean contours and controlled shading preserve readability. Each icon has its own beveled metal frame, following the user-approved AOTL standard. Hotkeys, cooldown shading/numbers, active-aura ON state and low-mana borders remain live overlays. Earlier approved symbols and equipment artwork remain preserved.
 
-[Latest actor-feedback handoff](docs/ACTOR_FEEDBACK_HANDOFF.md) covers damage recoil, charge lean, death/corpse poses and respawn resets. [Skill-art handoff](docs/FULL_SKILL_BUTTONS_HANDOFF.md) explains the approved source atlas, exact IDs and reproduction. The right-docked equipment/character sheet, exact inventory footprints, stat scaling and schema-six saves remain included. The earlier [art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) records the preceding cycle.
+[Latest handoff: Dodge Roll with the corner HUD](docs/DODGE_CORNER_HANDOFF.md) adds a Space-bound evasive roll with a HUD button. [Actor-feedback handoff](docs/ACTOR_FEEDBACK_HANDOFF.md) covers damage recoil, charge lean, death/corpse poses and respawn resets. [Skill-art handoff](docs/FULL_SKILL_BUTTONS_HANDOFF.md) explains the approved source atlas, exact IDs and reproduction. The right-docked equipment/character sheet, exact inventory footprints, stat scaling and schema-six saves remain included. The earlier [art integration handoff](docs/ART_INTEGRATION_HANDOFF.md) records the preceding cycle.
 
 ## Play
 
@@ -21,6 +21,7 @@ All nineteen implemented base abilities plus Ember Aura now use crisp grimdark f
 | LMB / hold; Shift+LMB | Move or primary action; primary in place |
 | RMB / 1; 2; 3; 4 | Four additional equipped slots |
 | Q | Health potion |
+| Space | Dodge Roll toward the cursor |
 | I; C; K / B; M | Equipment; character stats; Grimoire; Mage mastery graph |
 | F; N | Collect nearest drop; inspect nearby loot beside backpack |
 | E; R; T | Nearby service; open/close Scar or retreat from trial; trial briefing |
@@ -63,7 +64,7 @@ godot --headless --path . --script res://tests/art_audio_integration.gd
 godot --headless --path . --script res://tests/mastery_integration.gd
 ```
 
-Current total: **1,039 headless assertions across 18 suites**, including 40 dialogue checks, 54 actor-feedback checks and 75 skill-art checks. The actor-feedback suite also passes its 54 checks rendered, with seven native review captures. Current complete logs are in `tests/camera_hud_qa/`; prior skill-art logs remain in `tests/skill_tiles_qa/`. Earlier native inventory/town/grid tests add six historical pointer assertions; those were not rerun in this cycle. The source ZIP excludes caches and live progress. Tuning exports and validated example builds remain under `data/`.
+Current total: **1,126 headless assertions across 20 suites**, including 40 dialogue checks, 54 actor-feedback checks and 75 skill-art checks. The actor-feedback suite also passes its 54 checks rendered, with seven native review captures. Current complete logs are in `tests/dodge_corner_qa/`; prior skill-art logs remain in `tests/skill_tiles_qa/`. Earlier native inventory/town/grid tests add six historical pointer assertions; those were not rerun in this cycle. The source ZIP excludes caches and live progress. Tuning exports and validated example builds remain under `data/`.
 
 Remaining production work includes human encounter/economy tuning and audio review, Windows export/target hardware testing, additional character animation, real gear attachment visuals and the production 3D Mage. Current 2D clothing/staff are baked into the sprites. The lab remains an independent proxy testbed.
 

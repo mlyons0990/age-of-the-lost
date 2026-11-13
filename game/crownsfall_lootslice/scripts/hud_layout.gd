@@ -8,4 +8,4 @@ static func for_viewport(view: Vector2) -> Dictionary:
 	for i in 5: skills.append(Rect2(x0+i*72*scale,view.y-116*scale,side,side))
 	return {"scale":scale,"skills":skills,"potion":Rect2(280*scale,view.y-116*scale,238*scale,side),
 		"life":Vector2(158*scale,view.y-112*scale),"mana":Vector2(view.x-158*scale,view.y-112*scale),
-		"radius":82*scale,"xp":Rect2(280*scale,view.y-17*scale,view.x-560*scale,9*scale)}
+		"dodge":Rect2(550*scale,view.y-116*scale,side,side),"radius":82*scale,"xp":Rect2(280*scale,view.y-17*scale,view.x-560*scale,9*scale)}

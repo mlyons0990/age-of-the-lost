@@ -1,0 +1,60 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS creation offers a selectable Mage
+PASS class selection updates preview model
+PASS creation commits chosen class and name
+PASS Mage starter inventory has real staff and cloth equipment
+PASS all five Mage base spells available at level one
+PASS Warrior skills cannot be assigned to Mage
+PASS each playable class has exactly three specialization choices
+PASS Grimoire filters other classes but retains recovered magic
+PASS Mage level-one attribute and resource curve
+PASS Mage level-one spell-power formula
+PASS Intelligence increases Mage spells without weapon inflation
+PASS staff occupies 2x4 real inventory cells
+PASS Mage equips wand in weapon destination
+PASS wand supports focus in offhand
+PASS staff transaction returns displaced wand and focus to bag
+PASS two-handed staff rejects an offhand
+PASS full bag weapon swap preserves staff and candidate atomically
+PASS Mage cannot equip plate chest armor
+PASS Mage robe maps to chest destination
+PASS burn uses the same spell-power snapshot as direct cone damage
+PASS damage variance resolves within shared bounds
+PASS critical direct damage uses defined multiplier
+PASS tooltip includes actual burn rate and duration
+PASS cast snapshot is immutable when gear changes before impact
+PASS three-second burn resolves all six half-second ticks without losing the last tick
+PASS partial final burn interval preserves the exact damage budget
+PASS Cinder Thread accepts aimed cast
+PASS cast recovery blocks simultaneous spell overwrite
+PASS projectile does not hit before cast release
+PASS projectile travels, impacts and restores mana on a hit
+PASS generator grants mana only once per cast
+PASS Glacial Stitch accepts cast
+PASS frost projectile applies its real slow
+PASS second frost stitch within six seconds freezes
+PASS swept projectile collision prevents tunneling
+PASS Arcane Fold moves to valid ground immediately
+PASS invalid blink spends neither mana nor cooldown
+PASS Ashen Ward creates a timed damage barrier
+PASS ward absorbs mitigated incoming damage without healing
+PASS expired ward cannot absorb further damage
+PASS death cancels a queued ground impact
+PASS ranged primary attacks from range without walking to melee distance
+PASS empty primary slot clears chase intent
+PASS Fire specialization unlocks only its own technique
+PASS Frost specialization keeps Arcane technique locked
+PASS heroic selection names Chronomancer for Arcane Mage
+PASS Arcane advances to selected Chronomancer identity
+PASS chosen cooldown reduction applies to primary slot
+PASS cooldown duration does not depend on hotbar position
+PASS schema six stores class identity
+PASS save reload preserves Mage, resources and cooldowns
+PASS malformed gear is rejected before typed model calls
+PASS negative cooldown save values are rejected
+PASS unknown saved class cannot silently become Warrior
+PASS schema two Warrior state remains explicitly importable
+PASS empty merchant stock survives save/load without regeneration
+PASS future heroic preview cannot invest before level forty
+MAGE RESULT 57 checks; 0 failures

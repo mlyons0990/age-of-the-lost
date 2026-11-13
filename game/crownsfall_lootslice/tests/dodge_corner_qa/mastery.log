@@ -1,0 +1,89 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS mastery points follow the documented level schedule
+PASS Warrior does not inherit Mage mastery points
+PASS pure investment validates without mutating caller state
+PASS transformation requires the ward prerequisite
+PASS transformation requires discovery as well as level
+PASS heroic transformation cannot be bought before level forty
+PASS investment cannot exceed earned point budget
+PASS complete Bloom build fits exactly five level-forty points
+PASS exclusive branches cannot coexist even with spare points
+PASS malformed or overspent mastery state rejected: { "unknown": 1 }
+PASS malformed or overspent mastery state rejected: { "ward_temper": 1.5 }
+PASS malformed or overspent mastery state rejected: { "ward_temper": -1 }
+PASS malformed or overspent mastery state rejected: { "ward_temper": "1" }
+PASS malformed or overspent mastery state rejected: { "ward_temper": 4 }
+PASS malformed or overspent mastery state rejected: { "ward_temper": 3, "ember_aura": 1, "cinder_bloom": 1 }
+PASS refunding prerequisite atomically refunds the dependent graph
+PASS refunding a spare prerequisite rank preserves valid downstream nodes
+PASS Steady Flame retains its separate level-forty-five gate
+PASS ward ranks improve the active barrier without mutating definitions
+PASS transformation preserves stable base identity and hotbar slot
+PASS activation pays ten mana and replaces the timed ward
+PASS aura waits a full interval before its first paid pulse
+PASS pulse pays upkeep before damaging living targets
+PASS insufficient upkeep stops before damage and never overdraws mana
+PASS insufficient activation mana commits nothing
+PASS empty-space pulses still pay and never refund mana
+PASS active aura reduces actual natural regeneration to one quarter
+PASS toggling off restores normal natural regeneration
+PASS frame catch-up preserves four separate paid half-second pulses
+PASS active aura uses its immutable activation snapshot
+PASS toggle off bypasses resource and recovery locks without resetting cooldown
+PASS removing aura from the five active slots stops it
+PASS cast cancellation clears aura and secondary ground effects
+PASS death cancels the paid aura before further pulses
+PASS combat respec rejection preserves ranks and running effects
+PASS town respec refunds dependents and reconciles transient effects
+PASS base aura respects its actual collision radius
+PASS Cinder Bloom expands actual pulse reach rather than only its label
+PASS Steady Flame reduces actual upkeep without reducing damage coefficient
+PASS upper ward ranks remain useful after transformation through snapshotted pulse damage
+PASS Siphon heals from one actual HP of damage rather than overkill
+PASS invulnerable targets produce neither damage nor healing
+PASS Siphon caps recovery at three percent max life in a rolling second
+PASS additional same-window hits cannot exceed recovery cap
+PASS toggling cannot reset the rolling recovery cap
+PASS recovery budget becomes available after its rolling window expires
+PASS secondary damage cannot feed the aura lifesteal trigger
+PASS a primary kill of a burning target creates one Cinder patch
+PASS overlapping Cinder patches do not stack or refresh
+PASS a secondary patch kill cannot create another patch
+PASS duplicate kill callbacks do not grant credit or create patches
+PASS Cinder patch expires after its two half-second ticks
+PASS aura has a hard eight-patch visual and simulation cap
+PASS named cloth circlet equips in Mage head slot
+PASS Emberwake adjusts actual pulse cadence and payment
+PASS unique cadence preserves baseline damage and mana per second
+PASS item sanitizer retains the recognized unique identity
+PASS elite drops above character cap still generate usable level-sixty gear
+PASS unique cadence does not emit an early pulse
+PASS unique emits a real paid 0.4-second pulse at the adjusted cost
+PASS burn extension caps remaining duration without resetting tick progress
+PASS repeated unique extensions never exceed four seconds
+PASS extension never shortens a pre-existing longer burn
+PASS unequipping unique stops snapshot effects and removes cadence modifier
+PASS full-bag crafting fails atomically without charging or consuming the memory
+PASS underfunded crafting preserves ownership and currency
+PASS lore attunement charges once and grants the actual unique item
+PASS unique memory cannot be crafted repeatedly
+PASS save fixture contains a genuinely running aura before serialization
+PASS schema six saves stable node ranks and once-only crafting state
+PASS reload preserves build, unique, resources and cooldown while dropping transient aura
+PASS save validator rejects exclusive-branch corruption
+PASS save validator rejects unknown named powers
+PASS fractional currency cannot be silently truncated during load
+PASS unrecognized fractional schema values are rejected
+PASS prior schema-three saves remain explicitly importable
+PASS schema-three import starts with unspent points and does not auto-transform or heal
+PASS future mastery saves activate write protection
+PASS protected future save bytes remain unchanged after a save attempt
+PASS long aura descriptions can scroll to the final actual assignment button
+PASS an actual level-forty mastery build enters the independent 3D lab
+PASS scene round-trip restores the exact canonical mastery build
+PASS scene return selects Mage art before the first physics update
+PASS scene round-trip preserves named-item ownership and consumed attunement
+PASS scene round-trip preserves paid resources and stable cooldown without a reload heal
+PASS scene round-trip discards transient aura and resumes ordinary gameplay
+MASTERY RESULT 86 checks; 0 failures

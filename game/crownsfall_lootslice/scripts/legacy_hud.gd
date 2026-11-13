@@ -10,6 +10,11 @@ const GOLD := Color("e8c77a")
 const BRONZE := Color(0.62, 0.47, 0.22)
 const DARK := Color(0.07, 0.06, 0.08, 0.92)
 const SLOTS := [["basic", "LMB"], ["s1", "1"], ["s2", "2"], ["s3", "3"], ["s4", "4"]]
+const DODGE_ICON := "res://assets/ui/dodge_roll.png"
+
+## One shared rectangle for the drawn utility icon and its actual click target.
+static func dodge_button_rect(view: Vector2) -> Rect2:
+	return Layout.for_viewport(view).dodge
 
 var main: Node2D
 var player: Node2D
@@ -163,7 +168,7 @@ func _open_start() -> void:
 	edit.custom_minimum_size = Vector2(320, 44)
 	edit.add_theme_font_size_override("font_size", 22)
 	box.add_child(edit)
-	var help := _label("Left click / hold: move or attack      Shift + click: attack in place\nRight click or 1 / 2 / 3 / 4: equipped skills      Q: potion\nMouse wheel: camera distance      Home: reset camera      F2: menus\nR: open or close the Reality Scar      I / C: inventory      K: spellbook      E: nearby interaction\nF11: fullscreen      F3: show walk area      Esc: close panel or pause\n\nThe plaza is safe until you open the Reality Scar. Waves of the Unwritten then break through.\nDevelopment shortcut: F6 gains a level instantly.", 17, Color("cfc6b2"))
+	var help := _label("Left click / hold: move or attack      Shift + click: attack in place\nRight click or 1 / 2 / 3 / 4: equipped skills      Q: potion      Space: dodge roll\nMouse wheel: camera distance      Home: reset camera      F2: menus\nR: open or close the Reality Scar      I / C: inventory      K: spellbook      E: nearby interaction\nF11: fullscreen      F3: show walk area      Esc: close panel or pause\n\nThe plaza is safe until you open the Reality Scar. Waves of the Unwritten then break through.\nDevelopment shortcut: F6 gains a level instantly.", 17, Color("cfc6b2"))
 	box.add_child(help)
 	var begin := func() -> void:
 		var n := edit.text.strip_edges()
@@ -530,6 +535,33 @@ class HudDraw extends Control:
 			tip = {"name":"Health Potion","desc":"Restore 45% of your life. Five vessels show remaining charges.","meta":"Q or click · %d remaining" % p.potions}
 			tip_rect = potion
 		var max_mp: float = s["max_mp"]
+		# Dodge Roll: round button with a clockwise cooldown sweep
+		var dr: Rect2 = hud.dodge_button_rect(size)
+		var dc := dr.get_center()
+		var d_radius := dr.size.x / 2.0
+		draw_circle(dc, d_radius + 6, BRONZE.darkened(0.35))
+		draw_circle(dc, d_radius + 1, Color(0.03, 0.03, 0.05))
+		# Keep a reference: a texture loaded only for this call is freed before the frame renders.
+		if not icon_cache.has("dodge_roll"):
+			icon_cache["dodge_roll"] = load(hud.DODGE_ICON) if ResourceLoader.exists(hud.DODGE_ICON) else null
+		if icon_cache["dodge_roll"] != null:
+			draw_texture_rect(icon_cache["dodge_roll"], dr, false)
+		else:
+			draw_circle(dc, d_radius, Color(0.06, 0.12, 0.3))
+			_text_c("Roll", dc + Vector2(0, 7), 18, Color.WHITE)
+		if p.dodge_cd > 0.0:
+			var left: float = clampf(p.dodge_cd / p.DODGE_COOLDOWN, 0.0, 1.0)
+			var sweep := PackedVector2Array([dc])
+			for i in 33:
+				var a: float = -PI / 2.0 + TAU * (1.0 - left) + TAU * left * i / 32.0
+				sweep.append(dc + Vector2(cos(a), sin(a)) * d_radius)
+			if left > 0.02: draw_colored_polygon(sweep, Color(0, 0, 0, 0.72))
+			if p.dodge_cd > 0.6: _text_c(str(int(ceil(p.dodge_cd))), dc + Vector2(0, 8), 24, Color.WHITE)
+		draw_arc(dc, d_radius + 3, 0, TAU, 48, BRONZE if p.dodge_ready() else BRONZE.darkened(0.4), 3.0, true)
+		_text_c("Space", Vector2(dc.x, dr.end.y + 23*scale), maxi(12,int(17*scale)), Color.WHITE, 4)
+		if hud.char_panel==null and dr.has_point(mouse):
+			tip = {"name": "Dodge Roll", "desc": "Roll toward the cursor and ignore damage for a moment. Cannot interrupt a swing or cast.", "meta": "No mana · %ss cooldown" % str(p.DODGE_COOLDOWN)}
+			tip_rect = dr
 		_orb(layout.life,layout.radius,Color(0.56,0.025,0.05),p.hp/max_hp,"")
 		_orb(layout.mana,layout.radius,Color(0.055,0.19,0.56),p.mp/max_mp,"")
 		var frame_scale: float = layout.radius/190.0

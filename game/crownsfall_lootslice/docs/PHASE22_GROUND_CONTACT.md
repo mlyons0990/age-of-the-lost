@@ -14,11 +14,11 @@ Run `godot --headless --path game/crownsfall_lootslice --script res://tests/phas
 **Critical limitation:** bone joints are not shoe soles and the proxy has no final skinning polish. The sample classifier does not prove finished natural motion; review visible knee hyperextension, foot slide, physics-floor contact and foot target lifetime in Windows Godot 4.6.3 before using it in the production actor. No paid Higgsfield credits required.
 
 ## Latest engine evidence (isolated Godot 4.4.1)
-- Pure stance/swing and anatomical reach calculations: 20 checks pass.
+- Pure stance/swing and anatomical reach calculations: 22 checks pass.
 - IK skeleton binding/disable: 10 checks pass.
 - Walk animation with actual physics ground: 11 checks, 2 acquired plants, 1 release, 98 ground-ray hits.
 - Run animation with actual physics ground: 11 checks, 2 acquired plants, 2 releases, 122 ground-ray hits.
-- Physical 70-degree incline: 6 checks, 2 steep-ground rejects, no locks.
+- Physical 70-degree incline: 9 checks, 2 steep-ground rejects; 20-degree ground accepted; raised step avoids burying feet, no locks.
 - Component lifecycle (100 toggles + clean teardown): 9 checks.
 - Phase21 gait (14), stride math (11), missing-master fallback (3): 28 regression checks.
-Total **95 passing assertions**. No Godot 4.6.3 Windows verification was executed in this environment.
+Total **100 passing assertions**. No Godot 4.6.3 Windows verification was executed in this environment.

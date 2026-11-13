@@ -33,6 +33,10 @@ func _capture() -> void:
 		return
 	var lab = scene.instantiate()
 	root.add_child(lab)
+	# Keep every dummy in the playable scene; hide only for the isolated
+	# gait capture so the legs remain visible through the full stride.
+	for dummy in lab.dummies:
+		dummy.visible = false
 	await wait_frames(35)
 	lab._set_camera_zoom(21.0)
 	await wait_frames(5)

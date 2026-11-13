@@ -311,6 +311,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				if not get_tree().paused:
 					toggle_live_25d()
 					get_viewport().set_input_as_handled()
+			KEY_F10:
+				if not get_tree().paused and live_25d_enabled and live_25d != null:
+					var depth_on: bool = live_25d.toggle_knight_depth()
+					hud.toast("Painted knight: real 3D geometry depth (F10)" if depth_on else "Painted knight: original 2D rendering (F10)", Color("d4b26e"), true)
+					get_viewport().set_input_as_handled()
 			KEY_F7:
 				_enter_articulation_lab()
 			KEY_F6:

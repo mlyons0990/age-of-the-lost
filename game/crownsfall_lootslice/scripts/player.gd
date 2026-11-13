@@ -9,6 +9,7 @@ const Projectile := preload("res://scripts/projectile.gd")
 const GD := preload("res://scripts/game_data.gd")
 const Mastery := preload("res://scripts/mastery_data.gd")
 const Aura := preload("res://scripts/aura_controller.gd")
+const GROUNDING_METADATA := "res://assets/25d/aotl_class_foot_anchors_v06.json"
 
 const SPEED := 340.0          # pixels per second across the screen
 const DEPTH_SQUASH := 0.72    # moving "into" the screen covers less ground
@@ -45,6 +46,9 @@ var visual_class_id := ""
 var mage_art_active := false
 var visual_cast_time := 0.0
 var frame_cache: Dictionary = {}
+var foot_anchor_frames: Dictionary = {}
+var current_foot_anchor_px := 0.0
+var current_sheet_frame_size := FRAME
 var shadow: Sprite2D
 var path: PackedVector2Array = PackedVector2Array()
 var path_index := 0
@@ -106,6 +110,8 @@ var swinging := 0.0
 
 
 func _ready() -> void:
+	var parsed = JSON.parse_string(FileAccess.get_file_as_string(GROUNDING_METADATA))
+	if parsed is Dictionary: foot_anchor_frames = parsed.get("frames", {})
 	aura = Aura.new()
 	aura.actor = self
 	shadow = Sprite2D.new()
@@ -162,6 +168,7 @@ func visual_state() -> String:
 
 func _process(delta: float) -> void:
 	_advance_visual_feedback(delta)
+	_apply_visual_footlock()
 
 func _advance_visual_feedback(delta: float) -> void:
 	if visual_root == null: return
@@ -263,6 +270,25 @@ func _build_frames() -> SpriteFrames:
 	return sf
 
 
+func _apply_visual_footlock() -> void:
+	# Read-only rendering offset: the player transform, collisions, hit timing and
+	# world-space navigation all remain untouched.
+	if sprite == null or sprite.sprite_frames == null: return
+	var id := "mage" if mage_art_active else "knight"
+	var path := id + "/" + String(sprite.animation) + ".png"
+	var metadata: Dictionary = foot_anchor_frames.get(path, {})
+	if metadata.is_empty(): return
+	var anchors: Array = metadata.get("feet_y", [])
+	if anchors.is_empty(): return
+	var sheet_size := int(metadata.get("frame_size", FRAME))
+	var f := clampi(sprite.frame, 0, anchors.size() - 1)
+	current_foot_anchor_px = float(anchors[f])
+	current_sheet_frame_size = sheet_size
+	# AnimatedSprite2D is centered. Keep estimated boot contact FEET pixels below
+	# the authoritative 2D world position even when switching 384->512px sheets.
+	sprite.offset = Vector2(0.0, -current_foot_anchor_px + float(sheet_size) * 0.5 + FEET.y / SPRITE_SCALE)
+
+
 func _shadow_texture() -> Texture2D:
 	var g := Gradient.new()
 	g.set_color(0, Color(1, 1, 1, 1))
@@ -298,6 +324,7 @@ func _swing(on_hit: Callable) -> void:
 		sprite.flip_h = f[1]
 		sprite.play(anim)
 		sprite.frame = 0
+		_apply_visual_footlock()
 		swinging = ATTACK_TIME
 		sprite.scale = Vector2.ONE * SPRITE_SCALE
 	pending_hit = on_hit

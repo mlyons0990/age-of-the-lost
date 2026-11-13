@@ -1,0 +1,272 @@
+{
+  "schema": 1,
+  "source": "source-alpha lower-body candidate pixels; manual review needed for attack VFX overlap",
+  "note": "y coordinate is estimated lower-body contact point in sheet-frame source pixels; not a mocap foot IK track",
+  "frames": {
+    "knight/attack_ne.png": {
+      "frame_size": 512,
+      "feet_y": [
+        439,
+        452,
+        453,
+        453,
+        453,
+        453,
+        453,
+        453,
+        453,
+        452,
+        452,
+        451,
+        449,
+        447,
+        433
+      ]
+    },
+    "knight/attack_se.png": {
+      "frame_size": 512,
+      "feet_y": [
+        426,
+        426,
+        426,
+        425,
+        425,
+        428,
+        449,
+        466,
+        468,
+        475,
+        474,
+        465,
+        470,
+        466,
+        466
+      ]
+    },
+    "knight/idle_down.png": {
+      "frame_size": 384,
+      "feet_y": [
+        373
+      ]
+    },
+    "knight/idle_ne.png": {
+      "frame_size": 384,
+      "feet_y": [
+        367
+      ]
+    },
+    "knight/idle_right.png": {
+      "frame_size": 384,
+      "feet_y": [
+        359
+      ]
+    },
+    "knight/idle_se.png": {
+      "frame_size": 384,
+      "feet_y": [
+        371
+      ]
+    },
+    "knight/idle_up.png": {
+      "frame_size": 384,
+      "feet_y": [
+        352
+      ]
+    },
+    "knight/walk_down.png": {
+      "frame_size": 384,
+      "feet_y": [
+        371,
+        367,
+        360,
+        353,
+        365,
+        368,
+        372,
+        370,
+        364,
+        357,
+        352,
+        362
+      ]
+    },
+    "knight/walk_ne.png": {
+      "frame_size": 384,
+      "feet_y": [
+        368,
+        365,
+        361,
+        360,
+        366,
+        373,
+        374,
+        372,
+        368,
+        358,
+        358,
+        367
+      ]
+    },
+    "knight/walk_right.png": {
+      "frame_size": 384,
+      "feet_y": [
+        346,
+        350,
+        354,
+        359,
+        359,
+        356,
+        350,
+        350,
+        357,
+        356,
+        352,
+        345
+      ]
+    },
+    "knight/walk_se.png": {
+      "frame_size": 384,
+      "feet_y": [
+        366,
+        368,
+        374,
+        368,
+        359,
+        353,
+        350,
+        354,
+        355,
+        349,
+        348,
+        362
+      ]
+    },
+    "knight/walk_up.png": {
+      "frame_size": 384,
+      "feet_y": [
+        361,
+        354,
+        357,
+        362,
+        368,
+        372,
+        370,
+        359,
+        352,
+        354,
+        357,
+        361
+      ]
+    },
+    "mage/cast_down.png": {
+      "frame_size": 384,
+      "feet_y": [
+        365,
+        365
+      ]
+    },
+    "mage/cast_ne.png": {
+      "frame_size": 384,
+      "feet_y": [
+        364,
+        364
+      ]
+    },
+    "mage/cast_right.png": {
+      "frame_size": 384,
+      "feet_y": [
+        365,
+        364
+      ]
+    },
+    "mage/cast_se.png": {
+      "frame_size": 384,
+      "feet_y": [
+        363,
+        362
+      ]
+    },
+    "mage/cast_up.png": {
+      "frame_size": 384,
+      "feet_y": [
+        364,
+        364
+      ]
+    },
+    "mage/idle_down.png": {
+      "frame_size": 384,
+      "feet_y": [
+        366
+      ]
+    },
+    "mage/idle_ne.png": {
+      "frame_size": 384,
+      "feet_y": [
+        365
+      ]
+    },
+    "mage/idle_right.png": {
+      "frame_size": 384,
+      "feet_y": [
+        366
+      ]
+    },
+    "mage/idle_se.png": {
+      "frame_size": 384,
+      "feet_y": [
+        364
+      ]
+    },
+    "mage/idle_up.png": {
+      "frame_size": 384,
+      "feet_y": [
+        365
+      ]
+    },
+    "mage/walk_down.png": {
+      "frame_size": 384,
+      "feet_y": [
+        379,
+        364,
+        364,
+        358
+      ]
+    },
+    "mage/walk_ne.png": {
+      "frame_size": 384,
+      "feet_y": [
+        381,
+        365,
+        366,
+        358
+      ]
+    },
+    "mage/walk_right.png": {
+      "frame_size": 384,
+      "feet_y": [
+        370,
+        370,
+        353,
+        362
+      ]
+    },
+    "mage/walk_se.png": {
+      "frame_size": 384,
+      "feet_y": [
+        379,
+        364,
+        364,
+        355
+      ]
+    },
+    "mage/walk_up.png": {
+      "frame_size": 384,
+      "feet_y": [
+        378,
+        364,
+        364,
+        357
+      ]
+    }
+  }
+}

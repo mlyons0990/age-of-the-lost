@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "phase": "06",
+  "project": "AOTL",
+  "date": "2026-11-12",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "new_integration": {
+    "checks": 42,
+    "passed": 42,
+    "exit_code": 0,
+    "script": "res://tests/knight_depth_footlock_integration.gd"
+  },
+  "prior_regression": {
+    "suites": 16,
+    "checks": 954,
+    "passed": 954,
+    "exit_code": 0
+  },
+  "render": {
+    "engine": "Godot 4.6.3 Linux Xvfb/OpenGL llvmpipe",
+    "resolution": "1440x810",
+    "true_depth_actor_visible": true,
+    "opaque_test_blocker_front_behind": "manually visually confirmed; blocker not shipped",
+    "combat_preview": "existing Warrior source frames in Godot",
+    "mage_preview": "existing Mage source cast frames in Godot",
+    "frame_alignment": "calibrated Sprite3D pivot and 512px attack half-canvas"
+  },
+  "preserved": [
+    "2D Player gameplay authority",
+    "save schema 6",
+    "navigation",
+    "inventory",
+    "quests",
+    "loot",
+    "five active skills",
+    "canon knight/mage source PNG sprites",
+    "Phase05 2.5D scenery and art"
+  ],
+  "limitations": [
+    "True 3D rigged character art is not yet faithful",
+    "Original source animation reused; not a new mocap/rig",
+    "Foot contact from alpha estimates awaiting manual approval",
+    "Windows user test pending",
+    "3D depth preview is opt-in F10",
+    "City not production-complete",
+    "Wider 2026 approved AOTL reference still not reached; model remains a painted 3D-depth billboard, not a true 3D mesh"
+  ],
+  "paid_higgsfield_credits_used": 0,
+  "rendered_visibility_guard": {
+    "script": "res://tests/knight_depth_visual_integration.gd",
+    "checks": 4,
+    "passed": 4,
+    "exit_code": 0,
+    "pixel_difference_samples": 2380,
+    "rendering": "Xvfb/OpenGL llvmpipe 1440x810"
+  },
+  "subphase": "06.1 \u2014 Native-pose pixel alignment + real GPU occlusion",
+  "gpu_pixel_validation": {
+    "checks": 25,
+    "passed": 25,
+    "exit_code": 0,
+    "script": "res://tests/knight_depth_render_validation.gd",
+    "renderer": "Godot 4.6.3 OpenGL via Xvfb/llvmpipe",
+    "resolution": "1440x810",
+    "native_vs_true_depth_boot_max_delta_px": 3,
+    "opaque_mesh_occlusion": {
+      "unobstructed_pixels": 20238,
+      "blocked_pixels": 0
+    },
+    "poses": [
+      "Warrior idle SE",
+      "Warrior walk SE frame 2",
+      "Warrior sword attack SE frame 9",
+      "Mage cast SE frame 1"
+    ]
+  }
+}

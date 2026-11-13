@@ -85,6 +85,84 @@
         "warrior",
         "mage"
       ]
+    },
+    {
+      "id": "crownwarden_cuirass",
+      "name": "Crownwarden Cuirass",
+      "slot": "armor",
+      "grid": [
+        2,
+        3
+      ],
+      "portrait": "res://assets/item_portraits/phase_a_armor/crownwarden_cuirass.png",
+      "allowed_classes": [
+        "warrior"
+      ]
+    },
+    {
+      "id": "epochweave_robe",
+      "name": "Epochweave Robe",
+      "slot": "robe",
+      "grid": [
+        2,
+        3
+      ],
+      "portrait": "res://assets/item_portraits/phase_a_armor/epochweave_robe.png",
+      "allowed_classes": [
+        "mage"
+      ]
+    },
+    {
+      "id": "bastion_sallet",
+      "name": "Bastion Sallet",
+      "slot": "helm",
+      "grid": [
+        2,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a_armor/bastion_sallet.png",
+      "allowed_classes": [
+        "warrior"
+      ]
+    },
+    {
+      "id": "veilbound_hood",
+      "name": "Veilbound Hood",
+      "slot": "hood",
+      "grid": [
+        2,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a_armor/veilbound_hood.png",
+      "allowed_classes": [
+        "mage"
+      ]
+    },
+    {
+      "id": "dawnsteel_gauntlets",
+      "name": "Dawnsteel Gauntlets",
+      "slot": "gloves",
+      "grid": [
+        2,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a_armor/dawnsteel_gauntlets.png",
+      "allowed_classes": [
+        "warrior"
+      ]
+    },
+    {
+      "id": "wayfarer_greaves",
+      "name": "Wayfarer's Greaves",
+      "slot": "boots",
+      "grid": [
+        2,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a_armor/wayfarer_greaves.png",
+      "allowed_classes": [
+        "warrior"
+      ]
     }
   ],
   "integration": {
@@ -95,7 +173,8 @@
     "tests": {
       "isolated_named_item_checks": "72/72 pass",
       "isolated_merchant_checks": "104/104 pass",
-      "full_scene_runtime": "pending"
+      "full_scene_runtime": "pending",
+      "armor_isolated": "81/81 pass"
     }
   }
 }

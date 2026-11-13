@@ -147,7 +147,7 @@ func _build_hud() -> void:
     summary = _small_label("", 13)
     v.add_child(summary)
     v.add_child(_small_label("WASD / click move · Shift run · Space dodge · 1/2/3 attacks", 13, GOLD))
-    var mode_hint := "Wheel or +/- zoom · Home reset · V painted/rig/proxy · Tab class" if (OS.get_cmdline_user_args().has("--aotl-v03") or OS.get_cmdline_user_args().has("--aotl-v04")) else "Wheel or +/- zoom · Home reset · V proxy · Tab class"
+    var mode_hint := "Wheel or +/- zoom · Home reset · V painted/rig/proxy · Tab class" if (OS.get_cmdline_user_args().has("--aotl-v03") or OS.get_cmdline_user_args().has("--aotl-v04") or OS.get_cmdline_user_args().has("--aotl-v05")) else "Wheel or +/- zoom · Home reset · V proxy · Tab class"
     v.add_child(_small_label(mode_hint, 13, GOLD))
     v.add_child(_small_label("P: show / hide approved art reference", 13, IVORY))
     zoom_label = _small_label("", 13, Color("b0d3fb"))

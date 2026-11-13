@@ -184,13 +184,15 @@ func elevation_at(painted_point: Vector2) -> float:
     var local: Vector3 = route_basis.inverse() * (point - route_origin)
     if local.z >= run_length_m:
         return ascent_m
-    # Sub-tread interpolation keeps the painted knight from popping 20cm at
-    # each riser; the actual CollisionShape3D treads remain precisely stepped.
+    # Match the real collision top across most of each tread. Blend the
+    # leading 15% of each step from the previous surface so the painted
+    # depth-avatar does not instantly jump at a riser.
     var t := clampf(local.z / run_length_m, 0.0, 1.0)
     var phase := t * float(steps)
     var step_index := floorf(phase)
-    var mix_value := clampf((phase - step_index - 0.65) / 0.35, 0.0, 1.0)
-    var eased := mix_value * mix_value * (3.0 - 2.0 * mix_value)
+    var within_tread := phase - step_index
+    var fade := clampf(within_tread / 0.15, 0.0, 1.0)
+    var eased := fade * fade * (3.0 - 2.0 * fade)
     return minf(ascent_m, (step_index + eased) * ascent_m / float(steps))
 
 func status() -> Dictionary:

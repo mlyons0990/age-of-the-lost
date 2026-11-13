@@ -38,11 +38,13 @@ func _run() -> void:
 	var bone_node = candidate.body.find_child("Skeleton3D", true, false)
 	var skeleton: Skeleton3D = bone_node as Skeleton3D
 	verify(skeleton != null and skeleton.get_bone_count() >= 62, "R50 skeleton retains full articulation")
+	candidate.animation.play(candidate.clip_names["Slash"], 0.0)
 	candidate.animation.seek(0.0, true)
 	var hip_index: int = skeleton.find_bone("Hips")
 	var start_rotation: Quaternion = skeleton.get_bone_global_pose(hip_index).basis.get_rotation_quaternion()
 	candidate.animation.seek(0.48, true)
 	var later_rotation: Quaternion = skeleton.get_bone_global_pose(hip_index).basis.get_rotation_quaternion()
+	print("AOTL R50 HIP DELTA DEGREES: ", rad_to_deg(start_rotation.angle_to(later_rotation)))
 	verify(start_rotation.angle_to(later_rotation) > 0.05, "Live controller R50 Slash rotates the hips")
 	candidate.set_physics_process(true)
 	candidate._play("Idle")

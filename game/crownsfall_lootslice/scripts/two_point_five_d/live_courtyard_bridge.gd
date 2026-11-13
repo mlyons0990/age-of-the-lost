@@ -11,6 +11,8 @@ const CITY_DISTRICT08_3D := preload("res://scripts/two_point_five_d/crownsfall_m
 const GD := preload("res://scripts/game_data.gd")
 const LIVE_KNIGHT := preload("res://scripts/two_point_five_d/knight_depth_billboard.gd")
 const CITADEL_GRADE := preload("res://scripts/two_point_five_d/citadel_grade_geometry_v12.gd")
+const CITADEL_ART_SCENE := "res://assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.glb"
+const CITADEL_ART_MANIFEST := "res://assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.json"
 const RIGHT := Vector3(0.70710678, 0.0, -0.70710678)
 const TOWARDS_CAMERA := Vector3(0.70710678, 0.0, 0.70710678)
 const VIEW_OFFSET := Vector3(12.8, 16.4, 12.8)
@@ -43,6 +45,11 @@ var citadel_grade: Node3D = null
 var citadel_grade_nav: NavigationRegion2D = null
 var citadel_grade_preview := false
 var citadel_grade_foot_samples := 0
+## An optional GLB visual layer under the *same* grade assembly transform.
+## Never creates new nav, collision, input, NPC, inventory or save authority.
+var citadel_art_root: Node3D = null
+var citadel_art_enabled := false
+var citadel_art_mesh_count := 0
 
 
 func _ready() -> void:
@@ -107,8 +114,8 @@ func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
         return false
     if route_nav.navigation_polygon == null or clear_width_m <= 2.0:
         return false
-    var outline: PackedVector2Array = route_nav.navigation_polygon.vertices
-    if outline.size() < 3:
+    var nav_poly: NavigationPolygon = route_nav.navigation_polygon
+    if nav_poly.vertices.size() < 3 or nav_poly.get_polygon_count() < 1:
         return false
     var from_ground := to_3d(start_px)
     var to_ground := to_3d(end_px)
@@ -126,10 +133,34 @@ func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
         for fraction in [-0.40, 0.0, 0.40]:
             var sample_3d := center_3d + side * clear_width_m * float(fraction)
             var sample_world := to_2d(sample_3d)
-            if not Geometry2D.is_point_in_polygon(
-                    route_nav.to_local(sample_world), outline):
+            if not _citadel_inside_authoritative_polygon(route_nav, sample_world):
                 return false
     return true
+
+func _citadel_inside_authoritative_polygon(
+        nav: NavigationRegion2D, world_point: Vector2) -> bool:
+    ## NavigationPolygon.vertices is a VERTEX POOL, NOT an outline. Real
+    ## concave/holey regions are partitioned into indexed nav polygons.
+    ## Checking the raw vertex pool used to permit false walkable corridors.
+    if not is_instance_valid(nav) or nav.navigation_polygon == null:
+        return false
+    var shape: NavigationPolygon = nav.navigation_polygon
+    var vertices: PackedVector2Array = shape.vertices
+    var point: Vector2 = nav.to_local(world_point)
+    for i in range(shape.get_polygon_count()):
+        var indices: PackedInt32Array = shape.get_polygon(i)
+        if indices.size() < 3:
+            continue
+        var contour := PackedVector2Array()
+        var valid := true
+        for idx in indices:
+            if idx < 0 or idx >= vertices.size():
+                valid = false
+                break
+            contour.append(vertices[idx])
+        if valid and Geometry2D.is_point_in_polygon(point, contour):
+            return true
+    return false
 
 func install_verified_citadel_grade(start_px: Vector2, end_px: Vector2,
         route_nav: NavigationRegion2D, steps: int = 9,
@@ -157,6 +188,97 @@ func install_verified_citadel_grade(start_px: Vector2, end_px: Vector2,
     citadel_grade_preview = false
     return true
 
+func _collect_citadel_art_meshes(node: Node, out: Dictionary) -> void:
+    if node is MeshInstance3D:
+        out[String(node.name)] = node
+    for child in node.get_children():
+        _collect_citadel_art_meshes(child, out)
+
+func install_verified_citadel_art() -> bool:
+    ## Explicit Phase 16 opt-in. The Phase 11 game must provide the real
+    ## Citadel endpoints to install_verified_citadel_grade() beforehand.
+    if citadel_art_root != null or citadel_grade == null:
+        return false
+    if not is_instance_valid(citadel_grade):
+        return false
+    if not ResourceLoader.exists(CITADEL_ART_SCENE):
+        return false
+    if not FileAccess.file_exists(CITADEL_ART_MANIFEST):
+        return false
+    var meta: Variant = JSON.parse_string(
+        FileAccess.get_file_as_string(CITADEL_ART_MANIFEST))
+    if not (meta is Dictionary):
+        return false
+    if int(meta.get("nodes", 0)) != 220:
+        return false
+    if bool(meta.get("has_gameplay_colliders", true)):
+        return false
+    if String(meta.get("world_space", "")) != "X_lateral_Y_up_Z_north":
+        return false
+    if not is_equal_approx(float(meta.get("total_ascent_m", 0.0)),
+            float(citadel_grade.ascent_m)):
+        return false
+    if not is_equal_approx(float(meta.get("stair_width_m", 0.0)),
+            float(citadel_grade.width_m)):
+        return false
+    if not is_equal_approx(float(meta.get("step_run_m", 0.0)) *
+            float(meta.get("tread_count", 0)), float(citadel_grade.run_length_m)):
+        return false
+    var packed: PackedScene = ResourceLoader.load(CITADEL_ART_SCENE) as PackedScene
+    if packed == null:
+        return false
+    var instance: Node = packed.instantiate()
+    if not (instance is Node3D):
+        instance.free()
+        return false
+    var art: Node3D = instance as Node3D
+    var meshes: Dictionary = {}
+    _collect_citadel_art_meshes(art, meshes)
+    if meshes.size() != 220 or not meshes.has("STAIR_Tread_01") or not meshes.has(
+            "STAIR_Tread_09") or not meshes.has("GATE_GothicVoussoir_32"):
+        art.free()
+        return false
+    var assembly: Node3D = citadel_grade.get_node_or_null(
+        "AuthoritativeRoute_VisualMasonry_2DNavUnchanged") as Node3D
+    if assembly == null:
+        art.free()
+        return false
+    assembly.add_child(art)
+    art.name = "Citadel_Phase15_220Mesh_ArtOnly_OptIn"
+    art.transform = Transform3D.IDENTITY
+    art.visible = false
+    citadel_art_root = art
+    citadel_art_mesh_count = meshes.size()
+    citadel_art_enabled = false
+    return true
+
+func _set_citadel_proxy_meshes_visible(enabled: bool) -> void:
+    if citadel_grade == null or not is_instance_valid(citadel_grade):
+        return
+    var assembly: Node3D = citadel_grade.get_node_or_null(
+        "AuthoritativeRoute_VisualMasonry_2DNavUnchanged") as Node3D
+    if assembly == null:
+        return
+    for child in assembly.get_children():
+        if child is MeshInstance3D:
+            (child as MeshInstance3D).visible = enabled
+
+func _sync_citadel_art_visibility() -> void:
+    if citadel_art_root == null or not is_instance_valid(citadel_art_root):
+        return
+    # F4 controls the whole grade root. Inside it, only ONE visual set is
+    # visible. 64 physics bodies stay active while F4 is enabled, regardless
+    # of whether the art or legacy procedural mesh supplies presentation.
+    _set_citadel_proxy_meshes_visible(not citadel_art_enabled)
+    citadel_art_root.visible = citadel_grade_preview and citadel_art_enabled
+
+func set_citadel_art_enabled(enabled: bool) -> bool:
+    if citadel_art_root == null or not is_instance_valid(citadel_art_root):
+        return false
+    citadel_art_enabled = enabled
+    _sync_citadel_art_visibility()
+    return citadel_art_enabled
+
 func set_citadel_grade_preview(enabled: bool) -> bool:
     # F4 caller in the *actual* Phase 11 bridge may opt into this, never
     # force it into the Phase 08 default painted/live modes.
@@ -164,6 +286,7 @@ func set_citadel_grade_preview(enabled: bool) -> bool:
         return false
     citadel_grade_preview = enabled
     citadel_grade.set_preview_enabled(enabled)
+    _sync_citadel_art_visibility()
     _sync_citadel_service_height()
     sync_knight_depth()
     return citadel_grade_preview
@@ -403,7 +526,11 @@ func sync_knight_depth() -> void:
             citadel_grade_foot_samples += 1
 
 func set_active(active: bool) -> void:
-    if not active: set_knight_depth_enabled(false)
+    if not active:
+        set_knight_depth_enabled(false)
+        # F8 painted fallback must not retain hidden 3D stair colliders.
+        if citadel_grade_preview:
+            set_citadel_grade_preview(false)
     visible = active
     set_process(active)
     if viewport_3d != null:
@@ -458,6 +585,10 @@ func status() -> Dictionary:
         "knight_depth_enabled": knight_depth_enabled,
         "citadel_grade_installed": citadel_grade != null,
         "citadel_geometry_preview": citadel_grade_preview,
+        "citadel_art_available": citadel_art_root != null,
+        "citadel_art_enabled": citadel_art_enabled,
+        "citadel_art_mesh_count": citadel_art_mesh_count,
+        "citadel_art_visual_path": "imported_glb" if citadel_art_enabled else "procedural",
         "citadel_grade_height_samples": citadel_grade_foot_samples,
         "citadel_uses_existing_nav": citadel_grade_nav != null,
         "citadel_physical_geometry": citadel_grade.status() if citadel_grade != null else {},
@@ -473,7 +604,7 @@ func status() -> Dictionary:
         "has_3d_world": viewport_3d != null and viewport_3d.own_world_3d,
         "adjacent_royal_promenade": city_district_3d.status() if city_district_3d != null else {},
         "adjacent_merchants_quarter": market_district_3d.status() if market_district_3d != null else {},
-        "connected_city_collision": audit_combined_city_collision() if is_ready else {},
+        "connected_city_collision": audit_combined_city_collision() if is_ready and is_instance_valid(game) else {},
         "camera_size": camera_3d.size if camera_3d != null else 0.0,
         "painted_walkway_triangles": scenery.painted_walkway_triangle_count if is_instance_valid(scenery) else 0,
         "painted_walkway_area_px2": scenery.painted_walkway_area_pixels if is_instance_valid(scenery) else 0.0,

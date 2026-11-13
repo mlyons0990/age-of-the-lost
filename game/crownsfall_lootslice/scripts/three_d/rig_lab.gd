@@ -4,6 +4,7 @@ extends Node3D
 const HERO := preload("res://scripts/three_d/rig_controller.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
+const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const IVORY := Color("f3e8d3")
 const GOLD := Color("e5bf72")
 const BLUE := Color("274f99")
@@ -217,13 +218,12 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	else:
 		effects.slash(player.global_position, direction, color, wide)
 		if kind == "Dash": effects.ring(at, 0.8, Color("f2d17f"), 0.45)
-	var range_limit := 2.8 if wide or spell else 1.65
+	# One physics-backed damage decision per candidate; the VFX remains
+	# responsive even when a nearby target is safely screened by cover.
 	for target in targets:
 		if target.inactive_t > 0: continue
-		var relative: Vector3 = target.global_position - player.global_position
-		var forward := relative.normalized().dot(direction)
-		if relative.length() <= range_limit + 0.5 and (forward > -0.3 or wide or spell):
-			var dead: bool = target.hit(53 if spell else (43 if wide else 32))
+		if TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind):
+			var dead: bool = target.hit(TARGETING.damage_for(kind))
 			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
 			if dead: kills += 1
 

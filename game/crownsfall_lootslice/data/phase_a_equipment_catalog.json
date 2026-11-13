@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "project": "Age of the Lost",
+  "release_stage": "Draft playable integration: class-filtered Quartermaster stock for newly created characters; not added to random drops",
+  "baseline_compatible": true,
+  "source": "Higgsfield Ultra unlimited, zero paid credits",
+  "items": [
+    {
+      "id": "crownfall_aegis",
+      "name": "Crownfall Aegis",
+      "slot": "offhand",
+      "grid": [
+        2,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/crownfall_aegis.png",
+      "allowed_classes": [
+        "warrior"
+      ]
+    },
+    {
+      "id": "chronicle_codex",
+      "name": "Chronicle Codex",
+      "slot": "focus",
+      "grid": [
+        1,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/chronicle_codex.png",
+      "allowed_classes": [
+        "mage"
+      ]
+    },
+    {
+      "id": "emberglass_focus",
+      "name": "Emberglass Focus",
+      "slot": "focus",
+      "grid": [
+        1,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/emberglass_focus.png",
+      "allowed_classes": [
+        "mage"
+      ]
+    },
+    {
+      "id": "oathkeeper_signet",
+      "name": "Oathkeeper Signet",
+      "slot": "ring",
+      "grid": [
+        1,
+        1
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/oathkeeper_signet.png",
+      "allowed_classes": [
+        "warrior",
+        "mage"
+      ]
+    },
+    {
+      "id": "veilthorn_band",
+      "name": "Veilthorn Band",
+      "slot": "ring",
+      "grid": [
+        1,
+        1
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/veilthorn_band.png",
+      "allowed_classes": [
+        "warrior",
+        "mage"
+      ]
+    },
+    {
+      "id": "wayfarers_locket",
+      "name": "Wayfarer's Locket",
+      "slot": "amulet",
+      "grid": [
+        1,
+        1
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/wayfarers_locket.png",
+      "allowed_classes": [
+        "warrior",
+        "mage"
+      ]
+    }
+  ],
+  "integration": {
+    "hud_route": "scripts/hud.gd::_item_portrait",
+    "merchant_route": "scripts/main.gd via PhaseA.merchant_selection on character creation",
+    "save_schema_changed": false,
+    "existing_save_merchants_unchanged": true,
+    "tests": {
+      "isolated_named_item_checks": "72/72 pass",
+      "isolated_merchant_checks": "104/104 pass",
+      "full_scene_runtime": "pending"
+    }
+  }
+}

@@ -173,7 +173,7 @@ func _build_locomotion() -> void:
 			return
 	# 2D directional blend: X = right strafe, Y = forward; back = -Y.
 	var direction := AnimationNodeBlendSpace2D.new()
-	direction.name = "V06_X_Strafe_Y_Forward"
+	direction.resource_name = "V06_X_Strafe_Y_Forward"
 	direction.min_space = Vector2(-1.0,-1.0)
 	direction.max_space = Vector2(1.0,1.0)
 	direction.auto_triangles = true

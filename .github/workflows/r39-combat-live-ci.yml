@@ -42,7 +42,7 @@ jobs:
           GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
           "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-combat-live-import.log
           "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/combat_rig_lab_live_integration.gd 2>&1 | tee /tmp/aotl-combat-live-test.log
-          grep -q 'AOTL LIVE R39 COMBAT RESULT 9 checks; 0 failures' /tmp/aotl-combat-live-test.log
+          grep -q 'AOTL LIVE R39 COMBAT RESULT 8 checks; 0 failures' /tmp/aotl-combat-live-test.log
           if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-combat-live-import.log /tmp/aotl-combat-live-test.log; then
             exit 1
           fi

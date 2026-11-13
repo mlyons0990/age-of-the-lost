@@ -3,6 +3,7 @@ extends Node2D
 ## knight, and the combat loop (Reality Scar waves, loot, levels, quests, saving).
 
 const Systems := preload("res://scripts/systems.gd")
+const PhaseA := preload("res://scripts/phase_a_equipment.gd")
 const GD := preload("res://scripts/game_data.gd")
 const PLAZA := preload("res://assets/plaza.png")
 const Player := preload("res://scripts/player.gd")
@@ -196,6 +197,7 @@ func create_character(class_id: String, chosen_name: String) -> bool:
 	merchant_stock.clear()
 	var pool := Systems.drop_pool(class_id)
 	for base in pool: merchant_stock.append(Systems.make_item(1, 0, base, class_id))
+	for item in PhaseA.merchant_selection(class_id, 1): merchant_stock.append(item)
 	player.hp = player.stats().max_hp; player.mp = player.stats().max_mp
 	player.refresh_visuals()
 	return true

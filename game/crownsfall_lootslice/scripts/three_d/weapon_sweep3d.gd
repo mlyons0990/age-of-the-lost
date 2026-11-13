@@ -83,10 +83,12 @@ static func crossed_contact_event(previous_phase: float, current_phase: float,
 	return previous_phase < marker and current_phase >= marker
 
 static func blade_from_socket(socket: Node3D, length_m: float = 0.85) -> Dictionary:
+	# Actual R39 Godot probe (run 43404167311): local -Y reaches a
+	# target 0.65m in front, while original -Z pointed away from the hit.
 	if socket == null or length_m <= 0.0:
 		return {}
 	var hilt := socket.global_position
-	var tip := socket.to_global(Vector3(0.0, 0.0, -length_m))
+	var tip := socket.to_global(Vector3(0.0, -length_m, 0.0))
 	if not hilt.is_finite() or not tip.is_finite():
 		return {}
 	return {"hilt": hilt, "tip": tip}

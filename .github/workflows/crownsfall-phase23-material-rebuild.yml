@@ -7,6 +7,7 @@ on:
     paths:
       - 'game/crownsfall_lootslice/tools/phase23_painterly_citadel_atlas.py'
       - 'game/crownsfall_lootslice/tools/phase23_rebuild_from_v10.py'
+      - 'game/crownsfall_lootslice/tools/phase23_publish_verified_glb.py'
       - 'game/crownsfall_lootslice/tests/test_citadel_painterly_v23.py'
       - 'game/crownsfall_lootslice/tests/citadel_material_grade_v23.gd'
       - 'game/crownsfall_lootslice/tests/citadel_visual_capture_v23.gd'
@@ -14,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   isolated-blender-to-godot-painterly:
@@ -96,3 +97,9 @@ jobs:
             game/crownsfall_lootslice/citadel_phase23_painted_1920x1080.png
             game/crownsfall_lootslice/citadel_phase23_baseline_2560x1440.png
             game/crownsfall_lootslice/citadel_phase23_painted_2560x1440.png
+
+      - name: Preserve verified v13 binary GLB in GitHub draft branch (never main)
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python game/crownsfall_lootslice/tools/phase23_publish_verified_glb.py

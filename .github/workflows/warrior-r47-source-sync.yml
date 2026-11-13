@@ -1,0 +1,71 @@
+name: Back up AOTL Warrior R47 experimental art source
+
+on:
+  push:
+    branches: [art/warrior-r47-visual-candidate]
+    paths:
+      - .github/workflows/warrior-r47-source-sync.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aotl-r47-source-sync
+  cancel-in-progress: false
+
+jobs:
+  backup_r47:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          persist-credentials: true
+      - name: Fetch checksum-pinned original Higgsfield R47 Blender source
+        shell: bash
+        env:
+          ARCHIVE: https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/6e4188b2-3f29-4318-8e3d-7c9367bc7525.zip?download=AOTL_Warrior_R47_ArtCandidate_OriginalSource.zip
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "$ARCHIVE" -o /tmp/r47-source.zip
+          echo "cf4a7f5bb589b0ab0f8c16adaa2e85348b0a60c0cb579cae557ab3966085998a  /tmp/r47-source.zip" | sha256sum -c
+          mkdir -p game/crownsfall_lootslice/art/warrior_r47/
+          unzip -p /tmp/r47-source.zip AOTL_Warrior_R47_Source.blend > game/crownsfall_lootslice/art/warrior_r47/AOTL_Warrior_R47_Source.blend
+          unzip -p /tmp/r47-source.zip AOTL_Warrior_R47_Preview_OneClip.glb > game/crownsfall_lootslice/art/warrior_r47/AOTL_Warrior_R47_Preview_OneClip.glb
+          unzip -p /tmp/r47-source.zip R47_ART_CANDIDATE_MANIFEST.json > game/crownsfall_lootslice/art/warrior_r47/R47_ART_CANDIDATE_MANIFEST.json
+          echo "382f95e22324f1e43aaddbddd6f933fcef3996178ed3065bf820a1f2e5fd6221  game/crownsfall_lootslice/art/warrior_r47/AOTL_Warrior_R47_Source.blend" | sha256sum -c
+          echo "a80b3ed1a8cb62aaeb07c7934fdd58b7b8f84a71bf955e239c7ba7bb70dc5331  game/crownsfall_lootslice/art/warrior_r47/AOTL_Warrior_R47_Preview_OneClip.glb" | sha256sum -c
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct,json
+          p=Path('game/crownsfall_lootslice/art/warrior_r47')
+          blend=(p/'AOTL_Warrior_R47_Source.blend').read_bytes()
+          assert blend.startswith(b'BLENDER')
+          glb=(p/'AOTL_Warrior_R47_Preview_OneClip.glb').read_bytes()
+          assert struct.unpack_from('<4sII',glb,0)==(b'glTF',2,len(glb))
+          jlen=struct.unpack_from('<I',glb,12)[0]
+          g=json.loads(glb[20:20+jlen])
+          assert len(g.get('animations',[]))==1, 'preview should not masquerade as six-clip production asset'
+          print('Confirmed original Blender candidate and one-clip preview (nonproduction)')
+          PY
+      - name: Commit experimental R47 artifacts to Git LFS
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git lfs track 'game/crownsfall_lootslice/art/warrior_r47/*.blend'
+          git add .gitattributes game/crownsfall_lootslice/art/warrior_r47/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --cached --quiet; then
+            git commit -m "Preserve experimental R47 Warrior Blender art source and GLB preview via LFS"
+            git push origin HEAD:art/warrior-r47-visual-candidate
+          fi
+      - name: Keep a separate backed-up archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R47-Experimental-Art-Source
+          path: /tmp/r47-source.zip
+          if-no-files-found: error
+          retention-days: 30

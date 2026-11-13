@@ -1,0 +1,38 @@
+name: R52 Warrior skinning audit
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev/r52-warrior-deformation-audit-v1
+    paths:
+      - "game/crownsfall_lootslice/tools/audit_r52_warrior_skinning.py"
+      - "game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb"
+      - ".github/workflows/r52-warrior-skinning-audit.yml"
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Verify GLB is real, not Git LFS pointer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb')
+          assert p.read_bytes()[:4] == b'glTF', 'GLB missing or unresolved Git LFS pointer'
+          PY
+      - name: Read-only skeletal deformation structural audit
+        run: |
+          python game/crownsfall_lootslice/tools/audit_r52_warrior_skinning.py \
+            --glb game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb \
+            --out r52_warrior_skinning_audit.json --strict
+      - name: Upload complete mesh and bone coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r52-warrior-skinning-audit
+          path: r52_warrior_skinning_audit.json
+          if-no-files-found: warn

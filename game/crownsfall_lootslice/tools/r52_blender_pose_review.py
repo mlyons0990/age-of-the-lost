@@ -163,7 +163,7 @@ def main():
     finally:
         scene.frame_set(prior_frame)
         rig.animation_data.action = prior_action
-    (out / "r52_pose_review.json").write_text(json.dumps(report, indent=2) + "\\n")
+    (out / "r52_pose_review.json").write_text(json.dumps(report, indent=2) + "\n")
     print("R52 pose review complete: %s" % out)
 
 

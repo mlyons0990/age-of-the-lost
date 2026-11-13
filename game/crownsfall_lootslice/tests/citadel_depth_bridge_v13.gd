@@ -50,11 +50,17 @@ func _execute() -> void:
     _check(bridge.citadel_grade != null, "real 3D node exists")
     _check(not bridge.citadel_grade.visible,
         "geometry opt-in off by default")
+    var tread: StaticBody3D = bridge.citadel_grade.get_node(
+        "AuthoritativeRoute_VisualMasonry_2DNavUnchanged/Physical_Tread_01_Collision")
+    _check(tread.collision_layer == 0,
+        "no invisible collision when preview starts disabled")
     _check(bridge._citadel_height_at(Vector2(0, 500)) == 0.0,
         "no visual elevation when opt-in disabled")
     _check(bridge.set_citadel_grade_preview(true),
         "enable 3D grade")
     _check(bridge.citadel_grade.visible, "geometry visibility enabled")
+    _check(tread.collision_layer == 1,
+        "physical 3D stair collision enabled with preview")
     _check(bridge._citadel_height_at(Vector2(0, 900)) > 1.7,
         "upper landing Y is sampled")
     _check(bridge._citadel_height_at(Vector2(1000, 500)) == 0.0,
@@ -64,6 +70,8 @@ func _execute() -> void:
     _check(not bridge.set_citadel_grade_preview(false),
         "disable preview")
     _check(not bridge.citadel_grade.visible, "geometry hidden again")
+    _check(tread.collision_layer == 0,
+        "stair collider disabled with preview")
     _check(bridge._citadel_height_at(Vector2(0, 900)) == 0.0,
         "height restored after preview is disabled")
     _check(bridge.citadel_grade.status().physics_3d_colliders == 64,

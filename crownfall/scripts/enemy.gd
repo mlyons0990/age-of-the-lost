@@ -482,17 +482,17 @@ func _draw() -> void:
 
 	# health bar and elite name
 	if dead_t < 0.0 and not boss and (hp < max_hp or elite or main.hover_enemy == self):
-		var w: float = 110.0 if elite else 76.0
+		var w: float = 140.0 if elite else 100.0
 		var y: float = -tall - 24.0
-		draw_rect(Rect2(-w / 2 - 1, y - 1, w + 2, 8), Color(0, 0, 0, 0.7))
-		draw_rect(Rect2(-w / 2, y, w * clampf(hp / max_hp, 0.0, 1.0), 6), Color("ff9a2e") if elite else Color("d6343c"))
+		draw_rect(Rect2(-w / 2 - 1, y - 1, w + 2, 10), Color(0, 0, 0, 0.7))
+		draw_rect(Rect2(-w / 2, y, w * clampf(hp / max_hp, 0.0, 1.0), 8), Color("ff9a2e") if elite else Color("d6343c"))
 		if burn > 0.0:
 			draw_rect(Rect2(-w / 2, y + 6, w * minf(1.0, burn / 3.0), 2), Color("ffb347"))
 		if elite:
 			var font := ThemeDB.fallback_font
-			var tw := font.get_string_size(ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x
-			draw_string_outline(font, Vector2(-tw / 2, y - 8), ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 5, Color(0, 0, 0, 0.9))
-			draw_string(font, Vector2(-tw / 2, y - 8), ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color("ffcf7a"))
+			var tw := font.get_string_size(ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 21).x
+			draw_string_outline(font, Vector2(-tw / 2, y - 8), ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 21, 5, Color(0, 0, 0, 0.9))
+			draw_string(font, Vector2(-tw / 2, y - 8), ename, HORIZONTAL_ALIGNMENT_LEFT, -1, 21, Color("ffcf7a"))
 			# affixes on a line above the name, each in its own colour
 			if not affixes.is_empty():
 				var ax := 0.0
@@ -500,10 +500,10 @@ func _draw() -> void:
 				for af in affixes:
 					parts.append(String(GD.ELITE_AFFIXES[af]["name"]))
 				var full := "  ·  ".join(parts)
-				ax = -font.get_string_size(full, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x / 2.0
+				ax = -font.get_string_size(full, HORIZONTAL_ALIGNMENT_LEFT, -1, 18).x / 2.0
 				for i in affixes.size():
 					var nm: String = parts[i] + ("  ·  " if i < affixes.size() - 1 else "")
 					var cc := Color(String(GD.ELITE_AFFIXES[affixes[i]]["color"]))
-					draw_string_outline(font, Vector2(ax, y - 28), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, 4, Color(0, 0, 0, 0.9))
-					draw_string(font, Vector2(ax, y - 28), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, cc)
-					ax += font.get_string_size(nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
+					draw_string_outline(font, Vector2(ax, y - 34), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, 4, Color(0, 0, 0, 0.9))
+					draw_string(font, Vector2(ax, y - 34), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, cc)
+					ax += font.get_string_size(nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 18).x

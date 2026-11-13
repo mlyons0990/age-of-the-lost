@@ -16,6 +16,7 @@ const DARK := Color(0.07, 0.06, 0.08, 0.92)
 const MOUSE_GROUP := 4   # index where the mouse-button group starts (after a gap)
 var bar_rects: Array = []      # screen rects of the six slots, set while drawing
 var bar_plate := Rect2()
+var belt_plate := Rect2()
 var drag_skill := ""           # skill being dragged onto / around the bar
 var drag_from := -1            # bar slot it came from, or -1 from the spellbook
 var drag_press := Vector2.ZERO
@@ -107,6 +108,10 @@ func _input(event: InputEvent) -> void:
 			drag_skill = player.bindings[i]
 			drag_from = i
 			drag_press = at
+		if belt_plate.has_point(at):
+			player.drink_potion()
+			get_viewport().set_input_as_handled()
+			return
 		if bar_plate.has_point(at):
 			get_viewport().set_input_as_handled()
 		return
@@ -701,13 +706,17 @@ class HudDraw extends Control:
 			draw_multiline_string(font, qr.position + Vector2(12, 48), main.quest_text(), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 15, 2, Color("efe6d2"))
 
 		# bottom: orbs, skill bar (1-4 | LMB RMB), xp, potion and evade buttons
-		var cy := h - 80.0
+		# layout: life orb + potion belt bottom left, skills + mana orb bottom right, xp across the bottom
+		var orb_r := 74.0
+		var life_c := Vector2(118, h - 112)
+		var mana_c := Vector2(w - 118, h - 112)
+		var cy := h - 100.0
 		var sz := 64.0
 		var gap := 6.0
 		var group_gap := 26.0
 		var n: int = p.bindings.size()
 		var bar_w := n * sz + (n - 1) * gap + group_gap
-		var x0 := (w - bar_w) / 2.0
+		var x0 := mana_c.x - 150.0 - bar_w
 		var plate := Rect2(x0 - 40, cy - sz / 2 - 34, bar_w + 80, sz + 78)
 		hud.bar_plate = plate
 		var plate_tex := _ui("bar_plate")
@@ -787,48 +796,65 @@ class HudDraw extends Control:
 					Icons.draw_mouse(self, kc, key == "LMB", GOLD)
 			else:
 				_keycap(kc, key)
-		# xp along the top of the bar, with the level on a diamond at its left
-		var xr := Rect2(x0 + 22, cy - sz / 2 - 13, bar_w - 26, 7)
-		draw_rect(xr, Color(0.06, 0.06, 0.06))
-		var need: int = GD.xp_need(p.level)
-		var xf: float = 1.0 if p.level >= GD.MAX_LEVEL else float(p.xp) / need
-		draw_rect(Rect2(xr.position, Vector2(xr.size.x * xf, xr.size.y)), GOLD.darkened(0.15))
-		draw_rect(xr, BRONZE.darkened(0.25), false, 1.5)
-		var lc := Vector2(x0 + 6, xr.get_center().y)
-		var gem := _ui("level_gem")
-		if gem != null:
-			draw_texture_rect(gem, Rect2(lc - Vector2(18, 18), Vector2(36, 36)), false)
-		else:
-			draw_colored_polygon(PackedVector2Array([lc + Vector2(0, -15), lc + Vector2(15, 0), lc + Vector2(0, 15), lc + Vector2(-15, 0)]), Color(0.12, 0.1, 0.08))
-		_text_c(str(p.level), lc + Vector2(0, 5), 14, GOLD, 3)
-		# the crest crowns the bar
+		# the crest crowns the skill plate
 		var crest := _ui("bar_crest")
 		if crest != null:
 			var cw2: float = crest.get_width() * 0.42
 			var ch2: float = crest.get_height() * 0.42
 			draw_texture_rect(crest, Rect2(Vector2(plate.get_center().x - cw2 / 2.0, plate.position.y - ch2 * 0.62), Vector2(cw2, ch2)), false)
+		# xp: a long bar across the bottom between the orbs, the level on a gem in the middle
+		var xr := Rect2(life_c.x + 96, h - 17, (mana_c.x - 96) - (life_c.x + 96), 9)
+		draw_rect(xr.grow(3), Color(0.03, 0.03, 0.04, 0.9))
+		draw_rect(xr, Color(0.07, 0.06, 0.08))
+		var need: int = GD.xp_need(p.level)
+		var xf: float = 1.0 if p.level >= GD.MAX_LEVEL else float(p.xp) / need
+		var fill := Rect2(xr.position, Vector2(xr.size.x * xf, xr.size.y))
+		draw_rect(fill, Color("8a5cd6"))
+		draw_rect(Rect2(fill.position, Vector2(fill.size.x, 3)), Color("c9a8ff"))
+		draw_rect(xr.grow(3), BRONZE.darkened(0.15), false, 2.0)
+		for k in range(1, 10):
+			var tx: float = xr.position.x + xr.size.x * k / 10.0
+			draw_line(Vector2(tx, xr.position.y), Vector2(tx, xr.end.y), Color(0, 0, 0, 0.45), 1.0)
+		var lc := Vector2(xr.get_center().x, xr.get_center().y)
+		var gem := _ui("level_gem")
+		var lw := 70.0
+		var lr := Rect2(lc - Vector2(lw / 2, 13), Vector2(lw, 22))
+		draw_rect(lr, Color(0.05, 0.04, 0.05))
+		draw_rect(lr, BRONZE, false, 1.5)
+		_text_c("Lv. %d" % p.level, lc + Vector2(0, 4), 14, GOLD, 3)
 		if xr.grow(4).has_point(mouse):
 			tip = {"name": "Experience", "desc": "Max level" if p.level >= GD.MAX_LEVEL else "XP %d / %d" % [p.xp, need], "meta": ""}
 			tip_rect = xr
 		var max_mp: float = s["max_mp"]
-		var life_c := Vector2(x0 - 96, cy - 6)
-		var mana_c := Vector2(x0 + bar_w + 96, cy - 6)
-		_orb(life_c, 62, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
-		_orb(mana_c, 62, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
-		# potion: a small round button on the life orb's upper right (Q)
-		var pc := life_c + Vector2(66, -62)
-		_round_button(pc, 25.0)
-		_icon("potion", Rect2(pc - Vector2(18, 20), Vector2(36, 40)), Color.WHITE if p.potions > 0 else Color(0.4, 0.4, 0.4))
-		_round_frame(pc, 25.0)
-		draw_string_outline(font, pc + Vector2(14, 22), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 4, Color.BLACK)
-		draw_string(font, pc + Vector2(14, 22), str(p.potions), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color.WHITE)
-		_keycap(pc + Vector2(36, -26), "Q", 22.0)
-		if pc.distance_to(mouse) < 26.0:
-			tip = {"name": "Health Potion", "desc": "Restore 45% of your life.", "meta": "%d of 5" % p.potions}
-			tip_rect = Rect2(pc - Vector2(26, 26), Vector2(52, 52))
+		_orb(life_c, orb_r, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
+		_orb(mana_c, orb_r, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
+		# potion belt beside the life orb: one bottle per potion carried (Q drinks)
+		var bs := 56.0
+		var bgap := 6.0
+		var belt_w := 5 * bs + 4 * bgap
+		var bx0 := life_c.x + 150.0
+		var belt := Rect2(bx0 - 40, cy - sz / 2 - 34, belt_w + 80, sz + 78)
+		var belt_tex := _ui("belt_plate")
+		if belt_tex != null:
+			draw_texture_rect(belt_tex, belt, false)
+		else:
+			draw_rect(belt, DARK)
+			draw_rect(belt, BRONZE, false, 3.0)
+		hud.belt_plate = belt
+		for k in 5:
+			var pr := Rect2(bx0 + k * (bs + bgap), cy - bs / 2 + 4, bs, bs)
+			var sock3 := _ui("slot_socket")
+			if sock3 != null:
+				draw_texture_rect(sock3, pr, false)
+			_icon("potion", pr.grow(-7), Color.WHITE if k < p.potions else Color(0.25, 0.25, 0.28, 0.6))
+		_keycap(Vector2(belt.get_center().x, cy + bs / 2 + 22), "Q", 22.0)
+		_text_c("%d / 5" % p.potions, Vector2(belt.get_center().x + 46, cy + bs / 2 + 27), 13, Color("efe6d2"), 3)
+		if belt.has_point(mouse):
+			tip = {"name": "Health Potions", "desc": "Q drinks one, restoring 45% of your life. Maren sells more.", "meta": "%d of 5" % p.potions}
+			tip_rect = belt
 		# evade: a round button with a foot on the mana orb's lower left (Space)
 		var ev: Dictionary = p.evade_def()
-		var ec := mana_c + Vector2(-66, -62)   # mirrors the potion on the life orb
+		var ec := mana_c + Vector2(-112, -118)   # above the skill plate, by the mana orb
 		_round_button(ec, 25.0)
 		var ecd: float = p.cds.get("evade", 0.0)
 		var ready: bool = ecd <= 0.0
@@ -845,7 +871,7 @@ class HudDraw extends Control:
 		_round_frame(ec, 25.0)
 		if ready:
 			draw_arc(ec, 33.0, 0.0, TAU, 48, Color(1.0, 0.86, 0.5, 0.25 + 0.2 * sin(Time.get_ticks_msec() / 300.0)), 3.0, true)
-		_keycap(ec + Vector2(-50, -26), "Space", 50.0)
+		_keycap(ec + Vector2(-62, 0), "Space", 50.0)
 		if ec.distance_to(mouse) < 26.0:
 			tip = {"name": ev["name"], "desc": ev["desc"], "meta": "Space  ·  %ss cooldown  ·  untouchable %ss" % [str(ev["cd"]), str(ev["iframes"])]}
 			tip_rect = Rect2(ec - Vector2(26, 26), Vector2(52, 52))

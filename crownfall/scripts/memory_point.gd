@@ -54,8 +54,8 @@ func _draw() -> void:
 		var font := ThemeDB.fallback_font
 		var title: String = GD.LORE[lore_id]["title"] if seen else "Lingering memory"
 		var sub := "E or click to Lorecast" if not seen else "E or click to remember"
-		for line in [[title, 17, Color("e6d8ff")], [sub, 13, Color("cfc6b2")]]:
+		for line in [[title, 23, Color("e6d8ff")], [sub, 17, Color("cfc6b2")]]:
 			var w := font.get_string_size(line[0], HORIZONTAL_ALIGNMENT_LEFT, -1, line[1]).x
-			var y := -126.0 if line[1] == 17 else -108.0
+			var y := -136.0 if line[1] == 23 else -112.0
 			draw_string_outline(font, Vector2(-w / 2.0, y), line[0], HORIZONTAL_ALIGNMENT_LEFT, -1, line[1], 5, Color(0, 0, 0, 0.85))
 			draw_string(font, Vector2(-w / 2.0, y), line[0], HORIZONTAL_ALIGNMENT_LEFT, -1, line[1], line[2])

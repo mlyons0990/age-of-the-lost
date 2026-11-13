@@ -7,7 +7,7 @@ extends Node2D
 ## so the ground stays readable. main.gd stacks the plates so they never overlap.
 
 const GD := preload("res://scripts/game_data.gd")
-const LABEL_SIZE := 17
+const LABEL_SIZE := 22
 
 var kind := "gold"       # "gold", "potion" or "item"
 var amount := 0
@@ -44,7 +44,7 @@ func label_text() -> String:
 ## Size of the name plate in pixels.
 func label_size() -> Vector2:
 	var w := ThemeDB.fallback_font.get_string_size(label_text(), HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE).x
-	return Vector2(w + 18.0, 26.0)
+	return Vector2(w + 20.0, 32.0)
 
 
 ## Whether the plate shows without Alt held: magic items and better.
@@ -112,7 +112,7 @@ func _draw() -> void:
 		elif hot:
 			draw_rect(lr, Color(1, 1, 1, 0.5), false, 1.0)
 		var font := ThemeDB.fallback_font
-		draw_string(font, lr.position + Vector2(9, 19), label_text(), HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE, col.lightened(0.15) if hot else col)
+		draw_string(font, lr.position + Vector2(10, 24), label_text(), HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE, col.lightened(0.15) if hot else col)
 		# a thin line down to the drop when the plate was pushed up
 		var foot := Vector2(lr.get_center().x, lr.end.y)
 		if foot.y < -40.0:

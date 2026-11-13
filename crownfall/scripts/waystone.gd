@@ -40,8 +40,8 @@ func _draw() -> void:
 	# label
 	var font := ThemeDB.fallback_font
 	var s := "Waystone  ·  %s" % dest_name
-	var w := font.get_string_size(s, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x
-	var lr := Rect2(-w / 2 - 8, -166, w + 16, 24)
+	var w := font.get_string_size(s, HORIZONTAL_ALIGNMENT_LEFT, -1, 21).x
+	var lr := Rect2(-w / 2 - 9, -172, w + 18, 30)
 	draw_rect(lr, Color(0.03, 0.02, 0.06, 0.8 if hot else 0.6))
 	draw_rect(lr, Color(0.75, 0.6, 1.0, 0.9 if hot else 0.5), false, 1.5)
-	draw_string(font, Vector2(-w / 2, -149), s, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color("e6d8ff"))
+	draw_string(font, Vector2(-w / 2, -150), s, HORIZONTAL_ALIGNMENT_LEFT, -1, 21, Color("e6d8ff"))

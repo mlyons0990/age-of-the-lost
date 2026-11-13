@@ -12,8 +12,8 @@ const ZONES := {
 		"tex": "res://assets/plaza.png",
 		"walk": "main",            # main.gd's WALKABLE and OCCLUDERS (the original plaza)
 		"start": Vector2(1350, 1020),
-		"portal": Vector2(2060, 1400),
-		"arrive": Vector2(1960, 1360),   # where you appear when coming back through the Waystone
+		"portal": Vector2(1570, 1090),   # east of the engraved circle, clear of the HUD at the pulled-out camera
+		"arrive": Vector2(1500, 1120),   # where you appear when coming back through the Waystone
 		"to": "whisperwood",
 		"music": "plaza",
 		"wild": false,
@@ -32,9 +32,9 @@ const ZONES := {
 			Vector2(440, 1400), Vector2(520, 1300), Vector2(660, 1260),
 		],
 		"occluders": [],
-		"start": Vector2(760, 1330),
-		"portal": Vector2(560, 1430),
-		"arrive": Vector2(760, 1330),
+		"start": Vector2(980, 1150),
+		"portal": Vector2(860, 1200),   # on the path below the stone circle, clear of the HUD
+		"arrive": Vector2(980, 1150),
 		"to": "plaza",
 		"music": "scar",
 		"wild": true,

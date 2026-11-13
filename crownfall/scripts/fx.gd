@@ -96,7 +96,7 @@ func _draw() -> void:
 		TEXT:
 			var font := ThemeDB.fallback_font
 			for t in items:
-				var size: int = 38 if t["big"] else 26
+				var size: int = 48 if t["big"] else 34   # larger to read at the pulled-out camera
 				var a: float = minf(1.0, (t["life"] - t["t"]) * 2.5)
 				var pos: Vector2 = t["pos"] - Vector2(0, t["z"])
 				var s: String = t["str"]

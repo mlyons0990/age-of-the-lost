@@ -47,6 +47,8 @@ const RIFT_POS := Vector2(1290, 1010)
 const MERCHANT_POS := Vector2(918, 792)
 const MERCHANT_RANGE := 1.6   # ground units
 const MEMORY_RANGE := 1.4
+## Camera zoom (below 1 shows more of the zone). Labels drawn in the world scale up by 1 / CAM_ZOOM to stay readable.
+const CAM_ZOOM := 0.72
 const MemoryPoint := preload("res://scripts/memory_point.gd")
 const Zones := preload("res://scripts/zones.gd")
 const Waystone := preload("res://scripts/waystone.gd")
@@ -139,6 +141,8 @@ func _ready() -> void:
 	cam.limit_top = 0
 	cam.limit_right = PLAZA.get_width()
 	cam.limit_bottom = PLAZA.get_height()
+	# pulled out like Path of Exile: the paintings are 2720 wide, so 0.72 shows nearly a whole zone
+	cam.zoom = Vector2(CAM_ZOOM, CAM_ZOOM)
 	cam.position_smoothing_enabled = true
 	cam.position_smoothing_speed = 6.0
 	player.add_child(cam)
@@ -335,8 +339,11 @@ func _process(delta: float) -> void:
 		if portal_in_reach():
 			going_to_portal = false
 			use_portal()
-		elif player.path.is_empty():
+		elif player.path.is_empty() or player.path_index >= player.path.size():
+			# the walk ended: step through if it stopped right beside the stone
 			going_to_portal = false
+			if GD.gdist(player.position, waystone.position) <= Waystone.RANGE + 1.0:
+				use_portal()
 
 	hover_enemy = pick_enemy(get_global_mouse_position())
 	var mouse := get_global_mouse_position()

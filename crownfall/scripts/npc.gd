@@ -43,9 +43,9 @@ func _draw() -> void:
 		draw_texture(tex, Vector2(-tex.get_width() / 2.0, -tex.get_height() + 6.0), tint)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	var font := ThemeDB.fallback_font
-	var y := -tex.get_height() * scale_k - 14.0
-	for line in [[title, 18, Color("ffe9a8")], [role, 14, Color("cfc6b2")]]:
+	var y := -tex.get_height() * scale_k - 24.0
+	for line in [[title, 24, Color("ffe9a8")], [role, 18, Color("cfc6b2")]]:
 		var w := font.get_string_size(line[0], HORIZONTAL_ALIGNMENT_LEFT, -1, line[1]).x
 		draw_string_outline(font, Vector2(-w / 2.0, y), line[0], HORIZONTAL_ALIGNMENT_LEFT, -1, line[1], 5, Color(0, 0, 0, 0.85))
 		draw_string(font, Vector2(-w / 2.0, y), line[0], HORIZONTAL_ALIGNMENT_LEFT, -1, line[1], line[2])
-		y += 20.0
+		y += 25.0

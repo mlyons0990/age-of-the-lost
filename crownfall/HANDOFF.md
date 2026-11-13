@@ -55,6 +55,14 @@ for the knight and three painted enemy types:
   cut with `tools/make_roll_strip.py`, which re-centres each frame because the
   game moves the knight). A round boot button on the mana orb's upper left
   (Space key cap beside it) shows the cooldown and glows when ready.
+- **Camera and HUD layout (Path of Exile style):** the camera is pulled out to
+  `CAM_ZOOM` 0.72 in `main.gd` (the paintings are 2720 wide, so this shows
+  nearly a whole zone); world text (names, loot, memories, damage numbers) is
+  drawn larger to stay readable. Bottom left: the life orb in the corner and a
+  belt of five potion bottles (Q drinks; clicking the belt drinks too). Bottom
+  right: the skill plate and the mana orb in the corner, the dodge button above.
+  The XP bar runs across the bottom between the orbs with "Lv. N" in the middle.
+  The plaza and ruins Waystones moved up so the HUD never covers them.
 - **Skill bar (Diablo 4 layout):** keys 1-4 on the left, a gap, then LMB and
   RMB, with key caps or mouse icons under each slot. **Any skill goes in any
   slot:** drag a skill's icon from the spellbook (P) onto a slot, drag between

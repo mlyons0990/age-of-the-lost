@@ -30,6 +30,7 @@ SS = 4  # supersampling for hand-drawn pieces
 SZ, GAP, GROUP_GAP, SLOTS = 64, 6, 26, 6
 BAR_W = SLOTS * SZ + (SLOTS - 1) * GAP + GROUP_GAP
 PLATE = (BAR_W + 80, SZ + 78)
+BELT = (5 * 56 + 4 * 6 + 80, SZ + 78)   # potion belt plate (hud.gd: belt_w + 80 by sz + 78)
 
 
 def nine_slice(src, m, size, k):
@@ -61,8 +62,8 @@ def nine_slice(src, m, size, k):
     return out
 
 
-def bar_plate(panel):
-    tw, th = PLATE[0] * 2, PLATE[1] * 2
+def bar_plate(panel, size=None):
+    tw, th = (size or PLATE)[0] * 2, (size or PLATE)[1] * 2
     plate = nine_slice(panel, 270, (tw, th), 0.24)
     # soften the hard outer edge so the plate sits on the scene
     a = Image.new("L", plate.size, 0)
@@ -328,6 +329,7 @@ def main():
     panel = Image.open(os.path.join(SRC, "ui_panel_frame.png")).convert("RGBA")
     bar_plate(panel).save(os.path.join(OUT, "bar_plate.png"))
     crest(panel).save(os.path.join(OUT, "bar_crest.png"))
+    bar_plate(panel, BELT).save(os.path.join(OUT, "belt_plate.png"))
     socket().save(os.path.join(OUT, "slot_socket.png"))
     keycap().save(os.path.join(OUT, "keycap.png"))
     mouse(True).save(os.path.join(OUT, "mouse_l.png"))

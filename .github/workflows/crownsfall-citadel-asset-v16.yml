@@ -62,7 +62,19 @@ jobs:
       - name: Phase 13 grade bridge headless checks
         run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_depth_bridge_v13.gd
       - name: Phase 16 real GLB art swap and indexed nav tests
-        run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_art_swap_v16.gd
+        run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_art_swap_v16.gd
+      - name: Render standalone Citadel art in real Godot OpenGL under virtual X display
+        run: |
+          which xvfb-run || (sudo apt-get update -qq && sudo apt-get install -y xvfb)
+          timeout 90s xvfb-run -a godot --path game/crownsfall_lootslice --rendering-method gl_compatibility --script res://tests/citadel_visual_capture_v16.gd
+      - name: Archive actual renderer screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-citadel-v16-render-review
+          path: game/crownsfall_lootslice/citadel_v16_render.png
+          if-no-files-found: warn
+          retention-days: 30
       - name: Preserve portable GLB for engine integration
         if: always()
         uses: actions/upload-artifact@v4

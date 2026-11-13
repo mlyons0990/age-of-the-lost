@@ -38,14 +38,14 @@ func _run() -> void:
 	if rig == null or not rig.ready_to_compare:
 		finish()
 		return
-	verify(rig.model_root.name == "AOTL_Humanoid_Master_V05", "new revision10 GLB loaded rather than V03")
+	verify(rig.model_root.name == "AOTL_Humanoid_Master_V04", "new revision10 GLB loaded rather than V03")
 	verify(rig.skeleton.get_bone_count() == 58, "all 58 bone joints intact")
 	verify(rig.clips.size() == 16, "all 16 clips intact")
 	verify(rig.equipment.size() == 7, "gear and VFX mounts preserved")
 	verify(rig.foot_ik.size() == 2, "both IK chains present")
 	var total_multi_weight_vertices := 0
 	for short_name in ["ArmL","ArmR","LegL","LegR"]:
-		var node := rig.model_root.find_child("V05_SKIN_Articulated"+short_name, true, false) as MeshInstance3D
+		var node := rig.model_root.find_child("V04_SKIN_Articulated"+short_name, true, false) as MeshInstance3D
 		verify(node != null, "dense anatomical mesh "+short_name+" imported")
 		if node == null or node.mesh == null:
 			continue

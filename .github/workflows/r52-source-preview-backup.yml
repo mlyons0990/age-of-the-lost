@@ -1,0 +1,86 @@
+name: AOTL R52 editable Blender source and original render backups
+
+on:
+  push:
+    branches: [dev/r52-armor-rigidity-v1]
+    paths:
+      - .github/workflows/r52-source-preview-backup.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aotl-r52-blend-preview
+  cancel-in-progress: false
+
+jobs:
+  source_and_preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Download pinned R52 editable 62-joint Blender source
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 150 "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/70afae8d-d7ec-40a9-af4a-aa589241af76.zip?download=AOTL_R52_Blender_Source_Protected.zip" -o /tmp/aotl-r52-blend.zip
+          echo "6864732b3f2c8068c5b08d1d29dd620364692b97be82a965dd52d42aeb44d61c  /tmp/aotl-r52-blend.zip" | sha256sum -c
+          mkdir -p art/character_sources
+          unzip -p /tmp/aotl-r52-blend.zip AOTL_R52_RigidArmor_Source.blend > art/character_sources/AOTL_R52_RigidArmor_Source.blend
+          echo "09a3a88010fd11988773002144ab168ba934db5ccf97161f6afb3d06ebdda49f  art/character_sources/AOTL_R52_RigidArmor_Source.blend" | sha256sum -c
+          python3 - <<'PY'
+          import pathlib,hashlib,json
+          p=pathlib.Path('art/character_sources/AOTL_R52_RigidArmor_Source.blend')
+          assert p.read_bytes().startswith(b'BLENDER')
+          report={'higgsfield_revision':52,'blend_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'mesh_edits':['V02_GEAR_ShoulderPlateL','V02_GEAR_ShoulderPlateR','V02_GEAR_LayeredCuirass'],'unchanged_articulation': 'R50_Slash_Grounded_IKBaked_V3','source_action_rollback':'R51'}
+          pathlib.Path('art/character_sources/AOTL_R52_Rig_Source_Manifest.json').write_text(json.dumps(report,indent=2))
+          PY
+      - name: Download real R52 animation frames and source-comparison render
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 120 "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/ecc0aef0-ce61-4bc3-a9c9-16fabc8e49b2.zip?download=AOTL_R52_Real_Slash_Animation_Preview.zip" -o /tmp/aotl-r52-visual.zip
+          echo "db8a6a73bad68494a12f659e15036c9816bbad0c13dbc6a714e59bf4dc9bda6a  /tmp/aotl-r52-visual.zip" | sha256sum -c
+          dest=game/crownsfall_lootslice/previews/warrior_r52
+          mkdir -p "$dest"
+          unzip -p /tmp/aotl-r52-visual.zip AOTL_R52_RigidArmor_Real_Slash.gif > "$dest/rigid_armor_slash.gif"
+          unzip -p /tmp/aotl-r52-visual.zip AOTL_R52_Armor_Animation_Provenance.json > "$dest/real_animation_provenance.json"
+          unzip -p /tmp/aotl-r52-visual.zip r52_armor_comparison.jpg > "$dest/r52_armor_before_after.jpg"
+          echo "db631a8edcc3d09fee22e500522e8c25df069d331527f03fb315eecdfb58d609  $dest/rigid_armor_slash.gif" | sha256sum -c
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('game/crownsfall_lootslice/previews/warrior_r52')
+          g=(p/'rigid_armor_slash.gif').read_bytes()
+          assert g[:6] in (b'GIF87a',b'GIF89a')
+          source=json.loads((p/'real_animation_provenance.json').read_text())
+          assert source['frames']==[1,5,9,12,15,19,23]
+          assert source['real_blender_keyframes'] and not source['artificial_interpolation']
+          print('R52 actual Blender frame provenance verified')
+          PY
+      - name: Preserve both source and image previews in new LFS files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add art/character_sources/AOTL_R52_RigidArmor_Source.blend
+          git add art/character_sources/AOTL_R52_Rig_Source_Manifest.json
+          git add game/crownsfall_lootslice/previews/warrior_r52/
+          if ! git diff --cached --quiet; then
+            git commit -m "Backup real R52 rigid armor Blender source and animation preview with provenance"
+            git push origin HEAD:dev/r52-armor-rigidity-v1
+          fi
+      - name: Preserve source ZIP and GIF ZIP for Drive transfer
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R52-Editable-Source-And-Real-Preview
+          path: |
+            /tmp/aotl-r52-blend.zip
+            /tmp/aotl-r52-visual.zip
+          if-no-files-found: warn
+          retention-days: 30

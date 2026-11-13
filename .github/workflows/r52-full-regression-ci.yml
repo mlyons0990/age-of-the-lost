@@ -1,0 +1,73 @@
+name: AOTL R52 full Crownsfall 994-assertion regression
+
+on:
+  push:
+    branches: [dev/r52-armor-rigidity-v1]
+    paths:
+      - .github/workflows/r52-full-regression-ci.yml
+      - .gitattributes
+      - art/character_sources/**
+      - game/crownsfall_lootslice/scripts/three_d/rig_controller.gd
+      - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
+      - game/crownsfall_lootslice/tests/verify_r50_rig_lab_optin.gd
+      - game/crownsfall_lootslice/tests/verify_r50_runtime_optin.gd
+      - game/crownsfall_lootslice/tests/verify_r52_live_rig_lab.gd
+      - game/crownsfall_lootslice/tests/verify_r52_scene_entry.gd
+      - game/crownsfall_lootslice/scenes/r52_rigid_armor_combat_lab.tscn
+      - game/crownsfall_lootslice/tests/verify_r52_rigid_armor_import.gd
+      - game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.audit.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Verify real production and experimental asset hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum --check -
+          echo "b1a600ca144ccfc7a868d6e4936964a74c3afe55882c5e8166e3f65a26561a16  game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb" | sha256sum --check -
+          echo "0d2812d9ae6d6ab666b237e9e5813cd00d89fb9a070fab74de75df4ccdeea06c  game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb" | sha256sum --check -
+      - name: Download Godot 4.6.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+      - name: Run 17 existing Crownsfall isolated test suites
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 game/crownsfall_lootslice/tools/run_checks.py \
+            --project game/crownsfall_lootslice \
+            --godot /tmp/Godot_v4.6.3-stable_linux.x86_64 \
+            --report-dir /tmp/aotl-r52-full-qa 2>&1 | tee /tmp/aotl-r52-full-console.log
+      - name: Require exactly 994 passing assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          report=json.load(open('/tmp/aotl-r52-full-qa/summary.json'))
+          assert report['success'] and report['unique_assertions']==994 and len(report['suites'])==17, report
+          print('AOTL R52 FULL CROWNSFALL PASS 994/994 across 17 suites')
+          PY
+      - name: Preserve full QA reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R52-Full-Crownsfall-994-QA
+          path: |
+            /tmp/aotl-r52-full-qa/
+            /tmp/aotl-r52-full-console.log
+          if-no-files-found: warn
+          retention-days: 30

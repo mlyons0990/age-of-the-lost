@@ -1,0 +1,31 @@
+{
+  "result": "VALID_GLB_UNTIL_GODOT_IMPORT",
+  "file": "AOTL_Warrior_R52_RigidArmor_SevenClip.glb",
+  "sha256": "0d2812d9ae6d6ab666b237e9e5813cd00d89fb9a070fab74de75df4ccdeea06c",
+  "bytes": 7253104,
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Dodge",
+    "Slash",
+    "Cast",
+    "Slash_FullBody_R50"
+  ],
+  "meshes": 92,
+  "skin_joints": 62,
+  "animations_channels": [
+    186,
+    186,
+    186,
+    186,
+    186,
+    186,
+    186
+  ],
+  "r52_geometry_glb_sha256": "41ad3920d80ea0fa1b5a2d4feef972578f87ee06798638e7c1ad6b9b9501360d",
+  "r50_animations_glb_sha256": "b1a600ca144ccfc7a868d6e4936964a74c3afe55882c5e8166e3f65a26561a16",
+  "geometry_and_skin_preserved": true,
+  "old_six_clips_and_r50_slash_preserved": true,
+  "remaining": "Actual Godot GLB import, recorded bone pose and gameplay collision verification"
+}

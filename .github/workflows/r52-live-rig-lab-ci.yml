@@ -1,0 +1,64 @@
+name: AOTL R52 live Warrior armor and physical combat QA
+
+on:
+  push:
+    branches: [dev/r52-armor-rigidity-v1]
+    paths:
+      - .github/workflows/r52-live-rig-lab-ci.yml
+      - game/crownsfall_lootslice/scripts/three_d/rig_controller.gd
+      - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
+      - game/crownsfall_lootslice/tests/verify_r52_live_rig_lab.gd
+      - game/crownsfall_lootslice/tests/verify_r52_scene_entry.gd
+      - game/crownsfall_lootslice/scenes/r52_rigid_armor_combat_lab.tscn
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live_r52:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Verify real R39, R50, R52 assets were preserved
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum -c
+          echo "b1a600ca144ccfc7a868d6e4936964a74c3afe55882c5e8166e3f65a26561a16  game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb" | sha256sum -c
+          echo "0d2812d9ae6d6ab666b237e9e5813cd00d89fb9a070fab74de75df4ccdeea06c  game/crownsfall_lootslice/models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb" | sha256sum -c
+      - name: Download Godot 4.6.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+      - name: Import full game and run R52 sword collision test
+        shell: bash
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME=/tmp/aotl-r52-live-data
+          export XDG_CONFIG_HOME=/tmp/aotl-r52-live-config
+          export XDG_CACHE_HOME=/tmp/aotl-r52-live-cache
+          GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
+          timeout 180s "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-r52-live-import.log
+          timeout 120s "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/verify_r52_live_rig_lab.gd 2>&1 | tee /tmp/aotl-r52-live-combat.log
+          grep -q 'AOTL R52 LIVE RIG LAB RESULT 17 checks; 0 failures' /tmp/aotl-r52-live-combat.log
+          timeout 120s "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/verify_r52_scene_entry.gd 2>&1 | tee /tmp/aotl-r52-scene-entry.log
+          grep -q 'AOTL R52 PLAYABLE SCENE RESULT 10 checks; 0 failures' /tmp/aotl-r52-scene-entry.log
+          if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-r52-live-import.log /tmp/aotl-r52-live-combat.log /tmp/aotl-r52-scene-entry.log; then exit 1; fi
+      - name: Archive actual R52 combat evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R52-Live-Combat-17-QA
+          path: |
+            /tmp/aotl-r52-live-import.log
+            /tmp/aotl-r52-live-combat.log
+            /tmp/aotl-r52-scene-entry.log
+          if-no-files-found: warn
+          retention-days: 30

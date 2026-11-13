@@ -3,7 +3,7 @@
   "phase": "A",
   "batch": "Offhands and Jewelry",
   "date": "2026-11-12",
-  "status": "all six original source artworks generated and review-sized RGBA textures processed; visual edge QA and Godot integration pending",
+  "status": "Visual QA passed at 32px/64px on light/dark backgrounds, isolated Godot 4.4.1 inventory test passed 79/79. Actual playable UI and save-to-disk regression remain pending.",
   "base_review_pr": "https://github.com/mlyons0990/age-of-the-lost/pull/12",
   "source_model": "Higgsfield gpt_image_2_6",
   "budget_policy": "All six source image jobs submitted with use_unlim=true; paid credits used: 0.",
@@ -17,7 +17,7 @@
         2
       ],
       "generation_job_id": "5498a3b6-9090-4aef-bbc2-272b73ef66be",
-      "state": "original generated; RGBA review master + compact preview processed; visual QA pending",
+      "state": "visual review approved, Godot isolated import + inventory tests passed; full game regression pending",
       "source_sha256": "15830a8c6bfb038f8d81de4384876ba2691af9f400e4848ded928385495103a8",
       "asset_master_px": [
         256,
@@ -26,6 +26,10 @@
       "preview_px": [
         128,
         128
+      ],
+      "base_family": "offhand",
+      "allowed_classes": [
+        "warrior"
       ]
     },
     {
@@ -33,19 +37,23 @@
       "name": "Chronicle Codex",
       "slot": "off_hand",
       "grid": [
-        2,
+        1,
         2
       ],
-      "state": "original generated; RGBA review master + compact preview processed; visual QA pending",
+      "state": "visual review approved, Godot isolated import + inventory tests passed; full game regression pending",
       "generation_job_id": "f63eccdf-26c3-4735-86d6-2c84be75a4ab",
       "source_sha256": "f0135a30071c6c70667d8873cf230a229e7d0e7941e812ec857ff9ec3a84ad8a",
       "asset_master_px": [
-        256,
+        128,
         256
       ],
       "preview_px": [
-        128,
+        64,
         128
+      ],
+      "base_family": "focus",
+      "allowed_classes": [
+        "mage"
       ]
     },
     {
@@ -53,19 +61,23 @@
       "name": "Emberglass Focus",
       "slot": "off_hand",
       "grid": [
-        2,
+        1,
         2
       ],
-      "state": "original generated; RGBA review master + compact preview processed; visual QA pending",
+      "state": "visual review approved, Godot isolated import + inventory tests passed; full game regression pending",
       "generation_job_id": "5ffcdb8a-b42b-469b-b2e0-b558faab2ccf",
       "source_sha256": "9ddf3a1259fb7fbf1236ce5988fa433ac4987d3439e8416d36eca5a9f602d6f1",
       "asset_master_px": [
-        256,
+        128,
         256
       ],
       "preview_px": [
-        128,
+        64,
         128
+      ],
+      "base_family": "focus",
+      "allowed_classes": [
+        "mage"
       ]
     },
     {
@@ -76,7 +88,7 @@
         1,
         1
       ],
-      "state": "original generated; RGBA review master + compact preview processed; visual QA pending",
+      "state": "visual review approved, Godot isolated import + inventory tests passed; full game regression pending",
       "generation_job_id": "196c0cb7-b033-4ba1-8206-012f279f3ea5",
       "source_sha256": "902bfcf01155d794161f38cbc08742a289218a8a79286c9f10057525c86fbacb",
       "asset_master_px": [
@@ -86,6 +98,11 @@
       "preview_px": [
         64,
         64
+      ],
+      "base_family": "ring",
+      "allowed_classes": [
+        "mage",
+        "warrior"
       ]
     },
     {
@@ -96,7 +113,7 @@
         1,
         1
       ],
-      "state": "original generated; RGBA review master + compact preview processed; visual QA pending",
+      "state": "visual review approved, Godot isolated import + inventory tests passed; full game regression pending",
       "generation_job_id": "f711838f-857e-40ad-90c1-551e163b7e65",
       "source_sha256": "b38da7f3af18415041d6039ea3f9a42c5971d9989a10bbcdb42a64fee4d5dee9",
       "asset_master_px": [
@@ -106,6 +123,11 @@
       "preview_px": [
         64,
         64
+      ],
+      "base_family": "ring",
+      "allowed_classes": [
+        "mage",
+        "warrior"
       ]
     },
     {
@@ -116,7 +138,7 @@
         1,
         1
       ],
-      "state": "original generated; RGBA review master + compact preview processed; visual QA pending",
+      "state": "visual review approved, Godot isolated import + inventory tests passed; full game regression pending",
       "generation_job_id": "f0cb971d-7d14-42b0-903d-3d9eeaec8e4b",
       "source_sha256": "2ec97640df65e877da597a75739b7663cbb0d2fa0d8dfffd280b76eb818b8e1f",
       "asset_master_px": [
@@ -126,28 +148,35 @@
       "preview_px": [
         64,
         64
+      ],
+      "base_family": "amulet",
+      "allowed_classes": [
+        "mage",
+        "warrior"
       ]
     }
   ],
   "quality_gates": [
-    "Original asset retain full resolution",
-    "Transparent alpha export and 128px per cell art master",
-    "Review at 32px and 64px per cell",
-    "No inventory taxonomy, equip logic, item stats, or schema-six saves changed",
-    "Godot inventory and equipment checks before merge"
+    "32px and 64px artwork on light/dark backgrounds visually inspected",
+    "Correct base-family dimensions using actual production systems.gd",
+    "Godot 4.4.1 isolated 79/79 tests passed",
+    "Actual game UI, stash, merchant, tooltip, drag/drop and disk save regression outstanding",
+    "No changes to gameplay, item stats, or existing saves"
   ],
   "archive": {
     "provider": "Higgsfield Developer Files",
-    "media_id": "4628d52f-df22-4aec-82cb-91027d0cb048",
-    "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/4628d52f-df22-4aec-82cb-91027d0cb048.zip",
-    "bytes": 9318603,
-    "zip_entries": 36,
+    "media_id": "2c767f70-001a-417e-b668-1facb11fa277",
+    "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/2c767f70-001a-417e-b668-1facb11fa277.zip",
+    "bytes": 9656680,
+    "zip_entries": 56,
     "integrity": "PASS",
-    "source_images": 6,
+    "original_1k_sources": 6,
     "processed_rgba_masters": 6,
     "scaled_previews": 6,
     "dimension_and_gutter_checks": "6/6 PASS",
-    "manual_alpha_review": "PENDING",
-    "godot_runtime_tests": "PENDING"
+    "visual_32_64_dark_light": "6/6 PASS for isolated artwork",
+    "godot_version": "4.4.1 stable",
+    "godot_import_inventory_qa": "79/79 PASS",
+    "full_game_regression": "NOT RUN"
   }
 }

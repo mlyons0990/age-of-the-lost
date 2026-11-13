@@ -55,3 +55,23 @@ The R36 full authoring rig, R37 production profile, R39 validated GLB and later 
 2. Replace provisional collision volume with socket-driven capsule or swept convex segment broadphase and timed multi-contact resolution that hits each target only once.
 3. Use dedicated damageable/cover collision masks for future enemies and destructibles instead of assuming every layer-1 collider is opaque.
 4. Add camera-follow combat captures and visual QA in the full 3D Crownsfall scene, then run all 17 suites before merging upstream.
+
+## Later pass: actual bone-axis calibration and continuous collision
+
+The first R39 Godot probe showed that the original provisional local -Z blade tip direction missed the sample training dummy even when the authored animation was playing. [Measured in Godot](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43404167311), the local **negative-Y** direction was closest: at 0.65m directly ahead its blade-to-target distance was about 0.529m (within the 0.57m combined weapon/target collision radius). At 1.35m it remained about 0.928m away (outside physical reach). Other tested axes missed.
+
+The sampler now uses local -Y while **F8 remains opt-in**. Damage in strict mode is resolved over the actual active Slash swing window in `_physics_process` using consecutive weapon-bone transforms, rather than relying on the single animation event to catch a moving blade in one frame.
+
+A serial number is assigned to every accepted Warrior attack. A per-swing target ID ledger is shared between strict and baseline modes so a dummy cannot receive multiple damage applications from one ongoing strike, even when F8 is toggled mid-animation.
+
+### Reusable collision-backed hurtbox
+
+Added `scripts/three_d/hurtbox3d.gd`: a damageable `Area3D` with a 0.45m sphere centered at 1.2m above its owner, on collision layer 4 (world cover remains layer 1). `training_dummy.gd` now exposes `damage_center()` and `damage_radius()` derived from the real attached hurtbox, and strict sword overlap uses these instead of a hardcoded target center.
+
+### Verification
+
+- [Real R39 strict sword collision test](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43404878491): **12/12** checks with the actual imported 62-joint skin, runtime physics backing, hurtbox area query, sword contact at 0.65m, no contact at 1.35m, no hits through a physical wall, and once-per-swing behavior.
+- [Full Crownsfall regression](https://github.com/mlyons0990/age-of-the-lost/actions/runs/43404927057): **994/994** across 17 suites, after introducing the collider-backed training target.
+- A subsequent F8 mid-swing mode-change regression was added to guard against cross-mode duplicate damage, and a corresponding complete 17-suite regression is queued on the latest branch state. Check those latest workflow results before accepting the branch.
+
+**Important:** A collision-backed target is not the same as a physically exact sword-on-mesh collision. The swept-blade method remains a capsule approximation using bone poses, designed to preserve gameplay responsiveness and support future specialized weapon geometry.

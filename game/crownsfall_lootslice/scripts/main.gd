@@ -5,6 +5,7 @@ extends Node2D
 const Systems := preload("res://scripts/systems.gd")
 const GD := preload("res://scripts/game_data.gd")
 const PLAZA := preload("res://assets/plaza.png")
+const CROWNSFALL_25D_FOREGROUND := preload("res://assets/25d/crownsfall_original_cutouts_feathered.png")
 const Player := preload("res://scripts/player.gd")
 const Enemy := preload("res://scripts/enemy.gd")
 const Loot := preload("res://scripts/loot.gd")
@@ -334,7 +335,11 @@ func toggle_live_25d() -> bool:
 		live_25d_enabled = false
 	plaza_art.visible = not live_25d_enabled
 	for cutout in layered_occluders:
-		cutout.visible = not live_25d_enabled
+		# Existing y-sorted painted buildings/columns now remain in front of the
+		# original 2D character when the 3D ground is active. Alpha feathering
+		# removes harsh rectangular borders where the two renderers meet.
+		cutout.visible = true
+		(cutout as Polygon2D).texture = CROWNSFALL_25D_FOREGROUND if live_25d_enabled else PLAZA
 	live_25d.set_active(live_25d_enabled)
 	hud.toast("Live 2.5D Crownsfall (F8) — original game systems active" if live_25d_enabled else "Original painted Crownsfall restored (F8)", Color("d4b26e"), true)
 	return live_25d_enabled

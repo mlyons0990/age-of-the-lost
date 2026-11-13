@@ -24,6 +24,7 @@ var service_markers: Dictionary = {}
 var scar_marker: MeshInstance3D
 var scar_material: StandardMaterial3D
 var is_ready := false
+var collision_audit: Dictionary = {}
 
 func _ready() -> void:
     # CanvasLayer -1 draws under the real Node2D actors/HUD; not in the same world.
@@ -49,6 +50,10 @@ func _ready() -> void:
     screen.add_child(viewport_3d)
     scenery = COURTYARD.new()
     viewport_3d.add_child(scenery)
+    # The rendered walkable surface and navigation polygon now share one source.
+    # In particular, this is not a hand-drawn second area the player could fall off.
+    scenery.install_painted_walkway(PackedVector2Array(game.WALKABLE), Callable(self, "to_3d"))
+    collision_audit = audit_visual_collision_footprints()
     camera_3d = Camera3D.new()
     camera_3d.name = "Follow_OriginalPlayer2D_NoIndependentMovement"
     camera_3d.projection = Camera3D.PROJECTION_ORTHOGONAL
@@ -66,6 +71,45 @@ func to_3d(painted_world: Vector2) -> Vector3:
 
 func to_2d(ground_point: Vector3) -> Vector2:
     return WORLD_ORIGIN + Vector2(ground_point.dot(RIGHT) * GD.U, ground_point.dot(TOWARDS_CAMERA) * GD.U * VIEW_ELEVATION_SINE)
+
+func audit_visual_collision_footprints() -> Dictionary:
+    # Every existing 3D collision pedestal/column is tested against the exact
+    # current 2D walking polygon. No independent 3D pathfinding is introduced.
+    # A collision crossing into the game floor must be authored into 2D nav
+    # before it is eligible to become a blocking object (see Phase 06 gate).
+    var boundary := PackedVector2Array(game.WALKABLE)
+    var overlapping: Array[String] = []
+    var nearest_edge_px := INF
+    var count := 0
+    for footprint in scenery.collidable_world_footprints():
+        count += 1
+        var x: float = footprint.x
+        var z: float = footprint.z
+        var hx: float = footprint.width * 0.5
+        var hz: float = footprint.depth * 0.5
+        var corners := PackedVector2Array([
+            to_2d(Vector3(x - hx, 0, z - hz)),
+            to_2d(Vector3(x + hx, 0, z - hz)),
+            to_2d(Vector3(x + hx, 0, z + hz)),
+            to_2d(Vector3(x - hx, 0, z + hz)),
+        ])
+        for c in corners:
+            for i in boundary.size():
+                nearest_edge_px = minf(nearest_edge_px, c.distance_to(Geometry2D.get_closest_point_to_segment(c, boundary[i], boundary[(i + 1) % boundary.size()])))
+        var clipping: Array[PackedVector2Array] = Geometry2D.intersect_polygons(corners, boundary)
+        var collision_inside := false
+        for polygon in clipping:
+            if polygon.size() >= 3:
+                var twice_area := 0.0
+                for i in polygon.size():
+                    twice_area += polygon[i].cross(polygon[(i + 1) % polygon.size()])
+                if absf(twice_area) > 0.005:
+                    collision_inside = true
+        if collision_inside:
+            overlapping.append(String(footprint.id))
+    if not overlapping.is_empty():
+        push_warning("AOTL: physical 3D props overlap original 2D nav; collision authoring required: " + str(overlapping))
+    return {"audited": count, "inside_walkable": overlapping, "nav_authoritative": true, "screen_projection_px": 1.0, "closest_edge_px": nearest_edge_px}
 
 func _build_service_signposts() -> void:
     # Their centers come from main.SERVICES, the real E-interaction locations,
@@ -166,4 +210,8 @@ func status() -> Dictionary:
         "service_count": service_nodes.size(),
         "has_3d_world": viewport_3d != null and viewport_3d.own_world_3d,
         "camera_size": camera_3d.size if camera_3d != null else 0.0,
+        "painted_walkway_triangles": scenery.painted_walkway_triangle_count if is_instance_valid(scenery) else 0,
+        "painted_walkway_area_px2": scenery.painted_walkway_area_pixels if is_instance_valid(scenery) else 0.0,
+        "audited_collision_props": collision_audit.get("audited", 0),
+        "collision_overlaps_nav": collision_audit.get("inside_walkable", []),
     }

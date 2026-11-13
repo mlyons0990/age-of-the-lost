@@ -1,0 +1,31 @@
+{
+  "phase": "AOTL Phase 05 - Crownsfall World/Nav Alignment and Painterly Art",
+  "date": "2026-11-12",
+  "project": "game/crownsfall_lootslice",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "paid_higgsfield_credits_spent": 0,
+  "source": "User-approved AOTL painted Crownsfall plaza and original seven cutouts",
+  "world_floor_area_px2": 637998.0,
+  "original_nav_authoritative": true,
+  "new_geometry_colliders_overlap_walkable": false,
+  "new_painterly_stones": 3721,
+  "source_art_modified": false,
+  "character_model_complete": false,
+  "first_playable_area_complete": false,
+  "qa": {
+    "integration_test": "98/98 passed on Godot 4.6.3",
+    "existing_regression": "954/954 passed across 16 suites on Godot 4.6.3",
+    "headless_render": "Godot 1440x810 screenshot obtained",
+    "windows_user_playthrough": "pending"
+  },
+  "files_sha256": {
+    "scripts/main.gd": "5916eb7446b3c53c5fcdf31508b1e6fc1a85764529cf91d5fdd429b98b1c133e",
+    "scripts/two_point_five_d/crownsfall_courtyard_25d.gd": "0a31c319292267a06a03e5870f0e97d088237c22effddcb717d8930c2d98f9c6",
+    "scripts/two_point_five_d/live_courtyard_bridge.gd": "1fbcbeabd19ac52362db6f8467a68850123bab5c9de995b880ef7e6b93510210",
+    "tests/crownsfall_world_alignment_integration.gd": "b1c329e0152585a67f8cf7021cf3cd6dfabe39d3933bc1016083887d0c60d493",
+    "assets/25d/crownsfall_nav_floor_softmask.png": "cb2801f7dc721a77ad21c22880218424daf0d1d4d883c9513bd791edd1364e85",
+    "assets/25d/crownsfall_original_cutouts_feathered.png": "fccfcab50e5174fc442f1670ad144f506b19af127960fea414d74795063e1765",
+    "assets/25d/crownsfall_ivory_paver_from_approved_art.png": "a3c87677d42b348ebd7e9460a6fb2befbf734c1f220bdc3a2dd0e44696e66d7a",
+    "assets/plaza.png": "f5a9d408e84121cee680669e06bd5230384b0f004b6c310094a23fa00488f60f"
+  }
+}

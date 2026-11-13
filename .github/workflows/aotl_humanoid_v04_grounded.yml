@@ -1,0 +1,101 @@
+name: AOTL V04 — anatomical skin and physically planted feet
+on:
+  pull_request:
+    paths:
+      - "game/crownsfall_lootslice/**"
+      - ".github/workflows/aotl_humanoid_v04_grounded.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  skin-and-gait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore validated V02, V03 and V04 model revisions
+        run: |
+          git lfs pull
+          python game/crownsfall_lootslice/tools/restore_rig_v02.py
+          python game/crownsfall_lootslice/tools/restore_rig_v03.py
+          python game/crownsfall_lootslice/tools/restore_rig_v04.py
+      - name: Install pinned Godot 4.6.3
+        run: |
+          curl -fLsS --retry 3 'https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip' -o /tmp/godot463.zip
+          unzip -q /tmp/godot463.zip -d /tmp
+          sudo install -m 0755 /tmp/Godot_v4.6.3-stable_linux.x86_64 /usr/local/bin/godot
+          godot --version
+      - name: Import original art and all humanoid models
+        run: godot --headless --path game/crownsfall_lootslice --editor --quit
+      - name: Original Phase02 painted camera baseline
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/two_point_five_d_smoke.gd 2>&1 | tee /tmp/aotl_v04_original.log
+          grep -q 'AOTL 2.5D SMOKE: 32 checks | PASS' /tmp/aotl_v04_original.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v04_original.log; then exit 1; fi
+      - name: Verify genuine deformable weights and planted gait
+        run: |
+          set -o pipefail
+          godot --headless --path game/crownsfall_lootslice --script res://tests/humanoid_v04_grounded_smoke.gd -- --aotl-v04 2>&1 | tee /tmp/aotl_v04_grounded.log
+          grep -q 'AOTL_V04_TEST_OK' /tmp/aotl_v04_grounded.log
+          if grep -E 'SCRIPT ERROR:|Parse Error:|Invalid call\.' /tmp/aotl_v04_grounded.log; then
+            echo 'Found Godot script failure; refusing misleading green test'
+            exit 1
+          fi
+      - name: Check no gameplay or save regressions
+        run: python game/crownsfall_lootslice/tools/run_checks.py --report-dir /tmp/aotl_v04_regressions
+      - name: Godot OpenGL comparison and moving-foot GIF
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri
+          python -m pip install --quiet pillow
+          set -o pipefail
+          xvfb-run --auto-servernum -s "-screen 0 1440x810x24" \
+            godot --path game/crownsfall_lootslice --rendering-driver opengl3 \
+            --script res://tests/humanoid_v04_visual_capture.gd -- --aotl-v04 2>&1 | tee /tmp/aotl_v04_visual.log
+          grep -q 'AOTL_V04_CAPTURE_OK' /tmp/aotl_v04_visual.log
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('/tmp/aotl_v04_frames')
+          walk=sorted(p.glob('walk_*.png'))
+          assert len(walk)==9, f'Expected nine live walk frames, got {len(walk)}'
+          frames=[]
+          for fn in walk:
+              im=Image.open(fn).convert("RGB")
+              im.thumbnail((960,540))
+              frames.append(im)
+          frames[0].save(p/'AOTL_V04_PlantedWalk_21m.gif',save_all=True,append_images=frames[1:],duration=140,loop=0,optimize=True)
+          print("AOTL_V04_GIF_OK",len(frames))
+          PY
+      - name: Preserve QA and render files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v04-grounded-native-qa
+          path: |
+            /tmp/aotl_v04_original.log
+            /tmp/aotl_v04_grounded.log
+            /tmp/aotl_v04_visual.log
+            /tmp/aotl_v04_frames/
+            /tmp/aotl_v04_regressions/
+          if-no-files-found: ignore
+      - name: Build independent Windows gameplay test ZIP
+        if: success()
+        run: |
+          zip -q -r -9 /tmp/AOTL_V04_Windows_Standalone.zip game/crownsfall_lootslice \
+            -x '*/.godot/*' '*/.git/*' '*.blend1' '*__pycache__*'
+          unzip -tq /tmp/AOTL_V04_Windows_Standalone.zip | tail -1
+          ls -lh /tmp/AOTL_V04_Windows_Standalone.zip
+      - name: Deliver complete V04 standalone source
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-v04-windows-complete
+          path: /tmp/AOTL_V04_Windows_Standalone.zip
+          compression-level: 0

@@ -13,6 +13,8 @@ on:
       - 'game/crownsfall_lootslice/tests/citadel_art_swap_v16.gd'
       - 'game/crownsfall_lootslice/tests/citadel_masonry_v17.gd'
       - 'game/crownsfall_lootslice/tests/test_citadel_masonry_v17.py'
+      - 'game/crownsfall_lootslice/tests/test_phase18_citadel_recovery_audit.py'
+      - 'game/crownsfall_lootslice/tools/phase18_citadel_recovery_audit.py'
       - 'game/crownsfall_lootslice/tools/build_citadel_art_v17.py'
       - 'game/crownsfall_lootslice/scripts/two_point_five_d/**'
       - '.github/workflows/crownsfall-citadel-asset-v17.yml'
@@ -59,6 +61,10 @@ jobs:
         run: |
           cd game/crownsfall_lootslice
           python tests/test_citadel_masonry_v17.py 2>&1 | tee citadel_v17_static.log
+      - name: Phase 18 recovery audit fails closed and never edits approved source
+        run: |
+          cd game/crownsfall_lootslice
+          python -m unittest discover -s tests -p 'test_phase18_citadel_recovery_audit.py' -v
       - name: Install Godot 4.6.3
         uses: solarlabyrinth/action-setup-godot@v3
         with:

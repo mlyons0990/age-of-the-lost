@@ -18,6 +18,7 @@ var info: Label
 var hpbar: ProgressBar
 var kills := 0
 var mode := "3D articulated rig lab"
+@export var use_r50_fullbody_slash_candidate := false
 var strict_weapon_sweep := false
 var contact_samples: Array = []
 var contact_sample_limit := 24
@@ -33,6 +34,8 @@ func _ready() -> void:
 	_create_sword_sweep_visualizer()
 	player = CharacterBody3D.new()
 	player.set_script(HERO)
+	# Godot inspector opt-in: never change the stable R39 lab by default.
+	player.enable_r50_fullbody_slash_candidate = use_r50_fullbody_slash_candidate
 	player.position = Vector3(0, 0.08, 1.8)
 	add_child(player)
 	player.impact.connect(_on_impact)

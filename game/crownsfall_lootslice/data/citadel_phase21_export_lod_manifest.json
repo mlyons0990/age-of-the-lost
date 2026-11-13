@@ -32,7 +32,12 @@
     "embedded_textures": 2,
     "materials": 10,
     "no_external_images": true,
-    "no_collision_named_nodes": true
+    "no_collision_named_nodes": true,
+    "v09_instanced_mesh_scene_triangles": 32596,
+    "v10_instanced_mesh_scene_triangles": 26724,
+    "instanced_scene_triangle_reduction_percent": 18.01,
+    "v09_unique_mesh_definition_triangles": 32324,
+    "v10_unique_mesh_definition_triangles": 26452
   },
   "qa": {
     "render_resolution": [
@@ -53,7 +58,51 @@
     "provider_glb_size_bytes": 2218580,
     "provider_glb_reduction_percent_from_v9": 9.91,
     "provider_blend_size_bytes": 3676639,
-    "driver": "Blender 5.2 via Higgsfield; real Godot optimized v10 import not completed"
+    "driver": "Blender 5.2 via Higgsfield; real Godot optimized v10 import not completed",
+    "hardened_glb_gate": {
+      "source": "tools/phase21_external_glb_gate.py",
+      "test": "tests/test_phase21_external_glb_gate.py",
+      "passed": true,
+      "mesh_nodes": 309,
+      "mesh_definitions": 292,
+      "instance_weighted_triangles": 26724,
+      "unique_mesh_triangles": 26452,
+      "embedded_images": 2,
+      "material_count": 10,
+      "real_godot_v10_imported": false
+    },
+    "portable_bundle": {
+      "source": "tools/phase21_bundle_external_art.py",
+      "test": "tests/test_phase21_bundle_external_art.py",
+      "real_temporary_v10_glb_and_blend_created_and_verified": true,
+      "verified_bundle_sha256": "1ee3046d007747551a15da4ac35ab3fc3f19eef6f9fd1a799c0a6d75ac01e00b",
+      "temporary_bundle_bytes": 1490496,
+      "has_permanent_provider_archive": false,
+      "uploaded_binary_to_github": false,
+      "uploaded_binary_to_drive": false
+    },
+    "independent_export_blender_glb_roundtrip": {
+      "mesh_names_preserved": "309/309",
+      "gothic_arch_stones": "32/32",
+      "stair_treads": "9/9",
+      "tread_top_elevations_m": [
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1,
+        1.2,
+        1.4,
+        1.6,
+        1.8
+      ],
+      "elevation_matches_before_after": true,
+      "embedded_images": 2,
+      "materials": 10
+    },
+    "phase21_python_regression_tests_local": "30/30",
+    "phase21_godot_isolated_v17_fixture_import": "50/50",
+    "exact_v10_godot_import_still_unverified": true
   },
   "lineage": {
     "godot_v17_fixture_cannot_certify_v10": true,

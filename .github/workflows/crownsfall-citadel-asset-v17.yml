@@ -34,6 +34,7 @@ on:
       - 'game/crownsfall_lootslice/data/citadel_phase21_export_lod_manifest.json'
       - 'game/crownsfall_lootslice/tools/phase21_external_glb_gate.py'
       - 'game/crownsfall_lootslice/tools/phase21_thin_bevel_export_lod.py'
+      - 'game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb'
       - 'game/crownsfall_lootslice/tools/phase20_uv_preserving_decor_batch.py'
       - 'game/crownsfall_lootslice/tools/validate_citadel_sculpt_v20_v09.py'
       - 'game/crownsfall_lootslice/tools/build_citadel_art_v17.py'
@@ -93,6 +94,11 @@ jobs:
           cd game/crownsfall_lootslice
           python -m unittest discover -s tests -p 'test_phase20_batch_manifest.py' -v
           python -m unittest discover -s tests -p 'test_phase20_uv_batch_manifest.py' -v
+      - name: Phase 22 validate actual Higgsfield v10 binary and checksum
+        run: |
+          cd game/crownsfall_lootslice
+          echo '91468793913600410d1665bfed0f3acdf6d733ed5f3ab13b0c8796f944329a64  assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb' | sha256sum -c -
+          python tools/phase21_external_glb_gate.py assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb --mesh-nodes 309 --max-triangles 27000 --min-images 2 --expected-sha256 91468793913600410d1665bfed0f3acdf6d733ed5f3ab13b0c8796f944329a64
       - name: Phase 21 external GLB binary safety gate
         run: |
           cd game/crownsfall_lootslice
@@ -119,6 +125,8 @@ jobs:
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_masonry_v17.gd
       - name: Phase 21 standalone GLTFDocument import gate on isolated V17 fixture
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_external_glb_import_v21.gd -- --model=res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb --variant=v17
+      - name: Phase 22 real optimized Higgsfield v10 GLB imported by Godot 4.6.3
+        run: timeout 120s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_external_glb_import_v21.gd -- --model=res://assets/25d/citadel/AOTL_Citadel_Higgsfield_Optimized_v10.glb --variant=v10
       - name: Phase 19 adaptive navigation gap and shoulder checks in Godot
         run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_nav_hardening_v19.gd
       - name: Phase 19 repeated 3D art and collision fallback stress

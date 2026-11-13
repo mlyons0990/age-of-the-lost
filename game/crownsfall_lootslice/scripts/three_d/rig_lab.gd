@@ -21,6 +21,8 @@ var mode := "3D articulated rig lab"
 var strict_weapon_sweep := false
 var contact_samples: Array = []
 var contact_sample_limit := 24
+var last_sampled_attack_serial := -1
+var sweep_hit_instances: Dictionary = {}
 var sword_sweep_debug: MeshInstance3D
 var sword_sweep_lines: ImmediateMesh
 var sword_sweep_material: StandardMaterial3D
@@ -256,6 +258,10 @@ func _physics_process(_delta: float) -> void:
 		contact_samples.clear()
 		_draw_sword_sweep()
 		return
+	if player.attack_serial != last_sampled_attack_serial:
+		last_sampled_attack_serial = player.attack_serial
+		contact_samples.clear()
+		sweep_hit_instances.clear()
 	var socket: BoneAttachment3D = player.equipment_sockets.get_socket("weapon")
 	var sample: Dictionary = WEAPON_SWEEP.blade_from_socket(socket)
 	if sample.is_empty():
@@ -264,6 +270,32 @@ func _physics_process(_delta: float) -> void:
 	if contact_samples.size() > contact_sample_limit:
 		contact_samples.pop_front()
 	_draw_sword_sweep()
+	if not strict_weapon_sweep or contact_samples.size() < 2:
+		return
+	var phase := -1.0
+	if player.animation != null and player.animation.current_animation_length > 0:
+		phase = player.animation.current_animation_position / player.animation.current_animation_length
+	if not WEAPON_SWEEP.in_contact_window(player.attack_type, phase):
+		return
+	# Physics-frame swept damage is independent from the single animation
+	# impact event, so targets only connect when the blade actually crosses.
+	# Track instance IDs to prevent repeated damage through the active swing.
+	var recent: Array = contact_samples.slice(-2)
+	var direction: Vector3 = player.last_face
+	for target in targets:
+		if target.inactive_t > 0 or sweep_hit_instances.has(target.get_instance_id()):
+			continue
+		if not TARGETING.can_hit(get_world_3d(), player,
+				player.global_position, direction, target.global_position, player.attack_type):
+			continue
+		var center: Vector3 = target.global_position + Vector3.UP * 1.2
+		if not WEAPON_SWEEP.swept_samples_touch_target(recent, center):
+			continue
+		sweep_hit_instances[target.get_instance_id()] = true
+		var dead: bool = target.hit(TARGETING.damage_for(player.attack_type))
+		effects.sparks(target.global_position + Vector3.UP, Color("ffca70"), 12)
+		if dead:
+			kills += 1
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum
@@ -283,11 +315,10 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	for target in targets:
 		if target.inactive_t > 0: continue
 		var allowed := TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind)
-		if allowed and strict_weapon_sweep and kind != "Cast":
-			# Developer comparison mode (F8). Only count targets actually
-			# intersecting sampled weapon motion, never through a wall.
-			var target_center: Vector3 = target.global_position + Vector3.UP * 1.2
-			allowed = WEAPON_SWEEP.swept_samples_touch_target(contact_samples, target_center)
+		if strict_weapon_sweep and kind != "Cast":
+			# Blade contacts are resolved continuously in _physics_process,
+			# not at a separate one-shot event (prevents early/duplicate hits).
+			continue
 		if allowed:
 			var dead: bool = target.hit(TARGETING.damage_for(kind))
 			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
@@ -300,6 +331,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
 		strict_weapon_sweep = not strict_weapon_sweep
 		contact_samples.clear()
+		sweep_hit_instances.clear()
 		_draw_sword_sweep()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:

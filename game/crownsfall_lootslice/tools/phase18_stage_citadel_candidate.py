@@ -42,6 +42,12 @@ def plan(approved: Path, source: Path, backup: Path, expected_sha=EXPECTED_GLB_S
         raise ValueError("Approved project missing project.godot")
     if approved==source or approved in source.parents or source in approved.parents:
         raise ValueError("Approved project and candidate source must be separate")
+    target=approved/CANDIDATE_SUBDIR
+    files=[target/name for name in (GLB_NAME,MANIFEST_FILE)]
+    if target.is_symlink() or not target.resolve().is_relative_to(approved):
+        raise ValueError("Candidate staging directory escapes approved project")
+    if any(p.exists() or p.is_symlink() for p in files):
+        raise FileExistsError("Inactive candidate already present: refuse overwrite")
     verified=verify_snapshot(backup)
     if not verified.get("verified"):
         raise ValueError("Backup archive was not verified")

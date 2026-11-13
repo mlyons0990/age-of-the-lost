@@ -22,6 +22,12 @@ func _initialize() -> void:
 	checks += 1
 	assert(is_equal_approx(IK_SCRIPT.contact_phase("L", true), 14.0 / 18.0))
 	checks += 1
+	assert(IK_SCRIPT.is_reach_safe(Vector3.ZERO, Vector3(0.4, 0.0, 0.0), 0.52))
+	checks += 1
+	assert(not IK_SCRIPT.is_reach_safe(Vector3.ZERO, Vector3(0.6, 0.0, 0.0), 0.52))
+	checks += 1
+	assert(IK_SCRIPT.is_reach_safe(Vector3(0, 5, 0), Vector3(0, 0, 0), 0.52))
+	checks += 1
 	# Regression guard: proxy GLB or empty root must NOT force IK on.
 	var root := Node3D.new()
 	var actor := CharacterBody3D.new()

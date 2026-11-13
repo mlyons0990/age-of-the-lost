@@ -23,7 +23,30 @@
         37,
         39,
         40
-      ]
+      ],
+      "local_translations": [
+        [
+          -0.155,
+          -0.06,
+          0
+        ],
+        [
+          0,
+          -0.24,
+          0
+        ],
+        [
+          0,
+          -0.36,
+          0
+        ],
+        [
+          0,
+          -0.05,
+          -0.07
+        ]
+      ],
+      "has_knee_ankle_foot": true
     },
     "R": {
       "names": [
@@ -37,12 +60,36 @@
         45,
         47,
         48
-      ]
+      ],
+      "local_translations": [
+        [
+          0.155,
+          -0.06,
+          0
+        ],
+        [
+          0,
+          -0.24,
+          0
+        ],
+        [
+          0,
+          -0.36,
+          0
+        ],
+        [
+          0,
+          -0.05,
+          -0.07
+        ]
+      ],
+      "has_knee_ankle_foot": true
     }
   },
   "limitations": [
     "Source rest pose leg chains nearly collinear; pole axis cannot be determined from rest pose alone.",
     "No skin-weight QA or mesh deformation certification.",
     "Windows Godot 4.6.3 animation measurements required."
-  ]
+  ],
+  "glb_sha256": "9b4cdd1eeb3661334a6d0886d337b13352e693bfbafa20cd972c670b72f56b11"
 }

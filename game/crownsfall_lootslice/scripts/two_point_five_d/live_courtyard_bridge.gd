@@ -145,6 +145,54 @@ func _citadel_route_inside_navigation(start_px: Vector2, end_px: Vector2,
             var sample_world := to_2d(sample_3d)
             if not _citadel_inside_authoritative_polygon(route_nav, sample_world):
                 return false
+    # Boundary-exact lane coverage catches even centimeter-wide gaps between
+    # sample sections. This only READS the authoritative existing polygon.
+    for fraction in [-0.48, -0.24, 0.0, 0.24, 0.48]:
+        var lateral := side * clear_width_m * float(fraction)
+        if not _citadel_lane_inside_authoritative_nav(
+                route_nav, to_2d(from_ground + lateral),
+                to_2d(to_ground + lateral)):
+            return false
+    return true
+
+func _citadel_lane_inside_authoritative_nav(nav: NavigationRegion2D,
+        from_px: Vector2, to_px: Vector2) -> bool:
+    # Enumerate true indexed polygon-edge crossings. Test each interval
+    # midpoint against the union of walkable indexed polygons rather than
+    # assuming 17/61 point samples prove continuous connectivity.
+    if nav == null or not is_instance_valid(nav) or nav.navigation_polygon == null:
+        return false
+    var a := nav.to_local(from_px)
+    var b := nav.to_local(to_px)
+    var span: Vector2 = b - a
+    var sq_len := span.length_squared()
+    if sq_len < 0.000001:
+        return false
+    var dividers: Array[float] = [0.0, 1.0]
+    var shape: NavigationPolygon = nav.navigation_polygon
+    var verts: PackedVector2Array = shape.vertices
+    for polygon_index in range(shape.get_polygon_count()):
+        var indices: PackedInt32Array = shape.get_polygon(polygon_index)
+        for edge_i in range(indices.size()):
+            var i0: int = indices[edge_i]
+            var i1: int = indices[(edge_i + 1) % indices.size()]
+            if i0 < 0 or i1 < 0 or i0 >= verts.size() or i1 >= verts.size():
+                return false
+            var crossing: Variant = Geometry2D.segment_intersects_segment(
+                a, b, verts[i0], verts[i1])
+            if crossing is Vector2:
+                var along: float = (crossing - a).dot(span) / sq_len
+                if along > 0.000001 and along < 0.999999:
+                    dividers.append(along)
+    dividers.sort()
+    if not _citadel_inside_authoritative_polygon(nav, from_px) or not (
+            _citadel_inside_authoritative_polygon(nav, to_px)):
+        return false
+    for i in range(dividers.size() - 1):
+        var midpoint_t: float = (dividers[i] + dividers[i + 1]) * 0.5
+        if not _citadel_inside_authoritative_polygon(nav,
+                nav.to_global(a.lerp(b, midpoint_t))):
+            return false
     return true
 
 func _citadel_inside_authoritative_polygon(

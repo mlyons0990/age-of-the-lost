@@ -13,6 +13,8 @@ const LIVE_KNIGHT := preload("res://scripts/two_point_five_d/knight_depth_billbo
 const CITADEL_GRADE := preload("res://scripts/two_point_five_d/citadel_grade_geometry_v12.gd")
 const CITADEL_ART_SCENE := "res://assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.glb"
 const CITADEL_ART_MANIFEST := "res://assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.json"
+const CITADEL_MASONRY_SCENE_V17 := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb"
+const CITADEL_MASONRY_MANIFEST_V17 := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.json"
 const RIGHT := Vector3(0.70710678, 0.0, -0.70710678)
 const TOWARDS_CAMERA := Vector3(0.70710678, 0.0, 0.70710678)
 const VIEW_OFFSET := Vector3(12.8, 16.4, 12.8)
@@ -50,6 +52,7 @@ var citadel_grade_foot_samples := 0
 var citadel_art_root: Node3D = null
 var citadel_art_enabled := false
 var citadel_art_mesh_count := 0
+var citadel_art_variant := "none"
 
 
 func _ready() -> void:
@@ -195,21 +198,37 @@ func _collect_citadel_art_meshes(node: Node, out: Dictionary) -> void:
         _collect_citadel_art_meshes(child, out)
 
 func install_verified_citadel_art() -> bool:
-    ## Explicit Phase 16 opt-in. The Phase 11 game must provide the real
-    ## Citadel endpoints to install_verified_citadel_grade() beforehand.
+    ## Preserve the proven Phase16 entrypoint and its 220-mesh fallback.
+    return _install_verified_citadel_asset(
+        CITADEL_ART_SCENE, CITADEL_ART_MANIFEST, "v15")
+
+func install_verified_citadel_masonry_v17() -> bool:
+    ## Separate feature gate. Never replace approved painterly default.
+    return _install_verified_citadel_asset(
+        CITADEL_MASONRY_SCENE_V17, CITADEL_MASONRY_MANIFEST_V17, "v17")
+
+func _install_verified_citadel_asset(scene_path: String,
+        manifest_path: String, variant: String) -> bool:
+    # IMPORTANT: trusted variants only. No arbitrary untrusted ResourceLoader path.
+    if variant != "v15" and variant != "v17":
+        return false
     if citadel_art_root != null or citadel_grade == null:
         return false
     if not is_instance_valid(citadel_grade):
         return false
-    if not ResourceLoader.exists(CITADEL_ART_SCENE):
+    if not ResourceLoader.exists(scene_path):
         return false
-    if not FileAccess.file_exists(CITADEL_ART_MANIFEST):
+    if not FileAccess.file_exists(manifest_path):
         return false
     var meta: Variant = JSON.parse_string(
-        FileAccess.get_file_as_string(CITADEL_ART_MANIFEST))
+        FileAccess.get_file_as_string(manifest_path))
     if not (meta is Dictionary):
         return false
-    if int(meta.get("nodes", 0)) != 220:
+    var expected_count := 220 if variant == "v15" else 1197
+    if int(meta.get("nodes", 0)) != expected_count:
+        return false
+    if variant == "v17" and String(meta.get("status", "")) != (
+            "art_candidate_not_canon_not_higgsfield_export"):
         return false
     if bool(meta.get("has_gameplay_colliders", true)):
         return false
@@ -224,7 +243,7 @@ func install_verified_citadel_art() -> bool:
     if not is_equal_approx(float(meta.get("step_run_m", 0.0)) *
             float(meta.get("tread_count", 0)), float(citadel_grade.run_length_m)):
         return false
-    var packed: PackedScene = ResourceLoader.load(CITADEL_ART_SCENE) as PackedScene
+    var packed: PackedScene = ResourceLoader.load(scene_path) as PackedScene
     if packed == null:
         return false
     var instance: Node = packed.instantiate()
@@ -234,7 +253,7 @@ func install_verified_citadel_art() -> bool:
     var art: Node3D = instance as Node3D
     var meshes: Dictionary = {}
     _collect_citadel_art_meshes(art, meshes)
-    if meshes.size() != 220 or not meshes.has("STAIR_Tread_01") or not meshes.has(
+    if meshes.size() != expected_count or not meshes.has("STAIR_Tread_01") or not meshes.has(
             "STAIR_Tread_09") or not meshes.has("GATE_GothicVoussoir_32"):
         art.free()
         return false
@@ -244,11 +263,12 @@ func install_verified_citadel_art() -> bool:
         art.free()
         return false
     assembly.add_child(art)
-    art.name = "Citadel_Phase15_220Mesh_ArtOnly_OptIn"
+    art.name = "Citadel_%s_%dMesh_ArtOnly_OptIn" % [variant, expected_count]
     art.transform = Transform3D.IDENTITY
     art.visible = false
     citadel_art_root = art
     citadel_art_mesh_count = meshes.size()
+    citadel_art_variant = variant
     citadel_art_enabled = false
     return true
 
@@ -588,6 +608,7 @@ func status() -> Dictionary:
         "citadel_art_available": citadel_art_root != null,
         "citadel_art_enabled": citadel_art_enabled,
         "citadel_art_mesh_count": citadel_art_mesh_count,
+        "citadel_art_variant": citadel_art_variant,
         "citadel_art_visual_path": "imported_glb" if citadel_art_enabled else "procedural",
         "citadel_grade_height_samples": citadel_grade_foot_samples,
         "citadel_uses_existing_nav": citadel_grade_nav != null,

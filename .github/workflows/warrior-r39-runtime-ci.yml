@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/warrior-r39-runtime-ci.yml
       - game/crownsfall_lootslice/tests/verify_warrior_r39_runtime_controller.gd
+      - game/crownsfall_lootslice/tests/terrain_ik_collision_r39.gd
   workflow_dispatch:
 
 permissions:
@@ -44,6 +45,7 @@ jobs:
           cp game/crownsfall_lootslice/scripts/three_d/terrain_foot_ik.gd "$p/scripts/three_d/"
           cp game/crownsfall_lootslice/scripts/three_d/equipment_sockets3d.gd "$p/scripts/three_d/"
           cp game/crownsfall_lootslice/tests/verify_warrior_r39_runtime_controller.gd "$p/tests/"
+          cp game/crownsfall_lootslice/tests/terrain_ik_collision_r39.gd "$p/tests/"
           cat > "$p/project.godot" <<'EOF'
           config_version=5
           [application]
@@ -61,6 +63,8 @@ jobs:
           "$GODOT" --headless --path /tmp/aotl-r39-runtime --editor --quit 2>&1 | tee /tmp/aotl-controller-import.log
           "$GODOT" --headless --path /tmp/aotl-r39-runtime --script res://tests/verify_warrior_r39_runtime_controller.gd 2>&1 | tee /tmp/aotl-controller-runtime.log
           grep -q "AOTL R39 RUNTIME CONTROLLER PASS" /tmp/aotl-controller-runtime.log
+          "$GODOT" --headless --path /tmp/aotl-r39-runtime --script res://tests/terrain_ik_collision_r39.gd 2>&1 | tee /tmp/aotl-terrain-physics.log
+          grep -q "AOTL R39 TERRAIN PHYSICS PASS" /tmp/aotl-terrain-physics.log
       - name: Preserve runtime QA logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -69,5 +73,6 @@ jobs:
           path: |
             /tmp/aotl-controller-import.log
             /tmp/aotl-controller-runtime.log
+            /tmp/aotl-terrain-physics.log
           if-no-files-found: warn
           retention-days: 30

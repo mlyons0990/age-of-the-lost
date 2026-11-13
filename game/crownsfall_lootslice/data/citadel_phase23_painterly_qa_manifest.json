@@ -1,0 +1,83 @@
+{
+  "schema": "aotl.citadel.phase23.painterly_material_pass.v1",
+  "date_utc": "2026-11-13",
+  "status": "isolated_material_candidate_CI_in_progress",
+  "source_higgsfield_project": "0361ff9b-2829-4595-a64e-564f39e1eeac",
+  "source_revision_before": 12,
+  "new_revision": 13,
+  "source_geometry_meshes": 309,
+  "actual_user_approved_phase11_project_available": false,
+  "materials": [
+    {
+      "material": "MAT_AOTL_Phase17_Packed_PaintedIvory",
+      "new_image": "AOTL_Ph23_IvoryStone_1024",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "sha256": "e0d46701e53c0df4fdf0b86c556a606e8319a487f7f872970f8e1207351da480",
+      "packed_bytes": 1433624,
+      "source_image": "AOTL_Crownsfall_StoneIvory_v04"
+    },
+    {
+      "material": "MAT_AOTL_Phase17_Packed_Patina",
+      "new_image": "AOTL_Ph23_WeatheredPatina_1024",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "sha256": "432f6cda2d8c3f2a1f137c26602809fa20974491d8cdb7f10794b8412143fa88",
+      "packed_bytes": 1381374,
+      "source_image": "AOTL_Crownsfall_StonePatina_v04"
+    },
+    {
+      "material": "MAT_Ivy_Leaves",
+      "new_image": "AOTL_Ph23_PaintedIvy_512",
+      "resolution": [
+        512,
+        512
+      ],
+      "sha256": "4d9d229ab24a05e34d07b9c2c0675d0089bdefe16fb29063f2bf3e962cb99a06",
+      "packed_bytes": 296575,
+      "source_image": null
+    }
+  ],
+  "higgsfield_provider_glb_bytes": 4865996,
+  "higgsfield_provider_blend_bytes": 6331111,
+  "provider_previews": [
+    {
+      "name": "wide",
+      "operation": "phase23-v13-render-wide-closeup",
+      "artifact_id": "43aeb1f5192c4aa55505b50c368b16e0",
+      "size": [
+        960,
+        540
+      ]
+    },
+    {
+      "name": "detail",
+      "operation": "phase23-v13-render-wide-closeup",
+      "artifact_id": "6fe90a291af7acde0a19dd91110bac2d",
+      "size": [
+        960,
+        540
+      ]
+    }
+  ],
+  "provider_commit_validated": true,
+  "original_textures_remaining_in_v13": false,
+  "original_textures_available_in_prior_v12_revision": true,
+  "note": "Higgsfield export checkpoint removes unused old images from new revision; rollback to v12 remains safe",
+  "glb_real_godot_test": "pending_isolated_GitHub_Actions",
+  "new_blender_ci_workflow_url": "https://github.com/mlyons0990/age-of-the-lost/actions/runs/43454923155",
+  "source_generator": "tools/phase23_painterly_citadel_atlas.py",
+  "rebuild_wrapper": "tools/phase23_rebuild_from_v10.py",
+  "python_glb_qa": "tests/test_citadel_painterly_v23.py",
+  "godot_material_qa": "tests/citadel_material_grade_v23.gd",
+  "godot_1080_1440_capture": "tests/citadel_visual_capture_v23.gd",
+  "higgsfield_unlimited_reference_job": "b01661dd-c70c-47ca-87cd-9643001408fa",
+  "higgsfield_unlimited_reference_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/hf_20261113_153546_b01661dd-c70c-47ca-87cd-9643001408fa.png",
+  "reference_is_canon": false,
+  "quality_caveat": "Upgraded texture resolution and color variation do not guarantee painterly art quality; broad facade shapes remain coarse and approved camera/gameplay tests needed",
+  "main_merge_allowed": false
+}

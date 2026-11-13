@@ -40,6 +40,16 @@ func run_checks() -> void:
 			checks += 1
 			assert(app.active_clip == clip)
 			checks += 1
+			if clip == "Idle":
+				assert(result["left"]["vertical_range_m"] < 0.015)
+				assert(result["right"]["vertical_range_m"] < 0.015)
+				checks += 2
+			if clip in ["Walk", "Run"]:
+				assert(result["left"]["vertical_range_m"] > 0.04)
+				assert(result["right"]["vertical_range_m"] > 0.04)
+				assert(result["left"]["low_foot_path_m"] > 0.4)
+				assert(result["right"]["low_foot_path_m"] > 0.4)
+				checks += 4
 		assert(app.markers.size() == 2)
 		checks += 1
 		app.show_foot_markers = false

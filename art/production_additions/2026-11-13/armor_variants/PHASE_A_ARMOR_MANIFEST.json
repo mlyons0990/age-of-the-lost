@@ -17,7 +17,15 @@
       ],
       "allowed": "warrior",
       "job_id": "176297ce-7dc9-4693-8cbf-bdb4a1fee8ef",
-      "state": "submitted"
+      "state": "original generated, transparent RGBA master and 64px/cell runtime preview processed; isolated Godot and visual preview QA passed",
+      "master_pixels": [
+        256,
+        384
+      ],
+      "runtime_pixels": [
+        128,
+        192
+      ]
     },
     {
       "id": "epochweave_robe",
@@ -28,7 +36,16 @@
         3
       ],
       "allowed": "mage",
-      "state": "queued"
+      "state": "original generated, transparent RGBA master and 64px/cell runtime preview processed; isolated Godot and visual preview QA passed",
+      "job_id": "9b17f9d3-b7ab-409e-add3-369a166ebfe3",
+      "master_pixels": [
+        256,
+        384
+      ],
+      "runtime_pixels": [
+        128,
+        192
+      ]
     },
     {
       "id": "bastion_sallet",
@@ -39,7 +56,16 @@
         2
       ],
       "allowed": "warrior",
-      "state": "queued"
+      "state": "original generated, transparent RGBA master and 64px/cell runtime preview processed; isolated Godot and visual preview QA passed",
+      "job_id": "16daba07-5e1c-42c6-90f5-2214912ccca7",
+      "master_pixels": [
+        256,
+        256
+      ],
+      "runtime_pixels": [
+        128,
+        128
+      ]
     },
     {
       "id": "veilbound_hood",
@@ -50,7 +76,16 @@
         2
       ],
       "allowed": "mage",
-      "state": "queued"
+      "state": "original generated, transparent RGBA master and 64px/cell runtime preview processed; isolated Godot and visual preview QA passed",
+      "job_id": "6757a0af-ccd6-4b4e-bb47-b2cda17a311c",
+      "master_pixels": [
+        256,
+        256
+      ],
+      "runtime_pixels": [
+        128,
+        128
+      ]
     },
     {
       "id": "dawnsteel_gauntlets",
@@ -61,7 +96,16 @@
         2
       ],
       "allowed": "warrior",
-      "state": "queued"
+      "state": "original generated, transparent RGBA master and 64px/cell runtime preview processed; isolated Godot and visual preview QA passed",
+      "job_id": "3ce059c6-ec40-4649-8256-36b377f72640",
+      "master_pixels": [
+        256,
+        256
+      ],
+      "runtime_pixels": [
+        128,
+        128
+      ]
     },
     {
       "id": "wayfarer_greaves",
@@ -72,7 +116,16 @@
         2
       ],
       "allowed": "warrior",
-      "state": "queued"
+      "state": "original generated, transparent RGBA master and 64px/cell runtime preview processed; isolated Godot and visual preview QA passed",
+      "job_id": "18f9f888-9560-4f56-ab5f-15385829cef2",
+      "master_pixels": [
+        256,
+        256
+      ],
+      "runtime_pixels": [
+        128,
+        128
+      ]
     }
   ],
   "quality_gates": [
@@ -82,5 +135,21 @@
     "Exact base footprint and class compatibility",
     "Godot texture/import + grid and equip tests",
     "Never modify schema-six saves or merge until runtime confirmed"
-  ]
+  ],
+  "status": "6/6 Higgsfield originals generated, 6/6 RGBA master and runtime PNGs processed, 81/81 isolated Godot tests pass, visual light/dark 32px/64px review complete; playable game not yet integrated.",
+  "archive": {
+    "media_id": "814babe8-cb4b-4ce4-9f57-a578157492d1",
+    "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/814babe8-cb4b-4ce4-9f57-a578157492d1.zip",
+    "bytes": 10071665,
+    "entries": 39,
+    "integrity": "pass"
+  },
+  "test_results": {
+    "godot": "4.4.1 stable",
+    "isolated_inventory": "81/81 PASS",
+    "image_format": "6/6 RGBA and dimensions PASS",
+    "visual_32_64_dark_light": "reviewed, no obvious hard rectangular mattes",
+    "full_gameplay": "not yet run",
+    "paid_credits_spent": 0
+  }
 }

@@ -105,6 +105,11 @@ func _build_world() -> void:
 	for x in range(-13, 14, 2):
 		for z in range(-13, 14, 2):
 			_box(Vector3(float(x),0.0,float(z)), Vector3(1.95,0.035,1.95), Color("eee7d4") if (x+z)%4==0 else Color("d9d4c9"))
+	# Collision-backed terrain IK QA fixtures, placed away from combat dummies.
+	# Decorative plaza steps below are intentionally *not* used for physics tests.
+	_add_terrain_fixture(Vector3(5.4, 0.10, 2.6), Vector3(2.4, 0.20, 2.4), 0.0, Color("cbbd9d"))
+	_add_terrain_fixture(Vector3(8.2, 0.22, 2.6), Vector3(2.6, 0.44, 2.4), 0.0, Color("bba88a"))
+	_add_terrain_fixture(Vector3(6.4, 0.17, -0.7), Vector3(4.4, 0.24, 2.6), deg_to_rad(-8.0), Color("d3c6ac"))
 	# Four ivory columns and hanging royal-blue pennants: art-direction cues only.
 	for x in [-9.0,9.0]:
 		for z in [-8.0,8.0]:
@@ -120,6 +125,25 @@ func _build_world() -> void:
 		for z in range(-12,13,4):
 			_sphere(Vector3(x,1.1,float(z)),.55,Color("78966c"))
 			_sphere(Vector3(x+0.2,1.45,float(z)),.30,Color("d9d4a4"))
+
+func _add_terrain_fixture(center: Vector3, dims: Vector3, slope_radians: float, tint: Color) -> void:
+	var platform := StaticBody3D.new()
+	platform.name = "IK_TerrainTest"
+	platform.position = center
+	platform.rotation.x = slope_radians
+	platform.collision_layer = 1
+	add_child(platform)
+	var collision := CollisionShape3D.new()
+	var shape := BoxShape3D.new()
+	shape.size = dims
+	collision.shape = shape
+	platform.add_child(collision)
+	var mesh := MeshInstance3D.new()
+	var box_mesh := BoxMesh.new()
+	box_mesh.size = dims
+	mesh.mesh = box_mesh
+	mesh.material_override = _material(tint)
+	platform.add_child(mesh)
 
 func _hud_label(text: String, size := 18, color: Color = IVORY) -> Label:
 	var l := Label.new()
@@ -178,7 +202,7 @@ func _process(delta: float) -> void:
 	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
-	info.text = "Targets defeated: %d  ·  IK: %s  ·  Dodge invuln: %.1f s" % [kills, ("available" if player.terrain_ik_available else "proxy fallback"), player.invulnerable]
+	info.text = "Targets defeated: %d  ·  Model: %s  ·  Foot IK: %s" % [kills, player.active_model_source, ("active" if player.terrain_ik_available else "disabled")]
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum

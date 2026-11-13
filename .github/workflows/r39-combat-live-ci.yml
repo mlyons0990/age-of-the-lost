@@ -1,0 +1,58 @@
+name: AOTL R39 live 3D combat regression
+
+on:
+  push:
+    branches: [dev/r39-3d-combat-geometry-v1]
+    paths:
+      - .github/workflows/r39-combat-live-ci.yml
+      - game/crownsfall_lootslice/scripts/three_d/combat_targeting3d.gd
+      - game/crownsfall_lootslice/scripts/three_d/rig_lab.gd
+      - game/crownsfall_lootslice/tests/combat_rig_lab_live_integration.gd
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live_combat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install Godot 4.6.3
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/aotl-godot.zip
+          unzip -q /tmp/aotl-godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+      - name: Verify production R39 GLB
+        run: |
+          set -euo pipefail
+          echo "6e72468f2bfa6344c66c57cd0157c36949b53d8bb24f8d30c955da5f72e0ba55  game/crownsfall_lootslice/models/AOTL_Warrior_R39.glb" | sha256sum -c
+      - name: Import actual Crownsfall project and run live combat test
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/aotl-save-test
+          export XDG_DATA_HOME=/tmp/aotl-save-test
+          export XDG_CONFIG_HOME=/tmp/aotl-save-test/config
+          export XDG_CACHE_HOME=/tmp/aotl-save-test/cache
+          GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
+          "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-combat-live-import.log
+          "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/combat_rig_lab_live_integration.gd 2>&1 | tee /tmp/aotl-combat-live-test.log
+          grep -q 'AOTL LIVE R39 COMBAT RESULT 8 checks; 0 failures' /tmp/aotl-combat-live-test.log
+          if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-combat-live-import.log /tmp/aotl-combat-live-test.log; then
+            exit 1
+          fi
+      - name: Preserve real game test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R39-Live-Combat-Godot463-QA
+          path: |
+            /tmp/aotl-combat-live-import.log
+            /tmp/aotl-combat-live-test.log
+          if-no-files-found: warn
+          retention-days: 30

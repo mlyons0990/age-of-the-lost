@@ -148,7 +148,7 @@ func _build_hud() -> void:
 	var v := VBoxContainer.new()
 	top.add_child(v)
 	v.add_child(_hud_label("AOTL · 3D MOTION / COMBAT TESTBED", 25, GOLD))
-	v.add_child(_hud_label("58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
+	v.add_child(_hud_label("Articulated GLB · optional ground-contact IK · real-time FX", 16, Color("9dbff1")))
 	info = _hud_label("Targets defeated: 0", 17)
 	v.add_child(info)
 	hpbar = ProgressBar.new()
@@ -171,14 +171,14 @@ func _build_hud() -> void:
 	var words := VBoxContainer.new()
 	bottom.add_child(words)
 	words.add_child(_hud_label("WASD move    Shift sprint    Space dodge    Left click slash    1 cleave    2 dash strike    3 lorecast burst", 19, GOLD))
-	words.add_child(_hud_label("Proxy geometry only. Final SAO-proportion character sculpt, skin weights, texture work, IK and cloth simulation still required.", 15))
+	words.add_child(_hud_label("Foot IK automatically enables only on compatible leg bones. Current proxy may use the original animation. Terrain IK and cloth require further QA.", 15))
 
 func _process(delta: float) -> void:
 	if player == null: return
 	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
-	info.text = "Targets defeated: %d  ·  Dodge invuln: %.1f s   ·  Cast cooldown: %.1f s" % [kills, player.invulnerable, player.spell_cd]
+	info.text = "Targets defeated: %d  ·  IK: %s  ·  Dodge invuln: %.1f s" % [kills, ("available" if player.terrain_ik_available else "proxy fallback"), player.invulnerable]
 
 func _on_hp(current: float, maximum: float) -> void:
 	hpbar.max_value = maximum

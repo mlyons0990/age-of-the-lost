@@ -5,7 +5,8 @@ extends CharacterBody3D
 signal impact(at: Vector3, kind: String, direction: Vector3)
 signal health_changed(current: float, maximum: float)
 
-const MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const LEGACY_MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
 const TERRAIN_IK := preload("res://scripts/three_d/terrain_foot_ik.gd")
 const WALK_SPEED := 4.3
 const RUN_SPEED := 6.7
@@ -31,9 +32,17 @@ var anim_state := ""
 var clip_names: Dictionary = {}
 var terrain_foot_ik: Node3D = null
 var terrain_ik_available := false
+var active_model_source := "legacy_proxy"
 
 func _ready() -> void:
-	body = MODEL.instantiate()
+	# Revision 36 is preferred, but the Git-LFS legacy proxy remains a permanent fallback.
+	var selected_model: PackedScene = LEGACY_MODEL
+	if ResourceLoader.exists(WARRIOR_R36):
+		var imported_model := ResourceLoader.load(WARRIOR_R36, "PackedScene") as PackedScene
+		if imported_model != null:
+			selected_model = imported_model
+			active_model_source = "warrior_r36"
+	body = selected_model.instantiate()
 	add_child(body)
 	animation = body.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	if animation != null:

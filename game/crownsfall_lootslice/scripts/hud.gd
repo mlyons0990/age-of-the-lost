@@ -255,8 +255,22 @@ func _icon(id: String) -> Texture2D:
 func _item_icon(item: Dictionary) -> Texture2D:
 	return _item_portrait(item)
 
+const PHASE_A_VARIANTS := {
+	"Crownfall Aegis": {"slot":"offhand", "id":"phase_a/crownfall_aegis"},
+	"Chronicle Codex": {"slot":"focus", "id":"phase_a/chronicle_codex"},
+	"Emberglass Focus": {"slot":"focus", "id":"phase_a/emberglass_focus"},
+	"Oathkeeper Signet": {"slot":"ring", "id":"phase_a/oathkeeper_signet"},
+	"Veilthorn Band": {"slot":"ring", "id":"phase_a/veilthorn_band"},
+	"Wayfarer's Locket": {"slot":"amulet", "id":"phase_a/wayfarers_locket"},
+}
 func _item_portrait(item: Dictionary) -> Texture2D:
-	return ART.inventory_portrait(String(item.get("unique_id",item.slot)))
+	# Named variant illustrations do not modify the authoritative equipment IDs,
+	# footprint, class rules or save schema. Ordinary gear keeps its existing art.
+	if not item.has("unique_id"):
+		var selected: Variant = PHASE_A_VARIANTS.get(String(item.get("name", "")), {})
+		if selected is Dictionary and String(item.get("slot", "")) == String(selected.get("slot", "")):
+			return ART.inventory_portrait(String(selected.id))
+	return ART.inventory_portrait(String(item.get("unique_id",item.get("slot","ring"))))
 
 func action_art(button: Button, id: String) -> Button:
 	button.icon=_icon("ui_"+id)

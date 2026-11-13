@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "project": "Age of the Lost",
+  "release_stage": "review-only optional named variant art; not in random loot/merchant rotation",
+  "baseline_compatible": true,
+  "source": "Higgsfield Ultra unlimited, zero paid credits",
+  "items": [
+    {
+      "id": "crownfall_aegis",
+      "name": "Crownfall Aegis",
+      "slot": "offhand",
+      "grid": [
+        2,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/crownfall_aegis.png",
+      "class": "warrior"
+    },
+    {
+      "id": "chronicle_codex",
+      "name": "Chronicle Codex",
+      "slot": "focus",
+      "grid": [
+        1,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/chronicle_codex.png",
+      "class": "mage"
+    },
+    {
+      "id": "emberglass_focus",
+      "name": "Emberglass Focus",
+      "slot": "focus",
+      "grid": [
+        1,
+        2
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/emberglass_focus.png",
+      "class": "mage"
+    },
+    {
+      "id": "oathkeeper_signet",
+      "name": "Oathkeeper Signet",
+      "slot": "ring",
+      "grid": [
+        1,
+        1
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/oathkeeper_signet.png",
+      "class": "warrior"
+    },
+    {
+      "id": "veilthorn_band",
+      "name": "Veilthorn Band",
+      "slot": "ring",
+      "grid": [
+        1,
+        1
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/veilthorn_band.png",
+      "class": "mage"
+    },
+    {
+      "id": "wayfarers_locket",
+      "name": "Wayfarer's Locket",
+      "slot": "amulet",
+      "grid": [
+        1,
+        1
+      ],
+      "portrait": "res://assets/item_portraits/phase_a/wayfarers_locket.png",
+      "class": "mage"
+    }
+  ]
+}

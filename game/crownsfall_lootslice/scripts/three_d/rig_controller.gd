@@ -32,6 +32,10 @@ var clip_names: Dictionary = {}
 var foot_ik: Node3D
 var ik_available := false
 
+# Phase 21 opt-in lab-only cadence comparison. Never persisted to character saves.
+var stride_rate_mode := false
+var stride_rate := 1.0
+
 func _ready() -> void:
 	body = MODEL.instantiate()
 	add_child(body)
@@ -69,7 +73,23 @@ func toggle_foot_ik() -> bool:
 	return foot_ik.active
 
 func foot_ik_status() -> String:
-	return foot_ik.get_status() if ik_available else "Foot IK unavailable: skeleton / bone names"
+	return foot_ik.get_status() if ik_available else "Foot IK unavailable: skeleton import / bone names"
+
+func adjust_stride_rate(delta: float) -> float:
+	stride_rate_mode = true
+	stride_rate = clampf(snappedf(stride_rate + delta, 0.1), 0.5, 3.5)
+	return stride_rate
+
+func reset_stride_rate() -> void:
+	stride_rate_mode = false
+	stride_rate = 1.0
+	if animation != null:
+		animation.speed_scale = 1.0
+
+func stride_rate_status() -> String:
+	if not stride_rate_mode:
+		return "Stride playback: default authored cadence (1.0×)"
+	return "Stride playback: %.1f× (experimental, Walk/Run only)" % stride_rate
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
@@ -155,11 +175,14 @@ func _physics_process(delta: float) -> void:
 	if last_face.length() > 0.0:
 		var desired_yaw := atan2(-last_face.x, -last_face.z)
 		body.rotation.y = lerp_angle(body.rotation.y, desired_yaw, minf(1.0, delta * 13.0))
+	if animation != null:
+		# Cast/slash/dodge and idle retain authored timing even when gait tuning is enabled.
+		animation.speed_scale = stride_rate if stride_rate_mode and anim_state in ["Walk", "Run"] else 1.0
 	velocity.y = -GRAVITY if is_on_floor() else velocity.y - GRAVITY * delta
 	move_and_slide()
 	if ik_available:
-		var speed := Vector2(velocity.x,velocity.z).length()
-		foot_ik.update_foot_placement(delta,attack_t <= 0.0 and dodge_t <= 0.0 and is_on_floor(),speed)
+		var speed := Vector2(velocity.x, velocity.z).length()
+		foot_ik.update_foot_placement(delta, attack_t <= 0.0 and dodge_t <= 0.0 and is_on_floor(), speed)
 
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return

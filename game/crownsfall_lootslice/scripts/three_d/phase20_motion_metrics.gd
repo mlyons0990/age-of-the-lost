@@ -1,11 +1,13 @@
 extends RefCounted
-## Phase 20: sample feet through an optional master animation.
-## Results are bone-relative trajectory indicators, not ground-contact proof.
+## Phase 20: deterministic animation-foot-motion audit for the OPTIONAL master-rig viewer.
+## Quantifies bone-tip trajectories; does NOT claim true biomechanical ground contact.
+
 const FEET := ["FootL", "FootR"]
 const DEFAULT_SAMPLES := 25
 const CONTACT_BAND := 0.085
 
 static func foot_world_position(skeleton: Skeleton3D, bone_index: int) -> Vector3:
+	# Skeleton3D bone poses are skeleton-relative. Convert once to world space.
 	return skeleton.global_transform * skeleton.get_bone_global_pose(bone_index).origin
 
 static func summarize_path(positions: Array[Vector3], contact_band: float = CONTACT_BAND) -> Dictionary:
@@ -28,11 +30,18 @@ static func summarize_path(positions: Array[Vector3], contact_band: float = CONT
 			path_m += segment
 			if positions[i].y <= min_height + contact_band and positions[i - 1].y <= min_height + contact_band:
 				contact_path_m += segment
-	return {"loop_seam_m": positions[0].distance_to(positions[-1]),
-		"samples": positions.size(), "min_y": min_height, "max_y": max_height,
+	var seam_m := positions[0].distance_to(positions[-1])
+	return {
+		"loop_seam_m": seam_m,
+		"samples": positions.size(),
+		"min_y": min_height,
+		"max_y": max_height,
 		"vertical_range_m": max_height - min_height,
-		"horizontal_path_m": path_m, "low_foot_path_m": contact_path_m,
-		"near_lowest_samples": contact_samples, "points": positions}
+		"horizontal_path_m": path_m,
+		"low_foot_path_m": contact_path_m,
+		"near_lowest_samples": contact_samples,
+		"points": positions,
+	}
 
 static func inspect_clip(animator: AnimationPlayer, skeleton: Skeleton3D, clip_key: String, sample_count: int = DEFAULT_SAMPLES) -> Dictionary:
 	if animator == null or skeleton == null or not animator.has_animation(clip_key):
@@ -46,7 +55,7 @@ static func inspect_clip(animator: AnimationPlayer, skeleton: Skeleton3D, clip_k
 	var clip := animator.get_animation(clip_key)
 	var count := maxi(3, sample_count)
 	var previous := animator.current_animation
-	var previous_position := animator.current_animation_position
+	var previous_position := animator.current_animation_position if previous != "" else 0.0
 	var previous_playing := animator.is_playing()
 	var tracks := [[], []]
 	for i in range(count):
@@ -56,6 +65,7 @@ static func inspect_clip(animator: AnimationPlayer, skeleton: Skeleton3D, clip_k
 		animator.advance(0.0)
 		for side in range(2):
 			tracks[side].append(foot_world_position(skeleton, bones[side]))
+	# Restore exact playback selection and position before returning to the preview.
 	if previous != "" and animator.has_animation(previous):
 		animator.play(previous, 0.0)
 		animator.seek(previous_position, true)
@@ -70,5 +80,11 @@ static func inspect_clip(animator: AnimationPlayer, skeleton: Skeleton3D, clip_k
 		left.append(p)
 	for p in tracks[1]:
 		right.append(p)
-	return {"ok": true, "clip": clip_key, "duration_s": clip.length,
-		"left": summarize_path(left), "right": summarize_path(right), "samples": count}
+	return {
+		"ok": true,
+		"clip": clip_key,
+		"duration_s": clip.length,
+		"left": summarize_path(left),
+		"right": summarize_path(right),
+		"samples": count,
+	}

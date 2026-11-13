@@ -1,0 +1,29 @@
+{
+  "phase": 21,
+  "tested_utc": "2026-11-13",
+  "engine": "Godot 4.4.1 Linux headless (isolated testbed)",
+  "runtime_results": {
+    "stride_math_static_samples": {"passed": 11, "total": 11},
+    "master_r38_stride_integration": {"passed": 13, "total": 13},
+    "master_r46_stride_integration": {"passed": 13, "total": 13},
+    "r46_preferred_path": {"passed": 3, "total": 3},
+    "optional_model_missing_fallback": {"passed": 3, "total": 3},
+    "rig_lab_walk_run_idle_cast_dodge": {"passed": 14, "total": 14}
+  },
+  "diagnostic_estimates_r38": {
+    "walk": {"speed_mps": 1.9538, "stance_candidates": 20, "opposing_low_foot_segments": 24, "contact_ambiguous": true, "fit_residual_mps": 0.5436},
+    "run": {"speed_mps": 3.8286, "stance_candidates": 11, "opposing_low_foot_segments": 16, "contact_ambiguous": true, "fit_residual_mps": 0.4524}
+  },
+  "r46_higgsfield_source_revision": 46,
+  "r46_export": {"independent_clips": ["Cast", "Dodge", "Idle", "Run", "Slash", "Walk"], "joint_count": 62, "godot_import_confirmed": true},
+  "release_gate": {
+    "windows_godot_4_6_3_visual_approval": false,
+    "correct_foot_plant": "unverified",
+    "proper_knee_deformation": "unverified",
+    "clip_transition_quality": "unverified",
+    "production_character_replaced": false,
+    "automatic_stride_calibration_enabled": false,
+    "previous_saves_modified": false
+  },
+  "notes": "Low-foot bone tracks include forward swing-like samples and cannot establish shoe/ground contact. Estimated speed must never be automatically applied until independent contact and visual tests pass."
+}

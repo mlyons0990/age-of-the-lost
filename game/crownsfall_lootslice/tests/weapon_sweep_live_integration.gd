@@ -37,8 +37,12 @@ func _run() -> void:
 	await root.get_tree().create_timer(0.35).timeout
 	verify(is_equal_approx(target.hp,68.0), "No duplicate Slash hit during follow-through")
 	lab.strict_weapon_sweep = true
+	lab._draw_sword_sweep()
 	verify(lab.strict_weapon_sweep, "F8 strict sweep comparison can be enabled independently")
+	verify(lab.sword_sweep_debug != null and lab.sword_sweep_debug.visible, "F8 renders actual sampled sword path")
 	lab.strict_weapon_sweep = false
+	lab._draw_sword_sweep()
 	verify(not lab.strict_weapon_sweep, "Baseline combat remains recoverable")
+	verify(not lab.sword_sweep_debug.visible, "F8 hides debug geometry when disabled")
 	print("AOTL R39 LIVE WEAPON CONTACT RESULT %d checks; %d failures" % [checks, failures])
 	quit(0 if failures == 0 else 1)

@@ -1,0 +1,112 @@
+name: Crownsfall Citadel V17 — sculpted masonry textures and safe variant
+
+on:
+  push:
+    branches:
+      - feature/phase17-citadel-masonry-texture-and-occlusion
+  pull_request:
+    paths:
+      - 'game/crownsfall_lootslice/tools/build_citadel_art_glb_v15.py'
+      - 'game/crownsfall_lootslice/tools/requirements_citadel_v15.txt'
+      - 'game/crownsfall_lootslice/tests/test_citadel_art_glb_v15.py'
+      - 'game/crownsfall_lootslice/tests/citadel_art_import_v15.gd'
+      - 'game/crownsfall_lootslice/tests/citadel_art_swap_v16.gd'
+      - 'game/crownsfall_lootslice/tests/citadel_masonry_v17.gd'
+      - 'game/crownsfall_lootslice/tests/test_citadel_masonry_v17.py'
+      - 'game/crownsfall_lootslice/tools/build_citadel_art_v17.py'
+      - 'game/crownsfall_lootslice/scripts/two_point_five_d/**'
+      - '.github/workflows/crownsfall-citadel-asset-v17.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-art-mesh-and-godot-import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      XDG_DATA_HOME: /tmp/aotl-ci-data
+      XDG_CACHE_HOME: /tmp/aotl-ci-cache
+      XDG_CONFIG_HOME: /tmp/aotl-ci-config
+    steps:
+      - name: Checkout all Crownsfall game assets
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Python 3.11 for reproducible art asset build
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deterministic mesh exporter
+        run: |
+          python -m pip install -r game/crownsfall_lootslice/tools/requirements_citadel_v15.txt
+          python -m pip install 'Pillow>=10,<13'
+      - name: Build real GLB + manifest from source
+        run: |
+          cd game/crownsfall_lootslice
+          python tools/build_citadel_art_glb_v15.py
+      - name: Validate binary mesh, landings, topology, and no gameplay authority
+        run: |
+          cd game/crownsfall_lootslice
+          python tests/test_citadel_art_glb_v15.py 2>&1 | tee citadel_v15_static.log
+      - name: Build new art-only 1197-mesh Citadel textured GLB
+        run: |
+          cd game/crownsfall_lootslice
+          python tools/build_citadel_art_v17.py
+      - name: Audit new textured masonry topology, routes and source
+        run: |
+          cd game/crownsfall_lootslice
+          python tests/test_citadel_masonry_v17.py 2>&1 | tee citadel_v17_static.log
+      - name: Install Godot 4.6.3
+        uses: solarlabyrinth/action-setup-godot@v3
+        with:
+          version: 4.6.3-stable
+          export-templates: false
+      - name: Confirm engine version
+        run: godot --version
+      - name: Import Godot source and built GLB
+        run: godot --headless --path game/crownsfall_lootslice --editor --import --quit
+      - name: Verify imported GLB scene in real engine
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_art_import_v15.gd
+      - name: Phase 12 stair geometry headless checks
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_grade_geometry_v12.gd
+      - name: Phase 13 grade bridge headless checks
+        run: godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_depth_bridge_v13.gd
+      - name: Phase 16 real GLB art swap and indexed nav tests
+        run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_art_swap_v16.gd
+      - name: Phase 17 isolated GLB import and non-destructive visual route tests
+        run: timeout 90s godot --headless --path game/crownsfall_lootslice --script res://tests/citadel_masonry_v17.gd
+      - name: Render original Phase 16 Citadel fallback baseline in Godot
+        run: |
+          which xvfb-run || (sudo apt-get update -qq && sudo apt-get install -y xvfb)
+          timeout 90s xvfb-run -a godot --path game/crownsfall_lootslice --rendering-method gl_compatibility --script res://tests/citadel_visual_capture_v16.gd
+      - name: Render standalone Citadel art in real Godot OpenGL under virtual X display
+        run: |
+          which xvfb-run || (sudo apt-get update -qq && sudo apt-get install -y xvfb)
+          timeout 90s xvfb-run -a godot --path game/crownsfall_lootslice --rendering-method gl_compatibility --script res://tests/citadel_visual_capture_v16.gd
+      - name: Archive actual renderer screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-citadel-v17-render-review
+          path: |
+            game/crownsfall_lootslice/citadel_v16_render.png
+            game/crownsfall_lootslice/citadel_v17_render.png
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Preserve portable GLB for engine integration
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aotl-citadel-v17-detail-glb-and-qa
+          path: |
+            game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.glb
+            game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_ArtFallback_v15.json
+            game/crownsfall_lootslice/citadel_v15_static.log
+            game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb
+            game/crownsfall_lootslice/assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.json
+            game/crownsfall_lootslice/citadel_v17_static.log
+          if-no-files-found: warn
+          retention-days: 30

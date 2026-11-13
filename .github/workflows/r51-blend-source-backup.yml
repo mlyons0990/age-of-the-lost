@@ -1,0 +1,66 @@
+name: AOTL R51 editable Blender rig source backup
+
+on:
+  push:
+    branches: [dev/r50-slash-weighttransfer-ik-v1]
+    paths:
+      - .github/workflows/r51-blend-source-backup.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aotl-r51-source-backup
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Download checksum-verified full Blender 5.2 scene from Higgsfield
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 \
+            "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/17c0da85-237c-411b-b575-2efb4b17a64f.zip?download=AOTL_R51_Rig_Source_Protected_Backup.zip" \
+            -o /tmp/r51-rig-backup.zip
+          echo "6944fd7d9466d99df452fbde4138ad5011296e29216fef29d8c3cd6acf2d02d6  /tmp/r51-rig-backup.zip" | sha256sum --check -
+          dest=game/crownsfall_lootslice/source_blender
+          mkdir -p "$dest"
+          unzip -p /tmp/r51-rig-backup.zip AOTL_R51_R50_FullBody_Slash_Source.blend > "$dest/AOTL_R51_R50_FullBody_Slash_Source.blend"
+          unzip -p /tmp/r51-rig-backup.zip AOTL_R51_Rig_Source_Manifest.json > "$dest/AOTL_R51_Rig_Source_Manifest.json"
+          echo "7e6c43e40fad74f747c0c925e8f23bf7076f976a5bf39b632b90c04f8fb74c01  $dest/AOTL_R51_R50_FullBody_Slash_Source.blend" | sha256sum --check -
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('game/crownsfall_lootslice/source_blender')
+          b=(p/'AOTL_R51_R50_FullBody_Slash_Source.blend').read_bytes()
+          assert b.startswith(b'BLENDER')
+          meta=json.loads((p/'AOTL_R51_Rig_Source_Manifest.json').read_text())
+          assert meta['source_revision']==51 and meta['blend_bytes']==len(b)
+          print('Full editable source valid; bytes:',len(b))
+          PY
+      - name: Commit editable rig to Git LFS, preserving older versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git lfs track "game/crownsfall_lootslice/source_blender/*.blend"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .gitattributes game/crownsfall_lootslice/source_blender/
+          if ! git diff --cached --quiet; then
+            git commit -m "Preserve complete editable R51 Blender Warrior source with 4 Slash version actions"
+            git push origin HEAD:dev/r50-slash-weighttransfer-ik-v1
+          fi
+      - name: Publish portable source archive for Google Drive
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R51-Full-Blender-Source-Backed-Up
+          path: /tmp/r51-rig-backup.zip
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,48 @@
+{
+  "source": "models/AOTL_Wayfarer_Articulated_Proxy.glb",
+  "nodes": 60,
+  "skins": 1,
+  "animation_clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Slash",
+    "Dodge",
+    "Cast"
+  ],
+  "leg_chains": {
+    "L": {
+      "names": [
+        "HipL",
+        "KneeL",
+        "AnkleL",
+        "FootL"
+      ],
+      "node_indices": [
+        34,
+        37,
+        39,
+        40
+      ]
+    },
+    "R": {
+      "names": [
+        "HipR",
+        "KneeR",
+        "AnkleR",
+        "FootR"
+      ],
+      "node_indices": [
+        42,
+        45,
+        47,
+        48
+      ]
+    }
+  },
+  "limitations": [
+    "Source rest pose leg chains nearly collinear; pole axis cannot be determined from rest pose alone.",
+    "No skin-weight QA or mesh deformation certification.",
+    "Windows Godot 4.6.3 animation measurements required."
+  ]
+}

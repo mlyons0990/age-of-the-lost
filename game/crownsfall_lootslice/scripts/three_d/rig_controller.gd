@@ -6,6 +6,8 @@ signal impact(at: Vector3, kind: String, direction: Vector3)
 signal health_changed(current: float, maximum: float)
 
 const LEGACY_MODEL := preload("res://models/AOTL_Wayfarer_Articulated_Proxy.glb")
+const WARRIOR_R40 := "res://models/AOTL_Warrior_R40.glb"
+const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
 const TERRAIN_IK := preload("res://scripts/three_d/terrain_foot_ik.gd")
@@ -66,9 +68,11 @@ func _production_model_is_valid(candidate: Node3D) -> bool:
 	return true
 
 func _ready() -> void:
-	# R37 is the production six-clip export. Never remove the validated fallbacks.
+	# R40 is the full-pose six-clip candidate. Retain every earlier export as fallback.
 	body = LEGACY_MODEL.instantiate()
 	for option in [
+		{"path": WARRIOR_R40, "source": "warrior_r40"},
+		{"path": WARRIOR_R39, "source": "warrior_r39"},
 		{"path": WARRIOR_R37, "source": "warrior_r37"},
 		{"path": WARRIOR_R36, "source": "warrior_r36"}
 	]:

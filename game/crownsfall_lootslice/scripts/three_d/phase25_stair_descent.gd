@@ -13,6 +13,15 @@ var accepted_steps := 0
 var blocked_steps := 0
 var ignored_untagged := 0
 var last_drop_m := 0.0
+var visual_recoveries := 0
+const VISUAL_BLEND_SPEED := 10.0
+
+func _process(dt: float) -> void:
+    if actor == null or dt <= 0.0:
+        return
+    var model := actor.get("body") as Node3D
+    if model != null:
+        model.position = model.position.lerp(Vector3.ZERO, minf(1.0, dt * VISUAL_BLEND_SPEED))
 
 func configure(character: CharacterBody3D) -> void:
     actor = character
@@ -53,6 +62,15 @@ func _physics_process(dt: float) -> void:
     if collision == null or displacement < POLICY.MIN_DROP_M:
         blocked_steps += 1
         return
+    # Count only collisions against a tagged step, not unrelated floor objects.
+    var contacted: Object = collision.get_collider()
+    if not (contacted is StaticBody3D and contacted.is_in_group("phase24_steps")):
+        ignored_untagged += 1
+        return
+    var model := actor.get("body") as Node3D
+    if model != null:
+        model.position.y += minf(displacement, POLICY.MAX_DROP_M)
+        visual_recoveries += 1
     last_drop_m = displacement
     accepted_steps += 1
     cooldown_s = COOLDOWN_S

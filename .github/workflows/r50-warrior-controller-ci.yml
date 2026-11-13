@@ -1,0 +1,57 @@
+name: AOTL R50 opt-in Warrior runtime controller QA
+
+on:
+  push:
+    branches: [dev/r50-slash-weighttransfer-ik-v1]
+    paths:
+      - .github/workflows/r50-warrior-controller-ci.yml
+      - game/crownsfall_lootslice/scripts/three_d/rig_controller.gd
+      - game/crownsfall_lootslice/tests/verify_r50_runtime_optin.gd
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  playable_r50:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Verify isolated R50 candidate checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "b1a600ca144ccfc7a868d6e4936964a74c3afe55882c5e8166e3f65a26561a16  game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb" | sha256sum --check -
+      - name: Download official Godot 4.6.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 180 \
+            "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+      - name: Run real Crownsfall playable controller and animation timing test
+        shell: bash
+        run: |
+          set -euo pipefail
+          export XDG_DATA_HOME=/tmp/aotl-r50-live-data
+          export XDG_CONFIG_HOME=/tmp/aotl-r50-live-config
+          export XDG_CACHE_HOME=/tmp/aotl-r50-live-cache
+          GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
+          "$GODOT" --headless --path game/crownsfall_lootslice --editor --quit 2>&1 | tee /tmp/aotl-r50-live-import.log
+          "$GODOT" --headless --path game/crownsfall_lootslice --script res://tests/verify_r50_runtime_optin.gd 2>&1 | tee /tmp/aotl-r50-live-controller.log
+          grep -q 'AOTL R50 LIVE CONTROLLER RESULT 16 checks; 0 failures' /tmp/aotl-r50-live-controller.log
+          if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-r50-live-import.log /tmp/aotl-r50-live-controller.log; then exit 1; fi
+      - name: Preserve Godot real controller evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R50-Playable-Controller-16-Checks
+          path: |
+            /tmp/aotl-r50-live-import.log
+            /tmp/aotl-r50-live-controller.log
+          if-no-files-found: warn
+          retention-days: 30

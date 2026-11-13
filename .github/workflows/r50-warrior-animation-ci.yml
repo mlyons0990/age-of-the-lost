@@ -1,0 +1,95 @@
+name: AOTL R50 full-body Slash candidate — real Godot animation import
+
+on:
+  push:
+    branches: [dev/r50-slash-weighttransfer-ik-v1]
+    paths:
+      - .github/workflows/r50-warrior-animation-ci.yml
+      - game/crownsfall_lootslice/tests/verify_r50_fullbody_slash_import.gd
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aotl-r50-godot-import
+  cancel-in-progress: false
+
+jobs:
+  import_and_qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Fetch checksum-pinned seven-clip R50 GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 150 \
+            "https://d2ol7oe51mr4n9.cloudfront.net/user_3LvftKotfPTUOd7ljqK6GWH6rIX/185ea3b5-2bd5-4541-9e75-1474f498622b.zip?download=AOTL_R50_SevenClip_Candidate_Validated.zip" \
+            -o /tmp/AOTL_R50_SevenClip_Candidate_Validated.zip
+          echo "2df8b743f062b38e7036c6680b4f79bde8e03a042520a73d905edee66750b766  /tmp/AOTL_R50_SevenClip_Candidate_Validated.zip" | sha256sum --check -
+          mkdir -p game/crownsfall_lootslice/models
+          unzip -p /tmp/AOTL_R50_SevenClip_Candidate_Validated.zip AOTL_Warrior_R50_SevenClip_Candidate.glb > game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb
+          unzip -p /tmp/AOTL_R50_SevenClip_Candidate_Validated.zip AOTL_Warrior_R50_SevenClip_Candidate.audit.json > game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.audit.json
+          echo "b1a600ca144ccfc7a868d6e4936964a74c3afe55882c5e8166e3f65a26561a16  game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb" | sha256sum --check -
+      - name: Download official Godot 4.6.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --max-time 150 \
+            "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_linux.x86_64.zip" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.6.3-stable_linux.x86_64
+      - name: Isolated scene import and real skeleton animation contact QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=/tmp/aotl-r50-animated-rig
+          mkdir -p "$p/models" "$p/tests"
+          cp game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb "$p/models/"
+          cp game/crownsfall_lootslice/tests/verify_r50_fullbody_slash_import.gd "$p/tests/"
+          cat > "$p/project.godot" <<'EOF'
+          config_version=5
+          [application]
+          config/name="AOTL R50 Animation Acceptance"
+          config/features=PackedStringArray("4.6", "GL Compatibility")
+          [rendering]
+          renderer/rendering_method="gl_compatibility"
+          EOF
+          export XDG_DATA_HOME=/tmp/aotl-r50-godot-data
+          export XDG_CONFIG_HOME=/tmp/aotl-r50-godot-config
+          export XDG_CACHE_HOME=/tmp/aotl-r50-godot-cache
+          GODOT=/tmp/Godot_v4.6.3-stable_linux.x86_64
+          "$GODOT" --headless --path "$p" --editor --quit 2>&1 | tee /tmp/aotl-r50-import.log
+          "$GODOT" --headless --path "$p" --script res://tests/verify_r50_fullbody_slash_import.gd 2>&1 | tee /tmp/aotl-r50-acceptance.log
+          grep -Eq 'AOTL R50 GODOT ANIMATION RESULT [0-9]+ checks; 0 failures' /tmp/aotl-r50-acceptance.log
+          if grep -E '^ERROR:|SCRIPT ERROR|^FAIL ' /tmp/aotl-r50-import.log /tmp/aotl-r50-acceptance.log; then
+            exit 1
+          fi
+      - name: Preserve verified candidate in Git LFS only after QA passes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.glb
+          git add game/crownsfall_lootslice/models/AOTL_Warrior_R50_SevenClip_Candidate.audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive Godot-verified R50 seven-clip animation candidate as LFS asset"
+            git push origin HEAD:dev/r50-slash-weighttransfer-ik-v1
+          fi
+      - name: Publish checked model and Godot QA logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: AOTL-R50-SevenClip-Godot-Animation-QA
+          path: |
+            /tmp/AOTL_R50_SevenClip_Candidate_Validated.zip
+            /tmp/aotl-r50-import.log
+            /tmp/aotl-r50-acceptance.log
+          if-no-files-found: warn
+          retention-days: 30

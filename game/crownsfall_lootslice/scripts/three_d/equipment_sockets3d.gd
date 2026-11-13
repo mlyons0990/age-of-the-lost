@@ -19,9 +19,9 @@ var available: bool = false
 static func belongs_to_slot(mesh_name: String, slot: String) -> bool:
 	var s := mesh_name.to_lower()
 	if slot == "weapon":
-		return s.begins_with("weapon_") or s.contains("v03_weapon_")
+		return s.contains("weapon_")
 	if slot == "offhand":
-		return s.begins_with("shield_") or s.contains("gear_shield")
+		return s.contains("shield_")
 	return false
 
 func configure(imported_model: Node3D) -> bool:
@@ -66,10 +66,15 @@ func get_socket(slot: String) -> BoneAttachment3D:
 func equip_scene(slot: String, scene: PackedScene, local_offset: Transform3D = Transform3D.IDENTITY) -> bool:
 	if not has_slot(slot) or scene == null:
 		return false
-	var item := scene.instantiate() as Node3D
+	var instance := scene.instantiate()
+	var item := instance as Node3D
 	if item == null:
+		instance.free()
 		return false
-	return equip_node(slot, item, local_offset)
+	if not equip_node(slot, item, local_offset):
+		item.free()
+		return false
+	return true
 
 func equip_node(slot: String, item: Node3D, local_offset: Transform3D = Transform3D.IDENTITY) -> bool:
 	if not has_slot(slot) or item == null or item.get_parent() != null:

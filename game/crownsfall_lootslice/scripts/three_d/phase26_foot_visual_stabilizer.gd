@@ -39,14 +39,17 @@ func _process(dt: float) -> void:
     var dodge := float(actor.get("dodge_t")) > 0.0
     var grounded := actor.is_on_floor()
     var errors: Array = []
-    if enabled and grounded and not combat and not dodge and is_instance_valid(ik.skeleton):
+    var skeleton: Skeleton3D = ik.get("skeleton") as Skeleton3D if ik != null else null
+    if enabled and grounded and not combat and not dodge and is_instance_valid(skeleton):
         for i in range(2):
-            if not bool(ik.locked[i]):
+            var planted: Array = ik.get("locked") as Array
+            if not bool(planted[i]):
                 continue
-            var skeleton: Skeleton3D = ik.skeleton
-            var foot_id: int = ik.foot_bones[i]
+            var foot_ids: Array = ik.get("foot_bones") as Array
+            var foot_id: int = int(foot_ids[i])
             var world_foot: Vector3 = skeleton.global_transform * skeleton.get_bone_global_pose(foot_id).origin
-            var world_target: Vector3 = ik.stance_positions[i]
+            var anchors: Array = ik.get("stance_positions") as Array
+            var world_target: Vector3 = anchors[i]
             # Error is target minus current ankle. Positive gap raises visual pelvis slightly.
             var gap := world_target.y - world_foot.y
             errors.append(gap)

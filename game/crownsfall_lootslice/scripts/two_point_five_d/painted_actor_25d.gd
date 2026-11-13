@@ -168,7 +168,7 @@ func change_visual_mode() -> void:
     active_proxy_clip = ""
     var description := "Original painted sprite"
     if visual_mode == "humanoid":
-        description = "Higgsfield V07 sculpt/material Warrior" if humanoid_v07_opt_in else ("Higgsfield V06 directional/strafe Warrior" if humanoid_v06_opt_in else ("Higgsfield V05 cadence-synchronized Warrior" if humanoid_v05_opt_in else ("Higgsfield V04 grounded humanoid (Warrior base model)" if humanoid_v04_opt_in else "Higgsfield V03 animated humanoid (Warrior base model)"))
+        description = "Higgsfield V07 sculpt/material Warrior" if humanoid_v07_opt_in else ("Higgsfield V06 directional/strafe Warrior" if humanoid_v06_opt_in else ("Higgsfield V05 cadence-synchronized Warrior" if humanoid_v05_opt_in else ("Higgsfield V04 grounded humanoid (Warrior base model)" if humanoid_v04_opt_in else "Higgsfield V03 animated humanoid (Warrior base model)")))
     elif visual_mode == "proxy":
         description = "Original geometric proxy"
     visual_changed.emit(description + " · " + player_class.capitalize())

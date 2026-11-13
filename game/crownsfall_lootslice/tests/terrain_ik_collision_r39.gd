@@ -73,5 +73,59 @@ func _run() -> void:
 	actor._toggle_terrain_ik()
 	if not _verify(actor.terrain_ik_enabled, "F9 toggles IK back on"):
 		return
+	# A 15cm collision-backed elevation change must move the world lock upward.
+	var raised := StaticBody3D.new()
+	raised.name = "RaisedStep"
+	raised.position = Vector3(3.5, 0.075, 0.0)
+	world.add_child(raised)
+	var raised_collision := CollisionShape3D.new()
+	var raised_box := BoxShape3D.new()
+	raised_box.size = Vector3(2.6, 0.15, 2.6)
+	raised_collision.shape = raised_box
+	raised.add_child(raised_collision)
+	actor.global_position = Vector3(3.5, 0.55, 0)
+	actor.velocity = Vector3.ZERO
+	for step_frame in 80:
+		await physics_frame
+		if actor.is_on_floor() and actor.global_position.y <= 0.18:
+			break
+	if not _verify(actor.is_on_floor(), "Warrior grounds on elevated collision platform"):
+		return
+	ankle = foot_ik._animated_ankle("R")
+	hit = foot_ik._ground_below(ankle)
+	if not _verify(hit.get("collider") == raised, "foot ray detects raised platform instead of underlying floor"):
+		return
+	foot_ik.reset_contact_state()
+	actor._play("Walk")
+	foot_ik.update_foot_ik(1.0 / 60.0, "Walk", 4.0 / 24.0)
+	if not _verify(bool(foot_ik.planted["R"]), "IK plants on the raised surface"):
+		return
+	contact = foot_ik.planted_world["R"]
+	if not _verify(absf(contact.y - (0.15 + foot_ik.foot_clearance_m)) < 0.035, "planted-foot lock rises by exactly the step height"):
+		return
+	# A 12-degree traversable collision slope should be eligible for contact IK.
+	var slope := StaticBody3D.new()
+	slope.name = "GentleSlope"
+	slope.position = Vector3(-3.5, 0.1, 0)
+	slope.rotation.x = deg_to_rad(12.0)
+	world.add_child(slope)
+	var slope_collision := CollisionShape3D.new()
+	var slope_box := BoxShape3D.new()
+	slope_box.size = Vector3(3.0, 0.2, 3.0)
+	slope_collision.shape = slope_box
+	slope.add_child(slope_collision)
+	actor.global_position = Vector3(-3.5, 0.60, 0)
+	actor.velocity = Vector3.ZERO
+	for slope_frame in 80:
+		await physics_frame
+		if actor.is_on_floor() and actor.global_position.y <= 0.24:
+			break
+	ankle = foot_ik._animated_ankle("R")
+	hit = foot_ik._ground_below(ankle)
+	if not _verify(actor.is_on_floor() and hit.get("collider") == slope, "Warrior grounds on tilted collision geometry"):
+		return
+	var normal: Vector3 = hit["normal"]
+	if not _verify(foot_ik.is_surface_usable(normal, 0.15, 49.0, 0.28), "12-degree slope passes surface acceptance gate"):
+		return
 	print("AOTL R39 TERRAIN PHYSICS PASS: ", checks, " checks")
 	quit(0)

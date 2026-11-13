@@ -81,7 +81,8 @@ func configure(model_root: Node3D, character: CharacterBody3D, player: Animation
 	return true
 
 func _animated_ankle(side: String) -> Vector3:
-	var pose := skeleton.get_bone_global_pose(int(ankles[side]))
+	# Read the animation BEFORE IK overrides to prevent target feedback/drift.
+	var pose := skeleton.get_bone_global_pose_no_override(int(ankles[side]))
 	return skeleton.to_global(pose.origin)
 
 func _ground_below(world_ankle: Vector3) -> Dictionary:
@@ -94,6 +95,20 @@ func _ground_below(world_ankle: Vector3) -> Dictionary:
 func _reset_locks() -> void:
 	for side in ["L", "R"]:
 		planted[side] = false
+
+func reset_contact_state() -> void:
+	_reset_locks()
+	if not active:
+		return
+	for side in ["L", "R"]:
+		var solver: SkeletonIK3D = solvers[side]
+		solver.influence = 0.0
+		var target: Node3D = targets[side]
+		target.global_position = _animated_ankle(side)
+
+static func is_reach_safe(animated_ankle: Vector3, locked_foot: Vector3, max_horizontal_m: float) -> bool:
+	var horizontal_offset := Vector2(animated_ankle.x - locked_foot.x, animated_ankle.z - locked_foot.z)
+	return horizontal_offset.length() <= max_horizontal_m
 
 func update_foot_ik(delta: float, clip: String, phase: float) -> void:
 	if not active or not is_instance_valid(actor):
@@ -124,9 +139,8 @@ func update_foot_ik(delta: float, clip: String, phase: float) -> void:
 					planted[side] = false
 				if bool(planted[side]):
 					var lock: Vector3 = planted_world[side]
-					var horizontal := Vector2(animated.x - lock.x, animated.z - lock.z).length()
 					# Never ask a leg to reach an unreachable planted target.
-					if horizontal > max_horizontal_reach_m:
+					if not is_reach_safe(animated, lock, max_horizontal_reach_m):
 						planted[side] = false
 						contact_releases += 1
 						desired_weight = 0.0

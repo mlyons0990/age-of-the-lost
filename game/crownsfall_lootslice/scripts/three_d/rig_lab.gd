@@ -149,7 +149,7 @@ func _build_hud() -> void:
 	top.add_child(v)
 	v.add_child(_hud_label("AOTL · 3D MOTION / COMBAT TESTBED", 25, GOLD))
 	v.add_child(_hud_label("58-bone GLB · six animation clips · real-time FX", 16, Color("9dbff1")))
-	v.add_child(_hud_label("F8 reset stride · F9/F10 gait rate −/+ · F11 IK · F12 master review", 15, GOLD))
+	v.add_child(_hud_label("F6 terrain course · F8 reset stride · F9/F10 gait rate −/+ · F11 IK · F12 master review", 15, GOLD))
 	info = _hud_label("Targets defeated: 0", 17)
 	v.add_child(info)
 	hpbar = ProgressBar.new()
@@ -208,6 +208,9 @@ func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F6:
+		get_tree().change_scene_to_file("res://scenes/phase23_terrain_lab.tscn")
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
 		player.reset_stride_rate()
 		return

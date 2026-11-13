@@ -1,0 +1,105 @@
+{
+  "phase": 23,
+  "base": "user-verified Phase22 source",
+  "classification": "isolated articulated 3D terrain / foot-ground-contact laboratory",
+  "runtime_version": "Godot 4.4.1 stable Linux, headless tests; optional graphical OpenGL via Xvfb",
+  "tests": {
+    "Phase23 scene construction and rescue": {
+      "passed": 23,
+      "failed": 0
+    },
+    "Real physics terrain rays": {
+      "passed": 19,
+      "failed": 0
+    },
+    "Real three-lane 265-frame traversal": {
+      "passed": 16,
+      "failed": 0
+    },
+    "Step correction visual blending": {
+      "passed": 9,
+      "failed": 0
+    },
+    "Rig lab F6 scene switch": {
+      "passed": 4,
+      "failed": 0
+    },
+    "Phase22 stance classifier": {
+      "passed": 22,
+      "failed": 0
+    },
+    "Phase22 skeleton/IK": {
+      "passed": 10,
+      "failed": 0
+    },
+    "Phase22 walk contact": {
+      "passed": 11,
+      "failed": 0
+    },
+    "Phase22 run contact": {
+      "passed": 11,
+      "failed": 0
+    },
+    "Phase22 incline rejection": {
+      "passed": 9,
+      "failed": 0
+    },
+    "Phase22 IK lifecycle": {
+      "passed": 9,
+      "failed": 0
+    },
+    "Phase22 key input": {
+      "passed": 6,
+      "failed": 0
+    },
+    "Phase21 gait cadence": {
+      "passed": 14,
+      "failed": 0
+    },
+    "Phase21 stride fit math": {
+      "passed": 11,
+      "failed": 0
+    },
+    "Phase21 optional master fallback": {
+      "passed": 3,
+      "failed": 0
+    }
+  },
+  "measurements": {
+    "stair_risers": 7,
+    "stair_riser_height_m": 0.14,
+    "ramp_slope_degrees": 18,
+    "forbidden_slope_degrees": 65,
+    "ramp_max_actor_elevation_m": 1.3487,
+    "stair_max_actor_elevation_m": 0.3767,
+    "flat_lane_max_actor_elevation_m": -0.0241,
+    "foot_target_gap_peak_m_observed": 0.4751,
+    "visual_capture": "8 actual Godot-rendered frames assembled to GIF; source capture script included"
+  },
+  "known_limitations": [
+    "Stair route is only partly traversed with current step-up solver; full ascending/descending completion not established",
+    "IK foot bone to target gap occasionally approaches 0.47m; cannot claim final ground adhesion or gait",
+    "Test lab includes intentional raised collider/visual smoothing; requires visual QA in Windows Godot 4.6.3",
+    "In-world Crownsfall painted scene does not use this controller or modify saves",
+    "Master r46 GLB remains optional and separate; live proxy not replaced",
+    "World navigation, moving platform contact and final knee deformation are future quality gates"
+  ],
+  "production_scripts_unchanged": 43,
+  "changed_files": [
+    "game/crownsfall_lootslice/project.godot",
+    "game/crownsfall_lootslice/scenes/phase23_terrain_lab.tscn",
+    "game/crownsfall_lootslice/scripts/three_d/phase23_step_assist.gd",
+    "game/crownsfall_lootslice/scripts/three_d/phase23_terrain_lab.gd",
+    "game/crownsfall_lootslice/scripts/three_d/rig_lab.gd",
+    "game/crownsfall_lootslice/tests/phase23_capture_frame.gd",
+    "game/crownsfall_lootslice/tests/phase23_capture_sequence.gd",
+    "game/crownsfall_lootslice/tests/phase23_scene_switch_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase23_step_visual_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase23_terrain_lab_smoke.gd",
+    "game/crownsfall_lootslice/tests/phase23_terrain_physics.gd",
+    "game/crownsfall_lootslice/tests/phase23_traversal_assertions.gd",
+    "game/crownsfall_lootslice/tests/phase23_traversal_probe.gd"
+  ],
+  "removed_files": [],
+  "total_engine_checks": 177
+}

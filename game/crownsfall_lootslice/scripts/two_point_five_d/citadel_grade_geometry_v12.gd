@@ -17,6 +17,8 @@ var width_m := 0.0
 var steps := 0
 var landing_length_m := 3.0
 var installed := false
+## Toggling off must disable collision too, not just hide meshes.
+var collider_nodes: Array[StaticBody3D] = []
 var colliders := 0
 var arch_stones := 0
 var tread_count := 0
@@ -58,6 +60,7 @@ func _masonry(parent: Node3D, label: String, location: Vector3,
         shape.shape = cuboid
         body.add_child(shape)
         parent.add_child(body)
+        collider_nodes.append(body)
         colliders += 1
     return stone
 
@@ -91,6 +94,7 @@ func install(start_px: Vector2, finish_px: Vector2, converter: Callable,
     _build_stairs()
     _build_gateway()
     installed = true
+    set_preview_enabled(false)
     return true
 
 func _build_stairs() -> void:
@@ -168,6 +172,14 @@ func _build_gateway() -> void:
         Vector3(0.0, ascent_m + point_height - 0.08, gate_z - 0.73),
         Vector3(0.29, 0.41, 0.12), highlight, false)
 
+func set_preview_enabled(enabled: bool) -> void:
+    ## Prevent invisible masonry colliders when the preview is disabled.
+    visible = enabled
+    for body in collider_nodes:
+        if is_instance_valid(body):
+            body.collision_layer = 1 if enabled else 0
+            body.collision_mask = 1 if enabled else 0
+
 func is_on_stair_or_landing(painted_point: Vector2) -> bool:
     if not installed or not world_converter.is_valid():
         return false
@@ -198,6 +210,7 @@ func elevation_at(painted_point: Vector2) -> float:
 func status() -> Dictionary:
     return {
         "installed": installed,
+        "collision_preview_enabled": visible and installed,
         "geometry_is_view_only": true,
         "navigation_authority": "existing NavigationRegion2D",
         "treads": tread_count,

@@ -37,15 +37,15 @@ func _initialize() -> void:
 	check(SWEEP.attack_contact_phase("Slash") > SWEEP.attack_contact_phase("Cast"), "Sword timing follows cast timing")
 	var anchor := Node3D.new()
 	anchor.position = Vector3(2, 1, -1)
-	check(WEAPON_SWEEP.blade_from_socket(anchor).has("tip"), "Bone attachment sampler accepts a Node3D")
-	check(WEAPON_SWEEP.blade_from_socket(null).is_empty(), "Missing weapon socket falls back safely")
+	check(SWEEP.blade_from_socket(anchor).has("tip"), "Bone attachment sampler accepts a Node3D")
+	check(SWEEP.blade_from_socket(null).is_empty(), "Missing weapon socket falls back safely")
 	var path_samples: Array = [
 		{"hilt": Vector3(-1,1,0), "tip": Vector3(-1,1,-1)},
 		{"hilt": Vector3(1,1,0), "tip": Vector3(1,1,-1)}
 	]
-	check(WEAPON_SWEEP.swept_samples_touch_target(path_samples, Vector3(0,1,-0.5)), "Two-frame swept path catches moving weapon")
-	check(not WEAPON_SWEEP.swept_samples_touch_target(path_samples, Vector3(0,4,-0.5)), "Blade sweep cannot hit distant overhead target")
-	check(not WEAPON_SWEEP.swept_samples_touch_target([path_samples[0]], Vector3(0,1,-0.5)), "Single pose is insufficient for swept hit")
+	check(SWEEP.swept_samples_touch_target(path_samples, Vector3(0,1,-0.5)), "Two-frame swept path catches moving weapon")
+	check(not SWEEP.swept_samples_touch_target(path_samples, Vector3(0,4,-0.5)), "Blade sweep cannot hit distant overhead target")
+	check(not SWEEP.swept_samples_touch_target([path_samples[0]], Vector3(0,1,-0.5)), "Single pose is insufficient for swept hit")
 	anchor.free()
 	print("AOTL WEAPON SWEEP RESULT %d checks; %d failures" % [checks,failures])
 	quit(0 if failures==0 else 1)

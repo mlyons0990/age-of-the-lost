@@ -23,6 +23,9 @@ JSON_CHUNK=b"JSON"
 BIN_CHUNK=b"BIN"+bytes([0])
 GLB_HEADER=12
 CHUNK_HEADER=8
+MAX_GLB_BYTES=256*1024*1024
+COMPONENT_SIZES={5120:1,5121:1,5122:2,5123:2,5125:4,5126:4}
+ELEMENT_COUNTS={"SCALAR":1,"VEC2":2,"VEC3":3,"VEC4":4,"MAT2":4,"MAT3":9,"MAT4":16}
 FORBIDDEN_NODES=("collisionshape","staticbody","rigidbody","navigationregion",
                  "characterbody","area3d")
 
@@ -38,6 +41,8 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
                 require_citadel_landmarks: bool = True) -> dict[str, Any]:
     if path.is_symlink() or not path.is_file():
         reject("GLB candidate missing or symlinked")
+    if path.stat().st_size>MAX_GLB_BYTES:
+        reject("GLB candidate exceeds conservative 256MiB inspection limit")
     payload=path.read_bytes()
     if len(payload)<GLB_HEADER+CHUNK_HEADER:
         reject("GLB too short")
@@ -87,15 +92,30 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
         if stride is not None and (int(stride)<4 or int(stride)>252):
             reject(f"Invalid glTF byteStride on bufferView {i}")
     accessors=document.get("accessors",[])
-    # Validate reference ranges without reinterpreting individual vertex bytes.
+    # Confirm each typed accessor fits its own view, not merely the outer BIN.
     for i,accessor in enumerate(accessors):
         view=accessor.get("bufferView")
-        if view is not None and not (0<=int(view)<len(views)):
+        if not isinstance(view,int) or not (0<=view<len(views)):
             reject(f"Accessor {i} references missing buffer view")
-        if int(accessor.get("count",-1))<0:
+        count=int(accessor.get("count",-1))
+        if count<0:
             reject(f"Accessor {i} has invalid count")
         if accessor.get("sparse"):
             reject("Sparse accessors require separate validation")
+        component=accessor.get("componentType")
+        typ=accessor.get("type")
+        if component not in COMPONENT_SIZES or typ not in ELEMENT_COUNTS:
+            reject(f"Accessor {i} has unknown typed payload")
+        size=COMPONENT_SIZES[component]
+        item_bytes=size*ELEMENT_COUNTS[typ]
+        view_obj=views[view]
+        stride=int(view_obj.get("byteStride",item_bytes))
+        byte_offset=int(accessor.get("byteOffset",0))
+        if byte_offset<0 or byte_offset%size or stride<item_bytes or stride%size:
+            reject(f"Accessor {i} has invalid offset, type alignment or stride")
+        used=byte_offset+((count-1)*stride+item_bytes if count else 0)
+        if used>int(view_obj["byteLength"]):
+            reject(f"Accessor {i} byte range exceeds its declared bufferView")
     images=document.get("images",[])
     for i,img in enumerate(images):
         if "uri" in img:
@@ -105,6 +125,16 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
             reject(f"Image {i} missing embedded buffer view")
         if img.get("mimeType") not in ("image/png","image/jpeg","image/webp"):
             reject(f"Image {i} unsupported embedded MIME")
+        view_data=views[view]
+        chunk_start=int(view_data.get("byteOffset",0))
+        chunk_end=chunk_start+int(view_data["byteLength"])
+        header=binary[chunk_start:chunk_end]
+        if img["mimeType"]=="image/png" and not header.startswith(bytes([137,80,78,71,13,10,26,10])):
+            reject(f"Image {i} PNG signature absent")
+        if img["mimeType"]=="image/jpeg" and not header.startswith(bytes([255,216,255])):
+            reject(f"Image {i} JPEG signature absent")
+        if img["mimeType"]=="image/webp" and not (header.startswith(b"RIFF") and header[8:12]==b"WEBP"):
+            reject(f"Image {i} WebP signature absent")
     if len(images)<min_images:
         reject(f"Only {len(images)} embedded images; expected at least {min_images}")
     meshes=document.get("meshes",[])
@@ -116,6 +146,9 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
         normalized=name.lower().replace("_","").replace("-","")
         if any(keyword in normalized for keyword in FORBIDDEN_NODES):
             reject(f"GLB contains gameplay/collision-looking node: {name}")
+        extras=node.get("extras")
+        if isinstance(extras,dict) and extras.get("AOTL_collision") is True:
+            reject(f"GLB node {name} declares collision authority")
         if "mesh" in node:
             index=node["mesh"]
             if not isinstance(index,int) or not 0<=index<len(meshes):
@@ -152,6 +185,9 @@ def inspect_glb(path: Path, mesh_nodes: int | None = None,
             index_accessor=prim.get("indices",position)
             if not isinstance(index_accessor,int) or not 0<=index_accessor<len(accessors):
                 reject(f"Mesh {i} references absent index accessor")
+            if "indices" in prim and (accessors[index_accessor]["type"]!="SCALAR" or
+                    accessors[index_accessor]["componentType"] not in (5121,5123,5125)):
+                reject(f"Mesh {i} has invalid unsigned triangle index accessor")
             count=int(accessors[index_accessor]["count"])
             if count%3:
                 reject(f"Mesh {i} triangle index count is not divisible by 3")

@@ -604,7 +604,7 @@ func status() -> Dictionary:
         "has_3d_world": viewport_3d != null and viewport_3d.own_world_3d,
         "adjacent_royal_promenade": city_district_3d.status() if city_district_3d != null else {},
         "adjacent_merchants_quarter": market_district_3d.status() if market_district_3d != null else {},
-        "connected_city_collision": audit_combined_city_collision() if is_ready else {},
+        "connected_city_collision": audit_combined_city_collision() if is_ready and is_instance_valid(game) else {},
         "camera_size": camera_3d.size if camera_3d != null else 0.0,
         "painted_walkway_triangles": scenery.painted_walkway_triangle_count if is_instance_valid(scenery) else 0,
         "painted_walkway_area_px2": scenery.painted_walkway_area_pixels if is_instance_valid(scenery) else 0.0,

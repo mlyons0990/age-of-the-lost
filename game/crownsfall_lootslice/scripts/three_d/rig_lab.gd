@@ -319,7 +319,7 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 			# Blade contacts are resolved continuously in _physics_process,
 			# not at a separate one-shot event (prevents early/duplicate hits).
 			continue
-		var actively_swinging := kind != "Cast" and player.attack_t > 0.0 and player.anim_state == "Slash"
+		var actively_swinging: bool = kind != "Cast" and player.attack_t > 0.0 and player.anim_state == "Slash"
 		if actively_swinging and sweep_hit_instances.has(target.get_instance_id()):
 			continue
 		if allowed:

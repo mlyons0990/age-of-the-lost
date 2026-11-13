@@ -62,6 +62,22 @@ func _run() -> void:
             "cycle %d restored procedural candidate" % cycle)
         _test(procedural.visible,
             "cycle %d original procedural art retained" % cycle)
+    _test(bridge.set_citadel_art_enabled(true),
+        "F8 test: select 3D art as an opt-in candidate")
+    _test(bridge.set_citadel_grade_preview(true),
+        "F8 test: physical preview initially active")
+    bridge.set_active(false)
+    _test(not bridge.visible,"F8 painted fallback hides 3D renderer")
+    _test(not bridge.citadel_grade_preview and collar.collision_layer==0,
+        "F8 fallback disables 3D physical grade colliders")
+    _test(not bridge.citadel_art_root.visible,
+        "F8 fallback does not leave imported Citadel visible")
+    bridge.set_active(true)
+    _test(not bridge.citadel_grade_preview and collar.collision_layer==0,
+        "reenabling 3D renderer never silently reenables Citadel physics")
+    _test(not bridge.citadel_art_root.visible,
+        "F8 reactivation retains painted safety until explicit F4 enable")
+    bridge.set_citadel_art_enabled(false)
     _test(nav.navigation_polygon.vertices==before_points,
         "original authoritative nav polygon data unchanged")
     _test(bridge.citadel_grade.get_child_count()==original_count,

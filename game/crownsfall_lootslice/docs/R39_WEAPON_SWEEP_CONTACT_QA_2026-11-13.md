@@ -75,3 +75,16 @@ Added `scripts/three_d/hurtbox3d.gd`: a damageable `Area3D` with a 0.45m sphere 
 - A subsequent F8 mid-swing mode-change regression was added to guard against cross-mode duplicate damage, and a corresponding complete 17-suite regression is queued on the latest branch state. Check those latest workflow results before accepting the branch.
 
 **Important:** A collision-backed target is not the same as a physically exact sword-on-mesh collision. The swept-blade method remains a capsule approximation using bone poses, designed to preserve gameplay responsiveness and support future specialized weapon geometry.
+
+## Source animation quality gate — explicit unresolved issue
+
+An independent Blender R47 `Slash` skeletal-motion audit (original frames 1, 6, 10, 13, 16, 19, 22) found:
+
+- Root and Hips: **0 cm position change, 0 degrees rotation**
+- Both thighs, knees, shins, and feet: **0 cm head movement, 0 degrees rotation**
+- Chest: 48-degree maximum rotation
+- Right hand: about 1.34 meters of world-space head travel; right weapon root about 1.45 meters
+
+The verified preview therefore shows a strong arm swing with **no leg-driven weight transfer or hip rotation**. This is an authentic quality limitation, not a rendering issue. It does not meet the user's ultimate Hades-like movement / modern anime proportion goal.
+
+**Recommendation for the next visual animation pass:** preserve R47/R39 as tested production backups; create a new reversible Blender action candidate with pelvis/hip counter-rotation, controlled stride adjustment, knee articulation, planted feet, shoulder timing, sword recovery and native GIF review. Do not merge that candidate until Godot deformation and collision tests pass.

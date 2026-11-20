@@ -44,7 +44,7 @@ LAYOUT = {   # preview px: disc (cx, cy, r), wells [x0,x1] with shared y, plates
     "left":  {"src": "a1_left_raw.png", "disc": (465, 345, 215), "wells": [(765, 900), (915, 1048), (1063, 1196), (1212, 1346), (1380, 1530)],
               "well_y": (335, 525), "plate_y": (533, 588)},
     "right": {"src": "a2_right_raw.png", "disc": (1210, 385, 210), "wells": [(176, 318), (336, 476), (494, 634), (652, 792), (810, 950)],
-              "well_y": (355, 527), "plate_y": (545, 610), "xp_ledge": (0, 585, 110, 625)},
+              "well_y": (355, 527), "plate_y": (545, 610)},
 }
 meta = {"source": "Higgsfield nano_banana_2_1 redraw of the owner's HUD mockup (A1-A3, owner-approved 8 cr), chroma-keyed by "
         "tools/key_hud_redraw.py. Coordinates are in the scaled PNG pixels (drawn 1:1 at 1080p); @2x files for >1080p.",
@@ -53,6 +53,31 @@ for name, L in LAYOUT.items():
     rgba, (ox, oy) = key(f"{SRC}/{L['src']}")
     H, W = rgba.shape[:2]
     k = DISC_1080 / (L["disc"][2] / PV)
+    al = rgba[..., 3]
+    mid = int((L["well_y"][0] + L["well_y"][1]) / 2 / PV - oy)       # a row through the slot wells
+    opaque = np.where(al[mid] > 0.5)[0]
+    if name == "left":
+        # outer (screen) edge: mirror the statue's stone outward so every row it occupies reaches x = 0
+        gap = int(30 / k)
+        for y in range(H):
+            xs = np.where(al[y] > 0.5)[0]
+            if len(xs) and 0 < xs[0] <= gap:
+                x0 = xs[0]
+                src = np.clip(2 * x0 - np.arange(x0) , 0, W - 1)
+                rgba[y, :x0] = rgba[y, src]; rgba[y, :x0, 3] = 1.0
+        panel_edge = int(opaque.max())                                   # inner edge of the potion belt
+    else:
+        gap = int(30 / k)
+        for y in range(H):
+            xs = np.where(al[y] > 0.5)[0]
+            if len(xs) and W - 1 - gap <= xs[-1] < W - 1:
+                x1 = xs[-1]
+                n = W - 1 - x1
+                src = np.clip(2 * x1 - (x1 + 1 + np.arange(n)), 0, W - 1)
+                rgba[y, x1 + 1:] = rgba[y, src]; rgba[y, x1 + 1:, 3] = 1.0
+        # drop the small baked XP ledge left of the skill panel: the live XP strip slots in there instead
+        panel_edge = int(opaque.min())
+        rgba[:, :panel_edge, 3] = 0.0
     P = lambda px, py: [round((px / PV - ox) * k, 2), round((py / PV - oy) * k, 2)]
     img = Image.fromarray((np.clip(rgba, 0, 1) * 255).astype(np.uint8), "RGBA")
     tw, th = round(W * k), round(H * k)
@@ -63,10 +88,9 @@ for name, L in LAYOUT.items():
     for x0, x1 in L["wells"]:
         a, b = P(x0, L["well_y"][0]), P(x1, L["well_y"][1]); wl.append([a[0], a[1], round(b[0] - a[0], 2), round(b[1] - a[1], 2)])
         a, b = P(x0, L["plate_y"][0]), P(x1, L["plate_y"][1]); pl.append([a[0], a[1], round(b[0] - a[0], 2), round(b[1] - a[1], 2)])
-    meta[name] = {"file": f"hud_{name}_hd.png", "size": [tw, th], "disc": [c[0], c[1], DISC_1080, DISC_1080], "wells": wl, "plates": pl}
-    if "xp_ledge" in L:
-        x0, y0, x1, y1 = L["xp_ledge"]; a, b = P(x0, y0), P(x1, y1)
-        meta[name]["xp_ledge"] = [a[0], a[1], round(b[0] - a[0], 2), round(b[1] - a[1], 2)]
+    meta[name] = {"file": f"hud_{name}_hd.png", "size": [tw, th], "disc": [c[0], c[1], DISC_1080, DISC_1080], "wells": wl, "plates": pl,
+                  "panel_inner_x": round(panel_edge * k, 2),
+                  "panel_bottom_band": [round((H - 0.11 * H) * k, 2), round(H * k, 2)]}
     print(name, "scale %.4f" % k, (tw, th), "disc", meta[name]["disc"], "well0", wl[0])
 # XP strip
 rgba, off = key(f"{SRC}/a3_xp_raw.png")

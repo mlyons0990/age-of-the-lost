@@ -91,3 +91,9 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
   both bars always show the live binding. Menu: F1 (rebindable). Saved to `user://aotl_keybinds.cfg`.
 - Tests: arpg_hud 69/69 (adds loadout swap/no-duplicate, picker, icon follow, persistence, rebind, steal, mouse bind,
   capture flow, reset); mage 83/83; knight 29/29; armed knight 41/41; radiant 17/17; regression 994/994.
+
+## Revision 7 (owner: XP bar right end clipped / bleeding into old art; sliver of world left of the HP statue)
+- Removed the small baked XP ledge from the right piece; the XP strip now runs from the potion belt's inner edge to
+  the skill panel's inner edge, tucked 12 px under both frames and seated on the screen's bottom edge.
+- Outer statue edges mirrored outward so every row they occupy reaches the screen edge (no see-through sliver).
+- Tests: arpg_hud 72/72 (adds strip-tuck, fill-inside-groove, solid left/right edge columns).

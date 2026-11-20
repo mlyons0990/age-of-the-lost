@@ -44,7 +44,20 @@ func _run() -> void:
 	var rr: Rect2 = hud.right_piece.get_global_rect()
 	check(absf(lr.position.x) < 1.0 and absf(lr.end.y - vh) < 1.0, "Left statue/orb/belt flush to the left and bottom edges (%s)" % lr)
 	check(absf(rr.end.x - vw) < 1.0 and absf(rr.end.y - vh) < 1.0, "Right skills/orb/statue flush to the right and bottom edges (%s)" % rr)
-	check(hud.strip_rect.position.x <= lr.end.x and hud.strip_rect.end.x >= rr.position.x and absf(hud.strip_rect.end.y - vh) < 12.0, "XP strip joins the two pieces along the bottom (no gap)")
+	var exl: float = lr.position.x + float(hud.meta_cache["left"]["panel_inner_x"])
+	var exr: float = rr.position.x + float(hud.meta_cache["right"]["panel_inner_x"])
+	check(hud.strip_rect.position.x < exl and hud.strip_rect.end.x > exr and absf(hud.strip_rect.end.y - vh) < 0.5, "XP strip tucks under both panels' inner edges along the bottom (no gap)")
+	check(hud.xp_rect.position.x >= exl and hud.xp_rect.end.x <= exr, "XP fill stays inside the visible groove (never over the panels)")
+	var limg: Image = hud.left_piece.texture.get_image()
+	var lmiss := 0
+	for y in range(int(limg.get_height() * 0.25), limg.get_height()):
+		if limg.get_pixel(0, y).a < 0.5: lmiss += 1
+	check(lmiss == 0, "Left statue column is solid to the screen edge (%d see-through rows)" % lmiss)
+	var rimg: Image = hud.right_piece.texture.get_image()
+	var rmiss := 0
+	for y in range(int(rimg.get_height() * 0.25), rimg.get_height()):
+		if rimg.get_pixel(rimg.get_width() - 1, y).a < 0.5: rmiss += 1
+	check(rmiss == 0, "Right statue column is solid to the screen edge (%d see-through rows)" % rmiss)
 	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.05, "Both orb rings the same size on screen (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
 	check(hud.left_piece.texture.get_width() == roundi(hud.left_piece.size.x) and hud.right_piece.texture.get_width() == roundi(hud.right_piece.size.x), "Pieces draw 1:1 at 1080p (no runtime downscale aliasing)")
 	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")

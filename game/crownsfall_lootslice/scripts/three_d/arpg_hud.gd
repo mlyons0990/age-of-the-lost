@@ -44,6 +44,7 @@ void fragment() {
 }
 """
 var hp_shade: ColorRect
+var meta_cache: Dictionary
 var mp_shade: ColorRect
 var left_piece: TextureRect
 var right_piece: TextureRect
@@ -207,6 +208,7 @@ func _build() -> void:
 	# skill panel + MP globe + statue flush bottom-right, XP strip joining them. Wells and key plates are blank in
 	# the art: contents (any skill / potion) and key labels (any binding) are drawn live.
 	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_redraw.json"))
+	meta_cache = meta
 	var vs: Vector2 = lab.get_viewport().get_visible_rect().size
 	W = vs.x
 	H = vs.y
@@ -222,23 +224,27 @@ func _build() -> void:
 	var ro := right_piece.position
 	var lmap := func(v: Array) -> Rect2: return Rect2(lo + Vector2(v[0], v[1]) * ui_k, Vector2(v[2], v[3]) * ui_k)
 	var rmap := func(v: Array) -> Rect2: return Rect2(ro + Vector2(v[0], v[1]) * ui_k, Vector2(v[2], v[3]) * ui_k)
-	# XP strip behind the pieces' inner ends, aligned with the skill panel's low ledge
+	# XP strip: runs from the potion belt's inner edge to the skill panel's inner edge along the bottom, tucked a
+	# little under both frames (drawn behind them) so it reads as one piece slotted between the two panels.
 	var X: Dictionary = meta["xp_strip"]
-	var ledge: Rect2 = rmap.call(R["xp_ledge"])
-	var sh: float = float(X["size"][1]) * ui_k
+	var sh: float = 34.0 * ui_k
+	var tuck: float = 12.0 * ui_k
+	var ex0: float = lo.x + float(L["panel_inner_x"]) * ui_k     # belt's inner (right) edge
+	var ex1: float = ro.x + float(R["panel_inner_x"]) * ui_k     # skill panel's inner (left) edge
 	var strip := NinePatchRect.new()
 	strip.texture = _tex("hud_xp_strip@2x" if hi else "hud_xp_strip")
 	var cap: int = int(float(X["size"][0]) * float(X["cap_frac"]) * (2.0 if hi else 1.0)) + 2
 	strip.patch_margin_left = cap; strip.patch_margin_right = cap
-	strip.position = Vector2(lo.x + lsz.x - 20 * ui_k, ledge.get_center().y - sh * 0.5)
-	strip.size = Vector2(ledge.position.x + ledge.size.x * 0.7 - strip.position.x, sh)
+	strip.patch_margin_top = 0; strip.patch_margin_bottom = 0
+	strip.position = Vector2(ex0 - tuck, H - sh)
+	strip.size = Vector2(ex1 - ex0 + 2.0 * tuck, sh)
 	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(strip)
 	strip_rect = Rect2(strip.position, strip.size)
 	var inner: Array = X["inner_frac"]
 	# the fill draws above the pieces, so keep it to the groove visible between them
-	var gx0: float = lo.x + lsz.x + 3 * ui_k
-	var gx1: float = ro.x - 3 * ui_k
+	var gx0: float = ex0 + 3 * ui_k
+	var gx1: float = ex1 - 3 * ui_k
 	xp_rect = Rect2(gx0, strip.position.y + sh * float(inner[1]), gx1 - gx0, sh * float(inner[3]))
 	root.add_child(left_piece)
 	root.add_child(right_piece)

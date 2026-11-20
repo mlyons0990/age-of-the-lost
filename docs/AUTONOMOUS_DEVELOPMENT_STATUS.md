@@ -8,6 +8,9 @@
 | 2D isometric ARPG (playable) | `crownfall/` (Godot 4.3) | `claude/import-crownfall-godot`, mlyons0990/age-of-the-lost#1 | 188/188 autotest checks; Higgsfield bottom HUD frame integrated |
 | 3D Warrior rig/combat lab | `game/crownsfall_lootslice/` (Godot 4.6.3 + Blender 5.2) | `dev/r55-clip-safe-elbow-v1` (stack: R52 #67 → R53 #70 → R54 #71 → R55) | R55 clip-safe elbow: 52+10+17 new checks, 994/994 regression |
 
+## Higgsfield pilot (Phase 0)
+Branch `art/higgsfield-pilot-knight-2026-11-20`: Meshy knight + free-retargeted Slash/Walk/Run/Idle/Cast + paid Roll_Dodge + R52 sword/shield rigidly skinned to the hands. `models/higgsfield_pilot/knight_pilot_armed.glb`, Godot 30/30 (`tests/verify_higgsfield_pilot_armed.gd`). Spend 54 of 3,000; Dead clip awaiting approval. Ledger: `docs/AOTL_HIGGSFIELD_CREDIT_LEDGER.md`.
+
 ## Current phase
 R55 — clip-safe elbow (see `game/crownsfall_lootslice/docs/R55_CLIP_SAFE_ELBOW_QA_2026-11-20.md`). Note: R54 introduced armor clipping; prefer R55 over R54.
 

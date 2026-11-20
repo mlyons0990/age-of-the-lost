@@ -1,0 +1,6 @@
+# Visual acceptance, November 20
+Picture 1 is the selected reference for HP, mana and XP. The corner guardians and colored glass are sampled from it. Resource depletion clips at a horizontal surface. The XP rail uses an original frame sample, live progression, and a centered level/readout. Inspect HUD-comparison.png, Crownsfall-HUD-partial.png and the separate R55-Crownsfall-HUD.png capture. Skill and potion banks still use their branch-specific equipment and action art. The original reference has more elaborate bank borders, rail ornaments and different key labels.
+
+The first Desktop capture showed a grey area above the XP rail. A capture with the HUD hidden reproduced it. The two-district camera now constrains the view to painted coverage and the final Desktop image was recaptured. The camera change is specific to that district topology.
+
+The Warrior comparison and Slash, Dodge and Death GIFs use actual Godot frames. The pilot has an articulated model, distinct class colors and an attached sword/shield. Its segmented armor, coarse face and hair, simplified textures, stiff tabard and cape fall short of the reference. R55's earlier measurements still show 1,471 forearm-guard poke-through vertex-frames. An independent visual pass on that exact model is pending. The pilot is experimental and mass character production remains gated.

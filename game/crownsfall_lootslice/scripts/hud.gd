@@ -86,10 +86,10 @@ func _process(delta: float) -> void:
 
 func _layout_bar() -> void:
 	var sz := get_viewport().get_visible_rect().size
-	var x0 := (sz.x - 460.0) / 2.0
 	for i in overlay_buttons.size():
-		overlay_buttons[i].position = Vector2(x0 + i * 76 + (12 if i == 5 else 0), sz.y - 118)
-		overlay_buttons[i].size = Vector2(68, 68)
+		var rect := ReferenceLayout.action_rect(sz, i)
+		overlay_buttons[i].position = rect.position
+		overlay_buttons[i].size = rect.size
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton and event.pressed:

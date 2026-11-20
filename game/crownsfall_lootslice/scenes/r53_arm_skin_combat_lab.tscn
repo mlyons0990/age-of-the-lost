@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/three_d/rig_lab.gd" id="1_r53"]
+
+[node name="R53ArmSkinCombatLab" type="Node3D"]
+script = ExtResource("1_r53")
+use_r53_arm_skin_candidate = true

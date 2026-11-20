@@ -11,6 +11,8 @@ const WARRIOR_R50_SLASH_CANDIDATE := "res://models/AOTL_Warrior_R50_SevenClip_Ca
 const WARRIOR_R52_RIGID_ARMOR_CANDIDATE := "res://models/AOTL_Warrior_R52_RigidArmor_SevenClip.glb"
 ## R53: R52 plus rebuilt arm skin weights (tools/r53_arm_reweight.py); opt-in only.
 const WARRIOR_R53_ARM_SKIN_CANDIDATE := "res://models/AOTL_Warrior_R53_ArmSkin_SevenClip.glb"
+## R54: R53 plus the half-swing Elbow helper joint (tools/r54_elbow_helper.py); opt-in only.
+const WARRIOR_R54_ELBOW_HELPER_CANDIDATE := "res://models/AOTL_Warrior_R54_ElbowHelper_SevenClip.glb"
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
@@ -52,6 +54,7 @@ var equipment_debug_equipped := false
 @export var enable_r50_fullbody_slash_candidate := false
 @export var enable_r52_rigid_armor_candidate := false
 @export var enable_r53_arm_skin_candidate := false
+@export var enable_r54_elbow_helper_candidate := false
 
 func _production_model_is_valid(candidate: Node3D) -> bool:
 	# Do not switch the playable actor solely because an R36 file exists.
@@ -92,6 +95,8 @@ func _ready() -> void:
 		model_candidates.push_front({"path": WARRIOR_R52_RIGID_ARMOR_CANDIDATE, "source": "warrior_r52_opt_in"})
 	if enable_r53_arm_skin_candidate:
 		model_candidates.push_front({"path": WARRIOR_R53_ARM_SKIN_CANDIDATE, "source": "warrior_r53_opt_in"})
+	if enable_r54_elbow_helper_candidate:
+		model_candidates.push_front({"path": WARRIOR_R54_ELBOW_HELPER_CANDIDATE, "source": "warrior_r54_opt_in"})
 	for option in model_candidates:
 		var path: String = option["path"]
 		if not ResourceLoader.exists(path):
@@ -121,7 +126,7 @@ func _ready() -> void:
 				animation.get_animation(name).loop_mode = Animation.LOOP_LINEAR
 	# Remap only the opt-in R50's Slash. The original Slash remains in the
 	# GLB and the older models' animation mappings are never altered.
-	if active_model_source in ["warrior_r50_opt_in", "warrior_r52_opt_in", "warrior_r53_opt_in"] and clip_names.has("Slash_FullBody_R50"):
+	if active_model_source in ["warrior_r50_opt_in", "warrior_r52_opt_in", "warrior_r53_opt_in", "warrior_r54_opt_in"] and clip_names.has("Slash_FullBody_R50"):
 		clip_names["Slash"] = clip_names["Slash_FullBody_R50"]
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.26

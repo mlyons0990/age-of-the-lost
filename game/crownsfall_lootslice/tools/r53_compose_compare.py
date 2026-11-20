@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """Place the real Godot R52/R53 renders side by side with labels, and build the R53 Slash GIF.
-usage: r53_compose_compare.py <capture dir> <out dir>"""
+usage: r53_compose_compare.py <capture dir> <out dir> [before prefix] [after prefix] [after label]
+Defaults compare r52_ with r53_ (R53); R54 uses: r53 r54 "R54 elbow helper"."""
 import sys, glob, os
 from PIL import Image, ImageDraw, ImageFont, ImageChops
 src, out = sys.argv[1:3]
+pa, pb = (sys.argv[3:5] if len(sys.argv) > 4 else ("r52", "r53"))
+after_label = sys.argv[5] if len(sys.argv) > 5 else after_label
+gif_name = pb + ("_slash_godot.gif")
 os.makedirs(out, exist_ok=True)
 try:
     font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 30)
 except OSError:
     font = ImageFont.load_default()
-for a in sorted(glob.glob(os.path.join(src, "r52_*.png"))):
-    tag = os.path.basename(a)[4:-4]
-    l, r = Image.open(a).convert("RGB"), Image.open(os.path.join(src, "r53_" + tag + ".png")).convert("RGB")
+for a in sorted(glob.glob(os.path.join(src, pa + "_*.png"))):
+    tag = os.path.basename(a)[len(pa) + 1:-4]
+    l, r = Image.open(a).convert("RGB"), Image.open(os.path.join(src, pb + "_" + tag + ".png")).convert("RGB")
     # crop both to the union of the character's pixels (background is flat), then enlarge
     bg = l.getpixel((2, 2))
     bl = ImageChops.difference(l, Image.new("RGB", l.size, bg)).convert("L").point(lambda v: 255 if v > 12 else 0).getbbox()
@@ -23,10 +27,10 @@ for a in sorted(glob.glob(os.path.join(src, "r52_*.png"))):
     im = Image.new("RGB", (l.width + r.width, l.height + 50), (22, 23, 28))
     im.paste(l, (0, 50)); im.paste(r, (l.width, 50))
     d = ImageDraw.Draw(im)
-    d.text((20, 10), "R52 — " + tag.replace("Slash_FullBody_R50", "Slash").replace("_f", " f"), font=font, fill=(235, 220, 190))
-    d.text((l.width + 20, 10), "R53 arm skin", font=font, fill=(160, 220, 255))
-    im.save(os.path.join(out, "r53_vs_r52_" + tag + ".jpg"), quality=88)
+    d.text((20, 10), pa.upper() + " — " + tag.replace("Slash_FullBody_R50", "Slash").replace("_f", " f"), font=font, fill=(235, 220, 190))
+    d.text((l.width + 20, 10), after_label, font=font, fill=(160, 220, 255))
+    im.save(os.path.join(out, pb + "_vs_" + pa + "_" + tag + ".jpg"), quality=88)
 frames = [Image.open(f).convert("RGB").resize((450, 450)) for f in sorted(glob.glob(os.path.join(src, "gif", "slash_*.png")))]
 if frames:
-    frames[0].save(os.path.join(out, "r53_slash_godot.gif"), save_all=True, append_images=frames[1:], duration=1000 // 15, loop=0)
+    frames[0].save(os.path.join(out, gif_name), save_all=True, append_images=frames[1:], duration=1000 // 15, loop=0)
 print("written", out)

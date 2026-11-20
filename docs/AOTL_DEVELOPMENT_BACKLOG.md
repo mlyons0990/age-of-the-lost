@@ -1,6 +1,6 @@
 # AOTL Development Backlog (prioritised)
 
-1. **R54 elbow volume** — add a non-keyed helper/corrective solution for 65°+ elbow bends (remaining 63% worst-frame strain at the elbow band); re-run R53 strain tool and Godot captures.
+1. ~~R54 elbow volume~~ done (crease 63→33%). **R55**: recover the window-edge trade-off (wrist side via an ArmTwist twist helper; upper end via a shoulder-side window clamp).
 2. **Shoulder/armpit clearance** — inspect tunic ↔ arm ↔ rigid shoulder plate intersections at Slash f5–f12 (needs multi-angle renders).
 3. **Warrior silhouette vs approved art** — proportions, head/face, hair volume, painterly materials; current mesh remains procedural low-poly.
 4. **Cloth follow-through** — cape bones (CapeL/Mid/R) are keyed rigidly; add secondary motion.

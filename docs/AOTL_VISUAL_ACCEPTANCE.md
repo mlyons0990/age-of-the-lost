@@ -4,3 +4,4 @@
 |---|---|---|---|
 | R53 arm skin | `game/crownsfall_lootslice/previews/warrior_r53/r53_vs_r52_*.jpg`, `r53_slash_godot.gif` (Godot 4.6.3) | Improved vs R52: fuller upper arm, cleaner elbow line | Elbow pinch at deep bends; whole Warrior still far from approved painterly anime references |
 | 2D bottom HUD | `screenshots/hud_frame_ingame.png` (Godot 4.3, 1920×1080) | Matches approved template layout; user-approved frame art | Small top-rail seams in filler segments |
+| R54 elbow helper | `game/crownsfall_lootslice/previews/warrior_r54/r54_vs_r53_elbow_*.jpg` (Godot close-ups) | Inner-elbow kink replaced by a smooth curve; hands unchanged (≤1.4 mm) | Small at gameplay distance; strain moved to window edges under armor |

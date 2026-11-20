@@ -5,6 +5,8 @@ extends CanvasLayer
 
 const GD := preload("res://scripts/game_data.gd")
 const ART := preload("res://scripts/art_library.gd")
+const ReferenceLayout := preload("res://scripts/reference_hud_layout.gd")
+const ReferenceResources := preload("res://scripts/reference_resource_hud.gd")
 const GOLD := Color("e8c77a")
 const BRONZE := Color(0.62, 0.47, 0.22)
 const DARK := Color(0.07, 0.06, 0.08, 0.92)
@@ -444,20 +446,20 @@ class HudDraw extends Control:
 		draw_multiline_string(font, qr.position + Vector2(12, 48), ("Read the seals. R to retreat." if in_trial else main.quest_text()), HORIZONTAL_ALIGNMENT_LEFT, qr.size.x - 20, 15, 2, Color("efe6d2"))
 
 		# bottom: orbs, skill bar, xp
-		var cy := h - 84.0
-		var sz := 68.0
-		var gap := 8.0
 		var n := SLOTS.size() + 1
-		var bar_w := n * sz + (n - 1) * gap + 12.0
-		var x0 := (w - bar_w) / 2.0
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), DARK)
-		draw_rect(Rect2(x0 - 16, cy - sz / 2 - 12, bar_w + 32, sz + 24), BRONZE, false, 3.0)
+		var scale_factor := ReferenceLayout.scale_for(size)
+		var potion_rect := ReferenceLayout.action_rect(size, n - 1)
+		var skill_bank := ReferenceLayout.action_rect(size, 0).merge(ReferenceLayout.action_rect(size, n - 2))
+		for bank: Rect2 in [potion_rect, skill_bank]:
+			draw_rect(bank.grow(6 * scale_factor), DARK)
+			draw_rect(bank.grow(6 * scale_factor), BRONZE, false, 2 * scale_factor)
 		var cols: Array = p.fx_colors()
 		var mouse := get_local_mouse_position()
 		var tip: Dictionary = {}
 		var tip_rect := Rect2()
 		for i in n:
-			var r := Rect2(x0 + i * (sz + gap) + (12.0 if i == n - 1 else 0.0), cy - sz / 2, sz, sz)
+			var r := ReferenceLayout.action_rect(size, i)
+			var sz := r.size.x
 			draw_rect(r, Color(0.11, 0.11, 0.16))
 			if i == n - 1:
 				_icon("potion", r, Color.WHITE)
@@ -498,15 +500,12 @@ class HudDraw extends Control:
 					tip_rect = r
 			draw_string(font, r.position + Vector2(5, 17), SLOTS[i][1], HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color.WHITE)
 		var max_mp: float = s["max_mp"]
-		_orb(Vector2(x0 - 100, cy - 8), 60, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
-		_orb(Vector2(x0 + bar_w + 100, cy - 8), 60, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
-		var xr := Rect2(x0 - 16, cy + sz / 2 + 18, bar_w + 32, 12)
-		draw_rect(xr, Color(0.06, 0.06, 0.06))
-		var need: int = GD.xp_need(p.level)
-		var xf: float = 1.0 if p.level >= GD.MAX_LEVEL else float(p.xp) / need
-		draw_rect(Rect2(xr.position, Vector2(xr.size.x * xf, xr.size.y)), GOLD.darkened(0.15))
-		draw_rect(xr, BRONZE.darkened(0.25), false, 1.5)
-		_text_c("Max level" if p.level >= GD.MAX_LEVEL else "XP %d/%d" % [p.xp, need], xr.get_center() + Vector2(0, 5), 13, Color.WHITE, 4)
+		ReferenceResources.globe(self, false, p.hp, max_hp, scale_factor)
+		ReferenceResources.globe(self, true, p.mp, max_mp, scale_factor)
+		var text_size := maxi(11, roundi(14 * scale_factor))
+		_text_c("HP  %d / %d" % [ceili(p.hp), int(max_hp)], potion_rect.position + Vector2(50, -21) * scale_factor, text_size, Color("f6ead7"), 4)
+		_text_c("MP  %d / %d" % [int(p.mp), int(max_mp)], Vector2(skill_bank.end.x - 57 * scale_factor, skill_bank.position.y - 21 * scale_factor), text_size, Color("f6ead7"), 4)
+		ReferenceResources.experience(self, ReferenceLayout.xp_rect(size), scale_factor, p.level, p.xp, GD.xp_need(p.level), p.level >= GD.MAX_LEVEL)
 
 		# skill tooltip
 		if not tip.is_empty():

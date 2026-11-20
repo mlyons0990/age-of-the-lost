@@ -1,3 +1,7 @@
+# November 20 development checkpoint
+
+[Current aotl source inventory](checkpoints/2026-11-20-reference-hud/AOTL_SOURCE_INVENTORY.md)
+
 # AOTL Source Inventory (2026-11-20)
 
 1. **Windows desktop AOTL folder:** not accessible — this is a cloud container with no attached machine. Reconciliation task: attach the PC via Remote Control and diff it against `main` and the dev branches below.

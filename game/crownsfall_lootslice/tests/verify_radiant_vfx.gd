@@ -14,9 +14,9 @@ func _run() -> void:
 	var fx: Node3D = RFX.new(); root.add_child(fx)
 	var s: MeshInstance3D = fx.sigil(Vector3(1, 0, 2), 1.2)
 	check(s.mesh is QuadMesh and is_equal_approx((s.mesh as QuadMesh).size.x, 2.4), "sigil quad sized to diameter")
-	check(s.global_position.distance_to(Vector3(1, 0.04, 2)) < 1e-3, "sigil sits just above ground")
+	check(s.global_position.distance_to(Vector3(1, 0.10, 2)) < 1e-3, "sigil sits just above ground")
 	var sm := s.material_override as ShaderMaterial
-	check(sm != null and sm.shader.code.contains("blend_add"), "sigil additive shader")
+	check(sm != null and sm.shader.code.contains("blend_mix"), "sigil alpha-blended shader (reads on pale stone)")
 	for p in ["reveal", "spin", "intensity"]:
 		check(sm.get_shader_parameter(p) != null, "sigil param %s initialised (tweenable)" % p)
 	var vert: MeshInstance3D = fx.sigil(Vector3.ZERO, 0.7, 1.0, 1.0, Vector3.BACK)
@@ -37,7 +37,7 @@ func _run() -> void:
 	check(names.has("RadiantSigil") and names.has("RadiantCrescent") and names.has("RadiantStar"), "judgment mixes sigils, crescents and stars")
 	var landing := false
 	for n in made:
-		if String(n.name).contains("RadiantSigil") and n.global_position.distance_to(Vector3(0, 0.04, 3.0)) < 1e-3: landing = true
+		if String(n.name).contains("RadiantSigil") and n.global_position.distance_to(Vector3(0, 0.10, 3.0)) < 1e-3: landing = true
 	if not landing:
 		for n in made: print(n.name, " ", n.global_position)
 	check(landing, "landing sigil at reach along facing")

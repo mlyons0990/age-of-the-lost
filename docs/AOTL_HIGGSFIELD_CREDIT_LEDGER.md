@@ -13,6 +13,10 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-20 07:05 | Casual_Walk clip (#30) | 3d_rigging | 8 (re-quoted) | Owner: "Approved, get the walk and run clips" | 8 | `259cb61d-0f2d-4f8d-8799-36a38e7f864d` | 1.0 m/s stroll → new Ctrl-stroll mode | Accepted | — |
 | 2026-11-20 07:05 | RunFast clip (#16) | 3d_rigging | 8 (re-quoted) | same approval | 8 | `73fe49f9-a275-44be-8089-70ffad9caf52` | Sprint for Shift-run (×0.71, natural cadence) | Accepted | 2,914 |
 | 2026-11-20 07:18 | Phase 1 Mage model (4 views from the approved turnaround) | multi_image_to_3d (textured, rigged, a-pose) | 35 (re-quoted) | Owner: "Approved, go ahead with the 35-credit Mage model" | 35 | `301207b8-fb2c-4bae-a15f-c73903343278` | Close match to turnaround; 24-bone rig; knight clips transferred free | Accepted | 2,879 |
+| 2026-11-20 07:41 | Mage cast: mage_soell_cast_4 (#133) on the Mage → `Cast_Sweep` / Judgment | 3d_rigging | 8 (re-quoted before submit) | Owner: "Mage spells approved" (4-clip request, 32 cr) | 8 | `94727474-ead3-4374-a01b-0379d54c3ff1` | Wide-stance staff sweep, hips drop 0.16 m, feet planted; release 0.34 | Accepted | — |
+| 2026-11-20 07:41 | Mage cast: mage_soell_cast_7 (#136) → `Cast_Bolt` | 3d_rigging | 8 (re-quoted) | same approval | 8 | `935e193a-3f4b-4a19-a72d-2324a25ea73b` | Step-in one-arm cast; release 0.33 | Accepted | — |
+| 2026-11-20 07:41 | Mage cast: mage_soell_cast_3 (#132) → `Cast_Lunge` / Lance | 3d_rigging | 8 (re-quoted) | same approval | 8 | `c04a78d8-125a-4cc9-add4-7a1a57a90d49` | Two-hand lunge push, held; release 0.31 | Accepted | — |
+| 2026-11-20 07:41 | Mage cast: Charged_Spell_Cast (#125) → `Cast_Nova` | 3d_rigging | 8 (re-quoted) | same approval | 8 | `e05ef36d-2f30-4feb-b3ed-a02f1671fbb1` | Crouch-and-burst; release 0.69 | Accepted | 2,847 |
 
-Totals: **121 credits spent** of the 3,000 grant (2,879 remaining, verified 2026-11-20). Phase 0: 86 of 120. Phase 1: 35 of 600.
+Totals: **153 credits spent** of the 3,000 grant (2,847 remaining, verified against `balance` + `transactions` 2026-11-20 07:42). Phase 0: 86 of 120. Phase 1: 67 of 600.
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

@@ -346,7 +346,7 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	var color := Color("b0a0ff") if spell else (Color("ffe5a4") if kind == "Cleave" else Color("8acaff"))
 	var wide := kind == "Cleave"
 	if spell and radiant:
-		radiant.judgment(player.global_position, direction, player.global_position.distance_to(at))
+		radiant.spell(player.spell_variant, player.global_position, direction, player.global_position.distance_to(at))
 	elif spell:
 		effects.cast(at, color)
 	else:

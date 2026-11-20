@@ -3,7 +3,8 @@ extends SceneTree
 ## Model checks + live rig-lab checks. --shots=<dir> renders evidence frames.
 const MODEL := "res://models/higgsfield_mage/mage_pilot_armed.glb"
 const LAB := preload("res://scripts/three_d/rig_lab.gd")
-const CLIPS := ["Idle", "Walk", "Run", "RunFast", "Casual_Walk", "Cast", "Roll_Dodge", "Dead"]
+const CLIPS := ["Idle", "Walk", "Run", "RunFast", "Casual_Walk", "Cast", "Roll_Dodge", "Dead", "Cast_Sweep", "Cast_Bolt", "Cast_Lunge", "Cast_Nova"]
+const GRIP := "MAGE_Staff_Grip"   # staff bone: child of RightHand at the palm, keeps the shaft within 35 deg (baked) of vertical
 var checks := 0
 var failures := 0
 var shots := ""
@@ -40,7 +41,7 @@ func _run() -> void:
 	var m: Node3D = (load(MODEL) as PackedScene).instantiate()
 	root.add_child(m)
 	var sk: Skeleton3D = m.find_children("*", "Skeleton3D", true, false)[0]
-	check(sk.get_bone_count() == 24, "Meshy 24-bone rig (%d)" % sk.get_bone_count())
+	check(sk.get_bone_count() == 25 and sk.find_bone(GRIP) >= 0 and sk.get_bone_name(sk.get_bone_parent(sk.find_bone(GRIP))) == "RightHand", "Meshy 24-bone rig + staff grip bone under RightHand (%d)" % sk.get_bone_count())
 	var ap: AnimationPlayer = m.find_child("AnimationPlayer", true, false)
 	for c in CLIPS:
 		check(ap.has_animation(c), "Clip present: " + c)
@@ -64,18 +65,21 @@ func _run() -> void:
 			if staff != null:
 				var aabb := staff.mesh.get_aabb()
 				# glTF is Y-up: the shaft runs along the mesh's Y axis (foot -> crystal)
-				var lo := prop_point(staff, sk, "RightHand", Vector3(aabb.get_center().x, aabb.position.y, aabb.get_center().z))
-				var hi := prop_point(staff, sk, "RightHand", Vector3(aabb.get_center().x, aabb.end.y, aabb.get_center().z))
-				var d := world(sk, "RightHand").distance_to(lo)
+				var lo := prop_point(staff, sk, GRIP, Vector3(aabb.get_center().x, aabb.position.y, aabb.get_center().z))
+				var hi := prop_point(staff, sk, GRIP, Vector3(aabb.get_center().x, aabb.end.y, aabb.get_center().z))
+				var d := world(sk, "RightHand").distance_to(world(sk, GRIP))
 				if hd0 < 0.0: hd0 = d
 				staff_drift = maxf(staff_drift, absf(d - hd0))
-				if c in ["Idle", "Walk", "Casual_Walk"]:
+				if not lo.is_finite() or not hi.is_finite(): up_min = -9.0
+				if c != "Dead":
 					up_min = minf(up_min, (hi - lo).normalized().dot(Vector3.UP))
 		print("MAGE %s: %.2fs toes >= %.3f m, hips >= %.2f m, staff grip drift %.4f m, staff uprightness %.2f" % [c, L, toe_min, hips_min, staff_drift, up_min])
 		check(toe_min > -0.06, c + ": feet never below the floor")
-		check(staff_drift < 0.005, c + ": staff rigid in the right hand")
-		if c in ["Idle", "Casual_Walk"]:
-			check(up_min > 0.5, c + ": staff carried roughly upright (%.2f)" % up_min)
+		check(staff_drift < 0.005, c + ": staff grip stays in the right palm")
+		if c == "Roll_Dodge":
+			check(up_min > 0.5, c + ": staff never upside down mid-roll (%.2f)" % up_min)
+		elif c != "Dead":
+			check(up_min > 0.70, c + ": staff head-up, within ~45 deg of vertical (%.2f)" % up_min)
 		if c == "Roll_Dodge":
 			check(hips_min < 0.7, "Roll_Dodge tucks low (hips %.2f m)" % hips_min)
 		if c == "Dead":
@@ -109,6 +113,35 @@ func _run() -> void:
 	await root.get_tree().create_timer(1.6).timeout
 	print("MAGE LAB cast: dummy hp %.0f" % dummy.hp)
 	check(dummy.hp < 100.0, "Cast hits the training dummy")
+	# Mage spell set: each paid cast plays its own trimmed clip and lands on the dummy at its release phase
+	for spell in ["Bolt", "Lance", "Nova", "Judgment"]:
+		check(a.clip_names.has("Mage_" + spell), "Spell clip prepared: Mage_" + spell)
+	check(a.is_pilot_mage(), "Mage spell set active")
+	for spell in ["Bolt", "Lance", "Nova", "Judgment"]:
+		while a.attack_t > 0.0 or a.attack_cd > 0.0:
+			await physics_frame
+		dummy.global_position = a.global_position + a.last_face * 2.0
+		dummy.hp = 100.0
+		dummy.inactive_t = 0.0
+		var serial: int = a.attack_serial
+		var ok: bool = a.cast_spell(spell)
+		var spec: Dictionary = a.MAGE_SPELLS[spell]
+		var t0 := Time.get_ticks_msec()
+		var played: String = a.animation.current_animation
+		var speed: float = a.animation.get_playing_speed()
+		while not a.has_impacted and a.attack_t > 0.0:
+			await physics_frame
+		var hit_t := (Time.get_ticks_msec() - t0) / 1000.0
+		await physics_frame
+		print("MAGE SPELL %s: clip %s x%.2f, release at %.2fs (expected %.2fs), dummy %.0f" % [spell, played, speed, hit_t, float(spec["time"]) * float(spec["phase"]), dummy.hp])
+		check(ok and a.attack_serial == serial + 1, spell + ": cast accepted")
+		check(played == "Mage_" + spell, spell + ": plays its own clip (%s)" % played)
+		check(absf(hit_t - float(spec["time"]) * float(spec["phase"])) < 0.25, spell + ": releases on its measured phase")
+		check(dummy.hp < 100.0, spell + ": hits the training dummy")
+		if float(spec["cd"]) > 0.0:
+			while a.attack_t > 0.0 or a.attack_cd > 0.0:
+				await physics_frame
+			check(not a.cast_spell(spell), spell + ": cooldown blocks an immediate recast")
 	if shots != "":
 		DirAccess.make_dir_recursive_absolute(shots)
 		await RenderingServer.frame_post_draw

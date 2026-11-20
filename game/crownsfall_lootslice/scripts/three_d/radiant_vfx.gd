@@ -2,15 +2,18 @@ extends Node3D
 ## Phase 4 groundwork: "Hollow Sun" radiant spell FX, modelled on the user's
 ## Hollow Sun Arbiter reference (gold/white compass-star sigils, crescent light
 ## arcs, four-point starbursts, faint violet accents). Fully procedural:
-## inline shaders + generated meshes, no textures, no paid assets.
+## inline shaders + generated meshes, no textures, no paid assets. Alpha-blended (not additive) with a
+## deep-gold edge so it reads on pale limestone (Crownsfall) as well as on dark ground.
 
 const GOLD := Color(1.0, 0.76, 0.32)
 const CORE := Color(1.0, 0.97, 0.86)
 const VIOLET := Color(0.58, 0.42, 1.0)
+## Ground sigils float this far above the walk surface so bevelled floor tiles never cut through them.
+const SIGIL_LIFT := 0.10
 
 const SIGIL_SHADER := """
 shader_type spatial;
-render_mode unshaded, blend_add, cull_disabled, depth_draw_never, shadows_disabled;
+render_mode unshaded, blend_mix, cull_disabled, depth_draw_never, shadows_disabled;
 uniform vec4 gold : source_color = vec4(1.0, 0.76, 0.32, 1.0);
 uniform vec4 core : source_color = vec4(1.0, 0.97, 0.86, 1.0);
 uniform vec4 violet : source_color = vec4(0.58, 0.42, 1.0, 1.0);
@@ -55,16 +58,18 @@ void fragment() {
 	float halo = exp(-pow(r - 0.96, 2.0) * 900.0) * 0.4;
 	float mask = step(r, 1.0) * smoothstep(reveal + 0.02, reveal - 0.06, r);
 	float lum = clamp(v + glow + halo, 0.0, 3.0) * mask * intensity;
-	vec3 col = mix(gold.rgb, core.rgb, clamp(glow + star * 0.35, 0.0, 1.0));
-	col += violet.rgb * band(r, 0.70, 0.07) * 0.25;
-	ALBEDO = col * lum;
-	ALPHA = clamp(lum, 0.0, 1.0);
+	vec3 deep = gold.rgb * vec3(0.92, 0.80, 0.52);
+	vec3 col = mix(deep, gold.rgb, clamp(lum * 0.6, 0.0, 1.0));
+	col = mix(col, core.rgb, clamp(glow * 0.9, 0.0, 1.0));
+	col = mix(col, violet.rgb, band(r, 0.72, 0.05) * 0.35);
+	ALBEDO = col;
+	ALPHA = clamp(lum * 1.15, 0.0, 1.0);
 }
 """
 
 const CRESCENT_SHADER := """
 shader_type spatial;
-render_mode unshaded, blend_add, cull_disabled, depth_draw_never, shadows_disabled;
+render_mode unshaded, blend_mix, cull_disabled, depth_draw_never, shadows_disabled;
 uniform vec4 gold : source_color = vec4(1.0, 0.76, 0.32, 1.0);
 uniform vec4 core : source_color = vec4(1.0, 0.97, 0.86, 1.0);
 uniform vec4 violet : source_color = vec4(0.58, 0.42, 1.0, 1.0);
@@ -83,16 +88,17 @@ void fragment() {
 	float edge = smoothstep(0.82, 0.97, across) * smoothstep(1.0, 0.965, across);
 	float head = exp(-pow(t * 18.0, 2.0));
 	float lum = (body * (0.7 + 1.1 * k) + edge * 1.6 * k + head * 1.5 * body) * alive * intensity;
-	vec3 col = mix(gold.rgb, core.rgb, clamp(edge * k + head, 0.0, 1.0));
-	col = mix(col, violet.rgb, (1.0 - k) * 0.35 * (1.0 - edge));
-	ALBEDO = col * lum;
+	vec3 deep = gold.rgb * vec3(0.94, 0.82, 0.56);
+	vec3 col = mix(deep, core.rgb, clamp(edge * k + head + body * k * 0.35, 0.0, 1.0));
+	col = mix(col, violet.rgb, (1.0 - k) * 0.4 * (1.0 - edge));
+	ALBEDO = col;
 	ALPHA = clamp(lum, 0.0, 1.0);
 }
 """
 
 const STAR_SHADER := """
 shader_type spatial;
-render_mode unshaded, blend_add, cull_disabled, depth_draw_never, shadows_disabled;
+render_mode unshaded, blend_mix, cull_disabled, depth_draw_never, shadows_disabled;
 uniform vec4 gold : source_color = vec4(1.0, 0.76, 0.32, 1.0);
 uniform vec4 core : source_color = vec4(1.0, 0.97, 0.86, 1.0);
 uniform float intensity = 1.0;
@@ -109,8 +115,9 @@ void fragment() {
 	vec2 q = mat2(vec2(0.7071, -0.7071), vec2(0.7071, 0.7071)) * p;
 	float diag = 0.004 / (abs(q.x * q.y) + 0.006) * (1.0 - r * 1.8);
 	float lum = (max(cross4, 0.0) + max(diag, 0.0) * 0.5 + exp(-r * r * 60.0)) * step(r, 1.0) * intensity;
-	ALBEDO = mix(gold.rgb, core.rgb, clamp(lum - 0.3, 0.0, 1.0)) * lum;
-	ALPHA = clamp(lum, 0.0, 1.0);
+	vec3 deep = gold.rgb * vec3(0.94, 0.80, 0.50);
+	ALBEDO = mix(deep, core.rgb, clamp(lum - 0.6, 0.0, 1.0));
+	ALPHA = clamp(lum * 1.2, 0.0, 1.0);
 }
 """
 
@@ -143,7 +150,7 @@ func sigil(at: Vector3, radius: float, duration := 1.1, spin_speed := 1.2, up :=
 	m.set_shader_parameter("intensity", 1.0)
 	o.material_override = m
 	add_child(o, true)
-	o.global_position = at + up * 0.04
+	o.global_position = at + up * SIGIL_LIFT
 	if not up.is_equal_approx(Vector3.UP):
 		o.global_basis = Basis(Quaternion(Vector3.UP, up.normalized()))
 	var tw := create_tween()
@@ -228,3 +235,54 @@ func judgment(caster: Vector3, facing: Vector3, reach := 3.2) -> Array:
 	made.append(sigil(land, 0.9, 0.9, -2.0))
 	made.append(starburst(land + Vector3.UP * 1.0, 1.4, 0.6, 0.12))
 	return made
+
+## Basic cast: small sigil at the feet, a star that flies from the staff hand to the target, burst on landing.
+func bolt(caster: Vector3, facing: Vector3, reach := 6.0) -> Array:
+	var f := Vector3(facing.x, 0, facing.z).normalized()
+	if f.length() < 0.01: f = Vector3.FORWARD
+	var made: Array = []
+	made.append(sigil(caster, 0.7, 0.6, 2.4))
+	var start := caster + f * 0.6 + Vector3.UP * 1.35
+	var land := caster + f * reach
+	var star := starburst(start, 1.0, 0.55)
+	made.append(star)
+	var tw := create_tween()
+	tw.tween_property(star, "global_position", land + Vector3.UP * 0.9, 0.28).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	for i in 3:
+		made.append(starburst(start.lerp(land + Vector3.UP * 0.9, 0.25 * (i + 1)), 0.32, 0.35, 0.07 * (i + 1)))
+	made.append(sigil(land, 0.55, 0.55, -3.0))
+	made.append(starburst(land + Vector3.UP * 0.9, 1.1, 0.45, 0.26))
+	return made
+
+## Heavy lunge: an upright sigil in front of the caster, a lance of stars through it, a landing sigil.
+func lance(caster: Vector3, facing: Vector3, reach := 4.5) -> Array:
+	var f := Vector3(facing.x, 0, facing.z).normalized()
+	if f.length() < 0.01: f = Vector3.FORWARD
+	var made: Array = []
+	made.append(sigil(caster, 1.0, 1.0, 1.0))
+	made.append(sigil(caster + f * 0.9 + Vector3.UP * 1.15, 0.65, 0.8, 2.0, f))
+	for i in 6:
+		var t := float(i + 1) / 6.0
+		made.append(starburst(caster + f * (0.9 + (reach - 0.9) * t) + Vector3.UP * 1.1, lerpf(0.9, 0.5, t), 0.4, 0.035 * i))
+	made.append(sigil(caster + f * reach, 1.0, 0.9, -1.5))
+	return made
+
+## Area nova: a wide ground sigil, a flat full-circle crescent wave and a ring of stars round the caster.
+func nova(caster: Vector3, radius := 3.0) -> Array:
+	var made: Array = []
+	made.append(sigil(caster, radius, 1.3, 0.8))
+	made.append(crescent(caster, Vector3.FORWARD, radius * 0.75, TAU, 0.5, 0.25, 0.0, 0.5))
+	made.append(crescent(caster, Vector3.BACK, radius * 0.95, TAU, 0.6, 0.15, 0.0, 0.35))
+	for i in 8:
+		var a := TAU * float(i) / 8.0
+		made.append(starburst(caster + Vector3(sin(a), 0, cos(a)) * radius * 0.85 + Vector3.UP * 0.9, 0.7, 0.5, 0.15))
+	made.append(starburst(caster + Vector3.UP * 1.9, 1.5, 0.6, 0.05))
+	return made
+
+## Dispatch by Mage spell name (controller.spell_variant).
+func spell(name: String, caster: Vector3, facing: Vector3, reach: float) -> Array:
+	match name:
+		"Bolt": return bolt(caster, facing, reach)
+		"Lance": return lance(caster, facing, reach)
+		"Nova": return nova(caster)
+		_: return judgment(caster, facing, reach)

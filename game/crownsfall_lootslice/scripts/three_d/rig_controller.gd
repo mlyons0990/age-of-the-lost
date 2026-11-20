@@ -41,6 +41,15 @@ const PILOT_ROLL_TIME := 0.9
 ## main cut) is used; the blade crosses the front at 0.81 s = 57 % of that, the shared contact phase.
 const PILOT_SLASH_END := 1.42
 const PILOT_SLASH_TIME := 0.9
+## Pilot Mage spell set (paid library casts, approved 2026-11-20). Each spell plays its own clip, trimmed to
+## [t0, t1] s and time-scaled to `time`; `phase` is the measured release (hand-speed peak / arm extension) in
+## the trimmed clip, where the controller emits `impact`. LMB / 1 / 2 / 3 on the Mage.
+const MAGE_SPELLS := {
+	"Bolt":     {"clip": "Cast_Bolt",  "t0": 0.17, "t1": 2.42, "time": 1.25, "phase": 0.33, "cd": 0.0, "reach": 6.0},
+	"Lance":    {"clip": "Cast_Lunge", "t0": 0.0,  "t1": 3.38, "time": 2.0,  "phase": 0.31, "cd": 3.0, "reach": 4.5},
+	"Nova":     {"clip": "Cast_Nova",  "t0": 0.0,  "t1": 2.71, "time": 1.8,  "phase": 0.69, "cd": 5.0, "reach": 0.0},
+	"Judgment": {"clip": "Cast_Sweep", "t0": 0.12, "t1": 2.12, "time": 1.5,  "phase": 0.34, "cd": 3.5, "reach": 3.2},
+}
 const PILOT_SWORD_HAND := "RightHand"   # the 1.83 s library roll is played at ~2x to fit the dodge window
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
@@ -65,6 +74,9 @@ var attack_type := "Slash"
 var has_impacted := false
 var dodge_t := 0.0
 var spell_cd := 0.0
+## Current Mage spell ("" for the generic Cast); cooldowns per spell.
+var spell_variant := ""
+var spell_cds := {}
 var attack_cd := 0.0
 var dodge_cd := 0.0
 var invulnerable := 0.0
@@ -318,6 +330,14 @@ func _prepare_pilot_knight_clips() -> void:
 		clip_names["Slash"] = "Pilot_Slash"
 	if clip_names.has("Dead"):
 		clip_names["Death"] = clip_names["Dead"]
+	# Mage spells: trimmed copies named Mage_<Spell> (the paid source clips stay untouched in the GLB).
+	for spell in MAGE_SPELLS:
+		var spec: Dictionary = MAGE_SPELLS[spell]
+		if clip_names.has(spec["clip"]):
+			var src := animation.get_animation(clip_names[spec["clip"]])
+			var cut := _trimmed(src, spec["t0"], minf(spec["t1"], src.length))
+			animation.get_animation_library("").add_animation("Mage_" + spell, cut)
+			clip_names["Mage_" + spell] = "Mage_" + spell
 	var roll := animation.get_animation(clip_names["Roll_Dodge"])
 	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 	for t in roll.get_track_count():
@@ -364,6 +384,9 @@ func _play(clip: String) -> void:
 		var speed := 1.0
 		if is_pilot_hero() and clip == "Dodge":
 			speed = animation.get_animation(clip_names[clip]).length / PILOT_ROLL_TIME
+		elif clip == "Cast" and spell_variant != "" and String(clip_names[clip]).begins_with("Mage_"):
+			var spec: Dictionary = MAGE_SPELLS[spell_variant]
+			speed = (float(spec["t1"]) - float(spec["t0"])) / float(spec["time"])
 		elif is_pilot_hero() and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
 			speed = PILOT_SLASH_END / PILOT_SLASH_TIME
 		elif is_pilot_hero() and PILOT_STRIDE_SPEED.has(clip):
@@ -378,16 +401,48 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			_attack("Slash", 0.72)
+			_mage_or("Bolt", "Slash", 0.72)
 	elif event is InputEventKey:
 		match event.keycode:
 			KEY_F9: _toggle_terrain_ik()
 			KEY_F10: _toggle_terrain_ik_debug()
 			KEY_F11: _toggle_equipment_socket_preview()
 			KEY_SPACE: _dodge()
-			KEY_1: _attack("Cleave", 0.76)
-			KEY_2: _attack("Dash", 0.68)
-			KEY_3: _attack("Cast", 1.4)
+			KEY_1: _mage_or("Lance", "Cleave", 0.76)
+			KEY_2: _mage_or("Nova", "Dash", 0.68)
+			KEY_3: _mage_or("Judgment", "Cast", 1.4)
+
+func is_pilot_mage() -> bool:
+	return active_model_source == "pilot_mage_opt_in" and clip_names.has("Mage_Judgment")
+
+func _mage_or(spell: String, kind: String, duration: float) -> void:
+	if is_pilot_mage():
+		cast_spell(spell)
+	else:
+		_attack(kind, duration)
+
+## Mage spell: all are "Cast" attacks for combat, with their own clip, timing, release phase and cooldown.
+func cast_spell(spell: String) -> bool:
+	if not MAGE_SPELLS.has(spell) or attack_t > 0.0 or dodge_t > 0.0 or attack_cd > 0.0:
+		return false
+	if float(spell_cds.get(spell, 0.0)) > 0.0:
+		return false
+	var spec: Dictionary = MAGE_SPELLS[spell]
+	spell_variant = spell
+	spell_cds[spell] = spec["cd"]
+	clip_names["Cast"] = clip_names["Mage_" + spell]
+	anim_state = ""
+	attack_serial += 1
+	attack_t = spec["time"]
+	attack_duration = spec["time"]
+	attack_type = "Cast"
+	has_impacted = false
+	attack_cd = 0.30
+	_play("Cast")
+	return true
+
+func spell_reach() -> float:
+	return float(MAGE_SPELLS[spell_variant]["reach"]) if spell_variant != "" else 2.2
 
 func _attack(kind: String, duration: float) -> void:
 	if attack_t > 0.0 or dodge_t > 0.0 or attack_cd > 0.0:
@@ -417,6 +472,8 @@ func _physics_process(delta: float) -> void:
 	if arm_carry != null:   # ease the arm layer in/out over ~0.2 s so clip changes don't pop
 		arm_carry.influence = move_toward(arm_carry.influence, arm_carry_target, delta * 5.0)
 	attack_cd = maxf(0.0, attack_cd - delta)
+	for k in spell_cds.keys():
+		spell_cds[k] = maxf(0.0, spell_cds[k] - delta)
 	spell_cd = maxf(0.0, spell_cd - delta)
 	dodge_cd = maxf(0.0, dodge_cd - delta)
 	invulnerable = maxf(0.0, invulnerable - delta)
@@ -462,10 +519,13 @@ func _physics_process(delta: float) -> void:
 			clip_phase = animation.current_animation_position / animation.current_animation_length
 		# A missing/unloaded animation never makes combat permanently inert.
 		# Fallback at 85% of the requested attack duration only.
-		var contact_due := (clip_phase >= WEAPON_SWEEP.attack_contact_phase(attack_type) if clip_phase >= 0.0 else elapsed >= attack_duration * 0.85)
+		var contact_phase := WEAPON_SWEEP.attack_contact_phase(attack_type)
+		if attack_type == "Cast" and spell_variant != "":
+			contact_phase = float(MAGE_SPELLS[spell_variant]["phase"])
+		var contact_due := (clip_phase >= contact_phase if clip_phase >= 0.0 else elapsed >= attack_duration * 0.85)
 		if not has_impacted and contact_due:
 			has_impacted = true
-			impact.emit(global_position + last_face * (2.2 if attack_type == "Cast" else 1.4), attack_type, last_face)
+			impact.emit(global_position + last_face * (spell_reach() if attack_type == "Cast" else 1.4), attack_type, last_face)
 		if attack_t <= 0.0: anim_state = ""
 	else:
 		var move_speed := PILOT_STROLL_SPEED if stroll else (RUN_SPEED if sprint else WALK_SPEED)

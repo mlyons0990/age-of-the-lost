@@ -415,9 +415,9 @@ func _play(clip: String) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
 		return
+	if click_to_move and not (event is InputEventKey and event.keycode in [KEY_F9, KEY_F10, KEY_F11]):
+		return   # ARPG HUD mode: every action comes through the rebindable key map (arpg_hud.gd / keybinds.gd)
 	if event is InputEventMouseButton:
-		if click_to_move:
-			return   # the lab picks ground/enemy under the cursor and issues command_move / command_attack
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_mage_or("Bolt", "Slash", 0.72)
 	elif event is InputEventKey:
@@ -451,6 +451,22 @@ func _skill(i: int) -> void:
 		0: _mage_or("Lance", "Cleave", 0.76)
 		1: _mage_or("Nova", "Dash", 0.68)
 		2: _mage_or("Judgment", "Cast", 1.4)
+
+## Use a skill by name (from a skill-bar slot), toward the cursor in click-to-move mode.
+const WARRIOR_SKILLS := {"Slash": 0.72, "Cleave": 0.76, "Dash": 0.68, "Cast": 1.4}
+func use_skill(skill_name: String) -> void:
+	if click_to_move:
+		_face_aim()
+		stop_moving()
+	if MAGE_SPELLS.has(skill_name) and is_pilot_mage():
+		cast_spell(skill_name)
+	elif WARRIOR_SKILLS.has(skill_name):
+		_attack(skill_name, WARRIOR_SKILLS[skill_name])
+
+func dodge_toward_aim() -> void:
+	_face_aim()
+	stop_moving()
+	_dodge()
 
 func is_pilot_mage() -> bool:
 	return active_model_source == "pilot_mage_opt_in" and clip_names.has("Mage_Judgment")

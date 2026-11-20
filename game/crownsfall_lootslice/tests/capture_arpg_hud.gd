@@ -35,6 +35,12 @@ func _shot(scene: String, name: String, spell: String) -> void:
 	await process_frame; await process_frame
 	await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png("%s/hud_%s.png" % [out, name])
+	if name == "mage":
+		lab.hud.toggle_bind_menu()
+		await process_frame; await process_frame
+		await RenderingServer.frame_post_draw
+		root.get_texture().get_image().save_png("%s/hud_bind_menu.png" % out)
+		lab.hud.toggle_bind_menu()
 	print("captured ", name, " mana ", a.mana)
 	lab.queue_free()
 	await process_frame

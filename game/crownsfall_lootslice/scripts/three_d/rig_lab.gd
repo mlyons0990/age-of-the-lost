@@ -296,7 +296,10 @@ func _process(delta: float) -> void:
 		var mouse := get_viewport().get_mouse_position()
 		player.aim_point = cursor_ground(mouse)
 		# hold LMB on the ground to keep walking toward the cursor
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Input.is_key_pressed(KEY_SHIFT) and player.attack_target == null and player.aim_point.is_finite():
+		var holding_move: bool = hud.kb.held("move") if hud != null else Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+		var standing: bool = hud.kb.held("force_stand") if hud != null else Input.is_key_pressed(KEY_SHIFT)
+		var over_ui: bool = hud != null and hud.pointer_over_ui()
+		if holding_move and not standing and not over_ui and player.attack_target == null and player.aim_point.is_finite():
 			player.command_move(player.aim_point)
 	var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
@@ -427,10 +430,10 @@ func enemy_under(screen: Vector2) -> Node3D:
 			best = t
 	return best
 
-func handle_click(screen: Vector2, force_stand := false) -> void:
+func handle_click(screen: Vector2, force_stand := false, combine_move_attack := true) -> void:
 	var ground := cursor_ground(screen)
 	player.aim_point = ground
-	var enemy := enemy_under(screen)
+	var enemy := enemy_under(screen) if (combine_move_attack or force_stand) else null
 	if force_stand:
 		player.stop_moving()
 		if enemy != null: player.attack_target = enemy
@@ -443,7 +446,7 @@ func handle_click(screen: Vector2, force_stand := false) -> void:
 		effects.ring(ground, 0.25, Color("f2d17f"), 0.35)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player != null and player.click_to_move and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if hud == null and player != null and player.click_to_move and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		handle_click(event.position, Input.is_key_pressed(KEY_SHIFT))
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
 		strict_weapon_sweep = not strict_weapon_sweep

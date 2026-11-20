@@ -75,3 +75,19 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
 - Legacy debug labs keep WASD so the existing regression suite is unchanged.
 - Tests: arpg_hud 52/52 (ground click arrival, WASD ignored, cursor enemy pick, walk-into-range attack for Mage and
   Knight, Shift+LMB in place, W casts); mage 83/83; knight lab 29/29; armed knight 41/41; regression 994/994.
+
+## Revision 6 — Higgsfield redraw (A1–A3, 8 cr approved) + dynamic slots + full rebinding
+- Art: Nano Banana 2.1 redraw of the owner's mockup from the uploaded close-ups (left 4K, right 4K, XP strip 2K) on
+  chroma green, keyed locally (`tools/key_hud_redraw.py`), scaled to draw 1:1 at 1080p with @2x files for higher
+  resolutions. Every slot well and key plate is blank in the art. Raw outputs: `art/higgsfield_2026-11/hud_redraw/`.
+- Slots are not static: click any skill well to pick any of the hero's skills (moving a skill already on the bar swaps
+  it, as in Diablo 4), click any potion well to pick a potion type or empty. Loadout saved per hero
+  (`user://aotl_loadout.cfg`).
+- Full rebinding (`scripts/three_d/keybinds.gd`), modelled on Diablo 4 (Options > Controls > Key Bindings: primary +
+  secondary bind per action, "Combine Move/Interact/Basic Skill" toggle) and Path of Exile (Options > Input; any key
+  or mouse button on any skill/flask slot). Actions: move/interact/primary, attack in place, skill slots 1–5,
+  potion slots 1–5, dodge, open key bindings. Any key, key+modifier, or mouse button; binding a key used elsewhere
+  steals it (the other action shows unbound); Esc cancels capture, Backspace clears; Reset to Defaults. Key plates on
+  both bars always show the live binding. Menu: F1 (rebindable). Saved to `user://aotl_keybinds.cfg`.
+- Tests: arpg_hud 69/69 (adds loadout swap/no-duplicate, picker, icon follow, persistence, rebind, steal, mouse bind,
+  capture flow, reset); mage 83/83; knight 29/29; armed knight 41/41; radiant 17/17; regression 994/994.

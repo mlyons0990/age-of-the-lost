@@ -9,6 +9,12 @@ func check(ok: bool, why: String) -> void:
 	print(("PASS " if ok else "FAIL ") + why)
 func _initialize() -> void:
 	call_deferred("_run")
+func _mouse(b: MouseButton) -> InputEventMouseButton:
+	var e := InputEventMouseButton.new()
+	e.button_index = b
+	e.pressed = true
+	return e
+
 func _key(code: Key) -> void:
 	var e := InputEventKey.new()
 	e.keycode = code
@@ -16,6 +22,9 @@ func _key(code: Key) -> void:
 	root.get_viewport().push_input(e)
 func _run() -> void:
 	root.size = Vector2i(1920, 1080)
+	# start from defaults: no saved bindings / loadout from an earlier run
+	for f in ["user://aotl_keybinds.cfg", "user://aotl_loadout.cfg"]:
+		if FileAccess.file_exists(f): DirAccess.remove_absolute(ProjectSettings.globalize_path(f))
 	var lab: Node3D = (load("res://scenes/pilot_mage_combat_lab.tscn") as PackedScene).instantiate()
 	root.add_child(lab)
 	for i in 6: await physics_frame
@@ -24,11 +33,10 @@ func _run() -> void:
 	check(hud != null and lab.info == null, "Mage lab uses the ARPG HUD instead of the debug panel")
 	check(not a.number_keys_for_skills, "1-5 are potions; skills on Q W E R T")
 	check(a.click_to_move, "Click-to-move enabled (ARPG HUD labs)")
-	check(hud.bar_layout == hud.MAGE_BAR, "Mage skill bar (Q Lance, W Nova, E Judgment, R/T locked)")
-	for spec in hud.MAGE_BAR:
-		if spec[1] != "":
-			check(ResourceLoader.exists(hud.TILES + spec[1] + ".png"), "Skill icon exists: " + spec[1])
-	for t in ["orb_life_full", "orb_life_empty", "orb_mana_full", "orb_mana_empty", "belt_plate", "slot_socket", "potion", "potion_mana", "lock"]:
+	check(hud.skill_loadout == hud.DEFAULT_SKILLS["mage"], "Mage default loadout (Q Lance, W Nova, E Judgment, R Bolt, T empty)")
+	for sk in hud.HERO_SKILLS["mage"].values() + hud.HERO_SKILLS["warrior"].values():
+		check(ResourceLoader.exists(hud.TILES + sk + ".png"), "Skill icon exists: " + sk)
+	for t in ["hud_left_hd", "hud_right_hd", "hud_left_hd@2x", "hud_right_hd@2x", "hud_xp_strip", "potion", "potion_mana"]:
 		check(ResourceLoader.exists(hud.UI + t + ".png"), "HUD art exists: " + t)
 	var vw: float = lab.get_viewport().get_visible_rect().size.x
 	var vh: float = lab.get_viewport().get_visible_rect().size.y
@@ -39,7 +47,42 @@ func _run() -> void:
 	check(hud.strip_rect.position.x <= lr.end.x and hud.strip_rect.end.x >= rr.position.x and absf(hud.strip_rect.end.y - vh) < 12.0, "XP strip joins the two pieces along the bottom (no gap)")
 	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.05, "Both orb rings the same size on screen (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
 	check(hud.left_piece.texture.get_width() == roundi(hud.left_piece.size.x) and hud.right_piece.texture.get_width() == roundi(hud.right_piece.size.x), "Pieces draw 1:1 at 1080p (no runtime downscale aliasing)")
+	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")
 	check(hud.bar_slots.size() == 5 and hud.potion_slots.size() == 5, "5 potion wells + 5 skill wells, as in the mockup")
+	# --- loadout: any skill / potion in any slot ---
+	hud.assign("skill", 0, "Bolt")
+	check(hud.skill_loadout[0] == "Bolt" and hud.skill_loadout[3] == "Lance", "Putting Bolt in slot 1 swaps it with the slot that held it (no duplicates)")
+	check(hud.skill_icons[0].texture != null and hud.skill_icons[0].texture.resource_path.ends_with("starfall_script.png"), "Slot icon follows the assigned skill")
+	hud.assign("skill", 4, "")
+	check(hud.skill_icons[4].texture == null, "Empty skill slot shows an empty well")
+	hud.assign("potion", 0, "mana")
+	check(hud.potion_icons[0].texture.resource_path.ends_with("potion_mana.png"), "Potion slot 1 swapped to a mana potion")
+	var cf := ConfigFile.new()
+	check(cf.load("user://aotl_loadout.cfg") == OK and cf.get_value("mage", "skills")[0] == "Bolt", "Loadout saved")
+	hud._open_picker("skill", 2)
+	check(hud.picker.visible and hud.picker.item_count == hud.HERO_SKILLS["mage"].size() + 2, "Clicking a skill slot opens the skill picker")
+	hud.picker.hide()
+	hud.assign("skill", 0, "Lance")
+	hud.assign("potion", 0, "health")
+	# --- rebinding (any key / mouse button on any action) ---
+	var kb = hud.kb
+	kb.bind("skill_1", 0, "key:A")
+	check(hud.key_labels["skill_1"].text == "A", "Rebinding Skill Slot 1 to A updates its key plate")
+	var stolen: String = kb.bind("potion_1", 0, "key:W")
+	check(stolen == "skill_2" and kb.binds["skill_2"][0] == "" and hud.key_labels["skill_2"].text == "", "Binding W to Potion 1 steals it from Skill Slot 2")
+	kb.bind("dodge", 1, "mouse:2")
+	check(kb.action_for_event(_mouse(MOUSE_BUTTON_RIGHT)) == "dodge", "Mouse buttons are bindable (RMB -> dodge)")
+	var kb2 = load("res://scripts/three_d/keybinds.gd").new()
+	check(kb2.binds["skill_1"][0] == "key:A" and kb2.binds["potion_1"][0] == "key:W", "Bindings persist to user://aotl_keybinds.cfg")
+	hud.toggle_bind_menu()
+	check(hud.bind_menu.visible and hud.bind_buttons["skill_1"][0].text == "A", "Key Bindings menu lists the live binds")
+	hud._start_capture("skill_3", 0, hud.bind_buttons["skill_3"][0])
+	_key(KEY_G)
+	await process_frame
+	check(kb.binds["skill_3"][0] == "key:G", "Capture: clicking a bind then pressing G rebinds Skill Slot 3")
+	hud.toggle_bind_menu()
+	kb.reset_defaults()
+	check(kb.binds["skill_1"][0] == "key:Q" and kb.binds["skill_2"][0] == "key:W" and hud.key_labels["skill_2"].text == "W", "Reset to defaults restores Q W E R T")
 	check(hud.minimap_vp.world_3d == lab.get_world_3d(), "Minimap renders the lab world")
 	check(hud.quest_progress == 0 and hud.find_child("Quest_ALostTomes", true, false) == null and hud.find_child("Quest_TheLostTomes", true, false) != null, "Quest tracker shows both quests")
 	var hidden := true
@@ -127,7 +170,7 @@ func _run() -> void:
 	var k: Node3D = (load("res://scenes/pilot_knight_combat_lab.tscn") as PackedScene).instantiate()
 	root.add_child(k)
 	for i in 6: await physics_frame
-	check(k.hud != null and k.hud.bar_layout == k.hud.WARRIOR_BAR, "Knight lab: warrior skill bar")
+	check(k.hud != null and k.hud.skill_loadout == k.hud.DEFAULT_SKILLS["warrior"], "Knight lab: warrior skill bar")
 	var kp = k.player
 	var kd = k.targets[1]
 	kd.global_position = kp.global_position + Vector3(4.0, 0, 0)

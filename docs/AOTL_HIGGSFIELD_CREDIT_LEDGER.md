@@ -17,6 +17,9 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-20 07:41 | Mage cast: mage_soell_cast_7 (#136) → `Cast_Bolt` | 3d_rigging | 8 (re-quoted) | same approval | 8 | `935e193a-3f4b-4a19-a72d-2324a25ea73b` | Step-in one-arm cast; release 0.33 | Accepted | — |
 | 2026-11-20 07:41 | Mage cast: mage_soell_cast_3 (#132) → `Cast_Lunge` / Lance | 3d_rigging | 8 (re-quoted) | same approval | 8 | `c04a78d8-125a-4cc9-add4-7a1a57a90d49` | Two-hand lunge push, held; release 0.31 | Accepted | — |
 | 2026-11-20 07:41 | Mage cast: Charged_Spell_Cast (#125) → `Cast_Nova` | 3d_rigging | 8 (re-quoted) | same approval | 8 | `e05ef36d-2f30-4feb-b3ed-a02f1671fbb1` | Crouch-and-burst; release 0.69 | Accepted | 2,847 |
+| 2026-11-20 20:09 | HUD redraw A1: left cluster (statue + HP globe + 5-well potion belt, blank wells/plates) | Nano Banana 2.1, 4K 21:9 | 3 (re-quoted) | Owner: "Create the fresh sharp redraw with A1-A3" | 3 | `e672f181-69f6-4371-ad18-18d08847b422` | Sharp, close match to mockup; keyed locally | Accepted | — |
+| 2026-11-20 20:09 | HUD redraw A2: right cluster (5-well skill panel + MP globe + statue, blank wells/plates) | Nano Banana 2.1, 4K 21:9 | 3 (re-quoted) | same approval | 3 | `9f568568-4bea-413e-8ff8-65a23a54b973` | Sharp, close match; keyed locally | Accepted | — |
+| 2026-11-20 20:09 | HUD redraw A3: XP strip housing | Nano Banana 2.1, 2K 8:1 | 2 (re-quoted) | same approval | 2 | `43efeca8-ffbc-42f8-b4fb-0bdaa0e32013` | Stretchable bronze groove | Accepted | 2,839 |
 
-Totals: **153 credits spent** of the 3,000 grant (2,847 remaining, verified against `balance` + `transactions` 2026-11-20 07:42). Phase 0: 86 of 120. Phase 1: 67 of 600.
+Totals: **161 credits spent** of the 3,000 grant (2,839 remaining, verified against `balance` + `transactions` 2026-11-20 20:12). Phase 0: 86 of 120. Phase 1: 67 of 600. Phase 4 (UI/VFX): 8 of 120.
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

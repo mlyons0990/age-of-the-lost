@@ -24,6 +24,7 @@ var mode := "3D articulated rig lab"
 @export var use_r54_elbow_helper_candidate := false
 @export var use_r55_clip_safe_elbow_candidate := false
 @export var use_pilot_knight_candidate := false
+@export var use_pilot_mage_candidate := false
 const PILOT_CAMERA_FOV := 32.0
 const PILOT_CAMERA_PITCH := 52.0
 @export var pilot_camera_distance := 21.0
@@ -56,12 +57,13 @@ func _ready() -> void:
 	player.enable_r54_elbow_helper_candidate = use_r54_elbow_helper_candidate
 	player.enable_r55_clip_safe_elbow_candidate = use_r55_clip_safe_elbow_candidate
 	player.enable_pilot_knight_candidate = use_pilot_knight_candidate
+	player.enable_pilot_mage_candidate = use_pilot_mage_candidate
 	player.position = Vector3(0, 0.08, 1.8)
 	add_child(player)
 	player.impact.connect(_on_impact)
 	player.health_changed.connect(_on_hp)
 	camera = Camera3D.new()
-	if use_pilot_knight_candidate:
+	if use_pilot_knight_candidate or use_pilot_mage_candidate:
 		# Owner target (2026-11-20): PoE-style perspective, ~100 px tall knight at 1080p.
 		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 		camera.fov = PILOT_CAMERA_FOV
@@ -272,7 +274,7 @@ func _build_hud() -> void:
 
 func _process(delta: float) -> void:
 	if player == null: return
-	var goal: Vector3 = player.global_position + (pilot_camera_offset() if use_pilot_knight_candidate else Vector3(8.5, 11.0, 11.0))
+	var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
 	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Sweep: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), ("STRICT" if strict_weapon_sweep else "baseline"), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]

@@ -18,6 +18,10 @@ const WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE := "res://models/AOTL_Warrior_R55_Cl
 ## Higgsfield pilot knight: Meshy 7 mesh + 24-bone auto-rig, our clips retargeted, library Roll_Dodge/Dead,
 ## R52 sword and shield skinned to the hands. Opt-in only (art/higgsfield-pilot-knight branch).
 const PILOT_KNIGHT := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
+## Higgsfield Phase 1 Mage: same Meshy 24-bone rig family; clips shared with the knight (opt-in).
+const PILOT_MAGE := "res://models/higgsfield_mage/mage_pilot_armed.glb"
+## Every Meshy-rigged hero uses the same controller path ("pilot heroes").
+const PILOT_SOURCES := ["pilot_knight_opt_in", "pilot_mage_opt_in"]
 const PILOT_KNIGHT_BONES := ["Hips", "Spine", "Head", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot", "LeftHand", "RightHand"]
 ## Knight locomotion (measured in Godot 2026-11-20, foot speed at ground contact). Each controller mode uses
 ## the clip whose natural stride fits it, with playback scaled so the planted foot matches the body speed:
@@ -82,6 +86,10 @@ var equipment_debug_equipped := false
 @export var enable_r54_elbow_helper_candidate := false
 @export var enable_r55_clip_safe_elbow_candidate := false
 @export var enable_pilot_knight_candidate := false
+@export var enable_pilot_mage_candidate := false
+
+func is_pilot_hero() -> bool:
+	return active_model_source in PILOT_SOURCES
 
 ## The pilot knight uses Meshy's humanoid bone names and a library roll in place of Dodge.
 func _pilot_knight_is_valid(candidate: Node3D) -> bool:
@@ -145,6 +153,8 @@ func _ready() -> void:
 		model_candidates.push_front({"path": WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE, "source": "warrior_r55_opt_in"})
 	if enable_pilot_knight_candidate:
 		model_candidates.push_front({"path": PILOT_KNIGHT, "source": "pilot_knight_opt_in"})
+	if enable_pilot_mage_candidate:
+		model_candidates.push_front({"path": PILOT_MAGE, "source": "pilot_mage_opt_in"})
 	for option in model_candidates:
 		var path: String = option["path"]
 		if not ResourceLoader.exists(path):
@@ -153,7 +163,7 @@ func _ready() -> void:
 		if packed == null:
 			continue
 		var candidate := packed.instantiate() as Node3D
-		var valid := candidate != null and (_pilot_knight_is_valid(candidate) if option["source"] == "pilot_knight_opt_in" else _production_model_is_valid(candidate))
+		var valid := candidate != null and (_pilot_knight_is_valid(candidate) if option["source"] in PILOT_SOURCES else _production_model_is_valid(candidate))
 		if valid:
 			body.free()
 			body = candidate
@@ -177,7 +187,7 @@ func _ready() -> void:
 	# GLB and the older models' animation mappings are never altered.
 	if active_model_source in ["warrior_r50_opt_in", "warrior_r52_opt_in", "warrior_r53_opt_in", "warrior_r54_opt_in", "warrior_r55_opt_in"] and clip_names.has("Slash_FullBody_R50"):
 		clip_names["Slash"] = clip_names["Slash_FullBody_R50"]
-	if active_model_source == "pilot_knight_opt_in":
+	if is_pilot_hero():
 		_prepare_pilot_knight_clips()
 		_prepare_pilot_blade()
 		model_yaw_offset = PI
@@ -352,11 +362,11 @@ func _play(clip: String) -> void:
 		return
 	if anim_state != clip:
 		var speed := 1.0
-		if active_model_source == "pilot_knight_opt_in" and clip == "Dodge":
+		if is_pilot_hero() and clip == "Dodge":
 			speed = animation.get_animation(clip_names[clip]).length / PILOT_ROLL_TIME
-		elif active_model_source == "pilot_knight_opt_in" and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
+		elif is_pilot_hero() and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
 			speed = PILOT_SLASH_END / PILOT_SLASH_TIME
-		elif active_model_source == "pilot_knight_opt_in" and PILOT_STRIDE_SPEED.has(clip):
+		elif is_pilot_hero() and PILOT_STRIDE_SPEED.has(clip):
 			var body_speed: float = {"Walk": WALK_SPEED, "Run": RUN_SPEED, "Stroll": PILOT_STROLL_SPEED}[clip]
 			speed = body_speed / float(PILOT_STRIDE_SPEED[clip])
 		animation.play(clip_names[clip], 0.16, speed)
@@ -384,7 +394,7 @@ func _attack(kind: String, duration: float) -> void:
 		return
 	if kind == "Cast" and spell_cd > 0.0:
 		return
-	if active_model_source == "pilot_knight_opt_in" and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
+	if is_pilot_hero() and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
 		duration = PILOT_SLASH_TIME
 	attack_serial += 1
 	attack_t = duration
@@ -398,7 +408,7 @@ func _attack(kind: String, duration: float) -> void:
 func _dodge() -> void:
 	if dodge_t > 0.0 or dodge_cd > 0.0 or attack_t > 0.0:
 		return
-	dodge_t = PILOT_ROLL_TIME if active_model_source == "pilot_knight_opt_in" else 0.65
+	dodge_t = PILOT_ROLL_TIME if is_pilot_hero() else 0.65
 	dodge_cd = 1.1
 	invulnerable = 0.50
 	_play("Dodge")
@@ -427,7 +437,7 @@ func _physics_process(delta: float) -> void:
 	cam_forward = cam_forward.normalized()
 	var moving := (cam_right * input.x + cam_forward * -input.y).normalized()
 	var sprint := Input.is_key_pressed(KEY_SHIFT)
-	var stroll := active_model_source == "pilot_knight_opt_in" and Input.is_key_pressed(KEY_CTRL) and not sprint
+	var stroll := is_pilot_hero() and Input.is_key_pressed(KEY_CTRL) and not sprint
 	if dodge_t > 0.0:
 		dodge_t = maxf(0.0, dodge_t - delta)
 		if moving.length() > 0.1:

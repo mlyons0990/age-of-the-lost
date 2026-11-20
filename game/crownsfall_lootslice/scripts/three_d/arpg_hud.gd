@@ -13,12 +13,12 @@ const PANEL_BG := Color(0.05, 0.05, 0.07, 0.78)
 const LEVEL := 25
 
 ## Bar layouts per hero: [key label, icon tile, MAGE_SPELLS key or warrior attack kind].
-## Seven frame sockets: Q E R T F | LMB RMB. W belongs to WASD movement, so skills sit on Q E R
-## (T, F and RMB reserved, shown locked).
+## The mockup panel's five wells. W belongs to WASD movement, so skills sit on Q E R (T reserved, locked);
+## the fifth well shows the LMB primary.
 const MAGE_BAR := [["Q", "epoch_lance", "Lance"], ["E", "solar_writ", "Nova"], ["R", "dawnfall", "Judgment"],
-	["T", "", ""], ["F", "", ""], ["LMB", "starfall_script", "Bolt"], ["RMB", "", ""]]
+	["T", "", ""], ["LMB", "starfall_script", "Bolt"]]
 const WARRIOR_BAR := [["Q", "cleave", "Cleave"], ["E", "charge", "Dash"], ["R", "rally", "Cast"],
-	["T", "", ""], ["F", "", ""], ["LMB", "slash", "Slash"], ["RMB", "", ""]]
+	["T", "", ""], ["LMB", "slash", "Slash"]]
 ## Potion belt: [key, kind, hp, mana]
 const POTIONS := [[KEY_1, "hp", 45.0, 0.0], [KEY_2, "hp", 45.0, 0.0], [KEY_3, "hp", 45.0, 0.0],
 	[KEY_4, "mana", 0.0, 60.0], [KEY_5, "mana", 0.0, 60.0]]
@@ -28,7 +28,9 @@ var lab: Node3D
 var player: CharacterBody3D
 var font: FontFile
 var font_regular: FontFile
-var frame: TextureRect
+var left_piece: TextureRect
+var right_piece: TextureRect
+var strip_rect: Rect2
 var orb_l: Vector3   # x, y, radius of the frame's painted life orb (screen px)
 var orb_r: Vector3
 var hp_frac := 1.0
@@ -168,81 +170,94 @@ func _build() -> void:
 		root.add_child(ol)
 		qy += 56
 	# --- bottom: globes, belts, xp
-	# One edge-to-edge frame anchored to the bottom and both sides (2D Crownfall `hud_frame.png`): life orb flush
-	# left, potion sockets, centre panel (XP + level), skill sockets, mana orb flush right. Slot map from
-	# hud_frame.json (1920-wide design space), scaled to the viewport width.
-	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_frame.json"))
+	# Owner's mockup HUD: statue + life orb + potion belt flush bottom-left, skill panel + mana orb + statue flush
+	# bottom-right, a bronze XP strip joining them along the bottom edge. Pieces are cut from the owner's mockup
+	# close-ups (hud_left/right.png); slot positions in hud_mockup.json are in those images' pixels.
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_mockup.json"))
 	var vs: Vector2 = lab.get_viewport().get_visible_rect().size
 	W = vs.x
 	H = vs.y
-	var k: float = W / float(meta["w"])
-	var y0: float = H - float(meta["h"]) * k
-	frame = TextureRect.new()
-	frame.texture = _tex("hud_frame")
-	frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	frame.stretch_mode = TextureRect.STRETCH_SCALE
-	frame.anchor_left = 0.0
-	frame.anchor_right = 1.0
-	frame.anchor_top = 1.0
-	frame.anchor_bottom = 1.0
-	frame.offset_top = -float(meta["h"]) * k
-	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(frame)
-	var ol: Array = meta["orb_l"]
-	var orr: Array = meta["orb_r"]
-	orb_l = Vector3(float(ol[0]) * k, y0 + float(ol[1]) * k, float(ol[2]) * k)
-	orb_r = Vector3(float(orr[0]) * k, y0 + float(orr[1]) * k, float(orr[2]) * k)
-	var slots: Array = []
-	for sl in meta["slots"]:
-		var r := Rect2(float(sl[1]) * k, y0 + float(sl[2]) * k, float(sl[3]) * k, float(sl[4]) * k)
-		var side: float = minf(r.size.x, r.size.y) - 6.0 * k
-		slots.append(Rect2(r.get_center() - Vector2(side, side) * 0.5, Vector2(side, side)))
-	hp_label = _label("HP", int(18 * k), IVORY)
-	hp_label.position = Vector2(float(meta["slots"][0][1]) * k, y0 + 58 * k)
+	var ui_k: float = H / 1080.0
+	var L: Dictionary = meta["left"]
+	var R: Dictionary = meta["right"]
+	var sl: float = float(meta["screen_orb_radius_1080p"]) * ui_k / float(L["orb"][2])
+	var sr: float = float(meta["screen_orb_radius_1080p"]) * ui_k / float(R["orb"][2])
+	var lsz := Vector2(L["size"][0], L["size"][1]) * sl
+	var rsz := Vector2(R["size"][0], R["size"][1]) * sr
+	left_piece = _piece("hud_left", Rect2(0, H - lsz.y, lsz.x, lsz.y))
+	right_piece = _piece("hud_right", Rect2(W - rsz.x, H - rsz.y, rsz.x, rsz.y))
+	root.add_child(left_piece)
+	root.add_child(right_piece)
+	var lo := left_piece.position
+	var ro := right_piece.position
+	var lmap := func(v: Array) -> Rect2: return Rect2(lo + Vector2(v[0], v[1]) * sl, Vector2(v[2], v[3]) * sl)
+	var rmap := func(v: Array) -> Rect2: return Rect2(ro + Vector2(v[0], v[1]) * sr, Vector2(v[2], v[3]) * sr)
+	var oi: Array = L["orb_inner"]
+	orb_l = Vector3(lo.x + oi[0] * sl, lo.y + oi[1] * sl, oi[2] * sl)
+	oi = R["orb_inner"]
+	orb_r = Vector3(ro.x + oi[0] * sr, ro.y + oi[1] * sr, oi[2] * sr)
+	# XP strip: from the left belt's housing to the right panel's housing, along the bottom edge
+	var lh: Rect2 = lmap.call(L["xp_housing"])
+	var rh: Rect2 = rmap.call(R["xp_housing"])
+	strip_rect = Rect2(lh.position.x + lh.size.x * 0.4, lh.position.y, rh.end.x - lh.size.x * 0.4 - lh.position.x, lh.size.y)
+	xp_rect = Rect2(strip_rect.position.x + 8 * ui_k, strip_rect.get_center().y - 5 * ui_k, strip_rect.size.x - 16 * ui_k, 10 * ui_k)
+	# live labels on dark plates, where the mockup prints them
+	var plate_sb := StyleBoxFlat.new()
+	plate_sb.bg_color = Color(0.03, 0.03, 0.04, 0.62)
+	plate_sb.set_corner_radius_all(3)
+	var hp_pos: Vector2 = lo + Vector2(L["label_anchor"][0], L["label_anchor"][1]) * sl
+	var hp_plate := Panel.new()
+	hp_plate.add_theme_stylebox_override("panel", plate_sb)
+	hp_plate.position = hp_pos - Vector2(8, 2) * ui_k
+	hp_plate.size = Vector2(150, 30) * ui_k
+	hp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(hp_plate)
+	hp_label = _label("HP", int(19 * ui_k), IVORY)
+	hp_label.position = hp_pos
 	root.add_child(hp_label)
-	mp_label = _label("MP", int(18 * k), IVORY)
-	mp_label.size = Vector2(240 * k, 24 * k)
+	mp_label = _label("MP", int(19 * ui_k), IVORY)
+	mp_label.size = Vector2(220 * ui_k, 26 * ui_k)
 	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	var last: Array = meta["slots"][meta["slots"].size() - 1]
-	mp_label.position = Vector2((float(last[1]) + float(last[3])) * k - mp_label.size.x, y0 + 58 * k)
+	mp_label.position = ro + Vector2(R["label_anchor"][0], R["label_anchor"][1]) * sr - Vector2(mp_label.size.x, 0)
+	var mp_plate := Panel.new()
+	mp_plate.add_theme_stylebox_override("panel", plate_sb)
+	mp_plate.size = Vector2(150, 30) * ui_k
+	mp_plate.position = Vector2(mp_label.position.x + mp_label.size.x - mp_plate.size.x + 8 * ui_k, mp_label.position.y - 2 * ui_k)
+	mp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(mp_plate)
+	root.move_child(mp_plate, mp_label.get_index() if mp_label.get_parent() else root.get_child_count() - 1)
 	root.add_child(mp_label)
-	# potions in sockets 0-4
+	# potions are painted into the belt; keep their rects for cooldown shading
 	for i in 5:
-		var r: Rect2 = slots[i]
-		var p := TextureRect.new()
-		p.texture = _tex("potion_mana" if POTIONS[i][1] == "mana" else "potion")
-		p.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		p.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		p.position = r.position + r.size * 0.08
-		p.size = r.size * 0.84
-		p.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		root.add_child(p)
-		_keycap(root, str(i + 1), r, k)
-		potion_slots.append({"rect": r, "idx": i})
-	# skills in sockets 5-11 (Q E R T F | LMB RMB)
+		potion_slots.append({"rect": lmap.call(L["potions"][i]), "idx": i})
+	# skills: live icons in the panel wells, live key labels on the plates
 	for i in bar_layout.size():
 		var spec: Array = bar_layout[i]
-		var r: Rect2 = slots[5 + i]
+		var r: Rect2 = rmap.call(R["skills"][i])
 		var icon := TextureRect.new()
 		icon.texture = load(TILES + spec[1] + ".png") if spec[1] != "" else _tex("lock")
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var inset: float = (2.0 if spec[1] != "" else 18.0) * k
+		var inset: float = (3.0 if spec[1] != "" else 16.0) * ui_k
 		icon.position = r.position + Vector2(inset, inset)
 		icon.size = r.size - Vector2(inset * 2, inset * 2)
-		icon.modulate = Color.WHITE if spec[1] != "" else Color(1, 1, 1, 0.35)
+		icon.modulate = Color.WHITE if spec[1] != "" else Color(1, 1, 1, 0.3)
 		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		root.add_child(icon)
-		_keycap(root, spec[0], r, k)
+		var kr: Rect2 = rmap.call(R["keys"][i])
+		var kl := _label(spec[0], int(17 * ui_k), IVORY)
+		kl.size = kr.size
+		kl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		kl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		kl.position = kr.position
+		root.add_child(kl)
 		bar_slots.append({"rect": r, "key": spec[0], "spell": spec[2]})
-	# centre panel: XP bar + level
-	var md: Array = meta["mid"]
-	var mid := Rect2(float(md[0]) * k, y0 + float(md[1]) * k, float(md[2]) * k, float(md[3]) * k)
-	xp_rect = Rect2(mid.position.x + 18 * k, mid.get_center().y + 8 * k, mid.size.x - 36 * k, 11 * k)
-	var lv := _label("Lv. %d" % LEVEL, int(17 * k), IVORY)
-	lv.size = Vector2(mid.size.x, 24 * k)
+	var lv := _label("Lv. %d" % LEVEL, int(14 * ui_k), IVORY)
+	lv.size = Vector2(120 * ui_k, 20 * ui_k)
 	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	lv.position = Vector2(mid.position.x, mid.get_center().y - 22 * k)
+	lv.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	lv.position = Vector2(xp_rect.get_center().x - 60 * ui_k, xp_rect.get_center().y - 10 * ui_k)
+	lv.z_index = 2
 	root.add_child(lv)
 	# world-anchored layer + dynamic overlays
 	overlay = Control.new()
@@ -253,6 +268,16 @@ func _build() -> void:
 	for t in lab.targets:
 		if t.title != null:
 			t.title.visible = false
+
+func _piece(name: String, r: Rect2) -> TextureRect:
+	var t := TextureRect.new()
+	t.texture = _tex(name)
+	t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	t.stretch_mode = TextureRect.STRETCH_SCALE
+	t.position = r.position
+	t.size = r.size
+	t.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return t
 
 func _keycap(root: Control, text: String, r: Rect2, k: float) -> void:
 	if text == "":
@@ -359,8 +384,13 @@ func _draw_overlay() -> void:
 		if f > 0.0:
 			overlay.draw_rect(Rect2(r.position, Vector2(r.size.x, r.size.y * f)), Color(0, 0, 0, 0.62))
 	# XP bar
-	overlay.draw_rect(xp_rect.grow(2), Color(0.08, 0.06, 0.05, 0.95))
-	overlay.draw_rect(xp_rect.grow(2), GOLD_DIM, false, 1.0)
+	# bronze housing strip joining the two pieces along the bottom edge
+	overlay.draw_rect(strip_rect, Color(0.09, 0.08, 0.075, 1.0))
+	overlay.draw_rect(Rect2(strip_rect.position, Vector2(strip_rect.size.x, 3)), Color("6b5a43"))
+	overlay.draw_rect(Rect2(strip_rect.position + Vector2(0, 3), Vector2(strip_rect.size.x, 1)), Color("2a241d"))
+	overlay.draw_rect(Rect2(Vector2(strip_rect.position.x, strip_rect.end.y - 3), Vector2(strip_rect.size.x, 3)), Color("4a3e30"))
+	overlay.draw_rect(xp_rect.grow(2), Color(0.04, 0.035, 0.03, 1.0))
+	overlay.draw_rect(xp_rect.grow(2), Color("5d4d39"), false, 1.0)
 	var xp_frac := fposmod(0.42 + lab.kills * 0.07, 1.0)
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, xp_rect.size.y)), Color("8a4fd8"))
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, 3)), Color("c7a3ff"))

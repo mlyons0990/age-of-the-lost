@@ -39,3 +39,17 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
 - The frame's painted orbs are darkened from the top as HP/MP drop (circular-segment shade + surface line).
 - Camera: measured hero height **100 px** at 1080p (knight standing, head_end 1.69 m) with the existing pilot camera.
 - Tests: `verify_arpg_hud.gd` 40/40 (adds anchoring, full-width, bottom-edge, corner-orb and socket-count checks).
+
+## Revision 3 (owner: "It needs to look like this, even use these graphics and assets")
+- The bottom HUD now uses the owner's mockup artwork itself: `hud_left.png` (seated statue, life orb, potion belt
+  with numbered wells and the chest slot) and `hud_right.png` (skill panel, mana orb, statue), cut from the owner's
+  close-ups with OpenCV GrabCut (`tools/cut_hud_mockup.py`; sources in `art/references/2026-11-20/hud_mockup/`).
+  The baked skill icons and Q W E R T letters were blanked so live icons, cooldowns and key labels draw on top;
+  the baked "HP 3,420" / "MP 1,280" text lies outside the cut and is replaced by live values on dark plates.
+- Left piece flush to the left and bottom edges, right piece flush to the right and bottom edges, a bronze XP strip
+  ("Lv. 25", purple fill) joins them along the bottom: no gap edge to edge. Scales with screen height.
+- Skill wells: Q Lance, E Nova, R Judgment, T locked, LMB Bolt (Mage); Q Cleave, E Dash, R Cast, T locked, LMB Slash
+  (Warrior). W stays movement.
+- Source resolution: the close-ups are phone screenshots (~2.2x the 1080p size), so the pieces are slightly soft;
+  a clean high-res redraw of the same design is the upgrade path.
+- Tests: `verify_arpg_hud.gd` 40/40 (flush-edge, joined-strip, equal-orb and well-count checks); regression 994/994.

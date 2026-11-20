@@ -3,3 +3,5 @@ Copied from the 2D Crownfall HUD (`crownfall/assets/ui`, branch `claude/import-c
 owner-approved art, no generation. `potion_mana.png` is `potion.png` with the red liquid recoloured blue (PIL).
 Layout follows the owner's HUD mockup ("AOTL 2.5D LAB v0.2", 2026-11-20; see `art/references/2026-11-20/README.md`).
 hud_frame.png / hud_frame.json: the 2D game's edge-to-edge bottom frame (same source).
+hud_left.png / hud_right.png / hud_mockup.json: cut from the owner's HUD mockup close-ups (2026-11-20) with
+tools/cut_hud_mockup.py (OpenCV GrabCut); baked skill icons and key letters blanked; slot map in source pixels.

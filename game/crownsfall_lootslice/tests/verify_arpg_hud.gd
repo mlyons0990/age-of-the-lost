@@ -30,11 +30,14 @@ func _run() -> void:
 	for t in ["orb_life_full", "orb_life_empty", "orb_mana_full", "orb_mana_empty", "belt_plate", "slot_socket", "potion", "potion_mana", "lock"]:
 		check(ResourceLoader.exists(hud.UI + t + ".png"), "HUD art exists: " + t)
 	var vw: float = lab.get_viewport().get_visible_rect().size.x
-	check(hud.frame != null and hud.frame.anchor_left == 0.0 and hud.frame.anchor_right == 1.0 and hud.frame.anchor_bottom == 1.0, "Bottom frame anchored edge to edge")
-	check(absf(hud.frame.get_global_rect().position.x) < 1.0 and absf(hud.frame.get_global_rect().end.x - vw) < 1.0, "Frame spans the full width (%s)" % hud.frame.get_global_rect())
-	check(absf(hud.frame.get_global_rect().end.y - lab.get_viewport().get_visible_rect().size.y) < 1.0, "Frame sits on the bottom edge")
-	check(hud.orb_l.x - hud.orb_l.z < 80.0 and hud.orb_r.x + hud.orb_r.z > vw - 80.0, "Orbs sit at the screen corners")
-	check(hud.bar_slots.size() == 7 and hud.potion_slots.size() == 5, "5 potion + 7 skill sockets from hud_frame.json")
+	var vh: float = lab.get_viewport().get_visible_rect().size.y
+	var lr: Rect2 = hud.left_piece.get_global_rect()
+	var rr: Rect2 = hud.right_piece.get_global_rect()
+	check(absf(lr.position.x) < 1.0 and absf(lr.end.y - vh) < 1.0, "Left statue/orb/belt flush to the left and bottom edges (%s)" % lr)
+	check(absf(rr.end.x - vw) < 1.0 and absf(rr.end.y - vh) < 1.0, "Right skills/orb/statue flush to the right and bottom edges (%s)" % rr)
+	check(hud.strip_rect.position.x <= lr.end.x and hud.strip_rect.end.x >= rr.position.x and absf(hud.strip_rect.end.y - vh) < 12.0, "XP strip joins the two pieces along the bottom (no gap)")
+	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.12, "Both orbs the same size on screen (%.0f / %.0f px)" % [hud.orb_l.z, hud.orb_r.z])
+	check(hud.bar_slots.size() == 5 and hud.potion_slots.size() == 5, "5 potion wells + 5 skill wells, as in the mockup")
 	check(hud.minimap_vp.world_3d == lab.get_world_3d(), "Minimap renders the lab world")
 	check(hud.quest_progress == 0 and hud.find_child("Quest_ALostTomes", true, false) == null and hud.find_child("Quest_TheLostTomes", true, false) != null, "Quest tracker shows both quests")
 	var hidden := true

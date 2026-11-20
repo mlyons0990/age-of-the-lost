@@ -17,9 +17,9 @@
 | QA report | this file |
 
 ## Tests (executed, Godot 4.6.3)
-- `tests/verify_higgsfield_pilot_armed.gd` — 35/35: every clip on one skeleton, feet never below the floor,
+- `tests/verify_higgsfield_pilot_armed.gd` — 41/41: every clip on one skeleton, feet never below the floor,
   feet planted in Idle/Slash/Cast, sword rigid in hand (0 mm drift), roll tucks to 0.21 m hips, Dead ends lying (hips 0.24 m).
-- `tests/verify_pilot_knight_lab.gd` — 23/23: knight selected, faces the controller direction, foot IK on,
+- `tests/verify_pilot_knight_lab.gd` — 29/29 (incl. natural cadence 3.6/2.8/3.0 steps/s): knight selected, faces the controller direction, foot IK on,
   sockets on, real-sword blade segment (0.62 m), ~100 px camera (107 px), no skating in Walk/Run, Slash damages
   the dummy, strict real-sword sweep hits a dummy 0.65 m ahead (nearest 0.14 m), one hit per swing, roll with
   i-frames and controller travel (6.82 m, no root-motion drift).
@@ -40,10 +40,10 @@
 
 ## Known issues / remaining work
 1. No finger, cape or weapon bones (Meshy 24-bone humanoid): hands stay open around the grip; cape follows legs/spine.
-2. Retargeted Walk/Run have short strides → playback ×1.9/×2.3 to avoid skating (hurried cadence). Library walk/run requested.
+2. Resolved: jog (retargeted Run ×1.13), sprint (library RunFast ×0.71), stroll (library Casual_Walk ×1.39, Ctrl) with feet matched to body speed; arm-carry layer stops the unarmed sprint from flailing the sword/shield.
 3. Cast is our R52 clip retargeted; with the right-handed knight its hand roles are mirrored relative to R52 (acceptable; replace with a library cast in Phase 1 if needed).
 4. Strict sweep window tuned via clip trimming (shared 57% contact phase); per-model contact windows would be cleaner.
 5. Godot normals of re-gripped/mirrored props are recomputed by flip only; fine visually, not audited for seams.
 
 ## Credits
-70 credits spent through Left_Slash (see `docs/AOTL_HIGGSFIELD_CREDIT_LEDGER.md`); walk/run clips (16) pending.
+86 credits spent (see `docs/AOTL_HIGGSFIELD_CREDIT_LEDGER.md`).

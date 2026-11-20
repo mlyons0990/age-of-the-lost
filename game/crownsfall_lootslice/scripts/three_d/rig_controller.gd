@@ -19,9 +19,19 @@ const WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE := "res://models/AOTL_Warrior_R55_Cl
 ## R52 sword and shield skinned to the hands. Opt-in only (art/higgsfield-pilot-knight branch).
 const PILOT_KNIGHT := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
 const PILOT_KNIGHT_BONES := ["Hips", "Spine", "Head", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot", "LeftHand", "RightHand"]
-## Planted-foot ground speed of the knight's retargeted locomotion clips (measured in Godot, 2026-11-20).
-## Playback is scaled to the controller speed so the feet don't skate (the R52 source strides are short).
-const PILOT_STRIDE_SPEED := {"Walk": 2.23, "Run": 2.91}
+## Knight locomotion (measured in Godot 2026-11-20, foot speed at ground contact). Each controller mode uses
+## the clip whose natural stride fits it, with playback scaled so the planted foot matches the body speed:
+##   Walk (default 4.3 m/s) -> our retargeted Run (a jog, 3.80 m/s)       x1.13, ~3.6 steps/s
+##   Run  (Shift, 6.7 m/s)  -> library RunFast #16 (sprint, 9.41 m/s)    x0.71, ~2.8 steps/s
+##   Stroll (Ctrl, 1.0 m/s) -> library Casual_Walk #30 (0.72 m/s)        x1.39, ~3.0 steps/s
+const PILOT_STRIDE_SPEED := {"Walk": 3.80, "Run": 9.41, "Stroll": 0.72}
+const PILOT_STROLL_SPEED := 1.0
+## Arms carry sword and shield steady while moving (library locomotion clips are unarmed motions).
+const ARM_CARRY := preload("res://scripts/three_d/arm_carry_modifier.gd")
+const PILOT_ARM_BONES := ["RightShoulder", "RightArm", "RightForeArm", "RightHand", "LeftShoulder", "LeftArm", "LeftForeArm", "LeftHand"]
+const PILOT_CARRY_WEIGHT := {"Walk": 0.8, "Run": 0.9, "Stroll": 0.75}
+var arm_carry: SkeletonModifier3D = null
+var arm_carry_target := 0.0
 const PILOT_ROLL_TIME := 0.9
 ## Library Left_Slash (#97): the knight's right-hand sword attack. The first 1.42 s (wind-up through the
 ## main cut) is used; the blade crosses the front at 0.81 s = 57 % of that, the shared contact phase.
@@ -285,6 +295,13 @@ func blade_segment() -> Dictionary:
 ## Pilot knight: Dodge plays the library roll in place (the controller moves the body), Death plays Dead.
 func _prepare_pilot_knight_clips() -> void:
 	clip_names["Dodge"] = clip_names["Roll_Dodge"]
+	if clip_names.has("RunFast") and clip_names.has("Casual_Walk"):
+		clip_names["Walk"] = clip_names["Run"]          # retargeted jog for default movement
+		clip_names["Run"] = clip_names["RunFast"]
+		clip_names["Stroll"] = clip_names["Casual_Walk"]
+		for c in ["RunFast", "Casual_Walk"]:
+			animation.get_animation(clip_names[c]).loop_mode = Animation.LOOP_LINEAR
+	_setup_arm_carry()
 	if clip_names.has("Left_Slash"):
 		var trimmed := _trimmed(animation.get_animation(clip_names["Left_Slash"]), 0.0, PILOT_SLASH_END)
 		animation.get_animation_library("").add_animation("Pilot_Slash", trimmed)
@@ -301,6 +318,20 @@ func _prepare_pilot_knight_clips() -> void:
 		for k in roll.track_get_key_count(t):
 			var v: Vector3 = roll.track_get_key_value(t, k)
 			roll.track_set_key_value(t, k, Vector3(first.x, v.y, first.z))
+
+## Carry pose = the arms of the Idle's first frame (sword raised ready in the right hand, shield on the left).
+func _setup_arm_carry() -> void:
+	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	animation.play(clip_names["Idle"], 0)
+	animation.seek(0.0, true)
+	var rots := []
+	for n in PILOT_ARM_BONES:
+		rots.append(sk.get_bone_pose_rotation(sk.find_bone(n)))
+	arm_carry = ARM_CARRY.new()
+	arm_carry.name = "ArmCarryModifier"
+	sk.add_child(arm_carry)
+	arm_carry.setup(sk, PILOT_ARM_BONES, rots)
+	arm_carry.influence = 0.0
 
 ## Copy of `src` keeping only keys in [t0, t1], shifted to start at 0.
 static func _trimmed(src: Animation, t0: float, t1: float) -> Animation:
@@ -326,9 +357,11 @@ func _play(clip: String) -> void:
 		elif active_model_source == "pilot_knight_opt_in" and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
 			speed = PILOT_SLASH_END / PILOT_SLASH_TIME
 		elif active_model_source == "pilot_knight_opt_in" and PILOT_STRIDE_SPEED.has(clip):
-			speed = (WALK_SPEED if clip == "Walk" else RUN_SPEED) / float(PILOT_STRIDE_SPEED[clip])
+			var body_speed: float = {"Walk": WALK_SPEED, "Run": RUN_SPEED, "Stroll": PILOT_STROLL_SPEED}[clip]
+			speed = body_speed / float(PILOT_STRIDE_SPEED[clip])
 		animation.play(clip_names[clip], 0.16, speed)
 		anim_state = clip
+		arm_carry_target = float(PILOT_CARRY_WEIGHT.get(clip, 0.0))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
@@ -371,6 +404,8 @@ func _dodge() -> void:
 	_play("Dodge")
 
 func _physics_process(delta: float) -> void:
+	if arm_carry != null:   # ease the arm layer in/out over ~0.2 s so clip changes don't pop
+		arm_carry.influence = move_toward(arm_carry.influence, arm_carry_target, delta * 5.0)
 	attack_cd = maxf(0.0, attack_cd - delta)
 	spell_cd = maxf(0.0, spell_cd - delta)
 	dodge_cd = maxf(0.0, dodge_cd - delta)
@@ -392,6 +427,7 @@ func _physics_process(delta: float) -> void:
 	cam_forward = cam_forward.normalized()
 	var moving := (cam_right * input.x + cam_forward * -input.y).normalized()
 	var sprint := Input.is_key_pressed(KEY_SHIFT)
+	var stroll := active_model_source == "pilot_knight_opt_in" and Input.is_key_pressed(KEY_CTRL) and not sprint
 	if dodge_t > 0.0:
 		dodge_t = maxf(0.0, dodge_t - delta)
 		if moving.length() > 0.1:
@@ -422,9 +458,13 @@ func _physics_process(delta: float) -> void:
 			impact.emit(global_position + last_face * (2.2 if attack_type == "Cast" else 1.4), attack_type, last_face)
 		if attack_t <= 0.0: anim_state = ""
 	else:
-		velocity.x = moving.x * (RUN_SPEED if sprint else WALK_SPEED)
-		velocity.z = moving.z * (RUN_SPEED if sprint else WALK_SPEED)
-		_play("Run" if sprint and moving.length() > 0.1 else ("Walk" if moving.length() > 0.1 else "Idle"))
+		var move_speed := PILOT_STROLL_SPEED if stroll else (RUN_SPEED if sprint else WALK_SPEED)
+		velocity.x = moving.x * move_speed
+		velocity.z = moving.z * move_speed
+		if moving.length() > 0.1:
+			_play("Stroll" if stroll else ("Run" if sprint else "Walk"))
+		else:
+			_play("Idle")
 	if moving.length() > 0.1 and dodge_t <= 0.0 and attack_t <= 0.0:
 		last_face = moving
 	if last_face.length() > 0.0:

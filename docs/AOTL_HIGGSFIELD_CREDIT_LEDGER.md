@@ -10,6 +10,8 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-20 04:40 | Roll_Dodge clip (#158) on the knight | 3d_rigging | 8 | Owner: "Go ahead and do the paid route" (two clips) | 8 | `186cf374-036c-4b3e-8efc-8420672269ee` | Real ground roll (hips 0.21 m), merged | Accepted | 2,946 |
 | 2026-11-20 06:45 | Dead clip (#8) on the knight | 3d_rigging | 8 (re-quoted before submit) | Owner: "Approved, go ahead with the 8-credit Dead clip" | 8 | `3efdc88d-68f1-4364-b074-6e322b1950b9` | Stagger, kneel, collapse; ends hips 0.24 m / head 0.25 m; weapons attached | Accepted | 2,938 |
 | 2026-11-20 06:56 | Left_Slash clip (#97) on the knight | 3d_rigging | 8 (re-quoted before submit) | Owner: "Go with the paid version so it looks perfect" | 8 | `af9142e8-ea9b-4b88-bd63-9ed38a332260` | Right-hand forward slash; real sword hits a dummy 0.65 m ahead in strict mode | Accepted | 2,930 |
+| 2026-11-20 07:05 | Casual_Walk clip (#30) | 3d_rigging | 8 (re-quoted) | Owner: "Approved, get the walk and run clips" | 8 | `259cb61d-0f2d-4f8d-8799-36a38e7f864d` | 1.0 m/s stroll → new Ctrl-stroll mode | Accepted | — |
+| 2026-11-20 07:05 | RunFast clip (#16) | 3d_rigging | 8 (re-quoted) | same approval | 8 | `73fe49f9-a275-44be-8089-70ffad9caf52` | Sprint for Shift-run (×0.71, natural cadence) | Accepted | 2,914 |
 
-Totals: **70 credits spent** of the 3,000 grant (2,930 remaining, verified 2026-11-20). Phase 0 pilot within its 120 ceiling.
+Totals: **86 credits spent** of the 3,000 grant (2,914 remaining, verified 2026-11-20). Phase 0 pilot within its 120 ceiling (34 left).
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

@@ -4,7 +4,7 @@ extends SceneTree
 ## feet stay on the ground in Idle/Slash, the sword hand sweeps in Slash, and the Dodge travels low.
 ## --shots=<dir> renders 8 frames per clip from a 3/4 camera.
 const MODEL := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
-const CLIPS := ["Idle", "Walk", "Run", "Left_Slash", "Roll_Dodge", "Cast", "Dead"]
+const CLIPS := ["Idle", "Walk", "Run", "RunFast", "Casual_Walk", "Left_Slash", "Roll_Dodge", "Cast", "Dead"]
 var checks := 0
 var failures := 0
 var shots := ""

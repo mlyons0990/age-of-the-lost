@@ -49,12 +49,17 @@ func _run() -> void:
 	verify(cam.projection == Camera3D.PROJECTION_PERSPECTIVE and absf((bottom - top) - 100.0) < 12.0, "Gameplay camera shows the knight ~100 px tall (%.0f px)" % (bottom - top))
 	var hips := sk.find_bone("Hips")
 	# locomotion: planted feet should move at the controller's ground speed (no skating)
-	for clip in ["Walk", "Run"]:
+	verify(actor.clip_names.get("Run", "") == actor.clip_names.get("RunFast", "x"), "Sprint plays the library RunFast")
+	verify(actor.clip_names.get("Stroll", "") == actor.clip_names.get("Casual_Walk", "x"), "Ctrl-stroll plays the library Casual_Walk")
+	for clip in ["Walk", "Run", "Stroll"]:
 		actor.anim_state = ""
 		actor._play(clip)
 		var speed: float = actor.animation.get_playing_speed()
 		var ground: float = float(actor.PILOT_STRIDE_SPEED[clip]) * speed
-		var target: float = actor.WALK_SPEED if clip == "Walk" else actor.RUN_SPEED
+		var target: float = {"Walk": actor.WALK_SPEED, "Run": actor.RUN_SPEED, "Stroll": actor.PILOT_STROLL_SPEED}[clip]
+		var steps: float = speed * {"Walk": 2.0 / 0.63, "Run": 2.0 / 0.5, "Stroll": 9.0 / 4.17}[clip]
+		print("PILOT LAB %s cadence %.1f steps/s" % [clip, steps])
+		verify(steps > 1.5 and steps < 4.0, "%s cadence looks natural (%.1f steps/s)" % [clip, steps])
 		print("PILOT LAB %s: playback x%.2f -> planted foot %.2f m/s vs controller %.2f m/s" % [clip, speed, ground, target])
 		verify(absf(ground - target) / target < 0.1, "%s feet don't skate (foot %.2f vs body %.2f m/s)" % [clip, ground, target])
 	actor.anim_state = ""

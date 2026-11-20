@@ -25,6 +25,8 @@ func _shot(scene: String, name: String, spell: String) -> void:
 		a._attack("Cast", 1.4)
 		await create_timer(1.6).timeout
 	lab.hud.drink(0)
+	a.hp = a.max_hp * 0.6
+	a.health_changed.emit(a.hp, a.max_hp)
 	var sk: Skeleton3D = a.body.find_children("*", "Skeleton3D", true, false)[0]
 	var head_y: float = (sk.global_transform * sk.get_bone_global_pose(sk.find_bone("head_end"))).origin.y
 	var top: float = lab.camera.unproject_position(a.global_position + Vector3.UP * head_y).y

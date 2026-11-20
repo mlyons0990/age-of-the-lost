@@ -1,5 +1,5 @@
 {
- "source": "Owner HUD mockup close-ups (2026-11-20), background removed with OpenCV GrabCut; baked skill icons and Q W E R T letters blanked so live icons/keys draw on top.",
+ "source": "Owner HUD mockup close-ups (2026-11-20), background removed with OpenCV GrabCut; baked skill icons and Q W E R T letters blanked so live icons/keys draw on top. Refined: exact anti-aliased ring circles, straight panel edges, smoothed statue outline, background leaves removed; images pre-scaled (image_scale) so they draw ~1:1 at 1080p. Coordinates stay in source (close-up) pixels.",
  "screen_orb_radius_1080p": 86,
  "left": {
   "file": "hud_left.png",
@@ -70,6 +70,18 @@
   "label_anchor": [
    512,
    150
+  ],
+  "image_scale": 0.465,
+  "orb_outer": [
+   304,
+   250,
+   198
+  ],
+  "disc": [
+   302,
+   248,
+   164,
+   170
   ]
  },
  "right": {
@@ -161,6 +173,18 @@
   "label_anchor": [
    805,
    135
+  ],
+  "image_scale": 0.505,
+  "orb_outer": [
+   999,
+   233,
+   182
+  ],
+  "disc": [
+   1002,
+   231,
+   155,
+   159
   ]
  }
 }

@@ -28,6 +28,22 @@ var lab: Node3D
 var player: CharacterBody3D
 var font: FontFile
 var font_regular: FontFile
+const DISC_SHADER := """
+shader_type canvas_item;
+uniform float fill = 1.0;
+void fragment() {
+	vec2 p = UV * 2.0 - 1.0;
+	float r = length(p);
+	float inside = smoothstep(1.0, 0.965, r);
+	float y = 1.0 - UV.y;                                   // 0 at the bottom of the disc, 1 at the top
+	float empty = smoothstep(fill - 0.012, fill + 0.02, y); // spent part, above the liquid surface
+	float meniscus = exp(-pow((y - fill) * 45.0, 2.0)) * step(0.01, fill) * step(fill, 0.99);
+	vec3 col = mix(vec3(0.015, 0.015, 0.03), vec3(1.0, 0.96, 0.9), meniscus);
+	COLOR = vec4(col, max(0.82 * empty, 0.16 * meniscus) * inside);
+}
+"""
+var hp_shade: ColorRect
+var mp_shade: ColorRect
 var left_piece: TextureRect
 var right_piece: TextureRect
 var strip_rect: Rect2
@@ -180,8 +196,8 @@ func _build() -> void:
 	var ui_k: float = H / 1080.0
 	var L: Dictionary = meta["left"]
 	var R: Dictionary = meta["right"]
-	var sl: float = float(meta["screen_orb_radius_1080p"]) * ui_k / float(L["orb"][2])
-	var sr: float = float(meta["screen_orb_radius_1080p"]) * ui_k / float(R["orb"][2])
+	var sl: float = float(L["image_scale"]) * ui_k     # source px -> screen px
+	var sr: float = float(R["image_scale"]) * ui_k
 	var lsz := Vector2(L["size"][0], L["size"][1]) * sl
 	var rsz := Vector2(R["size"][0], R["size"][1]) * sr
 	left_piece = _piece("hud_left", Rect2(0, H - lsz.y, lsz.x, lsz.y))
@@ -192,10 +208,13 @@ func _build() -> void:
 	var ro := right_piece.position
 	var lmap := func(v: Array) -> Rect2: return Rect2(lo + Vector2(v[0], v[1]) * sl, Vector2(v[2], v[3]) * sl)
 	var rmap := func(v: Array) -> Rect2: return Rect2(ro + Vector2(v[0], v[1]) * sr, Vector2(v[2], v[3]) * sr)
-	var oi: Array = L["orb_inner"]
-	orb_l = Vector3(lo.x + oi[0] * sl, lo.y + oi[1] * sl, oi[2] * sl)
-	oi = R["orb_inner"]
-	orb_r = Vector3(ro.x + oi[0] * sr, ro.y + oi[1] * sr, oi[2] * sr)
+	var oo: Array = L["orb_outer"]
+	orb_l = Vector3(lo.x + oo[0] * sl, lo.y + oo[1] * sl, oo[2] * sl)
+	oo = R["orb_outer"]
+	orb_r = Vector3(ro.x + oo[0] * sr, ro.y + oo[1] * sr, oo[2] * sr)
+	# drained-orb shading: a shader clipped to each glass disc (slightly elliptical in the art)
+	hp_shade = _disc_shade(root, lo, sl, L["disc"])
+	mp_shade = _disc_shade(root, ro, sr, R["disc"])
 	# XP strip: from the left belt's housing to the right panel's housing, along the bottom edge
 	var lh: Rect2 = lmap.call(L["xp_housing"])
 	var rh: Rect2 = rmap.call(R["xp_housing"])
@@ -203,7 +222,7 @@ func _build() -> void:
 	xp_rect = Rect2(strip_rect.position.x + 8 * ui_k, strip_rect.get_center().y - 5 * ui_k, strip_rect.size.x - 16 * ui_k, 10 * ui_k)
 	# live labels on dark plates, where the mockup prints them
 	var plate_sb := StyleBoxFlat.new()
-	plate_sb.bg_color = Color(0.03, 0.03, 0.04, 0.62)
+	plate_sb.bg_color = Color(0.03, 0.03, 0.04, 0.8)
 	plate_sb.set_corner_radius_all(3)
 	var hp_pos: Vector2 = lo + Vector2(L["label_anchor"][0], L["label_anchor"][1]) * sl
 	var hp_plate := Panel.new()
@@ -269,6 +288,20 @@ func _build() -> void:
 		if t.title != null:
 			t.title.visible = false
 
+func _disc_shade(root: Control, origin: Vector2, k: float, d: Array) -> ColorRect:
+	var c := ColorRect.new()
+	var sh := Shader.new()
+	sh.code = DISC_SHADER
+	var m := ShaderMaterial.new()
+	m.shader = sh
+	c.material = m
+	c.color = Color.WHITE
+	c.size = Vector2(d[2], d[3]) * 2.0 * k
+	c.position = origin + Vector2(d[0], d[1]) * k - c.size * 0.5
+	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(c)
+	return c
+
 func _piece(name: String, r: Rect2) -> TextureRect:
 	var t := TextureRect.new()
 	t.texture = _tex(name)
@@ -320,6 +353,8 @@ func _process(delta: float) -> void:
 		potion_cds[i] = maxf(0.0, potion_cds[i] - delta)
 	hp_frac = clampf(player.hp / player.max_hp, 0.0, 1.0)
 	mp_frac = clampf(player.mana / player.max_mana, 0.0, 1.0)
+	(hp_shade.material as ShaderMaterial).set_shader_parameter("fill", hp_frac)
+	(mp_shade.material as ShaderMaterial).set_shader_parameter("fill", mp_frac)
 	hp_label.text = "HP %d / %d" % [roundi(player.hp), roundi(player.max_hp)]
 	mp_label.text = "MP %d / %d" % [roundi(player.mana), roundi(player.max_mana)]
 	var p: Vector3 = player.global_position
@@ -351,25 +386,9 @@ func _bar(at: Vector2, w: float, h: float, frac: float, col: Color) -> void:
 	world_overlay.draw_rect(Rect2(at - Vector2(1, 1), Vector2(w + 2, h + 2)), Color(0, 0, 0, 0.85))
 	world_overlay.draw_rect(Rect2(at, Vector2(w * clampf(frac, 0.0, 1.0), h)), col)
 
-## The frame's orbs are painted full: darken the spent part from the top down (a circular segment).
-func _orb_shade(o: Vector3, frac: float) -> void:
-	if frac >= 0.999:
-		return
-	var r := o.z * 0.96
-	var cut := o.y - r + 2.0 * r * (1.0 - frac)     # liquid surface height
-	var pts := PackedVector2Array()
-	var a0 := asin(clampf((o.y - cut) / r, -1.0, 1.0))   # surface line meets the circle at angles a0, PI - a0
-	var n := 40
-	for i in n + 1:                                      # arc over the top of the orb, above the surface
-		var a := a0 + (PI - 2.0 * a0) * float(i) / float(n)
-		pts.append(Vector2(o.x + cos(a) * r, o.y - sin(a) * r))
-	overlay.draw_colored_polygon(pts, Color(0.02, 0.02, 0.03, 0.78))
-	overlay.draw_line(Vector2(o.x - sqrt(maxf(0.0, r * r - (cut - o.y) * (cut - o.y))), cut), Vector2(o.x + sqrt(maxf(0.0, r * r - (cut - o.y) * (cut - o.y))), cut), Color(1, 1, 1, 0.25), 1.5)
-
 func _draw_overlay() -> void:
 	var cam: Camera3D = lab.camera
-	_orb_shade(orb_l, hp_frac)
-	_orb_shade(orb_r, mp_frac)
+
 	# slot overlays: cooldown shade from the top, red tint when mana is short
 	for s in bar_slots:
 		var r: Rect2 = s["rect"]

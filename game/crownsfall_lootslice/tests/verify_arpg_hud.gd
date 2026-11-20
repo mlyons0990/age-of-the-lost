@@ -36,7 +36,8 @@ func _run() -> void:
 	check(absf(lr.position.x) < 1.0 and absf(lr.end.y - vh) < 1.0, "Left statue/orb/belt flush to the left and bottom edges (%s)" % lr)
 	check(absf(rr.end.x - vw) < 1.0 and absf(rr.end.y - vh) < 1.0, "Right skills/orb/statue flush to the right and bottom edges (%s)" % rr)
 	check(hud.strip_rect.position.x <= lr.end.x and hud.strip_rect.end.x >= rr.position.x and absf(hud.strip_rect.end.y - vh) < 12.0, "XP strip joins the two pieces along the bottom (no gap)")
-	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.12, "Both orbs the same size on screen (%.0f / %.0f px)" % [hud.orb_l.z, hud.orb_r.z])
+	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.05, "Both orb rings the same size on screen (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
+	check(hud.left_piece.texture.get_width() == roundi(hud.left_piece.size.x) and hud.right_piece.texture.get_width() == roundi(hud.right_piece.size.x), "Pieces draw 1:1 at 1080p (no runtime downscale aliasing)")
 	check(hud.bar_slots.size() == 5 and hud.potion_slots.size() == 5, "5 potion wells + 5 skill wells, as in the mockup")
 	check(hud.minimap_vp.world_3d == lab.get_world_3d(), "Minimap renders the lab world")
 	check(hud.quest_progress == 0 and hud.find_child("Quest_ALostTomes", true, false) == null and hud.find_child("Quest_TheLostTomes", true, false) != null, "Quest tracker shows both quests")
@@ -49,6 +50,7 @@ func _run() -> void:
 	await process_frame
 	await process_frame
 	check(absf(hud.hp_frac - 0.5) < 0.01, "HP orb shaded to 50%% (%.2f)" % hud.hp_frac)
+	check(absf(float((hud.hp_shade.material as ShaderMaterial).get_shader_parameter("fill")) - 0.5) < 0.01, "HP disc shader fill follows HP")
 	check(absf(hud.mp_frac - 0.25) < 0.03, "MP orb shaded to ~25%% (%.2f)" % hud.mp_frac)
 	check(hud.hp_label.text == "HP %d / %d" % [roundi(a.hp), roundi(a.max_hp)], "HP label " + hud.hp_label.text)
 	# potions

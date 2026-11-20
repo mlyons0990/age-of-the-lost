@@ -53,3 +53,12 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
 - Source resolution: the close-ups are phone screenshots (~2.2x the 1080p size), so the pieces are slightly soft;
   a clean high-res redraw of the same design is the upgrade path.
 - Tests: `verify_arpg_hud.gd` 40/40 (flush-edge, joined-strip, equal-orb and well-count checks); regression 994/994.
+
+## Revision 4 (owner: globes and surrounding art had rough, unfinished edges)
+- Rings re-cut as exact anti-aliased circles fitted to the art (left r 198 px, right r 182 px in source pixels), panel
+  edges straight, statue outlines smoothed and stray background leaves removed (`tools/refine_hud_mockup.py`).
+- Pieces pre-scaled with Lanczos to their 1080p size (draw 1:1; the runtime 0.47x downscale was causing jaggies).
+- Drained orbs: a canvas shader clipped to each glass disc (fitted ellipse) darkens the spent part with a soft
+  meniscus, replacing the hard polygon lens. Label plates darkened to match the mockup.
+- Tests: arpg_hud 42/42 (adds equal ring size, 1:1 draw and shader-fill checks); regression 994/994.
+- Limit: source is phone-screenshot quality; a pixel-sharp 1:1 version needs a high-res redraw of the same art.

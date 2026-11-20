@@ -3,6 +3,7 @@ extends Node3D
 ## This deliberately does NOT replace the established 2D plaza; keep both.
 const HERO := preload("res://scripts/three_d/rig_controller.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
+const RADIANT_FX := preload("res://scripts/three_d/radiant_vfx.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const WEAPON_SWEEP := preload("res://scripts/three_d/weapon_sweep3d.gd")
@@ -25,6 +26,9 @@ var mode := "3D articulated rig lab"
 @export var use_r55_clip_safe_elbow_candidate := false
 @export var use_pilot_knight_candidate := false
 @export var use_pilot_mage_candidate := false
+## Phase 4 groundwork: Hollow Sun radiant FX for the Cast attack (opt-in).
+@export var radiant_spell_fx := false
+var radiant: Node3D
 const PILOT_CAMERA_FOV := 32.0
 const PILOT_CAMERA_PITCH := 52.0
 @export var pilot_camera_distance := 21.0
@@ -75,6 +79,10 @@ func _ready() -> void:
 	player.camera = camera
 	effects = FX.new()
 	add_child(effects)
+	if radiant_spell_fx:
+		radiant = RADIANT_FX.new()
+		radiant.name = "RadiantFX"
+		add_child(radiant)
 	for i in 4:
 		var e := Node3D.new()
 		e.set_script(DUMMY)
@@ -337,7 +345,9 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	var spell := kind == "Cast"
 	var color := Color("b0a0ff") if spell else (Color("ffe5a4") if kind == "Cleave" else Color("8acaff"))
 	var wide := kind == "Cleave"
-	if spell:
+	if spell and radiant:
+		radiant.judgment(player.global_position, direction, player.global_position.distance_to(at))
+	elif spell:
 		effects.cast(at, color)
 	else:
 		effects.slash(player.global_position, direction, color, wide)

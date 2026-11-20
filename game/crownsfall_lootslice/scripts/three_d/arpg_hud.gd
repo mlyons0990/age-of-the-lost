@@ -10,7 +10,7 @@ const GOLD := Color("d9b46a")
 const GOLD_DIM := Color("8f7444")
 const IVORY := Color("efe6cf")
 const PANEL_BG := Color(0.05, 0.05, 0.07, 0.78)
-const LEVEL := 25
+var progress_label: Label
 
 ## Bar layouts per hero: [key label, icon tile, MAGE_SPELLS key or warrior attack kind].
 ## The mockup panel's five wells, Q W E R T (click-to-move, so W is a skill). LMB is move / primary attack.
@@ -271,13 +271,14 @@ func _build() -> void:
 		kl.position = kr.position
 		root.add_child(kl)
 		bar_slots.append({"rect": r, "key": spec[0], "spell": spec[2]})
-	var lv := _label("Lv. %d" % LEVEL, int(14 * ui_k), IVORY)
-	lv.size = Vector2(120 * ui_k, 20 * ui_k)
-	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	lv.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	lv.position = Vector2(xp_rect.get_center().x - 60 * ui_k, xp_rect.get_center().y - 10 * ui_k)
-	lv.z_index = 2
-	root.add_child(lv)
+	progress_label = _label(lab.practice_progress.caption(), int(14 * ui_k), IVORY)
+	progress_label.size = Vector2(200 * ui_k, 20 * ui_k)
+	progress_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	progress_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	progress_label.position = Vector2(xp_rect.get_center().x - 100 * ui_k, xp_rect.get_center().y - 10 * ui_k)
+	progress_label.z_index = 2
+	root.add_child(progress_label)
+	lab.practice_progress.changed.connect(_update_progress)
 	# world-anchored layer + dynamic overlays
 	overlay = Control.new()
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -287,6 +288,9 @@ func _build() -> void:
 	for t in lab.targets:
 		if t.title != null:
 			t.title.visible = false
+
+func _update_progress() -> void:
+	progress_label.text = lab.practice_progress.caption()
 
 func _disc_shade(root: Control, origin: Vector2, k: float, d: Array) -> ColorRect:
 	var c := ColorRect.new()
@@ -410,7 +414,7 @@ func _draw_overlay() -> void:
 	overlay.draw_rect(Rect2(Vector2(strip_rect.position.x, strip_rect.end.y - 3), Vector2(strip_rect.size.x, 3)), Color("4a3e30"))
 	overlay.draw_rect(xp_rect.grow(2), Color(0.04, 0.035, 0.03, 1.0))
 	overlay.draw_rect(xp_rect.grow(2), Color("5d4d39"), false, 1.0)
-	var xp_frac := fposmod(0.42 + lab.kills * 0.07, 1.0)
+	var xp_frac: float = lab.practice_progress.fraction()
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, xp_rect.size.y)), Color("8a4fd8"))
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, 3)), Color("c7a3ff"))
 	# minimap frame + markers
@@ -448,4 +452,4 @@ func _draw_world() -> void:
 		_bar(hp + Vector2(-8, -5), 72, 3, player.mana / player.max_mana, Color("3f7fe0"))
 		world_overlay.draw_circle(hp + Vector2(-24, -11), 13.0, Color(0.06, 0.05, 0.05, 0.95))
 		world_overlay.draw_arc(hp + Vector2(-24, -11), 13.0, 0, TAU, 32, GOLD, 1.5)
-		world_overlay.draw_string(font, hp + Vector2(-33, -5), str(LEVEL), HORIZONTAL_ALIGNMENT_LEFT, -1, 15, IVORY)
+		world_overlay.draw_string(font, hp + Vector2(-33, -5), str(lab.practice_progress.level), HORIZONTAL_ALIGNMENT_LEFT, -1, 15, IVORY)

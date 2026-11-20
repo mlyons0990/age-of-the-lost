@@ -79,6 +79,12 @@ func _run() -> void:
 	var before: float = a.mana
 	await create_timer(0.5).timeout
 	check(a.mana > before, "Mana regenerates")
+	# Both hit paths report a defeat through the same lab award, then update the live HUD.
+	var starting_xp: int = lab.practice_progress.xp
+	var starting_kills: int = lab.kills
+	lab._record_defeat()
+	check(lab.kills == starting_kills + 1 and lab.practice_progress.xp > starting_xp, "Training defeat awards session XP")
+	check(hud.progress_label.text == lab.practice_progress.caption(), "HUD displays the current level and numeric XP")
 	# --- click-to-move ---
 	while a.attack_t > 0.0 or a.attack_cd > 0.0: await physics_frame
 	a.mana = a.max_mana

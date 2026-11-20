@@ -40,7 +40,7 @@ Why this beats the video-clip sprites we made on Nov 12–13:
 - **Cape and long coats:** auto-rigging is humanoid and skins capes to the legs. We may need a cape bone added by the coding chat, or a shorter cape on the 3D version.
 - **One clip per call:** each 3D Rigging call returns the rig with one animation. Clips must be merged into one Godot AnimationLibrary. The coding chat's existing Blender export helper already does this.
 
-## Budget (≈ 1,880 planned + ≈ 1,120 reserve)
+## Budget (≈ 1,910 planned + ≈ 1,090 reserve)
 
 ### Phase 0: Pilot (≈ 80 credits) — go/no-go before anything else
 | Item | Credits |
@@ -92,14 +92,33 @@ Seedance 480p on black/green, keyed into sheets + JSON (the structure from chatg
 crack, sword slash arcs (light/heavy), dodge dust puff, level-up burst, potion drink glow, loot beam (by rarity colour),
 Reality Scar portal loop, hit sparks, death dissolve, teleport/waypoint swirl.
 
-### Phase 5: UI panels — inventory, character, HUD (≈ 90)
-GPT Image 2.6 / Nano Banana at 0.5–2 credits, matched to the approved HUD in `docs/reference/ui_camera_target`:
+### Phase 5: UI — HUD, inventory, character panel (≈ 120)
+**Owner-locked target:** `docs/reference/ui_camera_target/2026-11-19/aotl_ui_target_v2.png` (spec in its README).
+HP and mana globes sit at the bottom corners with a **seated stone maiden statue** sculpted onto each globe's outer side;
+flask bar (1–5) beside the life globe, skill bar (Q W E R T) beside the mana globe, XP bar in the middle with
+`Lv. 25 (current / next)`. Minimap + quest tracker top-right, logo top-left.
+
+GPT Image 2.6 / Nano Banana at 0.5–2 credits, each piece on a flat key colour so it cuts out cleanly:
+
+| HUD piece (from the target) | Credits |
+|---|---|
+| Life globe frame with left maiden statue, mana globe frame with right statue (Nano Banana, several tries each) | ~16 |
+| Red and blue liquid fills + glass highlight overlay (stills) | ~4 |
+| Looping animated liquid swirl for both globes (Seedance 480p, 2 clips) | 24 |
+| Flask bar panel, skill bar panel, key-label plates (1–5, Q–T) | ~6 |
+| Flask icons: red/blue/green, full and empty; utility map/tome icon | ~5 |
+| XP bar frame, purple fill, tick overlay | ~3 |
+| Minimap frame + `+` button, quest tracker backing, gold diamond bullet | ~4 |
+| AOTL / Crownsfall logo | ~4 |
+| Service marker badges: quest `!`, merchant, Reality Scar, lore archive, noticeboard, stash | ~3 |
+| Player nameplate + level badge | ~2 |
+| **HUD subtotal** | **≈ 71** |
+
+Panels in the same frame style (≈ 50):
 - Inventory panel frame + grid cell + slot highlight states (common/magic/rare/unique borders)
 - Character / equipment panel with the paper-doll silhouette and 11 slot frames
-- Skill bar frame, flask slots, life/mana orb frames (stone sentinels as in the target), XP bar
-- Tooltip frame (4 rarities), minimap frame, quest tracker panel, name plate, vendor/stash windows, buttons (3 states), close/tab icons
+- Tooltip frame (4 rarities), vendor/stash windows, buttons (3 states), close/tab icons
 - Class portraits (Warrior, Mage) for the character panel and select screen
-≈ 60 pieces with re-rolls.
 
 ### Phase 6: Icons and key art (≈ 80)
 - Skill icons for the 10 Warrior/Mage skills in the bar (Q–T) + passives: ~30 × 0.5–2
@@ -114,10 +133,10 @@ GPT Image 2.6 / Nano Banana at 0.5–2 credits, matched to the approved HUD in `
 | 2 Enemies | 560 |
 | 3 City props | 330 |
 | 4 VFX | 220 |
-| 5 UI panels | 90 |
+| 5 UI (HUD + panels) | 120 |
 | 6 Icons + key art | 80 |
-| **Planned** | **≈ 1,880** |
-| Reserve (re-rolls, boss, extra props) | ≈ 1,120 |
+| **Planned** | **≈ 1,910** |
+| Reserve (re-rolls, boss, extra props) | ≈ 1,090 |
 
 ## Rules while spending
 - Log every job (model, credits, job ID, accepted/rejected) in `art/higgsfield_ledger.csv`.

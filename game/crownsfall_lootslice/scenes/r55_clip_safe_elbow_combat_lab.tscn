@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/three_d/rig_lab.gd" id="1_r55"]
+
+[node name="R55ClipSafeElbowCombatLab" type="Node3D"]
+script = ExtResource("1_r55")
+use_r55_clip_safe_elbow_candidate = true

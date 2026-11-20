@@ -1,0 +1,57 @@
+{
+ "upper": 0.2,
+ "lower": 0.16,
+ "offset": 0.02,
+ "ease": "smoothstep",
+ "scallop_m": 0.02,
+ "clips": [
+  "R50_Slash_Grounded_IKBaked_V3",
+  "Slash",
+  "Idle",
+  "Walk",
+  "Run",
+  "Dodge",
+  "Cast"
+ ],
+ "frame_step": 2,
+ "V04_SKIN_ArticulatedArmL": {
+  "r54": {
+   "mean_frame_p95_pct": 2.37,
+   "worst_frame_p95_pct": 24.29
+  },
+  "r55": {
+   "mean_frame_p95_pct": 2.77,
+   "worst_frame_p95_pct": 27.13
+  },
+  "p99_worst_vertex_pct": [
+   38.6,
+   45.3
+  ],
+  "inner_elbow_dir_armature": [
+   0.4615,
+   -0.8321,
+   -0.3077
+  ],
+  "guard_top_lowered_m": 0.02
+ },
+ "V04_SKIN_ArticulatedArmR": {
+  "r54": {
+   "mean_frame_p95_pct": 3.49,
+   "worst_frame_p95_pct": 24.29
+  },
+  "r55": {
+   "mean_frame_p95_pct": 4.2,
+   "worst_frame_p95_pct": 27.13
+  },
+  "p99_worst_vertex_pct": [
+   38.6,
+   45.3
+  ],
+  "inner_elbow_dir_armature": [
+   -0.4615,
+   -0.8321,
+   -0.3077
+  ],
+  "guard_top_lowered_m": 0.02
+ }
+}

@@ -1,6 +1,10 @@
 """Add Higgsfield `3d_rigging` library clips to the retargeted knight and export one GLB.
 
-python merge_meshy_clips.py -- <knight .blend> <out .glb> <out .blend> NAME=clip.glb [NAME=clip.glb ...]
+python merge_meshy_clips.py -- <character .blend> <out .glb> <out .blend> NAME=clip.glb[@Action] [...]
+
+NAME=file.glb takes the file's only (first new) action; NAME=file.glb@Action takes that named action from a
+multi-clip GLB (e.g. the knight's knight_pilot.glb), so clips move between any Meshy 24-bone characters.
+The target .blend may also be a fresh Meshy GLB (it is imported when the path ends in .glb).
 
 Each clip GLB carries the same Meshy rig plus one action. The tool checks that every mapped bone's
 rest matrix matches the knight's (so local-space keys transfer exactly), copies the action under NAME,
@@ -53,10 +57,19 @@ def world_transfer(src, tgt, src_act, name):
 argv = sys.argv[sys.argv.index("--") + 1:]
 src, out_glb, out_blend = argv[:3]
 pairs = [a.split("=", 1) for a in argv[3:]]
-bpy.ops.wm.open_mainfile(filepath=src)
+if src.lower().endswith(".glb"):
+    bpy.ops.wm.read_homefile(use_empty=True)
+    bpy.ops.import_scene.gltf(filepath=src)
+    for a in list(bpy.data.actions):   # keep only the actions we add
+        bpy.data.actions.remove(a)
+else:
+    bpy.ops.wm.open_mainfile(filepath=src)
 knight = [o for o in bpy.data.objects if o.type == 'ARMATURE'][0]
 mesh = [o for o in bpy.data.objects if o.type == 'MESH']
 for name, path in pairs:
+    wanted = None
+    if "@" in path:
+        path, wanted = path.split("@", 1)
     before = set(bpy.data.objects); acts_before = set(bpy.data.actions)
     bpy.ops.import_scene.gltf(filepath=path)
     new = [o for o in bpy.data.objects if o not in before]
@@ -66,7 +79,11 @@ for name, path in pairs:
         m1, m2 = b.matrix_local, arm.data.bones[b.name].matrix_local
         worst = max(worst, max(abs(m1[i][j] - m2[i][j]) for i in range(3) for j in range(3)),
                     (m1.translation - m2.translation).length * 0.01)
-    act = [a for a in bpy.data.actions if a not in acts_before][0]
+    new_acts = [a for a in bpy.data.actions if a not in acts_before]
+    act = next(a for a in new_acts if a.name.split(".")[0] == wanted) if wanted else new_acts[0]
+    for a in new_acts:
+        if a is not act:
+            bpy.data.actions.remove(a)
     if worst > 1e-3:
         print("%s: rest pose differs from the knight (%.4f); transferring in world space" % (name, worst))
         act.name = name + "_SRC"

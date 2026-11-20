@@ -15,6 +15,29 @@ const WARRIOR_R53_ARM_SKIN_CANDIDATE := "res://models/AOTL_Warrior_R53_ArmSkin_S
 const WARRIOR_R54_ELBOW_HELPER_CANDIDATE := "res://models/AOTL_Warrior_R54_ElbowHelper_SevenClip.glb"
 ## R55: R54 with clip-safe elbow skin and inner-elbow scalloped forearm guards (tools/r55_clip_safe_elbow.py); opt-in.
 const WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE := "res://models/AOTL_Warrior_R55_ClipSafeElbow_SevenClip.glb"
+## Higgsfield pilot knight: Meshy 7 mesh + 24-bone auto-rig, our clips retargeted, library Roll_Dodge/Dead,
+## R52 sword and shield skinned to the hands. Opt-in only (art/higgsfield-pilot-knight branch).
+const PILOT_KNIGHT := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
+const PILOT_KNIGHT_BONES := ["Hips", "Spine", "Head", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot", "LeftHand", "RightHand"]
+## Knight locomotion (measured in Godot 2026-11-20, foot speed at ground contact). Each controller mode uses
+## the clip whose natural stride fits it, with playback scaled so the planted foot matches the body speed:
+##   Walk (default 4.3 m/s) -> our retargeted Run (a jog, 3.80 m/s)       x1.13, ~3.6 steps/s
+##   Run  (Shift, 6.7 m/s)  -> library RunFast #16 (sprint, 9.41 m/s)    x0.71, ~2.8 steps/s
+##   Stroll (Ctrl, 1.0 m/s) -> library Casual_Walk #30 (0.72 m/s)        x1.39, ~3.0 steps/s
+const PILOT_STRIDE_SPEED := {"Walk": 3.80, "Run": 9.41, "Stroll": 0.72}
+const PILOT_STROLL_SPEED := 1.0
+## Arms carry sword and shield steady while moving (library locomotion clips are unarmed motions).
+const ARM_CARRY := preload("res://scripts/three_d/arm_carry_modifier.gd")
+const PILOT_ARM_BONES := ["RightShoulder", "RightArm", "RightForeArm", "RightHand", "LeftShoulder", "LeftArm", "LeftForeArm", "LeftHand"]
+const PILOT_CARRY_WEIGHT := {"Walk": 0.8, "Run": 0.9, "Stroll": 0.75}
+var arm_carry: SkeletonModifier3D = null
+var arm_carry_target := 0.0
+const PILOT_ROLL_TIME := 0.9
+## Library Left_Slash (#97): the knight's right-hand sword attack. The first 1.42 s (wind-up through the
+## main cut) is used; the blade crosses the front at 0.81 s = 57 % of that, the shared contact phase.
+const PILOT_SLASH_END := 1.42
+const PILOT_SLASH_TIME := 0.9
+const PILOT_SWORD_HAND := "RightHand"   # the 1.83 s library roll is played at ~2x to fit the dodge window
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
@@ -58,6 +81,24 @@ var equipment_debug_equipped := false
 @export var enable_r53_arm_skin_candidate := false
 @export var enable_r54_elbow_helper_candidate := false
 @export var enable_r55_clip_safe_elbow_candidate := false
+@export var enable_pilot_knight_candidate := false
+
+## The pilot knight uses Meshy's humanoid bone names and a library roll in place of Dodge.
+func _pilot_knight_is_valid(candidate: Node3D) -> bool:
+	var rigs := candidate.find_children("*", "Skeleton3D", true, false)
+	if rigs.is_empty():
+		return false
+	var sk := rigs[0] as Skeleton3D
+	for bone_name in PILOT_KNIGHT_BONES:
+		if sk.find_bone(bone_name) < 0:
+			return false
+	var player := candidate.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if player == null:
+		return false
+	for required_clip in ["Idle", "Walk", "Run", "Roll_Dodge", "Slash", "Cast"]:
+		if not player.has_animation(required_clip):
+			return false
+	return true
 
 func _production_model_is_valid(candidate: Node3D) -> bool:
 	# Do not switch the playable actor solely because an R36 file exists.
@@ -102,6 +143,8 @@ func _ready() -> void:
 		model_candidates.push_front({"path": WARRIOR_R54_ELBOW_HELPER_CANDIDATE, "source": "warrior_r54_opt_in"})
 	if enable_r55_clip_safe_elbow_candidate:
 		model_candidates.push_front({"path": WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE, "source": "warrior_r55_opt_in"})
+	if enable_pilot_knight_candidate:
+		model_candidates.push_front({"path": PILOT_KNIGHT, "source": "pilot_knight_opt_in"})
 	for option in model_candidates:
 		var path: String = option["path"]
 		if not ResourceLoader.exists(path):
@@ -110,7 +153,8 @@ func _ready() -> void:
 		if packed == null:
 			continue
 		var candidate := packed.instantiate() as Node3D
-		if candidate != null and _production_model_is_valid(candidate):
+		var valid := candidate != null and (_pilot_knight_is_valid(candidate) if option["source"] == "pilot_knight_opt_in" else _production_model_is_valid(candidate))
+		if valid:
 			body.free()
 			body = candidate
 			active_model_source = option["source"]
@@ -133,6 +177,11 @@ func _ready() -> void:
 	# GLB and the older models' animation mappings are never altered.
 	if active_model_source in ["warrior_r50_opt_in", "warrior_r52_opt_in", "warrior_r53_opt_in", "warrior_r54_opt_in", "warrior_r55_opt_in"] and clip_names.has("Slash_FullBody_R50"):
 		clip_names["Slash"] = clip_names["Slash_FullBody_R50"]
+	if active_model_source == "pilot_knight_opt_in":
+		_prepare_pilot_knight_clips()
+		_prepare_pilot_blade()
+		model_yaw_offset = PI
+		body.rotation.y = PI
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.26
 	capsule.height = 1.95
@@ -215,12 +264,104 @@ func _toggle_equipment_socket_preview() -> void:
 			equipment_sockets.equip_node(slot, _debug_equipment_item(slot), offset)
 
 
+## Pilot knight: blade hilt/tip in the sword-hand bone's space, from the real crossguard and tip meshes.
+var pilot_blade := {}
+## The hand-built rigs face −Z; the Meshy knight faces +Z (glTF forward), so it turns an extra half circle.
+var model_yaw_offset := 0.0
+
+func _prepare_pilot_blade() -> void:
+	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	var points := {}
+	for part in [["hilt", "WEAPON_Crossguard"], ["tip", "WEAPON_Tip"]]:
+		var mi := body.find_child(part[1] + "*", true, false) as MeshInstance3D
+		if mi == null or mi.skin == null:
+			return
+		for i in mi.skin.get_bind_count():
+			var b := mi.skin.get_bind_bone(i)
+			var name := sk.get_bone_name(b) if b >= 0 else String(mi.skin.get_bind_name(i))
+			if name == PILOT_SWORD_HAND:
+				points[part[0]] = mi.skin.get_bind_pose(i) * mi.mesh.get_aabb().get_center()
+	if points.size() == 2:
+		pilot_blade = {"skeleton": sk, "bone": sk.find_bone(PILOT_SWORD_HAND), "hilt": points["hilt"], "tip": points["tip"]}
+
+## World-space blade segment for swept hit tests, or {} when this model has none.
+func blade_segment() -> Dictionary:
+	if pilot_blade.is_empty():
+		return {}
+	var sk: Skeleton3D = pilot_blade["skeleton"]
+	var pose: Transform3D = sk.global_transform * sk.get_bone_global_pose(int(pilot_blade["bone"]))
+	return {"hilt": pose * (pilot_blade["hilt"] as Vector3), "tip": pose * (pilot_blade["tip"] as Vector3)}
+
+## Pilot knight: Dodge plays the library roll in place (the controller moves the body), Death plays Dead.
+func _prepare_pilot_knight_clips() -> void:
+	clip_names["Dodge"] = clip_names["Roll_Dodge"]
+	if clip_names.has("RunFast") and clip_names.has("Casual_Walk"):
+		clip_names["Walk"] = clip_names["Run"]          # retargeted jog for default movement
+		clip_names["Run"] = clip_names["RunFast"]
+		clip_names["Stroll"] = clip_names["Casual_Walk"]
+		for c in ["RunFast", "Casual_Walk"]:
+			animation.get_animation(clip_names[c]).loop_mode = Animation.LOOP_LINEAR
+	_setup_arm_carry()
+	if clip_names.has("Left_Slash"):
+		var trimmed := _trimmed(animation.get_animation(clip_names["Left_Slash"]), 0.0, PILOT_SLASH_END)
+		animation.get_animation_library("").add_animation("Pilot_Slash", trimmed)
+		clip_names["Slash"] = "Pilot_Slash"
+	if clip_names.has("Dead"):
+		clip_names["Death"] = clip_names["Dead"]
+	var roll := animation.get_animation(clip_names["Roll_Dodge"])
+	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	for t in roll.get_track_count():
+		if roll.track_get_type(t) != Animation.TYPE_POSITION_3D or not String(roll.track_get_path(t)).ends_with(":Hips"):
+			continue
+		# keep the height (the tuck), drop the forward travel (root motion handled by the controller)
+		var first: Vector3 = roll.track_get_key_value(t, 0)
+		for k in roll.track_get_key_count(t):
+			var v: Vector3 = roll.track_get_key_value(t, k)
+			roll.track_set_key_value(t, k, Vector3(first.x, v.y, first.z))
+
+## Carry pose = the arms of the Idle's first frame (sword raised ready in the right hand, shield on the left).
+func _setup_arm_carry() -> void:
+	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	animation.play(clip_names["Idle"], 0)
+	animation.seek(0.0, true)
+	var rots := []
+	for n in PILOT_ARM_BONES:
+		rots.append(sk.get_bone_pose_rotation(sk.find_bone(n)))
+	arm_carry = ARM_CARRY.new()
+	arm_carry.name = "ArmCarryModifier"
+	sk.add_child(arm_carry)
+	arm_carry.setup(sk, PILOT_ARM_BONES, rots)
+	arm_carry.influence = 0.0
+
+## Copy of `src` keeping only keys in [t0, t1], shifted to start at 0.
+static func _trimmed(src: Animation, t0: float, t1: float) -> Animation:
+	var out := Animation.new()
+	out.length = t1 - t0
+	for t in src.get_track_count():
+		var nt := out.add_track(src.track_get_type(t))
+		out.track_set_path(nt, src.track_get_path(t))
+		out.track_set_interpolation_type(nt, src.track_get_interpolation_type(t))
+		for k in src.track_get_key_count(t):
+			var time := src.track_get_key_time(t, k)
+			if time >= t0 - 0.0001 and time <= t1 + 0.0001:
+				out.track_insert_key(nt, time - t0, src.track_get_key_value(t, k))
+	return out
+
 func _play(clip: String) -> void:
 	if animation == null or not clip_names.has(clip):
 		return
 	if anim_state != clip:
-		animation.play(clip_names[clip], 0.16)
+		var speed := 1.0
+		if active_model_source == "pilot_knight_opt_in" and clip == "Dodge":
+			speed = animation.get_animation(clip_names[clip]).length / PILOT_ROLL_TIME
+		elif active_model_source == "pilot_knight_opt_in" and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
+			speed = PILOT_SLASH_END / PILOT_SLASH_TIME
+		elif active_model_source == "pilot_knight_opt_in" and PILOT_STRIDE_SPEED.has(clip):
+			var body_speed: float = {"Walk": WALK_SPEED, "Run": RUN_SPEED, "Stroll": PILOT_STROLL_SPEED}[clip]
+			speed = body_speed / float(PILOT_STRIDE_SPEED[clip])
+		animation.play(clip_names[clip], 0.16, speed)
 		anim_state = clip
+		arm_carry_target = float(PILOT_CARRY_WEIGHT.get(clip, 0.0))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
@@ -243,6 +384,8 @@ func _attack(kind: String, duration: float) -> void:
 		return
 	if kind == "Cast" and spell_cd > 0.0:
 		return
+	if active_model_source == "pilot_knight_opt_in" and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
+		duration = PILOT_SLASH_TIME
 	attack_serial += 1
 	attack_t = duration
 	attack_duration = duration
@@ -255,12 +398,14 @@ func _attack(kind: String, duration: float) -> void:
 func _dodge() -> void:
 	if dodge_t > 0.0 or dodge_cd > 0.0 or attack_t > 0.0:
 		return
-	dodge_t = 0.65
+	dodge_t = PILOT_ROLL_TIME if active_model_source == "pilot_knight_opt_in" else 0.65
 	dodge_cd = 1.1
 	invulnerable = 0.50
 	_play("Dodge")
 
 func _physics_process(delta: float) -> void:
+	if arm_carry != null:   # ease the arm layer in/out over ~0.2 s so clip changes don't pop
+		arm_carry.influence = move_toward(arm_carry.influence, arm_carry_target, delta * 5.0)
 	attack_cd = maxf(0.0, attack_cd - delta)
 	spell_cd = maxf(0.0, spell_cd - delta)
 	dodge_cd = maxf(0.0, dodge_cd - delta)
@@ -282,6 +427,7 @@ func _physics_process(delta: float) -> void:
 	cam_forward = cam_forward.normalized()
 	var moving := (cam_right * input.x + cam_forward * -input.y).normalized()
 	var sprint := Input.is_key_pressed(KEY_SHIFT)
+	var stroll := active_model_source == "pilot_knight_opt_in" and Input.is_key_pressed(KEY_CTRL) and not sprint
 	if dodge_t > 0.0:
 		dodge_t = maxf(0.0, dodge_t - delta)
 		if moving.length() > 0.1:
@@ -312,13 +458,17 @@ func _physics_process(delta: float) -> void:
 			impact.emit(global_position + last_face * (2.2 if attack_type == "Cast" else 1.4), attack_type, last_face)
 		if attack_t <= 0.0: anim_state = ""
 	else:
-		velocity.x = moving.x * (RUN_SPEED if sprint else WALK_SPEED)
-		velocity.z = moving.z * (RUN_SPEED if sprint else WALK_SPEED)
-		_play("Run" if sprint and moving.length() > 0.1 else ("Walk" if moving.length() > 0.1 else "Idle"))
+		var move_speed := PILOT_STROLL_SPEED if stroll else (RUN_SPEED if sprint else WALK_SPEED)
+		velocity.x = moving.x * move_speed
+		velocity.z = moving.z * move_speed
+		if moving.length() > 0.1:
+			_play("Stroll" if stroll else ("Run" if sprint else "Walk"))
+		else:
+			_play("Idle")
 	if moving.length() > 0.1 and dodge_t <= 0.0 and attack_t <= 0.0:
 		last_face = moving
 	if last_face.length() > 0.0:
-		var desired_yaw := atan2(-last_face.x, -last_face.z)
+		var desired_yaw := atan2(-last_face.x, -last_face.z) + model_yaw_offset
 		body.rotation.y = lerp_angle(body.rotation.y, desired_yaw, minf(1.0, delta * 13.0))
 	velocity.y = -GRAVITY if is_on_floor() else velocity.y - GRAVITY * delta
 	move_and_slide()

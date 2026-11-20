@@ -45,6 +45,8 @@ void fragment() {
 """
 var hp_shade: ColorRect
 var meta_cache: Dictionary
+var xp_tex: Texture2D
+var xp_tile_w := 120.0
 var mp_shade: ColorRect
 var left_piece: TextureRect
 var right_piece: TextureRect
@@ -226,26 +228,32 @@ func _build() -> void:
 	var rmap := func(v: Array) -> Rect2: return Rect2(ro + Vector2(v[0], v[1]) * ui_k, Vector2(v[2], v[3]) * ui_k)
 	# XP strip: runs from the potion belt's inner edge to the skill panel's inner edge along the bottom, tucked a
 	# little under both frames (drawn behind them) so it reads as one piece slotted between the two panels.
-	var X: Dictionary = meta["xp_strip"]
-	var sh: float = 34.0 * ui_k
+	# frame tiled from the skill panel's own bronze/stone border (build_hud_extras.py), groove in the middle
+	var XF: Dictionary = meta["xp_frame"]
+	var sh: float = float(XF["size"][1]) * ui_k
 	var tuck: float = 12.0 * ui_k
-	var ex0: float = lo.x + float(L["panel_inner_x"]) * ui_k     # belt's inner (right) edge
+	var ex0: float = lo.x + float(L["panel_inner_x"]) * ui_k     # left panel's inner (right) edge
 	var ex1: float = ro.x + float(R["panel_inner_x"]) * ui_k     # skill panel's inner (left) edge
-	var strip := NinePatchRect.new()
-	strip.texture = _tex("hud_xp_strip@2x" if hi else "hud_xp_strip")
-	var cap: int = int(float(X["size"][0]) * float(X["cap_frac"]) * (2.0 if hi else 1.0)) + 2
-	strip.patch_margin_left = cap; strip.patch_margin_right = cap
-	strip.patch_margin_top = 0; strip.patch_margin_bottom = 0
+	xp_tex = _tex("hud_xp_frame@2x" if hi else "hud_xp_frame")
+	xp_tile_w = float(XF["size"][0]) * ui_k
+	var strip := Control.new()
 	strip.position = Vector2(ex0 - tuck, H - sh)
 	strip.size = Vector2(ex1 - ex0 + 2.0 * tuck, sh)
 	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	strip.draw.connect(func():
+		var x := 0.0
+		while x < strip.size.x:
+			var w: float = minf(xp_tile_w, strip.size.x - x)
+			var src := Rect2(0, 0, xp_tex.get_width() * w / xp_tile_w, xp_tex.get_height())
+			strip.draw_texture_rect_region(xp_tex, Rect2(x, 0, w, strip.size.y), src)
+			x += xp_tile_w)
 	root.add_child(strip)
 	strip_rect = Rect2(strip.position, strip.size)
-	var inner: Array = X["inner_frac"]
+	var gr: Array = XF["groove"]
 	# the fill draws above the pieces, so keep it to the groove visible between them
 	var gx0: float = ex0 + 3 * ui_k
 	var gx1: float = ex1 - 3 * ui_k
-	xp_rect = Rect2(gx0, strip.position.y + sh * float(inner[1]), gx1 - gx0, sh * float(inner[3]))
+	xp_rect = Rect2(gx0, strip.position.y + float(gr[1]) * ui_k, gx1 - gx0, float(gr[3]) * ui_k)
 	root.add_child(left_piece)
 	root.add_child(right_piece)
 	var dl: Array = L["disc"]
@@ -648,8 +656,12 @@ func _draw_overlay() -> void:
 			overlay.draw_rect(Rect2(r.position, Vector2(r.size.x, r.size.y * f)), Color(0, 0, 0, 0.62))
 	# XP fill in the redrawn strip's groove
 	var xp_frac := fposmod(0.42 + lab.kills * 0.07, 1.0)
-	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, xp_rect.size.y)), Color("8a4fd8"))
-	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, 3)), Color("c7a3ff"))
+	var fw: float = xp_rect.size.x * xp_frac
+	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y)), Color("6d35b8"))
+	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y * 0.5)), Color("8c55dc"))
+	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, maxf(1.0, xp_rect.size.y * 0.18))), Color("c9a8ff"))
+	if fw > 2.0:
+		overlay.draw_rect(Rect2(xp_rect.position + Vector2(fw - 2.0, 0), Vector2(2.0, xp_rect.size.y)), Color("e8dcff"))
 	# minimap frame + markers
 	overlay.draw_rect(minimap_rect, GOLD, false, 2.0)
 	var mm_scale := minimap_rect.size.y / minimap_cam.size

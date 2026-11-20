@@ -97,3 +97,12 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
   the skill panel's inner edge, tucked 12 px under both frames and seated on the screen's bottom edge.
 - Outer statue edges mirrored outward so every row they occupy reaches the screen edge (no see-through sliver).
 - Tests: arpg_hud 72/72 (adds strip-tuck, fill-inside-groove, solid left/right edge columns).
+
+## Revision 8 (owner: left HP cluster shorter than the right; XP bar needs better texture and framing)
+- Each globe keeps its own artwork (owner: "the left and right orbs have their own artwork", as in PoE / Diablo; a
+  mirrored-left experiment was discarded unpublished). The left art is scaled so both corner pieces stand the same
+  225 px at 1080p: statues, rings and panels line up; globes 78.5 / 74 px.
+- XP bar frame (`tools/build_hud_extras.py`): tiled from the skill panel's own top and bottom bronze/stone borders
+  with a recessed bevelled groove between them, so the bar reads as the same material as the panels; gradient
+  purple fill with a highlight and a bright leading edge. Chroma-green fringe removed from both pieces.
+- Tests: arpg_hud 73/73 (adds equal corner height); regression 994/994.

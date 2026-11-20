@@ -41,7 +41,9 @@ def disc(rgba, hue_ok):
 PV = 1600 / 6336          # preview thumbnail scale used for the hand measurements
 DISC_1080 = 74.0
 LAYOUT = {   # preview px: disc (cx, cy, r), wells [x0,x1] with shared y, plates y
-    "left":  {"src": "a1_left_raw.png", "disc": (465, 345, 215), "wells": [(765, 900), (915, 1048), (1063, 1196), (1212, 1346), (1380, 1530)],
+    # the left art is composed a little shorter than the right; scale it so both corner pieces stand the same
+    # height on screen (statue, globe ring and panel line up) while each keeps its own artwork
+    "left":  {"src": "a1_left_raw.png", "disc": (465, 345, 215), "disc_1080": 74.0 * 225.0 / 212.0, "wells": [(765, 900), (915, 1048), (1063, 1196), (1212, 1346), (1380, 1530)],
               "well_y": (335, 525), "plate_y": (533, 588)},
     "right": {"src": "a2_right_raw.png", "disc": (1210, 385, 210), "wells": [(176, 318), (336, 476), (494, 634), (652, 792), (810, 950)],
               "well_y": (355, 527), "plate_y": (545, 610)},
@@ -52,7 +54,7 @@ meta = {"source": "Higgsfield nano_banana_2_1 redraw of the owner's HUD mockup (
 for name, L in LAYOUT.items():
     rgba, (ox, oy) = key(f"{SRC}/{L['src']}")
     H, W = rgba.shape[:2]
-    k = DISC_1080 / (L["disc"][2] / PV)
+    k = L.get("disc_1080", DISC_1080) / (L["disc"][2] / PV)
     al = rgba[..., 3]
     mid = int((L["well_y"][0] + L["well_y"][1]) / 2 / PV - oy)       # a row through the slot wells
     opaque = np.where(al[mid] > 0.5)[0]
@@ -88,7 +90,8 @@ for name, L in LAYOUT.items():
     for x0, x1 in L["wells"]:
         a, b = P(x0, L["well_y"][0]), P(x1, L["well_y"][1]); wl.append([a[0], a[1], round(b[0] - a[0], 2), round(b[1] - a[1], 2)])
         a, b = P(x0, L["plate_y"][0]), P(x1, L["plate_y"][1]); pl.append([a[0], a[1], round(b[0] - a[0], 2), round(b[1] - a[1], 2)])
-    meta[name] = {"file": f"hud_{name}_hd.png", "size": [tw, th], "disc": [c[0], c[1], DISC_1080, DISC_1080], "wells": wl, "plates": pl,
+    dr = L.get("disc_1080", DISC_1080)
+    meta[name] = {"file": f"hud_{name}_hd.png", "size": [tw, th], "disc": [c[0], c[1], round(dr, 2), round(dr, 2)], "wells": wl, "plates": pl,
                   "panel_inner_x": round(panel_edge * k, 2),
                   "panel_bottom_band": [round((H - 0.11 * H) * k, 2), round(H * k, 2)]}
     print(name, "scale %.4f" % k, (tw, th), "disc", meta[name]["disc"], "well0", wl[0])

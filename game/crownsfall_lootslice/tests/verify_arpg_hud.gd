@@ -58,7 +58,8 @@ func _run() -> void:
 	for y in range(int(rimg.get_height() * 0.25), rimg.get_height()):
 		if rimg.get_pixel(rimg.get_width() - 1, y).a < 0.5: rmiss += 1
 	check(rmiss == 0, "Right statue column is solid to the screen edge (%d see-through rows)" % rmiss)
-	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.05, "Both orb rings the same size on screen (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
+	check(absf(lr.size.y - rr.size.y) < 1.0, "Both corner pieces stand the same height (%.0f / %.0f px), each with its own art" % [lr.size.y, rr.size.y])
+	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.08, "Globes within 8%% in size (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
 	check(hud.left_piece.texture.get_width() == roundi(hud.left_piece.size.x) and hud.right_piece.texture.get_width() == roundi(hud.right_piece.size.x), "Pieces draw 1:1 at 1080p (no runtime downscale aliasing)")
 	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")
 	check(hud.bar_slots.size() == 5 and hud.potion_slots.size() == 5, "5 potion wells + 5 skill wells, as in the mockup")

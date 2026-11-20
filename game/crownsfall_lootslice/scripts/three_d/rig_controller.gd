@@ -15,6 +15,11 @@ const WARRIOR_R53_ARM_SKIN_CANDIDATE := "res://models/AOTL_Warrior_R53_ArmSkin_S
 const WARRIOR_R54_ELBOW_HELPER_CANDIDATE := "res://models/AOTL_Warrior_R54_ElbowHelper_SevenClip.glb"
 ## R55: R54 with clip-safe elbow skin and inner-elbow scalloped forearm guards (tools/r55_clip_safe_elbow.py); opt-in.
 const WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE := "res://models/AOTL_Warrior_R55_ClipSafeElbow_SevenClip.glb"
+## Higgsfield pilot knight: Meshy 7 mesh + 24-bone auto-rig, our clips retargeted, library Roll_Dodge/Dead,
+## R52 sword and shield skinned to the hands. Opt-in only (art/higgsfield-pilot-knight branch).
+const PILOT_KNIGHT := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
+const PILOT_KNIGHT_BONES := ["Hips", "Spine", "Head", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot", "LeftHand", "RightHand"]
+const PILOT_ROLL_TIME := 0.9   # the 1.83 s library roll is played at ~2x to fit the dodge window
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
@@ -58,6 +63,24 @@ var equipment_debug_equipped := false
 @export var enable_r53_arm_skin_candidate := false
 @export var enable_r54_elbow_helper_candidate := false
 @export var enable_r55_clip_safe_elbow_candidate := false
+@export var enable_pilot_knight_candidate := false
+
+## The pilot knight uses Meshy's humanoid bone names and a library roll in place of Dodge.
+func _pilot_knight_is_valid(candidate: Node3D) -> bool:
+	var rigs := candidate.find_children("*", "Skeleton3D", true, false)
+	if rigs.is_empty():
+		return false
+	var sk := rigs[0] as Skeleton3D
+	for bone_name in PILOT_KNIGHT_BONES:
+		if sk.find_bone(bone_name) < 0:
+			return false
+	var player := candidate.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if player == null:
+		return false
+	for required_clip in ["Idle", "Walk", "Run", "Roll_Dodge", "Slash", "Cast"]:
+		if not player.has_animation(required_clip):
+			return false
+	return true
 
 func _production_model_is_valid(candidate: Node3D) -> bool:
 	# Do not switch the playable actor solely because an R36 file exists.
@@ -102,6 +125,8 @@ func _ready() -> void:
 		model_candidates.push_front({"path": WARRIOR_R54_ELBOW_HELPER_CANDIDATE, "source": "warrior_r54_opt_in"})
 	if enable_r55_clip_safe_elbow_candidate:
 		model_candidates.push_front({"path": WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE, "source": "warrior_r55_opt_in"})
+	if enable_pilot_knight_candidate:
+		model_candidates.push_front({"path": PILOT_KNIGHT, "source": "pilot_knight_opt_in"})
 	for option in model_candidates:
 		var path: String = option["path"]
 		if not ResourceLoader.exists(path):
@@ -110,7 +135,8 @@ func _ready() -> void:
 		if packed == null:
 			continue
 		var candidate := packed.instantiate() as Node3D
-		if candidate != null and _production_model_is_valid(candidate):
+		var valid := candidate != null and (_pilot_knight_is_valid(candidate) if option["source"] == "pilot_knight_opt_in" else _production_model_is_valid(candidate))
+		if valid:
 			body.free()
 			body = candidate
 			active_model_source = option["source"]
@@ -133,6 +159,8 @@ func _ready() -> void:
 	# GLB and the older models' animation mappings are never altered.
 	if active_model_source in ["warrior_r50_opt_in", "warrior_r52_opt_in", "warrior_r53_opt_in", "warrior_r54_opt_in", "warrior_r55_opt_in"] and clip_names.has("Slash_FullBody_R50"):
 		clip_names["Slash"] = clip_names["Slash_FullBody_R50"]
+	if active_model_source == "pilot_knight_opt_in":
+		_prepare_pilot_knight_clips()
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.26
 	capsule.height = 1.95
@@ -215,11 +243,30 @@ func _toggle_equipment_socket_preview() -> void:
 			equipment_sockets.equip_node(slot, _debug_equipment_item(slot), offset)
 
 
+## Pilot knight: Dodge plays the library roll in place (the controller moves the body), Death plays Dead.
+func _prepare_pilot_knight_clips() -> void:
+	clip_names["Dodge"] = clip_names["Roll_Dodge"]
+	if clip_names.has("Dead"):
+		clip_names["Death"] = clip_names["Dead"]
+	var roll := animation.get_animation(clip_names["Roll_Dodge"])
+	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	for t in roll.get_track_count():
+		if roll.track_get_type(t) != Animation.TYPE_POSITION_3D or not String(roll.track_get_path(t)).ends_with(":Hips"):
+			continue
+		# keep the height (the tuck), drop the forward travel (root motion handled by the controller)
+		var first: Vector3 = roll.track_get_key_value(t, 0)
+		for k in roll.track_get_key_count(t):
+			var v: Vector3 = roll.track_get_key_value(t, k)
+			roll.track_set_key_value(t, k, Vector3(first.x, v.y, first.z))
+
 func _play(clip: String) -> void:
 	if animation == null or not clip_names.has(clip):
 		return
 	if anim_state != clip:
-		animation.play(clip_names[clip], 0.16)
+		var speed := 1.0
+		if active_model_source == "pilot_knight_opt_in" and clip == "Dodge":
+			speed = animation.get_animation(clip_names[clip]).length / PILOT_ROLL_TIME
+		animation.play(clip_names[clip], 0.16, speed)
 		anim_state = clip
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -255,7 +302,7 @@ func _attack(kind: String, duration: float) -> void:
 func _dodge() -> void:
 	if dodge_t > 0.0 or dodge_cd > 0.0 or attack_t > 0.0:
 		return
-	dodge_t = 0.65
+	dodge_t = PILOT_ROLL_TIME if active_model_source == "pilot_knight_opt_in" else 0.65
 	dodge_cd = 1.1
 	invulnerable = 0.50
 	_play("Dodge")

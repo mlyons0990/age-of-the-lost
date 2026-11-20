@@ -4,7 +4,7 @@ extends SceneTree
 ## feet stay on the ground in Idle/Slash, the sword hand sweeps in Slash, and the Dodge travels low.
 ## --shots=<dir> renders 8 frames per clip from a 3/4 camera.
 const MODEL := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
-const CLIPS := ["Idle", "Walk", "Run", "Slash", "Roll_Dodge", "Cast"]
+const CLIPS := ["Idle", "Walk", "Run", "Slash", "Roll_Dodge", "Cast", "Dead"]
 var checks := 0
 var failures := 0
 var shots := ""
@@ -104,6 +104,13 @@ func _run() -> void:
 			check(foot_min < 0.08, c + ": feet stay planted (lowest toe %.3f m)" % foot_min)
 		if c == "Slash":
 			check(hand_path > 0.8, "Slash: sword hand sweeps (%.2f m path)" % hand_path)
+		if c == "Dead":
+			ap.play(c, 0); ap.seek(L, true)
+			var end_hips := world(sk, "Hips").y
+			var end_head := world(sk, "Head").y
+			print("DEAD end pose: hips %.2f m, head %.2f m" % [end_hips, end_head])
+			check(end_hips < 0.4 and end_head < 0.6, "Dead ends lying on the floor (hips %.2f m, head %.2f m)" % [end_hips, end_head])
+			check(blade_pos(blade, sk).y > -0.05 and blade_pos(shield, sk).y > -0.05, "Sword and shield stay above the floor at the end of Dead")
 		if c == "Roll_Dodge":
 			check(hips_min < 0.7, "Roll_Dodge: knight drops low into a ground roll (hips %.2f m)" % hips_min)
 		if c == "Dodge":

@@ -23,6 +23,7 @@ var mode := "3D articulated rig lab"
 @export var use_r53_arm_skin_candidate := false
 @export var use_r54_elbow_helper_candidate := false
 @export var use_r55_clip_safe_elbow_candidate := false
+@export var use_pilot_knight_candidate := false
 var strict_weapon_sweep := false
 var contact_samples: Array = []
 var contact_sample_limit := 24
@@ -44,6 +45,7 @@ func _ready() -> void:
 	player.enable_r53_arm_skin_candidate = use_r53_arm_skin_candidate
 	player.enable_r54_elbow_helper_candidate = use_r54_elbow_helper_candidate
 	player.enable_r55_clip_safe_elbow_candidate = use_r55_clip_safe_elbow_candidate
+	player.enable_pilot_knight_candidate = use_pilot_knight_candidate
 	player.position = Vector3(0, 0.08, 1.8)
 	add_child(player)
 	player.impact.connect(_on_impact)

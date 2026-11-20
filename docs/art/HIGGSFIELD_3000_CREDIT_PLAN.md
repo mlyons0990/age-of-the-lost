@@ -40,7 +40,7 @@ Why this beats the video-clip sprites we made on Nov 12–13:
 - **Cape and long coats:** auto-rigging is humanoid and skins capes to the legs. We may need a cape bone added by the coding chat, or a shorter cape on the 3D version.
 - **One clip per call:** each 3D Rigging call returns the rig with one animation. Clips must be merged into one Godot AnimationLibrary. The coding chat's existing Blender export helper already does this.
 
-## Budget (2,200 planned + 800 reserve)
+## Budget (≈ 1,880 planned + ≈ 1,120 reserve)
 
 ### Phase 0: Pilot (≈ 80 credits) — go/no-go before anything else
 | Item | Credits |

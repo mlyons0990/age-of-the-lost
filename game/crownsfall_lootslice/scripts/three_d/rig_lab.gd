@@ -4,6 +4,7 @@ extends Node3D
 const HERO := preload("res://scripts/three_d/rig_controller.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
 const RADIANT_FX := preload("res://scripts/three_d/radiant_vfx.gd")
+const ARPG_HUD := preload("res://scripts/three_d/arpg_hud.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const WEAPON_SWEEP := preload("res://scripts/three_d/weapon_sweep3d.gd")
@@ -28,6 +29,9 @@ var mode := "3D articulated rig lab"
 @export var use_pilot_mage_candidate := false
 ## Phase 4 groundwork: Hollow Sun radiant FX for the Cast attack (opt-in).
 @export var radiant_spell_fx := false
+## ARPG HUD after the owner's 2.5D lab mockup (globes, belts, minimap, quests, nameplates). Opt-in.
+@export var arpg_hud := false
+var hud: CanvasLayer
 var radiant: Node3D
 const PILOT_CAMERA_FOV := 32.0
 const PILOT_CAMERA_PITCH := 52.0
@@ -89,7 +93,13 @@ func _ready() -> void:
 		e.position = Vector3(-4.2 + i * 2.8, 0.0, -3.6 - (i % 2) * 1.4)
 		add_child(e)
 		targets.append(e)
-	_build_hud()
+	if arpg_hud:
+		hud = ARPG_HUD.new()
+		hud.name = "ArpgHud"
+		add_child(hud)
+		hud.setup(self)
+	else:
+		_build_hud()
 
 func _create_sword_sweep_visualizer() -> void:
 	sword_sweep_debug = MeshInstance3D.new()
@@ -285,6 +295,7 @@ func _process(delta: float) -> void:
 	var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
+	if info == null: return
 	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Sweep: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), ("STRICT" if strict_weapon_sweep else "baseline"), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
 
 func _physics_process(_delta: float) -> void:
@@ -338,6 +349,7 @@ func _physics_process(_delta: float) -> void:
 			kills += 1
 
 func _on_hp(current: float, maximum: float) -> void:
+	if hpbar == null: return
 	hpbar.max_value = maximum
 	hpbar.value = current
 

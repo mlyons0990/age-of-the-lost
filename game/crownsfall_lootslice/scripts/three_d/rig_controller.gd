@@ -43,12 +43,12 @@ const PILOT_SLASH_END := 1.42
 const PILOT_SLASH_TIME := 0.9
 ## Pilot Mage spell set (paid library casts, approved 2026-11-20). Each spell plays its own clip, trimmed to
 ## [t0, t1] s and time-scaled to `time`; `phase` is the measured release (hand-speed peak / arm extension) in
-## the trimmed clip, where the controller emits `impact`. LMB / 1 / 2 / 3 on the Mage.
+## the trimmed clip, where the controller emits `impact`. LMB / Q / E / R on the Mage (1 / 2 / 3 too in legacy labs).
 const MAGE_SPELLS := {
-	"Bolt":     {"clip": "Cast_Bolt",  "t0": 0.17, "t1": 2.42, "time": 1.25, "phase": 0.33, "cd": 0.0, "reach": 6.0},
-	"Lance":    {"clip": "Cast_Lunge", "t0": 0.0,  "t1": 3.38, "time": 2.0,  "phase": 0.31, "cd": 3.0, "reach": 4.5},
-	"Nova":     {"clip": "Cast_Nova",  "t0": 0.0,  "t1": 2.71, "time": 1.8,  "phase": 0.69, "cd": 5.0, "reach": 0.0},
-	"Judgment": {"clip": "Cast_Sweep", "t0": 0.12, "t1": 2.12, "time": 1.5,  "phase": 0.34, "cd": 3.5, "reach": 3.2},
+	"Bolt":     {"clip": "Cast_Bolt",  "t0": 0.17, "t1": 2.42, "time": 1.25, "phase": 0.33, "cd": 0.0, "reach": 6.0, "cost": 6.0},
+	"Lance":    {"clip": "Cast_Lunge", "t0": 0.0,  "t1": 3.38, "time": 2.0,  "phase": 0.31, "cd": 3.0, "reach": 4.5, "cost": 18.0},
+	"Nova":     {"clip": "Cast_Nova",  "t0": 0.0,  "t1": 2.71, "time": 1.8,  "phase": 0.69, "cd": 5.0, "reach": 0.0, "cost": 30.0},
+	"Judgment": {"clip": "Cast_Sweep", "t0": 0.12, "t1": 2.12, "time": 1.5,  "phase": 0.34, "cd": 3.5, "reach": 3.2, "cost": 24.0},
 }
 const PILOT_SWORD_HAND := "RightHand"   # the 1.83 s library roll is played at ~2x to fit the dodge window
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
@@ -74,6 +74,13 @@ var attack_type := "Slash"
 var has_impacted := false
 var dodge_t := 0.0
 var spell_cd := 0.0
+## Mana (ARPG HUD globe). Mage spells cost MAGE_SPELLS[..]["cost"]; the Warrior's Cast costs WARRIOR_CAST_COST.
+var max_mana := 120.0
+var mana := 120.0
+const MANA_REGEN := 6.0
+const WARRIOR_CAST_COST := 20.0
+## Number keys 1/2/3 trigger skills (legacy labs). The ARPG HUD turns this off: 1-5 are potions, skills are Q E R.
+var number_keys_for_skills := true
 ## Current Mage spell ("" for the generic Cast); cooldowns per spell.
 var spell_variant := ""
 var spell_cds := {}
@@ -408,9 +415,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_F10: _toggle_terrain_ik_debug()
 			KEY_F11: _toggle_equipment_socket_preview()
 			KEY_SPACE: _dodge()
-			KEY_1: _mage_or("Lance", "Cleave", 0.76)
-			KEY_2: _mage_or("Nova", "Dash", 0.68)
-			KEY_3: _mage_or("Judgment", "Cast", 1.4)
+			# W is movement (WASD), so the skill row is Q / E / R (T reserved).
+			KEY_Q: _mage_or("Lance", "Cleave", 0.76)
+			KEY_E: _mage_or("Nova", "Dash", 0.68)
+			KEY_R: _mage_or("Judgment", "Cast", 1.4)
+			KEY_1:
+				if number_keys_for_skills: _mage_or("Lance", "Cleave", 0.76)
+			KEY_2:
+				if number_keys_for_skills: _mage_or("Nova", "Dash", 0.68)
+			KEY_3:
+				if number_keys_for_skills: _mage_or("Judgment", "Cast", 1.4)
 
 func is_pilot_mage() -> bool:
 	return active_model_source == "pilot_mage_opt_in" and clip_names.has("Mage_Judgment")
@@ -428,6 +442,9 @@ func cast_spell(spell: String) -> bool:
 	if float(spell_cds.get(spell, 0.0)) > 0.0:
 		return false
 	var spec: Dictionary = MAGE_SPELLS[spell]
+	if mana < float(spec.get("cost", 0.0)):
+		return false
+	mana -= float(spec.get("cost", 0.0))
 	spell_variant = spell
 	spell_cds[spell] = spec["cd"]
 	clip_names["Cast"] = clip_names["Mage_" + spell]
@@ -447,8 +464,10 @@ func spell_reach() -> float:
 func _attack(kind: String, duration: float) -> void:
 	if attack_t > 0.0 or dodge_t > 0.0 or attack_cd > 0.0:
 		return
-	if kind == "Cast" and spell_cd > 0.0:
+	if kind == "Cast" and (spell_cd > 0.0 or mana < WARRIOR_CAST_COST):
 		return
+	if kind == "Cast":
+		mana -= WARRIOR_CAST_COST
 	if is_pilot_hero() and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
 		duration = PILOT_SLASH_TIME
 	attack_serial += 1
@@ -472,6 +491,7 @@ func _physics_process(delta: float) -> void:
 	if arm_carry != null:   # ease the arm layer in/out over ~0.2 s so clip changes don't pop
 		arm_carry.influence = move_toward(arm_carry.influence, arm_carry_target, delta * 5.0)
 	attack_cd = maxf(0.0, attack_cd - delta)
+	mana = minf(max_mana, mana + MANA_REGEN * delta)
 	for k in spell_cds.keys():
 		spell_cds[k] = maxf(0.0, spell_cds[k] - delta)
 	spell_cd = maxf(0.0, spell_cd - delta)
@@ -556,3 +576,13 @@ func receive_damage(damage: float) -> void:
 		hp = max_hp
 		global_position = Vector3(0, 0.08, 0)
 		health_changed.emit(hp, max_hp)
+
+## Potions (ARPG HUD belt). Returns true if anything was restored.
+func restore(hp_amount: float, mana_amount: float) -> bool:
+	var before_hp := hp
+	var before_mana := mana
+	hp = minf(max_hp, hp + hp_amount)
+	mana = minf(max_mana, mana + mana_amount)
+	if hp != before_hp:
+		health_changed.emit(hp, max_hp)
+	return hp != before_hp or mana != before_mana

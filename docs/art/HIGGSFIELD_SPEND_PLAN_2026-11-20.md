@@ -1,6 +1,6 @@
 # Higgsfield credit plan, revised after the knight pilot (2026-11-20)
 
-Balance: 2,954 before the two pilot clips; **2,938** once they finish. Every paid job still needs the owner's
+Balance verified 2026-11-20: **2,946** (Roll_Dodge charged; Dead clip held for approval). Every paid job still needs the owner's
 OK on the specific operation and its quoted cost. Figures below are live quotes from 2026-11-20 where marked (Q).
 
 ## What the pilot proved
@@ -40,6 +40,6 @@ references; props, VFX and UI can mostly be done in Godot/Blender with generated
 - Report spend per phase on completion; ledger in `art/higgsfield_2026-11/LEDGER.csv`.
 
 ## Open owner decisions
-1. "Only original Higgsfield art" vs. using licensed/free props for clutter (Phase 3 assumes Blender/existing art, not third-party).
+1. Owner plan now allows appropriately licensed assets incl. patch.gg (per-asset licenses, PR #72) after existing/Blender sources.
 2. Camera: the handoff's 26–28 m view gives a 57 px knight, not ~100 px; pick one target.
 3. Whether credits renew monthly on the Ultra plan (the 3,000 grant was dated 2026-11-13) — if so, the reserve can be spent more freely.

@@ -2,6 +2,7 @@ extends SceneTree
 ## The Higgsfield pilot knight driven by the real rig-lab controller: loads, idles, walks, slashes the
 ## training dummy, rolls (in place, controller-driven travel, i-frames) and still fights by default rules.
 const LAB := preload("res://scripts/three_d/rig_lab.gd")
+const WEAPON_SWEEP := preload("res://scripts/three_d/weapon_sweep3d.gd")
 var checks := 0
 var failures := 0
 
@@ -15,6 +16,7 @@ func _initialize() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
+	root.size = Vector2i(1920, 1080)
 	var lab = LAB.new()
 	lab.use_pilot_knight_candidate = true
 	root.add_child(lab)
@@ -25,6 +27,25 @@ func _run() -> void:
 	verify(actor.clip_names.get("Dodge", "") == actor.clip_names.get("Roll_Dodge", "x"), "Dodge plays the library roll")
 	verify(actor.anim_state == "Idle", "Knight starts idle")
 	var sk: Skeleton3D = actor.body.find_children("*", "Skeleton3D", true, false)[0]
+	var hd := sk.global_transform * sk.get_bone_global_pose(sk.find_bone("Head")).origin
+	var hf := sk.global_transform * sk.get_bone_global_pose(sk.find_bone("headfront")).origin
+	verify((hf - hd).normalized().dot(actor.last_face) > 0.9, "Knight faces the controller's facing direction")
+	verify(actor.terrain_ik_available, "Terrain foot IK runs on the knight's legs")
+	verify(actor.equipment_sockets_available, "Weapon/offhand sockets resolve on the knight's hands")
+	verify(not actor.blade_segment().is_empty(), "Blade segment comes from the real sword mesh")
+	var seg: Dictionary = actor.blade_segment()
+	if not seg.is_empty():
+		var blen: float = (seg["hilt"] as Vector3).distance_to(seg["tip"])
+		print("PILOT LAB blade length %.2f m" % blen)
+		verify(blen > 0.4 and blen < 1.0, "Blade segment has a sword's length (%.2f m)" % blen)
+	# camera: ~100 px knight at 1080p
+	for i in 30:
+		await process_frame
+	var cam: Camera3D = lab.camera
+	var top := cam.unproject_position(actor.global_position + Vector3.UP * 1.75).y
+	var bottom := cam.unproject_position(actor.global_position).y
+	print("PILOT LAB camera: knight %.0f px tall at 1080p (fov %.0f, perspective %s)" % [bottom - top, cam.fov, str(cam.projection == Camera3D.PROJECTION_PERSPECTIVE)])
+	verify(cam.projection == Camera3D.PROJECTION_PERSPECTIVE and absf((bottom - top) - 100.0) < 12.0, "Gameplay camera shows the knight ~100 px tall (%.0f px)" % (bottom - top))
 	var hips := sk.find_bone("Hips")
 	# slash the front dummy
 	var dummy = lab.targets[0]
@@ -54,5 +75,27 @@ func _run() -> void:
 	verify(drift < 0.45, "Roll animation adds no root-motion drift (hips stay over the body, %.2f m)" % drift)
 	await root.get_tree().create_timer(0.4).timeout
 	verify(actor.dodge_t <= 0.0, "Roll finishes and control returns")
+	# strict swept-blade mode with the knight's real sword
+	lab.strict_weapon_sweep = true
+	dummy.global_position = actor.global_position + actor.last_face * 0.65   # same placement as the R52 strict test
+	dummy.hp = 100.0
+	lab.sweep_hit_instances.clear()
+	await physics_frame
+	actor._attack("Slash", 0.72)
+	var most := 0
+	var nearest := 99.0
+	for i in 55:
+		await physics_frame
+		most = maxi(most, lab.contact_samples.size())
+		var sg: Dictionary = actor.blade_segment()
+		if not sg.is_empty():
+			nearest = minf(nearest, sqrt(WEAPON_SWEEP.point_segment_distance_squared(dummy.damage_center(), sg["hilt"], sg["tip"])))
+	print("PILOT LAB strict sweep: dummy hp %.0f, max samples %d, nearest blade-to-dummy %.2f m (dummy radius %.2f), face %s" % [dummy.hp, most, nearest, dummy.damage_radius(), str(actor.last_face)])
+	verify(most >= 10, "Strict swept-blade mode samples the knight's real sword through the swing (%d samples)" % most)
+	# Known limitation, recorded rather than asserted: the inherited R50 Slash swings up and out to the side,
+	# so the real 0.62 m sword reaches only ~0.2 m forward and misses a dummy 0.65 m ahead in strict mode
+	# (R52's strict test used a virtual 0.85 m blade on a tuned socket axis). Default combat still hits.
+	print("KNOWN LIMITATION strict forward reach: nearest %.2f m to a dummy 0.65 m ahead (hp %.0f)" % [nearest, dummy.hp])
+	lab.strict_weapon_sweep = false
 	print("AOTL PILOT KNIGHT LAB RESULT %d checks; %d failures" % [checks, failures])
 	quit(0 if failures == 0 else 1)

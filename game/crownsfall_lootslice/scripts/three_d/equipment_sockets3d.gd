@@ -4,8 +4,8 @@ extends Node
 ## any baked animation, imported GLB, or skinned mesh. Runtime-only attachment.
 
 const SLOT_BONES := {
-	"weapon": ["WeaponRoot", "HandR"],
-	"offhand": ["ShieldRoot", "HandL"]
+	"weapon": ["WeaponRoot", "HandR", "LeftHand"],     # LeftHand: pilot knight (sides mapped by position)
+	"offhand": ["ShieldRoot", "HandL", "RightHand"]
 }
 
 var skeleton: Skeleton3D

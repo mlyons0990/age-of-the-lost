@@ -45,6 +45,12 @@ static func stance_weight(phase: float, side: String, running: bool) -> float:
 	var outer := 0.11 if running else 0.135
 	return 1.0 - smoothstep(inner, outer, d)
 
+const LEG_BONES := {
+	"L": [["ThighL", "AnkleL"], ["RightUpLeg", "RightFoot"]],
+	"R": [["ThighR", "AnkleR"], ["LeftUpLeg", "LeftFoot"]]
+}
+var leg_names := {}
+
 func configure(model_root: Node3D, character: CharacterBody3D, player: AnimationPlayer) -> bool:
 	actor = character
 	animation_player = player
@@ -54,12 +60,20 @@ func configure(model_root: Node3D, character: CharacterBody3D, player: Animation
 	skeleton = candidates[0] as Skeleton3D
 	if skeleton == null:
 		return false
+	# R52 hand-built rig names first, then the Meshy auto-rig (pilot knight). Sides are positional:
+	# R52 "L" (−X) is the Meshy "Right*" leg.
 	for side in ["L", "R"]:
-		var thigh := skeleton.find_bone("Thigh" + side)
-		var ankle := skeleton.find_bone("Ankle" + side)
-		if thigh < 0 or ankle < 0:
+		var found := false
+		for names in LEG_BONES[side]:
+			var thigh := skeleton.find_bone(names[0])
+			var ankle := skeleton.find_bone(names[1])
+			if thigh >= 0 and ankle >= 0:
+				leg_names[side] = names
+				ankles[side] = ankle
+				found = true
+				break
+		if not found:
 			return false
-		ankles[side] = ankle
 	for side in ["L", "R"]:
 		var target := Node3D.new()
 		target.name = "TerrainFootTarget" + side
@@ -82,8 +96,8 @@ func configure(model_root: Node3D, character: CharacterBody3D, player: Animation
 		debug_markers[side] = marker
 		var ik := SkeletonIK3D.new()
 		ik.name = "TerrainLegIK" + side
-		ik.root_bone = "Thigh" + side
-		ik.tip_bone = "Ankle" + side
+		ik.root_bone = leg_names[side][0]
+		ik.tip_bone = leg_names[side][1]
 		ik.override_tip_basis = false
 		ik.max_iterations = 16
 		ik.min_distance = 0.004

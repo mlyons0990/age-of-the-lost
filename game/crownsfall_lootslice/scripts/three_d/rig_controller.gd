@@ -161,6 +161,9 @@ func _ready() -> void:
 		clip_names["Slash"] = clip_names["Slash_FullBody_R50"]
 	if active_model_source == "pilot_knight_opt_in":
 		_prepare_pilot_knight_clips()
+		_prepare_pilot_blade()
+		model_yaw_offset = PI
+		body.rotation.y = PI
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.26
 	capsule.height = 1.95
@@ -242,6 +245,34 @@ func _toggle_equipment_socket_preview() -> void:
 				offset.origin = Vector3(0, -0.08, 0)
 			equipment_sockets.equip_node(slot, _debug_equipment_item(slot), offset)
 
+
+## Pilot knight: blade hilt/tip in the sword-hand bone's space, from the real crossguard and tip meshes.
+var pilot_blade := {}
+## The hand-built rigs face −Z; the Meshy knight faces +Z (glTF forward), so it turns an extra half circle.
+var model_yaw_offset := 0.0
+
+func _prepare_pilot_blade() -> void:
+	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+	var points := {}
+	for part in [["hilt", "WEAPON_Crossguard"], ["tip", "WEAPON_Tip"]]:
+		var mi := body.find_child(part[1] + "*", true, false) as MeshInstance3D
+		if mi == null or mi.skin == null:
+			return
+		for i in mi.skin.get_bind_count():
+			var b := mi.skin.get_bind_bone(i)
+			var name := sk.get_bone_name(b) if b >= 0 else String(mi.skin.get_bind_name(i))
+			if name == "LeftHand":
+				points[part[0]] = mi.skin.get_bind_pose(i) * mi.mesh.get_aabb().get_center()
+	if points.size() == 2:
+		pilot_blade = {"skeleton": sk, "bone": sk.find_bone("LeftHand"), "hilt": points["hilt"], "tip": points["tip"]}
+
+## World-space blade segment for swept hit tests, or {} when this model has none.
+func blade_segment() -> Dictionary:
+	if pilot_blade.is_empty():
+		return {}
+	var sk: Skeleton3D = pilot_blade["skeleton"]
+	var pose: Transform3D = sk.global_transform * sk.get_bone_global_pose(int(pilot_blade["bone"]))
+	return {"hilt": pose * (pilot_blade["hilt"] as Vector3), "tip": pose * (pilot_blade["tip"] as Vector3)}
 
 ## Pilot knight: Dodge plays the library roll in place (the controller moves the body), Death plays Dead.
 func _prepare_pilot_knight_clips() -> void:
@@ -365,7 +396,7 @@ func _physics_process(delta: float) -> void:
 	if moving.length() > 0.1 and dodge_t <= 0.0 and attack_t <= 0.0:
 		last_face = moving
 	if last_face.length() > 0.0:
-		var desired_yaw := atan2(-last_face.x, -last_face.z)
+		var desired_yaw := atan2(-last_face.x, -last_face.z) + model_yaw_offset
 		body.rotation.y = lerp_angle(body.rotation.y, desired_yaw, minf(1.0, delta * 13.0))
 	velocity.y = -GRAVITY if is_on_floor() else velocity.y - GRAVITY * delta
 	move_and_slide()

@@ -24,6 +24,16 @@ var mode := "3D articulated rig lab"
 @export var use_r54_elbow_helper_candidate := false
 @export var use_r55_clip_safe_elbow_candidate := false
 @export var use_pilot_knight_candidate := false
+const PILOT_CAMERA_FOV := 32.0
+const PILOT_CAMERA_PITCH := 52.0
+@export var pilot_camera_distance := 21.0
+
+## Same compass direction as the lab's original camera, pitched 52° down, at a distance that makes
+## the 1.75 m knight ~100 px tall on a 1080p screen.
+func pilot_camera_offset() -> Vector3:
+	var flat := Vector2(8.5, 11.0).normalized()
+	var p := deg_to_rad(PILOT_CAMERA_PITCH)
+	return Vector3(flat.x * cos(p), sin(p), flat.y * cos(p)) * pilot_camera_distance
 var strict_weapon_sweep := false
 var contact_samples: Array = []
 var contact_sample_limit := 24
@@ -51,8 +61,13 @@ func _ready() -> void:
 	player.impact.connect(_on_impact)
 	player.health_changed.connect(_on_hp)
 	camera = Camera3D.new()
-	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-	camera.size = 14.0
+	if use_pilot_knight_candidate:
+		# Owner target (2026-11-20): PoE-style perspective, ~100 px tall knight at 1080p.
+		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
+		camera.fov = PILOT_CAMERA_FOV
+	else:
+		camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+		camera.size = 14.0
 	camera.current = true
 	add_child(camera)
 	player.camera = camera
@@ -257,7 +272,7 @@ func _build_hud() -> void:
 
 func _process(delta: float) -> void:
 	if player == null: return
-	var goal: Vector3 = player.global_position + Vector3(8.5, 11.0, 11.0)
+	var goal: Vector3 = player.global_position + (pilot_camera_offset() if use_pilot_knight_candidate else Vector3(8.5, 11.0, 11.0))
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
 	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Sweep: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), ("STRICT" if strict_weapon_sweep else "baseline"), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
@@ -275,8 +290,10 @@ func _physics_process(_delta: float) -> void:
 		last_sampled_attack_serial = player.attack_serial
 		contact_samples.clear()
 		sweep_hit_instances.clear()
-	var socket: BoneAttachment3D = player.equipment_sockets.get_socket("weapon")
-	var sample: Dictionary = WEAPON_SWEEP.blade_from_socket(socket)
+	var sample: Dictionary = player.blade_segment()
+	if sample.is_empty():
+		var socket: BoneAttachment3D = player.equipment_sockets.get_socket("weapon")
+		sample = WEAPON_SWEEP.blade_from_socket(socket)
 	if sample.is_empty():
 		return
 	contact_samples.append(sample)

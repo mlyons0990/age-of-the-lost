@@ -25,6 +25,11 @@ func _shot(scene: String, name: String, spell: String) -> void:
 		a._attack("Cast", 1.4)
 		await create_timer(1.6).timeout
 	lab.hud.drink(0)
+	var sk: Skeleton3D = a.body.find_children("*", "Skeleton3D", true, false)[0]
+	var head_y: float = (sk.global_transform * sk.get_bone_global_pose(sk.find_bone("head_end"))).origin.y
+	var top: float = lab.camera.unproject_position(a.global_position + Vector3.UP * head_y).y
+	var bot: float = lab.camera.unproject_position(a.global_position).y
+	print("HERO on-screen height %.0f px (head_end %.2f m) at %s" % [bot - top, head_y, root.size])
 	await process_frame; await process_frame
 	await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png("%s/hud_%s.png" % [out, name])

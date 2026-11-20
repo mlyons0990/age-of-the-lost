@@ -31,3 +31,11 @@ Tests: `tests/verify_arpg_hud.gd` 35/35; mage 83/83; knight lab 29/29; armed kni
 
 Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mockup; HUD is laid out for
 1920×1080 (no resolution scaling yet); XP/level are cosmetic.
+
+## Revision 2 (owner feedback: "no empty space between the left and right screen borders … anchored to the sides")
+- Bottom HUD is now one edge-to-edge frame (`hud_frame.png` from the 2D game, slot map `hud_frame.json`), anchored
+  left/right/bottom and scaled to the viewport width: life orb flush in the bottom-left corner, 5 potion sockets,
+  centre panel with "Lv. 25" + XP bar, 7 skill sockets (Q E R T F | LMB RMB), mana orb flush bottom-right.
+- The frame's painted orbs are darkened from the top as HP/MP drop (circular-segment shade + surface line).
+- Camera: measured hero height **100 px** at 1080p (knight standing, head_end 1.69 m) with the existing pilot camera.
+- Tests: `verify_arpg_hud.gd` 40/40 (adds anchoring, full-width, bottom-edge, corner-orb and socket-count checks).

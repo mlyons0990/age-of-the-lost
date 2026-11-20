@@ -29,6 +29,12 @@ func _run() -> void:
 			check(ResourceLoader.exists(hud.TILES + spec[1] + ".png"), "Skill icon exists: " + spec[1])
 	for t in ["orb_life_full", "orb_life_empty", "orb_mana_full", "orb_mana_empty", "belt_plate", "slot_socket", "potion", "potion_mana", "lock"]:
 		check(ResourceLoader.exists(hud.UI + t + ".png"), "HUD art exists: " + t)
+	var vw: float = lab.get_viewport().get_visible_rect().size.x
+	check(hud.frame != null and hud.frame.anchor_left == 0.0 and hud.frame.anchor_right == 1.0 and hud.frame.anchor_bottom == 1.0, "Bottom frame anchored edge to edge")
+	check(absf(hud.frame.get_global_rect().position.x) < 1.0 and absf(hud.frame.get_global_rect().end.x - vw) < 1.0, "Frame spans the full width (%s)" % hud.frame.get_global_rect())
+	check(absf(hud.frame.get_global_rect().end.y - lab.get_viewport().get_visible_rect().size.y) < 1.0, "Frame sits on the bottom edge")
+	check(hud.orb_l.x - hud.orb_l.z < 80.0 and hud.orb_r.x + hud.orb_r.z > vw - 80.0, "Orbs sit at the screen corners")
+	check(hud.bar_slots.size() == 7 and hud.potion_slots.size() == 5, "5 potion + 7 skill sockets from hud_frame.json")
 	check(hud.minimap_vp.world_3d == lab.get_world_3d(), "Minimap renders the lab world")
 	check(hud.quest_progress == 0 and hud.find_child("Quest_ALostTomes", true, false) == null and hud.find_child("Quest_TheLostTomes", true, false) != null, "Quest tracker shows both quests")
 	var hidden := true
@@ -39,8 +45,8 @@ func _run() -> void:
 	a.mana = a.max_mana * 0.25
 	await process_frame
 	await process_frame
-	check(absf(hud.hp_globe.value - 500.0) < 2.0, "HP globe at 50%% (%.0f)" % hud.hp_globe.value)
-	check(absf(hud.mp_globe.value - 250.0) < 20.0, "MP globe at ~25%% (%.0f)" % hud.mp_globe.value)
+	check(absf(hud.hp_frac - 0.5) < 0.01, "HP orb shaded to 50%% (%.2f)" % hud.hp_frac)
+	check(absf(hud.mp_frac - 0.25) < 0.03, "MP orb shaded to ~25%% (%.2f)" % hud.mp_frac)
 	check(hud.hp_label.text == "HP %d / %d" % [roundi(a.hp), roundi(a.max_hp)], "HP label " + hud.hp_label.text)
 	# potions
 	var hp0: float = a.hp

@@ -13,11 +13,12 @@ const PANEL_BG := Color(0.05, 0.05, 0.07, 0.78)
 const LEVEL := 25
 
 ## Bar layouts per hero: [key label, icon tile, MAGE_SPELLS key or warrior attack kind].
-## W belongs to WASD movement, so skills sit on Q E R (T and RMB reserved, shown locked).
-const MAGE_BAR := [["LMB", "starfall_script", "Bolt"], ["RMB", "", ""], ["Q", "epoch_lance", "Lance"],
-	["E", "solar_writ", "Nova"], ["R", "dawnfall", "Judgment"], ["T", "", ""]]
-const WARRIOR_BAR := [["LMB", "slash", "Slash"], ["RMB", "", ""], ["Q", "cleave", "Cleave"],
-	["E", "charge", "Dash"], ["R", "rally", "Cast"], ["T", "", ""]]
+## Seven frame sockets: Q E R T F | LMB RMB. W belongs to WASD movement, so skills sit on Q E R
+## (T, F and RMB reserved, shown locked).
+const MAGE_BAR := [["Q", "epoch_lance", "Lance"], ["E", "solar_writ", "Nova"], ["R", "dawnfall", "Judgment"],
+	["T", "", ""], ["F", "", ""], ["LMB", "starfall_script", "Bolt"], ["RMB", "", ""]]
+const WARRIOR_BAR := [["Q", "cleave", "Cleave"], ["E", "charge", "Dash"], ["R", "rally", "Cast"],
+	["T", "", ""], ["F", "", ""], ["LMB", "slash", "Slash"], ["RMB", "", ""]]
 ## Potion belt: [key, kind, hp, mana]
 const POTIONS := [[KEY_1, "hp", 45.0, 0.0], [KEY_2, "hp", 45.0, 0.0], [KEY_3, "hp", 45.0, 0.0],
 	[KEY_4, "mana", 0.0, 60.0], [KEY_5, "mana", 0.0, 60.0]]
@@ -27,8 +28,11 @@ var lab: Node3D
 var player: CharacterBody3D
 var font: FontFile
 var font_regular: FontFile
-var hp_globe: TextureProgressBar
-var mp_globe: TextureProgressBar
+var frame: TextureRect
+var orb_l: Vector3   # x, y, radius of the frame's painted life orb (screen px)
+var orb_r: Vector3
+var hp_frac := 1.0
+var mp_frac := 1.0
 var hp_label: Label
 var mp_label: Label
 var overlay: Control          # slot cooldowns, XP, minimap markers (above the panels)
@@ -79,19 +83,6 @@ func _panel(rect: Rect2, alpha := 0.78) -> Panel:
 	p.size = rect.size
 	p.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return p
-
-func _globe(full: String, empty: String, rect: Rect2) -> TextureProgressBar:
-	var g := TextureProgressBar.new()
-	g.texture_under = _tex(empty)
-	g.texture_progress = _tex(full)
-	g.fill_mode = TextureProgressBar.FILL_BOTTOM_TO_TOP
-	g.nine_patch_stretch = true
-	g.position = rect.position
-	g.size = rect.size
-	g.max_value = 1000
-	g.value = 1000
-	g.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	return g
 
 func _build() -> void:
 	var root := Control.new()
@@ -177,81 +168,81 @@ func _build() -> void:
 		root.add_child(ol)
 		qy += 56
 	# --- bottom: globes, belts, xp
-	var g := 196.0
-	hp_globe = _globe("orb_life_full", "orb_life_empty", Rect2(10, H - g * 1.106 - 8, g, g * 1.106))
-	root.add_child(hp_globe)
-	mp_globe = _globe("orb_mana_full", "orb_mana_empty", Rect2(W - g - 10, H - g * 1.106 - 8, g, g * 1.106))
-	root.add_child(mp_globe)
-	hp_label = _label("HP", 18, IVORY)
-	hp_label.position = Vector2(206, H - 156)
+	# One edge-to-edge frame anchored to the bottom and both sides (2D Crownfall `hud_frame.png`): life orb flush
+	# left, potion sockets, centre panel (XP + level), skill sockets, mana orb flush right. Slot map from
+	# hud_frame.json (1920-wide design space), scaled to the viewport width.
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_frame.json"))
+	var vs: Vector2 = lab.get_viewport().get_visible_rect().size
+	W = vs.x
+	H = vs.y
+	var k: float = W / float(meta["w"])
+	var y0: float = H - float(meta["h"]) * k
+	frame = TextureRect.new()
+	frame.texture = _tex("hud_frame")
+	frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	frame.stretch_mode = TextureRect.STRETCH_SCALE
+	frame.anchor_left = 0.0
+	frame.anchor_right = 1.0
+	frame.anchor_top = 1.0
+	frame.anchor_bottom = 1.0
+	frame.offset_top = -float(meta["h"]) * k
+	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(frame)
+	var ol: Array = meta["orb_l"]
+	var orr: Array = meta["orb_r"]
+	orb_l = Vector3(float(ol[0]) * k, y0 + float(ol[1]) * k, float(ol[2]) * k)
+	orb_r = Vector3(float(orr[0]) * k, y0 + float(orr[1]) * k, float(orr[2]) * k)
+	var slots: Array = []
+	for sl in meta["slots"]:
+		var r := Rect2(float(sl[1]) * k, y0 + float(sl[2]) * k, float(sl[3]) * k, float(sl[4]) * k)
+		var side: float = minf(r.size.x, r.size.y) - 6.0 * k
+		slots.append(Rect2(r.get_center() - Vector2(side, side) * 0.5, Vector2(side, side)))
+	hp_label = _label("HP", int(18 * k), IVORY)
+	hp_label.position = Vector2(float(meta["slots"][0][1]) * k, y0 + 58 * k)
 	root.add_child(hp_label)
-	mp_label = _label("MP", 18, IVORY)
-	mp_label.position = Vector2(W - 206 - 170, H - 156)
+	mp_label = _label("MP", int(18 * k), IVORY)
+	mp_label.size = Vector2(240 * k, 24 * k)
 	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	mp_label.size = Vector2(170, 24)
+	var last: Array = meta["slots"][meta["slots"].size() - 1]
+	mp_label.position = Vector2((float(last[1]) + float(last[3])) * k - mp_label.size.x, y0 + 58 * k)
 	root.add_child(mp_label)
-	var slot := 64.0
-	var gap := 8.0
-	# potion belt (5 potions + tome)
-	var belt_w := 6 * slot + 5 * gap + 34
-	var belt := NinePatchRect.new()
-	belt.texture = _tex("belt_plate")
-	belt.patch_margin_left = 40; belt.patch_margin_right = 40; belt.patch_margin_top = 40; belt.patch_margin_bottom = 40
-	belt.position = Vector2(200, H - 124)
-	belt.size = Vector2(belt_w, 104)
-	belt.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(belt)
-	for i in 6:
-		var r := Rect2(belt.position + Vector2(17 + i * (slot + gap), 14), Vector2(slot, slot))
-		_socket(root, r)
-		if i < 5:
-			var p := TextureRect.new()
-			p.texture = _tex("potion_mana" if POTIONS[i][1] == "mana" else "potion")
-			p.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-			p.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			p.position = r.position + Vector2(6, 4)
-			p.size = r.size - Vector2(12, 8)
-			p.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			root.add_child(p)
-			var kl := _label(str(i + 1), 14, IVORY)
-			kl.position = Vector2(r.position.x + slot * 0.5 - 4, r.end.y + 2)
-			root.add_child(kl)
-			potion_slots.append({"rect": r, "idx": i})
-		else:
-			var tome := _label("📖", 30, GOLD)
-			tome.position = r.position + Vector2(14, 10)
-			root.add_child(tome)
-	# skill bar (LMB + Q W E R T)
-	var bar_w := 6 * slot + 5 * gap + 34
-	var bar := NinePatchRect.new()
-	bar.texture = _tex("belt_plate")
-	bar.patch_margin_left = 40; bar.patch_margin_right = 40; bar.patch_margin_top = 40; bar.patch_margin_bottom = 40
-	bar.position = Vector2(W - 200 - bar_w, H - 124)
-	bar.size = Vector2(bar_w, 104)
-	bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(bar)
+	# potions in sockets 0-4
+	for i in 5:
+		var r: Rect2 = slots[i]
+		var p := TextureRect.new()
+		p.texture = _tex("potion_mana" if POTIONS[i][1] == "mana" else "potion")
+		p.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		p.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		p.position = r.position + r.size * 0.08
+		p.size = r.size * 0.84
+		p.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		root.add_child(p)
+		_keycap(root, str(i + 1), r, k)
+		potion_slots.append({"rect": r, "idx": i})
+	# skills in sockets 5-11 (Q E R T F | LMB RMB)
 	for i in bar_layout.size():
 		var spec: Array = bar_layout[i]
-		var r := Rect2(bar.position + Vector2(17 + i * (slot + gap), 14), Vector2(slot, slot))
-		_socket(root, r)
+		var r: Rect2 = slots[5 + i]
 		var icon := TextureRect.new()
 		icon.texture = load(TILES + spec[1] + ".png") if spec[1] != "" else _tex("lock")
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var inset := 4.0 if spec[1] != "" else 16.0
+		var inset: float = (2.0 if spec[1] != "" else 18.0) * k
 		icon.position = r.position + Vector2(inset, inset)
 		icon.size = r.size - Vector2(inset * 2, inset * 2)
-		icon.modulate = Color.WHITE if spec[1] != "" else Color(1, 1, 1, 0.45)
+		icon.modulate = Color.WHITE if spec[1] != "" else Color(1, 1, 1, 0.35)
 		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		root.add_child(icon)
-		var kl := _label(spec[0], 14, IVORY)
-		kl.position = Vector2(r.position.x + slot * 0.5 - (12 if spec[0].length() > 1 else 5), r.end.y + 2)
-		root.add_child(kl)
+		_keycap(root, spec[0], r, k)
 		bar_slots.append({"rect": r, "key": spec[0], "spell": spec[2]})
-	# XP bar between the belts
-	xp_rect = Rect2(belt.position.x + belt_w + 26, H - 34, bar.position.x - (belt.position.x + belt_w) - 52, 12)
-	var lv := _label("Lv. %d" % LEVEL, 15, IVORY)
-	lv.position = Vector2(xp_rect.get_center().x - 22, xp_rect.position.y - 24)
+	# centre panel: XP bar + level
+	var md: Array = meta["mid"]
+	var mid := Rect2(float(md[0]) * k, y0 + float(md[1]) * k, float(md[2]) * k, float(md[3]) * k)
+	xp_rect = Rect2(mid.position.x + 18 * k, mid.get_center().y + 8 * k, mid.size.x - 36 * k, 11 * k)
+	var lv := _label("Lv. %d" % LEVEL, int(17 * k), IVORY)
+	lv.size = Vector2(mid.size.x, 24 * k)
+	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lv.position = Vector2(mid.position.x, mid.get_center().y - 22 * k)
 	root.add_child(lv)
 	# world-anchored layer + dynamic overlays
 	overlay = Control.new()
@@ -262,6 +253,15 @@ func _build() -> void:
 	for t in lab.targets:
 		if t.title != null:
 			t.title.visible = false
+
+func _keycap(root: Control, text: String, r: Rect2, k: float) -> void:
+	if text == "":
+		return
+	var kl := _label(text, int(13 * k), IVORY)
+	kl.size = Vector2(r.size.x, 18 * k)
+	kl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	kl.position = Vector2(r.position.x, r.end.y - 15 * k)
+	root.add_child(kl)
 
 func _socket(root: Control, r: Rect2) -> void:
 	var s := TextureRect.new()
@@ -293,8 +293,8 @@ func _process(delta: float) -> void:
 		return
 	for i in potion_cds.size():
 		potion_cds[i] = maxf(0.0, potion_cds[i] - delta)
-	hp_globe.value = 1000.0 * player.hp / player.max_hp
-	mp_globe.value = 1000.0 * player.mana / player.max_mana
+	hp_frac = clampf(player.hp / player.max_hp, 0.0, 1.0)
+	mp_frac = clampf(player.mana / player.max_mana, 0.0, 1.0)
 	hp_label.text = "HP %d / %d" % [roundi(player.hp), roundi(player.max_hp)]
 	mp_label.text = "MP %d / %d" % [roundi(player.mana), roundi(player.max_mana)]
 	var p: Vector3 = player.global_position
@@ -326,8 +326,25 @@ func _bar(at: Vector2, w: float, h: float, frac: float, col: Color) -> void:
 	world_overlay.draw_rect(Rect2(at - Vector2(1, 1), Vector2(w + 2, h + 2)), Color(0, 0, 0, 0.85))
 	world_overlay.draw_rect(Rect2(at, Vector2(w * clampf(frac, 0.0, 1.0), h)), col)
 
+## The frame's orbs are painted full: darken the spent part from the top down (a circular segment).
+func _orb_shade(o: Vector3, frac: float) -> void:
+	if frac >= 0.999:
+		return
+	var r := o.z * 0.96
+	var cut := o.y - r + 2.0 * r * (1.0 - frac)     # liquid surface height
+	var pts := PackedVector2Array()
+	var a0 := asin(clampf((o.y - cut) / r, -1.0, 1.0))   # surface line meets the circle at angles a0, PI - a0
+	var n := 40
+	for i in n + 1:                                      # arc over the top of the orb, above the surface
+		var a := a0 + (PI - 2.0 * a0) * float(i) / float(n)
+		pts.append(Vector2(o.x + cos(a) * r, o.y - sin(a) * r))
+	overlay.draw_colored_polygon(pts, Color(0.02, 0.02, 0.03, 0.78))
+	overlay.draw_line(Vector2(o.x - sqrt(maxf(0.0, r * r - (cut - o.y) * (cut - o.y))), cut), Vector2(o.x + sqrt(maxf(0.0, r * r - (cut - o.y) * (cut - o.y))), cut), Color(1, 1, 1, 0.25), 1.5)
+
 func _draw_overlay() -> void:
 	var cam: Camera3D = lab.camera
+	_orb_shade(orb_l, hp_frac)
+	_orb_shade(orb_r, mp_frac)
 	# slot overlays: cooldown shade from the top, red tint when mana is short
 	for s in bar_slots:
 		var r: Rect2 = s["rect"]

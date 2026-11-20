@@ -11,6 +11,9 @@
 ## Higgsfield pilot (Phase 0)
 Branch `art/higgsfield-pilot-knight-2026-11-20`: Meshy knight + free-retargeted Slash/Walk/Run/Idle/Cast + paid Roll_Dodge + R52 sword/shield rigidly skinned to the hands. `models/higgsfield_pilot/knight_pilot_armed.glb`, Godot 30/30 (`tests/verify_higgsfield_pilot_armed.gd`). Dead clip added (approved). Spend 62 of 3,000. Playable in `scenes/pilot_knight_combat_lab.tscn` (controller test 17/17): foot IK, sockets, facing, real-sword sweep samples, owner camera (~100 px at 1080p: perspective, FOV 32°, pitch 52°, 21 m). Slash = library Left_Slash (right hand, trimmed to 1.42 s, played over 0.9 s); knight is right-handed (sword right, shield left); strict real-sword mode hits at 0.65 m. Locomotion: default jog = retargeted Run ×1.13, Shift sprint = library RunFast ×0.71, Ctrl stroll = library Casual_Walk ×1.39 (feet match body speed, natural cadence); arm-carry SkeletonModifier3D keeps sword/shield steady while moving. Spend 86. Ledger: `docs/AOTL_HIGGSFIELD_CREDIT_LEDGER.md`.
 
+## Phase 1 (heroes)
+Branch `art/higgsfield-phase1-heroes-2026-11-20`: Mage (multi-view Meshy, 35 cr) with the knight's clips transferred free, Blender staff + tome from the approved item art; `tests/verify_pilot_mage.gd` 38/38 incl. lab cast hit; `scenes/pilot_mage_combat_lab.tscn`. Next: Mage-specific cast clips (paid, by request).
+
 ## Current phase
 R55 — clip-safe elbow (see `game/crownsfall_lootslice/docs/R55_CLIP_SAFE_ELBOW_QA_2026-11-20.md`). Note: R54 introduced armor clipping; prefer R55 over R54.
 

@@ -12,6 +12,7 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-20 06:56 | Left_Slash clip (#97) on the knight | 3d_rigging | 8 (re-quoted before submit) | Owner: "Go with the paid version so it looks perfect" | 8 | `af9142e8-ea9b-4b88-bd63-9ed38a332260` | Right-hand forward slash; real sword hits a dummy 0.65 m ahead in strict mode | Accepted | 2,930 |
 | 2026-11-20 07:05 | Casual_Walk clip (#30) | 3d_rigging | 8 (re-quoted) | Owner: "Approved, get the walk and run clips" | 8 | `259cb61d-0f2d-4f8d-8799-36a38e7f864d` | 1.0 m/s stroll → new Ctrl-stroll mode | Accepted | — |
 | 2026-11-20 07:05 | RunFast clip (#16) | 3d_rigging | 8 (re-quoted) | same approval | 8 | `73fe49f9-a275-44be-8089-70ffad9caf52` | Sprint for Shift-run (×0.71, natural cadence) | Accepted | 2,914 |
+| 2026-11-20 07:18 | Phase 1 Mage model (4 views from the approved turnaround) | multi_image_to_3d (textured, rigged, a-pose) | 35 (re-quoted) | Owner: "Approved, go ahead with the 35-credit Mage model" | 35 | `301207b8-fb2c-4bae-a15f-c73903343278` | Close match to turnaround; 24-bone rig; knight clips transferred free | Accepted | 2,879 |
 
-Totals: **86 credits spent** of the 3,000 grant (2,914 remaining, verified 2026-11-20). Phase 0 pilot within its 120 ceiling (34 left).
+Totals: **121 credits spent** of the 3,000 grant (2,879 remaining, verified 2026-11-20). Phase 0: 86 of 120. Phase 1: 35 of 600.
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

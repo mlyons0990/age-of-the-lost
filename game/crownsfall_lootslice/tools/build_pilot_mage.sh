@@ -12,4 +12,4 @@ $B $T/merge_meshy_clips.py -- "$1" $M/mage_pilot.glb $A/mage_pilot_source.blend 
   Slash=$K/knight_pilot.glb@Slash RunFast=$K/clip_run_fast.glb Casual_Walk=$K/clip_casual_walk.glb \
   Roll_Dodge=$K/clip_roll_dodge.glb Dead=$K/clip_dead.glb
 $B $T/attach_props_to_hero.py -- $A/mage_pilot_source.blend $M/mage_pilot_armed.glb $A/mage_pilot_armed_source.blend \
-  MAGE_Staff=$M/mage_staff.glb@RightHand:upright MAGE_Tome=$M/mage_tome.glb@LeftHand:held
+  MAGE_Staff=$M/mage_staff.glb@RightHand:upright=Idle MAGE_Tome=$M/mage_tome.glb@LeftHand:held

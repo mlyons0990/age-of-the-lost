@@ -3,6 +3,8 @@
 python attach_props_to_hero.py -- <hero .blend> <out .glb> <out .blend> PROP=path.glb@Bone[:mode] [...]
 
 mode "upright": the prop's local +Z (e.g. a staff shaft, origin at the grip) stands vertical in the palm.
+mode "upright=Action": vertical in that action's first frame instead of the rest pose (e.g. upright=Idle), so a
+       staff stays upright in the idle and in locomotion (the controller's arm-carry layer reuses Idle's arms).
 mode "held":    the prop is held flat beside the hand (e.g. a tome), centred just outside the palm.
 Each prop is placed in the rest pose relative to the hand and skinned 100% to that bone, like the knight's
 sword (see attach_r55_weapons_to_knight.py for why rigid skinning, not bone parenting).
@@ -30,6 +32,21 @@ for spec in specs:
     palm = hand + (hand - fore).normalized() * 0.07
     if mode == "held":
         place = Matrix.Translation(palm + Vector((side * 0.06, -0.02, -0.02))) @ Matrix.Rotation(1.5708, 4, 'Z')
+    elif mode.startswith("upright="):
+        act = bpy.data.actions[mode.split("=", 1)[1]]
+        hero.animation_data_create(); hero.animation_data.action = act
+        try:
+            hero.animation_data.action_slot = act.slots[0]
+        except Exception:
+            pass
+        bpy.context.scene.frame_set(int(act.frame_range[0]))
+        rest_q = (hero.matrix_world @ hero.data.bones[bone].matrix_local).to_quaternion()
+        pose_q = (hero.matrix_world @ hero.pose.bones[bone].matrix).to_quaternion()
+        delta = pose_q @ rest_q.inverted()
+        want = delta.inverted() @ Vector((0.0, 0.0, 1.0))      # rest-space direction that becomes world-up
+        rot = Vector((0.0, 0.0, 1.0)).rotation_difference(want).to_matrix().to_4x4()
+        place = Matrix.Translation(palm) @ rot
+        print("upright in", act.name, "- shaft rest direction", [round(c, 2) for c in want])
     else:
         place = Matrix.Translation(palm)
     for o in meshes:

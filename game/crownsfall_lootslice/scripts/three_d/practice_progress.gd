@@ -12,16 +12,26 @@ func award_defeat() -> void:
 func add_xp(amount: int) -> void:
 	if amount <= 0 or level >= Rules.MAX_LEVEL:
 		return
-	xp += amount
-	while level < Rules.MAX_LEVEL and xp >= Rules.xp_need(level):
-		xp -= Rules.xp_need(level)
-		level += 1
-	if level == Rules.MAX_LEVEL:
+	while level < Rules.MAX_LEVEL:
+		var remaining := Rules.xp_need(level) - xp
+		if amount < remaining:
+			xp += amount
+			break
+		amount -= remaining
 		xp = 0
+		level += 1
 	changed.emit()
 
 func fraction() -> float:
 	return 1.0 if level == Rules.MAX_LEVEL else float(xp) / Rules.xp_need(level)
 
 func caption() -> String:
-	return "Lv. %d  (MAX)" % level if level == Rules.MAX_LEVEL else "Lv. %d  (%d / %d)" % [level, xp, Rules.xp_need(level)]
+	if level >= Rules.MAX_LEVEL:
+		return "Lv. %d  (MAX)" % level
+	return "Lv. %d  (%s / %s)" % [level, _group_digits(xp), _group_digits(Rules.xp_need(level))]
+
+func _group_digits(value: int) -> String:
+	var digits := str(value)
+	for index in range(digits.length() - 3, 0, -3):
+		digits = digits.insert(index, ",")
+	return digits

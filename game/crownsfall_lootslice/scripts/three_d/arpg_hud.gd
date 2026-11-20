@@ -13,12 +13,11 @@ const PANEL_BG := Color(0.05, 0.05, 0.07, 0.78)
 const LEVEL := 25
 
 ## Bar layouts per hero: [key label, icon tile, MAGE_SPELLS key or warrior attack kind].
-## The mockup panel's five wells. W belongs to WASD movement, so skills sit on Q E R (T reserved, locked);
-## the fifth well shows the LMB primary.
-const MAGE_BAR := [["Q", "epoch_lance", "Lance"], ["E", "solar_writ", "Nova"], ["R", "dawnfall", "Judgment"],
-	["T", "", ""], ["LMB", "starfall_script", "Bolt"]]
-const WARRIOR_BAR := [["Q", "cleave", "Cleave"], ["E", "charge", "Dash"], ["R", "rally", "Cast"],
-	["T", "", ""], ["LMB", "slash", "Slash"]]
+## The mockup panel's five wells, Q W E R T (click-to-move, so W is a skill). LMB is move / primary attack.
+const MAGE_BAR := [["Q", "epoch_lance", "Lance"], ["W", "solar_writ", "Nova"], ["E", "dawnfall", "Judgment"],
+	["R", "", ""], ["T", "", ""]]
+const WARRIOR_BAR := [["Q", "cleave", "Cleave"], ["W", "charge", "Dash"], ["E", "rally", "Cast"],
+	["R", "", ""], ["T", "", ""]]
 ## Potion belt: [key, kind, hp, mana]
 const POTIONS := [[KEY_1, "hp", 45.0, 0.0], [KEY_2, "hp", 45.0, 0.0], [KEY_3, "hp", 45.0, 0.0],
 	[KEY_4, "mana", 0.0, 60.0], [KEY_5, "mana", 0.0, 60.0]]
@@ -73,6 +72,7 @@ func setup(owner_lab: Node3D) -> void:
 	font_regular = load("res://assets/fonts/LiberationSerif-Regular.ttf")
 	bar_layout = MAGE_BAR if player.is_pilot_mage() else WARRIOR_BAR
 	player.number_keys_for_skills = false
+	player.click_to_move = true
 	_build()
 
 func _tex(name: String) -> Texture2D:
@@ -125,8 +125,8 @@ func _build() -> void:
 	var rows := [["AOTL 3D LAB (v0.3)", true], ["3D Scene: Active", false], ["Camera: Isometric (PoE Scale)", false],
 		["Character: " + hero_name, false], ["Animation Set: %d clips" % player.animation.get_animation_list().size(), false],
 		["Environment: Combat lab (alpha)", false]]
-	var controls := [["W A S D", "Move"], ["LMB", "Primary Attack"], ["Q  E  R", "Skills / Spells"], ["Space", "Dodge Roll"],
-		["1 – 5", "Potions"], ["Shift / Ctrl", "Run / Stroll"], ["F7", "Return to 2D plaza"]]
+	var controls := [["LMB", "Move / Attack (hold)"], ["Shift + LMB", "Attack in place"], ["Q W E R T", "Skills / Spells"],
+		["Space", "Dodge Roll"], ["1 – 5", "Potions"], ["F7", "Return to 2D plaza"]]
 	var ph := 34.0 + rows.size() * 24.0 + 30.0 + controls.size() * 24.0
 	root.add_child(_panel(Rect2(14, 92, 360, ph)))
 	var y := 100.0

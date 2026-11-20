@@ -62,3 +62,16 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
   meniscus, replacing the hard polygon lens. Label plates darkened to match the mockup.
 - Tests: arpg_hud 42/42 (adds equal ring size, 1:1 draw and shader-fill checks); regression 994/994.
 - Limit: source is phone-screenshot quality; a pixel-sharp 1:1 version needs a high-res redraw of the same art.
+
+## Revision 5 — click-to-move (owner: "this game isn't WASD to move, it's a click to move game like Diablo 4, PoE,
+## Last Epoch, Grim Dawn")
+- Pilot labs (ARPG HUD) are click-to-move: **LMB on the ground** walks there (hold to keep following the cursor; a
+  small gold ring marks the destination); **LMB on an enemy** walks into range and attacks (Warrior Slash at 1.6 m,
+  Mage Bolt at 5.4 m; holding LMB keeps attacking); **Shift+LMB** attacks in place toward the cursor;
+  **Q W E R T** cast toward the cursor (Q Lance/Cleave, W Nova/Dash, E Judgment/Cast, R and T reserved);
+  **Space** dodges toward the cursor; **1–5** potions. WASD is ignored in this mode.
+- The skill bar now reads Q W E R T exactly like the mockup (W no longer clashes with movement).
+- Bolt and Lance hit at their projectile reach (narrow cone + line of sight) instead of the generic 3.3 m Cast range.
+- Legacy debug labs keep WASD so the existing regression suite is unchanged.
+- Tests: arpg_hud 52/52 (ground click arrival, WASD ignored, cursor enemy pick, walk-into-range attack for Mage and
+  Knight, Shift+LMB in place, W casts); mage 83/83; knight lab 29/29; armed knight 41/41; regression 994/994.

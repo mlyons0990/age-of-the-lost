@@ -292,6 +292,12 @@ func _build_hud() -> void:
 
 func _process(delta: float) -> void:
 	if player == null: return
+	if player.click_to_move:
+		var mouse := get_viewport().get_mouse_position()
+		player.aim_point = cursor_ground(mouse)
+		# hold LMB on the ground to keep walking toward the cursor
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Input.is_key_pressed(KEY_SHIFT) and player.attack_target == null and player.aim_point.is_finite():
+			player.command_move(player.aim_point)
 	var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
 	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
 	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
@@ -369,6 +375,11 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	for target in targets:
 		if target.inactive_t > 0: continue
 		var allowed := TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind)
+		# ranged Mage spells (Bolt, Lance) reach as far as their projectile, in a narrow cone
+		if spell and player.spell_variant in ["Bolt", "Lance"]:
+			var reach: float = float(player.MAGE_SPELLS[player.spell_variant]["reach"]) + 0.6
+			allowed = TARGETING.within_attack_arc(player.global_position, direction, target.global_position, reach, 0.7) \
+				and TARGETING.world_line_of_sight(get_world_3d(), player.global_position, target.global_position, player.get_rid())
 		if strict_weapon_sweep and kind != "Cast":
 			# Blade contacts are resolved continuously in _physics_process,
 			# not at a separate one-shot event (prevents early/duplicate hits).
@@ -386,7 +397,54 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
+## --- click-to-move (ARPG HUD labs) ---
+func cursor_ground(screen: Vector2) -> Vector3:
+	if camera == null or player == null:
+		return Vector3.INF
+	var o := camera.project_ray_origin(screen)
+	var d := camera.project_ray_normal(screen)
+	if absf(d.y) < 1e-4:
+		return Vector3.INF
+	var t: float = (player.global_position.y - o.y) / d.y
+	return o + d * t if t > 0.0 else Vector3.INF
+
+## The live enemy under the cursor: its body on screen, or its footprint on the ground.
+func enemy_under(screen: Vector2) -> Node3D:
+	var ground := cursor_ground(screen)
+	var best: Node3D = null
+	var best_d := INF
+	var px := 46.0 * get_viewport().get_visible_rect().size.y / 1080.0
+	for t in targets:
+		if t.inactive_t > 0.0:
+			continue
+		var sp := camera.unproject_position(t.global_position + Vector3.UP * 1.0)
+		var d := sp.distance_to(screen)
+		if ground.is_finite():
+			var g := Vector2(ground.x - t.global_position.x, ground.z - t.global_position.z).length()
+			if g < 0.8: d = minf(d, g * px)
+		if d < px and d < best_d:
+			best_d = d
+			best = t
+	return best
+
+func handle_click(screen: Vector2, force_stand := false) -> void:
+	var ground := cursor_ground(screen)
+	player.aim_point = ground
+	var enemy := enemy_under(screen)
+	if force_stand:
+		player.stop_moving()
+		if enemy != null: player.attack_target = enemy
+		player.primary_attack()
+		player.attack_target = null
+	elif enemy != null:
+		player.command_attack(enemy)
+	elif ground.is_finite():
+		player.command_move(ground)
+		effects.ring(ground, 0.25, Color("f2d17f"), 0.35)
+
 func _unhandled_input(event: InputEvent) -> void:
+	if player != null and player.click_to_move and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		handle_click(event.position, Input.is_key_pressed(KEY_SHIFT))
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
 		strict_weapon_sweep = not strict_weapon_sweep
 		contact_samples.clear()

@@ -81,6 +81,15 @@ const MANA_REGEN := 6.0
 const WARRIOR_CAST_COST := 20.0
 ## Number keys 1/2/3 trigger skills (legacy labs). The ARPG HUD turns this off: 1-5 are potions, skills are Q E R.
 var number_keys_for_skills := true
+## Click-to-move (Diablo / PoE / Last Epoch style), enabled by the ARPG HUD labs: LMB on the ground moves (hold to
+## follow the cursor), LMB on an enemy walks into range and attacks, Shift+LMB attacks in place, Q W E R T cast
+## toward the cursor, Space dodges toward the cursor. WASD is ignored in this mode.
+var click_to_move := false
+var move_target := Vector3.INF          # ground point to walk to (INF = none)
+var attack_target: Node3D = null        # enemy to approach and attack
+var aim_point := Vector3.INF            # cursor on the ground, updated by the lab every frame
+const ARRIVE_RADIUS := 0.18
+const MELEE_RANGE := 1.6
 ## Current Mage spell ("" for the generic Cast); cooldowns per spell.
 var spell_variant := ""
 var spell_cds := {}
@@ -407,6 +416,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
 		return
 	if event is InputEventMouseButton:
+		if click_to_move:
+			return   # the lab picks ground/enemy under the cursor and issues command_move / command_attack
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_mage_or("Bolt", "Slash", 0.72)
 	elif event is InputEventKey:
@@ -414,17 +425,32 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_F9: _toggle_terrain_ik()
 			KEY_F10: _toggle_terrain_ik_debug()
 			KEY_F11: _toggle_equipment_socket_preview()
-			KEY_SPACE: _dodge()
-			# W is movement (WASD), so the skill row is Q / E / R (T reserved).
-			KEY_Q: _mage_or("Lance", "Cleave", 0.76)
-			KEY_E: _mage_or("Nova", "Dash", 0.68)
-			KEY_R: _mage_or("Judgment", "Cast", 1.4)
+			KEY_SPACE:
+				if click_to_move: _face_aim()
+				_dodge()
+			# Click-to-move: skills on Q W E (R T reserved), cast toward the cursor.
+			# Legacy WASD labs: W is movement, so the skill row is Q / E / R.
+			KEY_Q: _skill(0)
+			KEY_W:
+				if click_to_move: _skill(1)
+			KEY_E: _skill(1 if not click_to_move else 2)
+			KEY_R:
+				if not click_to_move: _skill(2)
 			KEY_1:
 				if number_keys_for_skills: _mage_or("Lance", "Cleave", 0.76)
 			KEY_2:
 				if number_keys_for_skills: _mage_or("Nova", "Dash", 0.68)
 			KEY_3:
 				if number_keys_for_skills: _mage_or("Judgment", "Cast", 1.4)
+
+func _skill(i: int) -> void:
+	if click_to_move:
+		_face_aim()
+		stop_moving()
+	match i:
+		0: _mage_or("Lance", "Cleave", 0.76)
+		1: _mage_or("Nova", "Dash", 0.68)
+		2: _mage_or("Judgment", "Cast", 1.4)
 
 func is_pilot_mage() -> bool:
 	return active_model_source == "pilot_mage_opt_in" and clip_names.has("Mage_Judgment")
@@ -479,6 +505,29 @@ func _attack(kind: String, duration: float) -> void:
 	if kind == "Cast": spell_cd = 3.5
 	_play("Cast" if kind == "Cast" else "Slash")
 
+## Click-to-move steering: walk to the clicked point, or into range of the attack target and then attack.
+func _click_steer() -> Vector3:
+	if attack_t > 0.0 or dodge_t > 0.0:
+		return Vector3.ZERO
+	if attack_target != null:
+		if not is_instance_valid(attack_target) or float(attack_target.get("inactive_t")) > 0.0:
+			attack_target = null
+			return Vector3.ZERO
+		var d := Vector3(attack_target.global_position.x - global_position.x, 0.0, attack_target.global_position.z - global_position.z)
+		if d.length() <= primary_range():
+			primary_attack()
+			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				attack_target = null      # one attack per click; holding LMB keeps attacking
+			return Vector3.ZERO
+		return d.normalized()
+	if move_target.is_finite():
+		var d := Vector3(move_target.x - global_position.x, 0.0, move_target.z - global_position.z)
+		if d.length() <= ARRIVE_RADIUS:
+			move_target = Vector3.INF
+			return Vector3.ZERO
+		return d.normalized()
+	return Vector3.ZERO
+
 func _dodge() -> void:
 	if dodge_t > 0.0 or dodge_cd > 0.0 or attack_t > 0.0:
 		return
@@ -503,6 +552,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_W): input.y -= 1.0
 	if Input.is_key_pressed(KEY_S): input.y += 1.0
 	input = input.normalized()
+	if click_to_move:
+		input = Vector2.ZERO
 	var cam_right := Vector3.RIGHT
 	var cam_forward := Vector3.FORWARD
 	if camera != null:
@@ -515,6 +566,10 @@ func _physics_process(delta: float) -> void:
 	var moving := (cam_right * input.x + cam_forward * -input.y).normalized()
 	var sprint := Input.is_key_pressed(KEY_SHIFT)
 	var stroll := is_pilot_hero() and Input.is_key_pressed(KEY_CTRL) and not sprint
+	if click_to_move:
+		sprint = false   # Shift is "attack in place" in click-to-move games
+		stroll = false
+		moving = _click_steer()
 	if dodge_t > 0.0:
 		dodge_t = maxf(0.0, dodge_t - delta)
 		if moving.length() > 0.1:
@@ -576,6 +631,40 @@ func receive_damage(damage: float) -> void:
 		hp = max_hp
 		global_position = Vector3(0, 0.08, 0)
 		health_changed.emit(hp, max_hp)
+
+func command_move(point: Vector3) -> void:
+	attack_target = null
+	move_target = Vector3(point.x, global_position.y, point.z)
+
+func command_attack(target: Node3D) -> void:
+	attack_target = target
+	move_target = Vector3.INF
+
+func stop_moving() -> void:
+	move_target = Vector3.INF
+	attack_target = null
+
+func primary_range() -> float:
+	return float(MAGE_SPELLS["Bolt"]["reach"]) * 0.9 if is_pilot_mage() else MELEE_RANGE
+
+## Primary attack (LMB on an enemy / Shift+LMB): Mage Bolt, Warrior Slash.
+func primary_attack() -> void:
+	_face_aim()
+	if is_pilot_mage():
+		cast_spell("Bolt")
+	else:
+		_attack("Slash", 0.72)
+
+func _face_aim() -> void:
+	var at := aim_point
+	if attack_target != null and is_instance_valid(attack_target):
+		at = attack_target.global_position
+	if at.is_finite():
+		var d := Vector3(at.x - global_position.x, 0.0, at.z - global_position.z)
+		if d.length() > 0.05:
+			last_face = d.normalized()
+			if body != null:
+				body.rotation.y = atan2(-last_face.x, -last_face.z) + model_yaw_offset
 
 ## Potions (ARPG HUD belt). Returns true if anything was restored.
 func restore(hp_amount: float, mana_amount: float) -> bool:

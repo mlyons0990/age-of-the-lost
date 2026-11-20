@@ -19,7 +19,15 @@ const WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE := "res://models/AOTL_Warrior_R55_Cl
 ## R52 sword and shield skinned to the hands. Opt-in only (art/higgsfield-pilot-knight branch).
 const PILOT_KNIGHT := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
 const PILOT_KNIGHT_BONES := ["Hips", "Spine", "Head", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot", "LeftHand", "RightHand"]
-const PILOT_ROLL_TIME := 0.9   # the 1.83 s library roll is played at ~2x to fit the dodge window
+## Planted-foot ground speed of the knight's retargeted locomotion clips (measured in Godot, 2026-11-20).
+## Playback is scaled to the controller speed so the feet don't skate (the R52 source strides are short).
+const PILOT_STRIDE_SPEED := {"Walk": 2.23, "Run": 2.91}
+const PILOT_ROLL_TIME := 0.9
+## Library Left_Slash (#97): the knight's right-hand sword attack. The first 1.42 s (wind-up through the
+## main cut) is used; the blade crosses the front at 0.81 s = 57 % of that, the shared contact phase.
+const PILOT_SLASH_END := 1.42
+const PILOT_SLASH_TIME := 0.9
+const PILOT_SWORD_HAND := "RightHand"   # the 1.83 s library roll is played at ~2x to fit the dodge window
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
 const WARRIOR_R36 := "res://models/AOTL_Warrior_R36.glb"
@@ -261,10 +269,10 @@ func _prepare_pilot_blade() -> void:
 		for i in mi.skin.get_bind_count():
 			var b := mi.skin.get_bind_bone(i)
 			var name := sk.get_bone_name(b) if b >= 0 else String(mi.skin.get_bind_name(i))
-			if name == "LeftHand":
+			if name == PILOT_SWORD_HAND:
 				points[part[0]] = mi.skin.get_bind_pose(i) * mi.mesh.get_aabb().get_center()
 	if points.size() == 2:
-		pilot_blade = {"skeleton": sk, "bone": sk.find_bone("LeftHand"), "hilt": points["hilt"], "tip": points["tip"]}
+		pilot_blade = {"skeleton": sk, "bone": sk.find_bone(PILOT_SWORD_HAND), "hilt": points["hilt"], "tip": points["tip"]}
 
 ## World-space blade segment for swept hit tests, or {} when this model has none.
 func blade_segment() -> Dictionary:
@@ -277,6 +285,10 @@ func blade_segment() -> Dictionary:
 ## Pilot knight: Dodge plays the library roll in place (the controller moves the body), Death plays Dead.
 func _prepare_pilot_knight_clips() -> void:
 	clip_names["Dodge"] = clip_names["Roll_Dodge"]
+	if clip_names.has("Left_Slash"):
+		var trimmed := _trimmed(animation.get_animation(clip_names["Left_Slash"]), 0.0, PILOT_SLASH_END)
+		animation.get_animation_library("").add_animation("Pilot_Slash", trimmed)
+		clip_names["Slash"] = "Pilot_Slash"
 	if clip_names.has("Dead"):
 		clip_names["Death"] = clip_names["Dead"]
 	var roll := animation.get_animation(clip_names["Roll_Dodge"])
@@ -290,6 +302,20 @@ func _prepare_pilot_knight_clips() -> void:
 			var v: Vector3 = roll.track_get_key_value(t, k)
 			roll.track_set_key_value(t, k, Vector3(first.x, v.y, first.z))
 
+## Copy of `src` keeping only keys in [t0, t1], shifted to start at 0.
+static func _trimmed(src: Animation, t0: float, t1: float) -> Animation:
+	var out := Animation.new()
+	out.length = t1 - t0
+	for t in src.get_track_count():
+		var nt := out.add_track(src.track_get_type(t))
+		out.track_set_path(nt, src.track_get_path(t))
+		out.track_set_interpolation_type(nt, src.track_get_interpolation_type(t))
+		for k in src.track_get_key_count(t):
+			var time := src.track_get_key_time(t, k)
+			if time >= t0 - 0.0001 and time <= t1 + 0.0001:
+				out.track_insert_key(nt, time - t0, src.track_get_key_value(t, k))
+	return out
+
 func _play(clip: String) -> void:
 	if animation == null or not clip_names.has(clip):
 		return
@@ -297,6 +323,10 @@ func _play(clip: String) -> void:
 		var speed := 1.0
 		if active_model_source == "pilot_knight_opt_in" and clip == "Dodge":
 			speed = animation.get_animation(clip_names[clip]).length / PILOT_ROLL_TIME
+		elif active_model_source == "pilot_knight_opt_in" and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
+			speed = PILOT_SLASH_END / PILOT_SLASH_TIME
+		elif active_model_source == "pilot_knight_opt_in" and PILOT_STRIDE_SPEED.has(clip):
+			speed = (WALK_SPEED if clip == "Walk" else RUN_SPEED) / float(PILOT_STRIDE_SPEED[clip])
 		animation.play(clip_names[clip], 0.16, speed)
 		anim_state = clip
 
@@ -321,6 +351,8 @@ func _attack(kind: String, duration: float) -> void:
 		return
 	if kind == "Cast" and spell_cd > 0.0:
 		return
+	if active_model_source == "pilot_knight_opt_in" and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
+		duration = PILOT_SLASH_TIME
 	attack_serial += 1
 	attack_t = duration
 	attack_duration = duration

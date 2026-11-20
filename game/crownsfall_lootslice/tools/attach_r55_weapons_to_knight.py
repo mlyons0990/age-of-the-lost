@@ -1,6 +1,9 @@
 """Attach the R55 sword and shield meshes to the retargeted knight (free; no generation).
 
-python attach_r55_weapons_to_knight.py -- <knight .blend> <R55 .blend> <out .glb> <out .blend>
+python attach_r55_weapons_to_knight.py -- <knight .blend> <R55 .blend> <out .glb> <out .blend> [--right-handed]
+
+--right-handed: sword in the knight's anatomical RightHand, shield on LeftHand (needed by right-hand library
+attacks such as Left_Slash #97). Props are mirrored across the hand so the shield face still points outward.
 
 Sides follow the retarget mapping: R52 HandR (sword) -> knight LeftHand, R52 HandL (shield) -> knight RightHand.
 Each mesh keeps its rest orientation and moves by (knight hand head - R52 hand head), then is skinned rigidly
@@ -13,7 +16,9 @@ import bpy, sys
 
 argv = sys.argv[sys.argv.index("--") + 1:]
 knight_blend, r55_blend, out_glb, out_blend = argv[:4]
-PAIRS = {"WEAPON_": ("HandR", "LeftHand"), "SHIELD_": ("HandL", "RightHand")}
+RIGHT_HANDED = "--right-handed" in argv
+PAIRS = ({"WEAPON_": ("HandR", "RightHand"), "SHIELD_": ("HandL", "LeftHand")} if RIGHT_HANDED
+         else {"WEAPON_": ("HandR", "LeftHand"), "SHIELD_": ("HandL", "RightHand")})
 bpy.ops.wm.open_mainfile(filepath=r55_blend)
 src_rig = [o for o in bpy.data.objects if o.type == 'ARMATURE'][0]
 src_heads = {b: (src_rig.matrix_world @ src_rig.data.bones[b].head_local).copy() for b in ("HandR", "HandL")}
@@ -44,6 +49,12 @@ for o in dst.objects:
     shift = (knight.matrix_world @ knight.data.bones[tb].head_local) - src_heads[sb]
     o.data.transform(o.matrix_world)
     o.matrix_world = __import__("mathutils").Matrix.Identity(4)
+    if RIGHT_HANDED:
+        # mirror across the source hand's x so the prop keeps its outward face on the other side
+        hx = src_heads[sb].x
+        for v in o.data.vertices:
+            v.co.x = 2 * hx - v.co.x
+        o.data.flip_normals()
     for v in o.data.vertices:
         v.co += shift
     # rigid skin to the hand bone, in the knight armature's space
@@ -54,6 +65,23 @@ for o in dst.objects:
     mod = o.modifiers.new("Armature", 'ARMATURE')
     mod.object = knight
     print("attached", o.name, "->", tb)
+if RIGHT_HANDED:
+    # Re-grip the sword for library attacks: handle in the palm, blade forward out of the fist (−Y = the
+    # knight's forward in Blender) at the rest pose. The R52 placement hung the blade straight down, which
+    # trailed behind the hand in Meshy's Left_Slash.
+    from mathutils import Vector, Matrix
+    parts = {o.name.split(".")[0]: o for o in dst.objects if o.name.startswith("WEAPON_")}
+    centre = lambda o: sum((v.co for v in o.data.vertices), Vector()) / len(o.data.vertices)
+    hilt, tip = centre(parts["WEAPON_Crossguard"]), centre(parts["WEAPON_Tip"])
+    handle = centre(parts["WEAPON_Handle"])
+    rot = (tip - hilt).normalized().rotation_difference(Vector((0.0, -1.0, 0.0))).to_matrix().to_4x4()
+    fore = knight.matrix_world @ knight.data.bones["RightForeArm"].head_local
+    hand = knight.matrix_world @ knight.data.bones["RightHand"].head_local
+    palm = hand + (hand - fore).normalized() * 0.07
+    xf = Matrix.Translation(palm) @ rot @ Matrix.Translation(-handle)
+    for o in parts.values():
+        o.data.transform(xf)
+    print("re-gripped sword: blade forward from the right palm")
 # the library load drags the R55 rig (and its actions) in as the weapons' old parent: drop them
 for o in list(bpy.data.objects):
     if o.type == 'ARMATURE' and o != knight:

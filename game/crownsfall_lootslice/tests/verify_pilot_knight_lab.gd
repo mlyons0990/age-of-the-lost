@@ -25,6 +25,7 @@ func _run() -> void:
 	var actor = lab.player
 	verify(actor.active_model_source == "pilot_knight_opt_in", "Rig lab selected the pilot knight (%s)" % actor.active_model_source)
 	verify(actor.clip_names.get("Dodge", "") == actor.clip_names.get("Roll_Dodge", "x"), "Dodge plays the library roll")
+	verify(actor.clip_names.get("Slash", "") == "Pilot_Slash", "Slash plays the library right-hand Left_Slash (trimmed)")
 	verify(actor.anim_state == "Idle", "Knight starts idle")
 	var sk: Skeleton3D = actor.body.find_children("*", "Skeleton3D", true, false)[0]
 	var hd := sk.global_transform * sk.get_bone_global_pose(sk.find_bone("Head")).origin
@@ -47,6 +48,17 @@ func _run() -> void:
 	print("PILOT LAB camera: knight %.0f px tall at 1080p (fov %.0f, perspective %s)" % [bottom - top, cam.fov, str(cam.projection == Camera3D.PROJECTION_PERSPECTIVE)])
 	verify(cam.projection == Camera3D.PROJECTION_PERSPECTIVE and absf((bottom - top) - 100.0) < 12.0, "Gameplay camera shows the knight ~100 px tall (%.0f px)" % (bottom - top))
 	var hips := sk.find_bone("Hips")
+	# locomotion: planted feet should move at the controller's ground speed (no skating)
+	for clip in ["Walk", "Run"]:
+		actor.anim_state = ""
+		actor._play(clip)
+		var speed: float = actor.animation.get_playing_speed()
+		var ground: float = float(actor.PILOT_STRIDE_SPEED[clip]) * speed
+		var target: float = actor.WALK_SPEED if clip == "Walk" else actor.RUN_SPEED
+		print("PILOT LAB %s: playback x%.2f -> planted foot %.2f m/s vs controller %.2f m/s" % [clip, speed, ground, target])
+		verify(absf(ground - target) / target < 0.1, "%s feet don't skate (foot %.2f vs body %.2f m/s)" % [clip, ground, target])
+	actor.anim_state = ""
+	actor._play("Idle")
 	# slash the front dummy
 	var dummy = lab.targets[0]
 	dummy.global_position = actor.global_position + Vector3(0, 0, -1.3)
@@ -92,10 +104,13 @@ func _run() -> void:
 			nearest = minf(nearest, sqrt(WEAPON_SWEEP.point_segment_distance_squared(dummy.damage_center(), sg["hilt"], sg["tip"])))
 	print("PILOT LAB strict sweep: dummy hp %.0f, max samples %d, nearest blade-to-dummy %.2f m (dummy radius %.2f), face %s" % [dummy.hp, most, nearest, dummy.damage_radius(), str(actor.last_face)])
 	verify(most >= 10, "Strict swept-blade mode samples the knight's real sword through the swing (%d samples)" % most)
-	# Known limitation, recorded rather than asserted: the inherited R50 Slash swings up and out to the side,
-	# so the real 0.62 m sword reaches only ~0.2 m forward and misses a dummy 0.65 m ahead in strict mode
-	# (R52's strict test used a virtual 0.85 m blade on a tuned socket axis). Default combat still hits.
-	print("KNOWN LIMITATION strict forward reach: nearest %.2f m to a dummy 0.65 m ahead (hp %.0f)" % [nearest, dummy.hp])
+	verify(nearest < dummy.damage_radius(), "Real sword passes through a dummy 0.65 m ahead (nearest %.2f m)" % nearest)
+	verify(dummy.hp < 100.0, "Strict swept-blade mode hits with the real sword (hp %.0f)" % dummy.hp)
+	await root.get_tree().create_timer(0.3).timeout
+	var hp_after: float = dummy.hp
+	actor._attack("Slash", 0.72)
+	await root.get_tree().create_timer(1.0).timeout
+	verify(dummy.hp < hp_after, "A second strict swing hits again (one hit per swing, %.0f -> %.0f)" % [hp_after, dummy.hp])
 	lab.strict_weapon_sweep = false
 	print("AOTL PILOT KNIGHT LAB RESULT %d checks; %d failures" % [checks, failures])
 	quit(0 if failures == 0 else 1)

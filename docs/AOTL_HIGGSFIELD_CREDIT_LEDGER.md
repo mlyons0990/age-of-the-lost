@@ -9,6 +9,7 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-20 04:19 | Rigged textured knight (a-pose, 1.75 m, quad 30k) | Meshy 7 image-to-3D | 44 | Handoff Phase 0 budget (submitted **before** the per-job rule) | 44 | `f88409b4-84df-4e57-9c68-5b2dbf9b428c` | 24-bone rig, 48k verts, close match to reference | Accepted | 2,954 |
 | 2026-11-20 04:40 | Roll_Dodge clip (#158) on the knight | 3d_rigging | 8 | Owner: "Go ahead and do the paid route" (two clips) | 8 | `186cf374-036c-4b3e-8efc-8420672269ee` | Real ground roll (hips 0.21 m), merged | Accepted | 2,946 |
 | 2026-11-20 06:45 | Dead clip (#8) on the knight | 3d_rigging | 8 (re-quoted before submit) | Owner: "Approved, go ahead with the 8-credit Dead clip" | 8 | `3efdc88d-68f1-4364-b074-6e322b1950b9` | Stagger, kneel, collapse; ends hips 0.24 m / head 0.25 m; weapons attached | Accepted | 2,938 |
+| 2026-11-20 06:56 | Left_Slash clip (#97) on the knight | 3d_rigging | 8 (re-quoted before submit) | Owner: "Go with the paid version so it looks perfect" | 8 | `af9142e8-ea9b-4b88-bd63-9ed38a332260` | Right-hand forward slash; real sword hits a dummy 0.65 m ahead in strict mode | Accepted | 2,930 |
 
-Totals: **62 credits spent** of the 3,000 grant (2,938 remaining, verified 2026-11-20). Phase 0 pilot complete within its 120 ceiling.
+Totals: **70 credits spent** of the 3,000 grant (2,930 remaining, verified 2026-11-20). Phase 0 pilot within its 120 ceiling.
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

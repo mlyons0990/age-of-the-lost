@@ -1,0 +1,56 @@
+{
+ "params": [
+  0.1,
+  -0.08,
+  0.16,
+  -0.03,
+  0.06,
+  0.3
+ ],
+ "clips": [
+  "R50_Slash_Grounded_IKBaked_V3",
+  "Slash",
+  "Idle",
+  "Walk",
+  "Run",
+  "Dodge",
+  "Cast"
+ ],
+ "frame_step": 2,
+ "V04_SKIN_ArticulatedArmL": {
+  "r52": {
+   "mean_frame_p95_pct": 6.56,
+   "worst_frame_p95_pct": 43.07,
+   "worst_frame": [
+    "Cast",
+    23
+   ]
+  },
+  "r53": {
+   "mean_frame_p95_pct": 3.18,
+   "worst_frame_p95_pct": 31.37,
+   "worst_frame": [
+    "Cast",
+    23
+   ]
+  }
+ },
+ "V04_SKIN_ArticulatedArmR": {
+  "r52": {
+   "mean_frame_p95_pct": 8.68,
+   "worst_frame_p95_pct": 43.07,
+   "worst_frame": [
+    "Cast",
+    23
+   ]
+  },
+  "r53": {
+   "mean_frame_p95_pct": 4.76,
+   "worst_frame_p95_pct": 31.37,
+   "worst_frame": [
+    "Cast",
+    23
+   ]
+  }
+ }
+}

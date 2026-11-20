@@ -363,3 +363,94 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ------------------------------------------------------------------ full bottom HUD from the Higgsfield bar
+# tools/ui_sources/hud_bar_src.png: Higgsfield "Fantasy action RPG bottom HUD bar" (2688x1152, magenta
+# background): ornate red and blue orbs with gargoyles at the ends and a gothic slot bar between.
+# hud_frame() re-assembles it for the game's layout: left orb end, 5 potion slots, a centre rail with the
+# crest (XP bar lives here), 5 skill slots, a gap, 2 mouse-button slots, right orb end.
+HUD_W = 1920                      # layout width; the HUD scales the frame to the window width
+HUD_S = 0.43                      # source pixels to layout pixels
+SRC_Y0, SRC_Y1 = 189, 898         # rows of the source that hold the art
+SLOT_X0, SLOT_PITCH = 606, 185    # first slot frame and slot pitch in the source
+SLOT_IN = (7, 338, 174, 516)      # slot interior inside a tile (x0, y0, x1, y1), source rows from SRC_Y0
+LEFT_END = (26, 606)
+RIGHT_END = (2082, 2661)
+ORB_L = (328, 556, 190)           # glass centre x, y and radius in the source
+ORB_R = (2360, 556, 190)
+GROUP_GAP_SRC = 70                # gap before the two mouse-button slots
+
+
+def _key_magenta(im):
+    a = np.asarray(im.convert("RGB")).astype(float)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    mag = np.minimum(r, b) - g                    # high on magenta
+    alpha = np.clip(1.0 - (mag - 60) / 90.0, 0, 1)
+    # pull magenta spill out of edge pixels
+    spill = np.clip(np.minimum(r, b) - g, 0, None) * (1 - alpha)
+    r2, b2 = r - spill * 0.6, b - spill * 0.6
+    return Image.fromarray(np.dstack([r2, g, b2, alpha * 255]).clip(0, 255).astype(np.uint8), "RGBA")
+
+
+def hud_frame():
+    import json
+    src = _key_magenta(Image.open(os.path.join(SRC, "hud_bar_src.png")))
+    H = SRC_Y1 - SRC_Y0
+    crop = lambda x0, x1: src.crop((x0, SRC_Y0, x1, SRC_Y1))
+    tile = crop(SLOT_X0 + SLOT_PITCH, SLOT_X0 + 2 * SLOT_PITCH)          # a slot tile with a spike at its left
+    first = crop(SLOT_X0, SLOT_X0 + SLOT_PITCH)
+    # a plain rail column (no slot) to stretch into fillers: top and bottom from the middle of a slot tile,
+    # the stone band in between taken from a slot interior
+    col = np.asarray(crop(SLOT_X0 + 90, SLOT_X0 + 91)).copy()
+    stone = np.asarray(crop(SLOT_X0 + SLOT_IN[0] + 20, SLOT_X0 + SLOT_IN[0] + 140))
+    def filler(w):
+        f = np.repeat(col, w, axis=1)
+        y0, y1 = SLOT_IN[1] - 10, SLOT_IN[3] + 10
+        reps = int(np.ceil(w / stone.shape[1]))
+        band = np.tile(stone[y0:y1], (1, reps, 1))[:, :w]
+        f[y0:y1] = band
+        return Image.fromarray(f, "RGBA")
+    left, right = crop(*LEFT_END), crop(*RIGHT_END)
+    total = int(HUD_W / HUD_S)
+    fixed = left.width + right.width + 5 * SLOT_PITCH + 7 * SLOT_PITCH + GROUP_GAP_SRC
+    mid = total - fixed
+    out = Image.new("RGBA", (total, H))
+    x = 0
+    slots = []
+    def put(img):
+        nonlocal x
+        out.alpha_composite(img, (x, 0))
+        x += img.width
+    put(left)
+    for i in range(5):
+        slots.append(("potion", x)); put(first if i == 0 else tile)
+    mid_x = x
+    put(filler(mid))
+    for i in range(5):
+        slots.append(("skill", x)); put(tile)
+    put(filler(GROUP_GAP_SRC))
+    for i in range(2):
+        slots.append(("skill", x)); put(tile)
+    put(right)
+    # crest over the centre rail, and the bottom spike under it
+    crest = src.crop((1190, SRC_Y0, 1500, SLOT_IN[1] - 40 + SRC_Y0))
+    out.alpha_composite(crest, (mid_x + mid // 2 - crest.width // 2, 0))
+    k = HUD_S * 2   # saved at 2x the layout size
+    img = out.resize((round(out.width * k), round(H * k)), Image.LANCZOS)
+    img.save(os.path.join(OUT, "hud_frame.png"))
+    s = HUD_S
+    layout = {
+        "w": HUD_W, "h": round(H * s, 1),
+        "slots": [[kind, round((sx + SLOT_IN[0]) * s, 1), round(SLOT_IN[1] * s, 1),
+                   round((SLOT_IN[2] - SLOT_IN[0]) * s, 1), round((SLOT_IN[3] - SLOT_IN[1]) * s, 1)] for kind, sx in slots],
+        "orb_l": [round((ORB_L[0] - LEFT_END[0]) * s, 1), round((ORB_L[1] - SRC_Y0) * s, 1), round(ORB_L[2] * s, 1)],
+        "orb_r": [round((total - (RIGHT_END[1] - ORB_R[0])) * s, 1), round((ORB_R[1] - SRC_Y0) * s, 1), round(ORB_R[2] * s, 1)],
+        "mid": [round(mid_x * s, 1), round((SLOT_IN[1]) * s, 1), round(mid * s, 1), round((SLOT_IN[3] - SLOT_IN[1]) * s, 1)],
+    }
+    json.dump(layout, open(os.path.join(OUT, "hud_frame.json"), "w"), indent=1)
+    return layout
+
+
+if __name__ == "__main__" and os.path.exists(os.path.join(SRC, "hud_bar_src.png")):
+    print(hud_frame())

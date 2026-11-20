@@ -568,6 +568,37 @@ class HudDraw extends Control:
 		_text_c(label, c + Vector2(0, 7), 20, Color.WHITE)
 		return true
 
+	## Frame metadata (assets/ui/hud_frame.json), cached; empty if missing.
+	static var frame_meta := {}
+	static var frame_loaded := false
+
+	func _frame_meta() -> Dictionary:
+		if not frame_loaded:
+			frame_loaded = true
+			var f := FileAccess.open("res://assets/ui/hud_frame.json", FileAccess.READ)
+			if f != null:
+				var d = JSON.parse_string(f.get_as_text())
+				if d is Dictionary:
+					frame_meta = d
+		return frame_meta
+
+	## The frame's orbs are painted full: shade the spent part from the top down.
+	func _orb_shade(c: Vector2, r: float, frac: float, label: String) -> void:
+		frac = clampf(frac, 0.0, 1.0)
+		if frac < 0.995:
+			# the empty cap: a circle segment above the liquid's surface
+			var sy: float = c.y - r + (1.0 - frac) * 2.0 * r
+			var a0: float = asin(clampf((sy - c.y) / r, -1.0, 1.0))
+			var pts := PackedVector2Array()
+			for i in 41:
+				var a: float = PI - a0 + (TAU + 2.0 * a0 - PI) * i / 40.0
+				pts.append(c + Vector2(cos(a), sin(a)) * r)
+			draw_colored_polygon(pts, Color(0.02, 0.015, 0.03, 0.84))
+			if frac > 0.005:
+				var half: float = sqrt(maxf(0.0, r * r - (sy - c.y) * (sy - c.y)))
+				draw_line(Vector2(c.x - half + 2, sy), Vector2(c.x + half - 2, sy), Color(1, 1, 1, 0.4), 2.0, true)
+		_text_c(label, c + Vector2(0, 7), 20, Color.WHITE)
+
 	func _orb(c: Vector2, r: float, col: Color, frac: float, label: String) -> void:
 		if _orb_painted("life" if col.r > col.b else "mana", c, r, frac, label):
 			return
@@ -711,11 +742,29 @@ class HudDraw extends Control:
 		var life_c := Vector2(178, h - 112)
 		var mana_c := Vector2(w - 178, h - 112)
 		# ornate base across the full width, with gothic pillars at the screen edges
+		# the Higgsfield frame (tools/make_ui_art.py hud_frame): orbs, potion and skill sockets in one piece
+		var FL: Dictionary = _frame_meta()
+		var frame_tex := _ui("hud_frame")
+		var use_frame: bool = frame_tex != null and not FL.is_empty()
+		var fk: float = w / 1920.0
+		var ftop: float = h - float(FL.get("h", 0.0)) * fk
+		var fslots: Array = []
+		if use_frame:
+			draw_texture_rect(frame_tex, Rect2(0, ftop, w, float(FL["h"]) * fk), false)
+			var ol: Array = FL["orb_l"]
+			var orr: Array = FL["orb_r"]
+			life_c = Vector2(ol[0] * fk, ftop + ol[1] * fk)
+			mana_c = Vector2(orr[0] * fk, ftop + orr[1] * fk)
+			orb_r = float(ol[2]) * fk * 0.97
+			for sl in FL["slots"]:
+				var sr := Rect2(sl[1] * fk, ftop + sl[2] * fk, sl[3] * fk, sl[4] * fk)
+				var side: float = minf(sr.size.x, sr.size.y) - 4.0 * fk
+				fslots.append(Rect2(sr.get_center() - Vector2(side, side) / 2.0, Vector2(side, side)))
 		var strip := _ui("base_strip")
-		if strip != null:
+		if strip != null and not use_frame:
 			draw_texture_rect(strip, Rect2(0, h - 132, w, 132), false)
 		var pil := _ui("edge_pillar")
-		if pil != null:
+		if pil != null and not use_frame:
 			var ph := 250.0
 			var pw: float = pil.get_width() * ph / pil.get_height()
 			draw_texture_rect(pil, Rect2(6, h - ph - 8, pw, ph), false)
@@ -728,9 +777,13 @@ class HudDraw extends Control:
 		var bar_w := n * sz + (n - 1) * gap + group_gap
 		var x0 := mana_c.x - 150.0 - bar_w
 		var plate := Rect2(x0 - 40, cy - sz / 2 - 34, bar_w + 80, sz + 78)
+		if use_frame:
+			plate = (fslots[5] as Rect2).merge(fslots[fslots.size() - 1]).grow(8)
 		hud.bar_plate = plate
 		var plate_tex := _ui("bar_plate")
-		if plate_tex != null:
+		if use_frame:
+			pass
+		elif plate_tex != null:
 			draw_texture_rect(plate_tex, plate, false)
 		else:
 			draw_rect(plate, DARK)
@@ -742,6 +795,8 @@ class HudDraw extends Control:
 		for i in n:
 			var rx: float = x0 + i * (sz + gap) + (group_gap if i >= MOUSE_GROUP else 0.0)
 			var r := Rect2(rx, cy - sz / 2, sz, sz)
+			if use_frame:
+				r = fslots[5 + i]
 			if i == 0:
 				hud.bar_rects.clear()
 			hud.bar_rects.append(r)
@@ -796,7 +851,7 @@ class HudDraw extends Control:
 					tip = {"name": sk["name"], "desc": sk["desc"], "meta": meta}
 					tip_rect = r
 			# key label under the slot: a small key cap, or a mouse for LMB / RMB
-			var kc := Vector2(r.get_center().x, r.end.y + 15)
+			var kc := Vector2(r.get_center().x, r.end.y + (12.0 if use_frame else 15.0))
 			var key: String = p.BIND_KEYS[i]
 			if key == "LMB" or key == "RMB":
 				var mt := _ui("mouse_l" if key == "LMB" else "mouse_r")
@@ -808,12 +863,15 @@ class HudDraw extends Control:
 				_keycap(kc, key)
 		# the crest crowns the skill plate
 		var crest := _ui("bar_crest")
-		if crest != null:
+		if crest != null and not use_frame:
 			var cw2: float = crest.get_width() * 0.42
 			var ch2: float = crest.get_height() * 0.42
 			draw_texture_rect(crest, Rect2(Vector2(plate.get_center().x - cw2 / 2.0, plate.position.y - ch2 * 0.62), Vector2(cw2, ch2)), false)
 		# xp: a long bar across the bottom between the orbs, the level on a gem in the middle
 		var xr := Rect2(life_c.x + 96, h - 17, (mana_c.x - 96) - (life_c.x + 96), 9)
+		if use_frame:
+			var md: Array = FL["mid"]
+			xr = Rect2((md[0] + 18.0) * fk, ftop + (md[1] + md[3] * 0.62) * fk, (md[2] - 36.0) * fk, 12.0 * fk)
 		draw_rect(xr.grow(3), Color(0.03, 0.03, 0.04, 0.9))
 		draw_rect(xr, Color(0.07, 0.06, 0.08))
 		var need: int = GD.xp_need(p.level)
@@ -828,24 +886,37 @@ class HudDraw extends Control:
 		var lc := Vector2(xr.get_center().x, xr.get_center().y)
 		var gem := _ui("level_gem")
 		var lw := 70.0
-		var lr := Rect2(lc - Vector2(lw / 2, 13), Vector2(lw, 22))
-		draw_rect(lr, Color(0.05, 0.04, 0.05))
-		draw_rect(lr, BRONZE, false, 1.5)
-		_text_c("Lv. %d" % p.level, lc + Vector2(0, 4), 14, GOLD, 3)
+		if use_frame:
+			# level and progress written above the bar, inside the centre socket
+			_text_c("Lv. %d" % p.level, Vector2(lc.x, xr.position.y - 14.0 * fk), int(22 * fk), GOLD, 4)
+			_text_c("%d%%" % int(xf * 100.0), Vector2(lc.x, xr.end.y + 18.0 * fk), int(14 * fk), Color("c9bfa8"), 3)
+		else:
+			var lr := Rect2(lc - Vector2(lw / 2, 13), Vector2(lw, 22))
+			draw_rect(lr, Color(0.05, 0.04, 0.05))
+			draw_rect(lr, BRONZE, false, 1.5)
+			_text_c("Lv. %d" % p.level, lc + Vector2(0, 4), 14, GOLD, 3)
 		if xr.grow(4).has_point(mouse):
 			tip = {"name": "Experience", "desc": "Max level" if p.level >= GD.MAX_LEVEL else "XP %d / %d" % [p.xp, need], "meta": ""}
 			tip_rect = xr
 		var max_mp: float = s["max_mp"]
-		_orb(life_c, orb_r, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
-		_orb(mana_c, orb_r, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
+		if use_frame:
+			_orb_shade(life_c, orb_r, p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
+			_orb_shade(mana_c, orb_r, p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
+		else:
+			_orb(life_c, orb_r, Color(0.78, 0.1, 0.13), p.hp / max_hp, "%d/%d" % [int(ceil(p.hp)), int(max_hp)])
+			_orb(mana_c, orb_r, Color(0.14, 0.34, 0.86), p.mp / max_mp, "%d/%d" % [int(p.mp), int(max_mp)])
 		# potion belt beside the life orb: one bottle per potion carried (keys 1-5 drink)
 		var bs := 56.0
 		var bgap := 6.0
 		var belt_w := 5 * bs + 4 * bgap
 		var bx0 := life_c.x + 150.0
 		var belt := Rect2(bx0 - 40, cy - sz / 2 - 34, belt_w + 80, sz + 78)
+		if use_frame:
+			belt = (fslots[0] as Rect2).merge(fslots[4]).grow(8)
 		var belt_tex := _ui("belt_plate")
-		if belt_tex != null:
+		if use_frame:
+			pass
+		elif belt_tex != null:
 			draw_texture_rect(belt_tex, belt, false)
 		else:
 			draw_rect(belt, DARK)
@@ -853,9 +924,11 @@ class HudDraw extends Control:
 		hud.belt_plate = belt
 		for k in 5:
 			var pr := Rect2(bx0 + k * (bs + bgap), cy - bs / 2 + 4, bs, bs)
-			_keycap(Vector2(pr.get_center().x, pr.end.y + 15), str(k + 1))
+			if use_frame:
+				pr = fslots[k]
+			_keycap(Vector2(pr.get_center().x, pr.end.y + (12.0 if use_frame else 15.0)), str(k + 1))
 			var sock3 := _ui("slot_socket")
-			if sock3 != null:
+			if sock3 != null and not use_frame:
 				draw_texture_rect(sock3, pr, false)
 			_icon("potion", pr.grow(-7), Color.WHITE if k < p.potions else Color(0.25, 0.25, 0.28, 0.6))
 
@@ -865,6 +938,8 @@ class HudDraw extends Control:
 		# evade: a round button with a foot on the mana orb's lower left (Space)
 		var ev: Dictionary = p.evade_def()
 		var ec := mana_c + Vector2(-112, -118)   # above the skill plate, by the mana orb
+		if use_frame:
+			ec = Vector2((fslots[11] as Rect2).end.x - 6.0 * fk, (fslots[11] as Rect2).position.y - 58.0 * fk)
 		_round_button(ec, 25.0)
 		var ecd: float = p.cds.get("evade", 0.0)
 		var ready: bool = ecd <= 0.0

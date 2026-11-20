@@ -1,6 +1,6 @@
 # AOTL Development Backlog (prioritised)
 
-1. ~~R54 elbow volume~~ done (crease 63→33%). **R55**: recover the window-edge trade-off (wrist side via an ArmTwist twist helper; upper end via a shoulder-side window clamp).
+1. ~~R54 elbow volume~~ done; ~~R55 clip-safe elbow~~ done (R54's armor clipping removed). **R56**: forearm-guard lip clearance (flare or +2–3 mm) to bring guard poke-through below R53; recompute guard normals.
 2. **Shoulder/armpit clearance** — inspect tunic ↔ arm ↔ rigid shoulder plate intersections at Slash f5–f12 (needs multi-angle renders).
 3. **Warrior silhouette vs approved art** — proportions, head/face, hair volume, painterly materials; current mesh remains procedural low-poly.
 4. **Cloth follow-through** — cape bones (CapeL/Mid/R) are keyed rigidly; add secondary motion.

@@ -1,3 +1,7 @@
+# November 20 development checkpoint
+
+[Current aotl development backlog](checkpoints/2026-11-20-reference-hud/AOTL_DEVELOPMENT_BACKLOG.md)
+
 # AOTL Development Backlog (prioritised)
 
 1. ~~R54 elbow volume~~ done; ~~R55 clip-safe elbow~~ done (R54's armor clipping removed). **R56**: forearm-guard lip clearance (flare or +2–3 mm) to bring guard poke-through below R53; recompute guard normals.

@@ -4,3 +4,5 @@ Picture 1 is the selected reference for HP, mana and XP. The corner guardians an
 The first Desktop capture showed a grey area above the XP rail. A capture with the HUD hidden reproduced it. The two-district camera now constrains the view to painted coverage and the final Desktop image was recaptured. The camera change is specific to that district topology.
 
 The Warrior comparison and Slash, Dodge and Death GIFs use actual Godot frames. The pilot has an articulated model, distinct class colors and an attached sword/shield. Its segmented armor, coarse face and hair, simplified textures, stiff tabard and cape fall short of the reference. R55's earlier measurements still show 1,471 forearm-guard poke-through vertex-frames. An independent visual pass on that exact model is pending. The pilot is experimental and mass character production remains gated.
+
+The opt-in 3D hero labs on #75 use their own mockup-derived globes and action panels. This pass changes XP binding and numeric readouts there. Fresh full-scene screenshots of that branch remain pending. The Desktop and R55 captures correspond only to their respective versions.

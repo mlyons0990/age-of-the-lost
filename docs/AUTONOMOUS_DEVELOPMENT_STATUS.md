@@ -1,3 +1,7 @@
+# November 20 development checkpoint
+
+[Current autonomous development status](checkpoints/2026-11-20-reference-hud/AUTONOMOUS_DEVELOPMENT_STATUS.md)
+
 # AOTL — Autonomous Development Status
 
 **Updated:** 2026-11-20 · **Agent:** Claude Code (cloud container; single agent working sequential workstreams)

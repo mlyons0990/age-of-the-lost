@@ -5,3 +5,5 @@
 4. Integrate the dummy in a dedicated Crownsfall practice scene and validate actual equipment damage, hit events and combat VFX.
 5. Place the verified gateway in a navigable test district and retain the existing stable route until traversal and camera review pass.
 6. Finish reference XP end ornaments and bank styling while preserving branch-specific controls.
+
+The hero branch already contains an opt-in Knight and Mage. Validate both existing candidates before creating any additional hero asset. Run verify_arpg_hud.gd in a full heroes checkout after the session XP change.

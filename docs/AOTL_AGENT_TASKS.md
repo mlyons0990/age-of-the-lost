@@ -1,3 +1,7 @@
+# November 20 development checkpoint
+
+[Current aotl agent tasks](checkpoints/2026-11-20-reference-hud/AOTL_AGENT_TASKS.md)
+
 # AOTL Workstreams
 
 Real parallel sub-agents were not used this cycle; workstreams were run sequentially by one agent.

@@ -17,3 +17,6 @@ Verified November 20, 2026.
 
 ## Recovery
 Return to R55 by checking out c12aae6 and pulling its LFS assets. Disable use_r55_clip_safe_elbow_candidate to leave the opt-in model. Retain the R39/R40 production fallback and the R50/R52/R54 source revisions. For Desktop recovery, extract the verified Phase 10 archive to a fresh directory or use the preserved local base commit. Keep the pilot in its own project and retain both sets of assets until visual review is complete.
+
+## Subsequent hero branch reconciliation
+PR #74 adds an opt-in Knight with a 24-bone Meshy rig and both retargeted and library clips. PR #75 at 1af3335375ec3bda055ef147a81221195500c9ec stacks a Mage with staff and tome on the Knight. Their dedicated 3D labs already include a separate mockup-based HUD. These are the latest hero sources inspected. R55 remains the parent of the Crownsfall HUD change in draft #76; the practice XP pass uses #75. Do not replace the newer hero assets with the R52 pilot. Charges described on the other branches are prior external work, with no charge by this session.

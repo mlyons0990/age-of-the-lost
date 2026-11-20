@@ -1,3 +1,7 @@
+# November 20 development checkpoint
+
+[Current aotl visual acceptance](checkpoints/2026-11-20-reference-hud/AOTL_VISUAL_ACCEPTANCE.md)
+
 # AOTL Visual Acceptance Log
 
 | Item | Evidence (real renders) | Verdict | Remaining discrepancy |

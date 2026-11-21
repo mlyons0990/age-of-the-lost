@@ -180,3 +180,8 @@ Next (needs owner credit approval): replace the placeholder statue + globe corne
 - Rail spans the full screen width; panel frames extend behind the rings so no empty wedge remains at the globe bases; frame edges tile instead of stretching.
 - Mouse glyph: capsule with the whole bound button lit. Potion/skill icons inset inside the socket rims.
 - Tests: arpg_hud 79/79; regression 994/994.
+
+## Revision 19
+- HP and MP values share one horizontal line (above the taller corner).
+- The frame interior between each globe and its panel is filled with the frame's own bronze filigree border art (tiled), not plain stone.
+- Tests: arpg_hud 80/80; regression 994/994.

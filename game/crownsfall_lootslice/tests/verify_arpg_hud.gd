@@ -58,6 +58,7 @@ func _run() -> void:
 	check(hud.frame_poly.size() >= 12, "Flask belt, XP rail and skill block are ONE outline polygon (no gaps between elements)")
 	check(hud.mouse_glyphs.size() == 3 and hud.mouse_glyphs["move"].visible and int(hud.mouse_glyphs["move"].get_meta("button")) == 1, "LMB / MMB / RMB slots show a mouse symbol with the bound button lit")
 	check(hud.mp_label.position.y + hud.mp_label.size.y < hud.orb_r.y - hud.orb_r.z + 4.0 and hud.hp_label.position.y + hud.hp_label.size.y < hud.orb_l.y - hud.orb_l.z + 4.0, "HP / MP values sit above their globes")
+	check(absf(hud.hp_label.position.y - hud.mp_label.position.y) < 0.5, "HP and MP values on the same horizontal line")
 	var top_ok := true
 	for i in range(5, 8): top_ok = top_ok and hud.bar_slots[i]["rect"].end.y <= hud.bar_slots[0]["rect"].position.y
 	check(top_ok, "LMB MMB RMB row sits above the Q W E R T row (PoE layout)")

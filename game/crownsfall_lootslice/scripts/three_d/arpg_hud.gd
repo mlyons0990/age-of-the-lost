@@ -293,6 +293,21 @@ func _build() -> void:
 	root.add_child(_frame9(Rect2(low.position, Vector2(disc_rx - low.position.x, low.size.y)), hi, f))
 	root.add_child(_frame9(Rect2(top.position, Vector2(disc_rx - top.position.x, top.size.y)), hi, f))
 	root.add_child(_frame9(Rect2(Vector2(disc_lx, belt.position.y), Vector2(belt.end.x - disc_lx, belt.size.y)), hi, f))
+	# the frame interior between each globe ring and its panel: bronze filigree panelling (the frame's own border art,
+	# tiled) instead of plain stone. Drawn before the corners, so the ring overlaps its outer end.
+	var pil_tex: Texture2D = _tex("hud2_pilaster@2x" if hi else "hud2_pilaster")
+	for zone in [Rect2(Vector2(disc_lx, belt.position.y + fb), Vector2(belt.position.x + fb - 2 * f - disc_lx, belt.size.y - 2 * fb)),
+			Rect2(Vector2(low.end.x - fb + 2 * f, low.position.y + fb), Vector2(disc_rx - (low.end.x - fb + 2 * f), low.size.y - 2 * fb)),
+			Rect2(Vector2(top.end.x - fb + 2 * f, top.position.y + fb), Vector2(disc_rx - (top.end.x - fb + 2 * f), top.size.y - fb))]:
+		var pz := TextureRect.new()
+		pz.texture = pil_tex
+		pz.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		pz.stretch_mode = TextureRect.STRETCH_TILE
+		pz.position = zone.position
+		pz.size = zone.size * (2.0 if hi else 1.0)
+		if hi: pz.scale = Vector2(0.5, 0.5)
+		pz.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		root.add_child(pz)
 	var cb: Array = CM["cap_belt"]["size"]
 	var cs2: Array = CM["cap_skill"]["size"]
 	root.add_child(_piece("hud2_cap_belt@2x" if hi else "hud2_cap_belt", Rect2(belt.end.x - 8 * f, stand - float(cb[1]) * f, float(cb[0]) * f, float(cb[1]) * f)))
@@ -351,12 +366,13 @@ func _build() -> void:
 	hp_label = _label("HP", int(18 * f), IVORY)
 	hp_label.size = Vector2(220, 24) * f
 	hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	hp_label.position = Vector2(orb_l.x - 110 * f, lo.y - 28 * f)
+	var label_y: float = minf(lo.y, ro.y) - 28 * f          # one shared line for HP and MP
+	hp_label.position = Vector2(orb_l.x - 110 * f, label_y)
 	root.add_child(hp_label)
 	mp_label = _label("MP", int(18 * f), IVORY)
 	mp_label.size = Vector2(220, 24) * f
 	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	mp_label.position = Vector2(orb_r.x - 110 * f, ro.y - 28 * f)
+	mp_label.position = Vector2(orb_r.x - 110 * f, label_y)
 	root.add_child(mp_label)
 	var lv := _label("Lv. %d" % LEVEL, int(12 * f), IVORY)
 	lv.size = Vector2(120 * f, xp_rect.size.y + 4 * f)

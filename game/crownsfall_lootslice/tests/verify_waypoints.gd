@@ -56,6 +56,9 @@ func _run() -> void:
 	var wnode: Node3D = lab.zone_waypoints[0]["node"]
 	check(not (wnode.get_node("Beam") as MeshInstance3D).visible and not (wnode.get_node("Label") as Label3D).visible, "Undiscovered waypoint is dormant: no light, no label, no \"locked\" text")
 	check(lab.zone_walkable(lab.zone_waypoints[0]["pos"]), "Shrine ruins are walkable (waypoint area open)")
+	a.command_move(lab.zone_px_to_world(1480, 820))
+	await create_timer(3.0).timeout
+	await _shot("waypoint_dormant")
 	var unlocked := [false]
 	lab.waypoint_unlocked.connect(func(_id): unlocked[0] = true)
 	_click_waypoint(lab)

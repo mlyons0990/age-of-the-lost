@@ -30,6 +30,7 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-21 04:32 | HUD v2 item 6: skill + potion sockets | GPT Image 2.6 2K | 2 (re-quoted) | same | 2 | `c5655a49…` | Slot wells | Accepted | 2,808.5 |
 | 2026-11-21 18:27 | Z1: Crownsfall plaza repaint at owner scale (2 variants; B used — balustrade closes all sides) | GPT Image 2.6 4K 21:9 high | 6.5 (re-quoted) | Owner: "Approved for Z1" | 6.5 | `5fdae107…` (used), `072a8813…` | Hero ~110 px at 1080p, lamp ~2 hero heights | Accepted (pending in-game sign-off) | 2,802 |
 | 2026-11-21 19:02 | W1: Whisperwood shrine clearing repaint at Z1 scale (2 variants; B used — stairs top-left, paths off top-right and bottom-left) | GPT Image 2.6 4K 21:9 high | 6.5 (re-quoted) | Owner: "Yes, approved for the repaint" | 6.5 | `e648136f…` (used), `70219249…` | Hero 110 px; first piece of the larger Whisperwood zone | Accepted | 2,795.5 |
+| 2026-11-21 20:35 | WP1: AOTL waypoint platform, dormant (2 variants, transparent) | GPT Image 2.6 2K 1:1 high | 4 (re-quoted) | Owner: "Yes go ahead with WP1" | 4 | `488de7ea…`, `7648635c…` | Ivory marble + aged-gold star rim, carved runes unlit | Accepted (variant pick pending) | 2,791.5 |
 
-Totals: **204.5 credits spent** of the 3,000 grant (2,795.5 remaining, verified against `balance` + `transactions` 2026-11-21 19:10). Environments: 13. Phase 0: 86 of 120. Phase 1: 67 of 600. Phase 4 (UI/VFX): 38.5 of 120.
+Totals: **208.5 credits spent** of the 3,000 grant (2,791.5 remaining, verified against `balance` + `transactions` 2026-11-21 20:36). Environments: 13. Props: 4. Phase 0: 86 of 120. Phase 1: 67 of 600. Phase 4 (UI/VFX): 38.5 of 120.
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

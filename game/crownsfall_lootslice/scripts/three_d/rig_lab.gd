@@ -1,6 +1,10 @@
 extends Node3D
 const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
 const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
+const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
+const WAYPOINT_ART_M := 3.8        # platform width on the ground (metres)
+const WAYPOINT_ART_DZ := 0.39      # the painted basin sits above the image centre; shift so it lands on the point
+const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
 ## This deliberately does NOT replace the established 2D plaza; keep both.
 const HERO := preload("res://scripts/three_d/rig_controller.gd")
@@ -449,8 +453,26 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 	var root := Node3D.new(); root.name = "Waypoint_" + id; root.position = at
 	root.add_to_group("zone_waypoint")
 	parent.add_child(root)
+	# painted AOTL waypoint platform (Higgsfield WP1), laid on the ground like the zone paintings so it matches the
+	# camera; the rune glow below sits in its basin
+	if ResourceLoader.exists(WAYPOINT_ART):
+		var plinth := MeshInstance3D.new(); plinth.name = "Plinth"
+		var tex: Texture2D = load(WAYPOINT_ART)
+		var pw := WAYPOINT_ART_M
+		var ph := pw * float(tex.get_height()) / float(tex.get_width()) / sin(deg_to_rad(ZONE_PITCH))
+		var ppm_ := PlaneMesh.new(); ppm_.size = Vector2(pw, ph); plinth.mesh = ppm_
+		var pmat := StandardMaterial3D.new()
+		pmat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		pmat.albedo_texture = tex
+		pmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+		pmat.alpha_scissor_threshold = 0.5
+		pmat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+		plinth.material_override = pmat
+		plinth.position = Vector3(0, 0.015, WAYPOINT_ART_DZ)
+		plinth.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		root.add_child(plinth)
 	var disc := MeshInstance3D.new(); disc.name = "Rune"
-	var pm := PlaneMesh.new(); pm.size = Vector2(2.2, 2.2); disc.mesh = pm
+	var pm := PlaneMesh.new(); pm.size = Vector2(WAYPOINT_RUNE_M, WAYPOINT_RUNE_M); disc.mesh = pm
 	var dm := ShaderMaterial.new(); dm.shader = load("res://shaders/waypoint_rune.gdshader")
 	disc.material_override = dm; disc.position.y = 0.03
 	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF

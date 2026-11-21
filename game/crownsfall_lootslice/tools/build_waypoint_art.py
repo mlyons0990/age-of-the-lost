@@ -4,7 +4,7 @@ The generated art is drawn from a steeper angle than the game's 52-degree orthog
 is 0.90 as tall as wide; flat ground at 52 degrees projects to sin(52) = 0.79), so laid on the ground it read as
 tilted toward the viewer. This squashes it vertically so the footprint matches the camera, crops to the footprint
 so its centre is the image centre, and adds a soft contact shadow so it sits into the painted ground.
-usage: python build_waypoint_art.py <src.png> <out.png> <basin_x> <basin_y> [rotate_deg]
+usage: python build_waypoint_art.py <src.png> <out.png> <basin_x> <basin_y> [rotate_deg] [ground_ratio]
   (basin centre in source pixels; rotate_deg turns the platform on the ground, + = bottom point swings right.
   The rotation is done in ground space about the point midway between footprint and basin centre, so the raised
   centre leans by at most ~(basin offset x sin(angle)); fine for the small turns used to aim a point.)
@@ -16,6 +16,9 @@ from PIL import Image
 
 src, out, bx, by = sys.argv[1], sys.argv[2], float(sys.argv[3]), float(sys.argv[4])
 rot = float(sys.argv[5]) if len(sys.argv) > 5 else 0.0
+# height/width of a ground circle in the PAINTINGS (measured: Whisperwood shrine rings 0.47-0.54, Crownsfall compass
+# rose ~0.47). The paintings are drawn from a lower angle than the 52-degree camera, so match the painting, not the camera.
+GROUND_RATIO = float(sys.argv[6]) if len(sys.argv) > 6 else 0.51
 a = np.asarray(Image.open(src).convert("RGBA")).astype(np.float32)
 m = a[..., 3] > 128
 ys, xs = np.where(m)
@@ -41,7 +44,7 @@ if rot != 0.0:
     x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
     a = a[y0:y1, x0:x1]; bx -= x0; by -= y0
     w, h = a.shape[1], a.shape[0]
-target = math.sin(math.radians(52.0))
+target = GROUND_RATIO
 k = target * w / h                                   # vertical squash so footprint height/width == sin(52)
 nh = int(round(h * k))
 im = Image.fromarray(a.astype(np.uint8), "RGBA").resize((w, nh), Image.LANCZOS)

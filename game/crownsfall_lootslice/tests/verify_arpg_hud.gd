@@ -33,7 +33,7 @@ func _run() -> void:
 	check(hud != null and lab.info == null, "Mage lab uses the ARPG HUD instead of the debug panel")
 	check(not a.number_keys_for_skills, "1-5 are potions; skills on Q W E R T")
 	check(a.click_to_move, "Click-to-move enabled (ARPG HUD labs)")
-	check(hud.skill_loadout == hud.DEFAULT_SKILLS["mage"] and hud.skill_loadout.size() == 6, "Mage default loadout (Q Lance, W Nova, E Judgment, R Bolt; T, RMB empty)")
+	check(hud.skill_loadout == hud.DEFAULT_SKILLS["mage"] and hud.skill_loadout.size() == 7, "Mage default loadout (Q Lance, W Nova, E Judgment, R/T empty, LMB Bolt, RMB empty)")
 	for sk in hud.HERO_SKILLS["mage"].values() + hud.HERO_SKILLS["warrior"].values():
 		check(ResourceLoader.exists(hud.TILES + sk + ".png"), "Skill icon exists: " + sk)
 	for t in ["hud_full", "hud_full@2x", "potion", "potion_mana"]:
@@ -57,10 +57,16 @@ func _run() -> void:
 	check(lmiss == 0 and rmiss == 0 and bmiss == 0, "Solid to the left, right and bottom screen edges (see-through: %d / %d / %d)" % [lmiss, rmiss, bmiss])
 	check(hud.left_piece.texture.get_width() == roundi(hud.left_piece.size.x) and hud.right_piece.texture.get_width() == roundi(hud.right_piece.size.x), "Pieces draw 1:1 at 1080p (no runtime downscale aliasing)")
 	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["skill_6"].text == "RMB" and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")
-	check(hud.bar_slots.size() == 6 and hud.potion_slots.size() == 5 and hud.key_labels["move"].text == "LMB", "5 potion wells + 6 skill wells + primary-attack well showing LMB (from the painted bar)")
+	check(hud.bar_slots.size() == 7 and hud.potion_slots.size() == 5, "5 potion wells + 7 skill wells (from the painted bar)")
+	var order := []
+	for i in 7: order.append(hud.key_labels[hud.SLOT_ACTIONS[i]].text)
+	check(order == ["Q", "W", "E", "R", "T", "LMB", "RMB"], "Skill bar reads Q W E R T LMB RMB left to right (%s)" % [order])
+	var xs_ok := true
+	for i in 6: xs_ok = xs_ok and hud.bar_slots[i]["rect"].position.x < hud.bar_slots[i + 1]["rect"].position.x
+	check(xs_ok, "Skill wells ordered left to right")
 	# --- loadout: any skill / potion in any slot ---
 	hud.assign("skill", 0, "Bolt")
-	check(hud.skill_loadout[0] == "Bolt" and hud.skill_loadout[3] == "Lance", "Putting Bolt in slot 1 swaps it with the slot that held it (no duplicates)")
+	check(hud.skill_loadout[0] == "Bolt" and hud.skill_loadout[5] == "Lance", "Putting Bolt in slot 1 swaps it with the slot that held it (no duplicates)")
 	check(hud.skill_icons[0].texture != null and hud.skill_icons[0].texture.resource_path.ends_with("starfall_script.png"), "Slot icon follows the assigned skill")
 	hud.assign("skill", 4, "")
 	check(hud.skill_icons[4].texture == null, "Empty skill slot shows an empty well")
@@ -72,6 +78,8 @@ func _run() -> void:
 	check(hud.picker.visible and hud.picker.item_count == hud.HERO_SKILLS["mage"].size() + 2, "Clicking a skill slot opens the skill picker")
 	hud.picker.hide()
 	hud.assign("skill", 0, "Lance")
+	hud.assign("skill", 5, "Bolt")
+	hud.assign("skill", 4, "")
 	hud.assign("potion", 0, "health")
 	# --- rebinding (any key / mouse button on any action) ---
 	var kb = hud.kb

@@ -119,3 +119,12 @@ Owner: "it looks like there are 3 elements … you can clearly see where the art
 - Previous three-piece assets remain in the repo for reference but are no longer used by the HUD.
 - Tests: arpg_hud 67/67 (one-piece, full width, bottom edge, solid edges, groove placement, equal globes);
   mage 83/83; knight 29/29; armed knight 41/41; regression 994/994.
+
+## Revision 10 (owner: circled statue edges wavy/cheap; skill bar must read Q W E R T LMB RMB)
+- Removed the mirrored stone/hair fill at the outer edges (it produced the wavy artefacts). The outer 112/16 source
+  columns are cropped instead, so each statue's real painted body runs off the screen edge; mild unsharp mask.
+- Skill bar: seven wells Q W E R T LMB RMB, each well bound to an action (`SLOT_ACTIONS`), so rebinding never moves
+  wells. The LMB well holds the primary attack (swappable, drives click-an-enemy attacks).
+- Known limit: the painted art has no key plate under its first well (the XP groove runs there), so the Q plate is
+  drawn by code over the groove's end; a regenerated bar with seven plated wells is the proper fix (quoted).
+- Tests: arpg_hud 69/69 (adds Q W E R T LMB RMB order); regression 994/994.

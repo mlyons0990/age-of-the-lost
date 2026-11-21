@@ -664,9 +664,15 @@ func primary_range() -> float:
 	return float(MAGE_SPELLS["Bolt"]["reach"]) * 0.9 if is_pilot_mage() else MELEE_RANGE
 
 ## Primary attack (LMB on an enemy / Shift+LMB): Mage Bolt, Warrior Slash.
+var primary_skill_provider: Callable   # ARPG HUD: the skill in the LMB well
+
 func primary_attack() -> void:
 	_face_aim()
-	if is_pilot_mage():
+	var sk: String = primary_skill_provider.call() if primary_skill_provider.is_valid() else ""
+	if sk != "":
+		if MAGE_SPELLS.has(sk) and is_pilot_mage(): cast_spell(sk)
+		elif WARRIOR_SKILLS.has(sk): _attack(sk, WARRIOR_SKILLS[sk])
+	elif is_pilot_mage():
 		cast_spell("Bolt")
 	else:
 		_attack("Slash", 0.72)

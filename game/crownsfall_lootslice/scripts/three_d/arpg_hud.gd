@@ -19,9 +19,13 @@ const HERO_SKILLS := {
 	"mage": {"Bolt": "starfall_script", "Lance": "epoch_lance", "Nova": "solar_writ", "Judgment": "dawnfall"},
 	"warrior": {"Slash": "slash", "Cleave": "cleave", "Dash": "charge", "Cast": "rally"},
 }
-const SKILL_SLOTS := 6     # six plated wells on the painted bar (Q W E R T + RMB by default, all rebindable)
+## Seven skill wells, left to right: Q W E R T, LMB, RMB (owner layout; PoE-style: the LMB well holds the primary attack).
+## Each well is bound to an action, so any key / mouse button can be rebound without moving the wells.
+const SKILL_SLOTS := 7
+const SLOT_ACTIONS := ["skill_1", "skill_2", "skill_3", "skill_4", "skill_5", "move", "skill_6"]
+const PRIMARY_SLOT := 5
 const POTION_SLOTS := 5
-const DEFAULT_SKILLS := {"mage": ["Lance", "Nova", "Judgment", "Bolt", "", ""], "warrior": ["Cleave", "Dash", "Cast", "Slash", "", ""]}
+const DEFAULT_SKILLS := {"mage": ["Lance", "Nova", "Judgment", "", "", "Bolt", ""], "warrior": ["Cleave", "Dash", "Cast", "", "", "Slash", ""]}
 ## Potion types for the belt (click a potion well to choose).
 const POTION_TYPES := {"health": {"tex": "potion", "hp": 45.0, "mp": 0.0}, "mana": {"tex": "potion_mana", "hp": 0.0, "mp": 60.0}}
 const DEFAULT_POTIONS := ["health", "health", "health", "mana", "mana"]
@@ -91,6 +95,7 @@ func setup(owner_lab: Node3D) -> void:
 	hero = "mage" if player.is_pilot_mage() else "warrior"
 	player.number_keys_for_skills = false
 	player.click_to_move = true
+	player.primary_skill_provider = primary_skill
 	kb = KEYBINDS.new()
 	kb.changed_listeners.append(_refresh_keys)
 	_load_loadout()
@@ -269,19 +274,10 @@ func _build() -> void:
 		var r: Rect2 = map.call(meta["skill_wells"][i])
 		bar_slots.append({"rect": r, "idx": i})
 		skill_icons.append(_well(root, r, "skill", i, 0.05))
-		key_labels["skill_%d" % (i + 1)] = _plate_label(root, map.call(meta["skill_plates"][i]), f)
-	# primary attack (LMB on an enemy): display well with the current move/attack binding drawn inside it
-	var pr: Rect2 = map.call(meta["primary_well"])
-	var prim := TextureRect.new()
-	prim.texture = load(TILES + ("starfall_script" if hero == "mage" else "slash") + ".png")
-	prim.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	prim.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	prim.position = pr.position + pr.size * Vector2(0.06, 0.05)
-	prim.size = pr.size * Vector2(0.88, 0.72)
-	prim.modulate = Color(1, 1, 1, 0.9)
-	prim.tooltip_text = "Primary attack (click an enemy)"
-	root.add_child(prim)
-	key_labels["move"] = _plate_label(root, Rect2(pr.position + Vector2(0, pr.size.y * 0.76), Vector2(pr.size.x, pr.size.y * 0.22)), f)
+		var plate: Rect2 = map.call(meta["skill_plates"][i])
+		if float(i) in meta.get("drawn_plates", []):
+			_draw_plate(root, plate, f)          # no painted plate under this well: draw one matching the art
+		key_labels[SLOT_ACTIONS[i]] = _plate_label(root, plate, f)
 	var lv := _label("Lv. %d" % LEVEL, int(14 * f), IVORY)
 	lv.size = Vector2(160 * f, xp_rect.size.y)
 	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -367,6 +363,21 @@ func _well(root: Control, r: Rect2, kind: String, idx: int, inset_frac: float) -
 	b.add_child(t)
 	return t
 
+func _draw_plate(root: Control, r: Rect2, f: float) -> void:
+	var p := Panel.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.11, 0.085, 0.095, 1.0)
+	sb.border_color = Color(0.55, 0.41, 0.29, 1.0)
+	sb.set_border_width_all(maxi(1, roundi(1.5 * f)))
+	sb.set_corner_radius_all(roundi(3 * f))
+	sb.shadow_color = Color(0, 0, 0, 0.6)
+	sb.shadow_size = roundi(2 * f)
+	p.add_theme_stylebox_override("panel", sb)
+	p.position = r.position + Vector2(2, 2) * f
+	p.size = r.size - Vector2(4, 4) * f
+	p.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(p)
+
 func _plate_label(root: Control, r: Rect2, ui_k: float) -> Label:
 	var l := _label("", int(15 * ui_k), IVORY)
 	l.position = r.position
@@ -427,8 +438,8 @@ func _load_loadout() -> void:
 	if cf.load(LOADOUT_PATH) == OK:
 		var s: Array = cf.get_value(hero, "skills", skill_loadout)
 		var p: Array = cf.get_value(hero, "potions", potion_loadout)
-		while s.size() < SKILL_SLOTS: s.append("")        # saves from the 5-slot bar carry over
-		s.resize(SKILL_SLOTS)
+		if s.size() != SKILL_SLOTS:
+			s = DEFAULT_SKILLS[hero].duplicate()     # older bar layouts reset to the new default
 		if s.size() == SKILL_SLOTS and s.all(func(x): return x == "" or HERO_SKILLS[hero].has(x)): skill_loadout = s
 		if p.size() == 5 and p.all(func(x): return x == "" or POTION_TYPES.has(x)): potion_loadout = p
 
@@ -456,6 +467,10 @@ func use_skill_slot(i: int) -> void:
 	if sk != "":
 		player.use_skill(sk)
 
+## The skill in the LMB well drives the click-an-enemy primary attack.
+func primary_skill() -> String:
+	return skill_loadout[PRIMARY_SLOT]
+
 ## Drink potion slot `i` (0-4). Returns true if it restored anything.
 func drink(i: int) -> bool:
 	var pt: String = potion_loadout[i]
@@ -476,7 +491,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if a == "":
 		return
 	if a.begins_with("skill_"):
-		use_skill_slot(int(a.substr(6)) - 1)
+		use_skill_slot(SLOT_ACTIONS.find(a))
 	elif a.begins_with("potion_"):
 		drink(int(a.substr(7)) - 1)
 	elif a == "dodge":

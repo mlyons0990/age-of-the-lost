@@ -474,9 +474,11 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 func _waypoint_visual(node: Node3D, open: bool) -> void:
 	(node.get_node("Rune") as MeshInstance3D).material_override.set_shader_parameter("lit", 1.0 if open else 0.0)
 	(node.get_node("Beam") as MeshInstance3D).visible = open
+	# undiscovered waypoints are simply part of the world (dormant stone, no label) until the hero finds them
 	var lbl := node.get_node("Label") as Label3D
-	lbl.text = "◆ Waypoint" if open else "◆ Waypoint (locked)"
-	lbl.modulate = Color("9fd0ff") if open else Color("b8b2a6")
+	lbl.text = "Waypoint"
+	lbl.modulate = Color("9fd0ff")
+	lbl.visible = open
 
 func waypoint_at(at: Vector3, radius := 1.6) -> Dictionary:
 	for w in zone_waypoints:

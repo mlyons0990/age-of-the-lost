@@ -54,7 +54,7 @@ func _run() -> void:
 	while lab.zone_traveling: await process_frame
 	check(lab.painted_zone == "whisperwood", "Portal on the south road leads to Whisperwood")
 	var wnode: Node3D = lab.zone_waypoints[0]["node"]
-	check(not (wnode.get_node("Beam") as MeshInstance3D).visible, "Shrine waypoint starts locked (no light pillar)")
+	check(not (wnode.get_node("Beam") as MeshInstance3D).visible and not (wnode.get_node("Label") as Label3D).visible, "Undiscovered waypoint is dormant: no light, no label, no \"locked\" text")
 	check(lab.zone_walkable(lab.zone_waypoints[0]["pos"]), "Shrine ruins are walkable (waypoint area open)")
 	var unlocked := [false]
 	lab.waypoint_unlocked.connect(func(_id): unlocked[0] = true)

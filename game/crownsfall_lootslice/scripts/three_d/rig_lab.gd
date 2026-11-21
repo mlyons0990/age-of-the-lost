@@ -2,6 +2,7 @@ extends Node3D
 const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
 const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
+const WAYPOINT_ART_LIT := "res://assets/props/waypoint_plinth_lit.png"   # WP2: same platform, runes glowing
 const WAYPOINT_ART_M := 4.25       # image width on the ground (metres); footprint is 89% of it (~3.8 m)
 const WAYPOINT_ART_BASIN_V := 0.062 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
 const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
@@ -453,6 +454,7 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 	var root := Node3D.new(); root.name = "Waypoint_" + id; root.position = at
 	root.add_to_group("zone_waypoint")
 	parent.add_child(root)
+	var basin_dz := 0.0
 	# painted AOTL waypoint platform (Higgsfield WP1), laid on the ground like the zone paintings so it matches the
 	# camera; the rune glow below sits in its basin
 	if ResourceLoader.exists(WAYPOINT_ART):
@@ -467,19 +469,20 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 		pmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA          # soft contact shadow edge
 		pmat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 		plinth.material_override = pmat
-		plinth.position = Vector3(0, 0.015, WAYPOINT_ART_BASIN_V * ph)   # basin (where the hero stands) on the point
+		plinth.position = Vector3(0, 0.015, 0.0)   # footprint centred on the painted shrine circle (the waypoint point)
+		basin_dz = -WAYPOINT_ART_BASIN_V * ph      # raised basin appears this far "north" of the footprint centre
 		plinth.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		root.add_child(plinth)
 	var disc := MeshInstance3D.new(); disc.name = "Rune"
 	var pm := PlaneMesh.new(); pm.size = Vector2(WAYPOINT_RUNE_M, WAYPOINT_RUNE_M); disc.mesh = pm
 	var dm := ShaderMaterial.new(); dm.shader = load("res://shaders/waypoint_rune.gdshader")
-	disc.material_override = dm; disc.position.y = 0.03
+	disc.material_override = dm; disc.position = Vector3(0, 0.03, basin_dz)
 	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(disc)
 	var beam := MeshInstance3D.new(); beam.name = "Beam"
 	var q := QuadMesh.new(); q.size = Vector2(1.1, 3.4); beam.mesh = q
 	var bm := ShaderMaterial.new(); bm.shader = load("res://shaders/portal_aura.gdshader"); bm.set_shader_parameter("strength", 0.55)
-	beam.material_override = bm; beam.position.y = 1.7
+	beam.material_override = bm; beam.position = Vector3(0, 1.7, basin_dz)
 	beam.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(beam)
 	var lbl := Label3D.new(); lbl.name = "Label"
@@ -493,6 +496,11 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 	return root
 
 func _waypoint_visual(node: Node3D, open: bool) -> void:
+	var plinth := node.get_node_or_null("Plinth") as MeshInstance3D
+	if plinth != null:
+		# painted art carries the runes: dormant = carved stone, discovered = the WP2 glowing version
+		(plinth.material_override as StandardMaterial3D).albedo_texture = load(WAYPOINT_ART_LIT if open and ResourceLoader.exists(WAYPOINT_ART_LIT) else WAYPOINT_ART)
+		(node.get_node("Rune") as MeshInstance3D).visible = false
 	(node.get_node("Rune") as MeshInstance3D).material_override.set_shader_parameter("lit", 1.0 if open else 0.0)
 	(node.get_node("Beam") as MeshInstance3D).visible = open
 	# undiscovered waypoints are simply part of the world (dormant stone, no label) until the hero finds them

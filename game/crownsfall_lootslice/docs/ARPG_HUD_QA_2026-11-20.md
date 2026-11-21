@@ -136,3 +136,13 @@ Owner: "it looks like there are 3 elements … you can clearly see where the art
   Not repairable by hand cleanly -> regeneration quoted (H1/H2) with explicit fixes for these.
 - Free fix: the drain shader now uses exact glass masks (`tools/make_glass_masks.py`), so a draining globe never
   darkens the statue or ring.
+
+## Revision 12 — PoE layout, built free for owner review (no credits until approved)
+Owner: replicate PoE: QWERT bottom row, LMB MMB RMB top row, nothing overlapping the XP bar, icons filling their
+squares; not "cheap and AI made with wavy lines".
+- Panels and wells are now drawn procedurally (`tools/build_hud_poe.py`): exact straight bronze bevels, recessed
+  wells, dark stone fill. Skill block: stepped two-row frame beside the mana globe (LMB MMB RMB over Q W E R T,
+  8 slots, all rebindable incl. new MMB slot). Flask belt: 5 tall slots beside the life globe. XP bar: its own thin
+  channel along the bottom edge between the globes. Key letters sit in each icon's corner (PoE style).
+- Corner statue + globe art is a placeholder cut from the previous bar until the owner approves a corner redraw.
+- Tests: arpg_hud 73/73 (no overlaps, row order, icon fill, edges); regression 994/994.

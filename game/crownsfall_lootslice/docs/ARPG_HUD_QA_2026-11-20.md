@@ -185,3 +185,6 @@ Next (needs owner credit approval): replace the placeholder statue + globe corne
 - HP and MP values share one horizontal line (above the taller corner).
 - The frame interior between each globe and its panel is filled with the frame's own bronze filigree border art (tiled), not plain stone.
 - Tests: arpg_hud 80/80; regression 994/994.
+
+## BASELINE — 2026-11-21 (owner: "Much better, lets use that as our baseline")
+HUD baseline = commit 1a5560a. Future changes are additions on top of this; render `art/higgsfield_2026-11/hud_previews/hud_v2_1080p.jpg`.

@@ -9,3 +9,5 @@
 
 
 ## 2026-11-21 — 3D lab ARPG HUD layout: ACCEPTED by owner (commit ac13d6b). Corner statue/globe art still placeholder.
+
+## 2026-11-21 — ARPG HUD v2 is the owner-approved BASELINE (commit 1a5560a).

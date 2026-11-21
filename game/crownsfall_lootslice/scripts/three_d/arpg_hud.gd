@@ -12,15 +12,30 @@ const IVORY := Color("efe6cf")
 const PANEL_BG := Color(0.05, 0.05, 0.07, 0.78)
 var progress_label: Label
 
-## Bar layouts per hero: [key label, icon tile, MAGE_SPELLS key or warrior attack kind].
-## The mockup panel's five wells, Q W E R T (click-to-move, so W is a skill). LMB is move / primary attack.
-const MAGE_BAR := [["Q", "epoch_lance", "Lance"], ["W", "solar_writ", "Nova"], ["E", "dawnfall", "Judgment"],
-	["R", "", ""], ["T", "", ""]]
-const WARRIOR_BAR := [["Q", "cleave", "Cleave"], ["W", "charge", "Dash"], ["E", "rally", "Cast"],
-	["R", "", ""], ["T", "", ""]]
-## Potion belt: [key, kind, hp, mana]
-const POTIONS := [[KEY_1, "hp", 45.0, 0.0], [KEY_2, "hp", 45.0, 0.0], [KEY_3, "hp", 45.0, 0.0],
-	[KEY_4, "mana", 0.0, 60.0], [KEY_5, "mana", 0.0, 60.0]]
+const KEYBINDS := preload("res://scripts/three_d/keybinds.gd")
+const LOADOUT_PATH := "user://aotl_loadout.cfg"
+## Skills a hero can put on the bar (click a skill well to choose, like Diablo 4 / PoE). name -> icon tile.
+const HERO_SKILLS := {
+	"mage": {"Bolt": "starfall_script", "Lance": "epoch_lance", "Nova": "solar_writ", "Judgment": "dawnfall"},
+	"warrior": {"Slash": "slash", "Cleave": "cleave", "Dash": "charge", "Cast": "rally"},
+}
+## Seven skill wells, left to right: Q W E R T, LMB, RMB (owner layout; PoE-style: the LMB well holds the primary attack).
+## Each well is bound to an action, so any key / mouse button can be rebound without moving the wells.
+const SKILL_SLOTS := 8
+## PoE layout: bottom row Q W E R T, top row LMB MMB RMB (wells 5, 6, 7). Each well is bound to an action.
+const SLOT_ACTIONS := ["skill_1", "skill_2", "skill_3", "skill_4", "skill_5", "move", "skill_7", "skill_6"]
+const PRIMARY_SLOT := 5
+const POTION_SLOTS := 5
+const DEFAULT_SKILLS := {"mage": ["Lance", "Nova", "Judgment", "", "", "Bolt", "", ""], "warrior": ["Cleave", "Dash", "Cast", "", "", "Slash", "", ""]}
+## 1080p layout (scaled by screen height): slot, gap, frame border, XP bar height
+const SLOT := 60.0
+const GAP := 4.0
+const BORDER := 7.0
+const XP_H := 18.0
+const FLASK := Vector2(44, 76)
+## Potion types for the belt (click a potion well to choose).
+const POTION_TYPES := {"health": {"tex": "potion", "hp": 45.0, "mp": 0.0}, "mana": {"tex": "potion_mana", "hp": 0.0, "mp": 60.0}}
+const DEFAULT_POTIONS := ["health", "health", "health", "mana", "mana"]
 const POTION_CD := 6.0
 
 var lab: Node3D
@@ -30,10 +45,11 @@ var font_regular: FontFile
 const DISC_SHADER := """
 shader_type canvas_item;
 uniform float fill = 1.0;
+uniform sampler2D glass_mask : filter_linear;   // exact glass pixels: the drain never darkens the statue or ring
 void fragment() {
 	vec2 p = UV * 2.0 - 1.0;
 	float r = length(p);
-	float inside = smoothstep(1.0, 0.965, r);
+	float inside = texture(glass_mask, UV).r;
 	float y = 1.0 - UV.y;                                   // 0 at the bottom of the disc, 1 at the top
 	float empty = smoothstep(fill - 0.012, fill + 0.02, y); // spent part, above the liquid surface
 	float meniscus = exp(-pow((y - fill) * 45.0, 2.0)) * step(0.01, fill) * step(fill, 0.99);
@@ -42,6 +58,13 @@ void fragment() {
 }
 """
 var hp_shade: ColorRect
+var meta_cache: Dictionary
+var frame_poly: PackedVector2Array
+var boss_points: Array = []
+var frame_body: Control
+var mouse_glyphs := {}
+var xp_tex: Texture2D
+var xp_tile_w := 120.0
 var mp_shade: ColorRect
 var left_piece: TextureRect
 var right_piece: TextureRect
@@ -54,14 +77,25 @@ var hp_label: Label
 var mp_label: Label
 var overlay: Control          # slot cooldowns, XP, minimap markers (above the panels)
 var world_overlay: Control    # nameplate + enemy bars (beneath the panels, like world-space UI)
-var bar_slots: Array = []     # [{rect, key, spell}]
-var potion_slots: Array = []  # [{rect, idx}]
+var bar_slots: Array = []     # [{rect, idx}] skill wells (contents in skill_loadout)
+var potion_slots: Array = []  # [{rect, idx}] potion wells (contents in potion_loadout)
+var kb                        # keybinds.gd instance
+var hero := "warrior"
+var skill_loadout: Array = []
+var potion_loadout: Array = []
+var skill_icons: Array = []   # TextureRect per skill well
+var potion_icons: Array = []
+var key_labels := {}          # action -> Label on its plate
+var picker: PopupMenu
+var picker_target := []       # ["skill"|"potion", idx]
+var bind_menu: PanelContainer
+var bind_buttons := {}        # action -> [Button, Button]
+var capturing := []           # [action, slot] while waiting for a key
 var potion_cds := [0.0, 0.0, 0.0, 0.0, 0.0]
 var minimap_vp: SubViewport
 var minimap_cam: Camera3D
 var minimap_rect: Rect2
 var xp_rect: Rect2
-var bar_layout: Array = WARRIOR_BAR
 var quest_progress := 0
 
 func setup(owner_lab: Node3D) -> void:
@@ -70,10 +104,16 @@ func setup(owner_lab: Node3D) -> void:
 	layer = 5
 	font = load("res://assets/fonts/LiberationSerif-Bold.ttf")
 	font_regular = load("res://assets/fonts/LiberationSerif-Regular.ttf")
-	bar_layout = MAGE_BAR if player.is_pilot_mage() else WARRIOR_BAR
+	hero = "mage" if player.is_pilot_mage() else "warrior"
 	player.number_keys_for_skills = false
 	player.click_to_move = true
+	player.primary_skill_provider = primary_skill
+	kb = KEYBINDS.new()
+	kb.changed_listeners.append(_refresh_keys)
+	_load_loadout()
 	_build()
+	_refresh_slots()
+	_refresh_keys()
 
 func _tex(name: String) -> Texture2D:
 	return load(UI + name + ".png")
@@ -102,6 +142,9 @@ func _panel(rect: Rect2, alpha := 0.78) -> Panel:
 	p.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return p
 
+func _update_progress() -> void:
+	progress_label.text = lab.practice_progress.caption()
+
 func _build() -> void:
 	var root := Control.new()
 	root.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -125,8 +168,8 @@ func _build() -> void:
 	var rows := [["AOTL 3D LAB (v0.3)", true], ["3D Scene: Active", false], ["Camera: Isometric (PoE Scale)", false],
 		["Character: " + hero_name, false], ["Animation Set: %d clips" % player.animation.get_animation_list().size(), false],
 		["Environment: Combat lab (alpha)", false]]
-	var controls := [["LMB", "Move / Attack (hold)"], ["Shift + LMB", "Attack in place"], ["Q W E R T", "Skills / Spells"],
-		["Space", "Dodge Roll"], ["1 – 5", "Potions"], ["F7", "Return to 2D plaza"]]
+	var controls := [["LMB", "Move / Attack (hold)"], ["Shift + LMB", "Attack in place"], ["Skill bar", "Skills (click a slot to swap)"],
+		["Belt", "Potions (click a slot to swap)"], ["Space", "Dodge Roll"], ["F1", "Key Bindings (rebind anything)"], ["F7", "Return to 2D plaza"]]
 	var ph := 34.0 + rows.size() * 24.0 + 30.0 + controls.size() * 24.0
 	root.add_child(_panel(Rect2(14, 92, 360, ph)))
 	var y := 100.0
@@ -185,100 +228,177 @@ func _build() -> void:
 		ol.name = "Objective_" + q[0].replace(" ", "")
 		root.add_child(ol)
 		qy += 56
-	# --- bottom: globes, belts, xp
-	# Owner's mockup HUD: statue + life orb + potion belt flush bottom-left, skill panel + mana orb + statue flush
-	# bottom-right, a bronze XP strip joining them along the bottom edge. Pieces are cut from the owner's mockup
-	# close-ups (hud_left/right.png); slot positions in hud_mockup.json are in those images' pixels.
-	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_mockup.json"))
+	# --- bottom, PoE layout: painted statue + globe in each corner; between them, procedurally drawn bronze frames
+	# (exact straight bevels): a flask belt beside the life globe, a two-row skill block beside the mana globe
+	# (LMB MMB RMB over Q W E R T), and a thin XP bar along the bottom edge. Nothing overlaps; icons fill their wells.
+	var CM: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_corners.json"))
+	meta_cache = CM
 	var vs: Vector2 = lab.get_viewport().get_visible_rect().size
 	W = vs.x
 	H = vs.y
-	var ui_k: float = H / 1080.0
-	var L: Dictionary = meta["left"]
-	var R: Dictionary = meta["right"]
-	var sl: float = float(L["image_scale"]) * ui_k     # source px -> screen px
-	var sr: float = float(R["image_scale"]) * ui_k
-	var lsz := Vector2(L["size"][0], L["size"][1]) * sl
-	var rsz := Vector2(R["size"][0], R["size"][1]) * sr
-	left_piece = _piece("hud_left", Rect2(0, H - lsz.y, lsz.x, lsz.y))
-	right_piece = _piece("hud_right", Rect2(W - rsz.x, H - rsz.y, rsz.x, rsz.y))
-	root.add_child(left_piece)
-	root.add_child(right_piece)
+	var f: float = H / 1080.0
+	var hi := f > 1.05
+	var cl: Dictionary = CM["left"]
+	var cr: Dictionary = CM["right"]
+	var lsz := Vector2(cl["size"][0], cl["size"][1]) * f
+	var rsz := Vector2(cr["size"][0], cr["size"][1]) * f
+	left_piece = _piece("hud_corner_left@2x" if hi else "hud_corner_left", Rect2(0, H - lsz.y, lsz.x, lsz.y))
+	right_piece = _piece("hud_corner_right@2x" if hi else "hud_corner_right", Rect2(W - rsz.x, H - rsz.y, rsz.x, rsz.y))
 	var lo := left_piece.position
 	var ro := right_piece.position
-	var lmap := func(v: Array) -> Rect2: return Rect2(lo + Vector2(v[0], v[1]) * sl, Vector2(v[2], v[3]) * sl)
-	var rmap := func(v: Array) -> Rect2: return Rect2(ro + Vector2(v[0], v[1]) * sr, Vector2(v[2], v[3]) * sr)
-	var oo: Array = L["orb_outer"]
-	orb_l = Vector3(lo.x + oo[0] * sl, lo.y + oo[1] * sl, oo[2] * sl)
-	oo = R["orb_outer"]
-	orb_r = Vector3(ro.x + oo[0] * sr, ro.y + oo[1] * sr, oo[2] * sr)
-	# drained-orb shading: a shader clipped to each glass disc (slightly elliptical in the art)
-	hp_shade = _disc_shade(root, lo, sl, L["disc"])
-	mp_shade = _disc_shade(root, ro, sr, R["disc"])
-	# XP strip: from the left belt's housing to the right panel's housing, along the bottom edge
-	var lh: Rect2 = lmap.call(L["xp_housing"])
-	var rh: Rect2 = rmap.call(R["xp_housing"])
-	strip_rect = Rect2(lh.position.x + lh.size.x * 0.4, lh.position.y, rh.end.x - lh.size.x * 0.4 - lh.position.x, lh.size.y)
-	xp_rect = Rect2(strip_rect.position.x + 8 * ui_k, strip_rect.get_center().y - 5 * ui_k, strip_rect.size.x - 16 * ui_k, 10 * ui_k)
-	# live labels on dark plates, where the mockup prints them
-	var plate_sb := StyleBoxFlat.new()
-	plate_sb.bg_color = Color(0.03, 0.03, 0.04, 0.8)
-	plate_sb.set_corner_radius_all(3)
-	var hp_pos: Vector2 = lo + Vector2(L["label_anchor"][0], L["label_anchor"][1]) * sl
-	var hp_plate := Panel.new()
-	hp_plate.add_theme_stylebox_override("panel", plate_sb)
-	hp_plate.position = hp_pos - Vector2(8, 2) * ui_k
-	hp_plate.size = Vector2(150, 30) * ui_k
-	hp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(hp_plate)
-	hp_label = _label("HP", int(19 * ui_k), IVORY)
-	hp_label.position = hp_pos
+	var dl: Array = cl["disc"]
+	var dr: Array = cr["disc"]
+	# ONE fluid frame (PoE structure): a base rail runs from globe to globe along the bottom edge with the XP bar set
+	# into it; the flask belt rises out of the rail against the life ring, and the stepped skill block (LMB MMB RMB over
+	# Q W E R T) rises out of it against the mana ring. The whole outline is a single polygon with one bronze rim, so
+	# there are no gaps or joins between elements. Globe rings are drawn over the rail ends.
+	var s_slot := SLOT * f
+	var s_gap := GAP * f
+	var s_b := BORDER * f
+	var fl := FLASK * f
+	var ring_l: float = lo.x + (float(dl[0]) + float(cl["ring_r"]) * 0.93) * f    # inner edge of each globe ring
+	var ring_r: float = ro.x + (float(dr[0]) - float(cr["ring_r"]) * 0.93) * f
+	var base_h: float = 26.0 * f
+	var by0: float = H - base_h
+	var bx0: float = lo.x + float(dl[0]) * f
+	var bx1: float = ro.x + float(dr[0]) * f
+	var tuck: float = 48.0 * f
+	# flask belt (raised section on the left)
+	var belt := Rect2(ring_l - tuck, 0, tuck + 5 * fl.x + 4 * s_gap + 2 * s_b, fl.y + 2 * s_b)
+	belt.position.y = by0 - belt.size.y + s_b
+	# skill block (raised, stepped, on the right)
+	var blk_w: float = 5 * s_slot + 4 * s_gap + 2 * s_b + tuck
+	var low := Rect2(ring_r + tuck - blk_w, 0, blk_w, s_slot + 2 * s_b)
+	low.position.y = by0 - low.size.y + s_b
+	var top_w: float = low.end.x - (low.position.x + s_b + 2 * (s_slot + s_gap) - s_b)
+	var top := Rect2(low.end.x - top_w, low.position.y - s_slot - s_gap, top_w, s_slot + s_gap + s_b)
+	boss_points = [belt.position + Vector2(8, 8) * f, Vector2(belt.end.x, belt.position.y) + Vector2(-8, 8) * f,
+		low.position + Vector2(8, 8) * f, top.position + Vector2(8, 8) * f, Vector2(top.end.x, top.position.y) + Vector2(-8, 8) * f]
+	var outline := PackedVector2Array([
+		Vector2(bx0, H + 2), Vector2(bx0, by0), Vector2(belt.position.x, by0), belt.position,
+		Vector2(belt.end.x, belt.position.y), Vector2(belt.end.x, by0), Vector2(low.position.x, by0), low.position,
+		Vector2(top.position.x, low.position.y), top.position, Vector2(top.end.x, top.position.y),
+		Vector2(top.end.x, by0), Vector2(bx1, by0), Vector2(bx1, H + 2)])
+	outline = _rounded(outline, 22.0 * f, H)
+	frame_poly = outline
+	var body := Control.new()
+	body.set_anchors_preset(Control.PRESET_FULL_RECT)
+	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var stone_tex: Texture2D = _tex("hud_stone")
+	body.draw.connect(func():
+		var rim: float = 7.0 * f
+		var inner: PackedVector2Array = Geometry2D.offset_polygon(outline, -rim, Geometry2D.JOIN_MITER)[0]
+		body.draw_colored_polygon(outline, Color("8a6a46"))                      # bronze rim
+		var uv := PackedVector2Array()
+		for v in inner: uv.append(v / (256.0 * f))
+		body.draw_polygon(inner, PackedColorArray([Color.WHITE]), uv, stone_tex)  # stone body
+		var closed := outline.duplicate(); closed.append(outline[0])
+		var cin := inner.duplicate(); cin.append(inner[0])
+		body.draw_polyline(closed, Color("0b0909"), 2.0 * f)                      # outer dark edge
+		body.draw_polyline(cin, Color("0d0b0b"), 1.5 * f)                         # inner dark edge
+		var mid: PackedVector2Array = Geometry2D.offset_polygon(outline, -rim * 0.45, Geometry2D.JOIN_MITER)[0]
+		for k in mid.size():                                                     # lit top edges of the rim
+			var a: Vector2 = mid[k]; var b: Vector2 = mid[(k + 1) % mid.size()]
+			var dd: Vector2 = b - a
+			if dd.length() < 0.01: continue
+			var horiz: bool = absf(dd.y) < absf(dd.x)
+			var shade: Color = Color("e0b878") if (horiz and a.y < H - 2) else Color("b08a5c")
+			body.draw_line(a, b, shade, (2.0 if horiz else 1.6) * f)
+		for corner in []:
+			_boss(body, corner, f)
+		)
+	# bronze collars hugging each globe ring where the frame meets it (PoE-style), so no dead wedge remains
+	var cl_c := Vector2(lo.x + float(dl[0]) * f, lo.y + float(dl[1]) * f)
+	var cr_c := Vector2(ro.x + float(dr[0]) * f, ro.y + float(dr[1]) * f)
+	var rl: float = float(cl["ring_r"]) * f
+	var rr2: float = float(cr["ring_r"]) * f
+	var y_top: float = minf(belt.position.y, top.position.y)
+	body.draw.connect(func():
+		for side in [[cl_c, rl, 1.0, belt.position.y], [cr_c, rr2, -1.0, top.position.y]]:
+			var cc: Vector2 = side[0]; var R: float = side[1]; var dir: float = side[2]; var y0: float = side[3]
+			var a0: float = asin(clampf((y0 - cc.y) / (R + 10 * f), -1.0, 1.0))
+			var a1: float = PI * 0.5
+			var outer := PackedVector2Array(); var inner2 := PackedVector2Array()
+			for k in 25:
+				var a: float = lerpf(a0, a1, k / 24.0)
+				outer.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 10 * f))
+				inner2.append(cc + Vector2(dir * cos(a), sin(a)) * (R - 4 * f))
+			var band := outer.duplicate()
+			inner2.reverse()
+			band.append_array(inner2)
+			body.draw_colored_polygon(band, Color("8a6a46"))
+			var lit := PackedVector2Array()
+			for k in 25:
+				var a: float = lerpf(a0, a1, k / 24.0)
+				lit.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 7 * f))
+			body.draw_polyline(lit, Color("d6ad70"), 1.8 * f)
+			var edge := PackedVector2Array()
+			for k in 25:
+				var a: float = lerpf(a0, a1, k / 24.0)
+				edge.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 10 * f))
+			body.draw_polyline(edge, Color("0b0909"), 2.0 * f)
+		)
+	root.add_child(body)
+	frame_body = body
+	# XP bar set into the base rail, from ring to ring
+	var gy0: float = by0 + 8 * f
+	var gh: float = base_h - 13 * f
+	var gmid: float = gy0 + gh * 0.5
+	var edge_l: float = lo.x + (float(dl[0]) + sqrt(maxf(0.0, pow(float(cl["ring_r"]) + 10.0, 2) - pow((gmid - lo.y) / f - float(dl[1]), 2)))) * f
+	var edge_r: float = ro.x + (float(dr[0]) - sqrt(maxf(0.0, pow(float(cr["ring_r"]) + 10.0, 2) - pow((gmid - ro.y) / f - float(dr[1]), 2)))) * f
+	var groove := Rect2(bx0 + 20 * f, gy0, bx1 - bx0 - 40 * f, gh)
+	strip_rect = Rect2(bx0, by0, bx1 - bx0, base_h)
+	root.add_child(_nine("hud_xp_frame", groove.grow(2 * f), 3, hi))
+	xp_rect = Rect2(edge_l, gy0 + 1 * f, edge_r - edge_l, gh - 2 * f)
+	root.add_child(left_piece)
+	root.add_child(right_piece)
+	orb_l = Vector3(lo.x + dl[0] * f, lo.y + dl[1] * f, dl[2] * f)
+	orb_r = Vector3(ro.x + dr[0] * f, ro.y + dr[1] * f, dr[2] * f)
+	hp_shade = _disc_shade(root, lo, f, dl)
+	mp_shade = _disc_shade(root, ro, f, dr)
+	(hp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_left"))
+	(mp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_right"))
+	for i in POTION_SLOTS:
+		var r := Rect2(Vector2(belt.position.x + tuck + s_b + i * (fl.x + s_gap), belt.position.y + s_b), fl)
+		root.add_child(_nine("hud_well", r, 3, hi))
+		potion_slots.append({"rect": r, "idx": i})
+		potion_icons.append(_well(root, r, "potion", i, 0.0))
+		key_labels["potion_%d" % (i + 1)] = _corner_key(root, r, f)
+	for i in SKILL_SLOTS:
+		var r: Rect2
+		if i < 5:
+			r = Rect2(Vector2(low.position.x + s_b + i * (s_slot + s_gap), low.position.y + s_b), Vector2(s_slot, s_slot))
+		else:
+			r = Rect2(Vector2(low.position.x + s_b + (i - 3) * (s_slot + s_gap), top.position.y + s_b), Vector2(s_slot, s_slot))
+		root.add_child(_nine("hud_well", r, 3, hi))
+		bar_slots.append({"rect": r, "idx": i})
+		skill_icons.append(_well(root, r, "skill", i, 0.0))
+		key_labels[SLOT_ACTIONS[i]] = _corner_key(root, r, f)
+		if i >= 5:
+			mouse_glyphs[SLOT_ACTIONS[i]] = _mouse_glyph(root, r, f)
+	# HP / MP values above their globes (PoE style)
+	hp_label = _label("HP", int(18 * f), IVORY)
+	hp_label.size = Vector2(200, 24) * f
+	hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hp_label.position = Vector2(orb_l.x - 100 * f, orb_l.y - orb_l.z - 46 * f)
 	root.add_child(hp_label)
-	mp_label = _label("MP", int(19 * ui_k), IVORY)
-	mp_label.size = Vector2(220 * ui_k, 26 * ui_k)
-	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	mp_label.position = ro + Vector2(R["label_anchor"][0], R["label_anchor"][1]) * sr - Vector2(mp_label.size.x, 0)
-	var mp_plate := Panel.new()
-	mp_plate.add_theme_stylebox_override("panel", plate_sb)
-	mp_plate.size = Vector2(150, 30) * ui_k
-	mp_plate.position = Vector2(mp_label.position.x + mp_label.size.x - mp_plate.size.x + 8 * ui_k, mp_label.position.y - 2 * ui_k)
-	mp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(mp_plate)
-	root.move_child(mp_plate, mp_label.get_index() if mp_label.get_parent() else root.get_child_count() - 1)
+	mp_label = _label("MP", int(18 * f), IVORY)
+	mp_label.size = Vector2(200, 24) * f
+	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	mp_label.position = Vector2(orb_r.x - 100 * f, orb_r.y - orb_r.z - 46 * f)
 	root.add_child(mp_label)
-	# potions are painted into the belt; keep their rects for cooldown shading
-	for i in 5:
-		potion_slots.append({"rect": lmap.call(L["potions"][i]), "idx": i})
-	# skills: live icons in the panel wells, live key labels on the plates
-	for i in bar_layout.size():
-		var spec: Array = bar_layout[i]
-		var r: Rect2 = rmap.call(R["skills"][i])
-		var icon := TextureRect.new()
-		icon.texture = load(TILES + spec[1] + ".png") if spec[1] != "" else _tex("lock")
-		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var inset: float = (3.0 if spec[1] != "" else 16.0) * ui_k
-		icon.position = r.position + Vector2(inset, inset)
-		icon.size = r.size - Vector2(inset * 2, inset * 2)
-		icon.modulate = Color.WHITE if spec[1] != "" else Color(1, 1, 1, 0.3)
-		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		root.add_child(icon)
-		var kr: Rect2 = rmap.call(R["keys"][i])
-		var kl := _label(spec[0], int(17 * ui_k), IVORY)
-		kl.size = kr.size
-		kl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		kl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		kl.position = kr.position
-		root.add_child(kl)
-		bar_slots.append({"rect": r, "key": spec[0], "spell": spec[2]})
-	progress_label = _label(lab.practice_progress.caption(), int(14 * ui_k), IVORY)
-	progress_label.size = Vector2(200 * ui_k, 20 * ui_k)
+	progress_label = _label(lab.practice_progress.caption(), int(12 * f), IVORY)
+	progress_label.size = Vector2(200 * f, xp_rect.size.y + 4 * f)
 	progress_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	progress_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	progress_label.position = Vector2(xp_rect.get_center().x - 100 * ui_k, xp_rect.get_center().y - 10 * ui_k)
+	progress_label.position = Vector2(xp_rect.get_center().x - 100 * f, xp_rect.position.y - 2 * f)
 	progress_label.z_index = 2
 	root.add_child(progress_label)
 	lab.practice_progress.changed.connect(_update_progress)
+	picker = PopupMenu.new()
+	picker.id_pressed.connect(_on_pick)
+	add_child(picker)
+	_build_bind_menu(root, f)
 	# world-anchored layer + dynamic overlays
 	overlay = Control.new()
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -288,9 +408,6 @@ func _build() -> void:
 	for t in lab.targets:
 		if t.title != null:
 			t.title.visible = false
-
-func _update_progress() -> void:
-	progress_label.text = lab.practice_progress.caption()
 
 func _disc_shade(root: Control, origin: Vector2, k: float, d: Array) -> ColorRect:
 	var c := ColorRect.new()
@@ -334,21 +451,351 @@ func _socket(root: Control, r: Rect2) -> void:
 	s.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(s)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not (event is InputEventKey) or not event.is_pressed() or event.is_echo():
-		return
-	for i in POTIONS.size():
-		if event.keycode == POTIONS[i][0]:
-			drink(i)
+# ---------------- wells, loadout, picker ----------------
+
+## Fillet every corner of the frame outline (convex and concave) with a smooth arc, PoE-style; screen-edge
+## vertices below the bottom of the screen stay square.
+static func _rounded(poly: PackedVector2Array, rad: float, h: float) -> PackedVector2Array:
+	var out := PackedVector2Array()
+	var n := poly.size()
+	for i in n:
+		var p: Vector2 = poly[i]
+		if p.y >= h:
+			out.append(p)
+			continue
+		var a: Vector2 = poly[(i - 1 + n) % n]
+		var b: Vector2 = poly[(i + 1) % n]
+		var ra: float = minf(rad, a.distance_to(p) * 0.5)
+		var rb: float = minf(rad, b.distance_to(p) * 0.5)
+		var p0: Vector2 = p + (a - p).normalized() * ra
+		var p1: Vector2 = p + (b - p).normalized() * rb
+		for k in 9:
+			var t: float = k / 8.0
+			out.append(p0.lerp(p, t).lerp(p.lerp(p1, t), t))     # quadratic bezier through the corner
+	return out
+
+## Small bronze boss with a gold stud at each raised corner (artwork accents on the frame).
+func _boss(ctrl: Control, at: Vector2, f: float) -> void:
+	ctrl.draw_circle(at, 7.5 * f, Color("0b0909"))
+	ctrl.draw_circle(at, 6.5 * f, Color("8a6a46"))
+	ctrl.draw_circle(at, 4.2 * f, Color("5a4330"))
+	ctrl.draw_circle(at + Vector2(-0.8, -0.8) * f, 2.6 * f, Color("e8c27c"))
+
+func _nine(name: String, r: Rect2, margin: int, hi: bool) -> NinePatchRect:
+	var n := NinePatchRect.new()
+	n.texture = _tex(name + ("@2x" if hi else ""))
+	var m: int = margin * (2 if hi else 1)
+	n.patch_margin_left = m; n.patch_margin_right = m; n.patch_margin_top = m; n.patch_margin_bottom = m
+	n.position = r.position
+	n.size = r.size
+	n.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return n
+
+## PoE-style mouse symbol for LMB / MMB / RMB slots: a small mouse with the bound button lit.
+func _mouse_glyph(root: Control, r: Rect2, f: float) -> Control:
+	var g := Control.new()
+	g.position = r.position + Vector2(3, r.size.y - 24) * Vector2(1, 1) + Vector2(0, 0)
+	g.position = Vector2(r.position.x + 3 * f, r.end.y - 29 * f)
+	g.size = Vector2(19, 26) * f
+	g.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	g.z_index = 3
+	g.set_meta("button", 0)
+	g.draw.connect(func():
+		var w: float = g.size.x; var h: float = g.size.y
+		var body := Rect2(Vector2(1, 1) * f, Vector2(w - 2 * f, h - 2 * f))
+		var sb := StyleBoxFlat.new()
+		sb.bg_color = Color(0.08, 0.07, 0.07, 0.9); sb.border_color = Color("efe6cf"); sb.set_border_width_all(maxi(1, roundi(1.4 * f)))
+		sb.corner_radius_top_left = roundi(7 * f); sb.corner_radius_top_right = roundi(7 * f)
+		sb.corner_radius_bottom_left = roundi(6 * f); sb.corner_radius_bottom_right = roundi(6 * f)
+		g.draw_style_box(sb, body)
+		var split_y: float = body.position.y + body.size.y * 0.42
+		g.draw_line(Vector2(body.position.x + 1, split_y), Vector2(body.end.x - 1, split_y), Color("efe6cf"), 1.2 * f)
+		var mx: float = body.get_center().x
+		var btn: int = int(g.get_meta("button"))
+		if btn == 2:
+			g.draw_rect(Rect2(Vector2(mx - 1.6 * f, body.position.y + 3 * f), Vector2(3.2 * f, split_y - body.position.y - 5 * f)), Color("f2c45a"))
+		else:
+			g.draw_line(Vector2(mx, body.position.y + 1), Vector2(mx, split_y), Color("efe6cf"), 1.2 * f)
+			var lx: float = body.position.x + 2 * f if btn == 1 else mx + 1 * f
+			if btn in [1, 3]:
+				g.draw_rect(Rect2(Vector2(lx, body.position.y + 3 * f), Vector2(body.size.x * 0.5 - 3 * f, split_y - body.position.y - 4 * f)), Color("f2c45a"))
+		)
+	root.add_child(g)
+	return g
+
+## Key letter in the icon's bottom-left corner (PoE style), outlined so it reads over any icon.
+func _corner_key(root: Control, r: Rect2, f: float) -> Label:
+	var l := _label("", int(14 * f), IVORY)
+	l.add_theme_constant_override("outline_size", maxi(3, roundi(5 * f)))
+	l.position = r.position + Vector2(4, r.size.y - 20 * f)
+	l.size = Vector2(r.size.x - 6 * f, 18 * f)
+	l.clip_text = true
+	l.z_index = 3
+	root.add_child(l)
+	return l
+
+func _well(root: Control, r: Rect2, kind: String, idx: int, inset_frac: float) -> TextureRect:
+	var b := Button.new()
+	b.flat = true
+	b.focus_mode = Control.FOCUS_NONE
+	b.position = r.position
+	b.size = r.size
+	b.tooltip_text = "Click to change this %s slot" % kind
+	b.pressed.connect(_open_picker.bind(kind, idx))
+	b.name = "%sWell%d" % [kind.capitalize(), idx + 1]
+	root.add_child(b)
+	var t := TextureRect.new()
+	t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	t.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	var rim: float = 3.0 * r.size.y / 60.0 if kind == "skill" else 0.0
+	var inset := r.size * inset_frac + Vector2(rim, rim)
+	t.position = inset
+	t.size = r.size - inset * 2.0
+	t.stretch_mode = TextureRect.STRETCH_SCALE if kind == "skill" else TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	t.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	b.add_child(t)
+	return t
+
+func _draw_plate(root: Control, r: Rect2, f: float) -> void:
+	var p := Panel.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.11, 0.085, 0.095, 1.0)
+	sb.border_color = Color(0.55, 0.41, 0.29, 1.0)
+	sb.set_border_width_all(maxi(1, roundi(1.5 * f)))
+	sb.set_corner_radius_all(roundi(3 * f))
+	sb.shadow_color = Color(0, 0, 0, 0.6)
+	sb.shadow_size = roundi(2 * f)
+	p.add_theme_stylebox_override("panel", sb)
+	p.position = r.position + Vector2(2, 2) * f
+	p.size = r.size - Vector2(4, 4) * f
+	p.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(p)
+
+func _plate_label(root: Control, r: Rect2, ui_k: float) -> Label:
+	var l := _label("", int(15 * ui_k), IVORY)
+	l.position = r.position
+	l.size = r.size
+	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	l.clip_text = true
+	root.add_child(l)
+	return l
+
+func _refresh_slots() -> void:
+	for i in SKILL_SLOTS:
+		var sk: String = skill_loadout[i]
+		skill_icons[i].texture = load(TILES + HERO_SKILLS[hero][sk] + ".png") if sk != "" else null
+	for i in POTION_SLOTS:
+		var pt: String = potion_loadout[i]
+		potion_icons[i].texture = _tex(POTION_TYPES[pt]["tex"]) if pt != "" else null
+
+func _refresh_keys() -> void:
+	for a in key_labels.keys():
+		var t: String = kb.key_label(a)
+		var btn: int = {"LMB": 1, "MMB": 2, "RMB": 3}.get(t, 0)
+		if mouse_glyphs.has(a):
+			mouse_glyphs[a].visible = btn != 0
+			mouse_glyphs[a].set_meta("button", btn)
+			mouse_glyphs[a].queue_redraw()
+		key_labels[a].text = "" if (btn != 0 and mouse_glyphs.has(a)) else t
+	if bind_menu != null:
+		for a in bind_buttons.keys():
+			for i in 2:
+				bind_buttons[a][i].text = _bind_text(kb.binds[a][i])
+
+func _open_picker(kind: String, idx: int) -> void:
+	picker.clear()
+	picker_target = [kind, idx]
+	var names: Array = HERO_SKILLS[hero].keys() if kind == "skill" else POTION_TYPES.keys()
+	for n in names.size():
+		picker.add_item(String(names[n]).capitalize(), n)
+	picker.add_separator()
+	picker.add_item("(Empty)", 99)
+	picker.position = Vector2i(get_viewport().get_mouse_position()) - Vector2i(0, 40 + 24 * names.size())
+	picker.popup()
+
+func _on_pick(id: int) -> void:
+	var kind: String = picker_target[0]
+	var names: Array = HERO_SKILLS[hero].keys() if kind == "skill" else POTION_TYPES.keys()
+	assign(kind, picker_target[1], "" if id == 99 else String(names[id]))
+
+## Put `what` ("" = empty) in skill or potion slot `idx`. A skill already on the bar moves (no duplicates, as in D4).
+func assign(kind: String, idx: int, what: String) -> void:
+	if kind == "skill":
+		if what != "" and what in skill_loadout:
+			skill_loadout[skill_loadout.find(what)] = skill_loadout[idx]
+		skill_loadout[idx] = what
+	else:
+		potion_loadout[idx] = what
+	_save_loadout()
+	_refresh_slots()
+
+func _load_loadout() -> void:
+	skill_loadout = DEFAULT_SKILLS[hero].duplicate()
+	potion_loadout = DEFAULT_POTIONS.duplicate()
+	var cf := ConfigFile.new()
+	if cf.load(LOADOUT_PATH) == OK:
+		var s: Array = cf.get_value(hero, "skills", skill_loadout)
+		var p: Array = cf.get_value(hero, "potions", potion_loadout)
+		if s.size() != SKILL_SLOTS:
+			s = DEFAULT_SKILLS[hero].duplicate()     # older bar layouts reset to the new default
+		if s.size() == SKILL_SLOTS and s.all(func(x): return x == "" or HERO_SKILLS[hero].has(x)): skill_loadout = s
+		if p.size() == 5 and p.all(func(x): return x == "" or POTION_TYPES.has(x)): potion_loadout = p
+
+func _save_loadout() -> void:
+	var cf := ConfigFile.new()
+	cf.load(LOADOUT_PATH)
+	cf.set_value(hero, "skills", skill_loadout)
+	cf.set_value(hero, "potions", potion_loadout)
+	cf.save(LOADOUT_PATH)
+
+## True while the mouse is over a HUD well or the bindings menu (clicks there must not walk the hero).
+func pointer_over_ui() -> bool:
+	var m := get_viewport().get_mouse_position()
+	if bind_menu.visible and Rect2(bind_menu.position, bind_menu.size).has_point(m):
+		return true
+	for s in bar_slots + potion_slots:
+		if (s["rect"] as Rect2).has_point(m):
+			return true
+	return false
+
+# ---------------- actions ----------------
+
+func use_skill_slot(i: int) -> void:
+	var sk: String = skill_loadout[i]
+	if sk != "":
+		player.use_skill(sk)
+
+## The skill in the LMB well drives the click-an-enemy primary attack.
+func primary_skill() -> String:
+	return skill_loadout[PRIMARY_SLOT]
 
 ## Drink potion slot `i` (0-4). Returns true if it restored anything.
 func drink(i: int) -> bool:
-	if potion_cds[i] > 0.0:
+	var pt: String = potion_loadout[i]
+	if pt == "" or potion_cds[i] > 0.0:
 		return false
-	var ok: bool = player.restore(POTIONS[i][2], POTIONS[i][3])
+	var ok: bool = player.restore(POTION_TYPES[pt]["hp"], POTION_TYPES[pt]["mp"])
 	if ok:
 		potion_cds[i] = POTION_CD
 	return ok
+
+func _unhandled_input(event: InputEvent) -> void:
+	if bind_menu.visible or not (event.is_pressed()) or event.is_echo():
+		if bind_menu.visible and kb.action_for_event(event) == "keybinds":
+			toggle_bind_menu()
+			get_viewport().set_input_as_handled()
+		return
+	var a: String = kb.action_for_event(event)
+	if a == "":
+		return
+	if a.begins_with("skill_"):
+		use_skill_slot(SLOT_ACTIONS.find(a))
+	elif a.begins_with("potion_"):
+		drink(int(a.substr(7)) - 1)
+	elif a == "dodge":
+		player.dodge_toward_aim()
+	elif a == "keybinds":
+		toggle_bind_menu()
+	elif a == "move":
+		var at: Vector2 = event.position if event is InputEventMouse else get_viewport().get_mouse_position()
+		lab.handle_click(at, kb.held("force_stand"), kb.combine_move_attack)
+	else:
+		return
+	get_viewport().set_input_as_handled()
+
+# ---------------- key bindings menu (Diablo 4 / PoE style) ----------------
+
+func _bind_text(spec: String) -> String:
+	if spec == "":
+		return "—"
+	var t: String = KEYBINDS.short_label(spec)
+	return t.replace("C+", "Ctrl+").replace("A+", "Alt+").replace("S+", "Shift+").replace("Spc", "Space")
+
+func _build_bind_menu(root: Control, ui_k: float) -> void:
+	bind_menu = PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.04, 0.035, 0.035, 0.96)
+	sb.border_color = GOLD
+	sb.set_border_width_all(2)
+	sb.set_corner_radius_all(4)
+	sb.set_content_margin_all(18)
+	bind_menu.add_theme_stylebox_override("panel", sb)
+	bind_menu.visible = false
+	root.add_child(bind_menu)
+	var v := VBoxContainer.new()
+	bind_menu.add_child(v)
+	v.add_child(_label("KEY BINDINGS", 24, GOLD))
+	v.add_child(_label("Click a binding, then press any key or mouse button.  Esc cancels · Backspace clears.", 14, Color("cfc7b8"), false))
+	var g := GridContainer.new()
+	g.columns = 3
+	g.add_theme_constant_override("h_separation", 14)
+	v.add_child(g)
+	for h in ["Action", "Primary", "Secondary"]:
+		g.add_child(_label(h, 15, GOLD))
+	for a in KEYBINDS.ACTIONS:
+		g.add_child(_label(a[1], 15, IVORY, false))
+		var pair := []
+		for slot in 2:
+			var b := Button.new()
+			b.custom_minimum_size = Vector2(130, 26)
+			b.focus_mode = Control.FOCUS_NONE
+			b.pressed.connect(_start_capture.bind(a[0], slot, b))
+			g.add_child(b)
+			pair.append(b)
+		bind_buttons[a[0]] = pair
+	var combine := CheckBox.new()
+	combine.text = "Combine Move / Interact / Primary Attack on one button"
+	combine.button_pressed = kb.combine_move_attack
+	combine.toggled.connect(func(on): kb.combine_move_attack = on; kb.save_to_disk())
+	v.add_child(combine)
+	var row := HBoxContainer.new()
+	v.add_child(row)
+	var reset := Button.new()
+	reset.text = "Reset to Defaults"
+	reset.pressed.connect(func(): kb.reset_defaults(); combine.button_pressed = true)
+	row.add_child(reset)
+	var close := Button.new()
+	close.text = "Close"
+	close.pressed.connect(toggle_bind_menu)
+	row.add_child(close)
+	bind_status = _label("", 14, Color("e8b85c"), false)
+	v.add_child(bind_status)
+
+var bind_status: Label
+
+func toggle_bind_menu() -> void:
+	bind_menu.visible = not bind_menu.visible
+	capturing = []
+	if bind_menu.visible:
+		_refresh_keys()
+		bind_menu.reset_size()
+		var vs := get_viewport().get_visible_rect().size
+		bind_menu.position = (vs - bind_menu.size) * 0.5
+
+func _start_capture(action: String, slot: int, b: Button) -> void:
+	capturing = [action, slot]
+	b.text = "Press a key…"
+	bind_status.text = ""
+
+func _input(event: InputEvent) -> void:
+	if capturing.is_empty() or not event.is_pressed() or event.is_echo():
+		return
+	if not (event is InputEventKey or event is InputEventMouseButton):
+		return
+	get_viewport().set_input_as_handled()
+	var action: String = capturing[0]
+	var slot: int = capturing[1]
+	capturing = []
+	if event is InputEventKey and event.keycode == KEY_ESCAPE:
+		_refresh_keys()
+		return
+	if event is InputEventKey and event.keycode in [KEY_BACKSPACE, KEY_DELETE]:
+		kb.clear(action, slot)
+		return
+	var spec: String = KEYBINDS.spec_from_event(event)
+	var stolen: String = kb.bind(action, slot, spec)
+	bind_status.text = ("%s was unbound from %s" % [_bind_text(spec), kb.label_of(stolen)]) if stolen != "" and stolen != action else ""
 
 func _process(delta: float) -> void:
 	if player == null:
@@ -393,30 +840,28 @@ func _bar(at: Vector2, w: float, h: float, frac: float, col: Color) -> void:
 func _draw_overlay() -> void:
 	var cam: Camera3D = lab.camera
 
-	# slot overlays: cooldown shade from the top, red tint when mana is short
+	# slot overlays: cooldown shade from the top, purple tint when mana is short
 	for s in bar_slots:
 		var r: Rect2 = s["rect"]
-		var f := _cooldown_fraction(s["spell"])
+		var sk: String = skill_loadout[s["idx"]]
+		var f := _cooldown_fraction(sk)
 		if f > 0.0:
 			overlay.draw_rect(Rect2(r.position, Vector2(r.size.x, r.size.y * f)), Color(0, 0, 0, 0.62))
-		if _unaffordable(s["spell"]):
+		if _unaffordable(sk):
 			overlay.draw_rect(r, Color(0.25, 0.05, 0.25, 0.45))
 	for s in potion_slots:
 		var r: Rect2 = s["rect"]
 		var f: float = potion_cds[s["idx"]] / POTION_CD
 		if f > 0.0:
 			overlay.draw_rect(Rect2(r.position, Vector2(r.size.x, r.size.y * f)), Color(0, 0, 0, 0.62))
-	# XP bar
-	# bronze housing strip joining the two pieces along the bottom edge
-	overlay.draw_rect(strip_rect, Color(0.09, 0.08, 0.075, 1.0))
-	overlay.draw_rect(Rect2(strip_rect.position, Vector2(strip_rect.size.x, 3)), Color("6b5a43"))
-	overlay.draw_rect(Rect2(strip_rect.position + Vector2(0, 3), Vector2(strip_rect.size.x, 1)), Color("2a241d"))
-	overlay.draw_rect(Rect2(Vector2(strip_rect.position.x, strip_rect.end.y - 3), Vector2(strip_rect.size.x, 3)), Color("4a3e30"))
-	overlay.draw_rect(xp_rect.grow(2), Color(0.04, 0.035, 0.03, 1.0))
-	overlay.draw_rect(xp_rect.grow(2), Color("5d4d39"), false, 1.0)
+	# XP fill inside the thin channel
 	var xp_frac: float = lab.practice_progress.fraction()
-	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, xp_rect.size.y)), Color("8a4fd8"))
-	overlay.draw_rect(Rect2(xp_rect.position, Vector2(xp_rect.size.x * xp_frac, 3)), Color("c7a3ff"))
+	var fw: float = xp_rect.size.x * xp_frac
+	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y)), Color("6d35b8"))
+	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y * 0.5)), Color("8c55dc"))
+	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, maxf(1.0, xp_rect.size.y * 0.18))), Color("c9a8ff"))
+	if fw > 2.0:
+		overlay.draw_rect(Rect2(xp_rect.position + Vector2(fw - 2.0, 0), Vector2(2.0, xp_rect.size.y)), Color("e8dcff"))
 	# minimap frame + markers
 	overlay.draw_rect(minimap_rect, GOLD, false, 2.0)
 	var mm_scale := minimap_rect.size.y / minimap_cam.size

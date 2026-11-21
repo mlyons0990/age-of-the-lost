@@ -75,3 +75,93 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
 - Legacy debug labs keep WASD so the existing regression suite is unchanged.
 - Tests: arpg_hud 52/52 (ground click arrival, WASD ignored, cursor enemy pick, walk-into-range attack for Mage and
   Knight, Shift+LMB in place, W casts); mage 83/83; knight lab 29/29; armed knight 41/41; regression 994/994.
+
+## Revision 6 — Higgsfield redraw (A1–A3, 8 cr approved) + dynamic slots + full rebinding
+- Art: Nano Banana 2.1 redraw of the owner's mockup from the uploaded close-ups (left 4K, right 4K, XP strip 2K) on
+  chroma green, keyed locally (`tools/key_hud_redraw.py`), scaled to draw 1:1 at 1080p with @2x files for higher
+  resolutions. Every slot well and key plate is blank in the art. Raw outputs: `art/higgsfield_2026-11/hud_redraw/`.
+- Slots are not static: click any skill well to pick any of the hero's skills (moving a skill already on the bar swaps
+  it, as in Diablo 4), click any potion well to pick a potion type or empty. Loadout saved per hero
+  (`user://aotl_loadout.cfg`).
+- Full rebinding (`scripts/three_d/keybinds.gd`), modelled on Diablo 4 (Options > Controls > Key Bindings: primary +
+  secondary bind per action, "Combine Move/Interact/Basic Skill" toggle) and Path of Exile (Options > Input; any key
+  or mouse button on any skill/flask slot). Actions: move/interact/primary, attack in place, skill slots 1–5,
+  potion slots 1–5, dodge, open key bindings. Any key, key+modifier, or mouse button; binding a key used elsewhere
+  steals it (the other action shows unbound); Esc cancels capture, Backspace clears; Reset to Defaults. Key plates on
+  both bars always show the live binding. Menu: F1 (rebindable). Saved to `user://aotl_keybinds.cfg`.
+- Tests: arpg_hud 69/69 (adds loadout swap/no-duplicate, picker, icon follow, persistence, rebind, steal, mouse bind,
+  capture flow, reset); mage 83/83; knight 29/29; armed knight 41/41; radiant 17/17; regression 994/994.
+
+## Revision 7 (owner: XP bar right end clipped / bleeding into old art; sliver of world left of the HP statue)
+- Removed the small baked XP ledge from the right piece; the XP strip now runs from the potion belt's inner edge to
+  the skill panel's inner edge, tucked 12 px under both frames and seated on the screen's bottom edge.
+- Outer statue edges mirrored outward so every row they occupy reaches the screen edge (no see-through sliver).
+- Tests: arpg_hud 72/72 (adds strip-tuck, fill-inside-groove, solid left/right edge columns).
+
+## Revision 8 (owner: left HP cluster shorter than the right; XP bar needs better texture and framing)
+- Each globe keeps its own artwork (owner: "the left and right orbs have their own artwork", as in PoE / Diablo; a
+  mirrored-left experiment was discarded unpublished). The left art is scaled so both corner pieces stand the same
+  225 px at 1080p: statues, rings and panels line up; globes 78.5 / 74 px.
+- XP bar frame (`tools/build_hud_extras.py`): tiled from the skill panel's own top and bottom bronze/stone borders
+  with a recessed bevelled groove between them, so the bar reads as the same material as the panels; gradient
+  purple fill with a highlight and a bright leading edge. Chroma-green fringe removed from both pieces.
+- Tests: arpg_hud 73/73 (adds equal corner height); regression 994/994.
+
+## Revision 9 — ONE continuous bar (Higgsfield R1, 6 cr approved)
+Owner: "it looks like there are 3 elements … you can clearly see where the artwork was cut and pieced together."
+- Generated the whole bottom HUD as a single 4K 8:1 painting (2 variants; A chosen): statue + HP globe + potion
+  panel + framed XP groove + skill panel + MP globe + statue, one frame, one light, no seams. Keyed by
+  `tools/key_hud_full.py` (chroma key + despill, statues extended to the screen edges, bottom row filled, a painted
+  smudge at the potion-panel step repaired from the same rim); `hud_full.png` 1920 px + `@2x` 3840 px.
+- The bar scales with screen width, so it is always edge to edge (left, right and bottom).
+- Wells from the art: 5 potion wells, 6 skill wells (Q W E R T + RMB, all rebindable), plus a primary-attack well
+  (no plate in the art) showing the hero's primary skill and the live Move/Attack binding.
+- Previous three-piece assets remain in the repo for reference but are no longer used by the HUD.
+- Tests: arpg_hud 67/67 (one-piece, full width, bottom edge, solid edges, groove placement, equal globes);
+  mage 83/83; knight 29/29; armed knight 41/41; regression 994/994.
+
+## Revision 10 (owner: circled statue edges wavy/cheap; skill bar must read Q W E R T LMB RMB)
+- Removed the mirrored stone/hair fill at the outer edges (it produced the wavy artefacts). The outer 112/16 source
+  columns are cropped instead, so each statue's real painted body runs off the screen edge; mild unsharp mask.
+- Skill bar: seven wells Q W E R T LMB RMB, each well bound to an action (`SLOT_ACTIONS`), so rebinding never moves
+  wells. The LMB well holds the primary attack (swappable, drives click-an-enemy attacks).
+- Known limit: the painted art has no key plate under its first well (the XP groove runs there), so the Q plate is
+  drawn by code over the groove's end; a regenerated bar with seven plated wells is the proper fix (quoted).
+- Tests: arpg_hud 69/69 (adds Q W E R T LMB RMB order); regression 994/994.
+
+## Revision 11 (owner: MP statue leg washes into the globe; diagonal line from the knees)
+- Diagnosis: both are in the generated art itself (R1 variant A), not the code: the right statue's back leg and
+  drapery are painted dissolving into the blue glass, the bronze ring is missing below the knee, and the leftover
+  ridge of stone/bronze dots runs diagonally from the knee down-left. The glass also shows blocky compression patches.
+  Not repairable by hand cleanly -> regeneration quoted (H1/H2) with explicit fixes for these.
+- Free fix: the drain shader now uses exact glass masks (`tools/make_glass_masks.py`), so a draining globe never
+  darkens the statue or ring.
+
+## Revision 12 — PoE layout, built free for owner review (no credits until approved)
+Owner: replicate PoE: QWERT bottom row, LMB MMB RMB top row, nothing overlapping the XP bar, icons filling their
+squares; not "cheap and AI made with wavy lines".
+- Panels and wells are now drawn procedurally (`tools/build_hud_poe.py`): exact straight bronze bevels, recessed
+  wells, dark stone fill. Skill block: stepped two-row frame beside the mana globe (LMB MMB RMB over Q W E R T,
+  8 slots, all rebindable incl. new MMB slot). Flask belt: 5 tall slots beside the life globe. XP bar: its own thin
+  channel along the bottom edge between the globes. Key letters sit in each icon's corner (PoE style).
+- Corner statue + globe art is a placeholder cut from the previous bar until the owner approves a corner redraw.
+- Tests: arpg_hud 73/73 (no overlaps, row order, icon fill, edges); regression 994/994.
+
+## Revision 13 — one fluid frame (owner: elements looked like separate assets, gaps at the globes)
+- Flask belt, XP rail and stepped skill block are now ONE outline polygon with a single bronze rim and stone body,
+  tucked under both globe rings (no gaps); the XP bar is set into the rail from ring to ring.
+- HP / MP values above their globes; LMB / MMB / RMB slots show a mouse symbol with the bound button lit.
+- Still free / placeholder corner art; no credits spent. Tests: arpg_hud 76/76; regression 994/994.
+
+## Revision 14 — no dead wedge at the globes
+- Bronze collars now hug each globe ring where the frame meets it, and the XP fill starts at each ring edge.
+
+## ACCEPTED — 2026-11-21 (owner: "This one is good and passes")
+Layout approved at commit ac13d6b: one fluid PoE-style frame (flask belt + XP rail + stepped skill block
+LMB MMB RMB over Q W E R T), collars into both globe rings, HP/MP above the globes, mouse glyphs, nothing overlapping.
+Owner's markup: `art/references/2026-11-20/hud_mockup/owner_approved_layout_2026-11-21.png`.
+Next (needs owner credit approval): replace the placeholder statue + globe corner art only; frame stays code-drawn.
+
+## Revision 15 (owner: globe art cut off sloppily; soften hard 90-degree corners)
+- Corner art trimmed to the ring circle on the globe side; the painted slab and ornament scraps that ended in hard cuts above the rings are removed (statues untouched).
+- Every corner of the frame outline is filleted (22 px arc), convex and concave.

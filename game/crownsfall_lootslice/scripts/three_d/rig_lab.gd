@@ -4,7 +4,7 @@ const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
 const WAYPOINT_ART_LIT := "res://assets/props/waypoint_plinth_lit.png"   # WP2: same platform, runes glowing
 const WAYPOINT_ART_M := 4.25       # image width on the ground (metres); footprint is 89% of it (~3.8 m)
-const WAYPOINT_ART_BASIN_V := 0.062 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
+const WAYPOINT_ART_BASIN_V := 0.051 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
 const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
 ## This deliberately does NOT replace the established 2D plaza; keep both.

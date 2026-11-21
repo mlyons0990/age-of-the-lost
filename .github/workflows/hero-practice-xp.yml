@@ -32,6 +32,6 @@ jobs:
         if: failure()
         with:
           name: hero-practice-qa-logs
-          path: ${{ runner.temp }}/hero-qa
+          path: ${{ runner.temp }}/hero-qa/*/*.log
           if-no-files-found: ignore
           retention-days: 7

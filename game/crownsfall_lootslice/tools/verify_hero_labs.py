@@ -1,5 +1,6 @@
 """Run both hero HUD scenes with Godot 4.6.3, isolated from the player's settings."""
 import argparse
+from contextlib import contextmanager
 from pathlib import Path
 import re
 import shutil
@@ -7,6 +8,7 @@ import struct
 import subprocess
 import sys
 import tempfile
+import time
 import uuid
 
 HEROES = (
@@ -45,6 +47,29 @@ def run_engine(command, log, marker=None, timeout=240):
         print(re.search(marker, output).group(0))
 
 
+@contextmanager
+def scratch_directory(logs):
+    scratch = Path(tempfile.mkdtemp(prefix="project-", dir=logs)).resolve()
+    if scratch.parent != logs:
+        raise ValueError("Unexpected QA scratch path")
+    try:
+        yield scratch
+    finally:
+        # Windows may still be releasing editor metadata after a successful import.
+        for attempt in range(5):
+            try:
+                shutil.rmtree(scratch)
+                break
+            except FileNotFoundError:
+                if not scratch.exists():
+                    break
+            except OSError as error:
+                if attempt == 4:
+                    print(f"Scratch copy retained at {scratch}: {error}", file=sys.stderr)
+                    break
+            time.sleep(0.25 * (attempt + 1))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", type=Path, default=Path(__file__).resolve().parents[1])
@@ -63,9 +88,14 @@ def main():
     logs = args.logs.resolve() / uuid.uuid4().hex
     logs.mkdir(parents=True)
     print(f"Godot {version}; logs: {logs}", flush=True)
-    with tempfile.TemporaryDirectory(prefix="aotl-hero-") as tmp:
+    def ignore_generated(directory, names):
+        skipped = {name for name in names if name in {".git", ".godot", "__pycache__"}}
+        skipped.update(name for name in names if Path(directory) / name == logs)
+        return skipped
+
+    with scratch_directory(logs) as tmp:
         project = Path(tmp) / "project"
-        shutil.copytree(src, project, ignore=shutil.ignore_patterns(".godot", ".git", "__pycache__"))
+        shutil.copytree(src, project, ignore=ignore_generated)
         with (project / "override.cfg").open("a", encoding="utf-8") as override:
             override.write('\n[application]\nconfig/use_custom_user_dir=true\n'
                            f'config/custom_user_dir_name="AOTL_Hero_QA_{logs.name}"\n')

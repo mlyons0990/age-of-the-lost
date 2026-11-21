@@ -1,0 +1,305 @@
+{
+  "commit": "ef263e4aab4e0e1c98e81cdf06ae9e76bc99b60b",
+  "source_sha256": {
+    "game/crownsfall_lootslice/data/item_base_definitions.json": "36ab4cde93f8842dd40d780489daafadf4e249f542a7eb0bf65a2f852045fbdf",
+    "game/crownsfall_lootslice/data/selected_art_profile.json": "df70af6f04e9f2daa5c9d2be5730e1bc9fbd7552d6b0355325ee2fd4b3f76313"
+  },
+  "items": [
+    {
+      "id": "amulet",
+      "name": "Memory Sigil",
+      "cells": [
+        1,
+        1
+      ],
+      "slot": "amulet",
+      "art": null,
+      "status": "No explicit selected portrait; fallback requires runtime review",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "armor",
+      "name": "Plate Cuirass",
+      "cells": [
+        2,
+        3
+      ],
+      "slot": "armor",
+      "art": "res://assets/art_expansion02/portraits/armor.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "belt",
+      "name": "War Belt",
+      "cells": [
+        2,
+        1
+      ],
+      "slot": "belt",
+      "art": "res://assets/art_expansion02/portraits/belt.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "boots",
+      "name": "Sabatons",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "boots",
+      "art": "res://assets/art_expansion02/portraits/boots.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "focus",
+      "name": "Prismatic Focus",
+      "cells": [
+        1,
+        2
+      ],
+      "slot": "offhand",
+      "art": "res://assets/art_expansion02/portraits/focus.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "gloves",
+      "name": "Gauntlets",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "gloves",
+      "art": "res://assets/art_expansion02/portraits/gloves.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "helm",
+      "name": "Sallet",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "helm",
+      "art": "res://assets/art_expansion02/portraits/helm.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "hood",
+      "name": "Scholar Hood",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "helm",
+      "art": "res://assets/art_expansion02/portraits/hood.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "offhand",
+      "name": "Kite Shield",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "offhand",
+      "art": "res://assets/art_expansion02/portraits/offhand.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "ring",
+      "name": "Signet Ring",
+      "cells": [
+        1,
+        1
+      ],
+      "slot": "ring1",
+      "art": "res://assets/art_expansion02/portraits/ring.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "robe",
+      "name": "Wayfarer Robe",
+      "cells": [
+        2,
+        3
+      ],
+      "slot": "armor",
+      "art": "res://assets/art_expansion02/portraits/robe.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "slippers",
+      "name": "Spellweave Slippers",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "boots",
+      "art": null,
+      "status": "No explicit selected portrait; fallback requires runtime review",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "staff",
+      "name": "Aurelian Staff",
+      "cells": [
+        2,
+        4
+      ],
+      "slot": "weapon",
+      "art": null,
+      "status": "No explicit selected portrait; fallback requires runtime review",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "wand",
+      "name": "Ember Wand",
+      "cells": [
+        1,
+        2
+      ],
+      "slot": "weapon",
+      "art": "res://assets/art_expansion02/portraits/wand.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "weapon",
+      "name": "Longsword",
+      "cells": [
+        1,
+        3
+      ],
+      "slot": "weapon",
+      "art": "res://assets/art_expansion02/portraits/weapon.png",
+      "status": "LFS pointer: pixels not verified",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "wraps",
+      "name": "Silk Wraps",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "gloves",
+      "art": null,
+      "status": "No explicit selected portrait; fallback requires runtime review",
+      "pixels": null,
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    }
+  ],
+  "issues": [
+    {
+      "id": "amulet",
+      "severity": "gap",
+      "message": "No explicit selected portrait; fallback requires runtime review"
+    },
+    {
+      "id": "armor",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "belt",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "boots",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "focus",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "gloves",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "helm",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "hood",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "offhand",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "ring",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "robe",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "slippers",
+      "severity": "gap",
+      "message": "No explicit selected portrait; fallback requires runtime review"
+    },
+    {
+      "id": "staff",
+      "severity": "gap",
+      "message": "No explicit selected portrait; fallback requires runtime review"
+    },
+    {
+      "id": "wand",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "weapon",
+      "severity": "unverified",
+      "message": "LFS pointer: pixels not verified"
+    },
+    {
+      "id": "wraps",
+      "severity": "gap",
+      "message": "No explicit selected portrait; fallback requires runtime review"
+    }
+  ],
+  "limits": [
+    "Read-only exported data audit, not live Godot verification",
+    "No inferred fallback or equipped mesh mappings",
+    "LFS pointer files are unverified, not missing artwork",
+    "Only main snapshot audited; other developer branches untouched"
+  ]
+}

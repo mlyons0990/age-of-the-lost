@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "date": "2026-11-21",
+  "checklist_tasks": 162,
+  "workstreams": 24,
+  "pdf_pages": 27,
+  "checks": {
+    "unique_ids": true,
+    "complete_task_fields": true,
+    "csv_matches_checklist": true,
+    "all_task_ids_in_pdf": true,
+    "pdf_text_within_page_bounds": true
+  },
+  "files": {
+    "AOTL_Production_Handoff.md": {
+      "bytes": 30831,
+      "sha256": "463ba9a2ed0608d1e6fca4dfbd589190cac955ddcfb52244bc884adbd3345ae0"
+    },
+    "AOTL_Development_Checklist.md": {
+      "bytes": 53106,
+      "sha256": "acfcb5c59c59ea0a92168ef3c3e9e3ccec0642dfe708fc6a8bc251f0682c6662"
+    },
+    "AOTL_Development_Tracker.csv": {
+      "bytes": 65633,
+      "sha256": "c72842ecf857f9818cb4ae96c350db1a204682619739c9fdf8aa8f06d18b6996"
+    },
+    "AOTL_Production_Blueprint_and_Checklist.pdf": {
+      "bytes": 124514,
+      "sha256": "7bfa22f64792665563017dd887d152b32cf9071feeb0375fa1ac3d6e72cfe8a9"
+    },
+    "AOTL_Production_Blueprint_and_Checklist.docx": {
+      "bytes": 68655,
+      "sha256": "19f5bd4dc09dea94f9a032cc356e63379c4ecf4994bf6ffc3f3273a0ae3898e5"
+    }
+  },
+  "native_google_doc": {
+    "url": "https://docs.google.com/document/d/142jE3zyPWfnX_7UNji4q6qxqwRB8eBqST8R-U-FuaCY/edit",
+    "expectedChars": 80105,
+    "actualChars": 80106,
+    "exactTrimmed": true,
+    "allTaskIds": true,
+    "headings": 44
+  },
+  "bundle": {
+    "url": "https://drive.google.com/file/d/1YOIpbs_CkADct9z-Tm4YVjVJvKQrBvyb/view",
+    "bytes": 270793,
+    "sha256": "e7d29dba91e09a76cd71ae0ba839ea1b4b240b383150d88b1c1ad3c2b818c90a",
+    "local_crc_and_every_payload_verified": true
+  }
+}

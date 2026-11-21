@@ -36,7 +36,7 @@ func _run() -> void:
 	check(hud.skill_loadout == hud.DEFAULT_SKILLS["mage"] and hud.skill_loadout.size() == 8, "Mage default loadout (Q Lance, W Nova, E Judgment, LMB Bolt)")
 	for sk in hud.HERO_SKILLS["mage"].values() + hud.HERO_SKILLS["warrior"].values():
 		check(ResourceLoader.exists(hud.TILES + sk + ".png"), "Skill icon exists: " + sk)
-	for t in ["hud_corner_left", "hud_corner_right", "hud_panel_frame", "hud_well", "hud_xp_frame", "potion", "potion_mana"]:
+	for t in ["hud2_corner_left", "hud2_corner_right", "hud2_frame", "hud2_rail", "hud2_socket_skill", "hud2_socket_potion", "hud2_cap_belt", "hud2_cap_skill", "potion", "potion_mana"]:
 		check(ResourceLoader.exists(hud.UI + t + ".png"), "HUD art exists: " + t)
 	var vw: float = lab.get_viewport().get_visible_rect().size.x
 	var vh: float = lab.get_viewport().get_visible_rect().size.y

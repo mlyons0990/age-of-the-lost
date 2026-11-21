@@ -22,6 +22,12 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-20 20:09 | HUD redraw A3: XP strip housing | Nano Banana 2.1, 2K 8:1 | 2 (re-quoted) | same approval | 2 | `43efeca8-ffbc-42f8-b4fb-0bdaa0e32013` | Stretchable bronze groove | Accepted | 2,839 |
 | 2026-11-21 00:30 | HUD R1: one continuous edge-to-edge bottom bar (variant A) | Nano Banana 2.1, 4K 8:1 | 3 (re-quoted, 6 for 2) | Owner: "Approved, go with R1 for 6 credits" | 3 | `c70f970d-7b8d-43f4-9362-e5890f3020d9` | Single seamless piece; chosen and shipped | Accepted | — |
 | 2026-11-21 00:30 | HUD R1 variant B | Nano Banana 2.1, 4K 8:1 | (same quote) | same approval | 3 | `205bdc88-3e74-427c-a021-374f8fb7afaf` | Uneven XP/skill layout and a gap; not used, kept as reference | Rejected (pick) | 2,833 |
+| 2026-11-21 02:21 | HUD v2 item 1: HP globe corner, male warden (2 variants; A used) | GPT Image 2.6 2K high | 4 (re-quoted) | Owner: "Approved" (24.5 cr plan) | 4 | `bec6e482…` (used), `8f25acd8…` | Sharp; dark bg keyed locally | Accepted | — |
+| 2026-11-21 04:31 | HUD v2 item 2: mana globe corner, female seer (2 variants; A used per owner) | GPT Image 2.6 2K high, transparent | 4 (re-quoted) | same | 4 | `01e1f266…` (used), `8bfb7e63…` | Owner picked A (book/staff correct) | Accepted | — |
+| 2026-11-21 04:32 | HUD v2 item 3: carved rail with XP groove (2 variants; B used) | GPT Image 2.6 4K 21:9 | 6.5 (re-quoted) | same | 6.5 | `a5e13d7e…` (used), `781d3d44…` | Seamless motif tile | Accepted | — |
+| 2026-11-21 04:32 | HUD v2 item 4: ornament caps (2 variants; A used) | GPT Image 2.6 2K | 4 (re-quoted) | same | 4 | `c408aaa9…` (used), `25bb059d…` | Belt + skill caps | Accepted | — |
+| 2026-11-21 04:32 | HUD v2 item 5: ornate 9-slice frame (2 variants; B used) | GPT Image 2.6 2K | 4 (re-quoted) | same | 4 | `c81e944a…` (used), `e3873c08…` | Panels | Accepted | — |
+| 2026-11-21 04:32 | HUD v2 item 6: skill + potion sockets | GPT Image 2.6 2K | 2 (re-quoted) | same | 2 | `c5655a49…` | Slot wells | Accepted | 2,808.5 |
 
-Totals: **167 credits spent** of the 3,000 grant (2,833 remaining, verified against `balance` + `transactions` 2026-11-21 00:40). Phase 0: 86 of 120. Phase 1: 67 of 600. Phase 4 (UI/VFX): 14 of 120.
+Totals: **191.5 credits spent** of the 3,000 grant (2,808.5 remaining, verified against `balance` + `transactions` 2026-11-21 05:00). Phase 0: 86 of 120. Phase 1: 67 of 600. Phase 4 (UI/VFX): 38.5 of 120.
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

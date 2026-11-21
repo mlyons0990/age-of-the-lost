@@ -229,7 +229,7 @@ func _build() -> void:
 	# --- bottom, PoE layout: painted statue + globe in each corner; between them, procedurally drawn bronze frames
 	# (exact straight bevels): a flask belt beside the life globe, a two-row skill block beside the mana globe
 	# (LMB MMB RMB over Q W E R T), and a thin XP bar along the bottom edge. Nothing overlaps; icons fill their wells.
-	var CM: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_corners.json"))
+	var CM: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud2.json"))
 	meta_cache = CM
 	var vs: Vector2 = lab.get_viewport().get_visible_rect().size
 	W = vs.x
@@ -240,130 +240,84 @@ func _build() -> void:
 	var cr: Dictionary = CM["right"]
 	var lsz := Vector2(cl["size"][0], cl["size"][1]) * f
 	var rsz := Vector2(cr["size"][0], cr["size"][1]) * f
-	left_piece = _piece("hud_corner_left@2x" if hi else "hud_corner_left", Rect2(0, H - lsz.y, lsz.x, lsz.y))
-	right_piece = _piece("hud_corner_right@2x" if hi else "hud_corner_right", Rect2(W - rsz.x, H - rsz.y, rsz.x, rsz.y))
+	left_piece = _piece("hud2_corner_left@2x" if hi else "hud2_corner_left", Rect2(0, H - lsz.y, lsz.x, lsz.y))
+	right_piece = _piece("hud2_corner_right@2x" if hi else "hud2_corner_right", Rect2(W - rsz.x, H - rsz.y, rsz.x, rsz.y))
 	var lo := left_piece.position
 	var ro := right_piece.position
 	var dl: Array = cl["disc"]
 	var dr: Array = cr["disc"]
-	# ONE fluid frame (PoE structure): a base rail runs from globe to globe along the bottom edge with the XP bar set
-	# into it; the flask belt rises out of the rail against the life ring, and the stepped skill block (LMB MMB RMB over
-	# Q W E R T) rises out of it against the mana ring. The whole outline is a single polygon with one bronze rim, so
-	# there are no gaps or joins between elements. Globe rings are drawn over the rail ends.
+	# HUD v2 (owner-approved Higgsfield art): carved rail with the XP groove from ring to ring along the bottom edge,
+	# ornate 9-slice frames for the flask belt and the stepped skill block (LMB MMB RMB over Q W E R T), carved end caps
+	# beside the panels, bronze sockets for every slot, and the two globe corners drawn on top. Layout as approved.
+	var RL: Dictionary = CM["rail"]
+	var FR: Dictionary = CM["frame"]
 	var s_slot := SLOT * f
 	var s_gap := GAP * f
-	var s_b := BORDER * f
+	var fb: float = float(FR["border"]) * f + 2.0 * f          # inner edge of the ornate frame border
 	var fl := FLASK * f
-	var ring_l: float = lo.x + (float(dl[0]) + float(cl["ring_r"]) * 0.93) * f    # inner edge of each globe ring
-	var ring_r: float = ro.x + (float(dr[0]) - float(cr["ring_r"]) * 0.93) * f
-	var base_h: float = 26.0 * f
-	var by0: float = H - base_h
-	var bx0: float = lo.x + float(dl[0]) * f
-	var bx1: float = ro.x + float(dr[0]) * f
-	var tuck: float = 48.0 * f
-	# flask belt (raised section on the left)
-	var belt := Rect2(ring_l - tuck, 0, tuck + 5 * fl.x + 4 * s_gap + 2 * s_b, fl.y + 2 * s_b)
-	belt.position.y = by0 - belt.size.y + s_b
-	# skill block (raised, stepped, on the right)
-	var blk_w: float = 5 * s_slot + 4 * s_gap + 2 * s_b + tuck
-	var low := Rect2(ring_r + tuck - blk_w, 0, blk_w, s_slot + 2 * s_b)
-	low.position.y = by0 - low.size.y + s_b
-	var top_w: float = low.end.x - (low.position.x + s_b + 2 * (s_slot + s_gap) - s_b)
-	var top := Rect2(low.end.x - top_w, low.position.y - s_slot - s_gap, top_w, s_slot + s_gap + s_b)
-	boss_points = [belt.position + Vector2(8, 8) * f, Vector2(belt.end.x, belt.position.y) + Vector2(-8, 8) * f,
-		low.position + Vector2(8, 8) * f, top.position + Vector2(8, 8) * f, Vector2(top.end.x, top.position.y) + Vector2(-8, 8) * f]
-	var outline := PackedVector2Array([
-		Vector2(bx0, H + 2), Vector2(bx0, by0), Vector2(belt.position.x, by0), belt.position,
-		Vector2(belt.end.x, belt.position.y), Vector2(belt.end.x, by0), Vector2(low.position.x, by0), low.position,
-		Vector2(top.position.x, low.position.y), top.position, Vector2(top.end.x, top.position.y),
-		Vector2(top.end.x, by0), Vector2(bx1, by0), Vector2(bx1, H + 2)])
-	outline = _rounded(outline, 20.0 * f, H)
-	frame_poly = outline
-	var body := Control.new()
-	body.set_anchors_preset(Control.PRESET_FULL_RECT)
-	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var stone_tex: Texture2D = _tex("hud_stone")
-	body.draw.connect(func():
-		# smooth, anti-aliased bevelled rim: concentric offset bands of the same outline (no per-segment shading)
-		var closed := func(p: PackedVector2Array) -> PackedVector2Array:
-			var q := p.duplicate(); q.append(p[0]); return q
-		var bands := [[0.0, Color("120e0c")], [1.2, Color("5c4430")], [2.4, Color("a8814f")], [3.6, Color("d9b47a")],
-			[4.8, Color("b48c58")], [6.0, Color("6e5236")], [7.2, Color("1a1412")]]
-		var inner: PackedVector2Array = Geometry2D.offset_polygon(outline, -8.0 * f, Geometry2D.JOIN_ROUND)[0]
-		body.draw_colored_polygon(outline, Color("120e0c"))
-		for bnd in bands:
-			var poly: PackedVector2Array = Geometry2D.offset_polygon(outline, -float(bnd[0]) * f, Geometry2D.JOIN_ROUND)[0]
-			body.draw_colored_polygon(poly, bnd[1])
-		var uv := PackedVector2Array()
-		for v in inner: uv.append(v / (256.0 * f))
-		body.draw_polygon(inner, PackedColorArray([Color.WHITE]), uv, stone_tex)
-		body.draw_polyline(closed.call(outline), Color("0b0908"), 1.6 * f, true)
-		body.draw_polyline(closed.call(inner), Color("0d0a09"), 1.4 * f, true)
-		)
-	# bronze collars hugging each globe ring where the frame meets it (PoE-style), so no dead wedge remains
-	var cl_c := Vector2(lo.x + float(dl[0]) * f, lo.y + float(dl[1]) * f)
-	var cr_c := Vector2(ro.x + float(dr[0]) * f, ro.y + float(dr[1]) * f)
-	var rl: float = float(cl["ring_r"]) * f
-	var rr2: float = float(cr["ring_r"]) * f
-	var y_top: float = minf(belt.position.y, top.position.y)
-	body.draw.connect(func():
-		for side in [[cl_c, rl, 1.0, belt.position.y], [cr_c, rr2, -1.0, top.position.y]]:
-			var cc: Vector2 = side[0]; var R: float = side[1]; var dir: float = side[2]; var y0: float = side[3]
-			var a0: float = asin(clampf((y0 - cc.y) / (R + 10 * f), -1.0, 1.0))
-			var a1: float = PI * 0.5
-			var outer := PackedVector2Array(); var inner2 := PackedVector2Array()
-			for k in 25:
-				var a: float = lerpf(a0, a1, k / 24.0)
-				outer.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 10 * f))
-				inner2.append(cc + Vector2(dir * cos(a), sin(a)) * (R - 4 * f))
-			var band := outer.duplicate()
-			inner2.reverse()
-			band.append_array(inner2)
-			body.draw_colored_polygon(band, Color("8a6a46"))
-			var lit := PackedVector2Array()
-			for k in 25:
-				var a: float = lerpf(a0, a1, k / 24.0)
-				lit.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 7 * f))
-			body.draw_polyline(lit, Color("d6ad70"), 1.8 * f, true)
-			var edge := PackedVector2Array()
-			for k in 25:
-				var a: float = lerpf(a0, a1, k / 24.0)
-				edge.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 10 * f))
-			body.draw_polyline(edge, Color("0b0909"), 1.6 * f, true)
-		)
-	root.add_child(body)
-	frame_body = body
-	# XP bar set into the base rail, from ring to ring
-	var gy0: float = by0 + 8 * f
-	var gh: float = base_h - 13 * f
-	var gmid: float = gy0 + gh * 0.5
-	var edge_l: float = lo.x + (float(dl[0]) + sqrt(maxf(0.0, pow(float(cl["ring_r"]) + 10.0, 2) - pow((gmid - lo.y) / f - float(dl[1]), 2)))) * f
-	var edge_r: float = ro.x + (float(dr[0]) - sqrt(maxf(0.0, pow(float(cr["ring_r"]) + 10.0, 2) - pow((gmid - ro.y) / f - float(dr[1]), 2)))) * f
-	var groove := Rect2(bx0 + 20 * f, gy0, bx1 - bx0 - 40 * f, gh)
-	strip_rect = Rect2(bx0, by0, bx1 - bx0, base_h)
-	root.add_child(_nine("hud_xp_frame", groove.grow(2 * f), 3, hi))
-	xp_rect = Rect2(edge_l, gy0 + 1 * f, edge_r - edge_l, gh - 2 * f)
+	var rail_h: float = float(RL["height"]) * f
+	var ring_l: float = lo.x + (float(dl[0]) + float(cl["ring_r"]) * 0.80) * f
+	var ring_r: float = ro.x + (float(dr[0]) - float(cr["ring_r"]) * 0.80) * f
+	var by0: float = H - rail_h
+	var rail := TextureRect.new()
+	rail.texture = _tex("hud2_rail@2x" if hi else "hud2_rail")
+	rail.stretch_mode = TextureRect.STRETCH_TILE
+	rail.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	rail.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+	var rail_x0: float = lo.x + float(dl[0]) * f
+	var rail_x1: float = ro.x + float(dr[0]) * f
+	rail.position = Vector2(rail_x0, by0)
+	rail.size = Vector2(rail_x1 - rail_x0, rail_h)
+	if hi:
+		rail.scale = Vector2(0.5, 0.5); rail.size *= 2.0
+	rail.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(rail)
+	strip_rect = Rect2(rail_x0, by0, rail_x1 - rail_x0, rail_h)
+	var gr: Array = RL["groove"]
+	xp_rect = Rect2(ring_l, by0 + float(gr[0]) * f, ring_r - ring_l, float(gr[1]) * f)
+	var stand: float = by0 + 6.0 * f                               # panels stand on the rail's top trim
+	# flask belt
+	var belt := Rect2(ring_l, 0, 5 * fl.x + 4 * s_gap + 2 * fb, fl.y + 2 * fb)
+	belt.position.y = stand - belt.size.y
+	# skill block: wide lower frame (Q W E R T) and a narrower upper frame (LMB MMB RMB) over the right three columns
+	var low_w: float = 5 * s_slot + 4 * s_gap + 2 * fb
+	var low := Rect2(ring_r - low_w, 0, low_w, s_slot + 2 * fb)
+	low.position.y = stand - low.size.y
+	var top_x: float = low.position.x + fb + 2 * (s_slot + s_gap) - fb
+	var top := Rect2(top_x, low.position.y - s_slot - s_gap, low.end.x - top_x, s_slot + 2 * fb)
+	root.add_child(_frame9(low, hi, f))
+	root.add_child(_frame9(Rect2(top.position, top.size + Vector2(0, fb)), hi, f))   # upper frame sits on the lower one
+	root.add_child(_frame9(belt, hi, f))
+	# carved end caps beside the panels, standing on the rail
+	var cb: Array = CM["cap_belt"]["size"]
+	var cs2: Array = CM["cap_skill"]["size"]
+	root.add_child(_piece("hud2_cap_belt@2x" if hi else "hud2_cap_belt", Rect2(belt.end.x - 6 * f, stand - float(cb[1]) * f, float(cb[0]) * f, float(cb[1]) * f)))
+	root.add_child(_piece("hud2_cap_skill@2x" if hi else "hud2_cap_skill", Rect2(low.position.x - float(cs2[0]) * f + 6 * f, stand - float(cs2[1]) * f, float(cs2[0]) * f, float(cs2[1]) * f)))
+	frame_poly = PackedVector2Array([belt.position, belt.end, low.position, low.end, top.position, top.end,
+		Vector2(rail_x0, by0), Vector2(rail_x1, by0), Vector2(rail_x0, H), Vector2(rail_x1, H), Vector2(ring_l, by0), Vector2(ring_r, by0)])
 	root.add_child(left_piece)
 	root.add_child(right_piece)
 	orb_l = Vector3(lo.x + dl[0] * f, lo.y + dl[1] * f, dl[2] * f)
 	orb_r = Vector3(ro.x + dr[0] * f, ro.y + dr[1] * f, dr[2] * f)
 	hp_shade = _disc_shade(root, lo, f, dl)
 	mp_shade = _disc_shade(root, ro, f, dr)
-	(hp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_left"))
-	(mp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_right"))
+	(hp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("hud2_glass_left"))
+	(mp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("hud2_glass_right"))
+	var sk_m: float = float(CM["socket_skill"]["margin"])
+	var po_m: float = float(CM["socket_potion"]["margin"])
 	for i in POTION_SLOTS:
-		var r := Rect2(Vector2(belt.position.x + tuck + s_b + i * (fl.x + s_gap), belt.position.y + s_b), fl)
-		root.add_child(_nine("hud_well", r, 3, hi))
+		var r := Rect2(Vector2(belt.position.x + fb + i * (fl.x + s_gap), belt.position.y + fb), fl)
+		root.add_child(_socket9("hud2_socket_potion", r, po_m, hi))
 		potion_slots.append({"rect": r, "idx": i})
 		potion_icons.append(_well(root, r, "potion", i, 0.0))
 		key_labels["potion_%d" % (i + 1)] = _corner_key(root, r, f)
 	for i in SKILL_SLOTS:
 		var r: Rect2
 		if i < 5:
-			r = Rect2(Vector2(low.position.x + s_b + i * (s_slot + s_gap), low.position.y + s_b), Vector2(s_slot, s_slot))
+			r = Rect2(Vector2(low.position.x + fb + i * (s_slot + s_gap), low.position.y + fb), Vector2(s_slot, s_slot))
 		else:
-			r = Rect2(Vector2(low.position.x + s_b + (i - 3) * (s_slot + s_gap), top.position.y + s_b), Vector2(s_slot, s_slot))
-		root.add_child(_nine("hud_well", r, 3, hi))
+			r = Rect2(Vector2(low.position.x + fb + (i - 3) * (s_slot + s_gap), top.position.y + fb), Vector2(s_slot, s_slot))
+		root.add_child(_socket9("hud2_socket_skill", r, sk_m, hi))
 		bar_slots.append({"rect": r, "idx": i})
 		skill_icons.append(_well(root, r, "skill", i, 0.0))
 		key_labels[SLOT_ACTIONS[i]] = _corner_key(root, r, f)
@@ -472,6 +426,30 @@ func _boss(ctrl: Control, at: Vector2, f: float) -> void:
 	ctrl.draw_circle(at, 6.5 * f, Color("8a6a46"))
 	ctrl.draw_circle(at, 4.2 * f, Color("5a4330"))
 	ctrl.draw_circle(at + Vector2(-0.8, -0.8) * f, 2.6 * f, Color("e8c27c"))
+
+func _frame9(r: Rect2, hi: bool, f: float) -> NinePatchRect:
+	var n := NinePatchRect.new()
+	n.texture = _tex("hud2_frame@2x" if hi else "hud2_frame")
+	var m: int = roundi(float(meta_cache["frame"]["margin"]) * (2.0 if hi else 1.0))
+	n.patch_margin_left = m; n.patch_margin_right = m; n.patch_margin_top = m; n.patch_margin_bottom = m
+	n.position = r.position
+	n.size = r.size / (2.0 if hi else 1.0) * (1.0 if not hi else 1.0)
+	if hi:
+		n.size = r.size * 2.0
+		n.scale = Vector2(0.5, 0.5)
+	n.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return n
+
+func _socket9(tex: String, r: Rect2, margin: float, hi: bool) -> NinePatchRect:
+	var n := NinePatchRect.new()
+	n.texture = _tex(tex + ("@2x" if hi else ""))
+	var m: int = roundi(margin * (2.0 if hi else 1.0))
+	n.patch_margin_left = m; n.patch_margin_right = m; n.patch_margin_top = m; n.patch_margin_bottom = m
+	n.position = r.position
+	n.size = r.size * (2.0 if hi else 1.0)
+	if hi: n.scale = Vector2(0.5, 0.5)
+	n.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return n
 
 func _nine(name: String, r: Rect2, margin: int, hi: bool) -> NinePatchRect:
 	var n := NinePatchRect.new()

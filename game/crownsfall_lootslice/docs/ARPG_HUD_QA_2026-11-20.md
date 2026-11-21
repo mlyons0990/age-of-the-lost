@@ -168,3 +168,8 @@ Next (needs owner credit approval): replace the placeholder statue + globe corne
 
 ## Revision 16 (owner: curved edges sloppy)
 - Frame rim redrawn as concentric anti-aliased bevel bands (round joins, 17-point fillets) with 4x MSAA on the HUD; no jagged or per-segment shading.
+
+## Revision 17 — HUD v2 art (owner-approved 24.5 cr): own figure per globe, carved rail, ornate frames, caps, sockets
+- HP: male stone warden (sword); Mana: female seer with tome + compass-star staff (owner picked variant A). Same ring/material family, different figures.
+- Carved rail tiled seamlessly from one motif cell with the XP groove; ornate 9-slice frames for the belt and stepped skill block; carved caps beside both panels; bronze sockets for every slot. Layout unchanged.
+- Tools: tools/key_dark_bg.py, tools/build_hud_v2.py. Tests: arpg_hud 79/79; regression 994/994. Awaiting owner render approval.

@@ -1,6 +1,10 @@
 # age-of-the-lost
 AOTL Files
 
+## Production blueprint and team handoff
+
+[Open the comprehensive production plan](docs/production/2026-11-21/README.md): 2D/3D/hybrid recommendations, source reconciliation, visual and gameplay contracts, milestone gates, and 162 acceptance tasks across 24 workstreams. Includes a shared Google Doc, PDF, Word copy and assignable CSV tracker. Recommendations remain proposals pending the comparison milestone; this documentation does not change the playable build.
+
 ## Reference camera and corner HUD
 
 [Camera/HUD handoff](game/crownsfall_lootslice/docs/REFERENCE_CAMERA_HUD_HANDOFF.md) · [Higgsfield artwork and provenance](art/ui_camera/2026-11-12/README.md).

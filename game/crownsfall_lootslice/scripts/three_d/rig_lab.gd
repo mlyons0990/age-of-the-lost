@@ -31,6 +31,10 @@ var mode := "3D articulated rig lab"
 @export var radiant_spell_fx := false
 ## ARPG HUD after the owner's 2.5D lab mockup (globes, belts, minimap, quests, nameplates). Opt-in.
 @export var arpg_hud := false
+## Crownsfall plaza dressing (owner plaza reference): limestone flagstones with the compass-rose mosaic, the existing
+## Citadel v17 as a backdrop, warm sunlight. Opt-in; replaces the white test floor visuals only (same collision).
+@export var crownsfall_plaza := false
+const CITADEL := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb"
 var hud: CanvasLayer
 var radiant: Node3D
 const PILOT_CAMERA_FOV := 32.0
@@ -194,6 +198,9 @@ func _build_world() -> void:
 	shape.size = Vector3(28, 0.4, 28)
 	collision.shape = shape
 	floor.add_child(collision)
+	if crownsfall_plaza:
+		_build_plaza(settings, sun)
+		return
 	_box(Vector3(0,-0.22,0), Vector3(28,0.4,28), Color("e0d9c5"))
 	for x in range(-13, 14, 2):
 		for z in range(-13, 14, 2):
@@ -218,6 +225,42 @@ func _build_world() -> void:
 		for z in range(-12,13,4):
 			_sphere(Vector3(x,1.1,float(z)),.55,Color("78966c"))
 			_sphere(Vector3(x+0.2,1.45,float(z)),.30,Color("d9d4a4"))
+
+func _build_plaza(settings: Environment, sun: DirectionalLight3D) -> void:
+	settings.background_color = Color("8fa9c6")
+	settings.ambient_light_color = Color("c9d0dc")
+	settings.ambient_light_energy = 0.38
+	settings.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	settings.tonemap_exposure = 0.78
+	sun.light_energy = 0.85
+	sun.light_color = Color("fff7ec")
+	sun.rotation_degrees = Vector3(-52, -38, 0)
+	var floor_mesh := MeshInstance3D.new()
+	floor_mesh.name = "PlazaFloor"
+	var pm := PlaneMesh.new()
+	pm.size = Vector2(28, 28)
+	floor_mesh.mesh = pm
+	var mat := StandardMaterial3D.new()
+	mat.albedo_texture = load("res://assets/env/plaza_floor.png")
+	mat.normal_enabled = true
+	mat.normal_texture = load("res://assets/env/plaza_floor_normal.png")
+	mat.normal_scale = 0.6
+	mat.roughness = 0.85
+	floor_mesh.material_override = mat
+	floor_mesh.position = Vector3(0, -0.0, 0)
+	add_child(floor_mesh)
+	# outer apron so the plaza does not end in the void at the camera's edge
+	var apron := MeshInstance3D.new()
+	var ap := PlaneMesh.new(); ap.size = Vector2(120, 120); apron.mesh = ap
+	var am := StandardMaterial3D.new(); am.albedo_color = Color("b9ad93"); am.roughness = 0.95
+	apron.material_override = am; apron.position = Vector3(0, -0.03, 0)
+	add_child(apron)
+	if ResourceLoader.exists(CITADEL):
+		var cit: Node3D = (load(CITADEL) as PackedScene).instantiate()
+		cit.name = "CitadelBackdrop"
+		cit.rotation.y = PI                       # stairs face the plaza (south)
+		cit.position = Vector3(0, -0.02, -7.5)
+		add_child(cit)
 
 func _add_terrain_fixture(center: Vector3, dims: Vector3, slope_radians: float, tint: Color) -> void:
 	var platform := StaticBody3D.new()

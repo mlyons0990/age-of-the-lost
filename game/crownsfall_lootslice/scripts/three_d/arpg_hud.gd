@@ -246,57 +246,81 @@ func _build() -> void:
 	var ro := right_piece.position
 	var dl: Array = cl["disc"]
 	var dr: Array = cr["disc"]
-	# HUD v2 (owner-approved Higgsfield art): carved rail with the XP groove from ring to ring along the bottom edge,
-	# ornate 9-slice frames for the flask belt and the stepped skill block (LMB MMB RMB over Q W E R T), carved end caps
-	# beside the panels, bronze sockets for every slot, and the two globe corners drawn on top. Layout as approved.
+	# HUD v2 (owner-approved Higgsfield art). Every element is placed against the corner art's measured silhouette
+	# (hud2.json "edge" per row), so nothing overlaps the globes and nothing leaves a gap:
+	#   rail (with XP groove) spans the full screen width along the bottom, under everything
+	#   flask belt butts against the HP globe art; stepped skill block (LMB MMB RMB over Q W E R T) against the mana art
+	#   frames stand on the rail (their bottoms tuck under its top trim); corners drawn over the rail; slots last.
 	var RL: Dictionary = CM["rail"]
 	var FR: Dictionary = CM["frame"]
 	var s_slot := SLOT * f
 	var s_gap := GAP * f
-	var fb: float = float(FR["border"]) * f + 2.0 * f          # inner edge of the ornate frame border
+	var fb: float = float(FR["border"]) * f + 2.0 * f
 	var fl := FLASK * f
 	var rail_h: float = float(RL["height"]) * f
-	var ring_l: float = lo.x + (float(dl[0]) + float(cl["ring_r"]) * 0.80) * f
-	var ring_r: float = ro.x + (float(dr[0]) - float(cr["ring_r"]) * 0.80) * f
 	var by0: float = H - rail_h
+	var stand: float = by0 + 10.0 * f
+	var pad: float = 4.0 * f
+	var edge_l := func(y0: float, y1: float) -> float:       # rightmost x of the HP art over screen rows y0..y1
+		var e: Array = cl["edge"]; var best := 0.0
+		for yy in range(int(y0), int(y1) + 1):
+			var k: int = int((yy - lo.y) / f)
+			if k >= 0 and k < e.size(): best = maxf(best, lo.x + float(e[k]) * f)
+		return best
+	var edge_r := func(y0: float, y1: float) -> float:       # leftmost x of the mana art over screen rows y0..y1
+		var e: Array = cr["edge"]; var best := W
+		for yy in range(int(y0), int(y1) + 1):
+			var k: int = int((yy - ro.y) / f)
+			if k >= 0 and k < e.size(): best = minf(best, ro.x + float(e[k]) * f)
+		return best
+	# flask belt
+	var belt_h: float = fl.y + 2 * fb
+	var belt_x0: float = edge_l.call(stand - belt_h, stand) + pad
+	var belt := Rect2(belt_x0, stand - belt_h, 5 * fl.x + 4 * s_gap + 2 * fb, belt_h)
+	# skill block
+	var low_h: float = s_slot + 2 * fb
+	var top_h: float = s_slot + 2 * fb
+	var low_w: float = 5 * s_slot + 4 * s_gap + 2 * fb
+	var blk_top: float = stand - low_h - (s_slot + s_gap)
+	var blk_x1: float = edge_r.call(blk_top, stand) - pad
+	var low := Rect2(blk_x1 - low_w, stand - low_h, low_w, low_h)
+	var top_x: float = low.position.x + 2 * (s_slot + s_gap)
+	var top := Rect2(top_x, blk_top, blk_x1 - top_x, top_h)
+	# frames reach behind the globe rings (drawn before the corners, so the ring covers their ends): the wedge where
+	# a ring curves away above the rail is filled with frame art instead of empty space. Slots stay outside the rings.
+	var disc_lx: float = lo.x + float(dl[0]) * f
+	var disc_rx: float = ro.x + float(dr[0]) * f
+	root.add_child(_frame9(Rect2(low.position, Vector2(disc_rx - low.position.x, low.size.y)), hi, f))
+	root.add_child(_frame9(Rect2(top.position, Vector2(disc_rx - top.position.x, top.size.y)), hi, f))
+	root.add_child(_frame9(Rect2(Vector2(disc_lx, belt.position.y), Vector2(belt.end.x - disc_lx, belt.size.y)), hi, f))
+	var cb: Array = CM["cap_belt"]["size"]
+	var cs2: Array = CM["cap_skill"]["size"]
+	root.add_child(_piece("hud2_cap_belt@2x" if hi else "hud2_cap_belt", Rect2(belt.end.x - 8 * f, stand - float(cb[1]) * f, float(cb[0]) * f, float(cb[1]) * f)))
+	root.add_child(_piece("hud2_cap_skill@2x" if hi else "hud2_cap_skill", Rect2(low.position.x - float(cs2[0]) * f + 8 * f, stand - float(cs2[1]) * f, float(cs2[0]) * f, float(cs2[1]) * f)))
+	# rail across the whole bottom (covers the frames' bottom edges and fills under both globes)
 	var rail := TextureRect.new()
 	rail.texture = _tex("hud2_rail@2x" if hi else "hud2_rail")
 	rail.stretch_mode = TextureRect.STRETCH_TILE
 	rail.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	rail.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
-	var rail_x0: float = lo.x + float(dl[0]) * f
-	var rail_x1: float = ro.x + float(dr[0]) * f
-	rail.position = Vector2(rail_x0, by0)
-	rail.size = Vector2(rail_x1 - rail_x0, rail_h)
+	rail.position = Vector2(0, by0)
+	rail.size = Vector2(W, rail_h)
 	if hi:
 		rail.scale = Vector2(0.5, 0.5); rail.size *= 2.0
 	rail.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(rail)
-	strip_rect = Rect2(rail_x0, by0, rail_x1 - rail_x0, rail_h)
-	var gr: Array = RL["groove"]
-	xp_rect = Rect2(ring_l, by0 + float(gr[0]) * f, ring_r - ring_l, float(gr[1]) * f)
-	var stand: float = by0 + 6.0 * f                               # panels stand on the rail's top trim
-	# flask belt
-	var belt := Rect2(ring_l, 0, 5 * fl.x + 4 * s_gap + 2 * fb, fl.y + 2 * fb)
-	belt.position.y = stand - belt.size.y
-	# skill block: wide lower frame (Q W E R T) and a narrower upper frame (LMB MMB RMB) over the right three columns
-	var low_w: float = 5 * s_slot + 4 * s_gap + 2 * fb
-	var low := Rect2(ring_r - low_w, 0, low_w, s_slot + 2 * fb)
-	low.position.y = stand - low.size.y
-	var top_x: float = low.position.x + fb + 2 * (s_slot + s_gap) - fb
-	var top := Rect2(top_x, low.position.y - s_slot - s_gap, low.end.x - top_x, s_slot + 2 * fb)
-	root.add_child(_frame9(low, hi, f))
-	root.add_child(_frame9(Rect2(top.position, top.size + Vector2(0, fb)), hi, f))   # upper frame sits on the lower one
-	root.add_child(_frame9(belt, hi, f))
-	# carved end caps beside the panels, standing on the rail
-	var cb: Array = CM["cap_belt"]["size"]
-	var cs2: Array = CM["cap_skill"]["size"]
-	root.add_child(_piece("hud2_cap_belt@2x" if hi else "hud2_cap_belt", Rect2(belt.end.x - 6 * f, stand - float(cb[1]) * f, float(cb[0]) * f, float(cb[1]) * f)))
-	root.add_child(_piece("hud2_cap_skill@2x" if hi else "hud2_cap_skill", Rect2(low.position.x - float(cs2[0]) * f + 6 * f, stand - float(cs2[1]) * f, float(cs2[0]) * f, float(cs2[1]) * f)))
+	strip_rect = Rect2(0, by0, W, rail_h)
 	frame_poly = PackedVector2Array([belt.position, belt.end, low.position, low.end, top.position, top.end,
-		Vector2(rail_x0, by0), Vector2(rail_x1, by0), Vector2(rail_x0, H), Vector2(rail_x1, H), Vector2(ring_l, by0), Vector2(ring_r, by0)])
+		Vector2(0, by0), Vector2(W, by0), Vector2(0, H), Vector2(W, H), Vector2(0, by0), Vector2(W, by0)])
 	root.add_child(left_piece)
 	root.add_child(right_piece)
+	# XP fill: in the groove, only where the groove is visible between the two corner pieces
+	var gr: Array = RL["groove"]
+	var gy0: float = by0 + float(gr[0]) * f
+	var gy1: float = gy0 + float(gr[1]) * f
+	var xl: float = edge_l.call(gy0, gy1) + 3 * f
+	var xr: float = edge_r.call(gy0, gy1) - 3 * f
+	xp_rect = Rect2(xl, gy0 + 1 * f, xr - xl, gy1 - gy0 - 2 * f)
 	orb_l = Vector3(lo.x + dl[0] * f, lo.y + dl[1] * f, dl[2] * f)
 	orb_r = Vector3(ro.x + dr[0] * f, ro.y + dr[1] * f, dr[2] * f)
 	hp_shade = _disc_shade(root, lo, f, dl)
@@ -309,8 +333,8 @@ func _build() -> void:
 		var r := Rect2(Vector2(belt.position.x + fb + i * (fl.x + s_gap), belt.position.y + fb), fl)
 		root.add_child(_socket9("hud2_socket_potion", r, po_m, hi))
 		potion_slots.append({"rect": r, "idx": i})
-		potion_icons.append(_well(root, r, "potion", i, 0.0))
-		key_labels["potion_%d" % (i + 1)] = _corner_key(root, r, f)
+		potion_icons.append(_well(root, r, "potion", i, (po_m * 0.55) * f / r.size.x))
+		key_labels["potion_%d" % (i + 1)] = _corner_key(root, r.grow(-po_m * 0.5 * f), f)
 	for i in SKILL_SLOTS:
 		var r: Rect2
 		if i < 5:
@@ -319,20 +343,20 @@ func _build() -> void:
 			r = Rect2(Vector2(low.position.x + fb + (i - 3) * (s_slot + s_gap), top.position.y + fb), Vector2(s_slot, s_slot))
 		root.add_child(_socket9("hud2_socket_skill", r, sk_m, hi))
 		bar_slots.append({"rect": r, "idx": i})
-		skill_icons.append(_well(root, r, "skill", i, 0.0))
-		key_labels[SLOT_ACTIONS[i]] = _corner_key(root, r, f)
+		skill_icons.append(_well(root, r, "skill", i, (sk_m * 0.7) * f / r.size.x))
+		key_labels[SLOT_ACTIONS[i]] = _corner_key(root, r.grow(-sk_m * 0.4 * f), f)
 		if i >= 5:
-			mouse_glyphs[SLOT_ACTIONS[i]] = _mouse_glyph(root, r, f)
-	# HP / MP values above their globes (PoE style)
+			mouse_glyphs[SLOT_ACTIONS[i]] = _mouse_glyph(root, r.grow(-sk_m * 0.4 * f), f)
+	# HP / MP values above their globe art (never over it)
 	hp_label = _label("HP", int(18 * f), IVORY)
-	hp_label.size = Vector2(200, 24) * f
+	hp_label.size = Vector2(220, 24) * f
 	hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	hp_label.position = Vector2(orb_l.x - 100 * f, orb_l.y - orb_l.z - 46 * f)
+	hp_label.position = Vector2(orb_l.x - 110 * f, lo.y - 28 * f)
 	root.add_child(hp_label)
 	mp_label = _label("MP", int(18 * f), IVORY)
-	mp_label.size = Vector2(200, 24) * f
+	mp_label.size = Vector2(220, 24) * f
 	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	mp_label.position = Vector2(orb_r.x - 100 * f, orb_r.y - orb_r.z - 46 * f)
+	mp_label.position = Vector2(orb_r.x - 110 * f, ro.y - 28 * f)
 	root.add_child(mp_label)
 	var lv := _label("Lv. %d" % LEVEL, int(12 * f), IVORY)
 	lv.size = Vector2(120 * f, xp_rect.size.y + 4 * f)
@@ -430,6 +454,8 @@ func _boss(ctrl: Control, at: Vector2, f: float) -> void:
 func _frame9(r: Rect2, hi: bool, f: float) -> NinePatchRect:
 	var n := NinePatchRect.new()
 	n.texture = _tex("hud2_frame@2x" if hi else "hud2_frame")
+	n.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT     # ornaments repeat, never stretch
+	n.axis_stretch_vertical = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT
 	var m: int = roundi(float(meta_cache["frame"]["margin"]) * (2.0 if hi else 1.0))
 	n.patch_margin_left = m; n.patch_margin_right = m; n.patch_margin_top = m; n.patch_margin_bottom = m
 	n.position = r.position
@@ -464,31 +490,39 @@ func _nine(name: String, r: Rect2, margin: int, hi: bool) -> NinePatchRect:
 ## PoE-style mouse symbol for LMB / MMB / RMB slots: a small mouse with the bound button lit.
 func _mouse_glyph(root: Control, r: Rect2, f: float) -> Control:
 	var g := Control.new()
-	g.position = r.position + Vector2(3, r.size.y - 24) * Vector2(1, 1) + Vector2(0, 0)
-	g.position = Vector2(r.position.x + 3 * f, r.end.y - 29 * f)
-	g.size = Vector2(19, 26) * f
+	g.size = Vector2(20, 28) * f
+	g.position = Vector2(r.position.x + 2 * f, r.end.y - g.size.y - 2 * f)
 	g.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	g.z_index = 3
 	g.set_meta("button", 0)
 	g.draw.connect(func():
+		# mouse silhouette: rounded capsule; the bound button (whole left / right half of the top, or the wheel) lit gold
 		var w: float = g.size.x; var h: float = g.size.y
-		var body := Rect2(Vector2(1, 1) * f, Vector2(w - 2 * f, h - 2 * f))
-		var sb := StyleBoxFlat.new()
-		sb.bg_color = Color(0.08, 0.07, 0.07, 0.9); sb.border_color = Color("efe6cf"); sb.set_border_width_all(maxi(1, roundi(1.4 * f)))
-		sb.corner_radius_top_left = roundi(7 * f); sb.corner_radius_top_right = roundi(7 * f)
-		sb.corner_radius_bottom_left = roundi(6 * f); sb.corner_radius_bottom_right = roundi(6 * f)
-		g.draw_style_box(sb, body)
-		var split_y: float = body.position.y + body.size.y * 0.42
-		g.draw_line(Vector2(body.position.x + 1, split_y), Vector2(body.end.x - 1, split_y), Color("efe6cf"), 1.2 * f)
-		var mx: float = body.get_center().x
+		var rad: float = w * 0.5
+		var c := Vector2(w * 0.5, rad)
+		var body := PackedVector2Array()
+		for k in 21: body.append(c + Vector2(cos(PI + PI * k / 20.0), sin(PI + PI * k / 20.0)) * (rad - 1))
+		body.append(Vector2(w - 1, h - rad * 0.6)); body.append(Vector2(w * 0.5, h - 1)); body.append(Vector2(1, h - rad * 0.6))
+		var split_y: float = h * 0.46
+		g.draw_colored_polygon(body, Color(0.07, 0.06, 0.06, 0.92))
 		var btn: int = int(g.get_meta("button"))
-		if btn == 2:
-			g.draw_rect(Rect2(Vector2(mx - 1.6 * f, body.position.y + 3 * f), Vector2(3.2 * f, split_y - body.position.y - 5 * f)), Color("f2c45a"))
-		else:
-			g.draw_line(Vector2(mx, body.position.y + 1), Vector2(mx, split_y), Color("efe6cf"), 1.2 * f)
-			var lx: float = body.position.x + 2 * f if btn == 1 else mx + 1 * f
-			if btn in [1, 3]:
-				g.draw_rect(Rect2(Vector2(lx, body.position.y + 3 * f), Vector2(body.size.x * 0.5 - 3 * f, split_y - body.position.y - 4 * f)), Color("f2c45a"))
+		var gold := Color("f2c45a")
+		if btn == 1 or btn == 3:
+			var half := PackedVector2Array()
+			var a0: float = PI if btn == 1 else PI * 1.5
+			for k in 11: half.append(c + Vector2(cos(a0 + PI * 0.5 * k / 10.0), sin(a0 + PI * 0.5 * k / 10.0)) * (rad - 2.2 * f))
+			if btn == 1:
+				half.append(Vector2(w * 0.5 - 0.8 * f, split_y - 1.2 * f)); half.append(Vector2(2.2 * f, split_y - 1.2 * f))
+			else:
+				half.append(Vector2(w - 2.2 * f, split_y - 1.2 * f)); half.append(Vector2(w * 0.5 + 0.8 * f, split_y - 1.2 * f))
+			g.draw_colored_polygon(half, gold)
+		elif btn == 2:
+			g.draw_rect(Rect2(Vector2(w * 0.5 - 2.4 * f, 4 * f), Vector2(4.8 * f, split_y - 6 * f)), gold)
+		var closed := body.duplicate(); closed.append(body[0])
+		g.draw_polyline(closed, Color("efe6cf"), 1.5 * f, true)
+		g.draw_line(Vector2(1.5 * f, split_y), Vector2(w - 1.5 * f, split_y), Color("efe6cf"), 1.3 * f, true)
+		if btn != 2:
+			g.draw_line(Vector2(w * 0.5, 1.5 * f), Vector2(w * 0.5, split_y), Color("efe6cf"), 1.3 * f, true)
 		)
 	root.add_child(g)
 	return g
@@ -517,7 +551,7 @@ func _well(root: Control, r: Rect2, kind: String, idx: int, inset_frac: float) -
 	var t := TextureRect.new()
 	t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	t.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	var rim: float = 3.0 * r.size.y / 60.0 if kind == "skill" else 0.0
+	var rim: float = 0.0
 	var inset := r.size * inset_frac + Vector2(rim, rim)
 	t.position = inset
 	t.size = r.size - inset * 2.0

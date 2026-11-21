@@ -173,3 +173,10 @@ Next (needs owner credit approval): replace the placeholder statue + globe corne
 - HP: male stone warden (sword); Mana: female seer with tome + compass-star staff (owner picked variant A). Same ring/material family, different figures.
 - Carved rail tiled seamlessly from one motif cell with the XP groove; ornate 9-slice frames for the belt and stepped skill block; carved caps beside both panels; bronze sockets for every slot. Layout unchanged.
 - Tools: tools/key_dark_bg.py, tools/build_hud_v2.py. Tests: arpg_hud 79/79; regression 994/994. Awaiting owner render approval.
+
+## Revision 18 — owner markup on v2 (8 issues)
+- HP statue re-keyed (texture-based mask, holes filled): solid, no halo; ring no longer trimmed at top/right.
+- Panels, XP fill and labels placed against each corner's measured silhouette (hud2.json edge per row): belt and skill block never overlap the globe art; XP fill only between the corner bases; HP/MP above the art.
+- Rail spans the full screen width; panel frames extend behind the rings so no empty wedge remains at the globe bases; frame edges tile instead of stretching.
+- Mouse glyph: capsule with the whole bound button lit. Potion/skill icons inset inside the socket rims.
+- Tests: arpg_hud 79/79; regression 994/994.

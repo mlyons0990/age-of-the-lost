@@ -61,7 +61,7 @@ func _run() -> void:
 	var top_ok := true
 	for i in range(5, 8): top_ok = top_ok and hud.bar_slots[i]["rect"].end.y <= hud.bar_slots[0]["rect"].position.y
 	check(top_ok, "LMB MMB RMB row sits above the Q W E R T row (PoE layout)")
-	check(absf(hud.skill_icons[0].size.x - hud.bar_slots[0]["rect"].size.x) < 8.0 * vh / 1080.0, "Skill icon fills its well (rim only)")
+	check(absf(hud.skill_icons[0].size.x - hud.bar_slots[0]["rect"].size.x) < 12.0 * vh / 1080.0, "Skill icon fills its socket inside the bronze rim")
 	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.03 and absf(hud.orb_l.y - hud.orb_r.y) < 3.0, "Both globes the same size and height (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
 	check(absf(hud.left_piece.texture.get_width() - hud.left_piece.size.x) <= 1.0 and absf(hud.right_piece.texture.get_width() - hud.right_piece.size.x) <= 1.0, "Corner art draws 1:1 at 1080p")
 	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["skill_6"].text == "" and int(hud.mouse_glyphs["skill_6"].get_meta("button")) == 3 and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")

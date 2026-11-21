@@ -42,11 +42,6 @@ for side, f, hue in [("left", "hp_a_cut.png", lambda h: (h < 8) | (h > 168)),
     H, W = a.shape[:2]
     yy, xx = np.mgrid[0:H, 0:W]
     dist = np.sqrt((xx - cx) ** 2 + (yy - cy) ** 2)
-    if side == "left":
-        # remove the leftover glow halo around the ring: trim the ring's open side (right/top) to a clean circle
-        ring_out = r * 1.155
-        open_side = (xx > cx - 0.35 * r) & (yy < cy + 0.80 * r)
-        a[..., 3] *= np.where(open_side, np.clip((ring_out - dist) / 2.5 + 0.5, 0, 1), 1.0)
     x0, y0, x1, y1 = bbox(a)
     if side == "left":
         x0 = 0                                       # figure runs off the screen edge
@@ -55,8 +50,16 @@ for side, f, hue in [("left", "hp_a_cut.png", lambda h: (h < 8) | (h > 168)),
     a = a[y0:y1, x0:x1]; gm = gm[y0:y1, x0:x1]
     k = GLASS_R_1080 / r
     size = save(a, f"hud2_corner_{side}", k)
+    # inner-side silhouette per 1080p row: where the corner art ends (left piece: rightmost opaque x; right piece:
+    # leftmost), so panels and the XP bar can butt exactly against the art with no gap and no overlap
+    sm = np.asarray(Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA").resize((max(1, round(a.shape[1] * k)), max(1, round(a.shape[0] * k))), Image.LANCZOS))[..., 3]
+    edge = []
+    for yy_ in range(sm.shape[0]):
+        xs_ = np.where(sm[yy_] > 160)[0]
+        if len(xs_) == 0: edge.append(-1.0 if side == "left" else float(sm.shape[1]))
+        else: edge.append(float(xs_.max() + 1) if side == "left" else float(xs_.min()))
     meta[side] = {"size": size, "disc": [round((cx - x0) * k, 2), round((cy - y0) * k, 2), GLASS_R_1080, GLASS_R_1080],
-                  "ring_r": round(r * 1.15 * k, 2)}
+                  "ring_r": round(r * 1.15 * k, 2), "edge": edge}
     # glass mask for the drain shader: disc-sized square around the glass
     n = int(round(2 * r))
     gx0, gy0 = int(round(cx - x0 - r)), int(round(cy - y0 - r))

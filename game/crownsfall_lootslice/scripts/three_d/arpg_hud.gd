@@ -95,6 +95,15 @@ var potion_cds := [0.0, 0.0, 0.0, 0.0, 0.0]
 var minimap_vp: SubViewport
 var minimap_cam: Camera3D
 var minimap_rect: Rect2
+var area_title: Label
+var area_sub: Label
+
+## Minimap header follows the painted zone ("Region — Place" from the zone JSON name).
+func _on_zone_changed(_to: String) -> void:
+	var nm: String = String(lab.zone.get("name", "Crownsfall — Central Plaza"))
+	var parts := nm.split(" — ")
+	area_title.text = parts[0]
+	area_sub.text = parts[1] if parts.size() > 1 else ""
 var xp_rect: Rect2
 var quest_progress := 0
 
@@ -208,12 +217,15 @@ func _build() -> void:
 	mm.modulate = Color(0.82, 0.8, 0.86)
 	mm.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(mm)
-	var t1 := _label("Crownsfall", 19, IVORY)
-	t1.position = minimap_rect.position + Vector2(10, 6)
-	root.add_child(t1)
-	var t2 := _label("Central Plaza", 14, IVORY, false)
-	t2.position = minimap_rect.position + Vector2(10, 28)
-	root.add_child(t2)
+	area_title = _label("Crownsfall", 19, IVORY)
+	area_title.position = minimap_rect.position + Vector2(10, 6)
+	root.add_child(area_title)
+	area_sub = _label("Central Plaza", 14, IVORY, false)
+	area_sub.position = minimap_rect.position + Vector2(10, 28)
+	root.add_child(area_sub)
+	if "zone" in lab:
+		_on_zone_changed("")
+		lab.zone_changed.connect(_on_zone_changed)
 	var qy := minimap_rect.end.y + 12
 	root.add_child(_panel(Rect2(W - 334, qy, 320, 118), 0.62))
 	for q in [["A City Reborn", "Speak with Captain Ralden"], ["The Lost Tomes", "Recover the Archive Pages (%d/3)"]]:

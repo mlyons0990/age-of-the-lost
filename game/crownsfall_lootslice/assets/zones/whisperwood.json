@@ -1,0 +1,149 @@
+{
+ "image": "whisperwood.png",
+ "size": [
+  2720,
+  1536
+ ],
+ "name": "Whisperwood \u2014 Fallen Shrine",
+ "walkable": [
+  [
+   [
+    799,
+    748
+   ],
+   [
+    1088,
+    714
+   ],
+   [
+    1292,
+    680
+   ],
+   [
+    1666,
+    680
+   ],
+   [
+    1802,
+    714
+   ],
+   [
+    1904,
+    799
+   ],
+   [
+    1989,
+    884
+   ],
+   [
+    2006,
+    952
+   ],
+   [
+    2108,
+    1020
+   ],
+   [
+    1870,
+    1173
+   ],
+   [
+    1700,
+    1190
+   ],
+   [
+    1530,
+    1224
+   ],
+   [
+    1462,
+    1309
+   ],
+   [
+    1190,
+    1326
+   ],
+   [
+    952,
+    1292
+   ],
+   [
+    714,
+    1266
+   ],
+   [
+    510,
+    1224
+   ],
+   [
+    442,
+    1173
+   ],
+   [
+    544,
+    1088
+   ],
+   [
+    714,
+    1020
+   ],
+   [
+    748,
+    884
+   ]
+  ]
+ ],
+ "spawn": [
+  799,
+  1122
+ ],
+ "targets": [
+  [
+   1190,
+   952
+  ],
+  [
+   1530,
+   1020
+  ],
+  [
+   1360,
+   816
+  ],
+  [
+   1734,
+   884
+  ]
+ ],
+ "ppm": 186.0,
+ "hero_px_1080": 142.0,
+ "scale_note": "Painted at the old large scale (arch ~680 px = ~6 m, hero ~200 px in painting px). 142 px is the smallest on-screen hero that still fills a 16:9 screen with this 2720x1536 painting; a repaint at Z1 scale would bring it to 110 px.",
+ "exits": [
+  {
+   "name": "Crownsfall",
+   "to": "crownsfall_plaza_z1",
+   "poly": [
+    [
+     434,
+     1173
+    ],
+    [
+     646,
+     1173
+    ],
+    [
+     646,
+     1292
+    ],
+    [
+     434,
+     1292
+    ]
+   ],
+   "arrive": [
+    2200,
+    1500
+   ]
+  }
+ ]
+}

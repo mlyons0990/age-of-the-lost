@@ -101,5 +101,90 @@
  ],
  "ppm": 149.0,
  "scale_note": "Z1 painting (Higgsfield 6.5 cr, job 5fdae107). Lamp post ~336 px = ~2.1 hero heights at ppm 149 (hero 160 px in painting px); planter ~72 px = knee height. Shown at 110/160 so the hero is ~110 px at 1080p.",
- "hero_px_1080": 110.0
+ "hero_px_1080": 110.0,
+ "occluders": [
+  {
+   "line": [
+    [
+     192,
+     876
+    ],
+    [
+     1488,
+     1536
+    ]
+   ],
+   "x": [
+    0,
+    1700
+   ],
+   "pad": 20,
+   "exclude": [
+    [
+     0,
+     0,
+     120,
+     700
+    ],
+    [
+     215,
+     0,
+     700,
+     760
+    ],
+    [
+     120,
+     0,
+     215,
+     525
+    ]
+   ]
+  },
+  {
+   "line": [
+    [
+     3696,
+     1104
+    ],
+    [
+     2832,
+     1536
+    ]
+   ],
+   "x": [
+    2600,
+    3840
+   ],
+   "pad": 20
+  }
+ ],
+ "depth": "crownsfall_plaza_z1_depth.png",
+ "exits": [
+  {
+   "name": "Whisperwood",
+   "to": "whisperwood",
+   "poly": [
+    [
+     1700,
+     1590
+    ],
+    [
+     2740,
+     1590
+    ],
+    [
+     2740,
+     1660
+    ],
+    [
+     1700,
+     1660
+    ]
+   ],
+   "arrive": [
+    799,
+    1122
+   ]
+  }
+ ]
 }

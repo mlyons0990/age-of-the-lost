@@ -30,3 +30,15 @@
 - Zone JSON sets `"hero_px_1080": 110` → the hero is ~110 px tall at 1080p regardless of painting size; painting ppm 149 (lamp ≈ 2 hero heights, planter knee-high).
 - Zones without `hero_px_1080` keep the old 1:1 behaviour, so the default scenes are unchanged until the owner signs off.
 - Preview: `tests/capture_arpg_hud.gd -- --zone=crownsfall_plaza_z1`. verify_painted_zone 7/7 on both zones; regression 994/994.
+
+## v5 — Z1 default, foreground layer, zone exits (free)
+- Owner approved Z1 ("Approved, go ahead with the free follow ups"); both pilot labs now load `crownsfall_plaza_z1`.
+- Foreground: `tools/build_zone_depth.py` bakes `<zone>_depth.png` (each pixel's ground-contact row) from the zone JSON
+  `occluders` (foot line + exclude boxes). `shaders/zone_painting.gdshader` writes depth from it, so railings, lamps
+  and planters in front of the floor hide the hero / dummies standing behind them. `tests/verify_zone_occlusion.gd` 4/4.
+- Exits: zone JSON `exits` (polygon, destination, arrival point). Walking onto one fades out, swaps painting + walk map +
+  targets, and fades in; marked in-world with a gold label; minimap header follows the zone. Plaza south road ⇄
+  Whisperwood shrine path. `tests/verify_zone_travel.gd` 11/11.
+- Whisperwood walk map authored. Its painting is at the old large scale, so its hero is 142 px (smallest that still fills
+  a 16:9 screen); a repaint at Z1 scale (same 6.5 cr recipe) would bring it to 110 px — not spent, needs approval.
+- Regression 994/994; verify_painted_zone 7/7; verify_arpg_hud 80/80.

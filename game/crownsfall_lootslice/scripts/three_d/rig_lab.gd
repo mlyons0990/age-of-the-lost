@@ -43,6 +43,11 @@ var ZONE_SCREEN_PPM := 93.0          # screen px per metre at 1080p (derived fro
 const HERO_PX_1080 := 110.0          # owner reference: hero ~110 px at 1080p (zones opt in with "hero_px_1080")
 const ZONE_PITCH := 52.0
 var zone: Dictionary = {}
+var zone_refs: Array = []             # [Environment, sun, floor shape] for rebuilding on travel
+var zone_exits: Array = []            # {name, to, arrive, poly (world xz)}
+var zone_exit_armed := false          # set once the hero has stepped off every exit (no bounce on arrival)
+var zone_traveling := false
+signal zone_changed(name: String)
 var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
 var zone_last_ok := Vector3.INF
 const CITADEL := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb"
@@ -238,6 +243,7 @@ func _build_world() -> void:
 	collision.shape = shape
 	floor.add_child(collision)
 	if painted_zone != "":
+		zone_refs = [settings, sun, shape]
 		_build_zone(settings, sun, shape)
 		return
 	if crownsfall_plaza:
@@ -273,6 +279,12 @@ func zone_px_to_world(u: float, v: float) -> Vector3:
 	return Vector3((u - float(size[0]) * 0.5) / ZONE_PPM, 0.0, (v - float(size[1]) * 0.5) / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH)))
 
 func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape3D) -> void:
+	for n in ["ZonePainting", "ZoneShadowCatcher"]:
+		var old := get_node_or_null(n)
+		if old != null:
+			remove_child(old); old.queue_free()
+	for old in get_tree().get_nodes_in_group("zone_exit_label") if is_inside_tree() else []:
+		old.get_parent().remove_child(old); old.queue_free()
 	zone = JSON.parse_string(FileAccess.get_file_as_string("res://assets/zones/%s.json" % painted_zone))
 	ZONE_PPM = float(zone.get("ppm", ZONE_PPM))     # world scale measured from the painting's own props
 	# hero size on screen is fixed (owner reference: ~110 px at 1080p); the painting is scaled to match it
@@ -291,10 +303,14 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	var plane := MeshInstance3D.new()
 	plane.name = "ZonePainting"
 	var pm := PlaneMesh.new(); pm.size = Vector2(w, d); plane.mesh = pm
-	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.albedo_texture = load("res://assets/zones/" + String(zone["image"]))
-	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	# foreground: painted railings / lamps in front of the floor hide actors behind them (tools/build_zone_depth.py)
+	var mat := ShaderMaterial.new()
+	mat.shader = load("res://shaders/zone_painting.gdshader")
+	mat.set_shader_parameter("painting", load("res://assets/zones/" + String(zone["image"])))
+	mat.set_shader_parameter("use_depth", zone.has("depth"))
+	if zone.has("depth"):
+		mat.set_shader_parameter("depthmap", load("res://assets/zones/" + String(zone["depth"])))
+	mat.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH)))
 	plane.material_override = mat
 	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(plane)
@@ -316,6 +332,64 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 			var wp := zone_px_to_world(float(p[0]), float(p[1]))
 			pts.append(Vector2(wp.x, wp.z))
 		zone_walk.append(pts)
+	zone_exits.clear()
+	for ex in zone.get("exits", []):
+		var ep := PackedVector2Array()
+		var c := Vector3.ZERO
+		for p in ex["poly"]:
+			var wp := zone_px_to_world(float(p[0]), float(p[1]))
+			ep.append(Vector2(wp.x, wp.z)); c += wp
+		c /= float(ex["poly"].size())
+		zone_exits.append({"name": ex["name"], "to": ex["to"], "arrive": ex["arrive"], "poly": ep})
+		var lbl := Label3D.new()                      # gold travel marker over the exit
+		lbl.text = "▼ " + String(ex["name"])
+		lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		lbl.no_depth_test = true
+		lbl.fixed_size = true
+		lbl.pixel_size = 0.0011
+		lbl.font_size = 26
+		lbl.outline_size = 8
+		lbl.modulate = Color("f2d38a")
+		lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
+		lbl.position = c + Vector3.UP * 1.2
+		lbl.add_to_group("zone_exit_label")
+		add_child(lbl)
+	zone_exit_armed = false
+
+func zone_exit_at(at: Vector3) -> Dictionary:
+	for ex in zone_exits:
+		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), ex["poly"]):
+			return ex
+	return {}
+
+## Leave through an exit: fade out, swap the painting/walk map/targets, place the hero at `arrive`, fade in.
+func travel_to(to: String, arrive: Array) -> void:
+	zone_traveling = true
+	player.stop_moving()
+	var fade_layer := CanvasLayer.new(); fade_layer.layer = 50
+	var fade := ColorRect.new(); fade.color = Color(0, 0, 0, 0)
+	fade.set_anchors_preset(Control.PRESET_FULL_RECT); fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	fade_layer.add_child(fade); add_child(fade_layer)
+	var tw := create_tween(); tw.tween_property(fade, "color:a", 1.0, 0.3)
+	await tw.finished
+	painted_zone = to
+	_build_zone(zone_refs[0], zone_refs[1], zone_refs[2])
+	player.global_position = zone_px_to_world(float(arrive[0]), float(arrive[1])) + Vector3.UP * 0.08
+	player.velocity = Vector3.ZERO
+	zone_last_ok = player.global_position
+	zone_cam_focus = Vector3.INF
+	var tps: Array = zone.get("targets", [])
+	for i in targets.size():
+		if i < tps.size():
+			targets[i].global_position = zone_px_to_world(float(tps[i][0]), float(tps[i][1]))
+			targets[i].visible = true
+		else:
+			targets[i].global_position = Vector3(0, -50, 0); targets[i].visible = false
+	zone_changed.emit(to)
+	var tw2 := create_tween(); tw2.tween_property(fade, "color:a", 0.0, 0.35)
+	await tw2.finished
+	fade_layer.queue_free()
+	zone_traveling = false
 
 func zone_walkable(at: Vector3) -> bool:
 	for poly in zone_walk:
@@ -458,6 +532,11 @@ func _physics_process(_delta: float) -> void:
 			player.global_position = Vector3(zone_last_ok.x, player.global_position.y, zone_last_ok.z)
 			player.velocity.x = 0.0; player.velocity.z = 0.0
 			player.stop_moving()
+		var on_exit := zone_exit_at(player.global_position)
+		if on_exit.is_empty():
+			zone_exit_armed = true
+		elif zone_exit_armed and not zone_traveling:
+			travel_to(String(on_exit["to"]), on_exit["arrive"])
 	_physics_body()
 
 func _physics_body() -> void:

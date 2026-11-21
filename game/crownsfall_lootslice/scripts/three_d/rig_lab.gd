@@ -34,6 +34,16 @@ var mode := "3D articulated rig lab"
 ## Crownsfall plaza dressing (owner plaza reference): limestone flagstones with the compass-rose mosaic, the existing
 ## Citadel v17 as a backdrop, warm sunlight. Opt-in; replaces the white test floor visuals only (same collision).
 @export var crownsfall_plaza := false
+## 2D painted zone (owner direction 2026-11-21: "a 2D game with a few 3D elements; each zone is a 2D environment").
+## Name of assets/zones/<zone>.json. The painting is laid on the ground and viewed by an orthographic camera at the
+## painting's own pitch, so it appears exactly as painted while the 3D heroes walk over it and cast real shadows.
+@export var painted_zone := ""
+const ZONE_PPM := 93.0               # painting pixels per metre (painting drawn 1:1 at 1080p; lamp posts ~3 m)
+const ZONE_SCREEN_PPM := 93.0        # screen px per metre at 1080p: hero (1.75 m, 52 deg ortho) ~100 px, as approved
+const ZONE_PITCH := 52.0
+var zone: Dictionary = {}
+var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
+var zone_last_ok := Vector3.INF
 const CITADEL := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb"
 var hud: CanvasLayer
 var radiant: Node3D
@@ -43,6 +53,28 @@ const PILOT_CAMERA_PITCH := 52.0
 
 ## Same compass direction as the lab's original camera, pitched 52° down, at a distance that makes
 ## the 1.75 m knight ~100 px tall on a 1080p screen.
+var zone_cam_focus := Vector3.INF
+
+## Orthographic camera at the painting's pitch, following the hero but never showing past the painting's edges.
+func _zone_camera(delta: float) -> void:
+	var vs := get_viewport().get_visible_rect().size
+	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+	camera.size = 1080.0 / ZONE_SCREEN_PPM          # world metres per screen height: hero ~100 px at 1080p
+	var size: Array = zone["size"]
+	var sp: float = sin(deg_to_rad(ZONE_PITCH))
+	var half_w: float = float(size[0]) / ZONE_PPM * 0.5
+	var half_d: float = float(size[1]) / ZONE_PPM / sp * 0.5
+	var view_w: float = camera.size * vs.x / vs.y * 0.5
+	var view_d: float = camera.size / sp * 0.5
+	var t: Vector3 = player.global_position
+	t.x = clampf(t.x, -half_w + view_w, half_w - view_w)
+	t.z = clampf(t.z, -half_d + view_d, half_d - view_d)
+	t.y = 0.0
+	zone_cam_focus = t if not zone_cam_focus.is_finite() else zone_cam_focus.lerp(t, minf(1.0, delta * 6.0))
+	var p := deg_to_rad(ZONE_PITCH)
+	camera.global_position = zone_cam_focus + Vector3(0, sin(p), cos(p)) * 60.0
+	camera.look_at(zone_cam_focus, Vector3.UP)
+
 func pilot_camera_offset() -> Vector3:
 	var flat := Vector2(8.5, 11.0).normalized()
 	var p := deg_to_rad(PILOT_CAMERA_PITCH)
@@ -97,6 +129,12 @@ func _ready() -> void:
 		e.position = Vector3(-4.2 + i * 2.8, 0.0, -3.6 - (i % 2) * 1.4)
 		add_child(e)
 		targets.append(e)
+	if not zone.is_empty():
+		var sp: Array = zone["spawn"]
+		player.global_position = zone_px_to_world(float(sp[0]), float(sp[1])) + Vector3.UP * 0.08
+		for i in mini(targets.size(), zone["targets"].size()):
+			var tp: Array = zone["targets"][i]
+			targets[i].global_position = zone_px_to_world(float(tp[0]), float(tp[1]))
 	if arpg_hud:
 		hud = ARPG_HUD.new()
 		hud.name = "ArpgHud"
@@ -198,6 +236,9 @@ func _build_world() -> void:
 	shape.size = Vector3(28, 0.4, 28)
 	collision.shape = shape
 	floor.add_child(collision)
+	if painted_zone != "":
+		_build_zone(settings, sun, shape)
+		return
 	if crownsfall_plaza:
 		_build_plaza(settings, sun)
 		return
@@ -225,6 +266,58 @@ func _build_world() -> void:
 		for z in range(-12,13,4):
 			_sphere(Vector3(x,1.1,float(z)),.55,Color("78966c"))
 			_sphere(Vector3(x+0.2,1.45,float(z)),.30,Color("d9d4a4"))
+
+func zone_px_to_world(u: float, v: float) -> Vector3:
+	var size: Array = zone["size"]
+	return Vector3((u - float(size[0]) * 0.5) / ZONE_PPM, 0.0, (v - float(size[1]) * 0.5) / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH)))
+
+func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape3D) -> void:
+	zone = JSON.parse_string(FileAccess.get_file_as_string("res://assets/zones/%s.json" % painted_zone))
+	var size: Array = zone["size"]
+	var w: float = float(size[0]) / ZONE_PPM
+	var d: float = float(size[1]) / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH))
+	shape.size = Vector3(w, 0.4, d)
+	settings.background_color = Color("1a1714")
+	settings.ambient_light_color = Color("e8e0d2")
+	settings.ambient_light_energy = 0.6
+	sun.light_energy = 1.0
+	sun.light_color = Color("fff3e0")
+	sun.shadow_opacity = 0.55
+	sun.look_at_from_position(Vector3.ZERO, Vector3(0.45, -0.78, 0.45))   # painted light: upper-left/back
+	var plane := MeshInstance3D.new()
+	plane.name = "ZonePainting"
+	var pm := PlaneMesh.new(); pm.size = Vector2(w, d); plane.mesh = pm
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.albedo_texture = load("res://assets/zones/" + String(zone["image"]))
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	plane.material_override = mat
+	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(plane)
+	var catcher := MeshInstance3D.new()             # receives the heroes' real shadows on the painting
+	catcher.name = "ZoneShadowCatcher"
+	var cm := PlaneMesh.new(); cm.size = Vector2(w, d); catcher.mesh = cm
+	var sm := StandardMaterial3D.new()
+	sm.shadow_to_opacity = true
+	sm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	sm.albedo_color = Color(0.05, 0.04, 0.06, 1.0)
+	catcher.material_override = sm
+	catcher.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	catcher.position.y = 0.01
+	add_child(catcher)
+	zone_walk.clear()
+	for poly in zone["walkable"]:
+		var pts := PackedVector2Array()
+		for p in poly:
+			var wp := zone_px_to_world(float(p[0]), float(p[1]))
+			pts.append(Vector2(wp.x, wp.z))
+		zone_walk.append(pts)
+
+func zone_walkable(at: Vector3) -> bool:
+	for poly in zone_walk:
+		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), poly):
+			return true
+	return zone_walk.is_empty()
 
 func _build_plaza(settings: Environment, sun: DirectionalLight3D) -> void:
 	settings.background_color = Color("8fa9c6")
@@ -344,13 +437,26 @@ func _process(delta: float) -> void:
 		var over_ui: bool = hud != null and hud.pointer_over_ui()
 		if holding_move and not standing and not over_ui and player.attack_target == null and player.aim_point.is_finite():
 			player.command_move(player.aim_point)
-	var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
-	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
-	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
+	if not zone.is_empty():
+		_zone_camera(delta)
+	else:
+		var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
+		camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
+		camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
 	if info == null: return
 	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Sweep: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), ("STRICT" if strict_weapon_sweep else "baseline"), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
 
 func _physics_process(_delta: float) -> void:
+	if not zone.is_empty() and player != null:
+		if zone_walkable(player.global_position):
+			zone_last_ok = player.global_position
+		elif zone_last_ok.is_finite():
+			player.global_position = Vector3(zone_last_ok.x, player.global_position.y, zone_last_ok.z)
+			player.velocity.x = 0.0; player.velocity.z = 0.0
+			player.stop_moving()
+	_physics_body()
+
+func _physics_body() -> void:
 	if player == null or not player.equipment_sockets_available or player.equipment_sockets == null:
 		contact_samples.clear()
 		_draw_sword_sweep()

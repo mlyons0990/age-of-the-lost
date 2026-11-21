@@ -8,3 +8,15 @@
 - Tests unchanged: arpg_hud 80/80, mage 83/83, knight lab 29/29, regression 994/994.
 - Limits: procedural floor reads flat next to the painted HUD; citadel is blocky (Phase 17 procedural). Paid polish
   quoted to the owner (painted floor textures, Tripo props) — not spent.
+
+## v2 — 2D painted zones (owner direction: "a 2D game with a few 3D elements; each zone is a 2D environment")
+- New `painted_zone` lab option (`rig_lab.gd`): the zone painting (`assets/zones/<zone>.png` + `.json`) is laid on the
+  ground and seen through an orthographic camera at the painting's own 52-degree pitch, so it shows exactly as painted;
+  the 3D heroes walk on it and cast real shadows onto it (shadow-catcher plane). Hero ~100 px at 1080p.
+- Zone JSON: painting size, walkable polygons (pixel space), spawn and enemy positions. The hero is clamped to the
+  walkable area; the camera follows but never shows past the painting's edges.
+- First zone: Crownsfall Central Plaza, using the existing owner-approved painting (`assets/plaza.png`); Whisperwood
+  ruins painting copied in for the next zone. No credits spent.
+- Both pilot labs now open in the plaza zone. Tests: painted_zone 7/7, arpg_hud 80/80, mage 83/83, knight 29/29,
+  regression 994/994.
+- Next: foreground occlusion layer (walk behind lamp posts/planters), zone exits/transitions, Whisperwood walk map.

@@ -17,6 +17,10 @@ func _run() -> void:
 		img.save_png("%s/edges_%dx%d.png" % [out, res.x, res.y])
 		var r: Rect2 = lab.hud.left_piece.get_global_rect()
 		print("RES %s bar %s" % [res, r])
+		var a = lab.player
+		var top: float = lab.camera.unproject_position(a.global_position + Vector3.UP * 1.75).y
+		var bot: float = lab.camera.unproject_position(a.global_position).y
+		print("HERO_PX %.0f at %s" % [bot - top, res])
 		lab.queue_free()
 		await process_frame
 	quit(0)

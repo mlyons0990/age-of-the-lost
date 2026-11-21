@@ -155,3 +155,9 @@ squares; not "cheap and AI made with wavy lines".
 
 ## Revision 14 — no dead wedge at the globes
 - Bronze collars now hug each globe ring where the frame meets it, and the XP fill starts at each ring edge.
+
+## ACCEPTED — 2026-11-21 (owner: "This one is good and passes")
+Layout approved at commit ac13d6b: one fluid PoE-style frame (flask belt + XP rail + stepped skill block
+LMB MMB RMB over Q W E R T), collars into both globe rings, HP/MP above the globes, mouse glyphs, nothing overlapping.
+Owner's markup: `art/references/2026-11-20/hud_mockup/owner_approved_layout_2026-11-21.png`.
+Next (needs owner credit approval): replace the placeholder statue + globe corner art only; frame stays code-drawn.

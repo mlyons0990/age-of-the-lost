@@ -59,6 +59,9 @@ void fragment() {
 """
 var hp_shade: ColorRect
 var meta_cache: Dictionary
+var frame_poly: PackedVector2Array
+var frame_body: Control
+var mouse_glyphs := {}
 var xp_tex: Texture2D
 var xp_tile_w := 120.0
 var mp_shade: ColorRect
@@ -241,12 +244,64 @@ func _build() -> void:
 	var ro := right_piece.position
 	var dl: Array = cl["disc"]
 	var dr: Array = cr["disc"]
-	# XP bar: thin bevelled channel along the bottom edge, from ring to ring (drawn first, under the corners)
-	var xp_l: float = lo.x + (float(dl[0]) + float(cl["ring_r"]) * 0.86) * f
-	var xp_r: float = ro.x + (float(dr[0]) - float(cr["ring_r"]) * 0.86) * f
-	strip_rect = Rect2(xp_l, H - XP_H * f, xp_r - xp_l, XP_H * f)
-	root.add_child(_nine("hud_xp_frame", strip_rect, 3, hi))
-	xp_rect = strip_rect.grow(-3.0 * f)
+	# ONE fluid frame (PoE structure): a base rail runs from globe to globe along the bottom edge with the XP bar set
+	# into it; the flask belt rises out of the rail against the life ring, and the stepped skill block (LMB MMB RMB over
+	# Q W E R T) rises out of it against the mana ring. The whole outline is a single polygon with one bronze rim, so
+	# there are no gaps or joins between elements. Globe rings are drawn over the rail ends.
+	var s_slot := SLOT * f
+	var s_gap := GAP * f
+	var s_b := BORDER * f
+	var fl := FLASK * f
+	var ring_l: float = lo.x + (float(dl[0]) + float(cl["ring_r"]) * 0.93) * f    # inner edge of each globe ring
+	var ring_r: float = ro.x + (float(dr[0]) - float(cr["ring_r"]) * 0.93) * f
+	var base_h: float = 26.0 * f
+	var by0: float = H - base_h
+	var bx0: float = lo.x + float(dl[0]) * f
+	var bx1: float = ro.x + float(dr[0]) * f
+	var tuck: float = 48.0 * f
+	# flask belt (raised section on the left)
+	var belt := Rect2(ring_l - tuck, 0, tuck + 5 * fl.x + 4 * s_gap + 2 * s_b, fl.y + 2 * s_b)
+	belt.position.y = by0 - belt.size.y + s_b
+	# skill block (raised, stepped, on the right)
+	var blk_w: float = 5 * s_slot + 4 * s_gap + 2 * s_b + tuck
+	var low := Rect2(ring_r + tuck - blk_w, 0, blk_w, s_slot + 2 * s_b)
+	low.position.y = by0 - low.size.y + s_b
+	var top_w: float = low.end.x - (low.position.x + s_b + 2 * (s_slot + s_gap) - s_b)
+	var top := Rect2(low.end.x - top_w, low.position.y - s_slot - s_gap, top_w, s_slot + s_gap + s_b)
+	var outline := PackedVector2Array([
+		Vector2(bx0, H + 2), Vector2(bx0, by0), Vector2(belt.position.x, by0), belt.position,
+		Vector2(belt.end.x, belt.position.y), Vector2(belt.end.x, by0), Vector2(low.position.x, by0), low.position,
+		Vector2(top.position.x, low.position.y), top.position, Vector2(top.end.x, top.position.y),
+		Vector2(top.end.x, by0), Vector2(bx1, by0), Vector2(bx1, H + 2)])
+	frame_poly = outline
+	var body := Control.new()
+	body.set_anchors_preset(Control.PRESET_FULL_RECT)
+	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var stone_tex: Texture2D = _tex("hud_stone")
+	body.draw.connect(func():
+		var rim: float = 7.0 * f
+		var inner: PackedVector2Array = Geometry2D.offset_polygon(outline, -rim, Geometry2D.JOIN_MITER)[0]
+		body.draw_colored_polygon(outline, Color("8a6a46"))                      # bronze rim
+		var uv := PackedVector2Array()
+		for v in inner: uv.append(v / (256.0 * f))
+		body.draw_polygon(inner, PackedColorArray([Color.WHITE]), uv, stone_tex)  # stone body
+		var closed := outline.duplicate(); closed.append(outline[0])
+		var cin := inner.duplicate(); cin.append(inner[0])
+		body.draw_polyline(closed, Color("0b0909"), 2.0 * f)                      # outer dark edge
+		body.draw_polyline(cin, Color("0d0b0b"), 1.5 * f)                         # inner dark edge
+		var mid: PackedVector2Array = Geometry2D.offset_polygon(outline, -rim * 0.45, Geometry2D.JOIN_MITER)[0]
+		for k in mid.size():                                                     # lit top edges of the rim
+			var a: Vector2 = mid[k]; var b: Vector2 = mid[(k + 1) % mid.size()]
+			if absf(a.y - b.y) < 0.5 and a.y < H - 2: body.draw_line(a, b, Color("e0b878"), 2.0 * f)
+			elif absf(a.x - b.x) < 0.5: body.draw_line(a, b, Color("b08a5c"), 1.6 * f)
+		)
+	root.add_child(body)
+	frame_body = body
+	# XP bar set into the base rail, from ring to ring
+	var groove := Rect2(ring_l - 4 * f, by0 + 8 * f, ring_r - ring_l + 8 * f, base_h - 13 * f)
+	strip_rect = Rect2(bx0, by0, bx1 - bx0, base_h)
+	root.add_child(_nine("hud_xp_frame", groove.grow(2 * f), 3, hi))
+	xp_rect = groove.grow(-1.0 * f)
 	root.add_child(left_piece)
 	root.add_child(right_piece)
 	orb_l = Vector3(lo.x + dl[0] * f, lo.y + dl[1] * f, dl[2] * f)
@@ -255,68 +310,40 @@ func _build() -> void:
 	mp_shade = _disc_shade(root, ro, f, dr)
 	(hp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_left"))
 	(mp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_right"))
-	var s_slot := SLOT * f
-	var s_gap := GAP * f
-	var s_b := BORDER * f
-	var floor_y: float = strip_rect.position.y - 2.0 * f          # panels stand on the XP bar, never over it
-	# flask belt beside the life globe
-	var fl := FLASK * f
-	var belt := Rect2(xp_l - 4 * f, 0, 5 * fl.x + 4 * s_gap + 2 * s_b, fl.y + 2 * s_b)
-	belt.position.y = floor_y - belt.size.y
-	root.add_child(_nine("hud_panel_frame", belt, 7, hi))
 	for i in POTION_SLOTS:
-		var r := Rect2(belt.position + Vector2(s_b + i * (fl.x + s_gap), s_b), fl)
+		var r := Rect2(Vector2(belt.position.x + tuck + s_b + i * (fl.x + s_gap), belt.position.y + s_b), fl)
 		root.add_child(_nine("hud_well", r, 3, hi))
 		potion_slots.append({"rect": r, "idx": i})
 		potion_icons.append(_well(root, r, "potion", i, 0.0))
 		key_labels["potion_%d" % (i + 1)] = _corner_key(root, r, f)
-	# skill block beside the mana globe: top row LMB MMB RMB (right-aligned), bottom row Q W E R T
-	# stepped frame like PoE: a wide lower frame for Q W E R T and a narrower upper frame for LMB MMB RMB
-	var blk_w: float = 5 * s_slot + 4 * s_gap + 2 * s_b
-	var blk := Rect2(xp_r + 4 * f - blk_w, 0, blk_w, 2 * s_slot + s_gap + 2 * s_b)
-	blk.position.y = floor_y - blk.size.y
-	var low := Rect2(blk.position.x, blk.position.y + s_slot + s_gap, blk_w, s_slot + 2 * s_b)
-	var top_w: float = 3 * s_slot + 2 * s_gap + 2 * s_b
-	var top := Rect2(blk.end.x - top_w, blk.position.y, top_w, s_slot + 2 * s_b + s_gap)
-	root.add_child(_nine("hud_panel_frame", top, 7, hi))
-	root.add_child(_nine("hud_panel_frame", low, 7, hi))
 	for i in SKILL_SLOTS:
-		var col: int = i if i < 5 else i - 3                      # top row sits over columns 2..4
-		var row: int = 1 if i < 5 else 0
-		var r := Rect2(blk.position + Vector2(s_b + col * (s_slot + s_gap), s_b + row * (s_slot + s_gap) + (s_gap if row == 1 else 0.0)), Vector2(s_slot, s_slot))
+		var r: Rect2
+		if i < 5:
+			r = Rect2(Vector2(low.position.x + s_b + i * (s_slot + s_gap), low.position.y + s_b), Vector2(s_slot, s_slot))
+		else:
+			r = Rect2(Vector2(low.position.x + s_b + (i - 3) * (s_slot + s_gap), top.position.y + s_b), Vector2(s_slot, s_slot))
 		root.add_child(_nine("hud_well", r, 3, hi))
 		bar_slots.append({"rect": r, "idx": i})
 		skill_icons.append(_well(root, r, "skill", i, 0.0))
 		key_labels[SLOT_ACTIONS[i]] = _corner_key(root, r, f)
-	# HP / MP values above the panels
-	var plate_sb := StyleBoxFlat.new()
-	plate_sb.bg_color = Color(0.03, 0.03, 0.04, 0.8)
-	plate_sb.set_corner_radius_all(3)
-	var hp_plate := Panel.new()
-	hp_plate.add_theme_stylebox_override("panel", plate_sb)
-	hp_plate.size = Vector2(150, 28) * f
-	hp_plate.position = Vector2(belt.position.x, belt.position.y - 32 * f)
-	hp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(hp_plate)
+		if i >= 5:
+			mouse_glyphs[SLOT_ACTIONS[i]] = _mouse_glyph(root, r, f)
+	# HP / MP values above their globes (PoE style)
 	hp_label = _label("HP", int(18 * f), IVORY)
-	hp_label.position = hp_plate.position + Vector2(8, 2) * f
+	hp_label.size = Vector2(200, 24) * f
+	hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hp_label.position = Vector2(orb_l.x - 100 * f, orb_l.y - orb_l.z - 46 * f)
 	root.add_child(hp_label)
-	var mp_plate := Panel.new()
-	mp_plate.add_theme_stylebox_override("panel", plate_sb)
-	mp_plate.size = Vector2(150, 28) * f
-	mp_plate.position = Vector2(top.position.x - mp_plate.size.x - 8 * f, low.position.y - 32 * f)
-	mp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(mp_plate)
 	mp_label = _label("MP", int(18 * f), IVORY)
-	mp_label.size = mp_plate.size - Vector2(16, 4) * f
-	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	mp_label.position = mp_plate.position + Vector2(8, 2) * f
+	mp_label.size = Vector2(200, 24) * f
+	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	mp_label.position = Vector2(orb_r.x - 100 * f, orb_r.y - orb_r.z - 46 * f)
 	root.add_child(mp_label)
-	var lv := _label("Lv. %d" % LEVEL, int(13 * f), IVORY)
-	lv.size = Vector2(120 * f, strip_rect.size.y)
+	var lv := _label("Lv. %d" % LEVEL, int(12 * f), IVORY)
+	lv.size = Vector2(120 * f, xp_rect.size.y + 4 * f)
 	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lv.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	lv.position = Vector2(strip_rect.get_center().x - 60 * f, strip_rect.position.y - 1 * f)
+	lv.position = Vector2(xp_rect.get_center().x - 60 * f, xp_rect.position.y - 2 * f)
 	lv.z_index = 2
 	root.add_child(lv)
 	picker = PopupMenu.new()
@@ -387,6 +414,38 @@ func _nine(name: String, r: Rect2, margin: int, hi: bool) -> NinePatchRect:
 	n.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return n
 
+## PoE-style mouse symbol for LMB / MMB / RMB slots: a small mouse with the bound button lit.
+func _mouse_glyph(root: Control, r: Rect2, f: float) -> Control:
+	var g := Control.new()
+	g.position = r.position + Vector2(3, r.size.y - 24) * Vector2(1, 1) + Vector2(0, 0)
+	g.position = Vector2(r.position.x + 3 * f, r.end.y - 29 * f)
+	g.size = Vector2(19, 26) * f
+	g.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	g.z_index = 3
+	g.set_meta("button", 0)
+	g.draw.connect(func():
+		var w: float = g.size.x; var h: float = g.size.y
+		var body := Rect2(Vector2(1, 1) * f, Vector2(w - 2 * f, h - 2 * f))
+		var sb := StyleBoxFlat.new()
+		sb.bg_color = Color(0.08, 0.07, 0.07, 0.9); sb.border_color = Color("efe6cf"); sb.set_border_width_all(maxi(1, roundi(1.4 * f)))
+		sb.corner_radius_top_left = roundi(7 * f); sb.corner_radius_top_right = roundi(7 * f)
+		sb.corner_radius_bottom_left = roundi(6 * f); sb.corner_radius_bottom_right = roundi(6 * f)
+		g.draw_style_box(sb, body)
+		var split_y: float = body.position.y + body.size.y * 0.42
+		g.draw_line(Vector2(body.position.x + 1, split_y), Vector2(body.end.x - 1, split_y), Color("efe6cf"), 1.2 * f)
+		var mx: float = body.get_center().x
+		var btn: int = int(g.get_meta("button"))
+		if btn == 2:
+			g.draw_rect(Rect2(Vector2(mx - 1.6 * f, body.position.y + 3 * f), Vector2(3.2 * f, split_y - body.position.y - 5 * f)), Color("f2c45a"))
+		else:
+			g.draw_line(Vector2(mx, body.position.y + 1), Vector2(mx, split_y), Color("efe6cf"), 1.2 * f)
+			var lx: float = body.position.x + 2 * f if btn == 1 else mx + 1 * f
+			if btn in [1, 3]:
+				g.draw_rect(Rect2(Vector2(lx, body.position.y + 3 * f), Vector2(body.size.x * 0.5 - 3 * f, split_y - body.position.y - 4 * f)), Color("f2c45a"))
+		)
+	root.add_child(g)
+	return g
+
 ## Key letter in the icon's bottom-left corner (PoE style), outlined so it reads over any icon.
 func _corner_key(root: Control, r: Rect2, f: float) -> Label:
 	var l := _label("", int(14 * f), IVORY)
@@ -455,7 +514,13 @@ func _refresh_slots() -> void:
 
 func _refresh_keys() -> void:
 	for a in key_labels.keys():
-		key_labels[a].text = kb.key_label(a)
+		var t: String = kb.key_label(a)
+		var btn: int = {"LMB": 1, "MMB": 2, "RMB": 3}.get(t, 0)
+		if mouse_glyphs.has(a):
+			mouse_glyphs[a].visible = btn != 0
+			mouse_glyphs[a].set_meta("button", btn)
+			mouse_glyphs[a].queue_redraw()
+		key_labels[a].text = "" if (btn != 0 and mouse_glyphs.has(a)) else t
 	if bind_menu != null:
 		for a in bind_buttons.keys():
 			for i in 2:

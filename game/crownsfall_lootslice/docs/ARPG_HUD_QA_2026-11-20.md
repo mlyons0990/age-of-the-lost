@@ -146,3 +146,9 @@ squares; not "cheap and AI made with wavy lines".
   channel along the bottom edge between the globes. Key letters sit in each icon's corner (PoE style).
 - Corner statue + globe art is a placeholder cut from the previous bar until the owner approves a corner redraw.
 - Tests: arpg_hud 73/73 (no overlaps, row order, icon fill, edges); regression 994/994.
+
+## Revision 13 — one fluid frame (owner: elements looked like separate assets, gaps at the globes)
+- Flask belt, XP rail and stepped skill block are now ONE outline polygon with a single bronze rim and stone body,
+  tucked under both globe rings (no gaps); the XP bar is set into the rail from ring to ring.
+- HP / MP values above their globes; LMB / MMB / RMB slots show a mouse symbol with the bound button lit.
+- Still free / placeholder corner art; no credits spent. Tests: arpg_hud 76/76; regression 994/994.

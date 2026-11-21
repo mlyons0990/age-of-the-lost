@@ -49,6 +49,9 @@ def bevel_frame(w, h, border, inset_dark=True):
         a[inner, :3] *= np.linspace(0.45, 0.8, 3)[(d[inner] - border)][:, None]
     return a
 
+# --- stone tile for the continuous frame body (seamless enough at UI scale)
+st = stone(256, 256)
+save2(st, "hud_stone")
 # --- panel frame (skill block / flask belt): 9-patch 96x96 @2x, border 14 @2x
 save2(bevel_frame(96, 96, 14), "hud_panel_frame")
 # --- slot well: recessed, thin rim

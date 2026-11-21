@@ -43,23 +43,31 @@ func _run() -> void:
 	var lr: Rect2 = hud.left_piece.get_global_rect()
 	var rr: Rect2 = hud.right_piece.get_global_rect()
 	check(absf(lr.position.x) < 0.5 and absf(lr.end.y - vh) < 0.5 and absf(rr.end.x - vw) < 0.5 and absf(rr.end.y - vh) < 0.5, "Corner statues + globes flush to the left/right/bottom edges")
-	check(absf(hud.strip_rect.end.y - vh) < 0.5, "XP bar runs along the bottom edge")
+	check(absf(hud.strip_rect.end.y - vh) < 0.5 and hud.xp_rect.position.x < hud.orb_l.x + hud.orb_l.z * 1.3 and hud.xp_rect.end.x > hud.orb_r.x - hud.orb_r.z * 1.3, "XP bar runs along the bottom edge from ring to ring")
 	var overlap := false
 	for s0 in hud.bar_slots + hud.potion_slots:
 		if (s0["rect"] as Rect2).intersects(hud.strip_rect): overlap = true
 		for s1 in hud.bar_slots + hud.potion_slots:
 			if s0 != s1 and (s0["rect"] as Rect2).intersects(s1["rect"]): overlap = true
-	check(not overlap, "No slot overlaps another slot or the XP bar")
+	var ov := false
+	for s0 in hud.bar_slots + hud.potion_slots:
+		if (s0["rect"] as Rect2).intersects(hud.xp_rect): ov = true
+		for s1 in hud.bar_slots + hud.potion_slots:
+			if s0 != s1 and (s0["rect"] as Rect2).intersects(s1["rect"]): ov = true
+	check(not ov, "No slot overlaps another slot or the XP bar")
+	check(hud.frame_poly.size() >= 12, "Flask belt, XP rail and skill block are ONE outline polygon (no gaps between elements)")
+	check(hud.mouse_glyphs.size() == 3 and hud.mouse_glyphs["move"].visible and int(hud.mouse_glyphs["move"].get_meta("button")) == 1, "LMB / MMB / RMB slots show a mouse symbol with the bound button lit")
+	check(hud.mp_label.position.y + hud.mp_label.size.y < hud.orb_r.y - hud.orb_r.z + 4.0 and hud.hp_label.position.y + hud.hp_label.size.y < hud.orb_l.y - hud.orb_l.z + 4.0, "HP / MP values sit above their globes")
 	var top_ok := true
 	for i in range(5, 8): top_ok = top_ok and hud.bar_slots[i]["rect"].end.y <= hud.bar_slots[0]["rect"].position.y
 	check(top_ok, "LMB MMB RMB row sits above the Q W E R T row (PoE layout)")
 	check(absf(hud.skill_icons[0].size.x - hud.bar_slots[0]["rect"].size.x) < 8.0 * vh / 1080.0, "Skill icon fills its well (rim only)")
 	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.03 and absf(hud.orb_l.y - hud.orb_r.y) < 3.0, "Both globes the same size and height (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
 	check(absf(hud.left_piece.texture.get_width() - hud.left_piece.size.x) <= 1.0 and absf(hud.right_piece.texture.get_width() - hud.right_piece.size.x) <= 1.0, "Corner art draws 1:1 at 1080p")
-	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["skill_6"].text == "RMB" and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")
+	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["skill_6"].text == "" and int(hud.mouse_glyphs["skill_6"].get_meta("button")) == 3 and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")
 	check(hud.bar_slots.size() == 8 and hud.potion_slots.size() == 5, "5 flask slots + 8 skill slots")
 	var order := []
-	for i in 8: order.append(hud.key_labels[hud.SLOT_ACTIONS[i]].text)
+	for i in 8: order.append(hud.kb.key_label(hud.SLOT_ACTIONS[i]))
 	check(order == ["Q", "W", "E", "R", "T", "LMB", "MMB", "RMB"], "Bottom row Q W E R T, top row LMB MMB RMB (%s)" % [order])
 	var xs_ok := true
 	for i in 4: xs_ok = xs_ok and hud.bar_slots[i]["rect"].position.x < hud.bar_slots[i + 1]["rect"].position.x

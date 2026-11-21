@@ -161,3 +161,7 @@ Layout approved at commit ac13d6b: one fluid PoE-style frame (flask belt + XP ra
 LMB MMB RMB over Q W E R T), collars into both globe rings, HP/MP above the globes, mouse glyphs, nothing overlapping.
 Owner's markup: `art/references/2026-11-20/hud_mockup/owner_approved_layout_2026-11-21.png`.
 Next (needs owner credit approval): replace the placeholder statue + globe corner art only; frame stays code-drawn.
+
+## Revision 15 (owner: globe art cut off sloppily; soften hard 90-degree corners)
+- Corner art trimmed to the ring circle on the globe side; the painted slab and ornament scraps that ended in hard cuts above the rings are removed (statues untouched).
+- Every corner of the frame outline is filleted (22 px arc), convex and concave.

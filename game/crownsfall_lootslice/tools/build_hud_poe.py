@@ -81,12 +81,49 @@ for side in ("left", "right"):
     yy, xx = np.mgrid[0:hh, 0:ww]
     ccx = cx - x0
     dist = np.sqrt((xx - ccx) ** 2 + (yy - cy) ** 2)
+    # keep the statue column untouched; everywhere else trim to the ring's own circle, so the painted slab behind the
+    # ring top (which ended in a hard vertical cut) is removed and the ring reads as a clean round frame
+    # outside the ring circle keep only the statue + its rock (pale stone, found by colour and connected to the screen
+    # edge), so neither the slab behind the ring nor any straight crop line survives
+    import cv2
+    Rr = r * 1.175
+    rgb = c[..., :3] / 255.0
+    lum = rgb.mean(-1); sat = rgb.max(-1) - rgb.min(-1)
+    pale = ((lum > 0.22) & (sat < 0.32) & (c[..., 3] > 128)).astype(np.uint8)
+    pale = cv2.morphologyEx(pale, cv2.MORPH_CLOSE, np.ones((15, 15), np.uint8))
+    n, lab, st, _ = cv2.connectedComponentsWithStats(pale)
+    edge_col = 0 if side == "left" else ww - 1
+    keep_ids = set(lab[:, edge_col][lab[:, edge_col] > 0].tolist())
+    statue = np.isin(lab, list(keep_ids)).astype(np.uint8)
+    cs, _ = cv2.findContours(statue, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    statue = np.zeros_like(statue); cv2.drawContours(statue, cs, -1, 1, -1)
+    statue = cv2.GaussianBlur(statue.astype(np.float32), (0, 0), 1.2)
+    ring = np.clip((Rr - dist) / 2.0 + 0.5, 0, 1)                         # anti-aliased circle
     inner_side = (xx > ccx) if side == "left" else (xx < ccx)
-    soft = np.clip((R - dist) / 2.0 + 0.5, 0, 1)                          # anti-aliased circular trim
-    c[..., 3] = np.where(inner_side, c[..., 3] * soft, c[..., 3])
+    # the dark painted slab wedged between the statue's head and the ring top: band beside the statue, above the ring
+    band = (~inner_side) & (yy < cy - 0.3 * r) & ((xx > ccx - 1.05 * r) if side == "left" else (xx < ccx + 1.05 * r))
+    dark = cv2.GaussianBlur((lum < 0.22).astype(np.float32), (0, 0), 1.2)
+    dark = cv2.morphologyEx((dark > 0.5).astype(np.uint8), cv2.MORPH_OPEN, np.ones((3, 3), np.uint8)).astype(np.float32)
+    keep = np.ones_like(ring)
+    keep = np.where(inner_side, ring, keep)                              # globe's open side: clean ring circle
+    keep = np.where(band, np.maximum(ring, 1.0 - cv2.GaussianBlur(dark, (0, 0), 1.0)), keep)
+    near = band & ((xx > ccx - 0.62 * r) if side == "left" else (xx < ccx + 0.62 * r))   # above the ring itself
+    keep = np.where(near, ring, keep)                                    # nothing but the ring circle there
+    c[..., 3] = c[..., 3] * keep
+    # drop floating scraps (ornament bits left outside the ring): keep only the main connected body
+    solid = (c[..., 3] > 100).astype(np.uint8)
+    n2, lab2, st2, _ = cv2.connectedComponentsWithStats(solid)
+    big = 1 + np.argmax(st2[1:, cv2.CC_STAT_AREA])
+    main = cv2.dilate((lab2 == big).astype(np.uint8), np.ones((3, 3), np.uint8)).astype(np.float32)
+    # thin ornament wisps outside the ring that are attached by a thread: open them away in the band only
+    opened = cv2.morphologyEx((lab2 == big).astype(np.uint8), cv2.MORPH_OPEN, np.ones((13, 13), np.uint8))
+    n3, lab3, st3, _ = cv2.connectedComponentsWithStats(opened)
+    opened = (lab3 == 1 + np.argmax(st3[1:, cv2.CC_STAT_AREA])).astype(np.float32)
+    main = np.where(band & (ring < 0.5), opened, main)
+    c[..., 3] = c[..., 3] * cv2.GaussianBlur(main, (0, 0), 0.8)
     im = Image.fromarray(c.astype(np.uint8), "RGBA")
     im.save(f"{D}/hud_corner_{side}@2x.png")
     im.resize((im.width // 2, im.height // 2), Image.LANCZOS).save(f"{D}/hud_corner_{side}.png")
-    out[side] = {"size": [im.width / 2, im.height / 2], "disc": [(cx - x0) / 2, cy / 2, r / 2, r / 2], "ring_r": R / 2}
+    out[side] = {"size": [im.width / 2, im.height / 2], "disc": [(cx - x0) / 2, cy / 2, r / 2, r / 2], "ring_r": Rr / 2}
 json.dump(out, open(f"{D}/hud_corners.json", "w"), indent=1)
 print(out)

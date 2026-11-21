@@ -60,6 +60,7 @@ void fragment() {
 var hp_shade: ColorRect
 var meta_cache: Dictionary
 var frame_poly: PackedVector2Array
+var boss_points: Array = []
 var frame_body: Control
 var mouse_glyphs := {}
 var xp_tex: Texture2D
@@ -268,11 +269,14 @@ func _build() -> void:
 	low.position.y = by0 - low.size.y + s_b
 	var top_w: float = low.end.x - (low.position.x + s_b + 2 * (s_slot + s_gap) - s_b)
 	var top := Rect2(low.end.x - top_w, low.position.y - s_slot - s_gap, top_w, s_slot + s_gap + s_b)
+	boss_points = [belt.position + Vector2(8, 8) * f, Vector2(belt.end.x, belt.position.y) + Vector2(-8, 8) * f,
+		low.position + Vector2(8, 8) * f, top.position + Vector2(8, 8) * f, Vector2(top.end.x, top.position.y) + Vector2(-8, 8) * f]
 	var outline := PackedVector2Array([
 		Vector2(bx0, H + 2), Vector2(bx0, by0), Vector2(belt.position.x, by0), belt.position,
 		Vector2(belt.end.x, belt.position.y), Vector2(belt.end.x, by0), Vector2(low.position.x, by0), low.position,
 		Vector2(top.position.x, low.position.y), top.position, Vector2(top.end.x, top.position.y),
 		Vector2(top.end.x, by0), Vector2(bx1, by0), Vector2(bx1, H + 2)])
+	outline = _rounded(outline, 22.0 * f, H)
 	frame_poly = outline
 	var body := Control.new()
 	body.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -292,8 +296,13 @@ func _build() -> void:
 		var mid: PackedVector2Array = Geometry2D.offset_polygon(outline, -rim * 0.45, Geometry2D.JOIN_MITER)[0]
 		for k in mid.size():                                                     # lit top edges of the rim
 			var a: Vector2 = mid[k]; var b: Vector2 = mid[(k + 1) % mid.size()]
-			if absf(a.y - b.y) < 0.5 and a.y < H - 2: body.draw_line(a, b, Color("e0b878"), 2.0 * f)
-			elif absf(a.x - b.x) < 0.5: body.draw_line(a, b, Color("b08a5c"), 1.6 * f)
+			var dd: Vector2 = b - a
+			if dd.length() < 0.01: continue
+			var horiz: bool = absf(dd.y) < absf(dd.x)
+			var shade: Color = Color("e0b878") if (horiz and a.y < H - 2) else Color("b08a5c")
+			body.draw_line(a, b, shade, (2.0 if horiz else 1.6) * f)
+		for corner in []:
+			_boss(body, corner, f)
 		)
 	# bronze collars hugging each globe ring where the frame meets it (PoE-style), so no dead wedge remains
 	var cl_c := Vector2(lo.x + float(dl[0]) * f, lo.y + float(dl[1]) * f)
@@ -439,6 +448,34 @@ func _socket(root: Control, r: Rect2) -> void:
 	root.add_child(s)
 
 # ---------------- wells, loadout, picker ----------------
+
+## Fillet every corner of the frame outline (convex and concave) with a smooth arc, PoE-style; screen-edge
+## vertices below the bottom of the screen stay square.
+static func _rounded(poly: PackedVector2Array, rad: float, h: float) -> PackedVector2Array:
+	var out := PackedVector2Array()
+	var n := poly.size()
+	for i in n:
+		var p: Vector2 = poly[i]
+		if p.y >= h:
+			out.append(p)
+			continue
+		var a: Vector2 = poly[(i - 1 + n) % n]
+		var b: Vector2 = poly[(i + 1) % n]
+		var ra: float = minf(rad, a.distance_to(p) * 0.5)
+		var rb: float = minf(rad, b.distance_to(p) * 0.5)
+		var p0: Vector2 = p + (a - p).normalized() * ra
+		var p1: Vector2 = p + (b - p).normalized() * rb
+		for k in 9:
+			var t: float = k / 8.0
+			out.append(p0.lerp(p, t).lerp(p.lerp(p1, t), t))     # quadratic bezier through the corner
+	return out
+
+## Small bronze boss with a gold stud at each raised corner (artwork accents on the frame).
+func _boss(ctrl: Control, at: Vector2, f: float) -> void:
+	ctrl.draw_circle(at, 7.5 * f, Color("0b0909"))
+	ctrl.draw_circle(at, 6.5 * f, Color("8a6a46"))
+	ctrl.draw_circle(at, 4.2 * f, Color("5a4330"))
+	ctrl.draw_circle(at + Vector2(-0.8, -0.8) * f, 2.6 * f, Color("e8c27c"))
 
 func _nine(name: String, r: Rect2, margin: int, hi: bool) -> NinePatchRect:
 	var n := NinePatchRect.new()

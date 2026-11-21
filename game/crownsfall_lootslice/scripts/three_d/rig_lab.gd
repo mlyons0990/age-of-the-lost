@@ -47,6 +47,8 @@ var zone_refs: Array = []             # [Environment, sun, floor shape] for rebu
 var zone_exits: Array = []            # {name, to, arrive, poly (world xz)}
 var zone_exit_armed := false          # set once the hero has stepped off every exit (no bounce on arrival)
 var zone_traveling := false
+var zone_block: Array = []            # blocked polygons (world xz) cut out of the walkable area
+var zone_tiles: Array = []            # {node, mat, rect (zone px), image, depth, state 0=unloaded 1=loading 2=shown}
 signal zone_changed(name: String)
 var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
 var zone_last_ok := Vector3.INF
@@ -138,6 +140,7 @@ func _ready() -> void:
 	if not zone.is_empty():
 		var sp: Array = zone["spawn"]
 		player.global_position = zone_px_to_world(float(sp[0]), float(sp[1])) + Vector3.UP * 0.08
+		zone_stream(true)
 		for i in mini(targets.size(), zone["targets"].size()):
 			var tp: Array = zone["targets"][i]
 			targets[i].global_position = zone_px_to_world(float(tp[0]), float(tp[1]))
@@ -285,7 +288,8 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 			remove_child(old); old.queue_free()
 	for old in get_tree().get_nodes_in_group("zone_exit_label") if is_inside_tree() else []:
 		old.get_parent().remove_child(old); old.queue_free()
-	zone = JSON.parse_string(FileAccess.get_file_as_string("res://assets/zones/%s.json" % painted_zone))
+	var zpath := painted_zone if painted_zone.begins_with("res://") else "res://assets/zones/%s.json" % painted_zone
+	zone = JSON.parse_string(FileAccess.get_file_as_string(zpath))
 	ZONE_PPM = float(zone.get("ppm", ZONE_PPM))     # world scale measured from the painting's own props
 	# hero size on screen is fixed (owner reference: ~110 px at 1080p); the painting is scaled to match it
 	ZONE_SCREEN_PPM = float(zone.get("hero_px_1080", 0.0)) / (1.75 * cos(deg_to_rad(ZONE_PITCH))) if zone.has("hero_px_1080") else ZONE_PPM
@@ -300,20 +304,36 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	sun.light_color = Color("fff3e0")
 	sun.shadow_opacity = 0.55
 	sun.look_at_from_position(Vector3.ZERO, Vector3(0.45, -0.78, 0.45))   # painted light: upper-left/back
-	var plane := MeshInstance3D.new()
-	plane.name = "ZonePainting"
-	var pm := PlaneMesh.new(); pm.size = Vector2(w, d); plane.mesh = pm
-	# foreground: painted railings / lamps in front of the floor hide actors behind them (tools/build_zone_depth.py)
-	var mat := ShaderMaterial.new()
-	mat.shader = load("res://shaders/zone_painting.gdshader")
-	mat.set_shader_parameter("painting", load("res://assets/zones/" + String(zone["image"])))
-	mat.set_shader_parameter("use_depth", zone.has("depth"))
-	if zone.has("depth"):
-		mat.set_shader_parameter("depthmap", load("res://assets/zones/" + String(zone["depth"])))
-	mat.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH)))
-	plane.material_override = mat
-	plane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	add_child(plane)
+	# painting: one or more tiles of a large zone canvas, streamed in/out around the camera (tools/build_zone_tiles.py)
+	var holder := Node3D.new()
+	holder.name = "ZonePainting"
+	add_child(holder)
+	var tiles: Array = zone.get("tiles", [])
+	if tiles.is_empty():
+		tiles = [{"image": zone["image"], "depth": zone.get("depth", ""), "rect": [0, 0, size[0], size[1]], "img_rect": [0, 0, size[0], size[1]]}]
+	zone_tiles.clear()
+	var sp_: float = sin(deg_to_rad(ZONE_PITCH))
+	for t in tiles:
+		var r: Array = t["rect"]; var ir: Array = t["img_rect"]
+		var tile := MeshInstance3D.new()
+		tile.name = "ZoneTile_%d_%d" % [int(r[0]), int(r[1])]
+		var tm := PlaneMesh.new()
+		tm.size = Vector2(float(r[2]) / ZONE_PPM, float(r[3]) / ZONE_PPM / sp_)
+		tile.mesh = tm
+		tile.position = zone_px_to_world(float(r[0]) + float(r[2]) * 0.5, float(r[1]) + float(r[3]) * 0.5)
+		var mat := ShaderMaterial.new()
+		mat.shader = load("res://shaders/zone_painting.gdshader")
+		mat.set_shader_parameter("use_depth", String(t.get("depth", "")) != "")
+		mat.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
+		mat.set_shader_parameter("uv_offset", Vector2((float(r[0]) - float(ir[0])) / float(ir[2]), (float(r[1]) - float(ir[1])) / float(ir[3])))
+		mat.set_shader_parameter("uv_scale", Vector2(float(r[2]) / float(ir[2]), float(r[3]) / float(ir[3])))
+		tile.material_override = mat
+		tile.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		tile.visible = false
+		holder.add_child(tile)
+		zone_tiles.append({"node": tile, "mat": mat, "rect": Rect2(float(r[0]), float(r[1]), float(r[2]), float(r[3])),
+			"image": "res://assets/zones/" + String(t["image"]),
+			"depth": ("res://assets/zones/" + String(t["depth"])) if String(t.get("depth", "")) != "" else "", "state": 0})
 	var catcher := MeshInstance3D.new()             # receives the heroes' real shadows on the painting
 	catcher.name = "ZoneShadowCatcher"
 	var cm := PlaneMesh.new(); cm.size = Vector2(w, d); catcher.mesh = cm
@@ -332,6 +352,13 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 			var wp := zone_px_to_world(float(p[0]), float(p[1]))
 			pts.append(Vector2(wp.x, wp.z))
 		zone_walk.append(pts)
+	zone_block.clear()
+	for poly in zone.get("blocked", []):                # ruins, water, columns inside the walkable outline
+		var bp := PackedVector2Array()
+		for p in poly:
+			var wp := zone_px_to_world(float(p[0]), float(p[1]))
+			bp.append(Vector2(wp.x, wp.z))
+		zone_block.append(bp)
 	zone_exits.clear()
 	for ex in zone.get("exits", []):
 		var ep := PackedVector2Array()
@@ -356,6 +383,56 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 		add_child(lbl)
 	zone_exit_armed = false
 
+func zone_world_to_px(at: Vector3) -> Vector2:
+	var size: Array = zone["size"]
+	return Vector2(at.x * ZONE_PPM + float(size[0]) * 0.5, at.z * ZONE_PPM * sin(deg_to_rad(ZONE_PITCH)) + float(size[1]) * 0.5)
+
+## Tile streaming (D4-style seamless region): tiles near the camera are loaded on a worker thread and shown; tiles far
+## away drop their textures. `sync` loads the near ones immediately (zone entry, so the first frame is never blank).
+func zone_stream(sync := false) -> void:
+	if zone_tiles.is_empty():
+		return
+	var vs := get_viewport().get_visible_rect().size
+	var focus: Vector3 = zone_cam_focus if zone_cam_focus.is_finite() else (player.global_position if player != null else Vector3.ZERO)
+	var c := zone_world_to_px(focus)
+	var half := Vector2(vs.x / vs.y, 1.0) * (1080.0 / ZONE_SCREEN_PPM) * 0.5 * ZONE_PPM
+	half.x = maxf(half.x, 15.0 * ZONE_PPM)                 # minimap sees ~30 m around the hero
+	var near := Rect2(c - half * 1.6, half * 3.2)
+	var far := Rect2(c - half * 2.6, half * 5.2)
+	for t in zone_tiles:
+		var r: Rect2 = t["rect"]
+		if near.intersects(r):
+			if t["state"] == 0:
+				if sync:
+					_zone_tile_apply(t, load(t["image"]), load(t["depth"]) if t["depth"] != "" else null)
+				else:
+					ResourceLoader.load_threaded_request(t["image"])
+					if t["depth"] != "": ResourceLoader.load_threaded_request(t["depth"])
+					t["state"] = 1
+			if t["state"] == 1:
+				var ok: bool = ResourceLoader.load_threaded_get_status(t["image"]) == ResourceLoader.THREAD_LOAD_LOADED
+				if t["depth"] != "": ok = ok and ResourceLoader.load_threaded_get_status(t["depth"]) == ResourceLoader.THREAD_LOAD_LOADED
+				if ok or sync:
+					_zone_tile_apply(t, ResourceLoader.load_threaded_get(t["image"]),
+						ResourceLoader.load_threaded_get(t["depth"]) if t["depth"] != "" else null)
+		elif not far.intersects(r) and t["state"] == 2:
+			t["mat"].set_shader_parameter("painting", null)
+			t["mat"].set_shader_parameter("depthmap", null)
+			t["node"].visible = false
+			t["state"] = 0
+
+func _zone_tile_apply(t: Dictionary, tex: Texture2D, dep: Texture2D) -> void:
+	t["mat"].set_shader_parameter("painting", tex)
+	if dep != null: t["mat"].set_shader_parameter("depthmap", dep)
+	t["node"].visible = true
+	t["state"] = 2
+
+func zone_tiles_shown() -> int:
+	var n := 0
+	for t in zone_tiles:
+		if t["state"] == 2: n += 1
+	return n
+
 func zone_exit_at(at: Vector3) -> Dictionary:
 	for ex in zone_exits:
 		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), ex["poly"]):
@@ -378,6 +455,7 @@ func travel_to(to: String, arrive: Array) -> void:
 	player.velocity = Vector3.ZERO
 	zone_last_ok = player.global_position
 	zone_cam_focus = Vector3.INF
+	zone_stream(true)
 	var tps: Array = zone.get("targets", [])
 	for i in targets.size():
 		if i < tps.size():
@@ -392,6 +470,9 @@ func travel_to(to: String, arrive: Array) -> void:
 	zone_traveling = false
 
 func zone_walkable(at: Vector3) -> bool:
+	for poly in zone_block:
+		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), poly):
+			return false
 	for poly in zone_walk:
 		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), poly):
 			return true
@@ -517,6 +598,7 @@ func _process(delta: float) -> void:
 			player.command_move(player.aim_point)
 	if not zone.is_empty():
 		_zone_camera(delta)
+		zone_stream()
 	else:
 		var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
 		camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))

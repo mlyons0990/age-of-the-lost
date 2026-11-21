@@ -36,18 +36,20 @@ func _run() -> void:
 	check(lab.find_child("ZonePainting", true, false) != null and lab.get_children().filter(func(n): return n.name.begins_with("ZonePainting")).size() == 1, "Old painting freed, one painting in the scene")
 	var top: float = lab.camera.unproject_position(a.global_position + Vector3.UP * 1.75).y
 	var bot: float = lab.camera.unproject_position(a.global_position).y
-	check(absf((bot - top) - 142.0) < 6.0, "Whisperwood hero size %.0f px (fills screen with the old painting)" % (bot - top))
+	check(absf((bot - top) - 110.0) < 6.0, "Whisperwood hero size %.0f px (same as the plaza)" % (bot - top))
+	check(lab.zone_world_to_px(a.global_position).distance_to(Vector2(720, 636)) < 60.0, "Arrives at the foot of the top-left stairs")
+	check(not lab.zone_walkable(lab.zone_px_to_world(1900, 450)), "Shrine ruins are blocked inside the clearing")
 	var vis := 0
 	for tg in lab.targets:
 		if tg.visible and lab.zone_walkable(tg.global_position): vis += 1
 	check(vis == 4, "Whisperwood targets placed on its walkable ground (%d)" % vis)
 	check(lab.hud.area_title.text == "Whisperwood" and lab.hud.area_sub.text == "Fallen Shrine", "Minimap header shows the new area")
 	await _shot("travel_whisperwood")
-	a.command_move(lab.zone_px_to_world(540, 1215))
+	a.command_move(lab.zone_px_to_world(330, 120))
 	t = 0.0
-	while lab.painted_zone != "crownsfall_plaza_z1" and t < 12.0:
+	while lab.painted_zone != "crownsfall" and t < 12.0:
 		await physics_frame; t += 1.0 / 60.0
-	check(lab.painted_zone == "crownsfall_plaza_z1", "Return exit travels back to Crownsfall (%.1fs)" % t)
+	check(lab.painted_zone == "crownsfall", "Return exit travels back to Crownsfall (%.1fs)" % t)
 	while lab.zone_traveling: await process_frame
 	await create_timer(1.5).timeout
 	check(lab.zone_walkable(a.global_position) and lab.zone_exit_at(a.global_position).is_empty(), "Back on the plaza, off the exit")

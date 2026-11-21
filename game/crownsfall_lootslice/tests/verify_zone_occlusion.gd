@@ -30,7 +30,7 @@ func _run() -> void:
 	var lab: Node3D = (load("res://scenes/pilot_knight_combat_lab.tscn") as PackedScene).instantiate()
 	root.add_child(lab)
 	for i in 10: await physics_frame
-	check(lab.zone.has("depth"), "Zone has a baked foreground depth map")
+	check(lab.zone_tiles.any(func(t): return t["depth"] != ""), "Zone has a baked foreground depth map")
 	lab.hud.visible = false
 	for n in lab.get_children():
 		if n is CanvasLayer: n.visible = false

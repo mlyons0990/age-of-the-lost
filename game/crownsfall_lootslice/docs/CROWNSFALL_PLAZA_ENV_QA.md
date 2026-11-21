@@ -24,3 +24,9 @@
 ## v3 — true painting scale (owner: planters should reach the hero's knees)
 - Per-zone world scale (zone JSON "ppm"), measured from the painting: planter box ~100 px = 0.5 m -> 320 px/m. Painting still drawn 1:1; hero now 345 px at 1080p with correct proportions.
 - Consequence: one screen shows ~5.5 m of ground, so the existing plaza painting is only ~1.4 screens of play space. Real zones need paintings authored for the chosen hero size (owner decision pending).
+
+## v4 — Z1 repaint at owner scale (6.5 cr, approval candidate)
+- Painting: `assets/zones/crownsfall_plaza_z1.png` (Higgsfield GPT Image 2.6, job 5fdae107, variant B; A kept in `art/higgsfield_2026-11/zones/`).
+- Zone JSON sets `"hero_px_1080": 110` → the hero is ~110 px tall at 1080p regardless of painting size; painting ppm 149 (lamp ≈ 2 hero heights, planter knee-high).
+- Zones without `hero_px_1080` keep the old 1:1 behaviour, so the default scenes are unchanged until the owner signs off.
+- Preview: `tests/capture_arpg_hud.gd -- --zone=crownsfall_plaza_z1`. verify_painted_zone 7/7 on both zones; regression 994/994.

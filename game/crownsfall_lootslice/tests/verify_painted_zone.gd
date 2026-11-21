@@ -11,6 +11,9 @@ func _initialize() -> void:
 func _run() -> void:
 	root.size = Vector2i(1920, 1080)
 	var lab: Node3D = (load("res://scenes/pilot_mage_combat_lab.tscn") as PackedScene).instantiate()
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--zone="):
+			lab.painted_zone = a.substr(7)
 	root.add_child(lab)
 	for i in 10: await physics_frame
 	check(not lab.zone.is_empty() and lab.find_child("ZonePainting", true, false) != null, "Painted zone loaded")
@@ -18,8 +21,8 @@ func _run() -> void:
 	var a = lab.player
 	var top: float = lab.camera.unproject_position(a.global_position + Vector3.UP * 1.75).y
 	var bot: float = lab.camera.unproject_position(a.global_position).y
-	var want: float = float(lab.ZONE_PPM) * 1.75 * cos(deg_to_rad(lab.ZONE_PITCH))
-	check(absf((bot - top) - want) < 8.0, "Hero drawn at the painting's own scale (%.0f px; planter ~knee height)" % (bot - top))
+	var want: float = float(lab.zone.get("hero_px_1080", float(lab.ZONE_PPM) * 1.75 * cos(deg_to_rad(lab.ZONE_PITCH))))
+	check(absf((bot - top) - want) < 6.0, "Hero drawn at the zone's set size (%.0f px, want %.0f)" % [bot - top, want])
 	check(lab.zone_walkable(a.global_position), "Hero spawns on walkable ground")
 	var far: Vector3 = lab.zone_px_to_world(150, 1450)
 	check(not lab.zone_walkable(far), "Painted wall/garden area is not walkable")

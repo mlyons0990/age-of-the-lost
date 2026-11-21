@@ -1,13 +1,18 @@
 extends SceneTree
 ## 1080p captures of the pilot labs with the ARPG HUD (owner mockup layout): Mage mid-Judgment, knight idle.
 var out := "/tmp"
+var zone_override := ""
 func _initialize() -> void:
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("--out="):
 			out = a.substr(6)
+		if a.begins_with("--zone="):
+			zone_override = a.substr(7)
 	call_deferred("_run")
 func _shot(scene: String, name: String, spell: String) -> void:
 	var lab: Node3D = (load(scene) as PackedScene).instantiate()
+	if zone_override != "":
+		lab.painted_zone = zone_override
 	root.add_child(lab)
 	for i in 12: await physics_frame
 	var a = lab.player

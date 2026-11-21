@@ -39,7 +39,8 @@ var mode := "3D articulated rig lab"
 ## painting's own pitch, so it appears exactly as painted while the 3D heroes walk over it and cast real shadows.
 @export var painted_zone := ""
 var ZONE_PPM := 93.0                 # painting pixels per ground metre (per zone: zone JSON "ppm")
-var ZONE_SCREEN_PPM := 93.0          # screen px per metre at 1080p: painting shown 1:1 (= ZONE_PPM)
+var ZONE_SCREEN_PPM := 93.0          # screen px per metre at 1080p (derived from HERO_PX_1080)
+const HERO_PX_1080 := 110.0          # owner reference: hero ~110 px at 1080p (zones opt in with "hero_px_1080")
 const ZONE_PITCH := 52.0
 var zone: Dictionary = {}
 var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
@@ -274,7 +275,8 @@ func zone_px_to_world(u: float, v: float) -> Vector3:
 func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape3D) -> void:
 	zone = JSON.parse_string(FileAccess.get_file_as_string("res://assets/zones/%s.json" % painted_zone))
 	ZONE_PPM = float(zone.get("ppm", ZONE_PPM))     # world scale measured from the painting's own props
-	ZONE_SCREEN_PPM = ZONE_PPM                     # painting drawn 1:1 at 1080p
+	# hero size on screen is fixed (owner reference: ~110 px at 1080p); the painting is scaled to match it
+	ZONE_SCREEN_PPM = float(zone.get("hero_px_1080", 0.0)) / (1.75 * cos(deg_to_rad(ZONE_PITCH))) if zone.has("hero_px_1080") else ZONE_PPM
 	var size: Array = zone["size"]
 	var w: float = float(size[0]) / ZONE_PPM
 	var d: float = float(size[1]) / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH))

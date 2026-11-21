@@ -1,4 +1,6 @@
 extends Node3D
+const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
+const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
 ## This deliberately does NOT replace the established 2D plaza; keep both.
 const HERO := preload("res://scripts/three_d/rig_controller.gd")
@@ -47,6 +49,11 @@ var zone_refs: Array = []             # [Environment, sun, floor shape] for rebu
 var zone_exits: Array = []            # {name, to, arrive, poly (world xz)}
 var zone_exit_armed := false          # set once the hero has stepped off every exit (no bounce on arrival)
 var zone_traveling := false
+var zone_waypoints: Array = []        # {id, name, pos, node} in this zone
+var waypoint_net                      # scripts/three_d/waypoints.gd (shared across zones)
+var waypoint_pending := ""            # waypoint the player clicked; its window opens on arrival
+var waypoint_panel: CanvasLayer
+signal waypoint_unlocked(id: String)
 var zone_block: Array = []            # blocked polygons (world xz) cut out of the walkable area
 var zone_tiles: Array = []            # {node, mat, rect (zone px), image, depth, state 0=unloaded 1=loading 2=shown}
 signal zone_changed(name: String)
@@ -282,12 +289,10 @@ func zone_px_to_world(u: float, v: float) -> Vector3:
 	return Vector3((u - float(size[0]) * 0.5) / ZONE_PPM, 0.0, (v - float(size[1]) * 0.5) / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH)))
 
 func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape3D) -> void:
-	for n in ["ZonePainting", "ZoneShadowCatcher"]:
+	for n in ["ZonePainting", "ZoneShadowCatcher", "ZoneDecor"]:
 		var old := get_node_or_null(n)
 		if old != null:
 			remove_child(old); old.queue_free()
-	for old in get_tree().get_nodes_in_group("zone_exit_label") if is_inside_tree() else []:
-		old.get_parent().remove_child(old); old.queue_free()
 	var zpath := painted_zone if painted_zone.begins_with("res://") else "res://assets/zones/%s.json" % painted_zone
 	zone = JSON.parse_string(FileAccess.get_file_as_string(zpath))
 	ZONE_PPM = float(zone.get("ppm", ZONE_PPM))     # world scale measured from the painting's own props
@@ -359,6 +364,11 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 			var wp := zone_px_to_world(float(p[0]), float(p[1]))
 			bp.append(Vector2(wp.x, wp.z))
 		zone_block.append(bp)
+	if waypoint_net == null:
+		waypoint_net = WAYPOINTS.new()
+	var decor := Node3D.new()
+	decor.name = "ZoneDecor"
+	add_child(decor)
 	zone_exits.clear()
 	for ex in zone.get("exits", []):
 		var ep := PackedVector2Array()
@@ -368,20 +378,141 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 			ep.append(Vector2(wp.x, wp.z)); c += wp
 		c /= float(ex["poly"].size())
 		zone_exits.append({"name": ex["name"], "to": ex["to"], "arrive": ex["arrive"], "poly": ep})
-		var lbl := Label3D.new()                      # gold travel marker over the exit
-		lbl.text = "▼ " + String(ex["name"])
-		lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		lbl.no_depth_test = true
-		lbl.fixed_size = true
-		lbl.pixel_size = 0.0011
-		lbl.font_size = 26
-		lbl.outline_size = 8
-		lbl.modulate = Color("f2d38a")
-		lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
-		lbl.position = c + Vector3.UP * 1.2
-		lbl.add_to_group("zone_exit_label")
-		add_child(lbl)
+		_build_portal(decor, ep, c, String(ex["name"]))
+	zone_waypoints.clear()
+	for wdef in zone.get("waypoints", []):
+		var wp_pos := zone_px_to_world(float(wdef["at"][0]), float(wdef["at"][1]))
+		zone_waypoints.append({"id": wdef["id"], "name": wdef["name"], "pos": wp_pos, "node": _build_waypoint(decor, wp_pos, String(wdef["id"]))})
 	zone_exit_armed = false
+
+## Zone-exit portal: blue/gold light curtain standing on the exit, a glow on the ground, rising sparks and the
+## destination's name, so the player can always tell an exit to another area apart from the scenery.
+func _build_portal(parent: Node3D, poly: PackedVector2Array, centre: Vector3, label: String) -> void:
+	var mn := Vector2(INF, INF); var mx := -mn
+	for p in poly:
+		mn = mn.min(p); mx = mx.max(p)
+	var width := clampf(mx.x - mn.x, 1.6, 7.0)
+	var root := Node3D.new(); root.name = "Portal_" + label.replace(" ", "")
+	# stand the aura on the exit's threshold: the edge facing the walkable area (the side nearest the zone centre)
+	var to_mid := -Vector2(centre.x, centre.z).normalized()
+	var edge := Vector2(centre.x, centre.z)
+	if absf(to_mid.y) >= absf(to_mid.x):
+		edge.y = mn.y + 0.4 if to_mid.y < 0.0 else mx.y - 0.4
+	else:
+		edge.x = mn.x + 0.4 if to_mid.x < 0.0 else mx.x - 0.4
+	root.position = Vector3(edge.x, 0.0, edge.y)
+	root.add_to_group("zone_portal")
+	parent.add_child(root)
+	var curtain := MeshInstance3D.new()
+	var q := QuadMesh.new(); q.size = Vector2(width, 3.2); curtain.mesh = q
+	var cm := ShaderMaterial.new(); cm.shader = load("res://shaders/portal_aura.gdshader"); cm.set_shader_parameter("strength", 1.35)
+	curtain.material_override = cm
+	curtain.position.y = 1.6
+	curtain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(curtain)
+	var disc := MeshInstance3D.new()
+	var dq := PlaneMesh.new(); dq.size = Vector2(width * 1.25, 1.6); disc.mesh = dq
+	var dm := ShaderMaterial.new(); dm.shader = load("res://shaders/waypoint_rune.gdshader"); dm.set_shader_parameter("lit", 0.55)
+	disc.material_override = dm
+	disc.position.y = 0.03
+	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(disc)
+	var sparks := CPUParticles3D.new()
+	sparks.amount = 40; sparks.lifetime = 1.8; sparks.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	sparks.emission_box_extents = Vector3(width * 0.45, 0.05, 0.3)
+	sparks.direction = Vector3.UP; sparks.spread = 12.0; sparks.gravity = Vector3(0, 0.35, 0)
+	sparks.initial_velocity_min = 0.4; sparks.initial_velocity_max = 1.1
+	sparks.scale_amount_min = 0.04; sparks.scale_amount_max = 0.09
+	var sm := SphereMesh.new(); sm.radius = 0.5; sm.height = 1.0; sm.radial_segments = 6; sm.rings = 3
+	var smat := StandardMaterial3D.new(); smat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	smat.albedo_color = Color(1.0, 0.85, 0.45); smat.vertex_color_use_as_albedo = true
+	smat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	sm.material = smat; sparks.mesh = sm
+	var grad := Gradient.new(); grad.set_color(0, Color(1.0, 0.85, 0.45, 1)); grad.set_color(1, Color(0.35, 0.65, 1.0, 0))
+	sparks.color_ramp = grad
+	root.add_child(sparks)
+	var light := OmniLight3D.new(); light.light_color = Color(0.45, 0.7, 1.0); light.light_energy = 1.4; light.omni_range = 4.0
+	light.position.y = 1.0; light.shadow_enabled = false
+	root.add_child(light)
+	var lbl := Label3D.new()
+	lbl.text = "▼ " + label
+	lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	lbl.no_depth_test = true; lbl.fixed_size = true; lbl.pixel_size = 0.0011
+	lbl.font_size = 26; lbl.outline_size = 8
+	lbl.modulate = Color("f2d38a"); lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
+	lbl.position.y = 2.9
+	lbl.add_to_group("zone_exit_label")
+	root.add_child(lbl)
+
+## Waypoint: rune circle on the ground (grey until unlocked, then blue/gold with a pillar of light) and a label.
+func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
+	var root := Node3D.new(); root.name = "Waypoint_" + id; root.position = at
+	root.add_to_group("zone_waypoint")
+	parent.add_child(root)
+	var disc := MeshInstance3D.new(); disc.name = "Rune"
+	var pm := PlaneMesh.new(); pm.size = Vector2(2.2, 2.2); disc.mesh = pm
+	var dm := ShaderMaterial.new(); dm.shader = load("res://shaders/waypoint_rune.gdshader")
+	disc.material_override = dm; disc.position.y = 0.03
+	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(disc)
+	var beam := MeshInstance3D.new(); beam.name = "Beam"
+	var q := QuadMesh.new(); q.size = Vector2(1.1, 3.4); beam.mesh = q
+	var bm := ShaderMaterial.new(); bm.shader = load("res://shaders/portal_aura.gdshader"); bm.set_shader_parameter("strength", 0.55)
+	beam.material_override = bm; beam.position.y = 1.7
+	beam.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(beam)
+	var lbl := Label3D.new(); lbl.name = "Label"
+	lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	lbl.no_depth_test = true; lbl.fixed_size = true; lbl.pixel_size = 0.001
+	lbl.font_size = 24; lbl.outline_size = 8
+	lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
+	lbl.position.y = 3.6
+	root.add_child(lbl)
+	_waypoint_visual(root, waypoint_net != null and waypoint_net.is_unlocked(id))
+	return root
+
+func _waypoint_visual(node: Node3D, open: bool) -> void:
+	(node.get_node("Rune") as MeshInstance3D).material_override.set_shader_parameter("lit", 1.0 if open else 0.0)
+	(node.get_node("Beam") as MeshInstance3D).visible = open
+	var lbl := node.get_node("Label") as Label3D
+	lbl.text = "◆ Waypoint" if open else "◆ Waypoint (locked)"
+	lbl.modulate = Color("9fd0ff") if open else Color("b8b2a6")
+
+func waypoint_at(at: Vector3, radius := 1.6) -> Dictionary:
+	for w in zone_waypoints:
+		if Vector2(at.x - w["pos"].x, at.z - w["pos"].z).length() <= radius:
+			return w
+	return {}
+
+func _waypoint_tick() -> void:
+	if player == null or zone_waypoints.is_empty(): return
+	var here := waypoint_at(player.global_position, 1.4)
+	if here.is_empty():
+		if waypoint_panel != null and is_instance_valid(waypoint_panel) and waypoint_at(player.global_position, 3.0).is_empty():
+			waypoint_panel.close()
+		return
+	if waypoint_net.unlock(here["id"]):
+		_waypoint_visual(here["node"], true)
+		effects.ring(here["pos"], 1.3, Color("9fd0ff"), 0.8)
+		waypoint_unlocked.emit(here["id"])
+	if waypoint_pending == here["id"]:
+		waypoint_pending = ""
+		open_waypoint_panel(here["id"])
+
+func open_waypoint_panel(here_id: String) -> void:
+	if waypoint_panel != null and is_instance_valid(waypoint_panel):
+		waypoint_panel.queue_free()
+	player.stop_moving()
+	waypoint_panel = WAYPOINT_PANEL.new(waypoint_net, here_id)
+	waypoint_panel.travel_requested.connect(teleport_to_waypoint)
+	add_child(waypoint_panel)
+
+## Teleport to an unlocked waypoint in any zone (town included): fade, load that zone if needed, arrive just in front.
+func teleport_to_waypoint(id: String) -> void:
+	if not waypoint_net.is_unlocked(id) or zone_traveling: return
+	var e: Dictionary = waypoint_net.get_entry(id)
+	if waypoint_panel != null and is_instance_valid(waypoint_panel): waypoint_panel.close()
+	await travel_to(String(e["zone"]), [float(e["at"][0]), float(e["at"][1]) + 150.0])
 
 func zone_world_to_px(at: Vector3) -> Vector2:
 	var size: Array = zone["size"]
@@ -619,6 +750,7 @@ func _physics_process(_delta: float) -> void:
 			zone_exit_armed = true
 		elif zone_exit_armed and not zone_traveling:
 			travel_to(String(on_exit["to"]), on_exit["arrive"])
+		_waypoint_tick()
 	_physics_body()
 
 func _physics_body() -> void:
@@ -756,8 +888,14 @@ func handle_click(screen: Vector2, force_stand := false, combine_move_attack := 
 	elif enemy != null:
 		player.command_attack(enemy)
 	elif ground.is_finite():
-		player.command_move(ground)
-		effects.ring(ground, 0.25, Color("f2d17f"), 0.35)
+		var wp := waypoint_at(ground) if not zone.is_empty() else {}
+		waypoint_pending = String(wp["id"]) if not wp.is_empty() else ""
+		var dest: Vector3 = wp["pos"] if not wp.is_empty() else ground
+		player.command_move(dest)
+		effects.ring(dest, 0.25, Color("f2d17f"), 0.35)
+		if not wp.is_empty() and waypoint_at(player.global_position, 1.4).get("id", "") == waypoint_pending:
+			waypoint_pending = ""
+			open_waypoint_panel(String(wp["id"]))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if hud == null and player != null and player.click_to_move and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

@@ -37,3 +37,15 @@ Each extension is one more painting placed on the canvas next to the existing on
 Higgsfield **outpaint** of the existing painting toward the open edge (keeps style, scale and the path continuous), or
 a new painting with the shared edge given as a reference. ~6.5 cr per 4K 21:9 piece (2 variants) at today's prices.
 Suggested next: Whisperwood top-right path (W2) and bottom-left path (W3); Crownsfall market street off the plaza.
+
+## Approved style (owner, 2026-11-21): Path of Exile
+- **One large zone** the player moves through; a new zone loads **only** at a zone-end **exit portal**.
+- **Exit portals** can be any doorway / path / stairs, but always carry a **blue/gold glowing aura** (light curtain on the
+  threshold, gold ground line, rising sparks, blue light, destination name) — `shaders/portal_aura.gdshader`, `_build_portal`.
+- **Waypoints** (checkpoints): rune circle on the ground, grey + "(locked)" until the hero first reaches it, then
+  blue/gold with a pillar of light. Click a waypoint → walk to it → the **Waypoints** window opens, listing every
+  waypoint by zone in world order (locked = "???"). Pick one to teleport — town included — and use the newly unlocked
+  waypoint to return after selling/repairing. Unlocks persist (`user://aotl_waypoints.cfg`).
+  Files: `scripts/three_d/waypoints.gd`, `scripts/three_d/waypoint_panel.gd`, `assets/zones/world.json` (zone order + town).
+- Current waypoints: Crownsfall Plaza (town, compass rose, always open); Whisperwood — Fallen Shrine (shrine ruins, now
+  walkable; only the stream is blocked). `tests/verify_waypoints.gd` 14/14.

@@ -180,52 +180,6 @@
  "blocked": [
   [
    [
-    1416,
-    600
-   ],
-   [
-    1584,
-    336
-   ],
-   [
-    1848,
-    288
-   ],
-   [
-    2304,
-    432
-   ],
-   [
-    2472,
-    540
-   ],
-   [
-    2484,
-    768
-   ],
-   [
-    2280,
-    720
-   ],
-   [
-    2064,
-    720
-   ],
-   [
-    1824,
-    732
-   ],
-   [
-    1584,
-    888
-   ],
-   [
-    1440,
-    888
-   ]
-  ],
-  [
-   [
     1800,
     1008
    ],
@@ -256,42 +210,6 @@
    [
     1824,
     1080
-   ]
-  ],
-  [
-   [
-    1548,
-    792
-   ],
-   [
-    1692,
-    780
-   ],
-   [
-    1680,
-    917
-   ],
-   [
-    1536,
-    917
-   ]
-  ],
-  [
-   [
-    2304,
-    792
-   ],
-   [
-    2489,
-    787
-   ],
-   [
-    2489,
-    883
-   ],
-   [
-    2299,
-    888
    ]
   ]
  ],
@@ -413,9 +331,19 @@
    ],
    "arrive": [
     2200,
-    1500
+    1200
    ]
   }
  ],
- "continues": "Paths off the top-right and bottom-left edges continue inside Whisperwood (next paintings join this canvas; no zoning)."
+ "continues": "Paths off the top-right and bottom-left edges continue inside Whisperwood (next paintings join this canvas; no zoning).",
+ "waypoints": [
+  {
+   "id": "whisperwood_shrine",
+   "name": "Fallen Shrine",
+   "at": [
+    1992,
+    860
+   ]
+  }
+ ]
 }

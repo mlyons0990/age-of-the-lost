@@ -1,0 +1,86 @@
+extends SceneTree
+## Waypoints + portals: town waypoint open from the start; Whisperwood's shrine waypoint unlocks on arrival; the
+## waypoint window teleports to town and back; unlocks persist; zone exits carry a blue/gold portal aura.
+var checks := 0
+var failures := 0
+var out := ""
+func check(ok: bool, why: String) -> void:
+	checks += 1
+	if not ok: failures += 1
+	print(("PASS " if ok else "FAIL ") + why)
+func _initialize() -> void:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--out="): out = a.substr(6)
+	call_deferred("_run")
+func _shot(name: String) -> void:
+	if out == "": return
+	await process_frame; await process_frame
+	await RenderingServer.frame_post_draw
+	root.get_texture().get_image().save_png("%s/%s.png" % [out, name])
+func _wait(cond: Callable, secs: float) -> float:
+	var t := 0.0
+	while not cond.call() and t < secs:
+		await physics_frame; t += 1.0 / 60.0
+	return t
+func _click_waypoint(lab) -> void:
+	var w: Dictionary = lab.zone_waypoints[0]
+	lab.handle_click(lab.camera.unproject_position(w["pos"]))
+func _run() -> void:
+	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://aotl_waypoints.cfg"))
+	root.size = Vector2i(1920, 1080)
+	var lab: Node3D = (load("res://scenes/pilot_knight_combat_lab.tscn") as PackedScene).instantiate()
+	root.add_child(lab)
+	for i in 10: await physics_frame
+	var a = lab.player
+	var net = lab.waypoint_net
+	check(net.is_unlocked("crownsfall_town") and not net.is_unlocked("whisperwood_shrine"), "Town waypoint open from the start; Whisperwood locked")
+	var portals := get_nodes_in_group("zone_portal")
+	check(portals.size() == 1 and portals[0].find_children("*", "CPUParticles3D", true, false).size() == 1 and portals[0].find_children("*", "OmniLight3D", true, false).size() == 1, "Plaza exit has a glowing portal aura (curtain, sparks, light)")
+	await create_timer(0.4).timeout
+	_click_waypoint(lab)
+	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 6.0)
+	check(lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), "Clicking the town waypoint walks there and opens the waypoint window")
+	if lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel):
+		var b: Button = lab.waypoint_panel.buttons["whisperwood_shrine"]
+		check(b.disabled and "???" in b.text, "Locked waypoints show as ??? and cannot be chosen")
+		await _shot("waypoint_town_panel")
+		lab.waypoint_panel.close()
+	# walk out through the portal to Whisperwood
+	a.command_move(lab.zone_px_to_world(2220, 1180))
+	await create_timer(2.5).timeout
+	await _shot("portal_plaza")
+	a.command_move(lab.zone_px_to_world(2200, 1640))
+	await _wait(func(): return lab.painted_zone == "whisperwood", 12.0)
+	while lab.zone_traveling: await process_frame
+	check(lab.painted_zone == "whisperwood", "Portal on the south road leads to Whisperwood")
+	var wnode: Node3D = lab.zone_waypoints[0]["node"]
+	check(not (wnode.get_node("Beam") as MeshInstance3D).visible, "Shrine waypoint starts locked (no light pillar)")
+	check(lab.zone_walkable(lab.zone_waypoints[0]["pos"]), "Shrine ruins are walkable (waypoint area open)")
+	var unlocked := [false]
+	lab.waypoint_unlocked.connect(func(_id): unlocked[0] = true)
+	_click_waypoint(lab)
+	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 10.0)
+	check(unlocked[0] and net.is_unlocked("whisperwood_shrine"), "Reaching the shrine waypoint unlocks it")
+	check((wnode.get_node("Beam") as MeshInstance3D).visible, "Unlocked waypoint lights up")
+	await create_timer(0.5).timeout
+	await _shot("waypoint_shrine_panel")
+	check(lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), "Waypoint window opens at the shrine")
+	# teleport to town
+	lab.waypoint_panel.buttons["crownsfall_town"].pressed.emit()
+	await _wait(func(): return lab.painted_zone == "crownsfall" and not lab.zone_traveling, 6.0)
+	await create_timer(0.8).timeout
+	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1910, 1030)) < 120.0, "Teleported to town, standing at the town waypoint")
+	# and back to the newly unlocked waypoint
+	_click_waypoint(lab)
+	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 6.0)
+	var back: Button = lab.waypoint_panel.buttons["whisperwood_shrine"] if lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel) else null
+	check(back != null and not back.disabled, "From town the unlocked shrine waypoint can be chosen")
+	if back != null: back.pressed.emit()
+	await _wait(func(): return lab.painted_zone == "whisperwood" and not lab.zone_traveling, 6.0)
+	await create_timer(0.8).timeout
+	check(lab.painted_zone == "whisperwood" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1992, 1010)) < 120.0, "Teleported back to the shrine waypoint")
+	var fresh = load("res://scripts/three_d/waypoints.gd").new()
+	check(fresh.is_unlocked("whisperwood_shrine"), "Unlocked waypoints persist (saved)")
+	await _shot("waypoint_back_at_shrine")
+	print("AOTL WAYPOINT RESULT %d checks; %d failures" % [checks, failures])
+	quit(0 if failures == 0 else 1)

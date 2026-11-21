@@ -26,6 +26,7 @@ func _run() -> void:
 	for f in ["user://aotl_keybinds.cfg", "user://aotl_loadout.cfg"]:
 		if FileAccess.file_exists(f): DirAccess.remove_absolute(ProjectSettings.globalize_path(f))
 	var lab: Node3D = (load("res://scenes/pilot_mage_combat_lab.tscn") as PackedScene).instantiate()
+	lab.painted_zone = ""          # HUD/controls tests use the open lab floor (zones have their own test)
 	root.add_child(lab)
 	for i in 6: await physics_frame
 	var a = lab.player
@@ -195,6 +196,7 @@ func _run() -> void:
 	await process_frame
 	# knight bar + legacy lab
 	var k: Node3D = (load("res://scenes/pilot_knight_combat_lab.tscn") as PackedScene).instantiate()
+	k.painted_zone = ""
 	root.add_child(k)
 	for i in 6: await physics_frame
 	check(k.hud != null and k.hud.skill_loadout == k.hud.DEFAULT_SKILLS["warrior"], "Knight lab: warrior skill bar")

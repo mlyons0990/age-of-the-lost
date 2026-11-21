@@ -2,8 +2,8 @@ extends Node3D
 const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
 const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
-const WAYPOINT_ART_M := 3.8        # platform width on the ground (metres)
-const WAYPOINT_ART_DZ := 0.39      # the painted basin sits above the image centre; shift so it lands on the point
+const WAYPOINT_ART_M := 4.25       # image width on the ground (metres); footprint is 89% of it (~3.8 m)
+const WAYPOINT_ART_BASIN_V := 0.062 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
 const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
 ## This deliberately does NOT replace the established 2D plaza; keep both.
@@ -464,11 +464,10 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 		var pmat := StandardMaterial3D.new()
 		pmat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 		pmat.albedo_texture = tex
-		pmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
-		pmat.alpha_scissor_threshold = 0.5
+		pmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA          # soft contact shadow edge
 		pmat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 		plinth.material_override = pmat
-		plinth.position = Vector3(0, 0.015, WAYPOINT_ART_DZ)
+		plinth.position = Vector3(0, 0.015, WAYPOINT_ART_BASIN_V * ph)   # basin (where the hero stands) on the point
 		plinth.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		root.add_child(plinth)
 	var disc := MeshInstance3D.new(); disc.name = "Rune"

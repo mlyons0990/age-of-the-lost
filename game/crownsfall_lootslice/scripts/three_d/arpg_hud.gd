@@ -295,13 +295,49 @@ func _build() -> void:
 			if absf(a.y - b.y) < 0.5 and a.y < H - 2: body.draw_line(a, b, Color("e0b878"), 2.0 * f)
 			elif absf(a.x - b.x) < 0.5: body.draw_line(a, b, Color("b08a5c"), 1.6 * f)
 		)
+	# bronze collars hugging each globe ring where the frame meets it (PoE-style), so no dead wedge remains
+	var cl_c := Vector2(lo.x + float(dl[0]) * f, lo.y + float(dl[1]) * f)
+	var cr_c := Vector2(ro.x + float(dr[0]) * f, ro.y + float(dr[1]) * f)
+	var rl: float = float(cl["ring_r"]) * f
+	var rr2: float = float(cr["ring_r"]) * f
+	var y_top: float = minf(belt.position.y, top.position.y)
+	body.draw.connect(func():
+		for side in [[cl_c, rl, 1.0, belt.position.y], [cr_c, rr2, -1.0, top.position.y]]:
+			var cc: Vector2 = side[0]; var R: float = side[1]; var dir: float = side[2]; var y0: float = side[3]
+			var a0: float = asin(clampf((y0 - cc.y) / (R + 10 * f), -1.0, 1.0))
+			var a1: float = PI * 0.5
+			var outer := PackedVector2Array(); var inner2 := PackedVector2Array()
+			for k in 25:
+				var a: float = lerpf(a0, a1, k / 24.0)
+				outer.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 10 * f))
+				inner2.append(cc + Vector2(dir * cos(a), sin(a)) * (R - 4 * f))
+			var band := outer.duplicate()
+			inner2.reverse()
+			band.append_array(inner2)
+			body.draw_colored_polygon(band, Color("8a6a46"))
+			var lit := PackedVector2Array()
+			for k in 25:
+				var a: float = lerpf(a0, a1, k / 24.0)
+				lit.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 7 * f))
+			body.draw_polyline(lit, Color("d6ad70"), 1.8 * f)
+			var edge := PackedVector2Array()
+			for k in 25:
+				var a: float = lerpf(a0, a1, k / 24.0)
+				edge.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 10 * f))
+			body.draw_polyline(edge, Color("0b0909"), 2.0 * f)
+		)
 	root.add_child(body)
 	frame_body = body
 	# XP bar set into the base rail, from ring to ring
-	var groove := Rect2(ring_l - 4 * f, by0 + 8 * f, ring_r - ring_l + 8 * f, base_h - 13 * f)
+	var gy0: float = by0 + 8 * f
+	var gh: float = base_h - 13 * f
+	var gmid: float = gy0 + gh * 0.5
+	var edge_l: float = lo.x + (float(dl[0]) + sqrt(maxf(0.0, pow(float(cl["ring_r"]) + 10.0, 2) - pow((gmid - lo.y) / f - float(dl[1]), 2)))) * f
+	var edge_r: float = ro.x + (float(dr[0]) - sqrt(maxf(0.0, pow(float(cr["ring_r"]) + 10.0, 2) - pow((gmid - ro.y) / f - float(dr[1]), 2)))) * f
+	var groove := Rect2(bx0 + 20 * f, gy0, bx1 - bx0 - 40 * f, gh)
 	strip_rect = Rect2(bx0, by0, bx1 - bx0, base_h)
 	root.add_child(_nine("hud_xp_frame", groove.grow(2 * f), 3, hi))
-	xp_rect = groove.grow(-1.0 * f)
+	xp_rect = Rect2(edge_l, gy0 + 1 * f, edge_r - edge_l, gh - 2 * f)
 	root.add_child(left_piece)
 	root.add_child(right_piece)
 	orb_l = Vector3(lo.x + dl[0] * f, lo.y + dl[1] * f, dl[2] * f)

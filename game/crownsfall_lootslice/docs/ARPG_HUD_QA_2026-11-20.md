@@ -152,3 +152,6 @@ squares; not "cheap and AI made with wavy lines".
   tucked under both globe rings (no gaps); the XP bar is set into the rail from ring to ring.
 - HP / MP values above their globes; LMB / MMB / RMB slots show a mouse symbol with the bound button lit.
 - Still free / placeholder corner art; no credits spent. Tests: arpg_hud 76/76; regression 994/994.
+
+## Revision 14 — no dead wedge at the globes
+- Bronze collars now hug each globe ring where the frame meets it, and the XP fill starts at each ring edge.

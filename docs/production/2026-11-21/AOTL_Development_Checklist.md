@@ -749,3 +749,4 @@ Owner roles: Producer + discipline leads. Priority: P0. Gate: G0–G7. Depends o
 - [ ] **PROD-07 — Verify the final handoff by an independent clean-start walkthrough**
   - Why: A document is useful only if another developer can continue from it.
   - Complete when: A teammate restores the build, finds sources, imports an asset, runs checks and identifies the next task using the handoff alone.
+

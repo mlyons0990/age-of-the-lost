@@ -180,3 +180,4 @@ Reviewed November 21, 2026. Links identify sources; branch reports describe thei
 - S10: [November 20 style-reference notes (secondary description)](https://drive.google.com/file/d/1XRxEF1kAUbvr7VHPwZKIy_-fELFfss90/view)
 - S11: [Corner HUD/dodge integration branch](https://github.com/mlyons0990/age-of-the-lost/tree/dev/corner-hud-dodge-integration-2026-11-13)
 - S12: [Project repository](https://github.com/mlyons0990/age-of-the-lost)
+

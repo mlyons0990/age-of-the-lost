@@ -3,6 +3,7 @@ on:
   pull_request:
     branches: [art/higgsfield-phase1-heroes-2026-11-20]
     paths:
+      - 'game/crownsfall_lootslice/tools/verify_hero_labs.py'
       - 'game/crownsfall_lootslice/scripts/three_d/practice_progress.gd'
       - 'game/crownsfall_lootslice/tests/verify_practice_progress.gd'
       - 'game/crownsfall_lootslice/tests/verify_arpg_hud.gd'
@@ -25,14 +26,12 @@ jobs:
         with:
           version: 4.6.3-stable
           export-templates: false
-      - name: Import project with LFS assets
-        run: godot --headless --path game/crownsfall_lootslice --editor --import
-      - name: Check progression and both playable hero scenes
-        working-directory: game/crownsfall_lootslice
-        run: |
-          set -euo pipefail
-          godot --headless --script res://tests/verify_practice_progress.gd | tee "$RUNNER_TEMP/xp.log"
-          grep -F '79/79' "$RUNNER_TEMP/xp.log"
-          timeout 180s xvfb-run -a godot --audio-driver Dummy --rendering-method gl_compatibility --script res://tests/verify_arpg_hud.gd 2>&1 | tee "$RUNNER_TEMP/hero.log"
-          grep -E 'AOTL ARPG HUD RESULT [0-9]+ checks; 0 failures' "$RUNNER_TEMP/hero.log"
-          ! grep -F 'SCRIPT ERROR:' "$RUNNER_TEMP/hero.log"
+      - name: Verify LFS assets, practice progression and both hero scenes
+        run: xvfb-run -a python3 game/crownsfall_lootslice/tools/verify_hero_labs.py --logs "$RUNNER_TEMP/hero-qa"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: hero-practice-qa-logs
+          path: ${{ runner.temp }}/hero-qa
+          if-no-files-found: ignore
+          retention-days: 7

@@ -107,6 +107,7 @@ func setup(owner_lab: Node3D) -> void:
 	hero = "mage" if player.is_pilot_mage() else "warrior"
 	player.number_keys_for_skills = false
 	player.click_to_move = true
+	lab.get_viewport().msaa_2d = Viewport.MSAA_4X      # smooth (anti-aliased) curved frame edges
 	player.primary_skill_provider = primary_skill
 	kb = KEYBINDS.new()
 	kb.changed_listeners.append(_refresh_keys)
@@ -279,33 +280,28 @@ func _build() -> void:
 		Vector2(belt.end.x, belt.position.y), Vector2(belt.end.x, by0), Vector2(low.position.x, by0), low.position,
 		Vector2(top.position.x, low.position.y), top.position, Vector2(top.end.x, top.position.y),
 		Vector2(top.end.x, by0), Vector2(bx1, by0), Vector2(bx1, H + 2)])
-	outline = _rounded(outline, 22.0 * f, H)
+	outline = _rounded(outline, 20.0 * f, H)
 	frame_poly = outline
 	var body := Control.new()
 	body.set_anchors_preset(Control.PRESET_FULL_RECT)
 	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var stone_tex: Texture2D = _tex("hud_stone")
 	body.draw.connect(func():
-		var rim: float = 7.0 * f
-		var inner: PackedVector2Array = Geometry2D.offset_polygon(outline, -rim, Geometry2D.JOIN_MITER)[0]
-		body.draw_colored_polygon(outline, Color("8a6a46"))                      # bronze rim
+		# smooth, anti-aliased bevelled rim: concentric offset bands of the same outline (no per-segment shading)
+		var closed := func(p: PackedVector2Array) -> PackedVector2Array:
+			var q := p.duplicate(); q.append(p[0]); return q
+		var bands := [[0.0, Color("120e0c")], [1.2, Color("5c4430")], [2.4, Color("a8814f")], [3.6, Color("d9b47a")],
+			[4.8, Color("b48c58")], [6.0, Color("6e5236")], [7.2, Color("1a1412")]]
+		var inner: PackedVector2Array = Geometry2D.offset_polygon(outline, -8.0 * f, Geometry2D.JOIN_ROUND)[0]
+		body.draw_colored_polygon(outline, Color("120e0c"))
+		for bnd in bands:
+			var poly: PackedVector2Array = Geometry2D.offset_polygon(outline, -float(bnd[0]) * f, Geometry2D.JOIN_ROUND)[0]
+			body.draw_colored_polygon(poly, bnd[1])
 		var uv := PackedVector2Array()
 		for v in inner: uv.append(v / (256.0 * f))
-		body.draw_polygon(inner, PackedColorArray([Color.WHITE]), uv, stone_tex)  # stone body
-		var closed := outline.duplicate(); closed.append(outline[0])
-		var cin := inner.duplicate(); cin.append(inner[0])
-		body.draw_polyline(closed, Color("0b0909"), 2.0 * f)                      # outer dark edge
-		body.draw_polyline(cin, Color("0d0b0b"), 1.5 * f)                         # inner dark edge
-		var mid: PackedVector2Array = Geometry2D.offset_polygon(outline, -rim * 0.45, Geometry2D.JOIN_MITER)[0]
-		for k in mid.size():                                                     # lit top edges of the rim
-			var a: Vector2 = mid[k]; var b: Vector2 = mid[(k + 1) % mid.size()]
-			var dd: Vector2 = b - a
-			if dd.length() < 0.01: continue
-			var horiz: bool = absf(dd.y) < absf(dd.x)
-			var shade: Color = Color("e0b878") if (horiz and a.y < H - 2) else Color("b08a5c")
-			body.draw_line(a, b, shade, (2.0 if horiz else 1.6) * f)
-		for corner in []:
-			_boss(body, corner, f)
+		body.draw_polygon(inner, PackedColorArray([Color.WHITE]), uv, stone_tex)
+		body.draw_polyline(closed.call(outline), Color("0b0908"), 1.6 * f, true)
+		body.draw_polyline(closed.call(inner), Color("0d0a09"), 1.4 * f, true)
 		)
 	# bronze collars hugging each globe ring where the frame meets it (PoE-style), so no dead wedge remains
 	var cl_c := Vector2(lo.x + float(dl[0]) * f, lo.y + float(dl[1]) * f)
@@ -331,12 +327,12 @@ func _build() -> void:
 			for k in 25:
 				var a: float = lerpf(a0, a1, k / 24.0)
 				lit.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 7 * f))
-			body.draw_polyline(lit, Color("d6ad70"), 1.8 * f)
+			body.draw_polyline(lit, Color("d6ad70"), 1.8 * f, true)
 			var edge := PackedVector2Array()
 			for k in 25:
 				var a: float = lerpf(a0, a1, k / 24.0)
 				edge.append(cc + Vector2(dir * cos(a), sin(a)) * (R + 10 * f))
-			body.draw_polyline(edge, Color("0b0909"), 2.0 * f)
+			body.draw_polyline(edge, Color("0b0909"), 1.6 * f, true)
 		)
 	root.add_child(body)
 	frame_body = body
@@ -469,9 +465,9 @@ static func _rounded(poly: PackedVector2Array, rad: float, h: float) -> PackedVe
 		var rb: float = minf(rad, b.distance_to(p) * 0.5)
 		var p0: Vector2 = p + (a - p).normalized() * ra
 		var p1: Vector2 = p + (b - p).normalized() * rb
-		for k in 9:
-			var t: float = k / 8.0
-			out.append(p0.lerp(p, t).lerp(p.lerp(p1, t), t))     # quadratic bezier through the corner
+		for k in 17:
+			var t: float = k / 16.0
+			out.append(p0.lerp(p, t).lerp(p.lerp(p1, t), t))     # smooth fillet through the corner
 	return out
 
 ## Small bronze boss with a gold stud at each raised corner (artwork accents on the frame).

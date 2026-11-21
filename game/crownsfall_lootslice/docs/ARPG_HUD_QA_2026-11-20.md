@@ -165,3 +165,6 @@ Next (needs owner credit approval): replace the placeholder statue + globe corne
 ## Revision 15 (owner: globe art cut off sloppily; soften hard 90-degree corners)
 - Corner art trimmed to the ring circle on the globe side; the painted slab and ornament scraps that ended in hard cuts above the rings are removed (statues untouched).
 - Every corner of the frame outline is filleted (22 px arc), convex and concave.
+
+## Revision 16 (owner: curved edges sloppy)
+- Frame rim redrawn as concentric anti-aliased bevel bands (round joins, 17-point fillets) with 4x MSAA on the HUD; no jagged or per-segment shading.

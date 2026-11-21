@@ -19,6 +19,7 @@ const ACTIONS := [
 	["skill_3", "Skill Slot 3", "key:E", ""],
 	["skill_4", "Skill Slot 4", "key:R", ""],
 	["skill_5", "Skill Slot 5", "key:T", ""],
+	["skill_6", "Skill Slot 6", "mouse:2", ""],
 	["potion_1", "Potion Slot 1", "key:1", ""],
 	["potion_2", "Potion Slot 2", "key:2", ""],
 	["potion_3", "Potion Slot 3", "key:3", ""],

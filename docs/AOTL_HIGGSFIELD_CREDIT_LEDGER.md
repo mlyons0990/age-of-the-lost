@@ -20,6 +20,8 @@ Actual costs are confirmed against the Higgsfield `transactions` log; estimates 
 | 2026-11-20 20:09 | HUD redraw A1: left cluster (statue + HP globe + 5-well potion belt, blank wells/plates) | Nano Banana 2.1, 4K 21:9 | 3 (re-quoted) | Owner: "Create the fresh sharp redraw with A1-A3" | 3 | `e672f181-69f6-4371-ad18-18d08847b422` | Sharp, close match to mockup; keyed locally | Accepted | — |
 | 2026-11-20 20:09 | HUD redraw A2: right cluster (5-well skill panel + MP globe + statue, blank wells/plates) | Nano Banana 2.1, 4K 21:9 | 3 (re-quoted) | same approval | 3 | `9f568568-4bea-413e-8ff8-65a23a54b973` | Sharp, close match; keyed locally | Accepted | — |
 | 2026-11-20 20:09 | HUD redraw A3: XP strip housing | Nano Banana 2.1, 2K 8:1 | 2 (re-quoted) | same approval | 2 | `43efeca8-ffbc-42f8-b4fb-0bdaa0e32013` | Stretchable bronze groove | Accepted | 2,839 |
+| 2026-11-21 00:30 | HUD R1: one continuous edge-to-edge bottom bar (variant A) | Nano Banana 2.1, 4K 8:1 | 3 (re-quoted, 6 for 2) | Owner: "Approved, go with R1 for 6 credits" | 3 | `c70f970d-7b8d-43f4-9362-e5890f3020d9` | Single seamless piece; chosen and shipped | Accepted | — |
+| 2026-11-21 00:30 | HUD R1 variant B | Nano Banana 2.1, 4K 8:1 | (same quote) | same approval | 3 | `205bdc88-3e74-427c-a021-374f8fb7afaf` | Uneven XP/skill layout and a gap; not used, kept as reference | Rejected (pick) | 2,833 |
 
-Totals: **161 credits spent** of the 3,000 grant (2,839 remaining, verified against `balance` + `transactions` 2026-11-20 20:12). Phase 0: 86 of 120. Phase 1: 67 of 600. Phase 4 (UI/VFX): 8 of 120.
+Totals: **167 credits spent** of the 3,000 grant (2,833 remaining, verified against `balance` + `transactions` 2026-11-21 00:40). Phase 0: 86 of 120. Phase 1: 67 of 600. Phase 4 (UI/VFX): 14 of 120.
 Machine-readable copy: `art/higgsfield_2026-11/LEDGER.csv`.

@@ -106,3 +106,16 @@ Not yet: the lab is still a white test floor, not the Crownsfall plaza of the mo
   with a recessed bevelled groove between them, so the bar reads as the same material as the panels; gradient
   purple fill with a highlight and a bright leading edge. Chroma-green fringe removed from both pieces.
 - Tests: arpg_hud 73/73 (adds equal corner height); regression 994/994.
+
+## Revision 9 — ONE continuous bar (Higgsfield R1, 6 cr approved)
+Owner: "it looks like there are 3 elements … you can clearly see where the artwork was cut and pieced together."
+- Generated the whole bottom HUD as a single 4K 8:1 painting (2 variants; A chosen): statue + HP globe + potion
+  panel + framed XP groove + skill panel + MP globe + statue, one frame, one light, no seams. Keyed by
+  `tools/key_hud_full.py` (chroma key + despill, statues extended to the screen edges, bottom row filled, a painted
+  smudge at the potion-panel step repaired from the same rim); `hud_full.png` 1920 px + `@2x` 3840 px.
+- The bar scales with screen width, so it is always edge to edge (left, right and bottom).
+- Wells from the art: 5 potion wells, 6 skill wells (Q W E R T + RMB, all rebindable), plus a primary-attack well
+  (no plate in the art) showing the hero's primary skill and the live Move/Attack binding.
+- Previous three-piece assets remain in the repo for reference but are no longer used by the HUD.
+- Tests: arpg_hud 67/67 (one-piece, full width, bottom edge, solid edges, groove placement, equal globes);
+  mage 83/83; knight 29/29; armed knight 41/41; regression 994/994.

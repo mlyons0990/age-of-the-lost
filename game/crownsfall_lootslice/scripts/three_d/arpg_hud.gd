@@ -19,7 +19,9 @@ const HERO_SKILLS := {
 	"mage": {"Bolt": "starfall_script", "Lance": "epoch_lance", "Nova": "solar_writ", "Judgment": "dawnfall"},
 	"warrior": {"Slash": "slash", "Cleave": "cleave", "Dash": "charge", "Cast": "rally"},
 }
-const DEFAULT_SKILLS := {"mage": ["Lance", "Nova", "Judgment", "Bolt", ""], "warrior": ["Cleave", "Dash", "Cast", "Slash", ""]}
+const SKILL_SLOTS := 6     # six plated wells on the painted bar (Q W E R T + RMB by default, all rebindable)
+const POTION_SLOTS := 5
+const DEFAULT_SKILLS := {"mage": ["Lance", "Nova", "Judgment", "Bolt", "", ""], "warrior": ["Cleave", "Dash", "Cast", "Slash", "", ""]}
 ## Potion types for the belt (click a potion well to choose).
 const POTION_TYPES := {"health": {"tex": "potion", "hp": 45.0, "mp": 0.0}, "mana": {"tex": "potion_mana", "hp": 0.0, "mp": 60.0}}
 const DEFAULT_POTIONS := ["health", "health", "health", "mana", "mana"]
@@ -206,104 +208,85 @@ func _build() -> void:
 		ol.name = "Objective_" + q[0].replace(" ", "")
 		root.add_child(ol)
 		qy += 56
-	# --- bottom: Higgsfield redraw of the owner's mockup (A1-A3): statue + HP globe + potion belt flush bottom-left,
-	# skill panel + MP globe + statue flush bottom-right, XP strip joining them. Wells and key plates are blank in
-	# the art: contents (any skill / potion) and key labels (any binding) are drawn live.
-	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_redraw.json"))
+	# --- bottom: ONE continuous painted bar (Higgsfield R1, owner-approved), edge to edge on the bottom of the screen:
+	# statue + HP globe + potion panel + XP groove + 7-well skill panel + MP globe + statue. Wells, key plates and the
+	# groove are blank in the art: contents (any skill / potion), key labels (any binding) and the XP fill draw live.
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(UI + "hud_full.json"))
 	meta_cache = meta
 	var vs: Vector2 = lab.get_viewport().get_visible_rect().size
 	W = vs.x
 	H = vs.y
-	var ui_k: float = H / 1080.0
-	var hi := ui_k > 1.05
-	var L: Dictionary = meta["left"]
-	var R: Dictionary = meta["right"]
-	var lsz := Vector2(L["size"][0], L["size"][1]) * ui_k
-	var rsz := Vector2(R["size"][0], R["size"][1]) * ui_k
-	left_piece = _piece("hud_left_hd@2x" if hi else "hud_left_hd", Rect2(0, H - lsz.y, lsz.x, lsz.y))
-	right_piece = _piece("hud_right_hd@2x" if hi else "hud_right_hd", Rect2(W - rsz.x, H - rsz.y, rsz.x, rsz.y))
-	var lo := left_piece.position
-	var ro := right_piece.position
-	var lmap := func(v: Array) -> Rect2: return Rect2(lo + Vector2(v[0], v[1]) * ui_k, Vector2(v[2], v[3]) * ui_k)
-	var rmap := func(v: Array) -> Rect2: return Rect2(ro + Vector2(v[0], v[1]) * ui_k, Vector2(v[2], v[3]) * ui_k)
-	# XP strip: runs from the potion belt's inner edge to the skill panel's inner edge along the bottom, tucked a
-	# little under both frames (drawn behind them) so it reads as one piece slotted between the two panels.
-	# frame tiled from the skill panel's own bronze/stone border (build_hud_extras.py), groove in the middle
-	var XF: Dictionary = meta["xp_frame"]
-	var sh: float = float(XF["size"][1]) * ui_k
-	var tuck: float = 12.0 * ui_k
-	var ex0: float = lo.x + float(L["panel_inner_x"]) * ui_k     # left panel's inner (right) edge
-	var ex1: float = ro.x + float(R["panel_inner_x"]) * ui_k     # skill panel's inner (left) edge
-	xp_tex = _tex("hud_xp_frame@2x" if hi else "hud_xp_frame")
-	xp_tile_w = float(XF["size"][0]) * ui_k
-	var strip := Control.new()
-	strip.position = Vector2(ex0 - tuck, H - sh)
-	strip.size = Vector2(ex1 - ex0 + 2.0 * tuck, sh)
-	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	strip.draw.connect(func():
-		var x := 0.0
-		while x < strip.size.x:
-			var w: float = minf(xp_tile_w, strip.size.x - x)
-			var src := Rect2(0, 0, xp_tex.get_width() * w / xp_tile_w, xp_tex.get_height())
-			strip.draw_texture_rect_region(xp_tex, Rect2(x, 0, w, strip.size.y), src)
-			x += xp_tile_w)
-	root.add_child(strip)
-	strip_rect = Rect2(strip.position, strip.size)
-	var gr: Array = XF["groove"]
-	# the fill draws above the pieces, so keep it to the groove visible between them
-	var gx0: float = ex0 + 3 * ui_k
-	var gx1: float = ex1 - 3 * ui_k
-	xp_rect = Rect2(gx0, strip.position.y + float(gr[1]) * ui_k, gx1 - gx0, float(gr[3]) * ui_k)
+	var f: float = W / 1920.0                      # bar scales with screen width so it always spans edge to edge
+	var ui_k: float = f
+	var hi := f > 1.05
+	var bar_h: float = float(meta["size"][1]) * f
+	left_piece = _piece("hud_full@2x" if hi else "hud_full", Rect2(0, H - bar_h, W, bar_h))
+	right_piece = left_piece
 	root.add_child(left_piece)
-	root.add_child(right_piece)
-	var dl: Array = L["disc"]
-	var dr: Array = R["disc"]
-	orb_l = Vector3(lo.x + dl[0] * ui_k, lo.y + dl[1] * ui_k, dl[2] * ui_k)
-	orb_r = Vector3(ro.x + dr[0] * ui_k, ro.y + dr[1] * ui_k, dr[2] * ui_k)
-	hp_shade = _disc_shade(root, lo, ui_k, dl)
-	mp_shade = _disc_shade(root, ro, ui_k, dr)
-	# live HP / MP values on dark plates above the belts
+	var o := left_piece.position
+	var map := func(v: Array) -> Rect2: return Rect2(o + Vector2(v[0], v[1]) * f, Vector2(v[2], v[3]) * f)
+	var dl: Array = meta["disc_left"]
+	var dr: Array = meta["disc_right"]
+	orb_l = Vector3(o.x + dl[0] * f, o.y + dl[1] * f, dl[2] * f)
+	orb_r = Vector3(o.x + dr[0] * f, o.y + dr[1] * f, dr[2] * f)
+	hp_shade = _disc_shade(root, o, f, dl)
+	mp_shade = _disc_shade(root, o, f, dr)
+	var groove: Rect2 = map.call(meta["xp_groove"])
+	xp_rect = groove.grow_individual(-3 * f, -3 * f, -3 * f, -3 * f)
+	strip_rect = groove
+	# live HP / MP values on dark plates above the two panels
 	var plate_sb := StyleBoxFlat.new()
 	plate_sb.bg_color = Color(0.03, 0.03, 0.04, 0.8)
 	plate_sb.set_corner_radius_all(3)
-	var w0: Rect2 = lmap.call(L["wells"][0])
+	var pw0: Rect2 = map.call(meta["potion_wells"][0])
 	var hp_plate := Panel.new()
 	hp_plate.add_theme_stylebox_override("panel", plate_sb)
-	hp_plate.size = Vector2(150, 30) * ui_k
-	hp_plate.position = Vector2(w0.position.x - 6 * ui_k, lo.y + 40 * ui_k)
+	hp_plate.size = Vector2(150, 30) * f
+	hp_plate.position = Vector2(pw0.position.x - 4 * f, o.y + float(meta["panel_top_left"]) * f - 36 * f)
 	hp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(hp_plate)
-	hp_label = _label("HP", int(19 * ui_k), IVORY)
-	hp_label.position = hp_plate.position + Vector2(8, 2) * ui_k
+	hp_label = _label("HP", int(19 * f), IVORY)
+	hp_label.position = hp_plate.position + Vector2(8, 2) * f
 	root.add_child(hp_label)
-	var wl: Rect2 = rmap.call(R["wells"][4])
+	var sw_last: Rect2 = map.call(meta["skill_wells"][meta["skill_wells"].size() - 1])
 	var mp_plate := Panel.new()
 	mp_plate.add_theme_stylebox_override("panel", plate_sb)
-	mp_plate.size = Vector2(150, 30) * ui_k
-	mp_plate.position = Vector2(wl.end.x - mp_plate.size.x + 6 * ui_k, lo.y + 40 * ui_k + (ro.y - lo.y))
+	mp_plate.size = Vector2(150, 30) * f
+	mp_plate.position = Vector2(sw_last.end.x - mp_plate.size.x + 4 * f, o.y + float(meta["panel_top_right"]) * f - 36 * f)
 	mp_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(mp_plate)
-	mp_label = _label("MP", int(19 * ui_k), IVORY)
-	mp_label.size = mp_plate.size - Vector2(16, 4) * ui_k
+	mp_label = _label("MP", int(19 * f), IVORY)
+	mp_label.size = mp_plate.size - Vector2(16, 4) * f
 	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	mp_label.position = mp_plate.position + Vector2(8, 2) * ui_k
+	mp_label.position = mp_plate.position + Vector2(8, 2) * f
 	root.add_child(mp_label)
-	# wells: clickable (swap contents), live icon, live key label on the plate below
-	for i in 5:
-		var r: Rect2 = lmap.call(L["wells"][i])
+	for i in POTION_SLOTS:
+		var r: Rect2 = map.call(meta["potion_wells"][i])
 		potion_slots.append({"rect": r, "idx": i})
 		potion_icons.append(_well(root, r, "potion", i, 0.12))
-		key_labels["potion_%d" % (i + 1)] = _plate_label(root, lmap.call(L["plates"][i]), ui_k)
-	for i in 5:
-		var r: Rect2 = rmap.call(R["wells"][i])
+		key_labels["potion_%d" % (i + 1)] = _plate_label(root, map.call(meta["potion_plates"][i]), f)
+	for i in SKILL_SLOTS:
+		var r: Rect2 = map.call(meta["skill_wells"][i])
 		bar_slots.append({"rect": r, "idx": i})
-		skill_icons.append(_well(root, r, "skill", i, 0.04))
-		key_labels["skill_%d" % (i + 1)] = _plate_label(root, rmap.call(R["plates"][i]), ui_k)
-	var lv := _label("Lv. %d" % LEVEL, int(13 * ui_k), IVORY)
-	lv.size = Vector2(120 * ui_k, xp_rect.size.y + 6 * ui_k)
+		skill_icons.append(_well(root, r, "skill", i, 0.05))
+		key_labels["skill_%d" % (i + 1)] = _plate_label(root, map.call(meta["skill_plates"][i]), f)
+	# primary attack (LMB on an enemy): display well with the current move/attack binding drawn inside it
+	var pr: Rect2 = map.call(meta["primary_well"])
+	var prim := TextureRect.new()
+	prim.texture = load(TILES + ("starfall_script" if hero == "mage" else "slash") + ".png")
+	prim.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	prim.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	prim.position = pr.position + pr.size * Vector2(0.06, 0.05)
+	prim.size = pr.size * Vector2(0.88, 0.72)
+	prim.modulate = Color(1, 1, 1, 0.9)
+	prim.tooltip_text = "Primary attack (click an enemy)"
+	root.add_child(prim)
+	key_labels["move"] = _plate_label(root, Rect2(pr.position + Vector2(0, pr.size.y * 0.76), Vector2(pr.size.x, pr.size.y * 0.22)), f)
+	var lv := _label("Lv. %d" % LEVEL, int(14 * f), IVORY)
+	lv.size = Vector2(160 * f, xp_rect.size.y)
 	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lv.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	lv.position = Vector2(xp_rect.get_center().x - 60 * ui_k, xp_rect.position.y - 3 * ui_k)
+	lv.position = Vector2(xp_rect.get_center().x - 80 * f, xp_rect.position.y)
 	lv.z_index = 2
 	root.add_child(lv)
 	picker = PopupMenu.new()
@@ -395,9 +378,10 @@ func _plate_label(root: Control, r: Rect2, ui_k: float) -> Label:
 	return l
 
 func _refresh_slots() -> void:
-	for i in 5:
+	for i in SKILL_SLOTS:
 		var sk: String = skill_loadout[i]
 		skill_icons[i].texture = load(TILES + HERO_SKILLS[hero][sk] + ".png") if sk != "" else null
+	for i in POTION_SLOTS:
 		var pt: String = potion_loadout[i]
 		potion_icons[i].texture = _tex(POTION_TYPES[pt]["tex"]) if pt != "" else null
 
@@ -443,7 +427,9 @@ func _load_loadout() -> void:
 	if cf.load(LOADOUT_PATH) == OK:
 		var s: Array = cf.get_value(hero, "skills", skill_loadout)
 		var p: Array = cf.get_value(hero, "potions", potion_loadout)
-		if s.size() == 5 and s.all(func(x): return x == "" or HERO_SKILLS[hero].has(x)): skill_loadout = s
+		while s.size() < SKILL_SLOTS: s.append("")        # saves from the 5-slot bar carry over
+		s.resize(SKILL_SLOTS)
+		if s.size() == SKILL_SLOTS and s.all(func(x): return x == "" or HERO_SKILLS[hero].has(x)): skill_loadout = s
 		if p.size() == 5 and p.all(func(x): return x == "" or POTION_TYPES.has(x)): potion_loadout = p
 
 func _save_loadout() -> void:

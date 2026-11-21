@@ -33,36 +33,31 @@ func _run() -> void:
 	check(hud != null and lab.info == null, "Mage lab uses the ARPG HUD instead of the debug panel")
 	check(not a.number_keys_for_skills, "1-5 are potions; skills on Q W E R T")
 	check(a.click_to_move, "Click-to-move enabled (ARPG HUD labs)")
-	check(hud.skill_loadout == hud.DEFAULT_SKILLS["mage"], "Mage default loadout (Q Lance, W Nova, E Judgment, R Bolt, T empty)")
+	check(hud.skill_loadout == hud.DEFAULT_SKILLS["mage"] and hud.skill_loadout.size() == 6, "Mage default loadout (Q Lance, W Nova, E Judgment, R Bolt; T, RMB empty)")
 	for sk in hud.HERO_SKILLS["mage"].values() + hud.HERO_SKILLS["warrior"].values():
 		check(ResourceLoader.exists(hud.TILES + sk + ".png"), "Skill icon exists: " + sk)
-	for t in ["hud_left_hd", "hud_right_hd", "hud_left_hd@2x", "hud_right_hd@2x", "hud_xp_strip", "potion", "potion_mana"]:
+	for t in ["hud_full", "hud_full@2x", "potion", "potion_mana"]:
 		check(ResourceLoader.exists(hud.UI + t + ".png"), "HUD art exists: " + t)
 	var vw: float = lab.get_viewport().get_visible_rect().size.x
 	var vh: float = lab.get_viewport().get_visible_rect().size.y
 	var lr: Rect2 = hud.left_piece.get_global_rect()
-	var rr: Rect2 = hud.right_piece.get_global_rect()
-	check(absf(lr.position.x) < 1.0 and absf(lr.end.y - vh) < 1.0, "Left statue/orb/belt flush to the left and bottom edges (%s)" % lr)
-	check(absf(rr.end.x - vw) < 1.0 and absf(rr.end.y - vh) < 1.0, "Right skills/orb/statue flush to the right and bottom edges (%s)" % rr)
-	var exl: float = lr.position.x + float(hud.meta_cache["left"]["panel_inner_x"])
-	var exr: float = rr.position.x + float(hud.meta_cache["right"]["panel_inner_x"])
-	check(hud.strip_rect.position.x < exl and hud.strip_rect.end.x > exr and absf(hud.strip_rect.end.y - vh) < 0.5, "XP strip tucks under both panels' inner edges along the bottom (no gap)")
-	check(hud.xp_rect.position.x >= exl and hud.xp_rect.end.x <= exr, "XP fill stays inside the visible groove (never over the panels)")
-	var limg: Image = hud.left_piece.texture.get_image()
+	check(hud.left_piece == hud.right_piece, "Bottom HUD is ONE continuous painted piece (no separately placed clusters)")
+	check(absf(lr.position.x) < 0.5 and absf(lr.end.x - vw) < 0.5 and absf(lr.end.y - vh) < 0.5, "Bar spans the full width and sits on the bottom edge (%s)" % lr)
+	check(hud.xp_rect.position.x > hud.potion_slots[4]["rect"].end.x and hud.xp_rect.end.x < hud.bar_slots[0]["rect"].position.x and hud.xp_rect.position.y > hud.bar_slots[0]["rect"].end.y, "XP fill sits inside the painted groove between the panels")
+	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.03 and absf(hud.orb_l.y - hud.orb_r.y) < 3.0, "Both globes the same size and height (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
+	var fimg: Image = hud.left_piece.texture.get_image()
 	var lmiss := 0
-	for y in range(int(limg.get_height() * 0.25), limg.get_height()):
-		if limg.get_pixel(0, y).a < 0.5: lmiss += 1
-	check(lmiss == 0, "Left statue column is solid to the screen edge (%d see-through rows)" % lmiss)
-	var rimg: Image = hud.right_piece.texture.get_image()
 	var rmiss := 0
-	for y in range(int(rimg.get_height() * 0.25), rimg.get_height()):
-		if rimg.get_pixel(rimg.get_width() - 1, y).a < 0.5: rmiss += 1
-	check(rmiss == 0, "Right statue column is solid to the screen edge (%d see-through rows)" % rmiss)
-	check(absf(lr.size.y - rr.size.y) < 1.0, "Both corner pieces stand the same height (%.0f / %.0f px), each with its own art" % [lr.size.y, rr.size.y])
-	check(absf(hud.orb_l.z - hud.orb_r.z) / hud.orb_l.z < 0.08, "Globes within 8%% in size (%.1f / %.1f px)" % [hud.orb_l.z, hud.orb_r.z])
+	var bmiss := 0
+	for y in range(int(fimg.get_height() * 0.3), fimg.get_height()):
+		if fimg.get_pixel(0, y).a < 0.5: lmiss += 1
+		if fimg.get_pixel(fimg.get_width() - 1, y).a < 0.5: rmiss += 1
+	for x in fimg.get_width():
+		if fimg.get_pixel(x, fimg.get_height() - 1).a < 0.5: bmiss += 1
+	check(lmiss == 0 and rmiss == 0 and bmiss == 0, "Solid to the left, right and bottom screen edges (see-through: %d / %d / %d)" % [lmiss, rmiss, bmiss])
 	check(hud.left_piece.texture.get_width() == roundi(hud.left_piece.size.x) and hud.right_piece.texture.get_width() == roundi(hud.right_piece.size.x), "Pieces draw 1:1 at 1080p (no runtime downscale aliasing)")
-	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")
-	check(hud.bar_slots.size() == 5 and hud.potion_slots.size() == 5, "5 potion wells + 5 skill wells, as in the mockup")
+	check(hud.key_labels["skill_1"].text == "Q" and hud.key_labels["skill_5"].text == "T" and hud.key_labels["skill_6"].text == "RMB" and hud.key_labels["potion_3"].text == "3", "Key plates show the live bindings (Q..T, 1..5)")
+	check(hud.bar_slots.size() == 6 and hud.potion_slots.size() == 5 and hud.key_labels["move"].text == "LMB", "5 potion wells + 6 skill wells + primary-attack well showing LMB (from the painted bar)")
 	# --- loadout: any skill / potion in any slot ---
 	hud.assign("skill", 0, "Bolt")
 	check(hud.skill_loadout[0] == "Bolt" and hud.skill_loadout[3] == "Lance", "Putting Bolt in slot 1 swaps it with the slot that held it (no duplicates)")

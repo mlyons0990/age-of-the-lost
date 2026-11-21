@@ -18,9 +18,10 @@ func _run() -> void:
 	var a = lab.player
 	var top: float = lab.camera.unproject_position(a.global_position + Vector3.UP * 1.75).y
 	var bot: float = lab.camera.unproject_position(a.global_position).y
-	check(absf((bot - top) - 100.0) < 6.0, "Hero ~100 px tall at 1080p (%.0f)" % (bot - top))
+	var want: float = float(lab.ZONE_PPM) * 1.75 * cos(deg_to_rad(lab.ZONE_PITCH))
+	check(absf((bot - top) - want) < 8.0, "Hero drawn at the painting's own scale (%.0f px; planter ~knee height)" % (bot - top))
 	check(lab.zone_walkable(a.global_position), "Hero spawns on walkable ground")
-	var far: Vector3 = lab.zone_px_to_world(100, 1450)
+	var far: Vector3 = lab.zone_px_to_world(150, 1450)
 	check(not lab.zone_walkable(far), "Painted wall/garden area is not walkable")
 	a.command_move(far)
 	await create_timer(2.0).timeout

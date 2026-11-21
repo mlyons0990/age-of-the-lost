@@ -20,3 +20,7 @@
 - Both pilot labs now open in the plaza zone. Tests: painted_zone 7/7, arpg_hud 80/80, mage 83/83, knight 29/29,
   regression 994/994.
 - Next: foreground occlusion layer (walk behind lamp posts/planters), zone exits/transitions, Whisperwood walk map.
+
+## v3 — true painting scale (owner: planters should reach the hero's knees)
+- Per-zone world scale (zone JSON "ppm"), measured from the painting: planter box ~100 px = 0.5 m -> 320 px/m. Painting still drawn 1:1; hero now 345 px at 1080p with correct proportions.
+- Consequence: one screen shows ~5.5 m of ground, so the existing plaza painting is only ~1.4 screens of play space. Real zones need paintings authored for the chosen hero size (owner decision pending).

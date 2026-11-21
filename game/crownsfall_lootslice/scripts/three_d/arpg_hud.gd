@@ -38,10 +38,11 @@ var font_regular: FontFile
 const DISC_SHADER := """
 shader_type canvas_item;
 uniform float fill = 1.0;
+uniform sampler2D glass_mask : filter_linear;   // exact glass pixels: the drain never darkens the statue or ring
 void fragment() {
 	vec2 p = UV * 2.0 - 1.0;
 	float r = length(p);
-	float inside = smoothstep(1.0, 0.965, r);
+	float inside = texture(glass_mask, UV).r;
 	float y = 1.0 - UV.y;                                   // 0 at the bottom of the disc, 1 at the top
 	float empty = smoothstep(fill - 0.012, fill + 0.02, y); // spent part, above the liquid surface
 	float meniscus = exp(-pow((y - fill) * 45.0, 2.0)) * step(0.01, fill) * step(fill, 0.99);
@@ -236,6 +237,8 @@ func _build() -> void:
 	orb_r = Vector3(o.x + dr[0] * f, o.y + dr[1] * f, dr[2] * f)
 	hp_shade = _disc_shade(root, o, f, dl)
 	mp_shade = _disc_shade(root, o, f, dr)
+	(hp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_left"))
+	(mp_shade.material as ShaderMaterial).set_shader_parameter("glass_mask", _tex("glass_mask_right"))
 	var groove: Rect2 = map.call(meta["xp_groove"])
 	xp_rect = groove.grow_individual(-3 * f, -3 * f, -3 * f, -3 * f)
 	strip_rect = groove

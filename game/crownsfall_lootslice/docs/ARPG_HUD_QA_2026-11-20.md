@@ -128,3 +128,11 @@ Owner: "it looks like there are 3 elements … you can clearly see where the art
 - Known limit: the painted art has no key plate under its first well (the XP groove runs there), so the Q plate is
   drawn by code over the groove's end; a regenerated bar with seven plated wells is the proper fix (quoted).
 - Tests: arpg_hud 69/69 (adds Q W E R T LMB RMB order); regression 994/994.
+
+## Revision 11 (owner: MP statue leg washes into the globe; diagonal line from the knees)
+- Diagnosis: both are in the generated art itself (R1 variant A), not the code: the right statue's back leg and
+  drapery are painted dissolving into the blue glass, the bronze ring is missing below the knee, and the leftover
+  ridge of stone/bronze dots runs diagonally from the knee down-left. The glass also shows blocky compression patches.
+  Not repairable by hand cleanly -> regeneration quoted (H1/H2) with explicit fixes for these.
+- Free fix: the drain shader now uses exact glass masks (`tools/make_glass_masks.py`), so a draining globe never
+  darkens the statue or ring.

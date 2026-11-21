@@ -1,3 +1,15 @@
+# Godot cache and build output
+.godot/
+*.tmp
+export/
+builds/
+# Python
+__pycache__/
+*.pyc
+# OS files
+.DS_Store
+Thumbs.db
+# from main
 **/.godot/
 **/__pycache__/
 **/*.import

@@ -14,7 +14,7 @@ This is **not yet merged to main**; see open item O1.
 
 | ID | Decision | Replaces / clarifies | Owner words / date | Evidence |
 |---|---|---|---|---|
-| D1 | **Hero is ~110 px tall at 1080p**; the world is scaled to the hero, never the hero to the world. | v1.0 §5 estimate of 11–13 % (119–140 px). | "The character size needed to remain the same … the scene needed to be scaled and not the character" (11-21) | `verify_painted_zone.gd`, zone JSON `hero_px_1080` |
+| D1 | **Hero is ~110 px tall at 1080p** (town); per-zone `hero_px_1080` can raise it where the painting's props are larger (Whisperwood 125 px, owner 11-22); the world is scaled to the hero, never the hero to the world. | v1.0 §5 estimate of 11–13 % (119–140 px). | "The character size needed to remain the same … the scene needed to be scaled and not the character" (11-21) | `verify_painted_zone.gd`, zone JSON `hero_px_1080` |
 | D2 | **Camera: fixed orthographic, 31° pitch** for painted zones (matches the paintings' ground angle). | v1.0 §5 / S10 45–55° experiment range. | "the 31 degree (B) option is approved" (11-22) | `capture_camera_angle.gd`, zone JSON `pitch: 31` |
 | D3 | **2D painted world with selected 3D actors.** Zones are paintings; heroes and enemies are 3D. | Confirms v1.0 §4C hybrid for environments. | "not everything has to be in 3D … each zone can just be a 2d environment" (11-21) | Painted-zone system |
 | D4 | **Path of Exile zone model**: one large seamless zone per area; a new area loads only at a zone-exit portal. | Resolves v1.0 open item "transitions / streaming seams". | "let's make the approved style the PoE one" (11-21) | `verify_zone_travel.gd`, `verify_zone_streaming.gd` |

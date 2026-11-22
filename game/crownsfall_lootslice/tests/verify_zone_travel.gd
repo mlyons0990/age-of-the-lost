@@ -36,7 +36,7 @@ func _run() -> void:
 	check(lab.find_child("ZonePainting", true, false) != null and lab.get_children().filter(func(n): return n.name.begins_with("ZonePainting")).size() == 1, "Old painting freed, one painting in the scene")
 	var top: float = lab.camera.unproject_position(a.global_position + Vector3.UP * 1.75).y
 	var bot: float = lab.camera.unproject_position(a.global_position).y
-	check(absf((bot - top) - 110.0) < 6.0, "Whisperwood hero size %.0f px (same as the plaza)" % (bot - top))
+	check(absf((bot - top) - 125.0) < 6.0, "Whisperwood hero size %.0f px (owner: 125 here)" % (bot - top))
 	check(lab.zone_world_to_px(a.global_position).distance_to(Vector2(720, 636)) < 60.0, "Arrives at the foot of the top-left stairs")
 	check(not lab.zone_walkable(lab.zone_px_to_world(2190, 1010)) and lab.zone_walkable(lab.zone_px_to_world(1995, 851)), "Stream is blocked; the shrine ruins (waypoint) are walkable")
 	var vis := 0

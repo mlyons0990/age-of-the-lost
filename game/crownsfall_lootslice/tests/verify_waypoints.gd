@@ -55,7 +55,7 @@ func _run() -> void:
 	while lab.zone_traveling: await process_frame
 	check(lab.painted_zone == "whisperwood", "Portal on the south road leads to Whisperwood")
 	var wnode: Node3D = lab.zone_waypoints[0]["node"]
-	check(not (wnode.get_node("Beam") as MeshInstance3D).visible and not (wnode.get_node("Label") as Label3D).visible, "Undiscovered waypoint is dormant: no light, no label, no \"locked\" text")
+	check((wnode.get_node("Platform") as MeshInstance3D).material_override.albedo_texture.resource_path.ends_with("waypoint_wp3.png") and not (wnode.get_node("Beam") as MeshInstance3D).visible and not (wnode.get_node("Label") as Label3D).visible, "Undiscovered waypoint is dormant: no light, no label, no \"locked\" text")
 	check(lab.zone_walkable(lab.zone_waypoints[0]["pos"]), "Shrine ruins are walkable (waypoint area open)")
 	a.command_move(lab.zone_px_to_world(1480, 820))
 	await create_timer(3.0).timeout
@@ -66,7 +66,7 @@ func _run() -> void:
 	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 10.0)
 	check(unlocked[0] and net.is_unlocked("whisperwood_shrine"), "Reaching the shrine waypoint unlocks it")
 	check((wnode.get_node("Beam") as MeshInstance3D).visible, "Unlocked waypoint lights up")
-	check((wnode.get_node("Platform") as MeshInstance3D).material_override.albedo_texture.resource_path.ends_with("waypoint_wp3.png"), "Waypoint uses the master WP3 painting")
+	check((wnode.get_node("Platform") as MeshInstance3D).material_override.albedo_texture.resource_path.ends_with("waypoint_wp4_lit.png"), "Discovered waypoint switches to the glowing WP4 painting")
 	await create_timer(0.5).timeout
 	await _shot("waypoint_shrine_panel")
 	# the waypoint's visual centre (its basin) must land on the centre of the ruins it sits in

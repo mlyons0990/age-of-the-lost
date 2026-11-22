@@ -49,3 +49,11 @@ Suggested next: Whisperwood top-right path (W2) and bottom-left path (W3); Crown
   Files: `scripts/three_d/waypoints.gd`, `scripts/three_d/waypoint_panel.gd`, `assets/zones/world.json` (zone order + town).
 - Current waypoints: Crownsfall Plaza (town, compass rose, always open); Whisperwood — Fallen Shrine (shrine ruins, now
   walkable; only the stream is blocked). `tests/verify_waypoints.gd` 14/14.
+
+## Waypoint placement rules (owner, 2026-11-22)
+- A waypoint inside a circular space or object (ruin ring, plaza, rose window, ring of pillars) is **centred in that
+  space** — centre of the enclosing ring/ruins, not just a nearby floor pattern.
+- Waypoint art lies **flat on the painted ground**: fit it to the painting's own ground angle (circles in our paintings
+  are ~0.51 as tall as wide), not the 3D camera's. `tools/build_waypoint_art.py ... [rotate_deg] [ground_ratio]`.
+- Aim a star point toward the feature the space faces (e.g. Whisperwood: down the stream), never straight up/down.
+- Undiscovered = carved stone, no label; discovered = WP2 glowing art + "Waypoint" label.

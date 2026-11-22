@@ -83,7 +83,7 @@ func _run() -> void:
 	if back != null: back.pressed.emit()
 	await _wait(func(): return lab.painted_zone == "whisperwood" and not lab.zone_traveling, 6.0)
 	await create_timer(0.8).timeout
-	check(lab.painted_zone == "whisperwood" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1975, 1022)) < 120.0, "Teleported back to the shrine waypoint")
+	check(lab.painted_zone == "whisperwood" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1985, 920)) < 120.0, "Teleported back to the shrine waypoint")
 	var fresh = load("res://scripts/three_d/waypoints.gd").new()
 	check(fresh.is_unlocked("whisperwood_shrine"), "Unlocked waypoints persist (saved)")
 	await _shot("waypoint_back_at_shrine")

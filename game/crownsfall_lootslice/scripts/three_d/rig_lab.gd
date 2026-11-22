@@ -4,6 +4,11 @@ const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 const WAYPOINT_MESH := preload("res://scripts/three_d/waypoint_mesh.gd")
 const WAYPOINT_ROT_DEG := 22.9   # house style (owner 11-22): every waypoint's bottom star point tilts slightly right, as at the Whisperwood shrine
 const WAYPOINT_TOP := "res://assets/props/waypoint_top.png"
+const WAYPOINT_SPRITE := "res://assets/props/waypoint_wp3.png"          # master waypoint (WP3, painted at game camera)
+const WAYPOINT_SPRITE_META := "res://assets/props/waypoint_wp3.json"
+const WAYPOINT_SPRITE_LIT := "res://assets/props/waypoint_wp4_lit.png"  # glowing version (WP4), when generated
+const WAYPOINT_SIGIL_V := 0.40      # painted rune sigil centre (fraction of image height)
+const WAYPOINT_SIGIL_W := 0.40      # glow size relative to the image width (the basin)
 const WAYPOINT_TOP_LIT := "res://assets/props/waypoint_top_lit.png"
 const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
 const WAYPOINT_ART_LIT := "res://assets/props/waypoint_plinth_lit.png"   # WP2: same platform, runes glowing
@@ -476,23 +481,41 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String, radius_px := 167.0
 	var root := Node3D.new(); root.name = "Waypoint_" + id; root.position = at
 	root.add_to_group("zone_waypoint")
 	parent.add_child(root)
-	var basin_h := 0.03
-	# real 3D platform (scripts/three_d/waypoint_mesh.gd): exact eight-fold symmetric, centred on the point
-	var radius_m := radius_px / ZONE_PPM
-	var plat := WAYPOINT_MESH.build(radius_m, load(WAYPOINT_TOP))
-	plat.rotation.y = deg_to_rad(rot_deg)   # +z (bottom) star point turns to (sin, cos) of this angle
+	var sigil_dz := 0.0
+	var rune_size := WAYPOINT_RUNE_M
+	# WP3: the master waypoint, painted at the game camera (owner-approved). Used as-is (no warping): laid on the
+	# ground like the zone paintings, its ground centre (mean of the 8 star tips, tools/build_waypoint_sprite.py) on
+	# the waypoint point. The painted rune sigil is raised; the glow sits on it.
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WAYPOINT_SPRITE_META))
+	var tex: Texture2D = load(WAYPOINT_SPRITE)
+	var pw := radius_px / float(meta["tip_radius_frac"]) / ZONE_PPM
+	var ph := pw * float(tex.get_height()) / float(tex.get_width()) / sin(deg_to_rad(ZONE_PITCH))
+	var plat := MeshInstance3D.new(); plat.name = "Platform"
+	var pmesh := PlaneMesh.new(); pmesh.size = Vector2(pw, ph); plat.mesh = pmesh
+	var pmat := StandardMaterial3D.new()
+	pmat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	pmat.albedo_texture = tex
+	pmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	pmat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	pmat.render_priority = -1          # glow and beam draw over the painting
+	plat.material_override = pmat
+	var cu: Array = meta["centre_uv"]
+	plat.position = Vector3(-(float(cu[0]) - 0.5) * pw, 0.015, -(float(cu[1]) - 0.5) * ph)
+	plat.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(plat)
-	basin_h = WAYPOINT_MESH.H_BASIN * radius_m + 0.01
+	sigil_dz = (WAYPOINT_SIGIL_V - float(cu[1])) * ph       # painted sigil appears this far "north" of the ground centre
+	rune_size = WAYPOINT_SIGIL_W * pw
 	var disc := MeshInstance3D.new(); disc.name = "Rune"
-	var pm := PlaneMesh.new(); pm.size = Vector2(WAYPOINT_RUNE_M, WAYPOINT_RUNE_M); disc.mesh = pm
+	var pm := PlaneMesh.new(); pm.size = Vector2(rune_size, rune_size * 0.95); disc.mesh = pm
 	var dm := ShaderMaterial.new(); dm.shader = load("res://shaders/waypoint_rune.gdshader")
-	disc.material_override = dm; disc.position = Vector3(0, basin_h, 0)
+	dm.render_priority = 1
+	disc.material_override = dm; disc.position = Vector3(0, 0.03, sigil_dz)
 	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(disc)
 	var beam := MeshInstance3D.new(); beam.name = "Beam"
 	var q := QuadMesh.new(); q.size = Vector2(1.1, 3.4); beam.mesh = q
 	var bm := ShaderMaterial.new(); bm.shader = load("res://shaders/portal_aura.gdshader"); bm.set_shader_parameter("strength", 0.55)
-	beam.material_override = bm; beam.position = Vector3(0, 1.7, 0)
+	beam.material_override = bm; beam.position = Vector3(0, 1.7, sigil_dz)
 	beam.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(beam)
 	var lbl := Label3D.new(); lbl.name = "Label"
@@ -506,10 +529,10 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String, radius_px := 167.0
 	return root
 
 func _waypoint_visual(node: Node3D, open: bool) -> void:
-	var plat := node.get_node_or_null("Platform") as Node3D
-	if plat != null:
-		# the top texture carries the runes: dormant = carved stone, discovered = the WP2 glowing version
-		WAYPOINT_MESH.set_top(plat, load(WAYPOINT_TOP_LIT if open else WAYPOINT_TOP))
+	var plat := node.get_node_or_null("Platform") as MeshInstance3D
+	if plat != null and ResourceLoader.exists(WAYPOINT_SPRITE_LIT):
+		# the painting carries the runes: dormant = carved stone, discovered = the glowing version (WP4)
+		(plat.material_override as StandardMaterial3D).albedo_texture = load(WAYPOINT_SPRITE_LIT if open else WAYPOINT_SPRITE)
 		(node.get_node("Rune") as MeshInstance3D).visible = false
 	(node.get_node("Rune") as MeshInstance3D).material_override.set_shader_parameter("lit", 1.0 if open else 0.0)
 	(node.get_node("Beam") as MeshInstance3D).visible = open

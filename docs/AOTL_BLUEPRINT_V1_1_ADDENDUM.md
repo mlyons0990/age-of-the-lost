@@ -20,7 +20,7 @@ This is **not yet merged to main**; see open item O1.
 | D4 | **Path of Exile zone model**: one large seamless zone per area; a new area loads only at a zone-exit portal. | Resolves v1.0 open item "transitions / streaming seams". | "let's make the approved style the PoE one" (11-21) | `verify_zone_travel.gd`, `verify_zone_streaming.gd` |
 | D5 | **Exit portals** may be any door / path / stairs but always carry a **blue/gold glowing aura**. | — | owner, 11-21 | `_build_portal`, `portal_aura.gdshader` |
 | D6 | **Waypoints**: checkpoints unlocked by reaching them; teleport to town or any unlocked waypoint and back. Undiscovered waypoints are plain world props (no "locked" label). | — | owner, 11-21 / 11-22 | `verify_waypoints.gd` 17/17 |
-| D7 | **Waypoint art**: AOTL ivory/gold eight-point platform (WP1 variant A design), glowing version (WP2) once discovered. Built as a **real low 3D dais**, flush with the floor, uniform all the way round (owner 11-22: "needs to look uniform around the entire circumference"). | — | owner, 11-21 / 11-22 | `scripts/three_d/waypoint_mesh.gd`, `assets/props/waypoint_top*.png` |
+| D7 | **Waypoint art**: AOTL ivory/gold eight-point platform (WP1 variant A design), glowing version (WP2) once discovered. **Master waypoint = WP3**, the same design painted at the game camera and used unwarped in every zone (owner 11-22). Per-biome material variants (caves, hostile) are generated from WP3 when needed. | — | owner, 11-21 / 11-22 | `assets/props/waypoint_wp3.png`, `tools/build_waypoint_sprite.py` |
 | D8 | **Waypoint placement**: a waypoint inside a circular space/object is **centred exactly on its centre**, lies flat on the painted ground, a star point aimed at the feature the space faces. | — | "IT SHOULD BE CENTERED IN THE RUINS" (11-22) | tests: centre within 10 px; rendered glow centroid within 8 px |
 | D9 | **Controls**: click-to-move (D4/PoE/LE/GD), fully rebindable; skill block LMB/MMB/RMB over Q W E R T; 5 potions. | Resolves v1.0 UI-05 mockup-hotkey conflict. | owner, 11-20 | `keybinds.gd`, `verify_arpg_hud.gd` |
 | D10 | **HUD v2 baseline**: edge-to-edge corner HUD, distinct HP (warden) and mana (seer) globes. | — | "Much better, lets use that as our baseline" (11-21) | HUD QA rev 1–19 |
@@ -37,7 +37,9 @@ These are the lessons already paid for. Follow them for every new zone or extens
 - Generate new paintings at this camera and scale (prompt with an approved zone as the scale reference).
 
 **2.2 Ground angle and props on the ground**
-- Symmetric props (waypoints, seals, fountains' bases) are built as **real 3D geometry** textured with a top-down
+- Props that sit on the painted ground (waypoints, seals) are **painted at the game camera** and used as-is; never
+  re-angle, flatten, rotate or 3D-rebuild a painting made for a different view (all tried and rejected 11-22: tilt,
+  lean, lopsided, soft/"crappy 3D"). Earlier experiment kept for reference: symmetric props built as **real 3D geometry** textured with a top-down
   painting made perfectly symmetric (`tools/build_waypoint_topdown.py`: un-tilt the generated art, take one clean
   mirrored wedge, repeat it). A generated oblique painting is never exactly symmetric, and flattening/rotating a
   picture of a raised object makes it lean (both rejected by the owner). Geometry is exact at any camera angle.

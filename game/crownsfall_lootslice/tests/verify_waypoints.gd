@@ -25,6 +25,7 @@ func _wait(cond: Callable, secs: float) -> float:
 func _click_waypoint(lab) -> void:
 	var w: Dictionary = lab.zone_waypoints[0]
 	lab.handle_click(lab.camera.unproject_position(w["pos"]))
+var shrine_rot := 0.0
 func _run() -> void:
 	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://aotl_waypoints.cfg"))
 	root.size = Vector2i(1920, 1080)
@@ -93,6 +94,7 @@ func _run() -> void:
 	rc = lab.camera.unproject_position((wnode.get_node("Rune") as Node3D).global_position)
 	print("glow centroid %s from %d px; ruins centre at basin height %s" % [glow, cnt, rc])
 	check(cnt > 200 and absf(glow.x - rc.x) < 8.0 and absf(glow.y - rc.y) < 8.0, "Rendered glowing centre lands on the ruins centre (dx %.1f, dy %.1f px)" % [glow.x - rc.x, glow.y - rc.y])
+	shrine_rot = rad_to_deg((wnode.get_node("Platform") as Node3D).rotation.y)
 	# the bottom star point faces the stream
 	var plat: Node3D = wnode.get_node("Platform")
 	var tip: Vector3 = plat.global_transform * Vector3(0, 0, 1)
@@ -112,6 +114,8 @@ func _run() -> void:
 	var trc: Vector2 = lab.camera.unproject_position(lab.zone_px_to_world(float(tdef["centre_of"][0]), float(tdef["centre_of"][1])))
 	var tbc: Vector2 = lab.camera.unproject_position((lab.zone_waypoints[0]["node"] as Node3D).global_position)
 	check(trc.distance_to(tbc) < 10.0, "Town waypoint centre sits on the compass rose centre (%.1f px off)" % trc.distance_to(tbc))
+	var trot: float = rad_to_deg((lab.zone_waypoints[0]["node"].get_node("Platform") as Node3D).rotation.y)
+	check(absf(trot - lab.WAYPOINT_ROT_DEG) < 0.5 and absf(lab.WAYPOINT_ROT_DEG - shrine_rot) < 1.0, "Town waypoint has the same right tilt as the shrine waypoint (%.1f vs %.1f deg)" % [trot, shrine_rot])
 	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1902, 1010)) < 120.0, "Teleported to town, standing at the town waypoint")
 	# and back to the newly unlocked waypoint
 	_click_waypoint(lab)

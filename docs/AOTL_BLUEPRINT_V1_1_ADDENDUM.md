@@ -41,7 +41,8 @@ These are the lessons already paid for. Follow them for every new zone or extens
   painting made perfectly symmetric (`tools/build_waypoint_topdown.py`: un-tilt the generated art, take one clean
   mirrored wedge, repeat it). A generated oblique painting is never exactly symmetric, and flattening/rotating a
   picture of a raised object makes it lean (both rejected by the owner). Geometry is exact at any camera angle.
-- Aim a waypoint's bottom star point with `face` (a painted feature) in the zone JSON; the test checks it.
+- House style: every waypoint's bottom star point tilts slightly right (22.9 deg, as at the Whisperwood shrine).
+  `face` (a painted feature) can aim it instead; the test checks both.
 - Measure the painting's ground ratio by fitting an ellipse to a painted circle (height/width): Crownsfall 0.43,
   Whisperwood 0.51. Store it as `ground_ratio`.
 - Any prop art laid on the ground (waypoints, decals) is flattened to that ratio — **not** the 3D camera's angle.

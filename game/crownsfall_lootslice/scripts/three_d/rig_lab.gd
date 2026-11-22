@@ -2,6 +2,7 @@ extends Node3D
 const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
 const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 const WAYPOINT_MESH := preload("res://scripts/three_d/waypoint_mesh.gd")
+const WAYPOINT_ROT_DEG := 22.9   # house style (owner 11-22): every waypoint's bottom star point tilts slightly right, as at the Whisperwood shrine
 const WAYPOINT_TOP := "res://assets/props/waypoint_top.png"
 const WAYPOINT_TOP_LIT := "res://assets/props/waypoint_top_lit.png"
 const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
@@ -403,7 +404,7 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	zone_waypoints.clear()
 	for wdef in zone.get("waypoints", []):
 		var wp_pos := zone_px_to_world(float(wdef["at"][0]), float(wdef["at"][1]))
-		var rot := float(wdef.get("rot_deg", 0.0))
+		var rot := float(wdef.get("rot_deg", WAYPOINT_ROT_DEG))
 		if wdef.has("face"):   # aim the bottom star point at a painted feature (e.g. the stream)
 			var fdir := zone_px_to_world(float(wdef["face"][0]), float(wdef["face"][1])) - wp_pos
 			rot = rad_to_deg(atan2(fdir.x, fdir.z))

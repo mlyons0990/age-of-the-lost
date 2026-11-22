@@ -18,3 +18,9 @@ Git LFS pointers are not images. Fetch selected portrait assets with `git lfs fe
 First snapshot: ef263e4aab4e0e1c98e81cdf06ae9e76bc99b60b, 16 base definitions, zero exported-data footprint errors. Four types have no explicit selected portrait: consult the generated report for IDs. These are unresolved selected-profile mappings, not proven missing artwork; runtime fallbacks and the candidate taxonomy library require a subsequent reconciliation pass.
 
 Limits: no live Godot drag/equip/save behavior tested, no alpha/silhouette visual approval, no wearable mesh or ground-drop audit, no other developer branches changed. Five focused validator tests pass. The larger taxonomy, fallback resolver and equipment-production matrix are next; do not interpret this initial snapshot as production signoff.
+
+## Reconciliation update
+
+Run `python tools/item_workbench/reconcile.py --repo . --ref HEAD --out /tmp/aotl-item-review` to trace the four previously unresolved mappings and compare relevant entries in the 62-entry candidate catalog. All four have tracked item-portrait fallbacks. There are five footprint-compatible suggestions; the 1x4 quarterstaff is excluded from direct replacement of the 2x4 runtime staff. Candidate selection is not approval or activation.
+
+`routing_source.sha256` pins the inspected runtime resolver; reconciliation stops for manual review if that implementation changes. Nine focused tests pass. The grid audit now recognizes tracked item-portrait fallbacks. The initial snapshot is retained as history, superseded by the reconciliation report. Runtime import, alpha coverage and gameplay appearance still need engine/visual review.

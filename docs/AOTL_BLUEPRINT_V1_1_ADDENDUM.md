@@ -82,6 +82,20 @@ These are the lessons already paid for. Follow them for every new zone or extens
 Free in-game render sent to the owner → walk map, occluders, portals, waypoints authored → zone tests green → owner
 sign-off → commit + Drive copy.
 
+**2.8 Zone content and world flow (owner, 2026-11-22)**
+- Every zone outside towns/cities has **several points of interest**: e.g. a lorecasting unlock, a waypoint, a rare
+  boss arena, a secret area, plus its entrance/exit portals on painted thresholds.
+- Every zone has its **own feel** and **blends into the previous and next zone** (biome gradient across a chain): e.g.
+  lowlands -> foothills with patchy snow -> snowfields -> a mountain zone in full snow and blizzard; or jungle ->
+  drier scrub -> desert -> oasis. A zone's near edge looks like the zone before it; its far edge like the next.
+- Large zones are built **master-then-tiles**: a free plan sketch (`tools/draw_zone_plan.py`) -> owner approves the
+  layout -> one master layout painting of the whole zone -> full-detail tiles painted from it. (Edge outpainting was
+  tested with E1 and could not be steered to continue paths; see the credit ledger.)
+- Whisperwood plan: 3 x 2 tiles; W1 shrine clearing top-middle; POIs: Fallen Shrine waypoint, Weeping Stele (lore),
+  Drowned Altar (lore), Elder Grove (rare boss: the Thornmother), Moonwell Glade (secret, behind a root tunnel);
+  exits: Crownsfall stairs (north) and a mossy stone arch to Hollowmere (marsh, south-east). Gradient: tended and
+  lantern-lit near Crownsfall -> wild, wet and misty toward Hollowmere.
+
 ## 3. Checklist as a tracked backlog
 
 `docs/AOTL_CHECKLIST_TRACKER.csv` (also on Drive as a sheet) lists all 162 v1.0 tasks with: owner roles, **named owner**

@@ -91,9 +91,15 @@ sign-off → commit + Drive copy.
 - Large zones are built **master-then-tiles**: a free plan sketch (`tools/draw_zone_plan.py`) -> owner approves the
   layout -> one master layout painting of the whole zone -> full-detail tiles painted from it. (Edge outpainting was
   tested with E1 and could not be steered to continue paths; see the credit ledger.)
-- Whisperwood plan: 3 x 2 tiles; W1 shrine clearing top-middle; POIs: Fallen Shrine waypoint, Weeping Stele (lore),
+- **Zone size: at least 3 x 3 tiles** (owner 11-22). 3 x 3 tiles of 21:9 at the 31-degree camera cover nearly square
+  ground (~1.2 : 1), so neighbouring zones fit edge to edge.
+- **Free movement**: the whole floor is walkable; only trunks, rocks, water, ruins and buildings block (small
+  footprints, not whole woods). Paths guide the player, **going off-path is rewarded**: hidden caches, lore, events,
+  camps, secret areas, rare spawns.
+- Whisperwood plan (v2): 3 x 3 tiles; W1 shrine clearing top-middle; POIs: Fallen Shrine waypoint, Weeping Stele (lore),
   Drowned Altar (lore), Elder Grove (rare boss: the Thornmother), Moonwell Glade (secret, behind a root tunnel);
-  exits: Crownsfall stairs (north) and a mossy stone arch to Hollowmere (marsh, south-east). Gradient: tended and
+  exits: Crownsfall stairs (north) and a mossy stone arch to Hollowmere (marsh, south-east). Off-path: Fae Ring
+  (mushroom event), Hunter's Camp (journal page), 5 hidden caches. Gradient: tended and
   lantern-lit near Crownsfall -> wild, wet and misty toward Hollowmere.
 
 ## 3. Checklist as a tracked backlog

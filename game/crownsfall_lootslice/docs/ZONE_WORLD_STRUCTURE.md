@@ -66,3 +66,12 @@ Suggested next: Whisperwood top-right path (W2) and bottom-left path (W3); Crown
   walks the corners. Targets inside an obstacle stop at the nearest walkable point on the way. Clearance 0.45 m.
 - Whisperwood: pillars, fallen statue and toppled columns of the shrine are solid footprints; the ruins floor stays open.
 - `tests/verify_zone_pathing.gd` 5/5 (routes round the stream; walks round the pillars to the waypoint).
+
+## Behind-scenery and camera angle (2026-11-22)
+- Upright props get explicit silhouettes in the zone JSON (`occluders[].poly` + `holes` for arch openings + foot `line`);
+  `tools/build_zone_depth.py` bakes them, so the hero is hidden behind Whisperwood's pillars, arches, arcade, statue
+  and fallen columns, and still drawn in front when he stands before them.
+- Occluded-actor silhouette (blueprint CAM-04): `shaders/occluded_actor.gdshader` as material_overlay draws a soft gold
+  silhouette of the hero only where scenery is in front of him. `xray_enabled` toggles it. Occlusion test 5/5.
+- Camera angle study (`tests/capture_camera_angle.gd`): 52 deg (current) vs 31 deg (the paintings' ground angle). Owner
+  decision pending; zone JSON `"pitch"` switches a zone's camera, everything else (scale, walk map, depth) follows.

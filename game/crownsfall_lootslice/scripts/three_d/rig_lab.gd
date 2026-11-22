@@ -3,7 +3,7 @@ const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
 const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
 const WAYPOINT_ART_LIT := "res://assets/props/waypoint_plinth_lit.png"   # WP2: same platform, runes glowing
-const WAYPOINT_ART_M := 4.25       # image width on the ground (metres); footprint is 89% of it (~3.8 m)
+const WAYPOINT_ART_PX := 374.0     # image width in painting pixels (footprint 89% of it, fits the shrine floor rings)
 const WAYPOINT_ART_BASIN_V := 0.047 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
 const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
@@ -48,7 +48,9 @@ var mode := "3D articulated rig lab"
 var ZONE_PPM := 93.0                 # painting pixels per ground metre (per zone: zone JSON "ppm")
 var ZONE_SCREEN_PPM := 93.0          # screen px per metre at 1080p (derived from HERO_PX_1080)
 const HERO_PX_1080 := 110.0          # owner reference: hero ~110 px at 1080p (zones opt in with "hero_px_1080")
-const ZONE_PITCH := 52.0
+var ZONE_PITCH := 52.0              # camera pitch over painted zones (zone JSON "pitch" or pitch_override)
+@export var pitch_override := 0.0   # >0: comparison renders (camera-angle study)
+@export var ppm_override := 0.0
 var zone: Dictionary = {}
 var zone_refs: Array = []             # [Environment, sun, floor shape] for rebuilding on travel
 var zone_exits: Array = []            # {name, to, arrive, poly (world xz)}
@@ -64,6 +66,8 @@ var zone_nav_nodes := PackedVector2Array()  # pathfinding: corner points (world 
 var zone_nav_links: Array = []        # per node: Array of [neighbour index, distance] with a clear straight line
 var zone_route := PackedVector2Array() # remaining corners of the current click-to-move route
 const NAV_CLEARANCE := 0.45           # metres kept between the hero's path and walls / pillars / water
+var xray_enabled := true             # occluded-actor silhouette (hero stays visible behind pillars, trees, railings)
+var xray_mat: ShaderMaterial
 var zone_tiles: Array = []            # {node, mat, rect (zone px), image, depth, state 0=unloaded 1=loading 2=shown}
 signal zone_changed(name: String)
 var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
@@ -157,6 +161,7 @@ func _ready() -> void:
 		var sp: Array = zone["spawn"]
 		player.global_position = zone_px_to_world(float(sp[0]), float(sp[1])) + Vector3.UP * 0.08
 		zone_stream(true)
+		apply_xray(player)
 		for i in mini(targets.size(), zone["targets"].size()):
 			var tp: Array = zone["targets"][i]
 			targets[i].global_position = zone_px_to_world(float(tp[0]), float(tp[1]))
@@ -305,6 +310,8 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	var zpath := painted_zone if painted_zone.begins_with("res://") else "res://assets/zones/%s.json" % painted_zone
 	zone = JSON.parse_string(FileAccess.get_file_as_string(zpath))
 	ZONE_PPM = float(zone.get("ppm", ZONE_PPM))     # world scale measured from the painting's own props
+	ZONE_PITCH = pitch_override if pitch_override > 0.0 else float(zone.get("pitch", 52.0))
+	if ppm_override > 0.0: ZONE_PPM = ppm_override
 	# hero size on screen is fixed (owner reference: ~110 px at 1080p); the painting is scaled to match it
 	ZONE_SCREEN_PPM = float(zone.get("hero_px_1080", 0.0)) / (1.75 * cos(deg_to_rad(ZONE_PITCH))) if zone.has("hero_px_1080") else ZONE_PPM
 	var size: Array = zone["size"]
@@ -465,7 +472,7 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 	if ResourceLoader.exists(WAYPOINT_ART):
 		var plinth := MeshInstance3D.new(); plinth.name = "Plinth"
 		var tex: Texture2D = load(WAYPOINT_ART)
-		var pw := WAYPOINT_ART_M
+		var pw := WAYPOINT_ART_PX / ZONE_PPM
 		var ph := pw * float(tex.get_height()) / float(tex.get_width()) / sin(deg_to_rad(ZONE_PITCH))
 		var ppm_ := PlaneMesh.new(); ppm_.size = Vector2(pw, ph); plinth.mesh = ppm_
 		var pmat := StandardMaterial3D.new()
@@ -704,6 +711,14 @@ func _zone_route_tick() -> void:
 	if not player.move_target.is_finite():    # reached the current corner: head for the next one
 		var nxt := zone_route[0]; zone_route.remove_at(0)
 		player.command_move(Vector3(nxt.x, 0, nxt.y))
+
+## Gold silhouette over the hero wherever painted scenery hides him (material_overlay on every mesh of the actor).
+func apply_xray(actor: Node3D) -> void:
+	if xray_mat == null:
+		xray_mat = ShaderMaterial.new()
+		xray_mat.shader = load("res://shaders/occluded_actor.gdshader")
+	for m in actor.find_children("*", "MeshInstance3D", true, false):
+		(m as MeshInstance3D).material_overlay = xray_mat if xray_enabled else null
 
 func zone_exit_at(at: Vector3) -> Dictionary:
 	for ex in zone_exits:

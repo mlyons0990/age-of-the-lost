@@ -5,6 +5,7 @@ own base row. Railings, lamps and planters in front of the walkable floor get th
 runtime shader can push those pixels toward the camera and 3D actors walking behind them are hidden.
 
 Zone JSON "occluders": [{"line": [[u0, v0], [u1, v1]], "x": [xmin, xmax], "pad": 20}, ...]
+  or, for upright props: {"poly": [[u, v], ...], "holes": [[[u, v], ...]], "line": [[u0, v0], [u1, v1]]}
   line: the occluder's foot on the plaza side (a straight line in image pixels); everything south of it inside x is
   foreground ("exclude": [[x0, y0, x1, y1], ...] boxes are never foreground), plus non-floor pixels north of it (lamps, finials, flowers) that are attached to it.
 Output: <image>_depth.png, 8-bit L, value = (base_row - row) / 4 (0 = flat ground).
@@ -25,6 +26,18 @@ def bake(im, occluders):
     delta = np.zeros((H, W), np.float32)
     yy, xx = np.mgrid[0:H, 0:W]
     for oc in occluders:
+        if "poly" in oc:
+            # explicit silhouette (pillars, arches, statues): every pixel inside the outline, minus its openings, stands
+            # on the foot line `line` (interpolated along x)
+            (u0, v0), (u1, v1) = oc["line"]
+            k = (v1 - v0) / float(u1 - u0) if u1 != u0 else 0.0
+            m = np.zeros((H, W), np.uint8)
+            cv2.fillPoly(m, [np.array(oc["poly"], np.int32)], 1)
+            for hole in oc.get("holes", []):
+                cv2.fillPoly(m, [np.array(hole, np.int32)], 0)
+            base = v0 + (xx - u0) * k + float(oc.get("pad", 12))
+            delta = np.where(m > 0, np.maximum(delta, base - yy), delta)
+            continue
         (u0, v0), (u1, v1) = oc["line"]
         pad = float(oc.get("pad", 20))
         x0, x1 = oc["x"]

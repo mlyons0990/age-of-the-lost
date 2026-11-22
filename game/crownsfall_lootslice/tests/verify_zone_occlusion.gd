@@ -36,6 +36,8 @@ func _run() -> void:
 		if n is CanvasLayer: n.visible = false
 	var a = lab.player
 	# lamp post on the south-west railing: column x 730..815 px, head ~955..1060 px; floor behind it at row ~1150
+	lab.xray_enabled = false
+	lab.apply_xray(a)
 	a.global_position = lab.zone_px_to_world(772, 1150)
 	a.velocity = Vector3.ZERO
 	await create_timer(2.5).timeout          # camera eases onto the hero; let it settle
@@ -57,6 +59,20 @@ func _run() -> void:
 	print("lamp rect %s changed %.3f; hero upper body changed %.3f" % [lamp, in_lamp, beside])
 	check(in_lamp < 0.05, "Painted lamp head stays in front of the hero standing behind it (%.3f)" % in_lamp)
 	check(beside > 0.15, "The rest of the hero is still drawn over the floor (%.3f)" % beside)
+	# occluded-actor silhouette on: the hidden part of the hero shows as a warm gold outline through the lamp
+	lab.xray_enabled = true
+	lab.apply_xray(a)
+	a.visible = true
+	var xr := await _grab()
+	if out != "": xr.save_png(out + "/occlusion_xray.png")
+	var changed := 0; var warm := 0
+	for y in range(lamp.position.y, lamp.end.y):
+		for x in range(lamp.position.x, lamp.end.x):
+			var c1 := xr.get_pixel(x, y); var c0 := without.get_pixel(x, y)
+			if absf(c1.r - c0.r) + absf(c1.g - c0.g) + absf(c1.b - c0.b) > 0.12:
+				changed += 1
+				if c1.r > c1.b + 0.1: warm += 1
+	check(changed > 20 and warm > changed * 0.6, "Hero behind the lamp shows as a gold silhouette (%d px, %d warm)" % [changed, warm])
 	# open floor: nothing in front
 	a.global_position = lab.zone_px_to_world(1920, 900)
 	await create_timer(2.5).timeout          # camera eases onto the hero; let it settle

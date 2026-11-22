@@ -3,6 +3,7 @@ const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
 const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
 const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
 const WAYPOINT_ART_LIT := "res://assets/props/waypoint_plinth_lit.png"   # WP2: same platform, runes glowing
+const WAYPOINT_ART_RATIO := 0.51   # ground ratio the plinth art was flattened to (tools/build_waypoint_art.py)
 const WAYPOINT_ART_PX := 374.0     # image width in painting pixels (footprint 89% of it, fits the shrine floor rings)
 const WAYPOINT_ART_BASIN_V := 0.047 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
 const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
@@ -310,7 +311,7 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	var zpath := painted_zone if painted_zone.begins_with("res://") else "res://assets/zones/%s.json" % painted_zone
 	zone = JSON.parse_string(FileAccess.get_file_as_string(zpath))
 	ZONE_PPM = float(zone.get("ppm", ZONE_PPM))     # world scale measured from the painting's own props
-	ZONE_PITCH = pitch_override if pitch_override > 0.0 else float(zone.get("pitch", 52.0))
+	ZONE_PITCH = pitch_override if pitch_override > 0.0 else float(zone.get("pitch", 52.0))   # painted zones use 31 (owner-approved); legacy paintings 52
 	if ppm_override > 0.0: ZONE_PPM = ppm_override
 	# hero size on screen is fixed (owner reference: ~110 px at 1080p); the painting is scaled to match it
 	ZONE_SCREEN_PPM = float(zone.get("hero_px_1080", 0.0)) / (1.75 * cos(deg_to_rad(ZONE_PITCH))) if zone.has("hero_px_1080") else ZONE_PPM
@@ -398,7 +399,7 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	zone_waypoints.clear()
 	for wdef in zone.get("waypoints", []):
 		var wp_pos := zone_px_to_world(float(wdef["at"][0]), float(wdef["at"][1]))
-		zone_waypoints.append({"id": wdef["id"], "name": wdef["name"], "pos": wp_pos, "node": _build_waypoint(decor, wp_pos, String(wdef["id"]))})
+		zone_waypoints.append({"id": wdef["id"], "name": wdef["name"], "pos": wp_pos, "node": _build_waypoint(decor, wp_pos, String(wdef["id"]), float(wdef.get("size_px", WAYPOINT_ART_PX)))})
 	_build_zone_nav()
 	zone_exit_armed = false
 
@@ -462,7 +463,7 @@ func _build_portal(parent: Node3D, poly: PackedVector2Array, centre: Vector3, la
 	root.add_child(lbl)
 
 ## Waypoint: rune circle on the ground (grey until unlocked, then blue/gold with a pillar of light) and a label.
-func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
+func _build_waypoint(parent: Node3D, at: Vector3, id: String, size_px := WAYPOINT_ART_PX) -> Node3D:
 	var root := Node3D.new(); root.name = "Waypoint_" + id; root.position = at
 	root.add_to_group("zone_waypoint")
 	parent.add_child(root)
@@ -472,8 +473,9 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String) -> Node3D:
 	if ResourceLoader.exists(WAYPOINT_ART):
 		var plinth := MeshInstance3D.new(); plinth.name = "Plinth"
 		var tex: Texture2D = load(WAYPOINT_ART)
-		var pw := WAYPOINT_ART_PX / ZONE_PPM
+		var pw := size_px / ZONE_PPM
 		var ph := pw * float(tex.get_height()) / float(tex.get_width()) / sin(deg_to_rad(ZONE_PITCH))
+		ph *= float(zone.get("ground_ratio", WAYPOINT_ART_RATIO)) / WAYPOINT_ART_RATIO   # match this painting's ground angle
 		var ppm_ := PlaneMesh.new(); ppm_.size = Vector2(pw, ph); plinth.mesh = ppm_
 		var pmat := StandardMaterial3D.new()
 		pmat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED

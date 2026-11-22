@@ -80,7 +80,11 @@ func _run() -> void:
 	lab.waypoint_panel.buttons["crownsfall_town"].pressed.emit()
 	await _wait(func(): return lab.painted_zone == "crownsfall" and not lab.zone_traveling, 6.0)
 	await create_timer(0.8).timeout
-	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1910, 1030)) < 120.0, "Teleported to town, standing at the town waypoint")
+	var tdef: Dictionary = lab.zone["waypoints"][0]
+	var trc: Vector2 = lab.camera.unproject_position(lab.zone_px_to_world(float(tdef["centre_of"][0]), float(tdef["centre_of"][1])))
+	var tbc: Vector2 = lab.camera.unproject_position((lab.zone_waypoints[0]["node"].get_node("Rune") as Node3D).global_position)
+	check(trc.distance_to(tbc) < 10.0, "Town waypoint centre sits on the compass rose centre (%.1f px off)" % trc.distance_to(tbc))
+	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1905, 1027)) < 120.0, "Teleported to town, standing at the town waypoint")
 	# and back to the newly unlocked waypoint
 	_click_waypoint(lab)
 	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 6.0)

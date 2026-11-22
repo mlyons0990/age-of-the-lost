@@ -98,7 +98,7 @@
    936
   ]
  ],
- "ppm": 149.0,
+ "ppm": 107.0,
  "scale_note": "Z1 painting (Higgsfield 6.5 cr, job 5fdae107). Lamp post ~336 px = ~2.1 hero heights at ppm 149 (hero 160 px in painting px); planter ~72 px = knee height. Shown at 110/160 so the hero is ~110 px at 1080p.",
  "hero_px_1080": 110.0,
  "occluders": [
@@ -190,11 +190,19 @@
    "id": "crownsfall_town",
    "name": "Crownsfall Plaza",
    "at": [
-    1910,
-    880
-   ]
+    1905,
+    877
+   ],
+   "centre_of": [
+    1905,
+    862
+   ],
+   "size_px": 670
   }
  ],
+ "pitch": 31.0,
+ "camera_note": "Owner-approved 31-degree camera (2026-11-22): matches the paintings' ground angle (circles 0.51 tall/wide). ppm rescaled from 149.0 at 52 deg so the painting keeps its on-screen size; hero stays 110 px.",
+ "ground_ratio": 0.43,
  "tiles": [
   {
    "image": "crownsfall/t_0_0.png",

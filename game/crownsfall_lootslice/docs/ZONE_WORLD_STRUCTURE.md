@@ -73,5 +73,8 @@ Suggested next: Whisperwood top-right path (W2) and bottom-left path (W3); Crown
   and fallen columns, and still drawn in front when he stands before them.
 - Occluded-actor silhouette (blueprint CAM-04): `shaders/occluded_actor.gdshader` as material_overlay draws a soft gold
   silhouette of the hero only where scenery is in front of him. `xray_enabled` toggles it. Occlusion test 5/5.
-- Camera angle study (`tests/capture_camera_angle.gd`): 52 deg (current) vs 31 deg (the paintings' ground angle). Owner
-  decision pending; zone JSON `"pitch"` switches a zone's camera, everything else (scale, walk map, depth) follows.
+- Camera angle study (`tests/capture_camera_angle.gd`): 52 deg (current) vs 31 deg (the paintings' ground angle). **Owner approved 31 deg (B), 2026-11-22**: both
+  zones set `"pitch": 31`, ppm rescaled (Crownsfall 149->107, Whisperwood 88->63.2) so paintings keep their on-screen
+  size and the hero stays 110 px. New paintings are generated for this angle.
+- Per-zone `ground_ratio` (painted circle height/width: Crownsfall 0.43, Whisperwood 0.51) flattens waypoint art to
+  each painting; per-waypoint `size_px` and `centre_of`. Town waypoint centred on the compass rose (test-enforced).

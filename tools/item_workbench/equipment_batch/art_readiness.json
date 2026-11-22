@@ -1,0 +1,20 @@
+{
+  "commit": "ef263e4aab4e0e1c98e81cdf06ae9e76bc99b60b",
+  "catalog_sha256": "1e917e3331021d874414f80a4767af2cef224b43763439456b302fb96f907c2a",
+  "entries": 62,
+  "unique_ids": 62,
+  "tracked_textures": 61,
+  "runtime_enabled_in_catalog": 0,
+  "issues": [
+    {
+      "asset": "aotl_ranged_arquebus_002",
+      "finding": "no tracked runtime texture",
+      "catalog_status": "optional_unproduced_provider_rejected_mixed_sheet"
+    }
+  ],
+  "limits": [
+    "Catalog availability is not art approval",
+    "No inference that ground/equipped assets are absent from other branches",
+    "Does not promote candidates or change saves"
+  ]
+}

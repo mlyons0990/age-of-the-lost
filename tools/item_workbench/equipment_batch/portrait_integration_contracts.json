@@ -1,0 +1,86 @@
+{
+  "source_commit": "ef263e4aab4e0e1c98e81cdf06ae9e76bc99b60b",
+  "proposals": [
+    {
+      "game_id": "amulet",
+      "asset_id": "aotl_jewelry_amulet_002",
+      "cells": [
+        1,
+        1
+      ],
+      "source": "art/item_taxonomy/2026-11-12/runtime_items/aotl_jewelry_amulet_002.png",
+      "source_sha256": "09d462713ef24bb949d27f64727c764043cd38c3e2b4e311d1f075b2ca384f5e",
+      "status": "proposal_not_applied",
+      "review_needed": "actual inventory appearance and imported pixel checks; select exactly one staff candidate",
+      "equipment_destination": "amulet",
+      "retain_fallback": "res://assets/item_portraits/amulet.png",
+      "provenance_required": true,
+      "stats_or_save_changes": false
+    },
+    {
+      "game_id": "staff",
+      "asset_id": "aotl_two_hand_melee_war_staff_002",
+      "cells": [
+        2,
+        4
+      ],
+      "source": "art/item_taxonomy/2026-11-12/runtime_items/aotl_two_hand_melee_war_staff_002.png",
+      "source_sha256": "fd70a0fdb1b1c6e4503c71f11676a44a038f1174fe9541658e0131d64f7e5d75",
+      "status": "proposal_not_applied",
+      "review_needed": "actual inventory appearance and imported pixel checks; select exactly one staff candidate",
+      "equipment_destination": "weapon",
+      "retain_fallback": "res://assets/item_portraits/staff.png",
+      "provenance_required": true,
+      "stats_or_save_changes": false
+    },
+    {
+      "game_id": "staff",
+      "asset_id": "aotl_caster_mystic_staff_002",
+      "cells": [
+        2,
+        4
+      ],
+      "source": "art/item_taxonomy/2026-11-12/runtime_items/aotl_caster_mystic_staff_002.png",
+      "source_sha256": "6726e7b51a101c6047df44c0b31d9e589ad8996f870b779988c010c4c05244c0",
+      "status": "proposal_not_applied",
+      "review_needed": "actual inventory appearance and imported pixel checks; select exactly one staff candidate",
+      "equipment_destination": "weapon",
+      "retain_fallback": "res://assets/item_portraits/staff.png",
+      "provenance_required": true,
+      "stats_or_save_changes": false
+    },
+    {
+      "game_id": "wraps",
+      "asset_id": "aotl_armor_cloth_cloth_gloves_002",
+      "cells": [
+        2,
+        2
+      ],
+      "source": "art/item_taxonomy/2026-11-12/runtime_items/aotl_armor_cloth_cloth_gloves_002.png",
+      "source_sha256": "fb2a9d3e5ea3d1612ad9bebc74e7dd21b74c211f10d0fca12af669dc947fe0b7",
+      "status": "proposal_not_applied",
+      "review_needed": "actual inventory appearance and imported pixel checks; select exactly one staff candidate",
+      "equipment_destination": "gloves",
+      "retain_fallback": "res://assets/item_portraits/wraps.png",
+      "provenance_required": true,
+      "stats_or_save_changes": false
+    },
+    {
+      "game_id": "slippers",
+      "asset_id": "aotl_armor_cloth_cloth_boots_002",
+      "cells": [
+        2,
+        2
+      ],
+      "source": "art/item_taxonomy/2026-11-12/runtime_items/aotl_armor_cloth_cloth_boots_002.png",
+      "source_sha256": "b8abaf4e30de678666be93b45ca8e07226d90c40fd0bf53c226370a54677082f",
+      "status": "proposal_not_applied",
+      "review_needed": "actual inventory appearance and imported pixel checks; select exactly one staff candidate",
+      "equipment_destination": "boots",
+      "retain_fallback": "res://assets/item_portraits/slippers.png",
+      "provenance_required": true,
+      "stats_or_save_changes": false
+    }
+  ],
+  "excluded": "1x4 quarterstaff is incompatible with the 2x4 staff footprint"
+}

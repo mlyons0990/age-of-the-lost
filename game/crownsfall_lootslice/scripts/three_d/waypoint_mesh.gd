@@ -6,15 +6,15 @@ extends RefCounted
 ## light (upper left). Because it is real geometry it lies flat at any camera angle and needs no offsets.
 
 # radii as a fraction of the star-tip radius (measured from the top-down texture) and heights in metres per metre of
-# tip radius (low inlaid dais: flush with the painted floor, owner 11-22)
+# tip radius: stepped dais (reads 3D like the approved WP1-A art) seated on the floor with no gap
 const STAR_VALLEY := 0.62
 const DISC_R := 0.77
 const RIM_R := 0.535
 const BASIN_R := 0.455
-const H_STAR := 0.010
-const H_DISC := 0.022
-const H_RIM := 0.036
-const H_BASIN := 0.028
+const H_STAR := 0.020
+const H_DISC := 0.048
+const H_RIM := 0.080
+const H_BASIN := 0.060
 const SEG := 96
 const LIGHT := Vector3(-0.55, 0.0, -0.55)       # painted light from the upper left (screen), i.e. -x, -z
 
@@ -110,8 +110,8 @@ static func _wall(st: SurfaceTool, poly: PackedVector2Array, h0: float, h1: floa
 		var nrm := Vector2(edge.y, -edge.x).normalized()
 		if inward: nrm = -nrm
 		var lit := clampf(0.78 + 0.32 * nrm.dot(Vector2(LIGHT.x, LIGHT.z).normalized()), 0.45, 1.1)
-		var c := Color(base.r * lit, base.g * lit, base.b * lit)
-		var ct := Color("e2b866") * lit if gilt_top else c
+		var c := Color(base.r * lit * 0.62, base.g * lit * 0.62, base.b * lit * 0.62)   # shadowed foot of the step
+		var ct := (Color("f0c870") if gilt_top else Color(minf(base.r * 1.18, 1.0), minf(base.g * 1.18, 1.0), minf(base.b * 1.15, 1.0))) * lit   # lit lip
 		var A0 := Vector3(a.x * R, h0 * R, a.y * R); var B0 := Vector3(b.x * R, h0 * R, b.y * R)
 		var A1 := Vector3(a.x * R, h1 * R, a.y * R); var B1 := Vector3(b.x * R, h1 * R, b.y * R)
 		var tri := [[A0, c], [A1, ct], [B0, c], [B0, c], [A1, ct], [B1, ct]] if not inward else [[A0, c], [B0, c], [A1, ct], [B0, c], [B1, ct], [A1, ct]]

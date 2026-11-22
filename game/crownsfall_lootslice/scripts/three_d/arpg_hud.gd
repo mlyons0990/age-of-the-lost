@@ -10,7 +10,7 @@ const GOLD := Color("d9b46a")
 const GOLD_DIM := Color("8f7444")
 const IVORY := Color("efe6cf")
 const PANEL_BG := Color(0.05, 0.05, 0.07, 0.78)
-const LEVEL := 25
+var progress_label: Label
 
 const KEYBINDS := preload("res://scripts/three_d/keybinds.gd")
 const SAVE := preload("res://scripts/three_d/aotl_save.gd")   # loadouts: [loadout_<hero>] in user://aotl_save.cfg
@@ -159,6 +159,9 @@ func _panel(rect: Rect2, alpha := 0.78) -> Panel:
 	p.size = rect.size
 	p.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return p
+
+func _update_progress() -> void:
+	progress_label.text = lab.practice_progress.caption()
 
 func _build() -> void:
 	var root := Control.new()
@@ -402,13 +405,14 @@ func _build() -> void:
 	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	mp_label.position = Vector2(orb_r.x - 110 * f, label_y)
 	root.add_child(mp_label)
-	var lv := _label("Lv. %d" % LEVEL, int(12 * f), IVORY)
-	lv.size = Vector2(120 * f, xp_rect.size.y + 4 * f)
-	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	lv.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	lv.position = Vector2(xp_rect.get_center().x - 60 * f, xp_rect.position.y - 2 * f)
-	lv.z_index = 2
-	root.add_child(lv)
+	progress_label = _label(lab.practice_progress.caption(), int(12 * f), IVORY)
+	progress_label.size = Vector2(200 * f, xp_rect.size.y + 4 * f)
+	progress_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	progress_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	progress_label.position = Vector2(xp_rect.get_center().x - 100 * f, xp_rect.position.y - 2 * f)
+	progress_label.z_index = 2
+	root.add_child(progress_label)
+	lab.practice_progress.changed.connect(_update_progress)
 	picker = PopupMenu.new()
 	picker.id_pressed.connect(_on_pick)
 	add_child(picker)
@@ -913,7 +917,7 @@ func _draw_overlay() -> void:
 		if f > 0.0:
 			overlay.draw_rect(Rect2(r.position, Vector2(r.size.x, r.size.y * f)), Color(0, 0, 0, 0.62))
 	# XP fill inside the thin channel
-	var xp_frac := fposmod(0.42 + lab.kills * 0.07, 1.0)
+	var xp_frac: float = lab.practice_progress.fraction()
 	var fw: float = xp_rect.size.x * xp_frac
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y)), Color("6d35b8"))
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y * 0.5)), Color("8c55dc"))
@@ -1019,4 +1023,4 @@ func _draw_world() -> void:
 		_bar(hp + Vector2(-8, -5), 72, 3, player.mana / player.max_mana, Color("3f7fe0"))
 		world_overlay.draw_circle(hp + Vector2(-24, -11), 13.0, Color(0.06, 0.05, 0.05, 0.95))
 		world_overlay.draw_arc(hp + Vector2(-24, -11), 13.0, 0, TAU, 32, GOLD, 1.5)
-		world_overlay.draw_string(font, hp + Vector2(-33, -5), str(LEVEL), HORIZONTAL_ALIGNMENT_LEFT, -1, 15, IVORY)
+		world_overlay.draw_string(font, hp + Vector2(-33, -5), str(lab.practice_progress.level), HORIZONTAL_ALIGNMENT_LEFT, -1, 15, IVORY)

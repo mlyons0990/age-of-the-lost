@@ -1,0 +1,37 @@
+name: Hero practice XP integration
+on:
+  pull_request:
+    branches: [art/higgsfield-phase1-heroes-2026-11-20]
+    paths:
+      - 'game/crownsfall_lootslice/tools/verify_hero_labs.py'
+      - 'game/crownsfall_lootslice/scripts/three_d/practice_progress.gd'
+      - 'game/crownsfall_lootslice/tests/verify_practice_progress.gd'
+      - 'game/crownsfall_lootslice/tests/verify_arpg_hud.gd'
+permissions:
+  contents: read
+concurrency:
+  group: practice-xp-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  hero-scenes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: game/crownsfall_lootslice
+          lfs: true
+          persist-credentials: false
+      - uses: solarlabyrinth/action-setup-godot@v3
+        with:
+          version: 4.6.3-stable
+          export-templates: false
+      - name: Verify LFS assets, practice progression and both hero scenes
+        run: xvfb-run -a python3 game/crownsfall_lootslice/tools/verify_hero_labs.py --logs "$RUNNER_TEMP/hero-qa"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: hero-practice-qa-logs
+          path: ${{ runner.temp }}/hero-qa/*/*.log
+          if-no-files-found: ignore
+          retention-days: 7

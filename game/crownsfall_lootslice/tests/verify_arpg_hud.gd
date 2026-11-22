@@ -174,7 +174,9 @@ func _run() -> void:
 	check(a.global_position.distance_to(held) < 0.05, "WASD ignored in click-to-move")
 	var dummy = lab.targets[0]
 	dummy.global_position = a.global_position + Vector3(-7.5, 0, 0)
-	dummy.hp = dummy.max_hp
+	var mage_kills: int = lab.kills
+	var mage_xp: int = lab.practice_progress.xp
+	dummy.hp = 1
 	dummy.inactive_t = 0.0
 	await physics_frame
 	var aim: Vector2 = lab.camera.unproject_position(dummy.global_position + Vector3.UP)
@@ -182,10 +184,12 @@ func _run() -> void:
 	lab.handle_click(aim)
 	check(a.attack_target == dummy, "LMB on an enemy targets it")
 	var t0 := Time.get_ticks_msec()
-	while dummy.hp >= dummy.max_hp and Time.get_ticks_msec() - t0 < 5000: await physics_frame
+	while lab.kills == mage_kills and Time.get_ticks_msec() - t0 < 5000: await physics_frame
 	var gap := Vector2(dummy.global_position.x - a.global_position.x, dummy.global_position.z - a.global_position.z).length()
 	check(dummy.hp < dummy.max_hp, "Hero walks into range and attacks the clicked enemy (cast from %.1f m)" % gap)
 	check(gap <= a.primary_range() + 0.3, "Attack starts only once in range (%.1f <= %.1f m)" % [gap, a.primary_range()])
+	check(lab.kills == mage_kills + 1 and lab.practice_progress.xp > mage_xp, "Mage click attack defeats a target and earns practice XP")
+	check(lab.hud.progress_label.text == lab.practice_progress.caption(), "Mage XP caption updates on contact")
 	while a.attack_t > 0.0 or a.attack_cd > 0.0: await physics_frame
 	var stand: Vector3 = a.global_position
 	lab.handle_click(lab.camera.unproject_position(stand + Vector3(4, 0, 0)), true)
@@ -203,13 +207,17 @@ func _run() -> void:
 	var kp = k.player
 	var kd = k.targets[1]
 	kd.global_position = kp.global_position + Vector3(4.0, 0, 0)
-	kd.hp = kd.max_hp
+	var knight_kills: int = k.kills
+	var knight_xp: int = k.practice_progress.xp
+	kd.hp = 1
 	await physics_frame
 	k.handle_click(k.camera.unproject_position(kd.global_position + Vector3.UP))
 	var k0 := Time.get_ticks_msec()
-	while kd.hp >= kd.max_hp and Time.get_ticks_msec() - k0 < 5000: await physics_frame
+	while k.kills == knight_kills and Time.get_ticks_msec() - k0 < 5000: await physics_frame
 	var kgap := Vector2(kd.global_position.x - kp.global_position.x, kd.global_position.z - kp.global_position.z).length()
 	check(kd.hp < kd.max_hp and kgap <= kp.MELEE_RANGE + 0.4, "Knight: click an enemy -> walks up and slashes it (%.1f m)" % kgap)
+	check(k.kills == knight_kills + 1 and k.practice_progress.xp > knight_xp, "Knight click attack defeats a target and earns practice XP")
+	check(k.hud.progress_label.text == k.practice_progress.caption(), "Knight XP caption updates on contact")
 	k.queue_free()
 	await process_frame
 	var legacy = load("res://scripts/three_d/rig_lab.gd").new()

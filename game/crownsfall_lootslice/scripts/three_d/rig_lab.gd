@@ -37,6 +37,7 @@ var targets: Array = []
 var info: Label
 var hpbar: ProgressBar
 var kills := 0
+var practice_progress := preload("res://scripts/three_d/practice_progress.gd").new()
 var mode := "3D articulated rig lab"
 @export var use_r50_fullbody_slash_candidate := false
 @export var use_r52_rigid_armor_candidate := false
@@ -1217,7 +1218,12 @@ func _physics_body() -> void:
 		var dead: bool = target.hit(TARGETING.damage_for(player.attack_type))
 		effects.sparks(target.global_position + Vector3.UP, Color("ffca70"), 12)
 		if dead:
-			kills += 1
+			_record_defeat()
+
+func _record_defeat() -> void:
+	kills += 1
+	if arpg_hud:
+		practice_progress.award_defeat()
 
 func _on_hp(current: float, maximum: float) -> void:
 	if hpbar == null: return
@@ -1257,7 +1263,7 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 				sweep_hit_instances[target.get_instance_id()] = true
 			var dead: bool = target.hit(TARGETING.damage_for(kind))
 			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
-			if dead: kills += 1
+			if dead: _record_defeat()
 
 func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")

@@ -1,0 +1,114 @@
+{
+  "checks": 67,
+  "engine": {
+    "build": "official",
+    "hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+    "hex": 263683,
+    "major": 4,
+    "minor": 6,
+    "patch": 3,
+    "status": "stable",
+    "string": "4.6.3-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "records": [
+    {
+      "height": 64,
+      "id": "amulet",
+      "path": "res://assets/item_portraits/amulet.png",
+      "width": 64
+    },
+    {
+      "height": 192,
+      "id": "armor",
+      "path": "res://assets/art_expansion02/portraits/armor.png",
+      "width": 128
+    },
+    {
+      "height": 64,
+      "id": "belt",
+      "path": "res://assets/art_expansion02/portraits/belt.png",
+      "width": 128
+    },
+    {
+      "height": 128,
+      "id": "boots",
+      "path": "res://assets/art_expansion02/portraits/boots.png",
+      "width": 128
+    },
+    {
+      "height": 128,
+      "id": "focus",
+      "path": "res://assets/art_expansion02/portraits/focus.png",
+      "width": 64
+    },
+    {
+      "height": 128,
+      "id": "gloves",
+      "path": "res://assets/art_expansion02/portraits/gloves.png",
+      "width": 128
+    },
+    {
+      "height": 128,
+      "id": "helm",
+      "path": "res://assets/art_expansion02/portraits/helm.png",
+      "width": 128
+    },
+    {
+      "height": 128,
+      "id": "hood",
+      "path": "res://assets/art_expansion02/portraits/hood.png",
+      "width": 128
+    },
+    {
+      "height": 128,
+      "id": "offhand",
+      "path": "res://assets/art_expansion02/portraits/offhand.png",
+      "width": 128
+    },
+    {
+      "height": 64,
+      "id": "ring",
+      "path": "res://assets/art_expansion02/portraits/ring.png",
+      "width": 64
+    },
+    {
+      "height": 192,
+      "id": "robe",
+      "path": "res://assets/art_expansion02/portraits/robe.png",
+      "width": 128
+    },
+    {
+      "height": 128,
+      "id": "slippers",
+      "path": "res://assets/item_portraits/slippers.png",
+      "width": 128
+    },
+    {
+      "height": 256,
+      "id": "staff",
+      "path": "res://assets/item_portraits/staff.png",
+      "width": 128
+    },
+    {
+      "height": 128,
+      "id": "wand",
+      "path": "res://assets/art_expansion02/portraits/wand.png",
+      "width": 64
+    },
+    {
+      "height": 192,
+      "id": "weapon",
+      "path": "res://assets/art_expansion02/portraits/weapon.png",
+      "width": 64
+    },
+    {
+      "height": 128,
+      "id": "wraps",
+      "path": "res://assets/item_portraits/wraps.png",
+      "width": 128
+    }
+  ],
+  "scope": "Headless import and real Art.inventory_portrait calls; no visual approval or full game input tests"
+}

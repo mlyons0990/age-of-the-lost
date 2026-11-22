@@ -117,6 +117,17 @@ sign-off → commit + Drive copy.
   Mock-up kit is cut from art we own (placeholder quality); real kit art replaces files one for one.
 - Lessons that led here (E1 outpaint, path connector, master paste, master upscale): separate AI images cannot be made
   to continue paths and trees exactly, and one image big enough for a zone cannot hold game-level detail.
+- Kit proof (2026-11-22, 30 credits K1-K7, owner approved): first real kit = `assets/kit/forest_hf` (3 seamless top-down
+  ground textures + 5 trees, 12 undergrowth, 8 decals, 8 rocks), cut and measured by `tools/build_forest_kit.py`
+  (foot point, true size in metres via per-piece `ppm`, footprint). Ground is sampled in world metres (foreshortened by
+  the camera like the props). Look rules learned building it, now in the builder: (1) baked light map - each tree casts
+  its own canopy silhouette as shade, plus an overhead canopy field stamped from the same silhouettes (leaf-shaped
+  dapple, as in W1), contact shadows, sun pools; (2) props are drawn in two passes (opaque core writes depth for
+  occlusion, blended fringe keeps the painted soft edge); (3) decals are flat, blended and lit by the light map;
+  (4) ground mist is colour on the ground and on prop bases, never a sheet (a sheet cuts lines across roots);
+  (5) undergrowth is planted along path edges and in rings round tree bases, never on paving; (6) trees frame the
+  screen with trunks at the top edge and canopies over the bottom corners. Proof zone `whisperwood_proof`,
+  `tests/verify_kit_proof.gd` 9/9, side-by-side with W1 in `game/crownsfall_lootslice/docs/kit_proof/`.
 
 ## 3. Checklist as a tracked backlog
 

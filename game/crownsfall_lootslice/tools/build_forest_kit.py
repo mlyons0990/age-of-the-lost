@@ -1,0 +1,111 @@
+"""Build the Whisperwood forest kit from the Higgsfield kit art (K1-K7, 2026-11-22). Free, local, deterministic.
+
+Ground (K1): top-down seamless 2048 tiles, copied as-is (verified seamless). Each gets its real-world repeat in metres.
+Props (K2-K7): transparent PNGs painted at the game camera. Single props are cropped to their alpha; sheets are split
+into pieces by connected components. For every piece we record:
+  foot      image px where it meets the ground (trees: trunk base; bushes/rocks: bottom-centre contact; decals: centre)
+  ppm       image px per metre, from the piece's real size, so build_kit_zone can place it at true scale in any zone
+  footprint collision radius in image px (0 = walk through: undergrowth, decals)
+  occludes  stands up and hides actors behind it
+  kind      tree | bush | rock | decal
+usage: python tools/build_forest_kit.py <raw_dir> <kit_out_dir>"""
+import json, math, os, shutil, sys
+import numpy as np, cv2
+from PIL import Image
+
+RAW, OUT = sys.argv[1], sys.argv[2]
+COS = math.cos(math.radians(31.0))
+os.makedirs(OUT + "/props", exist_ok=True); os.makedirs(OUT + "/ground", exist_ok=True)
+cat = {"version": 2, "ground": {}, "props": {}}
+
+# ground: repeat size in metres (measured from the stones / tufts against the W1 painting: W1 flagstones ~1.1 m)
+for name, src, metres in (("grass", "k1_grass", 7.0), ("dirt", "k1_dirt", 6.0), ("flagstone", "k1_flag", 13.0)):
+    shutil.copy(f"{RAW}/{src}.png", f"{OUT}/ground/{name}.png")
+    cat["ground"][name] = {"image": f"ground/{name}.png", "tile_m": metres}
+
+def load(n):
+    return np.asarray(Image.open(f"{RAW}/{n}.png").convert("RGBA"))
+
+def clean_alpha(rgba):
+    """Kill faint haze (alpha < 8) and un-premultiply edge fringes so soft edges don't carry a dark/pink rim."""
+    a = rgba[..., 3].astype(np.float32)
+    a[a < 8] = 0
+    out = rgba.copy(); out[..., 3] = a.astype(np.uint8)
+    return out
+
+def save(name, rgba, kind, foot, metres, occludes, footprint_frac=0.0, measure="height"):
+    ys, xs = np.where(rgba[..., 3] > 8)
+    x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
+    pad = 4
+    x0, y0 = max(0, x0 - pad), max(0, y0 - pad); x1, y1 = min(rgba.shape[1], x1 + pad), min(rgba.shape[0], y1 + pad)
+    crop = rgba[y0:y1, x0:x1]
+    fx, fy = foot[0] - x0, foot[1] - y0
+    if measure == "height":      # upright: foot-to-top rows = H * cos(pitch) metres on screen
+        ppm = (fy - (ys.min() - y0)) / (metres * COS)
+    else:                        # flat: width in metres
+        ppm = (xs.max() - xs.min()) / metres
+    Image.fromarray(crop, "RGBA").save(f"{OUT}/props/{name}.png", optimize=True)
+    cat["props"][name] = {"kind": kind, "image": f"props/{name}.png", "size": [int(crop.shape[1]), int(crop.shape[0])],
+                          "foot": [int(round(fx)), int(round(fy))], "ppm": round(float(ppm), 2),
+                          "footprint_px": int(round(footprint_frac)), "occludes": occludes}
+    print(f"{name:14s} {kind:5s} {crop.shape[1]}x{crop.shape[0]} foot ({fx:.0f},{fy:.0f}) ppm {ppm:.1f}")
+
+def tree(name, src, metres):
+    rgba = clean_alpha(load(src)); a = rgba[..., 3] > 128
+    ys, xs = np.where(a); bot = ys.max(); top = ys.min(); h = bot - top
+    # trunk: the narrowest solid band between 55% and 85% of the height (below the canopy, above the root flare)
+    best = None
+    for y in range(int(top + 0.55 * h), int(top + 0.85 * h)):
+        row = np.where(a[y])[0]
+        if len(row) < 10: continue
+        # widest contiguous run that contains the row's median (the trunk, not stray leaves)
+        runs = np.split(row, np.where(np.diff(row) > 3)[0] + 1)
+        run = max(runs, key=len)
+        if best is None or len(run) < best[1]: best = (y, len(run), run.mean())
+    trunk_w, trunk_cx = best[1], best[2]
+    # foot: where the trunk meets the ground = centre of the root flare, ~1.3 trunk widths above the lowest root tip
+    fy = bot - 0.55 * trunk_w
+    save(name, rgba, "tree", (trunk_cx, fy), metres, True, footprint_frac=trunk_w * 0.62)
+
+tree("oak_a", "k2_oak_a", 13.0)
+tree("oak_b", "k2_oak_b", 13.0)
+tree("silver", "k3_silver_a", 11.0)          # silver B has a halo baked into its alpha: not used
+tree("gnarled_a", "k4_gnarled_a", 12.0)
+tree("gnarled_b", "k4_gnarled_b", 12.0)
+
+def sheet(prefix, src, kind, spec, merge=25, min_area=4000):
+    """Split a sheet into pieces (reading order); spec[i] = (name, metres, occludes, footprint_frac_of_width, measure)."""
+    rgba = clean_alpha(load(src)); a = (rgba[..., 3] > 20).astype(np.uint8)
+    m = cv2.dilate(a, np.ones((merge, merge), np.uint8))
+    n, lab, st, cen = cv2.connectedComponentsWithStats(m)
+    comps = [i for i in range(1, n) if st[i, 4] >= min_area]
+    # reading order: row bands then x
+    comps.sort(key=lambda i: (round(cen[i][1] / 400), cen[i][0]))
+    if len(comps) != len(spec):
+        raise SystemExit(f"{src}: found {len(comps)} pieces, expected {len(spec)}")
+    for i, (nm, metres, occ, fp, measure) in zip(comps, spec):
+        if nm is None: continue
+        piece = rgba.copy(); piece[..., 3] = np.where(lab == i, piece[..., 3], 0)
+        ys, xs = np.where(piece[..., 3] > 128)
+        w = xs.max() - xs.min(); h = ys.max() - ys.min()
+        if kind == "decal":
+            foot = (xs.mean(), ys.mean())
+        else:  # contact: bottom-centre, lifted by the depth of the contact shadow / base
+            foot = (xs.min() + w * 0.5, ys.max() - h * (0.10 if kind == "bush" else 0.14))
+        save(f"{prefix}{nm}", piece, kind, foot, metres, occ, footprint_frac=w * fp, measure=measure)
+
+UNDER = [("bush_round", 1.4, True, 0, "height"), ("shrub_white", 0.9, False, 0, "height"), ("fern", 1.0, False, 0, "height"),
+         ("lavender", 0.8, False, 0, "height"), ("grass_tall", 1.1, False, 0, "height"), ("bush_yellow", 0.9, False, 0, "height")]
+sheet("a_", "k5_under_a", "bush", UNDER)
+sheet("b_", "k5_under_b", "bush", UNDER)
+DEC = [("moss", 1.6, False, 0, "width"), ("leaves", 1.4, False, 0, "width"), ("roots", 1.6, False, 0, "width"),
+       ("pebbles", 0.8, False, 0, "width"), ("edgestones", 1.5, False, 0, "width"), ("clover", 1.2, False, 0, "width"),
+       ("dirt", 1.6, False, 0, "width"), ("mushrooms", 0.6, False, 0, "width")]
+sheet("a_", "k6_decals_a", "decal", DEC, merge=15, min_area=1500)
+# decal sheet B: the leaf scatter splits into loose fragments; sheet A covers all 8 decal types
+ROCKS = [("rock_flat", 2.6, True, 0.36, "width"), ("rock_tall", 1.8, True, 0.36, "width"),
+         ("rock_pair", 2.4, True, 0.36, "width"), ("rock_small", 0.9, True, 0.36, "width")]
+sheet("a_", "k7_rocks_a", "rock", ROCKS)
+sheet("b_", "k7_rocks_b", "rock", ROCKS)
+json.dump(cat, open(f"{OUT}/catalog.json", "w"), indent=1)
+print("kit:", OUT, len(cat["props"]), "props")

@@ -1,0 +1,514 @@
+{
+ "version": 2,
+ "ground": {
+  "grass": {
+   "image": "ground/grass.png",
+   "tile_m": 7.0
+  },
+  "dirt": {
+   "image": "ground/dirt.png",
+   "tile_m": 6.0
+  },
+  "flagstone": {
+   "image": "ground/flagstone.png",
+   "tile_m": 13.0
+  }
+ },
+ "props": {
+  "oak_a": {
+   "kind": "tree",
+   "image": "props/oak_a.png",
+   "size": [
+    2027,
+    1925
+   ],
+   "foot": [
+    1018,
+    1709
+   ],
+   "ppm": 153.02,
+   "footprint_px": 234,
+   "occludes": true
+  },
+  "oak_b": {
+   "kind": "tree",
+   "image": "props/oak_b.png",
+   "size": [
+    2028,
+    1987
+   ],
+   "foot": [
+    1016,
+    1750
+   ],
+   "ppm": 156.67,
+   "footprint_px": 238,
+   "occludes": true
+  },
+  "silver": {
+   "kind": "tree",
+   "image": "props/silver.png",
+   "size": [
+    1636,
+    1979
+   ],
+   "foot": [
+    801,
+    1925
+   ],
+   "ppm": 203.77,
+   "footprint_px": 51,
+   "occludes": true
+  },
+  "gnarled_a": {
+   "kind": "tree",
+   "image": "props/gnarled_a.png",
+   "size": [
+    1930,
+    1922
+   ],
+   "foot": [
+    1146,
+    1690
+   ],
+   "ppm": 163.86,
+   "footprint_px": 254,
+   "occludes": true
+  },
+  "gnarled_b": {
+   "kind": "tree",
+   "image": "props/gnarled_b.png",
+   "size": [
+    1913,
+    1987
+   ],
+   "foot": [
+    1071,
+    1756
+   ],
+   "ppm": 170.34,
+   "footprint_px": 252,
+   "occludes": true
+  },
+  "a_bush_round": {
+   "kind": "bush",
+   "image": "props/a_bush_round.png",
+   "size": [
+    562,
+    502
+   ],
+   "foot": [
+    280,
+    440
+   ],
+   "ppm": 363.07,
+   "footprint_px": 0,
+   "occludes": true
+  },
+  "a_shrub_white": {
+   "kind": "bush",
+   "image": "props/a_shrub_white.png",
+   "size": [
+    607,
+    379
+   ],
+   "foot": [
+    303,
+    334
+   ],
+   "ppm": 428.28,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_fern": {
+   "kind": "bush",
+   "image": "props/a_fern.png",
+   "size": [
+    634,
+    437
+   ],
+   "foot": [
+    317,
+    389
+   ],
+   "ppm": 448.69,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_lavender": {
+   "kind": "bush",
+   "image": "props/a_lavender.png",
+   "size": [
+    624,
+    516
+   ],
+   "foot": [
+    312,
+    456
+   ],
+   "ppm": 659.0,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_grass_tall": {
+   "kind": "bush",
+   "image": "props/a_grass_tall.png",
+   "size": [
+    584,
+    470
+   ],
+   "foot": [
+    291,
+    412
+   ],
+   "ppm": 432.5,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_bush_yellow": {
+   "kind": "bush",
+   "image": "props/a_bush_yellow.png",
+   "size": [
+    572,
+    432
+   ],
+   "foot": [
+    286,
+    374
+   ],
+   "ppm": 479.62,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "b_bush_round": {
+   "kind": "bush",
+   "image": "props/b_bush_round.png",
+   "size": [
+    575,
+    493
+   ],
+   "foot": [
+    287,
+    435
+   ],
+   "ppm": 359.32,
+   "footprint_px": 0,
+   "occludes": true
+  },
+  "b_shrub_white": {
+   "kind": "bush",
+   "image": "props/b_shrub_white.png",
+   "size": [
+    618,
+    401
+   ],
+   "foot": [
+    308,
+    353
+   ],
+   "ppm": 452.78,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "b_fern": {
+   "kind": "bush",
+   "image": "props/b_fern.png",
+   "size": [
+    643,
+    446
+   ],
+   "foot": [
+    320,
+    393
+   ],
+   "ppm": 453.7,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "b_lavender": {
+   "kind": "bush",
+   "image": "props/b_lavender.png",
+   "size": [
+    629,
+    542
+   ],
+   "foot": [
+    314,
+    478
+   ],
+   "ppm": 690.65,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "b_grass_tall": {
+   "kind": "bush",
+   "image": "props/b_grass_tall.png",
+   "size": [
+    587,
+    467
+   ],
+   "foot": [
+    292,
+    411
+   ],
+   "ppm": 431.55,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "b_bush_yellow": {
+   "kind": "bush",
+   "image": "props/b_bush_yellow.png",
+   "size": [
+    545,
+    486
+   ],
+   "foot": [
+    272,
+    428
+   ],
+   "ppm": 549.61,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_moss": {
+   "kind": "decal",
+   "image": "props/a_moss.png",
+   "size": [
+    497,
+    391
+   ],
+   "foot": [
+    245,
+    203
+   ],
+   "ppm": 305.0,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_leaves": {
+   "kind": "decal",
+   "image": "props/a_leaves.png",
+   "size": [
+    452,
+    345
+   ],
+   "foot": [
+    213,
+    172
+   ],
+   "ppm": 316.43,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_roots": {
+   "kind": "decal",
+   "image": "props/a_roots.png",
+   "size": [
+    543,
+    374
+   ],
+   "foot": [
+    282,
+    189
+   ],
+   "ppm": 333.75,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_pebbles": {
+   "kind": "decal",
+   "image": "props/a_pebbles.png",
+   "size": [
+    354,
+    261
+   ],
+   "foot": [
+    183,
+    132
+   ],
+   "ppm": 431.25,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_edgestones": {
+   "kind": "decal",
+   "image": "props/a_edgestones.png",
+   "size": [
+    443,
+    371
+   ],
+   "foot": [
+    210,
+    177
+   ],
+   "ppm": 289.33,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_clover": {
+   "kind": "decal",
+   "image": "props/a_clover.png",
+   "size": [
+    469,
+    380
+   ],
+   "foot": [
+    244,
+    194
+   ],
+   "ppm": 383.33,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_dirt": {
+   "kind": "decal",
+   "image": "props/a_dirt.png",
+   "size": [
+    509,
+    370
+   ],
+   "foot": [
+    262,
+    183
+   ],
+   "ppm": 312.5,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_mushrooms": {
+   "kind": "decal",
+   "image": "props/a_mushrooms.png",
+   "size": [
+    431,
+    308
+   ],
+   "foot": [
+    220,
+    156
+   ],
+   "ppm": 703.33,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "a_rock_flat": {
+   "kind": "rock",
+   "image": "props/a_rock_flat.png",
+   "size": [
+    1118,
+    669
+   ],
+   "foot": [
+    559,
+    570
+   ],
+   "ppm": 426.54,
+   "footprint_px": 398,
+   "occludes": true
+  },
+  "a_rock_tall": {
+   "kind": "rock",
+   "image": "props/a_rock_tall.png",
+   "size": [
+    710,
+    749
+   ],
+   "foot": [
+    355,
+    640
+   ],
+   "ppm": 389.44,
+   "footprint_px": 251,
+   "occludes": true
+  },
+  "a_rock_pair": {
+   "kind": "rock",
+   "image": "props/a_rock_pair.png",
+   "size": [
+    1008,
+    570
+   ],
+   "foot": [
+    504,
+    484
+   ],
+   "ppm": 416.25,
+   "footprint_px": 359,
+   "occludes": true
+  },
+  "a_rock_small": {
+   "kind": "rock",
+   "image": "props/a_rock_small.png",
+   "size": [
+    484,
+    281
+   ],
+   "foot": [
+    241,
+    236
+   ],
+   "ppm": 527.78,
+   "footprint_px": 170,
+   "occludes": true
+  },
+  "b_rock_flat": {
+   "kind": "rock",
+   "image": "props/b_rock_flat.png",
+   "size": [
+    1088,
+    619
+   ],
+   "foot": [
+    544,
+    527
+   ],
+   "ppm": 415.0,
+   "footprint_px": 388,
+   "occludes": true
+  },
+  "b_rock_tall": {
+   "kind": "rock",
+   "image": "props/b_rock_tall.png",
+   "size": [
+    701,
+    811
+   ],
+   "foot": [
+    346,
+    693
+   ],
+   "ppm": 384.44,
+   "footprint_px": 245,
+   "occludes": true
+  },
+  "b_rock_pair": {
+   "kind": "rock",
+   "image": "props/b_rock_pair.png",
+   "size": [
+    912,
+    549
+   ],
+   "foot": [
+    456,
+    467
+   ],
+   "ppm": 376.25,
+   "footprint_px": 324,
+   "occludes": true
+  },
+  "b_rock_small": {
+   "kind": "rock",
+   "image": "props/b_rock_small.png",
+   "size": [
+    513,
+    283
+   ],
+   "foot": [
+    254,
+    239
+   ],
+   "ppm": 560.0,
+   "footprint_px": 179,
+   "occludes": true
+  }
+ }
+}

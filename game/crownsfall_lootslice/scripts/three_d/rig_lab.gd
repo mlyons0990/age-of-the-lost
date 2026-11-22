@@ -176,9 +176,12 @@ func _ready() -> void:
 		player.global_position = zone_px_to_world(float(sp[0]), float(sp[1])) + Vector3.UP * 0.08
 		zone_stream(true)
 		apply_xray(player)
-		for i in mini(targets.size(), zone["targets"].size()):
-			var tp: Array = zone["targets"][i]
-			targets[i].global_position = zone_px_to_world(float(tp[0]), float(tp[1]))
+		var tps0: Array = zone.get("targets", [])
+		for i in targets.size():          # a zone places as many dummies as it lists; the rest are parked
+			if i < tps0.size():
+				targets[i].global_position = zone_px_to_world(float(tps0[i][0]), float(tps0[i][1]))
+			else:
+				targets[i].global_position = Vector3(0, -50, 0); targets[i].visible = false
 	if arpg_hud:
 		hud = ARPG_HUD.new()
 		hud.name = "ArpgHud"
@@ -715,15 +718,29 @@ func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
 	gm.set_shader_parameter("dirt_tex", load(kit + "/" + String(gr["dirt"]["image"])))
 	gm.set_shader_parameter("splat", load("res://assets/zones/" + String(zone["splat"])))
 	gm.set_shader_parameter("zone_px", Vector2(float(sz[0]), float(sz[1])))
-	gm.set_shader_parameter("base_tile", float(gr[zone.get("ground_base", "grass")]["tile_px"]))
-	gm.set_shader_parameter("path_tile", float(gr["flagstone"]["tile_px"]))
-	gm.set_shader_parameter("dirt_tile", float(gr["dirt"]["tile_px"]))
+	var world_space: bool = gr["flagstone"].has("tile_m")      # v2 kits: top-down textures repeating in metres
+	var tk := "tile_m" if world_space else "tile_px"
+	gm.set_shader_parameter("world_space", world_space)
+	gm.set_shader_parameter("ppm", ZONE_PPM)
+	gm.set_shader_parameter("sin_pitch", sp_)
+	gm.set_shader_parameter("base_tile", float(gr[zone.get("ground_base", "grass")][tk]))
+	gm.set_shader_parameter("path_tile", float(gr["flagstone"][tk]))
+	gm.set_shader_parameter("dirt_tile", float(gr["dirt"][tk]))
+	var light_tex: Texture2D = null
+	if zone.has("light"):
+		light_tex = load("res://assets/zones/" + String(zone["light"]))
+		gm.set_shader_parameter("light_map", light_tex)
+		gm.set_shader_parameter("use_light", true)
+	var fx_tex: Texture2D = load("res://assets/zones/" + String(zone["fx"])) if zone.has("fx") else null
+	if fx_tex != null: gm.set_shader_parameter("fx_map", fx_tex)
 	gm.render_priority = -2
 	g.material_override = gm
 	g.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	holder.add_child(g)
 	var props := Node3D.new(); props.name = "KitProps"; holder.add_child(props)
 	var shader: Shader = load("res://shaders/kit_prop.gdshader")
+	var fringe_shader: Shader = load("res://shaders/kit_prop_fringe.gdshader")
+	var decal_shader: Shader = load("res://shaders/kit_decal.gdshader")
 	var tex_cache := {}
 	for p in zone["props"]:
 		var c: Dictionary = cat["props"][p["prop"]]
@@ -738,18 +755,47 @@ func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
 		node.position = foot + Vector3((iw * 0.5 - fx * scale_) / ZONE_PPM, 0.02 if c["kind"] == "setpiece" else 0.03, (ih * 0.5 - fy * scale_) / ZONE_PPM / sp_)
 		var key := String(c["image"])
 		if not tex_cache.has(key): tex_cache[key] = load(kit + "/" + key)
-		var m := ShaderMaterial.new(); m.shader = shader
-		m.set_shader_parameter("tex", tex_cache[key])
-		m.set_shader_parameter("foot_v", fy / float(c["size"][1]))
-		m.set_shader_parameter("tex_rows", ih)
-		m.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
-		m.set_shader_parameter("occludes", bool(c["occludes"]))
-		m.set_shader_parameter("flip", bool(p["flip"]))
-		m.render_priority = -1 if c["kind"] == "setpiece" else 0
-		node.material_override = m
+		if c["kind"] == "decal":           # flat: blended onto the ground, lit by the light map, never occludes
+			node.position.y = 0.012
+			var dm := ShaderMaterial.new(); dm.shader = decal_shader
+			dm.set_shader_parameter("tex", tex_cache[key])
+			dm.set_shader_parameter("flip", bool(p["flip"]))
+			dm.set_shader_parameter("zone_world", Vector2(w, d))
+			if light_tex != null: dm.set_shader_parameter("light_map", light_tex)
+			if fx_tex != null: dm.set_shader_parameter("fx_map", fx_tex)
+			dm.render_priority = -1
+			node.material_override = dm
+		else:
+			var m := ShaderMaterial.new(); m.shader = shader
+			var fr := ShaderMaterial.new(); fr.shader = fringe_shader      # soft painted edge, blended
+			for mm in [m, fr]:
+				mm.set_shader_parameter("tex", tex_cache[key])
+				mm.set_shader_parameter("foot_v", fy / float(c["size"][1]))
+				mm.set_shader_parameter("tex_rows", ih)
+				mm.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
+				mm.set_shader_parameter("occludes", bool(c["occludes"]))
+				mm.set_shader_parameter("flip", bool(p["flip"]))
+				mm.set_shader_parameter("tint", float(p.get("tint", 1.0)))
+				mm.set_shader_parameter("mist", float(p.get("mist", 0.0)))
+				mm.set_shader_parameter("mist_rows", 0.3 if c["kind"] == "tree" else 2.0)
+			m.render_priority = -1 if c["kind"] == "setpiece" else 0
+			fr.render_priority = m.render_priority
+			m.next_pass = fr
+			node.material_override = m
 		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		node.name = "%s_%d" % [p["prop"], props.get_child_count()]
 		props.add_child(node)
+	if fx_tex != null:                     # light shafts over everything (ground mist is in the ground/prop colour)
+		var fxn := MeshInstance3D.new(); fxn.name = "KitShafts"
+		var fpm := PlaneMesh.new(); fpm.size = Vector2(w, d); fxn.mesh = fpm
+		fxn.position.y = 0.06
+		var fm := ShaderMaterial.new(); fm.shader = load("res://shaders/kit_shafts.gdshader")
+		fm.set_shader_parameter("fx_map", fx_tex)
+		fm.set_shader_parameter("zone_px", Vector2(float(sz[0]), float(sz[1])))
+		fm.render_priority = 6
+		fxn.material_override = fm
+		fxn.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		holder.add_child(fxn)
 	_build_kit_nav(w, d)
 
 ## Grid navigation for kit zones: every prop footprint, set-piece blocker and pond is rasterised as solid cells.

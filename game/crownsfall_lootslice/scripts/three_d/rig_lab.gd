@@ -60,6 +60,10 @@ var waypoint_pending := ""            # waypoint the player clicked; its window 
 var waypoint_panel: CanvasLayer
 signal waypoint_unlocked(id: String)
 var zone_block: Array = []            # blocked polygons (world xz) cut out of the walkable area
+var zone_nav_nodes := PackedVector2Array()  # pathfinding: corner points (world xz) just off every obstacle corner
+var zone_nav_links: Array = []        # per node: Array of [neighbour index, distance] with a clear straight line
+var zone_route := PackedVector2Array() # remaining corners of the current click-to-move route
+const NAV_CLEARANCE := 0.45           # metres kept between the hero's path and walls / pillars / water
 var zone_tiles: Array = []            # {node, mat, rect (zone px), image, depth, state 0=unloaded 1=loading 2=shown}
 signal zone_changed(name: String)
 var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
@@ -388,6 +392,7 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	for wdef in zone.get("waypoints", []):
 		var wp_pos := zone_px_to_world(float(wdef["at"][0]), float(wdef["at"][1]))
 		zone_waypoints.append({"id": wdef["id"], "name": wdef["name"], "pos": wp_pos, "node": _build_waypoint(decor, wp_pos, String(wdef["id"]))})
+	_build_zone_nav()
 	zone_exit_armed = false
 
 ## Zone-exit portal: blue/gold light curtain standing on the exit, a glow on the ground, rising sparks and the
@@ -595,6 +600,111 @@ func zone_tiles_shown() -> int:
 		if t["state"] == 2: n += 1
 	return n
 
+# ---------- pathfinding (visibility graph over the walk map) ----------
+## Clear straight line on walkable ground, keeping NAV_CLEARANCE from edges (sampled every 0.2 m).
+func zone_line_clear(a: Vector2, b: Vector2) -> bool:
+	var n := int(ceil(a.distance_to(b) / 0.2)) + 1
+	for i in n + 1:
+		var p := a.lerp(b, float(i) / float(n))
+		if not _walk_xz(p, NAV_CLEARANCE * 0.8): return false
+	return true
+
+func _walk_xz(p: Vector2, clearance := 0.0) -> bool:
+	if not zone_walkable(Vector3(p.x, 0, p.y)): return false
+	if clearance <= 0.0: return true
+	for k in 8:
+		var o := Vector2.RIGHT.rotated(TAU * float(k) / 8.0) * clearance
+		if not zone_walkable(Vector3(p.x + o.x, 0, p.y + o.y)): return false
+	return true
+
+func _build_zone_nav() -> void:
+	zone_nav_nodes = PackedVector2Array(); zone_nav_links.clear(); zone_route = PackedVector2Array()
+	var polys: Array = []
+	polys.append_array(zone_walk); polys.append_array(zone_block)
+	for poly in polys:
+		var m: int = (poly as PackedVector2Array).size()
+		for i in m:
+			var v: Vector2 = poly[i]
+			var e1: Vector2 = (v - poly[(i - 1 + m) % m]).normalized()
+			var e2: Vector2 = (poly[(i + 1) % m] - v).normalized()
+			var bis := (e1 - e2)
+			if bis.length() < 0.01: bis = Vector2(-e1.y, e1.x)
+			bis = bis.normalized()
+			for sgn in [1.0, -1.0]:        # step off the corner to whichever side is walkable
+				var c: Vector2 = v + bis * sgn * (NAV_CLEARANCE * 1.6)
+				if _walk_xz(c, NAV_CLEARANCE * 0.8):
+					zone_nav_nodes.append(c)
+					break
+	for i in zone_nav_nodes.size():
+		var links: Array = []
+		for j in zone_nav_nodes.size():
+			if i != j and zone_line_clear(zone_nav_nodes[i], zone_nav_nodes[j]):
+				links.append([j, zone_nav_nodes[i].distance_to(zone_nav_nodes[j])])
+		zone_nav_links.append(links)
+
+## Shortest walkable route from `from` to `to` (world xz). Returns the corners to walk through, ending at the goal
+## (or the nearest walkable point on the way to it when the goal itself is blocked).
+func zone_find_path(from: Vector2, to: Vector2) -> PackedVector2Array:
+	if not _walk_xz(to):
+		var t := 1.0
+		var found := false
+		while t > 0.0:
+			t -= 0.02
+			var q := from.lerp(to, t)
+			if _walk_xz(q): to = q; found = true; break
+		if not found: return PackedVector2Array()
+	if zone_line_clear(from, to) or zone_nav_nodes.is_empty():
+		return PackedVector2Array([to])
+	var n := zone_nav_nodes.size()
+	var S := n; var G := n + 1              # start / goal as extra nodes
+	var start_links: Array = []; var goal_links := {}
+	for i in n:
+		if zone_line_clear(from, zone_nav_nodes[i]): start_links.append([i, from.distance_to(zone_nav_nodes[i])])
+		if zone_line_clear(zone_nav_nodes[i], to): goal_links[i] = zone_nav_nodes[i].distance_to(to)
+	var dist := {S: 0.0}; var prev := {}; var open := [S]; var done := {}
+	while not open.is_empty():
+		var best := 0
+		var best_f := INF
+		for k in open.size():
+			var u0: int = open[k]
+			var pu: Vector2 = from if u0 == S else (to if u0 == G else zone_nav_nodes[u0])
+			var f: float = dist[u0] + pu.distance_to(to)
+			if f < best_f: best_f = f; best = k
+		var u: int = open[best]; open.remove_at(best)
+		if u == G: break
+		if done.has(u): continue
+		done[u] = true
+		var nbrs: Array = start_links if u == S else zone_nav_links[u]
+		var extra: Array = []
+		if u != S and goal_links.has(u): extra = [[G, goal_links[u]]]
+		for e in nbrs + extra:
+			var v: int = e[0]; var nd: float = dist[u] + float(e[1])
+			if not dist.has(v) or nd < dist[v]:
+				dist[v] = nd; prev[v] = u
+				if not open.has(v): open.append(v)
+	if not prev.has(G):
+		return PackedVector2Array()
+	var out := PackedVector2Array([to])
+	var c: int = prev[G]
+	while c != S:
+		out.insert(0, zone_nav_nodes[c]); c = prev[c]
+	return out
+
+## Click-to-move inside a painted zone: route around obstacles and walk the corners one by one.
+func zone_move_to(dest: Vector3) -> void:
+	var path := zone_find_path(Vector2(player.global_position.x, player.global_position.z), Vector2(dest.x, dest.z))
+	zone_route = path
+	if path.is_empty():
+		player.stop_moving(); return
+	var first := zone_route[0]; zone_route.remove_at(0)
+	player.command_move(Vector3(first.x, 0, first.y))
+
+func _zone_route_tick() -> void:
+	if zone_route.is_empty() or player == null: return
+	if not player.move_target.is_finite():    # reached the current corner: head for the next one
+		var nxt := zone_route[0]; zone_route.remove_at(0)
+		player.command_move(Vector3(nxt.x, 0, nxt.y))
+
 func zone_exit_at(at: Vector3) -> Dictionary:
 	for ex in zone_exits:
 		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), ex["poly"]):
@@ -781,6 +891,7 @@ func _physics_process(_delta: float) -> void:
 			zone_exit_armed = true
 		elif zone_exit_armed and not zone_traveling:
 			travel_to(String(on_exit["to"]), on_exit["arrive"])
+		_zone_route_tick()
 		_waypoint_tick()
 	_physics_body()
 
@@ -917,12 +1028,14 @@ func handle_click(screen: Vector2, force_stand := false, combine_move_attack := 
 		player.primary_attack()
 		player.attack_target = null
 	elif enemy != null:
+		zone_route = PackedVector2Array()
 		player.command_attack(enemy)
 	elif ground.is_finite():
 		var wp := waypoint_at(ground) if not zone.is_empty() else {}
 		waypoint_pending = String(wp["id"]) if not wp.is_empty() else ""
 		var dest: Vector3 = wp["pos"] if not wp.is_empty() else ground
-		player.command_move(dest)
+		if zone.is_empty(): player.command_move(dest)
+		else: zone_move_to(dest)
 		effects.ring(dest, 0.25, Color("f2d17f"), 0.35)
 		if not wp.is_empty() and waypoint_at(player.global_position, 1.4).get("id", "") == waypoint_pending:
 			waypoint_pending = ""

@@ -59,3 +59,10 @@ Suggested next: Whisperwood top-right path (W2) and bottom-left path (W3); Crown
   are ~0.51 as tall as wide), not the 3D camera's. `tools/build_waypoint_art.py ... [rotate_deg] [ground_ratio]`.
 - Aim a star point toward the feature the space faces (e.g. Whisperwood: down the stream), never straight up/down.
 - Undiscovered = carved stone, no label; discovered = WP2 glowing art + "Waypoint" label.
+
+## Pathfinding (2026-11-22)
+- Click-to-move in painted zones routes around obstacles: a visibility graph is built on zone load from corner points
+  stepped 0.7 m off every walkable-edge and `blocked` corner; each click runs A* from the hero to the target and the hero
+  walks the corners. Targets inside an obstacle stop at the nearest walkable point on the way. Clearance 0.45 m.
+- Whisperwood: pillars, fallen statue and toppled columns of the shrine are solid footprints; the ruins floor stays open.
+- `tests/verify_zone_pathing.gd` 5/5 (routes round the stream; walks round the pillars to the waypoint).

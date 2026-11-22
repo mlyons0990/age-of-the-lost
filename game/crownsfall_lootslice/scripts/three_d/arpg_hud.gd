@@ -13,7 +13,7 @@ const PANEL_BG := Color(0.05, 0.05, 0.07, 0.78)
 const LEVEL := 25
 
 const KEYBINDS := preload("res://scripts/three_d/keybinds.gd")
-const LOADOUT_PATH := "user://aotl_loadout.cfg"
+const SAVE := preload("res://scripts/three_d/aotl_save.gd")   # loadouts: [loadout_<hero>] in user://aotl_save.cfg
 ## Skills a hero can put on the bar (click a skill well to choose, like Diablo 4 / PoE). name -> icon tile.
 const HERO_SKILLS := {
 	"mage": {"Bolt": "starfall_script", "Lance": "epoch_lance", "Nova": "solar_writ", "Judgment": "dawnfall"},
@@ -93,6 +93,10 @@ var bind_buttons := {}        # action -> [Button, Button]
 var capturing := []           # [action, slot] while waiting for a key
 var potion_cds := [0.0, 0.0, 0.0, 0.0, 0.0]
 var minimap_vp: SubViewport
+var lab_panel: Control
+var minimap_tex_rect: TextureRect
+var minimap_overview: Texture2D      # painted zones: minimap drawn from the zone painting (blueprint UI-09)
+const MINIMAP_SPAN_PX := 900.0       # painting px shown top-to-bottom in the minimap
 var minimap_cam: Camera3D
 var minimap_rect: Rect2
 var area_title: Label
@@ -100,6 +104,10 @@ var area_sub: Label
 
 ## Minimap header follows the painted zone ("Region — Place" from the zone JSON name).
 func _on_zone_changed(_to: String) -> void:
+	minimap_overview = load("res://assets/zones/" + String(lab.zone["overview"])) if lab.zone.has("overview") else null
+	if minimap_tex_rect != null:
+		minimap_tex_rect.visible = minimap_overview == null
+		minimap_vp.render_target_update_mode = SubViewport.UPDATE_DISABLED if minimap_overview != null else SubViewport.UPDATE_ALWAYS
 	var nm: String = String(lab.zone.get("name", "Crownsfall — Central Plaza"))
 	var parts := nm.split(" — ")
 	area_title.text = parts[0]
@@ -171,32 +179,39 @@ func _build() -> void:
 	var sub := _label("C R O W N S F A L L", 17, GOLD)
 	sub.position = Vector2(74, 60)
 	root.add_child(sub)
+	# lab/debug panel (blueprint CAM-06): one container, hidden by default, toggled by the rebindable "lab_panel"
+	# action (F3), and never shown in release builds
+	lab_panel = Control.new()
+	lab_panel.name = "LabPanel"
+	lab_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(lab_panel)
+	lab_panel.visible = OS.is_debug_build() and bool(SAVE.open().get_value("settings", "lab_panel", false))
 	var hero_name: String = "Mage (Meshy pilot)" if player.is_pilot_mage() else "Warrior (Meshy pilot)"
 	var rows := [["AOTL 3D LAB (v0.3)", true], ["3D Scene: Active", false], ["Camera: Isometric (PoE Scale)", false],
 		["Character: " + hero_name, false], ["Animation Set: %d clips" % player.animation.get_animation_list().size(), false],
 		["Environment: Combat lab (alpha)", false]]
 	var controls := [["LMB", "Move / Attack (hold)"], ["Shift + LMB", "Attack in place"], ["Skill bar", "Skills (click a slot to swap)"],
-		["Belt", "Potions (click a slot to swap)"], ["Space", "Dodge Roll"], ["F1", "Key Bindings (rebind anything)"], ["F7", "Return to 2D plaza"]]
+		["Belt", "Potions (click a slot to swap)"], ["Space", "Dodge Roll"], ["F1", "Key Bindings (rebind anything)"], ["F3", "Show / hide this panel"], ["F7", "Return to 2D plaza"]]
 	var ph := 34.0 + rows.size() * 24.0 + 30.0 + controls.size() * 24.0
-	root.add_child(_panel(Rect2(14, 92, 360, ph)))
+	lab_panel.add_child(_panel(Rect2(14, 92, 360, ph)))
 	var y := 100.0
 	for i in rows.size():
 		var r: Array = rows[i]
 		var l := _label(("" if r[1] else "☑  ") + r[0], 17 if r[1] else 15, GOLD if r[1] else IVORY, r[1])
 		l.position = Vector2(26, y)
-		root.add_child(l)
+		lab_panel.add_child(l)
 		y += 24.0 + (6.0 if r[1] else 0.0)
 	var c := _label("▾  Controls", 15, GOLD)
 	c.position = Vector2(26, y + 4)
-	root.add_child(c)
+	lab_panel.add_child(c)
 	y += 30.0
 	for k in controls:
 		var kl := _label(k[0], 13, IVORY)
 		kl.position = Vector2(34, y + 2)
-		root.add_child(kl)
+		lab_panel.add_child(kl)
 		var vl := _label(k[1], 15, IVORY, false)
 		vl.position = Vector2(150, y)
-		root.add_child(vl)
+		lab_panel.add_child(vl)
 		y += 24.0
 	# --- top-right: minimap + quests
 	minimap_rect = Rect2(W - 334, 14, 320, 236)
@@ -217,6 +232,7 @@ func _build() -> void:
 	mm.modulate = Color(0.82, 0.8, 0.86)
 	mm.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(mm)
+	minimap_tex_rect = mm
 	area_title = _label("Crownsfall", 19, IVORY)
 	area_title.position = minimap_rect.position + Vector2(10, 6)
 	root.add_child(area_title)
@@ -665,21 +681,29 @@ func assign(kind: String, idx: int, what: String) -> void:
 func _load_loadout() -> void:
 	skill_loadout = DEFAULT_SKILLS[hero].duplicate()
 	potion_loadout = DEFAULT_POTIONS.duplicate()
-	var cf := ConfigFile.new()
-	if cf.load(LOADOUT_PATH) == OK:
-		var s: Array = cf.get_value(hero, "skills", skill_loadout)
-		var p: Array = cf.get_value(hero, "potions", potion_loadout)
+	var cf: ConfigFile = SAVE.open()
+	if cf.has_section("loadout_" + hero):
+		var s: Array = cf.get_value("loadout_" + hero, "skills", skill_loadout)
+		var p: Array = cf.get_value("loadout_" + hero, "potions", potion_loadout)
 		if s.size() != SKILL_SLOTS:
 			s = DEFAULT_SKILLS[hero].duplicate()     # older bar layouts reset to the new default
 		if s.size() == SKILL_SLOTS and s.all(func(x): return x == "" or HERO_SKILLS[hero].has(x)): skill_loadout = s
 		if p.size() == 5 and p.all(func(x): return x == "" or POTION_TYPES.has(x)): potion_loadout = p
 
 func _save_loadout() -> void:
-	var cf := ConfigFile.new()
-	cf.load(LOADOUT_PATH)
-	cf.set_value(hero, "skills", skill_loadout)
-	cf.set_value(hero, "potions", potion_loadout)
-	cf.save(LOADOUT_PATH)
+	var cf: ConfigFile = SAVE.open()
+	cf.set_value("loadout_" + hero, "skills", skill_loadout)
+	cf.set_value("loadout_" + hero, "potions", potion_loadout)
+	SAVE.commit(cf)
+
+func toggle_lab_panel() -> void:
+	if not OS.is_debug_build():
+		lab_panel.visible = false
+		return
+	lab_panel.visible = not lab_panel.visible
+	var cf: ConfigFile = SAVE.open()
+	cf.set_value("settings", "lab_panel", lab_panel.visible)
+	SAVE.commit(cf)
 
 ## True while the mouse is over a HUD well or the bindings menu (clicks there must not walk the hero).
 func pointer_over_ui() -> bool:
@@ -727,6 +751,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		drink(int(a.substr(7)) - 1)
 	elif a == "dodge":
 		player.dodge_toward_aim()
+	elif a == "lab_panel":
+		toggle_lab_panel()
 	elif a == "keybinds":
 		toggle_bind_menu()
 	elif a == "move":
@@ -895,6 +921,9 @@ func _draw_overlay() -> void:
 	if fw > 2.0:
 		overlay.draw_rect(Rect2(xp_rect.position + Vector2(fw - 2.0, 0), Vector2(2.0, xp_rect.size.y)), Color("e8dcff"))
 	# minimap frame + markers
+	if minimap_overview != null:
+		_draw_zone_minimap()
+		return
 	overlay.draw_rect(minimap_rect, GOLD, false, 2.0)
 	var mm_scale := minimap_rect.size.y / minimap_cam.size
 	var centre := minimap_rect.get_center()
@@ -905,6 +934,49 @@ func _draw_overlay() -> void:
 			overlay.draw_circle(at, 4.0, Color("d8463a") if t.inactive_t <= 0.0 else Color(0.4, 0.4, 0.4))
 	overlay.draw_circle(centre, 6.0, Color(0, 0, 0, 0.8))
 	overlay.draw_circle(centre, 4.5, Color("f2d27a"))
+
+## Painted-zone minimap: the zone painting around the hero (kept inside the zone, no black margins), a faint walkable
+## outline, discovered waypoints, exit portals, enemies and the hero. Everything is placed from the same zone data the
+## game uses, so the map always matches where you can walk.
+func _draw_zone_minimap() -> void:
+	var sz: Array = lab.zone["size"]
+	var zw := float(sz[0]); var zh := float(sz[1])
+	var span := Vector2(MINIMAP_SPAN_PX * minimap_rect.size.x / minimap_rect.size.y, MINIMAP_SPAN_PX)
+	span = span.min(Vector2(zw, zh))
+	var me: Vector2 = lab.zone_world_to_px(player.global_position)
+	var win := Rect2(me - span * 0.5, span)
+	win.position = win.position.clamp(Vector2.ZERO, Vector2(zw, zh) - span)
+	var k := minimap_rect.size / span
+	var to_map := func(px: Vector2) -> Vector2: return minimap_rect.position + (px - win.position) * k
+	var ov_scale := Vector2(minimap_overview.get_width(), minimap_overview.get_height()) / Vector2(zw, zh)
+	overlay.draw_rect(minimap_rect, Color(0.05, 0.04, 0.05, 0.9))
+	overlay.draw_texture_rect_region(minimap_overview, minimap_rect, Rect2(win.position * ov_scale, win.size * ov_scale), Color(0.86, 0.84, 0.9))
+	for poly in lab.zone.get("walkable", []):
+		var pts := PackedVector2Array()
+		for p in poly: pts.append(to_map.call(Vector2(float(p[0]), float(p[1]))))
+		pts.append(pts[0])
+		overlay.draw_polyline(pts, Color(1, 0.95, 0.8, 0.35), 1.5, true)
+	for ex in lab.zone.get("exits", []):
+		var c := Vector2.ZERO
+		for p in ex["poly"]: c += Vector2(float(p[0]), float(p[1]))
+		c = to_map.call(c / float(ex["poly"].size()))
+		if minimap_rect.has_point(c):
+			overlay.draw_circle(c, 6.0, Color(0.35, 0.65, 1.0, 0.9))
+			overlay.draw_arc(c, 7.5, 0, TAU, 20, Color("f2d27a"), 2.0)
+	for w in lab.zone_waypoints:
+		if lab.waypoint_net == null or not lab.waypoint_net.is_unlocked(w["id"]): continue   # undiscovered: not on the map
+		var c: Vector2 = to_map.call(lab.zone_world_to_px(w["pos"]))
+		if minimap_rect.has_point(c):
+			overlay.draw_colored_polygon(PackedVector2Array([c + Vector2(0, -7), c + Vector2(6, 0), c + Vector2(0, 7), c + Vector2(-6, 0)]), Color(0.45, 0.75, 1.0))
+	for t in lab.targets:
+		if not t.visible: continue
+		var c: Vector2 = to_map.call(lab.zone_world_to_px(t.global_position))
+		if minimap_rect.has_point(c):
+			overlay.draw_circle(c, 4.0, Color("d8463a") if t.inactive_t <= 0.0 else Color(0.4, 0.4, 0.4))
+	var mc: Vector2 = to_map.call(me)
+	overlay.draw_circle(mc, 6.0, Color(0, 0, 0, 0.8))
+	overlay.draw_circle(mc, 4.5, Color("f2d27a"))
+	overlay.draw_rect(minimap_rect, GOLD, false, 2.0)
 
 func _draw_world() -> void:
 	var cam: Camera3D = lab.camera

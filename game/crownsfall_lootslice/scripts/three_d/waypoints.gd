@@ -1,10 +1,10 @@
 extends RefCounted
 ## Waypoint network (PoE-style): checkpoints across the world. A waypoint unlocks the first time the hero reaches it;
 ## from any waypoint the hero can teleport to the town or to any other unlocked waypoint. Unlocks persist in
-## user://aotl_waypoints.cfg. The world's zones (in travel order) and the town come from assets/zones/world.json;
+## the [waypoints] section of user://aotl_save.cfg. The world's zones (in travel order) and the town come from assets/zones/world.json;
 ## each zone JSON lists its waypoints: {"id", "name", "at": [u, v]} in zone canvas pixels.
 
-const SAVE_PATH := "user://aotl_waypoints.cfg"
+const SAVE := preload("res://scripts/three_d/aotl_save.gd")
 var world: Dictionary = {}
 var entries: Array = []          # {id, name, zone, zone_name, at, town}
 var unlocked := {}               # id -> true
@@ -42,12 +42,11 @@ func reset() -> void:
 	save_to_disk()
 
 func save_to_disk() -> void:
-	var cf := ConfigFile.new()
+	var cf: ConfigFile = SAVE.open()
 	cf.set_value("waypoints", "unlocked", unlocked.keys())
-	cf.save(SAVE_PATH)
+	SAVE.commit(cf)
 
 func load_from_disk() -> void:
-	var cf := ConfigFile.new()
-	if cf.load(SAVE_PATH) != OK: return
+	var cf: ConfigFile = SAVE.open()
 	for id in cf.get_value("waypoints", "unlocked", []):
 		unlocked[str(id)] = true

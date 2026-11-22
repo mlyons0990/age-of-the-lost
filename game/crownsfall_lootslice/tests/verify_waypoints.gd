@@ -27,7 +27,8 @@ func _click_waypoint(lab) -> void:
 	lab.handle_click(lab.camera.unproject_position(w["pos"]))
 var shrine_rot := 0.0
 func _run() -> void:
-	DirAccess.remove_absolute(ProjectSettings.globalize_path("user://aotl_waypoints.cfg"))
+	for f in ["user://aotl_save.cfg", "user://aotl_save.cfg.bak", "user://aotl_waypoints.cfg"]:
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(f))
 	root.size = Vector2i(1920, 1080)
 	var lab: Node3D = (load("res://scenes/pilot_knight_combat_lab.tscn") as PackedScene).instantiate()
 	root.add_child(lab)

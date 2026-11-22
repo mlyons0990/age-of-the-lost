@@ -6,9 +6,9 @@ extends RefCounted
 ##
 ## Every action holds up to two binds (keyboard keys, optionally with modifiers, or mouse buttons). Binding a key that
 ## another action already uses steals it from that action (the other action loses only that bind). Saved to
-## user://aotl_keybinds.cfg; `reset_defaults()` restores the defaults below.
+## the [keybinds] section of user://aotl_save.cfg; `reset_defaults()` restores the defaults below.
 
-const SAVE_PATH := "user://aotl_keybinds.cfg"
+const SAVE := preload("res://scripts/three_d/aotl_save.gd")   # one versioned save (user://aotl_save.cfg)
 
 ## action id -> [label, default primary, default secondary]. Bind spec: "key:Q", "key:Ctrl+Q", "mouse:1" (LMB) ...
 const ACTIONS := [
@@ -28,6 +28,7 @@ const ACTIONS := [
 	["potion_5", "Potion Slot 5", "key:5", ""],
 	["dodge", "Dodge Roll", "key:Space", ""],
 	["keybinds", "Open Key Bindings", "key:F1", ""],
+	["lab_panel", "Show / Hide Lab Panel", "key:F3", ""],
 ]
 
 var binds := {}          # action -> [spec0, spec1]
@@ -171,18 +172,17 @@ func _notify() -> void:
 # ---------- persistence ----------
 
 func save_to_disk() -> void:
-	var cf := ConfigFile.new()
+	var cf: ConfigFile = SAVE.open()
+	if cf.has_section("keybinds"): cf.erase_section("keybinds")
 	for a in binds.keys():
-		cf.set_value("binds", a, binds[a])
-	cf.set_value("options", "combine_move_attack", combine_move_attack)
-	cf.save(SAVE_PATH)
+		cf.set_value("keybinds", a, binds[a])
+	cf.set_value("keybind_options", "combine_move_attack", combine_move_attack)
+	SAVE.commit(cf)
 
 func load_from_disk() -> void:
-	var cf := ConfigFile.new()
-	if cf.load(SAVE_PATH) != OK:
-		return
+	var cf: ConfigFile = SAVE.open()
 	for a in binds.keys():
-		var v = cf.get_value("binds", a, binds[a])
+		var v = cf.get_value("keybinds", a, binds[a])
 		if v is Array and v.size() == 2:
 			binds[a] = [str(v[0]), str(v[1])]
-	combine_move_attack = bool(cf.get_value("options", "combine_move_attack", true))
+	combine_move_attack = bool(cf.get_value("keybind_options", "combine_move_attack", true))

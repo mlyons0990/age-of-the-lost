@@ -23,7 +23,7 @@ func _key(code: Key) -> void:
 func _run() -> void:
 	root.size = Vector2i(1920, 1080)
 	# start from defaults: no saved bindings / loadout from an earlier run
-	for f in ["user://aotl_keybinds.cfg", "user://aotl_loadout.cfg"]:
+	for f in ["user://aotl_save.cfg", "user://aotl_save.cfg.bak", "user://aotl_keybinds.cfg", "user://aotl_loadout.cfg"]:
 		if FileAccess.file_exists(f): DirAccess.remove_absolute(ProjectSettings.globalize_path(f))
 	var lab: Node3D = (load("res://scenes/pilot_mage_combat_lab.tscn") as PackedScene).instantiate()
 	lab.painted_zone = ""          # HUD/controls tests use the open lab floor (zones have their own test)
@@ -84,7 +84,7 @@ func _run() -> void:
 	hud.assign("potion", 0, "mana")
 	check(hud.potion_icons[0].texture.resource_path.ends_with("potion_mana.png"), "Potion slot 1 swapped to a mana potion")
 	var cf := ConfigFile.new()
-	check(cf.load("user://aotl_loadout.cfg") == OK and cf.get_value("mage", "skills")[0] == "Bolt", "Loadout saved")
+	check(cf.load("user://aotl_save.cfg") == OK and cf.get_value("loadout_mage", "skills")[0] == "Bolt", "Loadout saved in the versioned save")
 	hud._open_picker("skill", 2)
 	check(hud.picker.visible and hud.picker.item_count == hud.HERO_SKILLS["mage"].size() + 2, "Clicking a skill slot opens the skill picker")
 	hud.picker.hide()
@@ -101,7 +101,7 @@ func _run() -> void:
 	kb.bind("dodge", 1, "mouse:2")
 	check(kb.action_for_event(_mouse(MOUSE_BUTTON_RIGHT)) == "dodge", "Mouse buttons are bindable (RMB -> dodge)")
 	var kb2 = load("res://scripts/three_d/keybinds.gd").new()
-	check(kb2.binds["skill_1"][0] == "key:A" and kb2.binds["potion_1"][0] == "key:W", "Bindings persist to user://aotl_keybinds.cfg")
+	check(kb2.binds["skill_1"][0] == "key:A" and kb2.binds["potion_1"][0] == "key:W", "Bindings persist in user://aotl_save.cfg")
 	hud.toggle_bind_menu()
 	check(hud.bind_menu.visible and hud.bind_buttons["skill_1"][0].text == "A", "Key Bindings menu lists the live binds")
 	hud._start_capture("skill_3", 0, hud.bind_buttons["skill_3"][0])

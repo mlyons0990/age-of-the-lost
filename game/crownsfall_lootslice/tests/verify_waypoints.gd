@@ -109,7 +109,7 @@ func _run() -> void:
 	var trc: Vector2 = lab.camera.unproject_position(lab.zone_px_to_world(float(tdef["centre_of"][0]), float(tdef["centre_of"][1])))
 	var tbc: Vector2 = lab.camera.unproject_position((lab.zone_waypoints[0]["node"] as Node3D).global_position)
 	check(trc.distance_to(tbc) < 10.0, "Town waypoint centre sits on the compass rose centre (%.1f px off)" % trc.distance_to(tbc))
-	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1902, 1010)) < 120.0, "Teleported to town, standing at the town waypoint")
+	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1924, 988)) < 120.0, "Teleported to town, standing at the town waypoint")
 	# and back to the newly unlocked waypoint
 	_click_waypoint(lab)
 	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 6.0)

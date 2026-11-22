@@ -102,6 +102,16 @@ sign-off → commit + Drive copy.
   (mushroom event), Hunter's Camp (journal page), 5 hidden caches. Gradient: tended and
   lantern-lit near Crownsfall -> wild, wet and misty toward Hollowmere.
 
+**2.9 Zones are built from a reusable kit (owner decision, 2026-11-22) - supersedes painted-canvas zones**
+- Every zone, Crownsfall and other towns included, is assembled from reusable elements: tileable ground textures
+  (grass, moss, dirt, flagstone, cobble, snow...), paths drawn as splines over them, and individual props painted once
+  at the game camera on transparent backgrounds (trees, rocks, stones, ruins, buildings, lamps, fences, POI set pieces).
+- Each prop carries its own footprint (collision) and occluder outline, so free movement and hide-behind work per object.
+- Layout comes from the free plan sketch (`tools/draw_zone_plan.py`), not from a painted master; painted masters are
+  mood/colour references at most. Biome blending across zones = shifting ground/prop sets and overlays (e.g. snow).
+- Lessons that led here (E1 outpaint, path connector, master paste, master upscale): separate AI images cannot be made
+  to continue paths and trees exactly, and one image big enough for a zone cannot hold game-level detail.
+
 ## 3. Checklist as a tracked backlog
 
 `docs/AOTL_CHECKLIST_TRACKER.csv` (also on Drive as a sheet) lists all 162 v1.0 tasks with: owner roles, **named owner**

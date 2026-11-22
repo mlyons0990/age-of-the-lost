@@ -1,0 +1,17 @@
+{
+  "status": "proposed_not_applied",
+  "baseline_commit": "ef263e4aab4e0e1c98e81cdf06ae9e76bc99b60b",
+  "game_id": "amulet",
+  "equipment_destination": "amulet",
+  "footprint": [1, 1],
+  "asset_id": "aotl_jewelry_amulet_002",
+  "source": "art/item_taxonomy/2026-11-12/runtime_items/aotl_jewelry_amulet_002.png",
+  "sha256": "09d462713ef24bb949d27f64727c764043cd38c3e2b4e311d1f075b2ca384f5e",
+  "proposed_destination": "game/crownsfall_lootslice/assets/art_taxonomy/portraits/amulet.png",
+  "profile_file": "game/crownsfall_lootslice/data/selected_art_profile.json",
+  "profile_key": "portraits.amulet",
+  "profile_value": "res://assets/art_taxonomy/portraits/amulet.png",
+  "preserve_fallback": "res://assets/item_portraits/amulet.png",
+  "required_provenance": ["asset_id", "source_library", "source_path", "runtime_path", "runtime_sha256", "cells", "approval_status"],
+  "remaining_gates": ["Coordinate profile-file ownership", "Validate current integration branch", "Run actual inventory interaction and save regression"]
+}

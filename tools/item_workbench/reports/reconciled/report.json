@@ -1,0 +1,273 @@
+{
+  "commit": "ef263e4aab4e0e1c98e81cdf06ae9e76bc99b60b",
+  "source_sha256": {
+    "game/crownsfall_lootslice/data/item_base_definitions.json": "36ab4cde93f8842dd40d780489daafadf4e249f542a7eb0bf65a2f852045fbdf",
+    "game/crownsfall_lootslice/data/selected_art_profile.json": "df70af6f04e9f2daa5c9d2be5730e1bc9fbd7552d6b0355325ee2fd4b3f76313"
+  },
+  "items": [
+    {
+      "id": "amulet",
+      "name": "Memory Sigil",
+      "cells": [
+        1,
+        1
+      ],
+      "slot": "amulet",
+      "art": "res://assets/item_portraits/amulet.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        64,
+        64
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "armor",
+      "name": "Plate Cuirass",
+      "cells": [
+        2,
+        3
+      ],
+      "slot": "armor",
+      "art": "res://assets/art_expansion02/portraits/armor.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        192
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "belt",
+      "name": "War Belt",
+      "cells": [
+        2,
+        1
+      ],
+      "slot": "belt",
+      "art": "res://assets/art_expansion02/portraits/belt.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        64
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "boots",
+      "name": "Sabatons",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "boots",
+      "art": "res://assets/art_expansion02/portraits/boots.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "focus",
+      "name": "Prismatic Focus",
+      "cells": [
+        1,
+        2
+      ],
+      "slot": "offhand",
+      "art": "res://assets/art_expansion02/portraits/focus.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        64,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "gloves",
+      "name": "Gauntlets",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "gloves",
+      "art": "res://assets/art_expansion02/portraits/gloves.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "helm",
+      "name": "Sallet",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "helm",
+      "art": "res://assets/art_expansion02/portraits/helm.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "hood",
+      "name": "Scholar Hood",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "helm",
+      "art": "res://assets/art_expansion02/portraits/hood.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "offhand",
+      "name": "Kite Shield",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "offhand",
+      "art": "res://assets/art_expansion02/portraits/offhand.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "ring",
+      "name": "Signet Ring",
+      "cells": [
+        1,
+        1
+      ],
+      "slot": "ring1",
+      "art": "res://assets/art_expansion02/portraits/ring.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        64,
+        64
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "robe",
+      "name": "Wayfarer Robe",
+      "cells": [
+        2,
+        3
+      ],
+      "slot": "armor",
+      "art": "res://assets/art_expansion02/portraits/robe.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        192
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "slippers",
+      "name": "Spellweave Slippers",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "boots",
+      "art": "res://assets/item_portraits/slippers.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "staff",
+      "name": "Aurelian Staff",
+      "cells": [
+        2,
+        4
+      ],
+      "slot": "weapon",
+      "art": "res://assets/item_portraits/staff.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        256
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "wand",
+      "name": "Ember Wand",
+      "cells": [
+        1,
+        2
+      ],
+      "slot": "weapon",
+      "art": "res://assets/art_expansion02/portraits/wand.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        64,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "weapon",
+      "name": "Longsword",
+      "cells": [
+        1,
+        3
+      ],
+      "slot": "weapon",
+      "art": "res://assets/art_expansion02/portraits/weapon.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        64,
+        192
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    },
+    {
+      "id": "wraps",
+      "name": "Silk Wraps",
+      "cells": [
+        2,
+        2
+      ],
+      "slot": "gloves",
+      "art": "res://assets/item_portraits/wraps.png",
+      "status": "PNG dimensions verified",
+      "pixels": [
+        128,
+        128
+      ],
+      "equipped_visual": "Not audited; inventory portrait is not wearable geometry"
+    }
+  ],
+  "issues": [],
+  "limits": [
+    "Read-only exported data audit, not live Godot verification",
+    "Tracked item-portrait fallback recognized; actual ResourceLoader success not verified",
+    "No equipped mesh mappings inferred",
+    "LFS pointer files are unverified, not missing artwork",
+    "Only main snapshot audited; other developer branches untouched"
+  ]
+}

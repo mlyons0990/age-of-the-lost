@@ -1,0 +1,41 @@
+{
+  "status": "review_recommendations_not_runtime_changes",
+  "production_profile_patch": [],
+  "decisions": [
+    {
+      "game_id": "staff",
+      "default": "retain_current",
+      "candidate": "mystic_staff",
+      "use": "distinct caster staff variant; clearer crescent/crystal silhouette",
+      "reason": "Different design from current Aurelian Staff; not an automatic replacement"
+    },
+    {
+      "game_id": "staff",
+      "default": "retain_current",
+      "candidate": "war_staff",
+      "use": "separately defined martial staff variant",
+      "reason": "Different visual role from the current ornate caster staff"
+    },
+    {
+      "game_id": "wraps",
+      "default": "retain_current",
+      "candidate": "wraps",
+      "use": "new cloth-glove variant only",
+      "reason": "Candidate depicts fingered gloves, not wrapped forearms"
+    },
+    {
+      "game_id": "slippers",
+      "default": "retain_current",
+      "candidate": "slippers",
+      "use": "new cloth ankle-boot variant only",
+      "reason": "Candidate depicts ankle boots rather than slippers"
+    }
+  ],
+  "prerequisites_for_new_items": [
+    "Approved item identity/name",
+    "Explicit class/drop eligibility",
+    "Stats consistent with existing formulas",
+    "Portrait provenance and equipped/ground representation policy",
+    "Full inventory/save regression at integration"
+  ]
+}

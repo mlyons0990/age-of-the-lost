@@ -21,7 +21,7 @@ This is **not yet merged to main**; see open item O1.
 | D5 | **Exit portals** may be any door / path / stairs but always carry a **blue/gold glowing aura**. | — | owner, 11-21 | `_build_portal`, `portal_aura.gdshader` |
 | D6 | **Waypoints**: checkpoints unlocked by reaching them; teleport to town or any unlocked waypoint and back. Undiscovered waypoints are plain world props (no "locked" label). | — | owner, 11-21 / 11-22 | `verify_waypoints.gd` 17/17 |
 | D7 | **Waypoint art**: AOTL ivory/gold eight-point platform (WP1 variant A), glowing version (WP2) once discovered. | — | "Variant A looks a lot better … Use variant A" (11-21) | `assets/props/waypoint_plinth*.png` |
-| D8 | **Waypoint placement**: a waypoint inside a circular space/object is **centred exactly on its centre**, lies flat on the painted ground, a star point aimed at the feature the space faces. | — | "IT SHOULD BE CENTERED IN THE RUINS" (11-22) | test: centre within 10 px (now 0.6 / 1.8 px) |
+| D8 | **Waypoint placement**: a waypoint inside a circular space/object is **centred exactly on its centre**, lies flat on the painted ground, a star point aimed at the feature the space faces. | — | "IT SHOULD BE CENTERED IN THE RUINS" (11-22) | tests: centre within 10 px; rendered glow centroid within 8 px |
 | D9 | **Controls**: click-to-move (D4/PoE/LE/GD), fully rebindable; skill block LMB/MMB/RMB over Q W E R T; 5 potions. | Resolves v1.0 UI-05 mockup-hotkey conflict. | owner, 11-20 | `keybinds.gd`, `verify_arpg_hud.gd` |
 | D10 | **HUD v2 baseline**: edge-to-edge corner HUD, distinct HP (warden) and mana (seer) globes. | — | "Much better, lets use that as our baseline" (11-21) | HUD QA rev 1–19 |
 | D11 | **Expansion pacing**: grow zones one approved extension at a time; E2/E3 wait for the G2 slice. | Applies v1.0 §10 P2. | owner, 11-22 | — |
@@ -42,6 +42,11 @@ These are the lessons already paid for. Follow them for every new zone or extens
 - Any prop art laid on the ground (waypoints, decals) is flattened to that ratio — **not** the 3D camera's angle.
   `tools/build_waypoint_art.py <src> <out> <cx> <cy> [rotate_deg] [ground_ratio]`. (Mistake we made: flattening to the
   camera made the waypoint look tilted.)
+- Turning ground art (to aim a point) must keep its **height straight up**: the tool removes the raised parts' lift,
+  rotates the flat layout, and re-applies the lift vertically. (Mistake we made: a flat image rotation made the raised
+  centre lean and left extra stone on one side — lopsided, AI-looking.)
+- Place ground art by its **visual centre** (the waypoint's glowing basin), never by the image centre; the render test
+  measures the glow centroid against the painted centre.
 
 **2.3 Walk map**
 - `walkable` outline + `blocked` cut-outs (water, pillars, statues, fallen columns). Ruins floors stay open; solid

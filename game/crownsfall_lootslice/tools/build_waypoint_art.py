@@ -27,18 +27,32 @@ a = a[y0:y1, x0:x1]
 bx, by = bx - x0, by - y0
 w, h = a.shape[1], a.shape[0]
 if rot != 0.0:
-    # unsquash to a top-down view, rotate about the footprint/basin midpoint, then squash back to the art's own ratio
+    # Turn the platform on the ground WITHOUT turning its height. The raised basin is drawn above the footprint centre
+    # (parallax D, straight up); a flat image rotation would swing that lift sideways and make the platform lean
+    # (lopsided: extra stone on one side). So: remove the lift (raised parts shifted back down by D * w, w = 1 on the
+    # basin, falling to 0 at the outer star), rotate the flat layout about the footprint centre, re-apply the lift
+    # straight up. Done as one inverse warp with cv2.remap.
     r0 = h / w
-    td_h = int(round(h / r0))
-    td = cv2.resize(a, (w, td_h), interpolation=cv2.INTER_LANCZOS4)
-    px, py = (w / 2 + bx) / 2, (h / 2 + by) / 2 / r0
-    big = int(max(w, td_h) * 1.5)
-    M = cv2.getRotationMatrix2D((px, py), rot, 1.0)
-    M[0, 2] += (big - w) / 2; M[1, 2] += (big - td_h) / 2
-    td = cv2.warpAffine(td, M, (big, big), flags=cv2.INTER_LANCZOS4, borderValue=(0, 0, 0, 0))
-    bpt = M @ np.array([bx, by / r0, 1.0])
-    a = cv2.resize(td, (big, int(round(big * r0))), interpolation=cv2.INTER_LANCZOS4)
-    bx, by = bpt[0], bpt[1] * r0
+    D = by - h / 2.0                          # basin lift in px (negative = up)
+    R = w / 2.0
+    def wt(x, y):                             # height weight from top-down radius (centre-relative coords)
+        rad = np.sqrt(x * x + (y / r0) ** 2) / R
+        return np.clip((1.0 - rad) / (1.0 - 0.55), 0.0, 1.0)
+    big = int(max(w, h) * 1.25)
+    gy, gx = np.mgrid[0:big, 0:big].astype(np.float32)
+    qx, qy = gx - big / 2.0, gy - big / 2.0   # target, centre-relative
+    px, py = qx.copy(), qy.copy()
+    for _ in range(4):                        # remove the lift in the target (fixed point)
+        py = qy - D * wt(px, py)
+    th = math.radians(-rot)
+    tx, ty = px, py / r0                      # to top-down
+    ux = tx * math.cos(th) - ty * math.sin(th)
+    uy = tx * math.sin(th) + ty * math.cos(th)
+    sx, sy = ux, uy * r0                      # back to the art's squash
+    sy = sy + D * wt(sx, sy)                  # source position includes its lift
+    mapx = (sx + w / 2.0).astype(np.float32); mapy = (sy + h / 2.0).astype(np.float32)
+    a = cv2.remap(a, mapx, mapy, interpolation=cv2.INTER_LANCZOS4, borderMode=cv2.BORDER_CONSTANT, borderValue=(0, 0, 0, 0))
+    bx, by = big / 2.0, big / 2.0 + D         # basin stays straight above the footprint centre
     m2 = a[..., 3] > 128
     ys, xs = np.where(m2)
     x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
@@ -66,5 +80,5 @@ reg[..., :3] = body[..., :3] * fa + reg[..., :3] * (1 - fa)
 reg[..., 3] = np.maximum(body[..., 3], reg[..., 3])
 Image.fromarray(np.clip(canvas, 0, 255).astype(np.uint8), "RGBA").save(out)
 H, W = canvas.shape[:2]
-info = {"size": [W, H], "footprint_w_frac": w / W, "basin_offset_v": (H / 2 - (by + pad)) / H}
+info = {"size": [W, H], "footprint_w_frac": w / W, "basin_offset_u": ((bx + pad) - W / 2) / W, "basin_offset_v": (H / 2 - (by + pad)) / H}
 print(json.dumps(info))

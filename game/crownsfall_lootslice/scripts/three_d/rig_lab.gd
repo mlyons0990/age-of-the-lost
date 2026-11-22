@@ -5,7 +5,8 @@ const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
 const WAYPOINT_ART_LIT := "res://assets/props/waypoint_plinth_lit.png"   # WP2: same platform, runes glowing
 const WAYPOINT_ART_RATIO := 0.51   # ground ratio the plinth art was flattened to (tools/build_waypoint_art.py)
 const WAYPOINT_ART_PX := 374.0     # image width in painting pixels (footprint 89% of it, fits the shrine floor rings)
-const WAYPOINT_ART_BASIN_V := 0.047 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
+const WAYPOINT_ART_BASIN_U := 0.009 # basin centre this fraction of the image width right of its centre (tools/build_waypoint_art.py)
+const WAYPOINT_ART_BASIN_V := 0.054 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
 const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
 ## This deliberately does NOT replace the established 2D plaza; keep both.
@@ -483,8 +484,9 @@ func _build_waypoint(parent: Node3D, at: Vector3, id: String, size_px := WAYPOIN
 		pmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA          # soft contact shadow edge
 		pmat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 		plinth.material_override = pmat
-		plinth.position = Vector3(0, 0.015, 0.0)   # footprint centred on the painted shrine circle (the waypoint point)
-		basin_dz = -WAYPOINT_ART_BASIN_V * ph      # raised basin appears this far "north" of the footprint centre
+		# the waypoint point IS the basin centre (the glowing sigil): shift the art so its basin lands exactly there.
+		# The basin sits off the image centre after the art is turned on the ground (tools/build_waypoint_art.py).
+		plinth.position = Vector3(-WAYPOINT_ART_BASIN_U * pw, 0.015, WAYPOINT_ART_BASIN_V * ph)
 		plinth.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		root.add_child(plinth)
 	var disc := MeshInstance3D.new(); disc.name = "Rune"

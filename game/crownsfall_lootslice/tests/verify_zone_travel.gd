@@ -38,7 +38,7 @@ func _run() -> void:
 	var bot: float = lab.camera.unproject_position(a.global_position).y
 	check(absf((bot - top) - 110.0) < 6.0, "Whisperwood hero size %.0f px (same as the plaza)" % (bot - top))
 	check(lab.zone_world_to_px(a.global_position).distance_to(Vector2(720, 636)) < 60.0, "Arrives at the foot of the top-left stairs")
-	check(not lab.zone_walkable(lab.zone_px_to_world(2190, 1010)) and lab.zone_walkable(lab.zone_px_to_world(1995, 862)), "Stream is blocked; the shrine ruins (waypoint) are walkable")
+	check(not lab.zone_walkable(lab.zone_px_to_world(2190, 1010)) and lab.zone_walkable(lab.zone_px_to_world(1995, 851)), "Stream is blocked; the shrine ruins (waypoint) are walkable")
 	var vis := 0
 	for tg in lab.targets:
 		if tg.visible and lab.zone_walkable(tg.global_position): vis += 1

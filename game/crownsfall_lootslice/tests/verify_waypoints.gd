@@ -75,6 +75,26 @@ func _run() -> void:
 	var bc: Vector2 = lab.camera.unproject_position((wnode.get_node("Rune") as Node3D).global_position)
 	print("ruins centre on screen %s, waypoint centre %s" % [rc, bc])
 	check(rc.distance_to(bc) < 10.0, "Waypoint centre sits on the centre of the ruins (%.1f px off)" % rc.distance_to(bc))
+	# measured in the render: centroid of the glowing sigil (painted art, beam hidden) vs the ruins centre
+	(wnode.get_node("Beam") as Node3D).visible = false
+	lab.waypoint_panel.visible = false
+	for n in lab.get_children():
+		if n is CanvasLayer: n.visible = false
+	await process_frame; await process_frame
+	await RenderingServer.frame_post_draw
+	var img := root.get_texture().get_image()
+	var sx := 0.0; var sy := 0.0; var cnt := 0
+	for y in range(int(rc.y) - 120, int(rc.y) + 120):
+		for x in range(int(rc.x) - 200, int(rc.x) + 200):
+			var c := img.get_pixel(x, y)
+			if c.b > 0.85 and c.b - c.r > 0.25: sx += x; sy += y; cnt += 1
+	var glow := Vector2(sx, sy) / maxf(1.0, float(cnt))
+	print("glow centroid %s from %d px; ruins centre %s" % [glow, cnt, rc])
+	check(cnt > 200 and absf(glow.x - rc.x) < 8.0 and absf(glow.y - rc.y) < 8.0, "Rendered glowing centre lands on the ruins centre (dx %.1f, dy %.1f px)" % [glow.x - rc.x, glow.y - rc.y])
+	(wnode.get_node("Beam") as Node3D).visible = true
+	lab.waypoint_panel.visible = true
+	for n in lab.get_children():
+		if n is CanvasLayer: n.visible = true
 	check(lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), "Waypoint window opens at the shrine")
 	# teleport to town
 	lab.waypoint_panel.buttons["crownsfall_town"].pressed.emit()
@@ -84,7 +104,7 @@ func _run() -> void:
 	var trc: Vector2 = lab.camera.unproject_position(lab.zone_px_to_world(float(tdef["centre_of"][0]), float(tdef["centre_of"][1])))
 	var tbc: Vector2 = lab.camera.unproject_position((lab.zone_waypoints[0]["node"].get_node("Rune") as Node3D).global_position)
 	check(trc.distance_to(tbc) < 10.0, "Town waypoint centre sits on the compass rose centre (%.1f px off)" % trc.distance_to(tbc))
-	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1905, 1027)) < 120.0, "Teleported to town, standing at the town waypoint")
+	check(lab.painted_zone == "crownsfall" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1902, 1010)) < 120.0, "Teleported to town, standing at the town waypoint")
 	# and back to the newly unlocked waypoint
 	_click_waypoint(lab)
 	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 6.0)
@@ -93,7 +113,7 @@ func _run() -> void:
 	if back != null: back.pressed.emit()
 	await _wait(func(): return lab.painted_zone == "whisperwood" and not lab.zone_traveling, 6.0)
 	await create_timer(0.8).timeout
-	check(lab.painted_zone == "whisperwood" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1995, 1012)) < 120.0, "Teleported back to the shrine waypoint")
+	check(lab.painted_zone == "whisperwood" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1995, 1001)) < 120.0, "Teleported back to the shrine waypoint")
 	var fresh = load("res://scripts/three_d/waypoints.gd").new()
 	check(fresh.is_unlocked("whisperwood_shrine"), "Unlocked waypoints persist (saved)")
 	await _shot("waypoint_back_at_shrine")

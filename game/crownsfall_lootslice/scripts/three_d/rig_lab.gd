@@ -79,6 +79,9 @@ var zone_route := PackedVector2Array() # remaining corners of the current click-
 const NAV_CLEARANCE := 0.45           # metres kept between the hero's path and walls / pillars / water
 var xray_enabled := true             # occluded-actor silhouette (hero stays visible behind pillars, trees, railings)
 var xray_mat: ShaderMaterial
+var kit_grid: AStarGrid2D            # kit zones: grid navigation (thousands of obstacles; visibility graph too slow)
+const KIT_CELL := 0.5                 # metres per nav cell
+var kit_origin := Vector2.ZERO
 var zone_tiles: Array = []            # {node, mat, rect (zone px), image, depth, state 0=unloaded 1=loading 2=shown}
 signal zone_changed(name: String)
 var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
@@ -340,10 +343,12 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 	var holder := Node3D.new()
 	holder.name = "ZonePainting"
 	add_child(holder)
-	var tiles: Array = zone.get("tiles", [])
-	if tiles.is_empty():
-		tiles = [{"image": zone["image"], "depth": zone.get("depth", ""), "rect": [0, 0, size[0], size[1]], "img_rect": [0, 0, size[0], size[1]]}]
 	zone_tiles.clear()
+	if zone.has("kit"):
+		_build_kit_zone(holder, w, d)
+	var tiles: Array = [] if zone.has("kit") else zone.get("tiles", [])
+	if tiles.is_empty() and not zone.has("kit"):
+		tiles = [{"image": zone["image"], "depth": zone.get("depth", ""), "rect": [0, 0, size[0], size[1]], "img_rect": [0, 0, size[0], size[1]]}]
 	var sp_: float = sin(deg_to_rad(ZONE_PITCH))
 	for t in tiles:
 		var r: Array = t["rect"]; var ir: Array = t["img_rect"]
@@ -695,6 +700,124 @@ func zone_tiles_shown() -> int:
 
 # ---------- pathfinding (visibility graph over the walk map) ----------
 ## Clear straight line on walkable ground, keeping NAV_CLEARANCE from edges (sampled every 0.2 m).
+# ---------- kit zones (owner 11-22: zones are assembled from reusable ground textures and props) ----------
+func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
+	var kit := String(zone["kit"])
+	var cat: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(kit + "/catalog.json"))
+	var sz: Array = zone["size"]
+	var sp_: float = sin(deg_to_rad(ZONE_PITCH))
+	var g := MeshInstance3D.new(); g.name = "KitGround"
+	var pm := PlaneMesh.new(); pm.size = Vector2(w, d); g.mesh = pm
+	var gm := ShaderMaterial.new(); gm.shader = load("res://shaders/kit_ground.gdshader")
+	var gr: Dictionary = cat["ground"]
+	gm.set_shader_parameter("base_tex", load(kit + "/" + String(gr[zone.get("ground_base", "grass")]["image"])))
+	gm.set_shader_parameter("path_tex", load(kit + "/" + String(gr["flagstone"]["image"])))
+	gm.set_shader_parameter("dirt_tex", load(kit + "/" + String(gr["dirt"]["image"])))
+	gm.set_shader_parameter("splat", load("res://assets/zones/" + String(zone["splat"])))
+	gm.set_shader_parameter("zone_px", Vector2(float(sz[0]), float(sz[1])))
+	gm.set_shader_parameter("base_tile", float(gr[zone.get("ground_base", "grass")]["tile_px"]))
+	gm.set_shader_parameter("path_tile", float(gr["flagstone"]["tile_px"]))
+	gm.set_shader_parameter("dirt_tile", float(gr["dirt"]["tile_px"]))
+	gm.render_priority = -2
+	g.material_override = gm
+	g.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	holder.add_child(g)
+	var props := Node3D.new(); props.name = "KitProps"; holder.add_child(props)
+	var shader: Shader = load("res://shaders/kit_prop.gdshader")
+	var tex_cache := {}
+	for p in zone["props"]:
+		var c: Dictionary = cat["props"][p["prop"]]
+		var scale_: float = float(p["scale"])
+		var iw: float = float(c["size"][0]) * scale_; var ih: float = float(c["size"][1]) * scale_
+		var fx: float = (float(c["size"][0]) - float(c["foot"][0])) if bool(p["flip"]) else float(c["foot"][0])
+		var fy: float = float(c["foot"][1])
+		var foot := zone_px_to_world(float(p["at"][0]), float(p["at"][1]))
+		var qm := PlaneMesh.new(); qm.size = Vector2(iw / ZONE_PPM, ih / ZONE_PPM / sp_)
+		var node := MeshInstance3D.new(); node.mesh = qm
+		# image centre relative to its foot point, on the ground plane
+		node.position = foot + Vector3((iw * 0.5 - fx * scale_) / ZONE_PPM, 0.02 if c["kind"] == "setpiece" else 0.03, (ih * 0.5 - fy * scale_) / ZONE_PPM / sp_)
+		var key := String(c["image"])
+		if not tex_cache.has(key): tex_cache[key] = load(kit + "/" + key)
+		var m := ShaderMaterial.new(); m.shader = shader
+		m.set_shader_parameter("tex", tex_cache[key])
+		m.set_shader_parameter("foot_v", fy / float(c["size"][1]))
+		m.set_shader_parameter("tex_rows", ih)
+		m.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
+		m.set_shader_parameter("occludes", bool(c["occludes"]))
+		m.set_shader_parameter("flip", bool(p["flip"]))
+		m.render_priority = -1 if c["kind"] == "setpiece" else 0
+		node.material_override = m
+		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		node.name = "%s_%d" % [p["prop"], props.get_child_count()]
+		props.add_child(node)
+	_build_kit_nav(w, d)
+
+## Grid navigation for kit zones: every prop footprint, set-piece blocker and pond is rasterised as solid cells.
+func _build_kit_nav(w: float, d: float) -> void:
+	kit_grid = AStarGrid2D.new()
+	kit_origin = Vector2(-w * 0.5, -d * 0.5)
+	kit_grid.region = Rect2i(0, 0, int(ceil(w / KIT_CELL)), int(ceil(d / KIT_CELL)))
+	kit_grid.cell_size = Vector2(KIT_CELL, KIT_CELL)
+	kit_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+	kit_grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_OCTILE
+	kit_grid.update()
+	var sp_: float = sin(deg_to_rad(ZONE_PITCH))
+	var sz: Array = zone["size"]
+	# outside the walkable border
+	var wb: Array = zone["walkable"][0]
+	var a0 := zone_px_to_world(float(wb[0][0]), float(wb[0][1])); var a1 := zone_px_to_world(float(wb[2][0]), float(wb[2][1]))
+	for x in kit_grid.region.size.x:
+		for y in kit_grid.region.size.y:
+			var p := kit_origin + Vector2(x + 0.5, y + 0.5) * KIT_CELL
+			if p.x < a0.x or p.x > a1.x or p.y < a0.z or p.y > a1.z: kit_grid.set_point_solid(Vector2i(x, y))
+	for s_ in zone["solids"]:
+		var c := zone_px_to_world(float(s_[0]), float(s_[1]))
+		var rx: float = float(s_[2]) / ZONE_PPM
+		var rz: float = (float(s_[3]) if s_.size() > 3 else float(s_[2]) * 0.5) / ZONE_PPM / sp_   # footprints drawn as ground ellipses
+		var cx0 := int(floor((c.x - rx - kit_origin.x) / KIT_CELL)); var cx1 := int(ceil((c.x + rx - kit_origin.x) / KIT_CELL))
+		var cy0 := int(floor((c.z - rz - kit_origin.y) / KIT_CELL)); var cy1 := int(ceil((c.z + rz - kit_origin.y) / KIT_CELL))
+		for x in range(maxi(0, cx0), mini(kit_grid.region.size.x, cx1 + 1)):
+			for y in range(maxi(0, cy0), mini(kit_grid.region.size.y, cy1 + 1)):
+				var p := kit_origin + Vector2(x + 0.5, y + 0.5) * KIT_CELL
+				var dx := (p.x - c.x) / rx; var dz := (p.y - c.z) / rz
+				if dx * dx + dz * dz <= 1.0: kit_grid.set_point_solid(Vector2i(x, y))
+
+func _kit_cell(p: Vector2) -> Vector2i:
+	return Vector2i(int(floor((p.x - kit_origin.x) / KIT_CELL)), int(floor((p.y - kit_origin.y) / KIT_CELL)))
+
+func _kit_free(p: Vector2) -> bool:
+	var c := _kit_cell(p)
+	return kit_grid.is_in_boundsv(c) and not kit_grid.is_point_solid(c)
+
+func _kit_find_path(from: Vector2, to: Vector2) -> PackedVector2Array:
+	var a := _kit_cell(from); var b := _kit_cell(to)
+	if not _kit_free(to):              # goal inside an obstacle: nearest free cell toward the start
+		var found := false
+		for i in range(1, 60):
+			var q := to.lerp(from, float(i) / 60.0)
+			if _kit_free(q): to = q; b = _kit_cell(q); found = true; break
+		if not found: return PackedVector2Array()
+	if not kit_grid.is_in_boundsv(a) or kit_grid.is_point_solid(a): return PackedVector2Array([to])
+	var ids := kit_grid.get_id_path(a, b)
+	if ids.is_empty(): return PackedVector2Array()
+	var pts := PackedVector2Array()
+	for id in ids: pts.append(kit_origin + (Vector2(id) + Vector2(0.5, 0.5)) * KIT_CELL)
+	pts[pts.size() - 1] = to
+	# string-pull: keep only the corners needed for straight clear lines
+	var out := PackedVector2Array(); var cur := from; var i := 0
+	while i < pts.size() - 1:
+		var j := pts.size() - 1
+		while j > i + 1 and not _kit_line_free(cur, pts[j]): j -= 1
+		out.append(pts[j]); cur = pts[j]; i = j
+	if out.is_empty(): out.append(to)
+	return out
+
+func _kit_line_free(a: Vector2, b: Vector2) -> bool:
+	var n := int(ceil(a.distance_to(b) / (KIT_CELL * 0.5))) + 1
+	for k in n + 1:
+		if not _kit_free(a.lerp(b, float(k) / float(n))): return false
+	return true
+
 func zone_line_clear(a: Vector2, b: Vector2) -> bool:
 	var n := int(ceil(a.distance_to(b) / 0.2)) + 1
 	for i in n + 1:
@@ -712,6 +835,8 @@ func _walk_xz(p: Vector2, clearance := 0.0) -> bool:
 
 func _build_zone_nav() -> void:
 	zone_nav_nodes = PackedVector2Array(); zone_nav_links.clear(); zone_route = PackedVector2Array()
+	if zone.has("kit"): return             # kit zones use the grid (_build_kit_nav)
+	kit_grid = null
 	var polys: Array = []
 	polys.append_array(zone_walk); polys.append_array(zone_block)
 	for poly in polys:
@@ -738,6 +863,7 @@ func _build_zone_nav() -> void:
 ## Shortest walkable route from `from` to `to` (world xz). Returns the corners to walk through, ending at the goal
 ## (or the nearest walkable point on the way to it when the goal itself is blocked).
 func zone_find_path(from: Vector2, to: Vector2) -> PackedVector2Array:
+	if kit_grid != null and zone.has("kit"): return _kit_find_path(from, to)
 	if not _walk_xz(to):
 		var t := 1.0
 		var found := false
@@ -843,6 +969,7 @@ func travel_to(to: String, arrive: Array) -> void:
 	zone_traveling = false
 
 func zone_walkable(at: Vector3) -> bool:
+	if kit_grid != null and zone.has("kit"): return _kit_free(Vector2(at.x, at.z))
 	for poly in zone_block:
 		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), poly):
 			return false

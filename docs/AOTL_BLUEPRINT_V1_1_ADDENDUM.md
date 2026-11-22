@@ -109,6 +109,12 @@ sign-off → commit + Drive copy.
 - Each prop carries its own footprint (collision) and occluder outline, so free movement and hide-behind work per object.
 - Layout comes from the free plan sketch (`tools/draw_zone_plan.py`), not from a painted master; painted masters are
   mood/colour references at most. Biome blending across zones = shifting ground/prop sets and overlays (e.g. snow).
+- Built (lab, free): `tools/build_kit.py` (kit catalog: props with foot point, footprint, occludes; tileable ground),
+  `tools/build_kit_zone.py` (zone spec -> splat map, prop placements with seeded scatter that keeps paths/clearings
+  free, collision solids, minimap overview, portals/waypoints from set-piece anchors), runtime `_build_kit_zone`
+  (`shaders/kit_ground.gdshader`, `shaders/kit_prop.gdshader` with per-prop depth so the hero hides behind trunks and
+  canopies), grid A* navigation (`AStarGrid2D`, 0.5 m cells) for thousands of obstacles. `tests/verify_kit_zone.gd` 9/9.
+  Mock-up kit is cut from art we own (placeholder quality); real kit art replaces files one for one.
 - Lessons that led here (E1 outpaint, path connector, master paste, master upscale): separate AI images cannot be made
   to continue paths and trees exactly, and one image big enough for a zone cannot hold game-level detail.
 

@@ -6,16 +6,36 @@ extends RefCounted
 ## light (upper left). Because it is real geometry it lies flat at any camera angle and needs no offsets.
 
 # radii as a fraction of the star-tip radius (measured from the top-down texture) and heights in metres per metre of
-# tip radius: stepped dais (reads 3D like the approved WP1-A art) seated on the floor with no gap
+# tip radius: proportions measured from the approved WP1-A painting (tiers ~0.07 R each; art seen at 60 deg)
 const STAR_VALLEY := 0.62
 const DISC_R := 0.77
-const RIM_R := 0.535
+const BAND_R := 0.72       # second stone step; its top carries the gold filigree band (top tier)
 const BASIN_R := 0.455
-const H_STAR := 0.020
-const H_DISC := 0.048
-const H_RIM := 0.080
-const H_BASIN := 0.060
+const H_STAR := 0.045
+const H_DISC := 0.120
+const H_BAND := 0.195
+const H_BASIN := 0.140
 const SEG := 96
+const BLOCK_M := 0.32        # stone block length along the wall, in units of tip radius
+## Step walls: cut stone blocks (vertical seams, worn edges, darker foot, lit lip) like the painted original.
+const WALL_SHADER := """shader_type spatial;
+render_mode unshaded, cull_disabled;
+float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float n(vec2 p){ vec2 i = floor(p); vec2 f = fract(p); f = f*f*(3.0-2.0*f);
+  return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
+void fragment(){
+  float gilt = COLOR.a < 0.5 ? 1.0 : 0.0;
+  float u = UV.x; float v = UV.y;
+  float blk = floor(u);
+  float seam = smoothstep(0.0, 0.035, fract(u)) * smoothstep(1.0, 0.965, fract(u));
+  float tint = 0.9 + 0.18 * h(vec2(blk, 3.0));
+  float wear = 0.82 + 0.28 * n(vec2(u * 6.0, v * 3.0));
+  float grad = mix(0.58, 1.08, smoothstep(0.0, 1.0, v));
+  float lip = smoothstep(0.86, 0.97, v) * 0.22;
+  vec3 c = COLOR.rgb * tint * wear * grad + lip;
+  c *= mix(0.55, 1.0, mix(seam, 1.0, gilt));
+  ALBEDO = clamp(c, 0.0, 1.0);
+}"""
 const LIGHT := Vector3(-0.55, 0.0, -0.55)       # painted light from the upper left (screen), i.e. -x, -z
 
 static func build(radius_m: float, top_tex: Texture2D) -> Node3D:
@@ -31,26 +51,27 @@ static func build(radius_m: float, top_tex: Texture2D) -> Node3D:
 		var r := 1.0 if i % 2 == 0 else STAR_VALLEY
 		star.append(Vector2(cos(a), sin(a)) * r)
 	var star_dense := _densify(star, 6)
-	var disc := _circle(DISC_R); var rim := _circle(RIM_R); var basin := _circle(BASIN_R)
-	# tops (planar UV from the top-down texture)
+	var disc := _circle(DISC_R); var band := _circle(BAND_R); var basin := _circle(BASIN_R)
+	# tops (planar UV from the top-down texture). Order as in the approved painting, outer -> inner:
+	# star base, stone step, stone step whose top is the gold filigree band (highest tier), recessed rune basin
 	_fan(top, star_dense, H_STAR, R)
-	_fan(top, disc, H_DISC, R)
-	_ring(top, rim, basin, H_RIM, R)          # rim ring top
-	_fan(top, basin, H_BASIN, R)              # recessed basin floor
+	_ring(top, disc, band, H_DISC, R)
+	_ring(top, band, basin, H_BAND, R)
+	_fan(top, basin, H_BASIN, R)
 	# walls
-	_wall(side, star_dense, 0.0, H_STAR, R, Color("b9a88f"), true)
-	_wall(side, disc, H_STAR, H_DISC, R, Color("d8ccb8"), false)
-	_wall(side, rim, H_DISC, H_RIM, R, Color("c9a55e"), false)   # gilded rim edge
-	_wall(side, basin, H_BASIN, H_RIM, R, Color("b8ab96"), false, true)  # inner wall of the basin, facing in
+	_wall(side, star_dense, 0.0, H_STAR, R, Color("d9a64e"), true)       # gilded star edge
+	_wall(side, disc, H_STAR, H_DISC, R, Color("d8c6ab"), false)          # warm ivory stone step 1
+	_wall(side, band, H_DISC, H_BAND, R, Color("dccbb0"), false)          # warm ivory stone step 2
+	_wall(side, basin, H_BASIN, H_BAND, R, Color("b3a28a"), false, true)  # basin inner wall
 	var tm := StandardMaterial3D.new()
 	tm.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	tm.albedo_texture = top_tex
 	tm.cull_mode = BaseMaterial3D.CULL_DISABLED
 	tm.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
-	var sm := StandardMaterial3D.new()
-	sm.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	sm.vertex_color_use_as_albedo = true
-	sm.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var sm := ShaderMaterial.new()
+	var wsd := Shader.new()
+	wsd.code = WALL_SHADER
+	sm.shader = wsd
 	var mt := MeshInstance3D.new(); mt.name = "Top"; mt.mesh = top.commit(); mt.material_override = tm
 	var ms := MeshInstance3D.new(); ms.name = "Sides"; ms.mesh = side.commit(); ms.material_override = sm
 	for m in [mt, ms]:
@@ -61,7 +82,7 @@ static func build(radius_m: float, top_tex: Texture2D) -> Node3D:
 	var q := PlaneMesh.new(); q.size = Vector2(R * 2.1, R * 2.1); sh.mesh = q
 	var shm := ShaderMaterial.new()
 	var sd := Shader.new()
-	sd.code = "shader_type spatial; render_mode unshaded, blend_mix, depth_draw_never;\nvoid fragment(){ vec2 p = UV * 2.0 - 1.0 - vec2(0.02, 0.03); float r = length(p); ALBEDO = vec3(0.07,0.06,0.05); ALPHA = 0.22 * smoothstep(0.98, 0.80, r); }"
+	sd.code = "shader_type spatial; render_mode unshaded, blend_mix, depth_draw_never;\nvoid fragment(){ vec2 p = UV * 2.0 - 1.0 - vec2(0.02, 0.03); float r = length(p); ALBEDO = vec3(0.07,0.06,0.05); ALPHA = 0.32 * smoothstep(1.0, 0.80, r); }"
 	shm.shader = sd
 	sh.material_override = shm
 	sh.position.y = 0.004
@@ -102,18 +123,19 @@ static func _ring(st: SurfaceTool, outer: PackedVector2Array, inner: PackedVecto
 		_v(st, outer[i], h, R); _v(st, inner[i], h, R); _v(st, outer[j], h, R)
 		_v(st, outer[j], h, R); _v(st, inner[i], h, R); _v(st, inner[j], h, R)
 
-static func _wall(st: SurfaceTool, poly: PackedVector2Array, h0: float, h1: float, R: float, base: Color, gilt_top: bool, inward := false) -> void:
+static func _wall(st: SurfaceTool, poly: PackedVector2Array, h0: float, h1: float, R: float, base: Color, gilt: bool, inward := false) -> void:
 	var n := poly.size()
+	var run := 0.0
 	for i in n:
 		var a := poly[i]; var b := poly[(i + 1) % n]
 		var edge := (b - a)
 		var nrm := Vector2(edge.y, -edge.x).normalized()
 		if inward: nrm = -nrm
-		var lit := clampf(0.78 + 0.32 * nrm.dot(Vector2(LIGHT.x, LIGHT.z).normalized()), 0.45, 1.1)
-		var c := Color(base.r * lit * 0.62, base.g * lit * 0.62, base.b * lit * 0.62)   # shadowed foot of the step
-		var ct := (Color("f0c870") if gilt_top else Color(minf(base.r * 1.18, 1.0), minf(base.g * 1.18, 1.0), minf(base.b * 1.15, 1.0))) * lit   # lit lip
+		var lit := clampf(0.80 + 0.30 * nrm.dot(Vector2(LIGHT.x, LIGHT.z).normalized()), 0.5, 1.1)
+		var c := Color(base.r * lit, base.g * lit, base.b * lit, 0.0 if gilt else 1.0)
+		var u0 := run / BLOCK_M; run += edge.length(); var u1 := run / BLOCK_M
 		var A0 := Vector3(a.x * R, h0 * R, a.y * R); var B0 := Vector3(b.x * R, h0 * R, b.y * R)
 		var A1 := Vector3(a.x * R, h1 * R, a.y * R); var B1 := Vector3(b.x * R, h1 * R, b.y * R)
-		var tri := [[A0, c], [A1, ct], [B0, c], [B0, c], [A1, ct], [B1, ct]] if not inward else [[A0, c], [B0, c], [A1, ct], [B0, c], [B1, ct], [A1, ct]]
+		var tri := [[A0, Vector2(u0, 0)], [A1, Vector2(u0, 1)], [B0, Vector2(u1, 0)], [B0, Vector2(u1, 0)], [A1, Vector2(u0, 1)], [B1, Vector2(u1, 1)]]
 		for t in tri:
-			st.set_color(t[1]); st.add_vertex(t[0])
+			st.set_color(c); st.set_uv(t[1]); st.add_vertex(t[0])

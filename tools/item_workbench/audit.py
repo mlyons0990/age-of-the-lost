@@ -41,6 +41,8 @@ def run(repo,ref,out):
  paths=set(git('ls-tree','-r','--name-only',commit).decode().splitlines())
  for key,item in base.items():
   cells=item['footprint'];art=profile.get('portraits',{}).get(key);uri='';pixels=None
+  if not art and GAME+'assets/item_portraits/'+key+'.png' in paths:
+   art='res://assets/item_portraits/'+key+'.png'
   status='No explicit selected portrait; fallback requires runtime review'
   if art:
    path=GAME+art.removeprefix('res://')
@@ -69,7 +71,7 @@ def run(repo,ref,out):
   w,h=cells if footprint(cells) else (1,1)
   content='<img alt="'+html.escape(item['name'],quote=True)+'" src="'+uri+'">' if uri else '<span>Artwork<br>unverified</span>'
   cards.append('<article><h2>'+html.escape(item['name'])+'</h2><p>'+html.escape(key)+' · '+str(w)+'×'+str(h)+' · '+html.escape(item['equipment_destination'])+'</p><div class="grid" style="width:'+str(w*48)+'px;height:'+str(h*48)+'px">'+content+'</div><p>'+html.escape(status)+'</p></article>')
- report=dict(commit=commit,source_sha256=sources,items=rows,issues=[dict(id=i,severity=s,message=m) for i,s,m in issues],limits=['Read-only exported data audit, not live Godot verification','No inferred fallback or equipped mesh mappings','LFS pointer files are unverified, not missing artwork','Only main snapshot audited; other developer branches untouched'])
+ report=dict(commit=commit,source_sha256=sources,items=rows,issues=[dict(id=i,severity=s,message=m) for i,s,m in issues],limits=['Read-only exported data audit, not live Godot verification','Tracked item-portrait fallback recognized; actual ResourceLoader success not verified','No equipped mesh mappings inferred','LFS pointer files are unverified, not missing artwork','Only main snapshot audited; other developer branches untouched'])
  out.mkdir(parents=True,exist_ok=True)
  (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
  with (out/'exceptions.csv').open('w',newline='') as f:

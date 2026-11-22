@@ -1079,26 +1079,47 @@
    "to": "crownsfall",
    "poly": [
     [
-     168,
-     72
+     312,
+     350
     ],
     [
-     480,
-     36
+     600,
+     265
     ],
     [
-     516,
-     144
+     575,
+     218
     ],
     [
-     228,
-     180
+     290,
+     302
     ]
    ],
    "arrive": [
-    2200,
-    1200
-   ]
+    1010,
+    640
+   ],
+   "aura": {
+    "poly": [
+     [
+      316,
+      356
+     ],
+     [
+      601,
+      270
+     ],
+     [
+      680,
+      350
+     ],
+     [
+      376,
+      450
+     ]
+    ]
+   },
+   "threshold": "Top of the shrine stairs (top-left)"
   }
  ],
  "continues": "Paths off the top-right and bottom-left edges continue inside Whisperwood (next paintings join this canvas; no zoning).",

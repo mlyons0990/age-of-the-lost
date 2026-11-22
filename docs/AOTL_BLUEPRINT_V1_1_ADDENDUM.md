@@ -18,7 +18,7 @@ This is **not yet merged to main**; see open item O1.
 | D2 | **Camera: fixed orthographic, 31° pitch** for painted zones (matches the paintings' ground angle). | v1.0 §5 / S10 45–55° experiment range. | "the 31 degree (B) option is approved" (11-22) | `capture_camera_angle.gd`, zone JSON `pitch: 31` |
 | D3 | **2D painted world with selected 3D actors.** Zones are paintings; heroes and enemies are 3D. | Confirms v1.0 §4C hybrid for environments. | "not everything has to be in 3D … each zone can just be a 2d environment" (11-21) | Painted-zone system |
 | D4 | **Path of Exile zone model**: one large seamless zone per area; a new area loads only at a zone-exit portal. | Resolves v1.0 open item "transitions / streaming seams". | "let's make the approved style the PoE one" (11-21) | `verify_zone_travel.gd`, `verify_zone_streaming.gd` |
-| D5 | **Exit portals** may be any door / path / stairs but always carry a **blue/gold glowing aura**. | — | owner, 11-21 | `_build_portal`, `portal_aura.gdshader` |
+| D5 | **Exit portals** are set INTO a painted threshold (staircase, doorway, cave mouth), never floating on open ground, with a **blue/gold glow** spilling over it and a light veil in the opening. | — | owner, 11-21 / 11-22 ("needs to look organic") | `_build_threshold_portal`, `threshold_glow.gdshader` |
 | D6 | **Waypoints**: checkpoints unlocked by reaching them; teleport to town or any unlocked waypoint and back. Undiscovered waypoints are plain world props (no "locked" label). | — | owner, 11-21 / 11-22 | `verify_waypoints.gd` 17/17 |
 | D7 | **Waypoint art**: AOTL ivory/gold eight-point platform (WP1 variant A design), glowing version (WP2) once discovered. **Master waypoint = WP3**, the same design painted at the game camera and used unwarped in every zone (owner 11-22). Per-biome material variants (caves, hostile) are generated from WP3 when needed. | — | owner, 11-21 / 11-22 | `assets/props/waypoint_wp3.png`, `tools/build_waypoint_sprite.py` |
 | D8 | **Waypoint placement**: a waypoint inside a circular space/object is **centred exactly on its centre**, lies flat on the painted ground, a star point aimed at the feature the space faces. | — | "IT SHOULD BE CENTERED IN THE RUINS" (11-22) | tests: centre within 10 px; rendered glow centroid within 8 px |
@@ -71,7 +71,10 @@ These are the lessons already paid for. Follow them for every new zone or extens
   tiles that stream around the camera. Extensions are outpaints of the existing painting so paths continue pixel-exact.
 
 **2.6 Portals and waypoints**
-- `exits`: polygon at the zone edge, destination, arrival point off the return exit (no bounce).
+- `exits`: anchored to a painted threshold. `aura.poly` = exit edge (between the posts / door jambs) + where the glow
+  fades out down the steps; trigger `poly` covers the top of the threshold; arrival point off the return exit. When a
+  new painting is generated, ask for the exit feature (stairs, gate, cave mouth) at the zone's edge so the portal has
+  somewhere real to live.
 - `waypoints`: `id`, `name`, `at`, `centre_of` (measured centre of the enclosing ring), `size_px`. The centring test
   must pass before a zone is accepted.
 

@@ -48,13 +48,13 @@ func _run() -> void:
 		await _shot("waypoint_town_panel")
 		lab.waypoint_panel.close()
 	# walk out through the portal to Whisperwood
-	a.command_move(lab.zone_px_to_world(2220, 1180))
+	lab.zone_move_to(lab.zone_px_to_world(900, 560))
 	await create_timer(2.5).timeout
 	await _shot("portal_plaza")
-	a.command_move(lab.zone_px_to_world(2200, 1640))
+	lab.zone_move_to(lab.zone_px_to_world(840, 318))
 	await _wait(func(): return lab.painted_zone == "whisperwood", 12.0)
 	while lab.zone_traveling: await process_frame
-	check(lab.painted_zone == "whisperwood", "Portal on the south road leads to Whisperwood")
+	check(lab.painted_zone == "whisperwood", "Portal at the top of the grand stairs leads to Whisperwood")
 	var wnode: Node3D = lab.zone_waypoints[0]["node"]
 	check((wnode.get_node("Platform") as MeshInstance3D).material_override.albedo_texture.resource_path.ends_with("waypoint_wp3.png") and not (wnode.get_node("Beam") as MeshInstance3D).visible and not (wnode.get_node("Label") as Label3D).visible, "Undiscovered waypoint is dormant: no light, no label, no \"locked\" text")
 	check(lab.zone_walkable(lab.zone_waypoints[0]["pos"]), "Shrine ruins are walkable (waypoint area open)")

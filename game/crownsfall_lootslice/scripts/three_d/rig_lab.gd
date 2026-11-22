@@ -405,7 +405,8 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 			ep.append(Vector2(wp.x, wp.z)); c += wp
 		c /= float(ex["poly"].size())
 		zone_exits.append({"name": ex["name"], "to": ex["to"], "arrive": ex["arrive"], "poly": ep})
-		_build_portal(decor, ep, c, String(ex["name"]))
+		if ex.has("aura"): _build_threshold_portal(decor, ex)
+		else: _build_portal(decor, ep, c, String(ex["name"]))
 	zone_waypoints.clear()
 	for wdef in zone.get("waypoints", []):
 		var wp_pos := zone_px_to_world(float(wdef["at"][0]), float(wdef["at"][1]))
@@ -419,6 +420,70 @@ func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape
 
 ## Zone-exit portal: blue/gold light curtain standing on the exit, a glow on the ground, rising sparks and the
 ## destination's name, so the player can always tell an exit to another area apart from the scenery.
+## Zone-exit portal anchored to a painted threshold (owner 11-22: portals must look organic, set into a staircase,
+## doorway or cave mouth). Zone JSON exit "aura": {"poly": [edge_left, edge_right, far_right, far_left]} in painting
+## px: the first two points are the exit edge (top step / doorway line, between its posts), the last two where the glow
+## fades out down the steps. Builds: glow flowing over the painted steps toward the exit, a light veil standing in the
+## opening on the exit edge, sparks rising along it, a soft blue light and the destination name.
+func _build_threshold_portal(parent: Node3D, ex: Dictionary) -> void:
+	var label := String(ex["name"])
+	var q: Array = ex["aura"]["poly"]
+	var P := []
+	for p in q: P.append(zone_px_to_world(float(p[0]), float(p[1])))
+	var root := Node3D.new(); root.name = "Portal_" + label.replace(" ", "")
+	root.add_to_group("zone_portal")
+	parent.add_child(root)
+	# glow on the steps
+	var st := SurfaceTool.new(); st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var uv := [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 1)]
+	for i in [0, 1, 2, 0, 2, 3]:
+		st.set_uv(uv[i]); st.add_vertex(P[i] + Vector3.UP * 0.03)
+	var glow := MeshInstance3D.new(); glow.name = "StepGlow"; glow.mesh = st.commit()
+	var gm := ShaderMaterial.new(); gm.shader = load("res://shaders/threshold_glow.gdshader")
+	glow.material_override = gm
+	glow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(glow)
+	# veil standing in the opening on the exit edge
+	var e0: Vector3 = P[0]; var e1: Vector3 = P[1]
+	var mid := (e0 + e1) * 0.5
+	var along := e1 - e0
+	var width := along.length()
+	var curtain := MeshInstance3D.new(); curtain.name = "Veil"
+	var cq := QuadMesh.new(); cq.size = Vector2(width, 2.3); curtain.mesh = cq
+	var cm := ShaderMaterial.new(); cm.shader = load("res://shaders/portal_aura.gdshader"); cm.set_shader_parameter("strength", 0.85)
+	curtain.material_override = cm
+	curtain.position = mid + Vector3.UP * 1.15
+	curtain.rotation.y = -atan2(along.z, along.x)
+	curtain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(curtain)
+	var sparks := CPUParticles3D.new(); sparks.name = "Sparks"
+	sparks.amount = 36; sparks.lifetime = 2.0; sparks.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	sparks.emission_box_extents = Vector3(width * 0.42, 0.05, 0.25)
+	sparks.position = mid + Vector3.UP * 0.1
+	sparks.rotation.y = curtain.rotation.y
+	sparks.direction = Vector3.UP; sparks.spread = 10.0; sparks.gravity = Vector3(0, 0.3, 0)
+	sparks.initial_velocity_min = 0.3; sparks.initial_velocity_max = 0.9
+	sparks.scale_amount_min = 0.03; sparks.scale_amount_max = 0.07
+	var sm := SphereMesh.new(); sm.radius = 0.5; sm.height = 1.0; sm.radial_segments = 6; sm.rings = 3
+	var smat := StandardMaterial3D.new(); smat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	smat.vertex_color_use_as_albedo = true; smat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	sm.material = smat; sparks.mesh = sm
+	var grad := Gradient.new(); grad.set_color(0, Color(1.0, 0.85, 0.45, 1)); grad.set_color(1, Color(0.35, 0.65, 1.0, 0))
+	sparks.color_ramp = grad
+	root.add_child(sparks)
+	var light := OmniLight3D.new(); light.light_color = Color(0.45, 0.7, 1.0); light.light_energy = 1.2; light.omni_range = width
+	light.position = mid + Vector3.UP * 1.0; light.shadow_enabled = false
+	root.add_child(light)
+	var lbl := Label3D.new()
+	lbl.text = "▲ " + label
+	lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	lbl.no_depth_test = true; lbl.fixed_size = true; lbl.pixel_size = 0.0011
+	lbl.font_size = 26; lbl.outline_size = 8
+	lbl.modulate = Color("f2d38a"); lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
+	lbl.position = mid + Vector3.UP * 2.6
+	lbl.add_to_group("zone_exit_label")
+	root.add_child(lbl)
+
 func _build_portal(parent: Node3D, poly: PackedVector2Array, centre: Vector3, label: String) -> void:
 	var mn := Vector2(INF, INF); var mx := -mn
 	for p in poly:

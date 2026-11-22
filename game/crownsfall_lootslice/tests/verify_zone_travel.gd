@@ -24,11 +24,11 @@ func _run() -> void:
 	var a = lab.player
 	check(lab.zone_exits.size() == 1 and lab.zone_exit_at(a.global_position).is_empty(), "Plaza has one exit and the hero does not spawn on it")
 	check(get_nodes_in_group("zone_exit_label").size() == 1, "Exit is marked in the world")
-	a.command_move(lab.zone_px_to_world(2200, 1640))
+	lab.zone_move_to(lab.zone_px_to_world(840, 318))
 	var t := 0.0
 	while lab.painted_zone != "whisperwood" and t < 12.0:
 		await physics_frame; t += 1.0 / 60.0
-	check(lab.painted_zone == "whisperwood", "Walking onto the south road travels to Whisperwood (%.1fs)" % t)
+	check(lab.painted_zone == "whisperwood", "Climbing the grand stairs travels to Whisperwood (%.1fs)" % t)
 	while lab.zone_traveling: await process_frame
 	await create_timer(1.5).timeout
 	check(lab.zone_walkable(a.global_position), "Hero arrives on Whisperwood's walkable ground")
@@ -45,7 +45,7 @@ func _run() -> void:
 	check(vis == 4, "Whisperwood targets placed on its walkable ground (%d)" % vis)
 	check(lab.hud.area_title.text == "Whisperwood" and lab.hud.area_sub.text == "Fallen Shrine", "Minimap header shows the new area")
 	await _shot("travel_whisperwood")
-	a.command_move(lab.zone_px_to_world(330, 120))
+	lab.zone_move_to(lab.zone_px_to_world(445, 285))
 	t = 0.0
 	while lab.painted_zone != "crownsfall" and t < 12.0:
 		await physics_frame; t += 1.0 / 60.0

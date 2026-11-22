@@ -69,6 +69,12 @@ func _run() -> void:
 	check(ptex != null and ptex.resource_path.ends_with("waypoint_plinth_lit.png"), "Discovered waypoint switches to the glowing platform art (WP2)")
 	await create_timer(0.5).timeout
 	await _shot("waypoint_shrine_panel")
+	# the waypoint's visual centre (its basin) must land on the centre of the ruins it sits in
+	var wdef: Dictionary = lab.zone["waypoints"][0]
+	var rc: Vector2 = lab.camera.unproject_position(lab.zone_px_to_world(float(wdef["centre_of"][0]), float(wdef["centre_of"][1])))
+	var bc: Vector2 = lab.camera.unproject_position((wnode.get_node("Rune") as Node3D).global_position)
+	print("ruins centre on screen %s, waypoint centre %s" % [rc, bc])
+	check(rc.distance_to(bc) < 10.0, "Waypoint centre sits on the centre of the ruins (%.1f px off)" % rc.distance_to(bc))
 	check(lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), "Waypoint window opens at the shrine")
 	# teleport to town
 	lab.waypoint_panel.buttons["crownsfall_town"].pressed.emit()
@@ -83,7 +89,7 @@ func _run() -> void:
 	if back != null: back.pressed.emit()
 	await _wait(func(): return lab.painted_zone == "whisperwood" and not lab.zone_traveling, 6.0)
 	await create_timer(0.8).timeout
-	check(lab.painted_zone == "whisperwood" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1985, 920)) < 120.0, "Teleported back to the shrine waypoint")
+	check(lab.painted_zone == "whisperwood" and lab.zone_world_to_px(a.global_position).distance_to(Vector2(1995, 1012)) < 120.0, "Teleported back to the shrine waypoint")
 	var fresh = load("res://scripts/three_d/waypoints.gd").new()
 	check(fresh.is_unlocked("whisperwood_shrine"), "Unlocked waypoints persist (saved)")
 	await _shot("waypoint_back_at_shrine")

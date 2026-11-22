@@ -952,10 +952,13 @@ func _draw_zone_minimap() -> void:
 	overlay.draw_rect(minimap_rect, Color(0.05, 0.04, 0.05, 0.9))
 	overlay.draw_texture_rect_region(minimap_overview, minimap_rect, Rect2(win.position * ov_scale, win.size * ov_scale), Color(0.86, 0.84, 0.9))
 	for poly in lab.zone.get("walkable", []):
-		var pts := PackedVector2Array()
-		for p in poly: pts.append(to_map.call(Vector2(float(p[0]), float(p[1]))))
-		pts.append(pts[0])
-		overlay.draw_polyline(pts, Color(1, 0.95, 0.8, 0.35), 1.5, true)
+		var n: int = poly.size()
+		for i in n:
+			var a2: Vector2 = to_map.call(Vector2(float(poly[i][0]), float(poly[i][1])))
+			var b2: Vector2 = to_map.call(Vector2(float(poly[(i + 1) % n][0]), float(poly[(i + 1) % n][1])))
+			var seg := _clip_segment(a2, b2, minimap_rect)   # keep the outline inside the minimap box
+			if seg.size() == 2:
+				overlay.draw_line(seg[0], seg[1], Color(1, 0.95, 0.8, 0.35), 1.5, true)
 	for ex in lab.zone.get("exits", []):
 		var c := Vector2.ZERO
 		for p in ex["poly"]: c += Vector2(float(p[0]), float(p[1]))
@@ -977,6 +980,21 @@ func _draw_zone_minimap() -> void:
 	overlay.draw_circle(mc, 6.0, Color(0, 0, 0, 0.8))
 	overlay.draw_circle(mc, 4.5, Color("f2d27a"))
 	overlay.draw_rect(minimap_rect, GOLD, false, 2.0)
+
+## Liang-Barsky: the part of segment a-b inside rect r ([] if none).
+func _clip_segment(a: Vector2, b: Vector2, r: Rect2) -> PackedVector2Array:
+	var d := b - a
+	var t0 := 0.0; var t1 := 1.0
+	for e in [[-d.x, a.x - r.position.x], [d.x, r.end.x - a.x], [-d.y, a.y - r.position.y], [d.y, r.end.y - a.y]]:
+		var pp: float = e[0]; var qq: float = e[1]
+		if absf(pp) < 1e-9:
+			if qq < 0.0: return PackedVector2Array()
+		else:
+			var t := qq / pp
+			if pp < 0.0: t0 = maxf(t0, t)
+			else: t1 = minf(t1, t)
+	if t0 > t1: return PackedVector2Array()
+	return PackedVector2Array([a + d * t0, a + d * t1])
 
 func _draw_world() -> void:
 	var cam: Camera3D = lab.camera

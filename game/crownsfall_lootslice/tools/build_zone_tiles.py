@@ -19,7 +19,7 @@ from PIL import Image
 sys.path.insert(0, os.path.dirname(__file__))
 from build_zone_depth import bake
 
-TILE, GUTTER = 2048, 4          # gutter: neighbour pixels copied into each tile so linear filtering has no seam
+TILE, GUTTER = 2048, 48         # gutter: neighbour pixels copied into each tile; wide enough for mipmapped filtering (thin gutters showed hairlines)
 
 def feather_mask(h, w, f, edges):
     m = np.ones((h, w), np.float32)

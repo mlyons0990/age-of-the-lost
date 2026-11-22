@@ -1,0 +1,165 @@
+{
+  "commit": "ef263e4aab4e0e1c98e81cdf06ae9e76bc99b60b",
+  "source_sha256": {
+    "game/crownsfall_lootslice/data/item_base_definitions.json": "36ab4cde93f8842dd40d780489daafadf4e249f542a7eb0bf65a2f852045fbdf",
+    "game/crownsfall_lootslice/data/selected_art_profile.json": "df70af6f04e9f2daa5c9d2be5730e1bc9fbd7552d6b0355325ee2fd4b3f76313",
+    "art/item_taxonomy/2026-11-12/catalog.json": "1e917e3331021d874414f80a4767af2cef224b43763439456b302fb96f907c2a",
+    "game/crownsfall_lootslice/scripts/art_library.gd": "3d3bf99a747c35770a0fe17bf52655e9475dce31041244d22314932b1c8b41cd"
+  },
+  "candidate_library_entries": 62,
+  "rows": [
+    {
+      "item": "amulet",
+      "cells": [
+        1,
+        1
+      ],
+      "route_order": [
+        "res://assets/item_portraits/amulet.png",
+        "res://assets/painted_icons/amulet.png",
+        "res://assets/icons/amulet.svg",
+        "res://assets/icons/amulet.svg"
+      ],
+      "first_tracked_route": "res://assets/item_portraits/amulet.png",
+      "finding": "fallback_tracked_not_missing",
+      "candidates": [
+        {
+          "asset_id": "aotl_jewelry_amulet_002",
+          "cells": [
+            1,
+            1
+          ],
+          "footprint_matches": true,
+          "status": "reviewed_art_candidate",
+          "runtime_enabled": false,
+          "tracked_texture": true,
+          "selection": "proposal_only"
+        }
+      ],
+      "engine_load_verified": false,
+      "equipped_mesh_verified": false
+    },
+    {
+      "item": "staff",
+      "cells": [
+        2,
+        4
+      ],
+      "route_order": [
+        "res://assets/item_portraits/staff.png",
+        "res://assets/painted_icons/staff.png",
+        "res://assets/icons/staff.svg",
+        "res://assets/icons/amulet.svg"
+      ],
+      "first_tracked_route": "res://assets/item_portraits/staff.png",
+      "finding": "fallback_tracked_not_missing",
+      "candidates": [
+        {
+          "asset_id": "aotl_two_hand_melee_quarterstaff_002",
+          "cells": [
+            1,
+            4
+          ],
+          "footprint_matches": false,
+          "status": "reviewed_art_candidate",
+          "runtime_enabled": false,
+          "tracked_texture": true,
+          "selection": "proposal_only"
+        },
+        {
+          "asset_id": "aotl_two_hand_melee_war_staff_002",
+          "cells": [
+            2,
+            4
+          ],
+          "footprint_matches": true,
+          "status": "reviewed_art_candidate",
+          "runtime_enabled": false,
+          "tracked_texture": true,
+          "selection": "proposal_only"
+        },
+        {
+          "asset_id": "aotl_caster_mystic_staff_002",
+          "cells": [
+            2,
+            4
+          ],
+          "footprint_matches": true,
+          "status": "reviewed_art_candidate",
+          "runtime_enabled": false,
+          "tracked_texture": true,
+          "selection": "proposal_only"
+        }
+      ],
+      "engine_load_verified": false,
+      "equipped_mesh_verified": false
+    },
+    {
+      "item": "wraps",
+      "cells": [
+        2,
+        2
+      ],
+      "route_order": [
+        "res://assets/item_portraits/wraps.png",
+        "res://assets/painted_icons/wraps.png",
+        "res://assets/icons/wraps.svg",
+        "res://assets/icons/amulet.svg"
+      ],
+      "first_tracked_route": "res://assets/item_portraits/wraps.png",
+      "finding": "fallback_tracked_not_missing",
+      "candidates": [
+        {
+          "asset_id": "aotl_armor_cloth_cloth_gloves_002",
+          "cells": [
+            2,
+            2
+          ],
+          "footprint_matches": true,
+          "status": "reviewed_art_candidate",
+          "runtime_enabled": false,
+          "tracked_texture": true,
+          "selection": "proposal_only"
+        }
+      ],
+      "engine_load_verified": false,
+      "equipped_mesh_verified": false
+    },
+    {
+      "item": "slippers",
+      "cells": [
+        2,
+        2
+      ],
+      "route_order": [
+        "res://assets/item_portraits/slippers.png",
+        "res://assets/painted_icons/slippers.png",
+        "res://assets/icons/slippers.svg",
+        "res://assets/icons/amulet.svg"
+      ],
+      "first_tracked_route": "res://assets/item_portraits/slippers.png",
+      "finding": "fallback_tracked_not_missing",
+      "candidates": [
+        {
+          "asset_id": "aotl_armor_cloth_cloth_boots_002",
+          "cells": [
+            2,
+            2
+          ],
+          "footprint_matches": true,
+          "status": "reviewed_art_candidate",
+          "runtime_enabled": false,
+          "tracked_texture": true,
+          "selection": "proposal_only"
+        }
+      ],
+      "engine_load_verified": false,
+      "equipped_mesh_verified": false
+    }
+  ],
+  "limits": [
+    "Tracked route is not a successful Godot ResourceLoader check",
+    "Candidates are suggestions, not approved replacements",
+    "No textures or gameplay changed"
+  ]
+}

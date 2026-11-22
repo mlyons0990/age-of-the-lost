@@ -72,6 +72,26 @@ for w in water: occupied.append((w[0], w[1], w[2] * 1.1))
 def pick(names): return names[rnd.randrange(len(names))] if isinstance(names, list) else names
 for q in spec.get("place", []):                      # deliberate composition: [prop, u, v, scale?, flip?]
     add(q[0], (q[1], q[2]), q[3] if len(q) > 3 else 1.0, bool(q[4]) if len(q) > 4 else False, keep=0)
+def paving_overlap(prop, at, scale, flip):
+    """Fraction of a tree/rock's base (roots, lowest 30% of the image) that lies on paths or paved clearings."""
+    c = cat["props"][prop]; s_ = scale * (ZPPM / c["ppm"] if "ppm" in c else 1.0)
+    al = np.asarray(Image.open(os.path.join(kit_dir, c["image"])).getchannel("A"))
+    if flip: al = al[:, ::-1]
+    fx_ = (c["size"][0] - c["foot"][0]) if flip else c["foot"][0]
+    y0 = int(c["size"][1] * 0.70)
+    ys, xs = np.where(al[y0:] > 128)
+    if len(ys) == 0: return 0.0
+    u = ((xs - fx_) * s_ + at[0]) / SPLAT_K; v = ((ys + y0 - c["foot"][1]) * s_ + at[1]) / SPLAT_K
+    ok = (u >= 0) & (u < sw) & (v >= 0) & (v < sh)
+    if not ok.any(): return 0.0
+    return float((path_mask[v[ok].astype(int), u[ok].astype(int)] > 0.3).mean())
+bad = []
+for q in spec.get("place", []):
+    if cat["props"][q[0]]["kind"] in ("tree", "rock"):
+        ov = paving_overlap(q[0], (q[1], q[2]), q[3] if len(q) > 3 else 1.0, bool(q[4]) if len(q) > 4 else False)
+        if ov > spec.get("max_paving_overlap", 0.03): bad.append(f"{q[0]} at ({q[1]},{q[2]}): {ov:.0%} of its base is on the path")
+if bad:
+    raise SystemExit("Trees/rocks placed on paths (move them):\n  " + "\n  ".join(bad))
 def clear_of_solid(u, v, gap):
     for pl in placed:
         c = cat["props"][pl["prop"]]

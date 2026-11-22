@@ -30,12 +30,12 @@
   {
    "prop": "silver",
    "at": [
-    1480,
+    1640,
     520
    ],
    "scale": 0.3347,
    "flip": true,
-   "mist": 0.016
+   "mist": 0.028
   },
   {
    "prop": "oak_b",
@@ -45,17 +45,17 @@
    ],
    "scale": 0.4583,
    "flip": true,
-   "mist": 0.053
+   "mist": 0.052
   },
   {
    "prop": "silver",
    "at": [
-    2950,
-    420
+    2915,
+    384
    ],
    "scale": 0.3171,
    "flip": false,
-   "mist": 0.019
+   "mist": 0.02
   },
   {
    "prop": "gnarled_b",
@@ -65,26 +65,27 @@
    ],
    "scale": 0.4215,
    "flip": true,
-   "mist": 0.109
+   "mist": 0.114
   },
   {
    "prop": "oak_a",
    "at": [
-    1080,
-    650
+    1062,
+    691
    ],
    "scale": 0.4692,
    "flip": false,
-   "mist": 0.092
+   "mist": 0.148
   },
   {
    "prop": "gnarled_a",
    "at": [
-    2760,
-    640
+    2975,
+    863
    ],
    "scale": 0.4163,
-   "flip": false
+   "flip": false,
+   "mist": 0.156
   },
   {
    "prop": "oak_b",
@@ -99,12 +100,12 @@
   {
    "prop": "gnarled_a",
    "at": [
-    3260,
+    3040,
     1620
    ],
    "scale": 0.4601,
    "flip": true,
-   "mist": 0.025
+   "mist": 0.01
   },
   {
    "prop": "silver",
@@ -114,17 +115,17 @@
    ],
    "scale": 0.3347,
    "flip": true,
-   "mist": 0.111
+   "mist": 0.112
   },
   {
    "prop": "oak_a",
    "at": [
-    860,
-    1720
+    901,
+    1627
    ],
    "scale": 0.5161,
    "flip": false,
-   "mist": 0.121
+   "mist": 0.146
   },
   {
    "prop": "a_rock_flat",
@@ -144,8 +145,8 @@
    ],
    "scale": 0.1681,
    "flip": true,
-   "tint": 0.58,
-   "mist": 0.037
+   "tint": 0.557,
+   "mist": 0.025
   },
   {
    "prop": "a_rock_pair",
@@ -156,7 +157,7 @@
    "scale": 0.1552,
    "flip": false,
    "tint": 0.55,
-   "mist": 0.026
+   "mist": 0.137
   },
   {
    "prop": "b_rock_small",
@@ -171,8 +172,8 @@
   {
    "prop": "a_rock_small",
    "at": [
-    2380,
-    1120
+    2400,
+    1141
    ],
    "scale": 0.1224,
    "flip": true,
@@ -187,7 +188,7 @@
    "scale": 0.1557,
    "flip": true,
    "tint": 0.55,
-   "mist": 0.033
+   "mist": 0.036
   },
   {
    "prop": "a_roots",
@@ -649,46 +650,55 @@
    "flip": false
   },
   {
-   "prop": "a_pebbles",
+   "prop": "a_moss",
    "at": [
-    2831,
-    491
+    2790,
+    682
    ],
-   "scale": 0.1878,
-   "flip": true
+   "scale": 0.2381,
+   "flip": false
   },
   {
    "prop": "a_moss",
    "at": [
-    2902,
-    464
+    2827,
+    503
    ],
-   "scale": 0.2843,
+   "scale": 0.2722,
    "flip": true
   },
   {
    "prop": "a_pebbles",
    "at": [
-    3135,
-    530
+    2925,
+    653
+   ],
+   "scale": 0.1657,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    2894,
+    468
    ],
    "scale": 0.2137,
    "flip": false
   },
   {
-   "prop": "a_moss",
+   "prop": "a_clover",
    "at": [
-    3128,
-    374
+    3009,
+    606
    ],
-   "scale": 0.283,
+   "scale": 0.2221,
    "flip": false
   },
   {
    "prop": "a_pebbles",
    "at": [
-    3228,
-    493
+    3012,
+    425
    ],
    "scale": 0.1858,
    "flip": false
@@ -696,26 +706,35 @@
   {
    "prop": "a_clover",
    "at": [
-    3355,
-    465
+    3136,
+    573
    ],
-   "scale": 0.1751,
+   "scale": 0.1981,
    "flip": false
   },
   {
-   "prop": "a_moss",
+   "prop": "a_leaves",
    "at": [
-    3361,
-    256
+    3127,
+    338
    ],
-   "scale": 0.2474,
+   "scale": 0.216,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    3269,
+    507
+   ],
+   "scale": 0.2541,
    "flip": false
   },
   {
    "prop": "a_clover",
    "at": [
-    3596,
-    353
+    3361,
+    437
    ],
    "scale": 0.176,
    "flip": false
@@ -723,233 +742,217 @@
   {
    "prop": "a_leaves",
    "at": [
-    3718,
-    288
+    3480,
+    379
    ],
    "scale": 0.2932,
    "flip": false
   },
   {
-   "prop": "b_fern",
+   "prop": "a_moss",
    "at": [
-    0,
-    1449
+    3612,
+    359
    ],
-   "scale": 0.1606,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.08
+   "scale": 0.2447,
+   "flip": true
   },
   {
-   "prop": "a_shrub_white",
+   "prop": "a_leaves",
    "at": [
-    202,
-    1387
+    3603,
+    149
    ],
-   "scale": 0.1765,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.038
+   "scale": 0.2877,
+   "flip": true
   },
   {
-   "prop": "b_shrub_white",
+   "prop": "a_clover",
    "at": [
-    650,
-    1589
+    3716,
+    117
    ],
-   "scale": 0.149,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.016
+   "scale": 0.2038,
+   "flip": false
   },
   {
-   "prop": "b_fern",
+   "prop": "a_leaves",
    "at": [
-    862,
-    1455
+    3832,
+    77
    ],
-   "scale": 0.1882,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.042
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    772,
-    1079
-   ],
-   "scale": 0.1351,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.019
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    1001,
-    933
-   ],
-   "scale": 0.1635,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.068
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    1255,
-    1264
-   ],
-   "scale": 0.1965,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    1198,
-    890
-   ],
-   "scale": 0.1663,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.042
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    1629,
-    1138
-   ],
-   "scale": 0.1734,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    1709,
-    1100
-   ],
-   "scale": 0.1688,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2139,
-    626
-   ],
-   "scale": 0.1009,
-   "flip": true,
-   "tint": 0.624,
-   "mist": 0.059
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    2396,
-    524
-   ],
-   "scale": 0.1466,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.069
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    2549,
-    481
-   ],
-   "scale": 0.1636,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.038
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    2965,
-    748
-   ],
-   "scale": 0.1473,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.017
+   "scale": 0.2568,
+   "flip": false
   },
   {
    "prop": "b_bush_yellow",
    "at": [
-    3204,
-    625
+    99,
+    1414
    ],
-   "scale": 0.1267,
+   "scale": 0.1508,
    "flip": false,
-   "tint": 0.849,
-   "mist": 0.047
+   "tint": 0.55,
+   "mist": 0.061
+  },
+  {
+   "prop": "a_shrub_white",
+   "at": [
+    295,
+    1340
+   ],
+   "scale": 0.1739,
+   "flip": false,
+   "tint": 0.55,
+   "mist": 0.027
+  },
+  {
+   "prop": "b_bush_yellow",
+   "at": [
+    509,
+    1235
+   ],
+   "scale": 0.1563,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.03
+  },
+  {
+   "prop": "b_bush_yellow",
+   "at": [
+    700,
+    1084
+   ],
+   "scale": 0.1533,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.028
+  },
+  {
+   "prop": "a_shrub_white",
+   "at": [
+    870,
+    993
+   ],
+   "scale": 0.1733,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.037
   },
   {
    "prop": "a_fern",
    "at": [
-    3176,
-    230
+    1054,
+    912
+   ],
+   "scale": 0.1469,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.086
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    2489,
+    482
+   ],
+   "scale": 0.1435,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.044
+  },
+  {
+   "prop": "b_bush_yellow",
+   "at": [
+    2656,
+    466
+   ],
+   "scale": 0.1433,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    2866,
+    784
+   ],
+   "scale": 0.1473,
+   "flip": false,
+   "tint": 0.55,
+   "mist": 0.03
+  },
+  {
+   "prop": "b_bush_yellow",
+   "at": [
+    3108,
+    669
+   ],
+   "scale": 0.1267,
+   "flip": false,
+   "tint": 0.829,
+   "mist": 0.033
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    3080,
+    275
    ],
    "scale": 0.1381,
    "flip": false,
-   "tint": 0.55
+   "tint": 0.817,
+   "mist": 0.011
   },
   {
    "prop": "b_fern",
    "at": [
-    3425,
-    528
+    3329,
+    572
    ],
    "scale": 0.145,
    "flip": true,
    "tint": 0.55,
-   "mist": 0.043
+   "mist": 0.052
   },
   {
    "prop": "b_fern",
    "at": [
-    3554,
-    469
+    3476,
+    506
    ],
    "scale": 0.1872,
    "flip": true,
    "tint": 0.55,
-   "mist": 0.053
+   "mist": 0.044
   },
   {
    "prop": "b_shrub_white",
    "at": [
-    3559,
-    80
+    3460,
+    118
    ],
    "scale": 0.1545,
    "flip": true,
    "tint": 0.55,
-   "mist": 0.014
+   "mist": 0.013
   },
   {
    "prop": "a_fern",
    "at": [
-    3773,
-    390
+    3675,
+    427
    ],
    "scale": 0.1833,
    "flip": true,
-   "tint": 0.757,
-   "mist": 0.072
+   "tint": 0.55,
+   "mist": 0.069
   },
   {
    "prop": "b_fern",
    "at": [
-    3743,
-    15
+    3644,
+    52
    ],
    "scale": 0.168,
    "flip": true,
@@ -957,291 +960,301 @@
    "mist": 0.013
   },
   {
-   "prop": "a_moss",
+   "prop": "a_lavender",
    "at": [
-    2620,
-    1013
+    2131,
+    1096
    ],
-   "scale": 0.2695,
-   "flip": false
+   "scale": 0.1224,
+   "flip": false,
+   "tint": 0.587
+  },
+  {
+   "prop": "a_lavender",
+   "at": [
+    2538,
+    969
+   ],
+   "scale": 0.1214,
+   "flip": false,
+   "tint": 0.556
   },
   {
    "prop": "a_clover",
    "at": [
-    2898,
-    1084
+    2395,
+    1190
    ],
-   "scale": 0.1667,
+   "scale": 0.1708,
    "flip": true
   },
   {
-   "prop": "b_fern",
+   "prop": "a_lavender",
    "at": [
-    3090,
-    1200
+    2956,
+    1383
    ],
-   "scale": 0.1379,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.01
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    3316,
-    1274
-   ],
-   "scale": 0.1475,
+   "scale": 0.1037,
    "flip": false,
-   "tint": 0.55,
-   "mist": 0.023
+   "tint": 0.88,
+   "mist": 0.025
   },
   {
    "prop": "a_clover",
    "at": [
-    3148,
-    1470
+    3333,
+    1298
    ],
-   "scale": 0.1912,
+   "scale": 0.1953,
    "flip": false
   },
   {
-   "prop": "a_fern",
+   "prop": "a_grass_tall",
    "at": [
-    748,
-    543
+    3142,
+    1521
    ],
-   "scale": 0.1588,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.189
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    847,
-    437
-   ],
-   "scale": 0.1115,
-   "flip": false,
-   "tint": 0.899,
-   "mist": 0.138
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    826,
-    546
-   ],
-   "scale": 0.1019,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.164
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    278,
-    605
-   ],
-   "scale": 0.1957,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.1
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    308,
-    536
-   ],
-   "scale": 0.1575,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.1
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    403,
-    568
-   ],
-   "scale": 0.1594,
+   "scale": 0.1468,
    "flip": true,
-   "tint": 0.55,
-   "mist": 0.216
+   "tint": 0.778
   },
   {
-   "prop": "a_lavender",
+   "prop": "b_fern",
    "at": [
-    510,
-    341
+    3521,
+    1379
    ],
-   "scale": 0.1166,
-   "flip": false,
-   "tint": 0.561,
-   "mist": 0.144
-  },
-  {
-   "prop": "a_moss",
-   "at": [
-    918,
-    551
-   ],
-   "scale": 0.1927,
-   "flip": true
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    859,
-    741
-   ],
-   "scale": 0.1384,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.157
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    849,
-    710
-   ],
-   "scale": 0.0848,
+   "scale": 0.1653,
    "flip": true,
-   "tint": 0.55,
-   "mist": 0.169
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    1089,
-    816
-   ],
-   "scale": 0.163,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.16
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    1129,
-    740
-   ],
-   "scale": 0.1689,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.126
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    1901,
-    462
-   ],
-   "scale": 0.1432,
-   "flip": false,
    "tint": 0.55,
    "mist": 0.038
   },
   {
-   "prop": "a_fern",
+   "prop": "a_lavender",
    "at": [
-    1974,
-    409
+    3355,
+    1572
    ],
-   "scale": 0.1702,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.044
+   "scale": 0.1106,
+   "flip": false,
+   "tint": 0.915,
+   "mist": 0.019
+  },
+  {
+   "prop": "a_clover",
+   "at": [
+    3818,
+    1484
+   ],
+   "scale": 0.2047,
+   "flip": true
   },
   {
    "prop": "a_lavender",
    "at": [
-    2520,
-    377
+    258,
+    475
    ],
-   "scale": 0.1111,
+   "scale": 0.1035,
    "flip": true,
-   "tint": 0.55,
-   "mist": 0.043
+   "tint": 0.884,
+   "mist": 0.12
   },
   {
-   "prop": "a_bush_round",
+   "prop": "a_fern",
    "at": [
-    3365,
-    868
+    504,
+    610
    ],
-   "scale": 0.1963,
+   "scale": 0.1485,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.251
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    396,
+    337
+   ],
+   "scale": 0.1652,
    "flip": false,
-   "tint": 0.55,
-   "mist": 0.083
+   "tint": 0.714,
+   "mist": 0.164
   },
   {
-   "prop": "a_bush_round",
+   "prop": "b_bush_round",
    "at": [
-    3241,
-    801
+    890,
+    501
    ],
-   "scale": 0.1816,
+   "scale": 0.1628,
    "flip": true,
-   "tint": 0.683,
-   "mist": 0.108
+   "tint": 0.812,
+   "mist": 0.15
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    568,
+    328
+   ],
+   "scale": 0.1699,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.136
+  },
+  {
+   "prop": "a_lavender",
+   "at": [
+    928,
+    456
+   ],
+   "scale": 0.1176,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.118
   },
   {
    "prop": "b_lavender",
    "at": [
-    3643,
-    837
+    516,
+    346
    ],
-   "scale": 0.0994,
-   "flip": false,
-   "tint": 0.887,
-   "mist": 0.037
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    3273,
-    767
-   ],
-   "scale": 0.2034,
-   "flip": false,
+   "scale": 0.0848,
+   "flip": true,
    "tint": 0.55,
-   "mist": 0.13
+   "mist": 0.147
   },
   {
    "prop": "a_shrub_white",
    "at": [
-    321,
-    1040
+    943,
+    773
    ],
-   "scale": 0.1725,
+   "scale": 0.1601,
    "flip": false,
-   "tint": 0.55
+   "tint": 0.55,
+   "mist": 0.201
+  },
+  {
+   "prop": "a_bush_round",
+   "at": [
+    858,
+    723
+   ],
+   "scale": 0.2054,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.177
   },
   {
    "prop": "a_lavender",
    "at": [
-    92,
-    1272
+    3117,
+    954
    ],
-   "scale": 0.1036,
-   "flip": false,
-   "tint": 0.565,
-   "mist": 0.068
+   "scale": 0.0963,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.109
+  },
+  {
+   "prop": "b_shrub_white",
+   "at": [
+    3223,
+    754
+   ],
+   "scale": 0.1738,
+   "flip": true,
+   "tint": 0.708,
+   "mist": 0.183
   },
   {
    "prop": "a_lavender",
    "at": [
-    439,
-    1102
+    2938,
+    975
+   ],
+   "scale": 0.1063,
+   "flip": false,
+   "tint": 0.709,
+   "mist": 0.164
+  },
+  {
+   "prop": "b_fern",
+   "at": [
+    3074,
+    1017
+   ],
+   "scale": 0.1271,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.113
+  },
+  {
+   "prop": "b_lavender",
+   "at": [
+    2242,
+    282
+   ],
+   "scale": 0.1032,
+   "flip": false,
+   "tint": 0.55,
+   "mist": 0.102
+  },
+  {
+   "prop": "a_lavender",
+   "at": [
+    2219,
+    290
+   ],
+   "scale": 0.1178,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.096
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    3531,
+    785
+   ],
+   "scale": 0.1443,
+   "flip": false,
+   "tint": 0.55,
+   "mist": 0.093
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    3511,
+    604
+   ],
+   "scale": 0.1605,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.087
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    3299,
+    832
+   ],
+   "scale": 0.2348,
+   "flip": true
+  },
+  {
+   "prop": "a_lavender",
+   "at": [
+    235,
+    1119
    ],
    "scale": 0.0901,
    "flip": true,
-   "tint": 0.556
+   "tint": 0.55,
+   "mist": 0.01
   },
   {
    "prop": "b_fern",
@@ -1255,101 +1268,165 @@
    "mist": 0.016
   },
   {
+   "prop": "b_fern",
+   "at": [
+    32,
+    1129
+   ],
+   "scale": 0.1509,
+   "flip": false,
+   "tint": 0.81,
+   "mist": 0.031
+  },
+  {
    "prop": "a_fern",
    "at": [
-    3093,
-    1795
+    2962,
+    1739
    ],
-   "scale": 0.1677,
+   "scale": 0.1822,
    "flip": false,
-   "tint": 0.663
+   "tint": 0.6,
+   "mist": 0.048
+  },
+  {
+   "prop": "a_fern",
+   "at": [
+    2862,
+    1610
+   ],
+   "scale": 0.1294,
+   "flip": false,
+   "tint": 0.68,
+   "mist": 0.107
   },
   {
    "prop": "b_shrub_white",
    "at": [
-    3158,
-    1744
+    2751,
+    1526
    ],
-   "scale": 0.1765,
-   "flip": true,
-   "tint": 0.62,
-   "mist": 0.009
+   "scale": 0.1582,
+   "flip": false,
+   "tint": 0.751,
+   "mist": 0.081
   },
   {
-   "prop": "a_fern",
+   "prop": "b_shrub_white",
    "at": [
-    3105,
-    1721
+    2707,
+    1572
    ],
-   "scale": 0.1659,
+   "scale": 0.1367,
+   "flip": true,
+   "tint": 0.791,
+   "mist": 0.068
+  },
+  {
+   "prop": "b_lavender",
+   "at": [
+    2706,
+    1674
+   ],
+   "scale": 0.0912,
+   "flip": true,
+   "tint": 0.972,
+   "mist": 0.066
+  },
+  {
+   "prop": "b_lavender",
+   "at": [
+    3162,
+    1724
+   ],
+   "scale": 0.1069,
    "flip": false,
-   "tint": 0.631
+   "tint": 0.621,
+   "mist": 0.01
+  },
+  {
+   "prop": "b_fern",
+   "at": [
+    2499,
+    1611
+   ],
+   "scale": 0.1313,
+   "flip": true,
+   "tint": 0.55,
+   "mist": 0.025
+  },
+  {
+   "prop": "a_lavender",
+   "at": [
+    2255,
+    1395
+   ],
+   "scale": 0.0882,
+   "flip": false,
+   "tint": 0.55,
+   "mist": 0.035
   },
   {
    "prop": "a_grass_tall",
    "at": [
-    2358,
-    1416
+    2515,
+    1651
    ],
-   "scale": 0.1791,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.055
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2405,
-    1446
-   ],
-   "scale": 0.0906,
-   "flip": true,
-   "tint": 0.858,
-   "mist": 0.051
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2307,
-    1641
-   ],
-   "scale": 0.1088,
-   "flip": false,
-   "tint": 0.614,
-   "mist": 0.112
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2114,
-    1433
-   ],
-   "scale": 0.1094,
+   "scale": 0.1471,
    "flip": true,
    "tint": 0.55,
    "mist": 0.028
   },
   {
-   "prop": "a_lavender",
+   "prop": "a_grass_tall",
    "at": [
-    3068,
-    975
+    2303,
+    1432
    ],
-   "scale": 0.0956,
-   "flip": false,
-   "tint": 0.583,
-   "mist": 0.033
+   "scale": 0.1557,
+   "flip": true,
+   "tint": 0.568,
+   "mist": 0.058
   },
   {
-   "prop": "b_fern",
+   "prop": "a_grass_tall",
    "at": [
-    3187,
-    1039
+    2536,
+    1532
    ],
-   "scale": 0.1536,
+   "scale": 0.1612,
    "flip": false,
-   "tint": 0.55,
-   "mist": 0.033
+   "tint": 0.773,
+   "mist": 0.031
+  },
+  {
+   "prop": "a_clover",
+   "at": [
+    1627,
+    1225
+   ],
+   "scale": 0.1768,
+   "flip": false
+  },
+  {
+   "prop": "a_lavender",
+   "at": [
+    2887,
+    985
+   ],
+   "scale": 0.0875,
+   "flip": true,
+   "tint": 0.867,
+   "mist": 0.151
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    3188,
+    1006
+   ],
+   "scale": 0.2494,
+   "flip": false
   }
  ],
  "solids": [
@@ -1359,7 +1436,7 @@
    109
   ],
   [
-   1480,
+   1640,
    520,
    17
   ],
@@ -1369,8 +1446,8 @@
    109
   ],
   [
-   2950,
-   420,
+   2915,
+   384,
    16
   ],
   [
@@ -1379,13 +1456,13 @@
    106
   ],
   [
-   1080,
-   650,
+   1062,
+   691,
    110
   ],
   [
-   2760,
-   640,
+   2975,
+   863,
    106
   ],
   [
@@ -1394,7 +1471,7 @@
    115
   ],
   [
-   3260,
+   3040,
    1620,
    117
   ],
@@ -1404,8 +1481,8 @@
    17
   ],
   [
-   860,
-   1720,
+   901,
+   1627,
    121
   ],
   [
@@ -1429,8 +1506,8 @@
    23
   ],
   [
-   2380,
-   1120,
+   2400,
+   1141,
    21
   ],
   [

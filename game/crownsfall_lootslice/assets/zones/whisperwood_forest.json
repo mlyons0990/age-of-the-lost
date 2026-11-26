@@ -14,6 +14,7 @@
  "kit": "res://assets/kit/forest_hf",
  "ground_base": "grass",
  "splat": "whisperwood_forest/splat.png",
+ "map": "whisperwood_forest/map.jpg",
  "splat_k": 8,
  "overview": "whisperwood_forest/overview.png",
  "props": [
@@ -124509,5 +124510,62 @@
  "targets": [],
  "ground_ratio": 0.51,
  "light": "whisperwood_forest/light.png",
- "fx": "whisperwood_forest/fx.png"
+ "fx": "whisperwood_forest/fx.png",
+ "map_pois": [
+  {
+   "name": "Standing Stones",
+   "kind": "landmark",
+   "at": [
+    9250,
+    640
+   ],
+   "blurb": "A ring of old mossy stones."
+  },
+  {
+   "name": "Fae Ring",
+   "kind": "secret",
+   "at": [
+    6450,
+    4400
+   ],
+   "blurb": "A circle of mushrooms deep in the wood."
+  },
+  {
+   "name": "Flower Dell",
+   "kind": "landmark",
+   "at": [
+    1800,
+    4250
+   ],
+   "blurb": "A quiet hollow of wildflowers."
+  },
+  {
+   "name": "Lavender Glade",
+   "kind": "landmark",
+   "at": [
+    2000,
+    800
+   ],
+   "blurb": "Lavender beneath the oaks."
+  },
+  {
+   "name": "Mossy Meadow",
+   "kind": "landmark",
+   "at": [
+    5650,
+    3000
+   ],
+   "blurb": "An open meadow at the end of the trail."
+  },
+  {
+   "name": "Old Boulder",
+   "kind": "cache",
+   "at": [
+    3600,
+    3450
+   ],
+   "blurb": "Something glints under the rock."
+  }
+ ],
+ "world_id": "whisperwood"
 }

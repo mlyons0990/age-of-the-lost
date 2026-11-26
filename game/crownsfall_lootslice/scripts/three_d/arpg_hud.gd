@@ -115,6 +115,9 @@ func _on_zone_changed(_to: String) -> void:
 var xp_rect: Rect2
 var quest_progress := 0
 
+const WORLD_MAP := preload("res://scripts/three_d/world_map.gd")
+var world_map                       # full-screen zone / world map (M)
+
 func setup(owner_lab: Node3D) -> void:
 	lab = owner_lab
 	player = lab.player
@@ -130,6 +133,14 @@ func setup(owner_lab: Node3D) -> void:
 	kb.changed_listeners.append(_refresh_keys)
 	_load_loadout()
 	_build()
+	var map_layer := CanvasLayer.new()          # above every HUD layer (slot keys, minimap, panels)
+	map_layer.layer = 40
+	map_layer.name = "MapLayer"
+	add_child(map_layer)
+	world_map = WORLD_MAP.new()
+	world_map.name = "WorldMap"
+	map_layer.add_child(world_map)
+	world_map.setup(lab, self)
 	_refresh_slots()
 	_refresh_keys()
 
@@ -753,6 +764,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		player.dodge_toward_aim()
 	elif a == "lab_panel":
 		toggle_lab_panel()
+	elif a == "map":
+		world_map.toggle()
 	elif a == "keybinds":
 		toggle_bind_menu()
 	elif a == "move":
@@ -868,6 +881,7 @@ func _process(delta: float) -> void:
 	mp_label.text = "MP %d / %d" % [roundi(player.mana), roundi(player.max_mana)]
 	var p: Vector3 = player.global_position
 	minimap_cam.look_at_from_position(p + Vector3.UP * 40.0, p, Vector3.FORWARD)
+	if world_map != null: world_map.tick(delta)
 	var q := mini(3, lab.kills)
 	if q != quest_progress:
 		quest_progress = q
@@ -971,6 +985,20 @@ func _draw_zone_minimap() -> void:
 		var c: Vector2 = to_map.call(lab.zone_world_to_px(w["pos"]))
 		if minimap_rect.has_point(c):
 			overlay.draw_colored_polygon(PackedVector2Array([c + Vector2(0, -7), c + Vector2(6, 0), c + Vector2(0, 7), c + Vector2(-6, 0)]), Color(0.45, 0.75, 1.0))
+	# points of interest and quest objectives (same data as the full map); quests outside the window get an edge arrow
+	if world_map != null:
+		var zid: String = world_map.current_zone_id()
+		for m in world_map.zone_markers(zid):
+			if m["kind"] in ["hero", "exit", "waypoint"]: continue
+			var c: Vector2 = to_map.call(m["at"])
+			if minimap_rect.grow(-6).has_point(c):
+				world_map._draw_marker(m, c, false, 0.75, overlay)
+			elif m["kind"] == "quest":
+				var dir: Vector2 = (c - minimap_rect.get_center()).normalized()
+				var edge: Vector2 = minimap_rect.get_center() + dir * minf(minimap_rect.size.x * 0.5 / maxf(absf(dir.x), 1e-4), minimap_rect.size.y * 0.5 / maxf(absf(dir.y), 1e-4)) * 0.9
+				var tri := PackedVector2Array([edge + dir * 9.0, edge + dir.rotated(2.4) * 7.0, edge + dir.rotated(-2.4) * 7.0])
+				overlay.draw_colored_polygon(tri, Color("f2c14e"))
+				overlay.draw_polyline(tri + PackedVector2Array([tri[0]]), Color(0, 0, 0, 0.8), 1.0, true)
 	for t in lab.targets:
 		if not t.visible: continue
 		var c: Vector2 = to_map.call(lab.zone_world_to_px(t.global_position))

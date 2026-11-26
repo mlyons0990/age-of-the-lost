@@ -4,5 +4,88 @@
   "whisperwood"
  ],
  "town": "crownsfall",
- "note": "World order for the waypoint window. Each zone JSON lists its own waypoints."
+ "note": "World order for the waypoint window. Each zone JSON lists its own waypoints. lab_zones: kit-built zones not yet in the travel order whose waypoints still unlock.",
+ "map": {
+  "title": "The Realm",
+  "nodes": [
+   {
+    "id": "crownsfall",
+    "name": "Crownsfall",
+    "kind": "town",
+    "at": [
+     0.3,
+     0.56
+    ],
+    "levels": "Town",
+    "blurb": "The last free city. Vendors, stash and the waypoint hub."
+   },
+   {
+    "id": "whisperwood",
+    "name": "Whisperwood",
+    "kind": "forest",
+    "at": [
+     0.5,
+     0.4
+    ],
+    "levels": "Level 1-5",
+    "blurb": "Old oaks, standing stones and a fae ring east of the city."
+   },
+   {
+    "id": "hollowmere",
+    "name": "Hollowmere",
+    "kind": "marsh",
+    "at": [
+     0.7,
+     0.6
+    ],
+    "levels": "Level 5-9",
+    "locked": true,
+    "blurb": "Beyond Whisperwood. Not yet reached."
+   },
+   {
+    "id": "unknown_n",
+    "name": "Unexplored",
+    "kind": "unknown",
+    "at": [
+     0.62,
+     0.18
+    ],
+    "locked": true,
+    "blurb": "Unexplored lands."
+   },
+   {
+    "id": "unknown_e",
+    "name": "Unexplored",
+    "kind": "unknown",
+    "at": [
+     0.86,
+     0.36
+    ],
+    "locked": true,
+    "blurb": "Unexplored lands."
+   }
+  ],
+  "links": [
+   [
+    "crownsfall",
+    "whisperwood"
+   ],
+   [
+    "whisperwood",
+    "hollowmere"
+   ],
+   [
+    "whisperwood",
+    "unknown_n"
+   ],
+   [
+    "hollowmere",
+    "unknown_e"
+   ]
+  ],
+  "note": "Map layout in 0..1 of the map area. A zone JSON may set world_id to show as one of these nodes (e.g. the kit build of Whisperwood)."
+ },
+ "lab_zones": [
+  "whisperwood_forest"
+ ]
 }

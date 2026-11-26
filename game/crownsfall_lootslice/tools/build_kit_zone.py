@@ -477,12 +477,49 @@ for p in sorted(placed, key=lambda p: p["at"][1]):
     fx = c["size"][0] - c["foot"][0] if p["flip"] else c["foot"][0]
     ovi.alpha_composite(im, (max(0, int(p["at"][0] / SPLAT_K - fx * s)), max(0, int(p["at"][1] / SPLAT_K - c["foot"][1] * s))))
 ovi.convert("RGB").save(f"assets/zones/{name}/overview.png")
+# full-screen map: same picture at 1/4 scale (ground + light upsampled, props re-drawn at the higher resolution)
+MK = 4; mw, mh = W // MK, H // MK
+def ground_layer_k(k, K):
+    g = cat["ground"][k]; im = Image.open(os.path.join(kit_dir, g["image"])).convert("RGB")
+    tw = max(4, int(round(g["tile_m"] * ZPPM / K))); th = max(2, int(round(g["tile_m"] * ZPPM * math.sin(math.radians(spec.get("pitch", 31.0))) / K)))
+    big = np.tile(np.asarray(im), (3, 3, 1))
+    t = np.asarray(Image.fromarray(big).resize((tw * 3, th * 3), Image.LANCZOS), np.float32)[th:2 * th, tw:2 * tw]
+    return np.tile(t, (mh // th + 2, mw // tw + 2, 1))[:mh, :mw]
+if all("tile_m" in g for g in cat["ground"].values()):
+    spl = cv2.resize(splat, (mw, mh), interpolation=cv2.INTER_LINEAR)
+    mp = ground_layer_k(spec.get("ground_base", "grass"), MK)
+    for k, ch in (("dirt", 1), ("flagstone", 0)):
+        mp = mp * (1 - spl[..., ch:ch + 1]) + ground_layer_k(k, MK) * spl[..., ch:ch + 1]
+    mp = mp * (1 - spl[..., 2:3]) + np.array([70, 110, 130], np.float32) * spl[..., 2:3]
+    if light_name: mp = mp * cv2.resize(light, (mw, mh), interpolation=cv2.INTER_LINEAR)[..., None]
+    mpi = Image.fromarray(mp.clip(0, 255).astype(np.uint8)).convert("RGBA")
+    src2 = {}; sized2 = {}
+    for p in sorted(placed, key=lambda p: p["at"][1]):
+        c = cat["props"][p["prop"]]
+        if c["kind"] == "decal" or (c["kind"] == "bush" and c["size"][0] * p["scale"] / MK < 6): continue
+        if c["image"] not in src2:
+            im0 = Image.open(os.path.join(kit_dir, c["image"])).convert("RGBA")
+            src2[c["image"]] = im0.resize((max(1, im0.width // 2), max(1, im0.height // 2)), Image.LANCZOS)
+        s = p["scale"] / MK; w2, h2 = max(1, int(c["size"][0] * s)), max(1, int(c["size"][1] * s))
+        key = (c["image"], w2, h2)
+        if key not in sized2: sized2[key] = src2[c["image"]].resize((w2, h2), Image.BILINEAR)
+        im = sized2[key]
+        if p["flip"]: im = im.transpose(Image.FLIP_LEFT_RIGHT)
+        fx = c["size"][0] - c["foot"][0] if p["flip"] else c["foot"][0]
+        x0, y0 = int(p["at"][0] / MK - fx * s), int(p["at"][1] / MK - c["foot"][1] * s)
+        if x0 + im.width <= 0 or y0 + im.height <= 0 or x0 >= mw or y0 >= mh: continue
+        if x0 < 0 or y0 < 0:
+            im = im.crop((max(0, -x0), max(0, -y0), im.width, im.height)); x0, y0 = max(0, x0), max(0, y0)
+        mpi.alpha_composite(im, (x0, y0))
+    mpi.convert("RGB").save(f"assets/zones/{name}/map.jpg", quality=90)
 rt = {k: spec[k] for k in ("name", "size", "ppm", "pitch", "hero_px_1080", "spawn") if k in spec}
-rt.update({"kit": "res://" + kit_dir, "ground_base": spec.get("ground_base", "grass"), "splat": f"{name}/splat.png",
+rt.update({"kit": "res://" + kit_dir, "ground_base": spec.get("ground_base", "grass"), "splat": f"{name}/splat.png", "map": f"{name}/map.jpg",
            "splat_k": SPLAT_K, "overview": f"{name}/overview.png", "props": placed, "solids": solids,
            "walkable": [[[40, 100], [W - 40, 100], [W - 40, H - 20], [40, H - 20]]], "exits": exits, "waypoints": waypoints,
            "targets": spec.get("targets", []), "ground_ratio": 0.51})
 if light_name: rt["light"] = light_name; rt["fx"] = fx_name
 if "walkable" in spec: rt["walkable"] = spec["walkable"]
+for k in ("map_pois", "world_id"):
+    if k in spec: rt[k] = spec[k]
 json.dump(rt, open(f"assets/zones/{name}.json", "w"), indent=1)
 print(name, W, "x", H, "props", len(placed), "solids", len(solids), "exits", len(exits), "waypoints", len(waypoints))

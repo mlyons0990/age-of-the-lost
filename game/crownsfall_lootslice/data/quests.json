@@ -1,0 +1,58 @@
+{
+ "quests": [
+  {
+   "id": "city_reborn",
+   "name": "A City Reborn",
+   "objective": "Speak with Captain Ralden",
+   "kind": "main",
+   "markers": [
+    {
+     "zone": "crownsfall",
+     "at": [
+      2500,
+      1150
+     ],
+     "r": 0,
+     "label": "Captain Ralden"
+    }
+   ],
+   "note": "Captain Ralden's spot is a placeholder until the NPC is placed."
+  },
+  {
+   "id": "lost_tomes",
+   "name": "The Lost Tomes",
+   "objective": "Recover the Archive Pages",
+   "count": 3,
+   "kind": "side",
+   "markers": [
+    {
+     "zone": "whisperwood_forest",
+     "at": [
+      9250,
+      700
+     ],
+     "r": 430,
+     "label": "Archive page: Standing Stones"
+    },
+    {
+     "zone": "whisperwood_forest",
+     "at": [
+      6450,
+      4400
+     ],
+     "r": 430,
+     "label": "Archive page: Fae Ring"
+    },
+    {
+     "zone": "whisperwood_forest",
+     "at": [
+      1800,
+      4250
+     ],
+     "r": 430,
+     "label": "Archive page: Flower Dell"
+    }
+   ]
+  }
+ ]
+}

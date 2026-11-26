@@ -11,7 +11,7 @@ var unlocked := {}               # id -> true
 
 func _init() -> void:
 	world = JSON.parse_string(FileAccess.get_file_as_string("res://assets/zones/world.json"))
-	for zname in world.get("zones", []):
+	for zname in world.get("zones", []) + world.get("lab_zones", []):
 		var z: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/zones/%s.json" % zname))
 		for w in z.get("waypoints", []):
 			entries.append({"id": w["id"], "name": w["name"], "zone": zname, "zone_name": String(z.get("name", zname)).split(" — ")[0],

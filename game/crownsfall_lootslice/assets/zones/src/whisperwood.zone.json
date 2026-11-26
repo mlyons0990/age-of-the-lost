@@ -1145,5 +1145,16 @@
  "blocked_note": "0: stream. Others: pillar/statue/fallen-column footprints of the shrine ruins (owner: ruins area walkable, solid objects block).",
  "pitch": 31.0,
  "camera_note": "Owner-approved 31-degree camera (2026-11-22): matches the paintings' ground angle (circles 0.51 tall/wide). ppm rescaled from 88.0 at 52 deg so the painting keeps its on-screen size; hero stays 110 px.",
- "ground_ratio": 0.51
+ "ground_ratio": 0.51,
+ "map_pois": [
+  {
+   "name": "Fallen Shrine",
+   "kind": "landmark",
+   "at": [
+    1995,
+    700
+   ],
+   "blurb": "A broken shrine in the clearing."
+  }
+ ]
 }

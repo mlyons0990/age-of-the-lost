@@ -30,6 +30,7 @@ const ACTIONS := [
 	["keybinds", "Open Key Bindings", "key:F1", ""],
 	["lab_panel", "Show / Hide Lab Panel", "key:F3", ""],
 	["map", "Open Map (Zone / World)", "key:M", ""],
+	["inventory", "Inventory / Character", "key:I", "key:C"],
 ]
 
 var binds := {}          # action -> [spec0, spec1]

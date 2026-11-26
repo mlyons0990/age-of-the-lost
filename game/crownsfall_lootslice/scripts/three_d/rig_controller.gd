@@ -639,14 +639,27 @@ func _physics_process(delta: float) -> void:
 			cycle_phase = fposmod(animation.current_animation_position / animation.current_animation_length, 1.0)
 		terrain_foot_ik.update_foot_ik(delta, anim_state, cycle_phase)
 
+var death_handler: Callable           # the game: death screen + respawn instead of the lab's instant reset
+
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return
 	hp = maxf(0.0, hp - damage)
 	health_changed.emit(hp, max_hp)
+	if hp <= 0.0 and death_handler.is_valid():
+		death_handler.call()
+		return
 	if hp <= 0.0:
 		hp = max_hp
 		global_position = Vector3(0, 0.08, 0)
 		health_changed.emit(hp, max_hp)
+
+func play_death() -> void:
+	if clip_names.has("Death"): _play("Death")
+	else: _play("Idle")
+
+func play_idle() -> void:
+	anim_state = ""
+	_play("Idle")
 
 func command_move(point: Vector3) -> void:
 	attack_target = null

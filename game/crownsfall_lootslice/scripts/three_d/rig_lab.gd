@@ -56,6 +56,12 @@ var mode := "3D articulated rig lab"
 ## Name of assets/zones/<zone>.json. The painting is laid on the ground and viewed by an orthographic camera at the
 ## painting's own pitch, so it appears exactly as painted while the 3D heroes walk over it and cast real shadows.
 @export var painted_zone := ""
+@export var game_mode := false        # the playable game (scenes/game.tscn): character, monsters, quests, loot, saves
+const GAME_STATE := preload("res://scripts/game/game_state.gd")
+const GAME_BOOT := preload("res://scripts/game/game_boot.gd")
+const GAME_DIRECTOR := preload("res://scripts/game/game_director.gd")
+var game                              # scripts/game/game_director.gd when game_mode
+var game_state
 var ZONE_PPM := 93.0                 # painting pixels per ground metre (per zone: zone JSON "ppm")
 var ZONE_SCREEN_PPM := 93.0          # screen px per metre at 1080p (derived from HERO_PX_1080)
 const HERO_PX_1080 := 110.0          # owner reference: hero ~110 px at 1080p (zones opt in with "hero_px_1080")
@@ -132,6 +138,15 @@ var sword_sweep_material: StandardMaterial3D
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=true # This independent lab never changes the saved plaza actor.
+	if game_mode:
+		game_state = GAME_STATE.load_saved() if not GAME_BOOT.new_game else null
+		if game_state == null and GAME_BOOT.new_game: game_state = GAME_STATE.load_saved()
+		if game_state == null: game_state = GAME_STATE.new_character(GAME_BOOT.class_id if GAME_BOOT.class_id != "" else "warrior")
+		GAME_BOOT.new_game = false
+		use_pilot_knight_candidate = game_state.class_id == "warrior"
+		use_pilot_mage_candidate = game_state.class_id == "mage"
+		radiant_spell_fx = game_state.class_id == "mage"
+		painted_zone = game_state.zone if ResourceLoader.exists("res://assets/zones/%s.json" % game_state.zone) else "crownsfall"
 	_build_world()
 	_create_sword_sweep_visualizer()
 	player = CharacterBody3D.new()
@@ -165,7 +180,7 @@ func _ready() -> void:
 		radiant = RADIANT_FX.new()
 		radiant.name = "RadiantFX"
 		add_child(radiant)
-	for i in 4:
+	for i in (0 if game_mode else 4):
 		var e := Node3D.new()
 		e.set_script(DUMMY)
 		e.position = Vector3(-4.2 + i * 2.8, 0.0, -3.6 - (i % 2) * 1.4)
@@ -189,6 +204,11 @@ func _ready() -> void:
 		hud.setup(self)
 	else:
 		_build_hud()
+	if game_mode:
+		game = GAME_DIRECTOR.new()
+		game.name = "Game"
+		add_child(game)
+		game.setup(self, game_state)
 
 func _create_sword_sweep_visualizer() -> void:
 	sword_sweep_debug = MeshInstance3D.new()
@@ -1043,6 +1063,9 @@ func zone_exit_at(at: Vector3) -> Dictionary:
 
 ## Leave through an exit: fade out, swap the painting/walk map/targets, place the hero at `arrive`, fade in.
 func travel_to(to: String, arrive: Array) -> void:
+	if game != null:
+		var r: Array = game.remap_travel(to, arrive)
+		to = r[0]; arrive = r[1]
 	zone_traveling = true
 	player.stop_moving()
 	var fade_layer := CanvasLayer.new(); fade_layer.layer = 50
@@ -1271,7 +1294,7 @@ func _physics_body() -> void:
 		if not WEAPON_SWEEP.swept_samples_touch_target(recent, center, target.damage_radius()):
 			continue
 		sweep_hit_instances[target.get_instance_id()] = true
-		var dead: bool = target.hit(TARGETING.damage_for(player.attack_type))
+		var dead: bool = target.hit(attack_damage(player.attack_type))
 		effects.sparks(target.global_position + Vector3.UP, Color("ffca70"), 12)
 		if dead:
 			kills += 1
@@ -1312,9 +1335,15 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 		if allowed:
 			if actively_swinging:
 				sweep_hit_instances[target.get_instance_id()] = true
-			var dead: bool = target.hit(TARGETING.damage_for(kind))
-			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
+			var dead: bool = target.hit(attack_damage(kind))
+			effects.sparks(target.damage_center() if target.has_method("damage_center") else target.global_position + Vector3.UP, color, 12)
+			if game != null: game.play("hit", -14.0)
 			if dead: kills += 1
+
+## Damage of one hero attack: the attack's base, scaled by the character's gear and level in the game.
+func attack_damage(kind: String) -> float:
+	if game != null: return float(game.roll_damage(kind)["amount"])
+	return TARGETING.damage_for(kind)
 
 func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
@@ -1350,6 +1379,7 @@ func enemy_under(screen: Vector2) -> Node3D:
 	return best
 
 func handle_click(screen: Vector2, force_stand := false, combine_move_attack := true) -> void:
+	if game != null and game.handle_click(screen): return
 	var ground := cursor_ground(screen)
 	player.aim_point = ground
 	var enemy := enemy_under(screen) if (combine_move_attack or force_stand) else null
@@ -1383,4 +1413,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_draw_sword_sweep()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:
+		if game != null:
+			if event.keycode == KEY_ESCAPE: game.ui.toggle_pause()
+			return
 		_back_to_plaza()

@@ -141,8 +141,31 @@ func setup(owner_lab: Node3D) -> void:
 	world_map.name = "WorldMap"
 	map_layer.add_child(world_map)
 	world_map.setup(lab, self)
+	refresh_quests()
 	_refresh_slots()
 	_refresh_keys()
+
+var quest_panel: Panel
+var quest_box: VBoxContainer
+
+## Quest tracker under the minimap: the character's active quests (game) or the lab's sample quests.
+func refresh_quests() -> void:
+	if quest_box == null: return
+	for c in quest_box.get_children(): c.queue_free()
+	var qs: Array = world_map.active_quests() if world_map != null else []
+	for q in qs:
+		var ql := _label("◆  " + String(q["name"]), 17, Color("e8b85c"))
+		ql.name = "Quest_" + String(q["name"]).replace(" ", "")
+		quest_box.add_child(ql)
+		var obj := String(q["objective"]) + ((" (%d/%d)" % [int(q["progress"]), int(q["count"])]) if int(q.get("count", 0)) > 0 else "")
+		var ol := _label("     ☐  " + obj, 14, Color("cfc7b8"), false)
+		ol.name = "Objective_" + String(q["name"]).replace(" ", "")
+		ol.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		ol.custom_minimum_size = Vector2(300, 0)
+		quest_box.add_child(ol)
+	if quest_panel != null:
+		quest_panel.visible = not qs.is_empty()
+		quest_panel.size.y = 14 + 44 * qs.size()
 
 func _tex(name: String) -> Texture2D:
 	return load(UI + name + ".png")
@@ -254,17 +277,15 @@ func _build() -> void:
 		_on_zone_changed("")
 		lab.zone_changed.connect(_on_zone_changed)
 	var qy := minimap_rect.end.y + 12
-	root.add_child(_panel(Rect2(W - 334, qy, 320, 118), 0.62))
-	for q in [["A City Reborn", "Speak with Captain Ralden"], ["The Lost Tomes", "Recover the Archive Pages (%d/3)"]]:
-		var ql := _label("◆  " + q[0], 17, Color("e8b85c"))
-		ql.position = Vector2(W - 322, qy + 8)
-		ql.name = "Quest_" + q[0].replace(" ", "")
-		root.add_child(ql)
-		var ol := _label("☐  " + (q[1] % quest_progress if "%d" in q[1] else q[1]), 14, Color("cfc7b8"), false)
-		ol.position = Vector2(W - 312, qy + 32)
-		ol.name = "Objective_" + q[0].replace(" ", "")
-		root.add_child(ol)
-		qy += 56
+	quest_panel = _panel(Rect2(W - 334, qy, 320, 118), 0.62)
+	root.add_child(quest_panel)
+	quest_box = VBoxContainer.new()
+	quest_box.position = Vector2(W - 322, qy + 6)
+	quest_box.size = Vector2(300, 100)
+	quest_box.add_theme_constant_override("separation", 1)
+	quest_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(quest_box)
+	refresh_quests()
 	# --- bottom, PoE layout: painted statue + globe in each corner; between them, procedurally drawn bronze frames
 	# (exact straight bevels): a flask belt beside the life globe, a two-row skill block beside the mana globe
 	# (LMB MMB RMB over Q W E R T), and a thin XP bar along the bottom edge. Nothing overlaps; icons fill their wells.
@@ -413,7 +434,8 @@ func _build() -> void:
 	mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	mp_label.position = Vector2(orb_r.x - 110 * f, label_y)
 	root.add_child(mp_label)
-	var lv := _label("Lv. %d" % LEVEL, int(12 * f), IVORY)
+	var lv := _label("Lv. %d" % hero_level(), int(12 * f), IVORY)
+	level_label = lv
 	lv.size = Vector2(120 * f, xp_rect.size.y + 4 * f)
 	lv.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lv.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -724,6 +746,8 @@ func pointer_over_ui() -> bool:
 	for s in bar_slots + potion_slots:
 		if (s["rect"] as Rect2).has_point(m):
 			return true
+	if lab.get("game") != null and (lab.game.ui.over_ui(m) or lab.game.dead): return true
+	if world_map != null and world_map.visible: return true
 	return false
 
 # ---------------- actions ----------------
@@ -732,6 +756,13 @@ func use_skill_slot(i: int) -> void:
 	var sk: String = skill_loadout[i]
 	if sk != "":
 		player.use_skill(sk)
+
+var level_label: Label
+func hero_level() -> int:
+	return lab.game_state.level if lab.get("game_state") != null else LEVEL
+
+func hero_name() -> String:
+	return lab.game_state.hero_name if lab.get("game_state") != null else "Wayfarer"
 
 ## The skill in the LMB well drives the click-an-enemy primary attack.
 func primary_skill() -> String:
@@ -742,7 +773,11 @@ func drink(i: int) -> bool:
 	var pt: String = potion_loadout[i]
 	if pt == "" or potion_cds[i] > 0.0:
 		return false
-	var ok: bool = player.restore(POTION_TYPES[pt]["hp"], POTION_TYPES[pt]["mp"])
+	if lab.get("game") != null:
+		if lab.game.dead: return false
+		if (pt == "health" and player.hp >= player.max_hp) or (pt == "mana" and player.mana >= player.max_mana): return false
+		if not lab.game.use_potion(pt): return false
+	var ok: bool = player.restore(POTION_TYPES[pt]["hp"] * (1.0 + 0.12 * (hero_level() - 1)), POTION_TYPES[pt]["mp"] * (1.0 + 0.08 * (hero_level() - 1)))
 	if ok:
 		potion_cds[i] = POTION_CD
 	return ok
@@ -755,6 +790,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	var a: String = kb.action_for_event(event)
 	if a == "":
+		return
+	if lab.get("game") != null and (lab.game.dead or lab.game.ui.panel_kind in ["pause", "death", "epilogue"]) and a != "keybinds":
+		return
+	if a == "inventory" and lab.get("game") != null:
+		lab.game.ui.toggle_inventory()
+		get_viewport().set_input_as_handled()
 		return
 	if a.begins_with("skill_"):
 		use_skill_slot(SLOT_ACTIONS.find(a))
@@ -882,11 +923,12 @@ func _process(delta: float) -> void:
 	var p: Vector3 = player.global_position
 	minimap_cam.look_at_from_position(p + Vector3.UP * 40.0, p, Vector3.FORWARD)
 	if world_map != null: world_map.tick(delta)
-	var q := mini(3, lab.kills)
-	if q != quest_progress:
-		quest_progress = q
-		var ol: Label = find_child("Objective_TheLostTomes", true, false)
-		if ol: ol.text = "☐  Recover the Archive Pages (%d/3)" % q
+	if lab.get("game") == null:
+		var q := mini(3, lab.kills)
+		if q != quest_progress:
+			quest_progress = q
+			refresh_quests()
+	if level_label != null: level_label.text = "Lv. %d" % hero_level()
 	overlay.queue_redraw()
 	world_overlay.queue_redraw()
 
@@ -926,8 +968,16 @@ func _draw_overlay() -> void:
 		var f: float = potion_cds[s["idx"]] / POTION_CD
 		if f > 0.0:
 			overlay.draw_rect(Rect2(r.position, Vector2(r.size.x, r.size.y * f)), Color(0, 0, 0, 0.62))
+		var pt: String = potion_loadout[s["idx"]]
+		if lab.get("game_state") != null and pt != "":
+			var n: int = int(lab.game_state.potions.get(pt, 0))
+			if n <= 0: overlay.draw_rect(r, Color(0, 0, 0, 0.55))
+			var at := r.position + Vector2(r.size.x - 6, 18)
+			overlay.draw_string_outline(font, at, str(n), HORIZONTAL_ALIGNMENT_RIGHT, -1, 16, 4, Color(0, 0, 0, 0.95))
+			overlay.draw_string(font, at, str(n), HORIZONTAL_ALIGNMENT_RIGHT, -1, 16, IVORY if n > 0 else Color("ff7a6a"))
 	# XP fill inside the thin channel
 	var xp_frac := fposmod(0.42 + lab.kills * 0.07, 1.0)
+	if lab.get("game_state") != null: xp_frac = clampf(float(lab.game_state.xp) / float(lab.game_state.xp_need()), 0.0, 1.0)
 	var fw: float = xp_rect.size.x * xp_frac
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y)), Color("6d35b8"))
 	overlay.draw_rect(Rect2(xp_rect.position, Vector2(fw, xp_rect.size.y * 0.5)), Color("8c55dc"))
@@ -1032,19 +1082,27 @@ func _draw_world() -> void:
 	for t in lab.targets:
 		if t.inactive_t > 0.0:
 			continue
-		var top: Vector3 = t.global_position + Vector3.UP * 2.35
+		var top: Vector3 = t.global_position + Vector3.UP * float(t.get("bar_h") if t.get("bar_h") != null else 2.35)
 		if cam.is_position_behind(top):
 			continue
 		var sp := cam.unproject_position(top)
-		_bar(sp - Vector2(26, 0), 52, 5, t.hp / t.max_hp, Color("c8372d"))
+		var elite: bool = t.get("elite") == true
+		if t.get("boss") == true: continue          # the boss has its own bar at the top of the screen
+		if elite or (t.get("hp") != null and t.hp < t.max_hp):
+			_bar(sp - Vector2(32 if elite else 26, 0), 64 if elite else 52, 5, t.hp / t.max_hp, Color("c8372d"))
+		if elite:
+			var nm := "%s  (%d)" % [String(t.ename), int(t.level)]
+			var w := font.get_string_size(nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
+			world_overlay.draw_string_outline(font, sp + Vector2(-w * 0.5, -6), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, 4, Color(0, 0, 0, 0.9))
+			world_overlay.draw_string(font, sp + Vector2(-w * 0.5, -6), nm, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("ffc46a"))
 	# player nameplate: level badge, name, HP (green) and MP (blue)
 	var head: Vector3 = player.global_position + Vector3.UP * 2.25
 	if not cam.is_position_behind(head):
 		var hp := cam.unproject_position(head)
-		world_overlay.draw_string_outline(font, hp + Vector2(-8, -20), "Wayfarer", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 4, Color(0, 0, 0, 0.9))
-		world_overlay.draw_string(font, hp + Vector2(-8, -20), "Wayfarer", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, IVORY)
+		world_overlay.draw_string_outline(font, hp + Vector2(-8, -20), hero_name(), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, 4, Color(0, 0, 0, 0.9))
+		world_overlay.draw_string(font, hp + Vector2(-8, -20), hero_name(), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, IVORY)
 		_bar(hp + Vector2(-8, -12), 72, 5, player.hp / player.max_hp, Color("3fbf4a"))
 		_bar(hp + Vector2(-8, -5), 72, 3, player.mana / player.max_mana, Color("3f7fe0"))
 		world_overlay.draw_circle(hp + Vector2(-24, -11), 13.0, Color(0.06, 0.05, 0.05, 0.95))
 		world_overlay.draw_arc(hp + Vector2(-24, -11), 13.0, 0, TAU, 32, GOLD, 1.5)
-		world_overlay.draw_string(font, hp + Vector2(-33, -5), str(LEVEL), HORIZONTAL_ALIGNMENT_LEFT, -1, 15, IVORY)
+		world_overlay.draw_string(font, hp + Vector2(-33, -5), str(hero_level()), HORIZONTAL_ALIGNMENT_LEFT, -1, 15, IVORY)

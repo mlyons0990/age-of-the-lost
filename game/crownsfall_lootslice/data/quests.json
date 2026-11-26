@@ -3,56 +3,146 @@
   {
    "id": "city_reborn",
    "name": "A City Reborn",
-   "objective": "Speak with Captain Ralden",
-   "kind": "main",
-   "markers": [
-    {
-     "zone": "crownsfall",
-     "at": [
-      2500,
-      1150
-     ],
-     "r": 0,
-     "label": "Captain Ralden"
+   "giver": "ralden",
+   "next": "lost_tomes",
+   "steps": {
+    "active": {
+     "objective": "Speak with Captain Ralden",
+     "markers": [
+      {
+       "zone": "crownsfall",
+       "npc": "ralden"
+      }
+     ]
     }
-   ],
-   "note": "Captain Ralden's spot is a placeholder until the NPC is placed."
+   },
+   "reward": {
+    "xp": 40,
+    "gold": 25
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "Wayfarer. Crownsfall stands, but barely. The Whisperwood east of the gate has turned \u2014 things walk there that remember nothing but hunger.",
+     "The Archive's last pages were carried into that wood when the old wardens fell. Without them, the city forgets itself. Will you bring them back?"
+    ]
+   }
   },
   {
    "id": "lost_tomes",
    "name": "The Lost Tomes",
-   "objective": "Recover the Archive Pages",
+   "giver": "ralden",
+   "next": "thornwarden",
    "count": 3,
-   "kind": "side",
-   "markers": [
-    {
-     "zone": "whisperwood_forest",
-     "at": [
-      9250,
-      700
-     ],
-     "r": 430,
-     "label": "Archive page: Standing Stones"
+   "steps": {
+    "active": {
+     "objective": "Recover the Archive Pages",
+     "markers": [
+      {
+       "zone": "whisperwood_forest",
+       "at": [
+        1800,
+        4250
+       ],
+       "r": 430,
+       "label": "Archive page: Flower Dell",
+       "page": "page_1"
+      },
+      {
+       "zone": "whisperwood_forest",
+       "at": [
+        6450,
+        4400
+       ],
+       "r": 430,
+       "label": "Archive page: Fae Ring",
+       "page": "page_2"
+      },
+      {
+       "zone": "whisperwood_forest",
+       "at": [
+        9250,
+        700
+       ],
+       "r": 430,
+       "label": "Archive page: Standing Stones",
+       "page": "page_3"
+      }
+     ]
     },
-    {
-     "zone": "whisperwood_forest",
-     "at": [
-      6450,
-      4400
-     ],
-     "r": 430,
-     "label": "Archive page: Fae Ring"
-    },
-    {
-     "zone": "whisperwood_forest",
-     "at": [
-      1800,
-      4250
-     ],
-     "r": 430,
-     "label": "Archive page: Flower Dell"
+    "ready": {
+     "objective": "Return the pages to Captain Ralden",
+     "markers": [
+      {
+       "zone": "crownsfall",
+       "npc": "ralden"
+      }
+     ]
     }
-   ]
+   },
+   "reward": {
+    "xp": 350,
+    "gold": 150,
+    "item_rarity": 2
+   },
+   "talk": {
+    "ready": [
+     "Captain Ralden",
+     "Three pages, whole and unburnt. You have done what a company of my soldiers could not.",
+     "But these pages name something else \u2014 a warden of the wood who did not fall. The Thornwarden still stands in the meadow at the wood's heart. End it, and the Whisperwood is ours again."
+    ],
+    "active": [
+     "Captain Ralden",
+     "The pages are held by the wood's guardians: in the Flower Dell to the south-west, at the Fae Ring to the south, and among the Standing Stones in the north-east. Check your map (M)."
+    ]
+   }
+  },
+  {
+   "id": "thornwarden",
+   "name": "The Thornwarden",
+   "giver": "ralden",
+   "count": 1,
+   "steps": {
+    "active": {
+     "objective": "Slay the Thornwarden in the Mossy Meadow",
+     "markers": [
+      {
+       "zone": "whisperwood_forest",
+       "at": [
+        5650,
+        3000
+       ],
+       "r": 500,
+       "label": "The Thornwarden"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Report to Captain Ralden",
+     "markers": [
+      {
+       "zone": "crownsfall",
+       "npc": "ralden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 900,
+    "gold": 400,
+    "item_rarity": 3
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "The Thornwarden waits in the Mossy Meadow, at the end of the trail south of the glade. Rest, mend your gear, then go."
+    ],
+    "ready": [
+     "Captain Ralden",
+     "It is done, then. The Whisperwood is quiet for the first time in a generation.",
+     "Hollowmere lies beyond it \u2014 and whatever drowned it. When you are ready, Crownsfall will need you again."
+    ]
+   }
   }
  ]
 }

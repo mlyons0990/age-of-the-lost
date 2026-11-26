@@ -77,21 +77,33 @@ func map_texture(zid: String) -> Texture2D:
 			if t != null: return t
 	return null
 
+## Active quests: [{id, name, objective, progress, count, done, markers}] — from the game (character's real quest
+## state) or, in the labs, the first step of each quest in data/quests.json.
+func active_quests() -> Array:
+	if lab.get("game") != null: return lab.game.quest_view()
+	var out := []
+	for q in quests.slice(0, 2):       # labs: the first two quests as a static sample
+		var step: Dictionary = q.get("steps", {}).get("active", {})
+		var ms := []
+		for m in step.get("markers", []):
+			if m.has("at"): ms.append(m)
+		out.append({"id": q["id"], "name": q["name"], "objective": step.get("objective", ""), "progress": hud.quest_progress if q["id"] == "lost_tomes" else 0, "count": int(q.get("count", 0)), "done": false, "markers": ms})
+	return out
+
 ## Quest markers in a zone: [{quest, label, at, r, done}]
 func quest_markers(zid: String) -> Array:
 	var out := []
-	for q in quests:
-		var done := quest_done(q)
+	for q in active_quests():
 		for m in q.get("markers", []):
-			if String(m["zone"]) == zid:
-				out.append({"quest": q["name"], "label": m.get("label", q["objective"]), "at": Vector2(float(m["at"][0]), float(m["at"][1])), "r": float(m.get("r", 0)), "done": done})
+			if String(m["zone"]) == zid and m.has("at"):
+				out.append({"quest": q["name"], "label": String(m.get("label", q["objective"])), "at": Vector2(float(m["at"][0]), float(m["at"][1])), "r": float(m.get("r", 0)), "done": bool(q["done"])})
 	return out
 
 func quest_progress(q: Dictionary) -> int:
-	return hud.quest_progress if q["id"] == "lost_tomes" else 0
+	return int(q.get("progress", 0))
 
 func quest_done(q: Dictionary) -> bool:
-	return q.has("count") and quest_progress(q) >= int(q["count"])
+	return bool(q.get("done", false))
 
 # ---------------- exploration (fog of war) ----------------
 
@@ -440,7 +452,7 @@ func _draw_world() -> void:
 	world_nodes.clear()
 	var here := world_id_of(current_zone_id())
 	var quest_nodes := {}
-	for q in quests:
+	for q in active_quests():
 		if quest_done(q): continue
 		for m in q.get("markers", []): quest_nodes[world_id_of(String(m["zone"]))] = true
 	for n in wm.get("nodes", []):
@@ -509,12 +521,12 @@ func _draw_side() -> void:
 	draw_rect(side, GOLD_DIM, false, 1.5)
 	var y := side.position.y + 30
 	_text(Vector2(side.position.x + 16, y), "QUESTS", 19, GOLD, true, HORIZONTAL_ALIGNMENT_LEFT); y += 12
-	for q in quests:
+	for q in active_quests():
 		y += 26
 		var done := quest_done(q)
 		_text(Vector2(side.position.x + 16, y), ("✓  " if done else "◆  ") + String(q["name"]), 16, Color(0.6, 0.6, 0.6) if done else Color("e8b85c"), true, HORIZONTAL_ALIGNMENT_LEFT)
 		y += 21
-		var obj := String(q["objective"]) + ((" (%d/%d)" % [quest_progress(q), int(q["count"])]) if q.has("count") else "")
+		var obj := String(q["objective"]) + ((" (%d/%d)" % [quest_progress(q), int(q["count"])]) if int(q.get("count", 0)) > 0 else "")
 		_text(Vector2(side.position.x + 34, y), obj, 14, Color("cfc7b8"), false, HORIZONTAL_ALIGNMENT_LEFT)
 		var zs := {}
 		for m in q.get("markers", []): zs[world_id_of(String(m["zone"]))] = true

@@ -617,7 +617,7 @@
     ]
    }
   },
-  "tufts_per_mpx": 70,
+  "tufts_per_mpx": 45,
   "tufts": [
    "a_grass_tall",
    "b_grass_tall",
@@ -636,7 +636,36 @@
    "a_roots"
   ],
   "litter_ground": 0.65,
-  "max_canopy_cover": 0.06
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
  },
  "root_dressing": {
   "decals": 3,
@@ -723,6 +752,52 @@
    "scale": [
     0.85,
     1.15
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 20,
+   "jitter": 40,
+   "density": 0.7,
+   "props": [
+    "ga_edge",
+    "gb_edge",
+    "gb_edge"
+   ],
+   "scale": [
+    0.6,
+    0.9
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 160,
+   "offset": 15,
+   "jitter": 30,
+   "density": 0.7,
+   "props": [
+    "ga_edge",
+    "gb_edge"
+   ],
+   "scale": [
+    0.55,
+    0.8
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 160,
+   "offset": 15,
+   "jitter": 30,
+   "density": 0.7,
+   "props": [
+    "ga_edge",
+    "gb_edge"
+   ],
+   "scale": [
+    0.55,
+    0.8
    ]
   }
  ],

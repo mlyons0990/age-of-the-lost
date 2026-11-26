@@ -5,6 +5,10 @@
    "image": "ground/grass.png",
    "tile_m": 7.0
   },
+  "grass_old": {
+   "image": "ground/grass_old.png",
+   "tile_m": 7.0
+  },
   "dirt": {
    "image": "ground/dirt.png",
    "tile_m": 6.0
@@ -535,6 +539,246 @@
    "footprint_px": 0,
    "occludes": false,
    "shadow": "props/a_mushrooms_shadow.png"
+  },
+  "ga_tallgrass": {
+   "kind": "bush",
+   "image": "props/ga_tallgrass.png",
+   "size": [
+    494,
+    618
+   ],
+   "foot": [
+    246,
+    551
+   ],
+   "ppm": 440.91,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "ga_longgrass": {
+   "kind": "bush",
+   "image": "props/ga_longgrass.png",
+   "size": [
+    498,
+    587
+   ],
+   "foot": [
+    248,
+    522
+   ],
+   "ppm": 444.55,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "ga_whiteflowers": {
+   "kind": "bush",
+   "image": "props/ga_whiteflowers.png",
+   "size": [
+    483,
+    551
+   ],
+   "foot": [
+    239,
+    488
+   ],
+   "ppm": 430.91,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "ga_lavenderpatch": {
+   "kind": "bush",
+   "image": "props/ga_lavenderpatch.png",
+   "size": [
+    489,
+    599
+   ],
+   "foot": [
+    243,
+    532
+   ],
+   "ppm": 436.36,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "ga_moss": {
+   "kind": "bush",
+   "image": "props/ga_moss.png",
+   "size": [
+    492,
+    481
+   ],
+   "foot": [
+    246,
+    426
+   ],
+   "ppm": 439.09,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "ga_clover": {
+   "kind": "bush",
+   "image": "props/ga_clover.png",
+   "size": [
+    483,
+    493
+   ],
+   "foot": [
+    241,
+    439
+   ],
+   "ppm": 430.91,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "ga_edge": {
+   "kind": "bush",
+   "image": "props/ga_edge.png",
+   "size": [
+    489,
+    510
+   ],
+   "foot": [
+    244,
+    450
+   ],
+   "ppm": 436.36,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "ga_meadow": {
+   "kind": "bush",
+   "image": "props/ga_meadow.png",
+   "size": [
+    498,
+    485
+   ],
+   "foot": [
+    248,
+    428
+   ],
+   "ppm": 444.55,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_tallgrass": {
+   "kind": "bush",
+   "image": "props/gb_tallgrass.png",
+   "size": [
+    951,
+    503
+   ],
+   "foot": [
+    476,
+    448
+   ],
+   "ppm": 448.57,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_longgrass": {
+   "kind": "bush",
+   "image": "props/gb_longgrass.png",
+   "size": [
+    956,
+    458
+   ],
+   "foot": [
+    478,
+    407
+   ],
+   "ppm": 450.95,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_whiteflowers": {
+   "kind": "bush",
+   "image": "props/gb_whiteflowers.png",
+   "size": [
+    924,
+    400
+   ],
+   "foot": [
+    461,
+    352
+   ],
+   "ppm": 435.71,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_lavenderpatch": {
+   "kind": "bush",
+   "image": "props/gb_lavenderpatch.png",
+   "size": [
+    950,
+    407
+   ],
+   "foot": [
+    474,
+    361
+   ],
+   "ppm": 448.1,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_moss": {
+   "kind": "bush",
+   "image": "props/gb_moss.png",
+   "size": [
+    916,
+    414
+   ],
+   "foot": [
+    457,
+    367
+   ],
+   "ppm": 431.9,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_clover": {
+   "kind": "bush",
+   "image": "props/gb_clover.png",
+   "size": [
+    950,
+    395
+   ],
+   "foot": [
+    474,
+    350
+   ],
+   "ppm": 448.1,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_edge": {
+   "kind": "bush",
+   "image": "props/gb_edge.png",
+   "size": [
+    954,
+    290
+   ],
+   "foot": [
+    476,
+    256
+   ],
+   "ppm": 450.0,
+   "footprint_px": 0,
+   "occludes": false
+  },
+  "gb_meadow": {
+   "kind": "bush",
+   "image": "props/gb_meadow.png",
+   "size": [
+    955,
+    346
+   ],
+   "foot": [
+    476,
+    307
+   ],
+   "ppm": 450.48,
+   "footprint_px": 0,
+   "occludes": false
   }
  }
 }

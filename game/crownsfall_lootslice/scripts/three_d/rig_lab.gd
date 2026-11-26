@@ -836,6 +836,7 @@ func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
 				mm.set_shader_parameter("foot_v", fy / float(c["size"][1]))
 				mm.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
 				mm.set_shader_parameter("occludes", bool(c["occludes"]))
+				mm.set_shader_parameter("soft_upright", true)
 				mm.set_shader_parameter("mist_rows", 2.0)
 			m.next_pass = fr
 			mmi.material_override = m

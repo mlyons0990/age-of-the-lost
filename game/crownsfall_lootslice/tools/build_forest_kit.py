@@ -19,7 +19,7 @@ os.makedirs(OUT + "/props", exist_ok=True); os.makedirs(OUT + "/ground", exist_o
 cat = {"version": 2, "ground": {}, "props": {}}
 
 # ground: repeat size in metres (measured from the stones / tufts against the W1 painting: W1 flagstones ~1.1 m)
-for name, src, metres in (("grass", "k1_grass", 7.0), ("dirt", "k1_dirt", 6.0), ("flagstone", "k1_flag", 13.0)):
+for name, src, metres in (("grass", "g1_grass_lush", 7.0), ("grass_old", "k1_grass", 7.0), ("dirt", "k1_dirt", 6.0), ("flagstone", "k1_flag", 13.0)):
     shutil.copy(f"{RAW}/{src}.png", f"{OUT}/ground/{name}.png")
     cat["ground"][name] = {"image": f"ground/{name}.png", "tile_m": metres}
 
@@ -40,11 +40,13 @@ def split_contact_shadow(rgba, fy):
     a = rgba[..., 3].astype(np.float32); rgb = rgba[..., :3].astype(np.float32)
     mx, mn = rgb.max(2), rgb.min(2); sat = (mx - mn) / np.maximum(mx, 1)
     core = cv2.dilate((a > 225).astype(np.uint8), np.ones((7, 7), np.uint8)) > 0
-    rows = np.arange(a.shape[0])[:, None] >= fy - 0.18 * a.shape[0]
-    sh = (a > 0) & (a < 225) & (sat < 0.32) & ~core & rows
+    # ramp in over 8% of the height (a hard start row leaves a straight edge across the soft base)
+    ramp = np.clip((np.arange(a.shape[0])[:, None] - (fy - 0.22 * a.shape[0])) / (0.08 * a.shape[0]), 0, 1)
+    sh = (a > 0) & (a < 225) & (sat < 0.32) & ~core & (ramp > 0)
     if sh.sum() < 50: return rgba, None
-    mask = np.where(sh, a, 0).astype(np.uint8)
-    out = rgba.copy(); out[..., 3] = np.where(sh, 0, rgba[..., 3]).astype(np.uint8)
+    w = np.where(sh, ramp, 0.0)
+    mask = (a * w).astype(np.uint8)
+    out = rgba.copy(); out[..., 3] = (a * (1 - w)).astype(np.uint8)
     return out, mask
 
 def clean_decal_edge(rgba):
@@ -71,7 +73,7 @@ def save(name, rgba, kind, foot, metres, occludes, footprint_frac=0.0, measure="
     else:                        # flat: width in metres
         ppm = (xs.max() - xs.min()) / metres
     shadow = None
-    if kind != "decal":
+    if kind != "decal" and not name.startswith(("ga_", "gb_")):   # G2 ground cover has no painted shadow
         crop, shadow = split_contact_shadow(crop, fy)
     else:
         crop = clean_decal_edge(crop)
@@ -159,5 +161,10 @@ def mushrooms_only(name, metres):
     del cat["props"][name]
     save(name, rgba, "bush", foot, metres, False)
 mushrooms_only("a_mushrooms", 0.45)
+# G2 grass overlay (2026-11-26): low ground cover layered over the base grass, walk-through, never occludes
+GROUND_COVER = [("tallgrass", 0), ("longgrass", 0), ("whiteflowers", 0), ("lavenderpatch", 0), ("moss", 0), ("clover", 0),
+                ("edge", 0), ("meadow", 0)]
+sheet("ga_", "g2_overlay_a", "bush", [(n, 1.1, False, 0, "width") for n, _ in GROUND_COVER])
+sheet("gb_", "g2_overlay_b", "bush", [(n, 2.1, False, 0, "width") for n, _ in GROUND_COVER])
 json.dump(cat, open(f"{OUT}/catalog.json", "w"), indent=1)
 print("kit:", OUT, len(cat["props"]), "props")

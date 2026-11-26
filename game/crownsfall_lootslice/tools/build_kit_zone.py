@@ -261,6 +261,20 @@ def grow_forest(F):
         u, v = rnd.uniform(30, W - 30), rnd.uniform(130, H - 10)
         if dist_path_at(u, v) < 40 or in_clear(u, v, -60) or not solid_clear(u, v, 10): continue
         add(pick(F["tufts"]), (u, v), rnd.uniform(0.55, 0.95), rnd.random() < 0.5, keep=0); n_t += 1
+    # ground cover: grass / wildflower / moss patches layered over the base grass, in drifts (meadowy where a
+    # noise field is high, thinner elsewhere) so the base texture never reads as one repeated carpet
+    CV = F.get("cover")
+    n_cv = 0
+    if CV:
+        drift = noise_field(CV.get("drift_px", 900), spec.get("seed", 1) + 13)
+        def Dr(u, v): return drift[min(sh - 1, max(0, int(v / SPLAT_K))), min(sw - 1, max(0, int(u / SPLAT_K)))]
+        target = int(W * H / 1e6 * CV["per_mpx"])
+        for _ in range(target * 4):
+            if n_cv >= target: break
+            u, v = rnd.uniform(20, W - 20), rnd.uniform(120, H - 5)
+            if rnd.random() > 0.2 + 0.8 * Dr(u, v): continue
+            if dist_path_at(u, v) < CV.get("path_gap", 35) or in_clear(u, v, -80) or not solid_clear(u, v, 10): continue
+            add(pick(CV["props"]), (u, v), rnd.uniform(*CV.get("scale", [0.8, 1.25])), rnd.random() < 0.5, keep=0); n_cv += 1
     # ground litter: leaves and pebbles, mushrooms near trunks
     n_lit = int(W * H / 1e6 * F.get("litter_per_mpx", 14)); n_l = 0
     for _ in range(n_lit * 3):
@@ -272,7 +286,7 @@ def grow_forest(F):
     # leaf litter on the ground under groves (dirt layer, ragged), never over the paving
     lit = np.clip(cv2.GaussianBlur(tg, (0, 0), 30) * 1400, 0, 1) * np.clip(noise_field(300, spec.get("seed", 1) + 9) * 1.8 - 0.35, 0, 1)
     splat[..., 1] = np.maximum(splat[..., 1], lit * F.get("litter_ground", 0.7) * (1 - splat[..., 0]))
-    print(f"forest: {n_tree} trees, {n_rock} rock clusters, {n_c} undergrowth clumps, {n_t} tufts, {n_l} litter")
+    print(f"forest: {n_tree} trees, {n_rock} rock clusters, {n_c} undergrowth clumps, {n_t} tufts, {n_cv} ground cover, {n_l} litter")
 if "forest" in spec: grow_forest(spec["forest"])
 Image.fromarray((splat * 255).astype(np.uint8)).save(f"assets/zones/{name}/splat.png")
 dress_roots()

@@ -6,10 +6,10 @@ shader_type spatial;
 // edge (alpha below CORE) is drawn by the kit_prop_fringe next pass, blended, so edges stay soft instead of jagged.
 render_mode unshaded, cull_disabled;
 #include "res://shaders/kit_depth.gdshaderinc"
-uniform sampler2D tex : source_color, filter_linear_mipmap_anisotropic;
+uniform sampler2D tex : source_color, filter_linear_mipmap_anisotropic, repeat_disable;
 const float CORE = 0.9;
 void fragment() {
-	vec2 uv = vec2(flip ? 1.0 - UV.x : UV.x, UV.y);
+	vec2 uv = kit_uv(UV);
 	vec4 c = texture(tex, uv);
 	if (c.a < CORE) discard;
 	ALBEDO = kit_colour(c.rgb, UV.y);

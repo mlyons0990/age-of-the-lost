@@ -742,8 +742,16 @@ func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
 	var fringe_shader: Shader = load("res://shaders/kit_prop_fringe.gdshader")
 	var decal_shader: Shader = load("res://shaders/kit_decal.gdshader")
 	var tex_cache := {}
+	# Undergrowth and ground details are drawn in batches (one MultiMesh per image): thousands of pieces cost a
+	# few dozen draw calls. Trees, rocks and set pieces stay individual nodes (collision/occlusion tests use them).
+	var batches := {}
 	for p in zone["props"]:
 		var c: Dictionary = cat["props"][p["prop"]]
+		if c["kind"] in ["bush", "decal"]:
+			var key_b := String(p["prop"])
+			if not batches.has(key_b): batches[key_b] = []
+			batches[key_b].append(p)
+			continue
 		var scale_: float = float(p["scale"])
 		var iw: float = float(c["size"][0]) * scale_; var ih: float = float(c["size"][1]) * scale_
 		var fx: float = (float(c["size"][0]) - float(c["foot"][0])) if bool(p["flip"]) else float(c["foot"][0])
@@ -785,6 +793,54 @@ func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
 		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		node.name = "%s_%d" % [p["prop"], props.get_child_count()]
 		props.add_child(node)
+	for key_b in batches:
+		var c: Dictionary = cat["props"][key_b]
+		var list: Array = batches[key_b]
+		var is_decal: bool = c["kind"] == "decal"
+		var im_key := String(c["image"])
+		if not tex_cache.has(im_key): tex_cache[im_key] = load(kit + "/" + im_key)
+		var mm_ := MultiMesh.new()
+		mm_.transform_format = MultiMesh.TRANSFORM_3D
+		mm_.use_custom_data = true
+		var unit := PlaneMesh.new(); unit.size = Vector2(1, 1)
+		mm_.mesh = unit
+		mm_.instance_count = list.size()
+		var fy: float = float(c["foot"][1])
+		for i in list.size():
+			var p: Dictionary = list[i]
+			var scale_: float = float(p["scale"])
+			var iw: float = float(c["size"][0]) * scale_; var ih: float = float(c["size"][1]) * scale_
+			var fx: float = (float(c["size"][0]) - float(c["foot"][0])) if bool(p["flip"]) else float(c["foot"][0])
+			var foot := zone_px_to_world(float(p["at"][0]), float(p["at"][1]))
+			var pos := foot + Vector3((iw * 0.5 - fx * scale_) / ZONE_PPM, 0.012 if is_decal else 0.03, (ih * 0.5 - fy * scale_) / ZONE_PPM / sp_)
+			mm_.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3(iw / ZONE_PPM, 1.0, ih / ZONE_PPM / sp_)), pos))
+			mm_.set_instance_custom_data(i, Color(float(p.get("tint", 1.0)), 1.0 if bool(p["flip"]) else 0.0, ih, float(p.get("mist", 0.0))))
+		var mmi := MultiMeshInstance3D.new(); mmi.multimesh = mm_
+		mmi.name = "Batch_%s" % key_b
+		mmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		if is_decal:
+			var dm := ShaderMaterial.new(); dm.shader = decal_shader
+			dm.set_shader_parameter("tex", tex_cache[im_key])
+			dm.set_shader_parameter("use_instance", true)
+			dm.set_shader_parameter("zone_world", Vector2(w, d))
+			if light_tex != null: dm.set_shader_parameter("light_map", light_tex)
+			if fx_tex != null: dm.set_shader_parameter("fx_map", fx_tex)
+			dm.render_priority = -1
+			mmi.material_override = dm
+		else:
+			var m := ShaderMaterial.new(); m.shader = shader
+			var fr := ShaderMaterial.new(); fr.shader = fringe_shader
+			for mm in [m, fr]:
+				mm.set_shader_parameter("tex", tex_cache[im_key])
+				mm.set_shader_parameter("use_instance", true)
+				mm.set_shader_parameter("foot_v", fy / float(c["size"][1]))
+				mm.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
+				mm.set_shader_parameter("occludes", bool(c["occludes"]))
+				mm.set_shader_parameter("mist_rows", 2.0)
+			m.next_pass = fr
+			mmi.material_override = m
+		mmi.set_meta("instances", list.size())
+		props.add_child(mmi)
 	if fx_tex != null:                     # light shafts over everything (ground mist is in the ground/prop colour)
 		var fxn := MeshInstance3D.new(); fxn.name = "KitShafts"
 		var fpm := PlaneMesh.new(); fpm.size = Vector2(w, d); fxn.mesh = fpm

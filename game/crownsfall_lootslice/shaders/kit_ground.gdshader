@@ -36,7 +36,9 @@ void fragment() {
 	vec2 p = world_space ? vec2(px.x, px.y / sin_pitch) / ppm : px;
 	vec4 s = texture(splat, UV);
 	vec3 c = tiled(base_tex, p, base_tile, true);
-	c = mix(c, tiled(dirt_tex, p, dirt_tile, true), s.g);
+	// dirt edges break up into grass at ~1 m scale instead of a smooth fade (worn trails, leaf litter)
+	float dg = world_space ? smoothstep(0.3, 0.7, s.g + (n2(p * 1.4) - 0.5) * 0.55 + (n2(p * 4.0) - 0.5) * 0.2) : s.g;
+	c = mix(c, tiled(dirt_tex, p, dirt_tile, true), dg);
 	c = mix(c, tiled(path_tex, p, path_tile, !world_space), s.r);
 	float ripple = 0.92 + 0.08 * n2(px / 60.0 + vec2(TIME * 0.3, 0.0));
 	c = mix(c, water_col.rgb * ripple, s.b * 0.92);

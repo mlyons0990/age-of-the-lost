@@ -8,14 +8,24 @@ uniform float tint = 1.0;            // light-map value at the foot (props stand
 uniform float mist = 0.0;            // ground-mist amount at the foot
 uniform vec4 mist_col : source_color = vec4(0.74, 0.64, 0.88, 1.0);
 uniform float mist_rows = 0.3;       // trees: mist only on the lowest part (trunk base, roots); bushes: whole prop
-vec3 kit_colour(vec3 c, float uvy) {
-	float m = mist * (1.0 - smoothstep(0.0, mist_rows, foot_v - uvy));
-	return mix(c * tint, mist_col.rgb, clamp(m, 0.0, 0.75));
-}
+uniform bool use_instance = false;  // MultiMesh batches: INSTANCE_CUSTOM = (tint, flip, image rows, mist)
 varying vec3 wpos;
-void vertex() { wpos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+varying flat float v_tint;
+varying flat float v_flip;
+varying flat float v_rows;
+varying flat float v_mist;
+void vertex() {
+	wpos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	v_tint = tint; v_flip = flip ? 1.0 : 0.0; v_rows = tex_rows; v_mist = mist;
+	if (use_instance) { v_tint = INSTANCE_CUSTOM.r; v_flip = INSTANCE_CUSTOM.g; v_rows = INSTANCE_CUSTOM.b; v_mist = INSTANCE_CUSTOM.a; }
+}
+vec2 kit_uv(vec2 uv) { bool f = use_instance ? v_flip > 0.5 : flip; return vec2(f ? 1.0 - uv.x : uv.x, uv.y); }
+vec3 kit_colour(vec3 c, float uvy) {
+	float m = (use_instance ? v_mist : mist) * (1.0 - smoothstep(0.0, mist_rows, foot_v - uvy));
+	return mix(c * (use_instance ? v_tint : tint), mist_col.rgb, clamp(m, 0.0, 0.75));
+}
 float kit_depth(vec2 uv_, mat4 inv_view, mat4 view, mat4 proj) {
-	float rows = occludes ? max(0.0, (foot_v - uv_.y) * tex_rows) : 0.0;
+	float rows = occludes ? max(0.0, (foot_v - uv_.y) * (use_instance ? v_rows : tex_rows)) : 0.0;
 	vec3 fwd = -inv_view[2].xyz;
 	vec3 q = wpos - fwd * (rows * z_per_row / max(-fwd.z, 1e-4));
 	vec4 clip = proj * view * vec4(q, 1.0);

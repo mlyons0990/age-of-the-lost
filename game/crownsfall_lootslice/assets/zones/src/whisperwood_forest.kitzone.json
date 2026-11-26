@@ -120,30 +120,42 @@
      4400
     ]
    ],
-   "width": 160,
-   "layer": "dirt"
+   "width": 190,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
   },
   {
    "pts": [
     [
      5900,
-     1500
+     1640
     ],
     [
-     5800,
-     2100
+     5850,
+     1950
+    ],
+    [
+     5700,
+     2250
+    ],
+    [
+     5620,
+     2550
+    ],
+    [
+     5680,
+     2850
     ],
     [
      5600,
-     2700
-    ],
-    [
-     5650,
-     3000
+     3100
     ]
    ],
-   "width": 140,
-   "layer": "dirt"
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
   }
  ],
  "patches": [
@@ -171,15 +183,6 @@
     4400
    ],
    "r": 260,
-   "layer": "dirt",
-   "squash": 0.5
-  },
-  {
-   "at": [
-    5650,
-    3000
-   ],
-   "r": 230,
    "layer": "dirt",
    "squash": 0.5
   }
@@ -545,7 +548,7 @@
    "a_rock_small",
    "b_rock_small"
   ],
-  "clumps_per_mpx": 11,
+  "clumps_per_mpx": 18,
   "clumps": {
    "ferns": {
     "w": 4,
@@ -614,14 +617,14 @@
     ]
    }
   },
-  "tufts_per_mpx": 32,
+  "tufts_per_mpx": 70,
   "tufts": [
    "a_grass_tall",
    "b_grass_tall",
    "a_grass_tall",
    "a_fern"
   ],
-  "litter_per_mpx": 12,
+  "litter_per_mpx": 16,
   "litter": [
    "a_leaves",
    "a_pebbles"
@@ -637,7 +640,7 @@
  },
  "root_dressing": {
   "decals": 3,
-  "tufts": 3,
+  "tufts": 5,
   "decal_props": [
    "a_leaves"
   ],
@@ -668,10 +671,10 @@
   },
   {
    "path": 0,
-   "spacing": 230,
+   "spacing": 170,
    "offset": 110,
    "jitter": 120,
-   "density": 0.8,
+   "density": 0.9,
    "min_gap": 40,
    "props": [
     "a_fern",
@@ -689,10 +692,10 @@
   },
   {
    "path": 1,
-   "spacing": 220,
+   "spacing": 170,
    "offset": 80,
    "jitter": 100,
-   "density": 0.8,
+   "density": 0.9,
    "min_gap": 30,
    "props": [
     "a_grass_tall",
@@ -707,10 +710,10 @@
   },
   {
    "path": 2,
-   "spacing": 220,
+   "spacing": 170,
    "offset": 80,
    "jitter": 100,
-   "density": 0.8,
+   "density": 0.9,
    "min_gap": 30,
    "props": [
     "a_grass_tall",

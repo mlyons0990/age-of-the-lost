@@ -47,10 +47,36 @@ def stamp(mask, ch):
     m = np.clip((m - 0.5 + 0.35 * (noise - 0.5)) * 2.2 + 0.5, 0, 1)   # ragged, organic edges
     splat[..., ch] = np.maximum(splat[..., ch], m)
 path_mask = np.zeros((sh, sw), np.float32)
+def catmull(pts, n=12):
+    pts = np.asarray(pts, np.float32); P = np.vstack([pts[0], pts, pts[-1]]); out = []
+    for i in range(1, len(P) - 2):
+        p0, p1, p2, p3 = P[i - 1], P[i], P[i + 1], P[i + 2]
+        for t in np.linspace(0, 1, n, endpoint=False):
+            t2, t3 = t * t, t * t * t
+            out.append(0.5 * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 + (-p0 + 3 * p1 - 3 * p2 + p3) * t3))
+    out.append(P[-2]); return np.array(out, np.float32)
+trail_rs = np.random.RandomState(spec.get("seed", 1) + 3)
 for p in spec.get("paths", []):
-    pts = (np.array(p["pts"], np.float32) / SPLAT_K).astype(np.int32)
     m = np.zeros((sh, sw), np.float32)
-    cv2.polylines(m, [pts], False, 1.0, thickness=max(1, int(p["width"] / SPLAT_K)), lineType=cv2.LINE_AA)
+    if p.get("style") == "trail":
+        # worn trail: smooth meandering curve, width that swells and narrows, tapering out where it ends
+        c_ = catmull(p["pts"], 24)
+        seg = np.linalg.norm(np.diff(c_, axis=0), axis=1); L = np.concatenate([[0], np.cumsum(seg)]); tot = L[-1]
+        k = max(4, int(tot / 350)); wob = np.interp(L, np.linspace(0, tot, k), trail_rs.uniform(-1, 1, k))
+        wid = np.interp(L, np.linspace(0, tot, k), trail_rs.uniform(0.7, 1.2, k)) * p["width"]
+        taper = np.ones_like(L)
+        if p.get("taper_start", False): taper *= np.clip(L / (0.18 * tot), 0.15, 1)
+        if p.get("taper_end", True): taper *= np.clip((tot - L) / (0.22 * tot), 0.1, 1)
+        d_ = np.gradient(c_, axis=0); d_ /= np.maximum(np.linalg.norm(d_, axis=1, keepdims=True), 1e-6)
+        nrm = np.stack([-d_[:, 1], d_[:, 0]], 1)
+        cen = c_ + nrm * (wob * p["width"] * 0.35)[:, None] * np.array([1.0, 0.55])
+        for (x, y), r in zip(cen / SPLAT_K, wid * taper / 2 / SPLAT_K):
+            cv2.ellipse(m, (int(x), int(y)), (max(1, int(r)), max(1, int(r * 0.6))), 0, 0, 360, 1.0, -1, cv2.LINE_AA)
+        m = cv2.GaussianBlur(m, (0, 0), 1.5)
+        p["_curve"] = (cen).tolist()
+    else:
+        pts = (np.array(p["pts"], np.float32) / SPLAT_K).astype(np.int32)
+        cv2.polylines(m, [pts], False, 1.0, thickness=max(1, int(p["width"] / SPLAT_K)), lineType=cv2.LINE_AA)
     stamp(m, CH[p.get("layer", "flagstone")]); path_mask = np.maximum(path_mask, m)
 water = []
 for pt in spec.get("patches", []):
@@ -251,7 +277,8 @@ if "forest" in spec: grow_forest(spec["forest"])
 Image.fromarray((splat * 255).astype(np.uint8)).save(f"assets/zones/{name}/splat.png")
 dress_roots()
 for ed in spec.get("edges", []):                     # planting along both edges of a path
-    pts = np.array(spec["paths"][ed["path"]]["pts"], np.float32); half = spec["paths"][ed["path"]]["width"] * 0.5
+    pth = spec["paths"][ed["path"]]
+    pts = np.array(pth.get("_curve", pth["pts"]), np.float32)[::(6 if "_curve" in pth else 1)]; half = pth["width"] * 0.5
     seg = np.linalg.norm(np.diff(pts, axis=0), axis=1); L = seg.sum(); t = rnd.uniform(0, ed["spacing"])
     while t < L:
         i = int(np.searchsorted(np.cumsum(seg), t)); i = min(i, len(seg) - 1)
@@ -404,12 +431,23 @@ if "light" in spec:
     fx = np.dstack([np.clip(mist, 0, 1), np.clip(shafts, 0, 1), np.zeros_like(mist)])
     Image.fromarray((fx * 255).astype(np.uint8)).save(f"assets/zones/{name}/fx.png"); fx_name = f"{name}/fx.png"
 # minimap overview (1/8 scale): ground colours + props
-ov = np.zeros((sh, sw, 3), np.float32)
-gcol = {k: np.asarray(Image.open(os.path.join(kit_dir, g["image"])).convert("RGB"), np.float32).mean((0, 1)) for k, g in cat["ground"].items()}
-ov[:] = gcol[spec.get("ground_base", "grass")]
-for k, ch in (("flagstone", 0), ("dirt", 1)):
-    ov = ov * (1 - splat[..., ch:ch + 1]) + gcol[k] * splat[..., ch:ch + 1]
+def ground_layer(k):
+    """The ground texture tiled exactly as the game draws it (world metres, foreshortened by the camera), at 1/8."""
+    g = cat["ground"][k]; im = Image.open(os.path.join(kit_dir, g["image"])).convert("RGB")
+    if "tile_m" in g:
+        tw = max(4, int(round(g["tile_m"] * ZPPM / SPLAT_K))); th = max(2, int(round(g["tile_m"] * ZPPM * math.sin(math.radians(spec.get("pitch", 31.0))) / SPLAT_K)))
+    else:
+        tw = th = max(4, int(g["tile_px"] / SPLAT_K))
+    big = np.tile(np.asarray(im), (3, 3, 1))                  # resize a 3x3 repeat, keep the middle: seamless edges
+    t = np.asarray(Image.fromarray(big).resize((tw * 3, th * 3), Image.LANCZOS), np.float32)[th:2 * th, tw:2 * tw]
+    return np.tile(t, (sh // th + 2, sw // tw + 2, 1))[:sh, :sw]
+ov = ground_layer(spec.get("ground_base", "grass"))
+for k, ch in (("dirt", 1), ("flagstone", 0)):
+    ov = ov * (1 - splat[..., ch:ch + 1]) + ground_layer(k) * splat[..., ch:ch + 1]
+gcol = {}
 ov = ov * (1 - splat[..., 2:3]) + np.array([70, 110, 130], np.float32) * splat[..., 2:3]
+if light_name:                                          # same canopy shade and sun pools as in game
+    ov = ov * cv2.resize(light, (sw, sh), interpolation=cv2.INTER_AREA)[..., None]
 ovi = Image.fromarray(ov.clip(0, 255).astype(np.uint8)).convert("RGBA")
 _ov_src = {}; _ov_sized = {}
 for p in sorted(placed, key=lambda p: p["at"][1]):

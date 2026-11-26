@@ -141,5 +141,23 @@ ROCKS = [("rock_flat", 2.6, True, 0.36, "width"), ("rock_tall", 1.8, True, 0.36,
          ("rock_pair", 2.4, True, 0.36, "width"), ("rock_small", 0.9, True, 0.36, "width")]
 sheet("a_", "k7_rocks_a", "rock", ROCKS)
 sheet("b_", "k7_rocks_b", "rock", ROCKS)
+def mushrooms_only(name, metres):
+    """The mushroom decal was painted on a pale, washed-out grass patch that shows as a light blotch on our ground.
+    Keep only the mushrooms (warm caps and stems) with a sliver of their base, and stand them up as a small plant."""
+    c = cat["props"][name]; rgba = np.asarray(Image.open(f"{OUT}/{c['image']}").convert("RGBA")).copy()
+    # hand-measured on the 431x308 decal crop (sheet K6-A): three mushrooms, cap ellipse + tapered stem each
+    keep = np.zeros(rgba.shape[:2], np.uint8)
+    for (cx, cy, rx, ry), stem in (((197, 88, 70, 37), [(180, 112), (214, 112), (228, 180), (184, 182)]),
+                                    ((269, 133, 37, 21), [(258, 145), (278, 145), (281, 172), (255, 173)]),
+                                    ((149, 188, 37, 24), [(138, 202), (160, 202), (165, 236), (134, 236)])):
+        cv2.ellipse(keep, (cx, cy), (rx - 4, ry - 3), 0, 0, 360, 1, -1)
+        cv2.fillPoly(keep, [np.array(stem, np.int32)], 1)
+    a = cv2.GaussianBlur(keep.astype(np.float32), (0, 0), 1.5) * rgba[..., 3]
+    rgba[..., 3] = a.astype(np.uint8)
+    ys, xs = np.where(rgba[..., 3] > 128)
+    foot = (xs.mean(), ys.max() - 6)
+    del cat["props"][name]
+    save(name, rgba, "bush", foot, metres, False)
+mushrooms_only("a_mushrooms", 0.45)
 json.dump(cat, open(f"{OUT}/catalog.json", "w"), indent=1)
 print("kit:", OUT, len(cat["props"]), "props")

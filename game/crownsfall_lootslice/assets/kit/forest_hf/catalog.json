@@ -392,21 +392,6 @@
    "footprint_px": 0,
    "occludes": false
   },
-  "a_mushrooms": {
-   "kind": "decal",
-   "image": "props/a_mushrooms.png",
-   "size": [
-    431,
-    308
-   ],
-   "foot": [
-    220,
-    156
-   ],
-   "ppm": 703.33,
-   "footprint_px": 0,
-   "occludes": false
-  },
   "a_rock_flat": {
    "kind": "rock",
    "image": "props/a_rock_flat.png",
@@ -534,6 +519,22 @@
    "footprint_px": 179,
    "occludes": true,
    "shadow": "props/b_rock_small_shadow.png"
+  },
+  "a_mushrooms": {
+   "kind": "bush",
+   "image": "props/a_mushrooms.png",
+   "size": [
+    201,
+    197
+   ],
+   "foot": [
+    93,
+    183
+   ],
+   "ppm": 464.06,
+   "footprint_px": 0,
+   "occludes": false,
+   "shadow": "props/a_mushrooms_shadow.png"
   }
  }
 }

@@ -1,0 +1,845 @@
+{
+ "name": "Whisperwood",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass",
+ "seed": 23,
+ "paths": [
+  {
+   "pts": [
+    [
+     -80,
+     2640
+    ],
+    [
+     500,
+     2600
+    ],
+    [
+     1300,
+     2500
+    ],
+    [
+     2000,
+     2250
+    ],
+    [
+     2600,
+     2020
+    ],
+    [
+     3360,
+     1760
+    ],
+    [
+     4400,
+     1600
+    ],
+    [
+     5200,
+     1500
+    ],
+    [
+     5900,
+     1500
+    ],
+    [
+     6600,
+     1320
+    ],
+    [
+     7300,
+     1170
+    ],
+    [
+     8200,
+     1100
+    ],
+    [
+     8900,
+     1150
+    ],
+    [
+     9600,
+     1380
+    ],
+    [
+     10100,
+     1800
+    ],
+    [
+     10300,
+     2400
+    ],
+    [
+     10200,
+     3050
+    ],
+    [
+     10450,
+     3650
+    ],
+    [
+     10700,
+     4150
+    ]
+   ],
+   "width": 250,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     10200,
+     3050
+    ],
+    [
+     9400,
+     3250
+    ],
+    [
+     8500,
+     3500
+    ],
+    [
+     7700,
+     3850
+    ],
+    [
+     6900,
+     4250
+    ],
+    [
+     6450,
+     4400
+    ]
+   ],
+   "width": 160,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     5900,
+     1500
+    ],
+    [
+     5800,
+     2100
+    ],
+    [
+     5600,
+     2700
+    ],
+    [
+     5650,
+     3000
+    ]
+   ],
+   "width": 140,
+   "layer": "dirt"
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5900,
+    1500
+   ],
+   "r": 380,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    10700,
+    4180
+   ],
+   "r": 300,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6450,
+    4400
+   ],
+   "r": 260,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5650,
+    3000
+   ],
+   "r": 230,
+   "layer": "dirt",
+   "squash": 0.5
+  }
+ ],
+ "clear": [
+  [
+   5900,
+   1500,
+   560
+  ],
+  [
+   10700,
+   4180,
+   420
+  ],
+  [
+   9250,
+   640,
+   380
+  ],
+  [
+   6450,
+   4400,
+   420
+  ],
+  [
+   5650,
+   3000,
+   650
+  ],
+  [
+   2000,
+   800,
+   380
+  ],
+  [
+   1800,
+   4250,
+   420
+  ],
+  [
+   3600,
+   3500,
+   450
+  ],
+  [
+   80,
+   2640,
+   380
+  ]
+ ],
+ "place": [
+  [
+   "b_rock_tall",
+   9020,
+   560,
+   0.9,
+   false
+  ],
+  [
+   "a_rock_tall",
+   9480,
+   560,
+   0.85,
+   true
+  ],
+  [
+   "b_rock_tall",
+   8900,
+   720,
+   0.8,
+   true
+  ],
+  [
+   "a_rock_tall",
+   9600,
+   720,
+   0.9,
+   false
+  ],
+  [
+   "b_rock_tall",
+   9100,
+   830,
+   0.75,
+   false
+  ],
+  [
+   "a_rock_tall",
+   9420,
+   830,
+   0.8,
+   true
+  ],
+  [
+   "a_rock_flat",
+   9260,
+   690,
+   0.8,
+   false
+  ],
+  [
+   "a_lavender",
+   2000,
+   760,
+   1.0,
+   false
+  ],
+  [
+   "b_lavender",
+   1880,
+   840,
+   1.0,
+   true
+  ],
+  [
+   "a_shrub_white",
+   2120,
+   860,
+   1.0,
+   false
+  ],
+  [
+   "a_rock_small",
+   1960,
+   900,
+   1.0,
+   false
+  ],
+  [
+   "a_bush_yellow",
+   1700,
+   4200,
+   1.0,
+   false
+  ],
+  [
+   "b_lavender",
+   1850,
+   4300,
+   1.0,
+   false
+  ],
+  [
+   "a_shrub_white",
+   1950,
+   4180,
+   1.0,
+   true
+  ],
+  [
+   "b_bush_yellow",
+   1780,
+   4350,
+   0.9,
+   true
+  ],
+  [
+   "a_rock_flat",
+   3600,
+   3450,
+   1.1,
+   false
+  ],
+  [
+   "a_leaves",
+   3500,
+   3550,
+   1.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   3720,
+   3540,
+   1.0,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6680,
+   4400,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6679,
+   4452,
+   2.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6638,
+   4503,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6538,
+   4517,
+   2.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6450,
+   4536,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6348,
+   4535,
+   2.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6287,
+   4489,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6221,
+   4452,
+   2.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6184,
+   4400,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6238,
+   4352,
+   2.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6275,
+   4304,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6348,
+   4265,
+   2.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6450,
+   4274,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6545,
+   4274,
+   2.4,
+   false
+  ],
+  [
+   "a_mushrooms",
+   6638,
+   4297,
+   2.0,
+   true
+  ],
+  [
+   "a_mushrooms",
+   6662,
+   4352,
+   2.4,
+   false
+  ],
+  [
+   "b_lavender",
+   6120,
+   4340,
+   1.0,
+   true
+  ],
+  [
+   "a_lavender",
+   6780,
+   4440,
+   1.0,
+   false
+  ],
+  [
+   "b_lavender",
+   6450,
+   4200,
+   1.0,
+   true
+  ],
+  [
+   "a_lavender",
+   6330,
+   4590,
+   1.0,
+   false
+  ]
+ ],
+ "forest": {
+  "trees": [
+   [
+    "oak_a",
+    3
+   ],
+   [
+    "oak_b",
+    3
+   ],
+   [
+    "gnarled_a",
+    2
+   ],
+   [
+    "gnarled_b",
+    2
+   ],
+   [
+    "silver",
+    2
+   ]
+  ],
+  "spacing": 500,
+  "cut": 0.55,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 26,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 11,
+  "clumps": {
+   "ferns": {
+    "w": 4,
+    "n": [
+     3,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "lavender": {
+    "w": 2,
+    "n": [
+     3,
+     7
+    ],
+    "r": 160,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     5
+    ],
+    "r": 140,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     4
+    ],
+    "r": 150,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     3,
+     6
+    ],
+    "r": 180,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   }
+  },
+  "tufts_per_mpx": 32,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 12,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 3,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 130,
+   "offset": -20,
+   "jitter": 70,
+   "density": 0.75,
+   "props": [
+    "a_moss",
+    "a_clover",
+    "a_pebbles",
+    "a_leaves"
+   ],
+   "scale": [
+    0.9,
+    1.3
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 230,
+   "offset": 110,
+   "jitter": 120,
+   "density": 0.8,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_lavender",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 220,
+   "offset": 80,
+   "jitter": 100,
+   "density": 0.8,
+   "min_gap": 30,
+   "props": [
+    "a_grass_tall",
+    "b_fern",
+    "a_lavender",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.15
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 220,
+   "offset": 80,
+   "jitter": 100,
+   "density": 0.8,
+   "min_gap": 30,
+   "props": [
+    "a_grass_tall",
+    "a_fern",
+    "b_lavender"
+   ],
+   "scale": [
+    0.85,
+    1.15
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.38,
+  "pools": 0.22,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 1.0,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    5900,
+    1500,
+    520,
+    0.5
+   ],
+   [
+    5650,
+    3000,
+    650,
+    0.6
+   ],
+   [
+    10700,
+    4180,
+    400,
+    0.5
+   ],
+   [
+    6450,
+    4400,
+    380,
+    0.5
+   ],
+   [
+    9250,
+    640,
+    380,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    5600,
+    2600,
+    500
+   ],
+   [
+    6100,
+    1200,
+    420
+   ],
+   [
+    9300,
+    900,
+    380
+   ],
+   [
+    6500,
+    4200,
+    360
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "whisperwood_glade",
+   "name": "Whisperwood Glade",
+   "at": [
+    5900,
+    1500
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Crownsfall",
+   "to": "crownsfall",
+   "at": [
+    140,
+    2630
+   ],
+   "r": 170,
+   "arrive": [
+    1000,
+    700
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  520,
+  2600
+ ],
+ "targets": []
+}

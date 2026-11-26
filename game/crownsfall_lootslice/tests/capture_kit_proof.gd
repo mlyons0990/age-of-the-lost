@@ -16,7 +16,9 @@ func _run() -> void:
 	root.size = Vector2i(1920, 1080)
 	var lab: Node3D = (load("res://scenes/pilot_knight_combat_lab.tscn") as PackedScene).instantiate()
 	lab.painted_zone = zone_name
+	var t0 := Time.get_ticks_msec()
 	root.add_child(lab)
+	print("zone load %d ms, %d props" % [Time.get_ticks_msec() - t0, lab.zone.get("props", []).size()])
 	for i in 10: await physics_frame
 	lab.hud.visible = false
 	var i := 0

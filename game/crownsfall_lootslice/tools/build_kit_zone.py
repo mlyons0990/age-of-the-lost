@@ -17,6 +17,21 @@ import json, math, os, random, sys
 import numpy as np, cv2
 from PIL import Image
 
+_img_cache = {}
+def img_alpha(rel):
+    if rel not in _img_cache:
+        _img_cache[rel] = np.asarray(Image.open(os.path.join(kit_dir, rel)).getchannel("A") if not rel.endswith("_shadow.png") else Image.open(os.path.join(kit_dir, rel)))
+    return _img_cache[rel]
+def warp_max(dst, src, M, factor=1.0):
+    """dst = max(dst, warpAffine(src, M) * factor), computed only over the warped bounding box (fast on big maps)."""
+    h, w = src.shape[:2]
+    corners = np.array([[0, 0, 1], [w, 0, 1], [0, h, 1], [w, h, 1]], np.float32) @ M.T
+    x0, y0 = np.floor(corners.min(0)).astype(int) - 2; x1, y1 = np.ceil(corners.max(0)).astype(int) + 2
+    x0, y0 = max(0, x0), max(0, y0); x1, y1 = min(dst.shape[1], x1), min(dst.shape[0], y1)
+    if x1 <= x0 or y1 <= y0: return
+    M2 = M.copy(); M2[0, 2] -= x0; M2[1, 2] -= y0
+    roi = cv2.warpAffine(src, M2, (x1 - x0, y1 - y0), flags=cv2.INTER_LINEAR)
+    np.maximum(dst[y0:y1, x0:x1], roi * factor, out=dst[y0:y1, x0:x1])
 spec = json.load(open(sys.argv[1]))
 name = os.path.basename(sys.argv[1]).replace(".kitzone.json", "")
 kit_dir = spec["kit"]
@@ -46,7 +61,6 @@ for pt in spec.get("patches", []):
     if pt["layer"] != "water": path_mask = np.maximum(path_mask, m)       # paved/dirt clearings stay clear of planting
     if pt["layer"] == "water": water.append([pt["at"][0], pt["at"][1], pt["r"], pt["r"] * pt.get("squash", 0.5)])
 os.makedirs(f"assets/zones/{name}", exist_ok=True)
-Image.fromarray((splat * 255).astype(np.uint8)).save(f"assets/zones/{name}/splat.png")
 
 dist_path = cv2.distanceTransform((path_mask < 0.5).astype(np.uint8), cv2.DIST_L2, 5) * SPLAT_K
 def dist_path_lk(lw, lh): return cv2.resize(dist_path, (lw, lh), interpolation=cv2.INTER_LINEAR)
@@ -75,7 +89,7 @@ for q in spec.get("place", []):                      # deliberate composition: [
 def paving_overlap(prop, at, scale, flip):
     """Fraction of a tree/rock's base (roots, lowest 30% of the image) that lies on paths or paved clearings."""
     c = cat["props"][prop]; s_ = scale * (ZPPM / c["ppm"] if "ppm" in c else 1.0)
-    al = np.asarray(Image.open(os.path.join(kit_dir, c["image"])).getchannel("A"))
+    al = img_alpha(c["image"])
     if flip: al = al[:, ::-1]
     fx_ = (c["size"][0] - c["foot"][0]) if flip else c["foot"][0]
     y0 = int(c["size"][1] * 0.70)
@@ -99,7 +113,7 @@ def dress_roots():
     if not rd: return
     for pl in [p_ for p_ in placed if cat["props"][p_["prop"]]["kind"] == "tree"]:
         c = cat["props"][pl["prop"]]
-        al = np.asarray(Image.open(os.path.join(kit_dir, c["image"])).getchannel("A"))
+        al = img_alpha(c["image"])
         if pl["flip"]: al = al[:, ::-1]
         fx_ = (c["size"][0] - c["foot"][0]) if pl["flip"] else c["foot"][0]
         ys, xs = np.where(al[c["foot"][1] - int(0.05 * c["size"][1]):] > 128)
@@ -121,6 +135,120 @@ def clear_of_solid(u, v, gap):
         c = cat["props"][pl["prop"]]
         if c["kind"] in ("tree", "rock") and (u - pl["at"][0]) ** 2 + ((v - pl["at"][1]) / 0.6) ** 2 < (c["footprint_px"] * pl["scale"] + gap) ** 2: return False
     return True
+def in_clear(u, v, pad=0.0):
+    for c_ in spec.get("clear", []):
+        if (u - c_[0]) ** 2 + ((v - c_[1]) / 0.55) ** 2 < (c_[2] + pad) ** 2: return True
+    return False
+solid_pts = []                                           # (u, v, r) trunks and rocks, for fast spacing checks
+def solid_clear(u, v, gap):
+    for a, b, r in solid_pts:
+        if (u - a) ** 2 + ((v - b) / 0.6) ** 2 < (r + gap) ** 2: return False
+    return True
+for pl in placed:
+    c = cat["props"][pl["prop"]]
+    if c["kind"] in ("tree", "rock"): solid_pts.append((pl["at"][0], pl["at"][1], c["footprint_px"] * pl["scale"]))
+def noise_field(scale_px, seed):
+    g = np.random.RandomState(seed).rand(int(sh / (scale_px / SPLAT_K)) + 3, int(sw / (scale_px / SPLAT_K)) + 3).astype(np.float32)
+    return cv2.resize(g, (sw, sh), interpolation=cv2.INTER_CUBIC)
+_canopy_pts = {}
+def canopy_cover(prop, at, scale, flip, mask):
+    """Fraction of a tree's canopy (as drawn from the game camera, i.e. the image rows above the trunk) that lands
+    on `mask` (paths, clearings). Trees standing just in front of a road would otherwise hide it under leaves."""
+    c = cat["props"][prop]; s_ = scale * (ZPPM / c["ppm"] if "ppm" in c else 1.0)
+    if prop not in _canopy_pts:
+        al = img_alpha(c["image"])[: int(c["foot"][1] * 0.7)]
+        ys, xs = np.where(al[::6, ::6] > 128); _canopy_pts[prop] = (xs * 6, ys * 6)
+    xs, ys = _canopy_pts[prop]
+    if len(xs) == 0: return 0.0
+    fx_ = c["foot"][0]
+    dx = (xs - fx_) * (-1 if flip else 1)
+    u = ((dx * s_) + at[0]) / SPLAT_K; v = ((ys - c["foot"][1]) * s_ + at[1]) / SPLAT_K
+    ok = (u >= 0) & (u < sw) & (v >= 0) & (v < sh)
+    if not ok.any(): return 0.0
+    return float((mask[v[ok].astype(int), u[ok].astype(int)] > 0.3).sum() / len(xs))
+def grow_forest(F):
+    """Natural woodland: tree groves where a density field is high (and a thick frame along the zone edges),
+    open glades where it is low; trees never on paths or in clearings. Then undergrowth clumps, grass tufts
+    everywhere off the paving, scattered ground litter and rock clusters."""
+    dens = noise_field(F.get("grove_px", 1500), spec.get("seed", 1) + 5) * 0.75 + noise_field(500, spec.get("seed", 1) + 6) * 0.25
+    yy, xx = np.mgrid[0:sh, 0:sw] * SPLAT_K
+    edge = np.minimum(np.minimum(xx, W - xx), np.minimum(yy, H - yy) / 0.55)
+    dens = dens + np.clip(1 - edge / F.get("frame_px", 900), 0, 1) * F.get("frame", 0.45)
+    def D(u, v): return dens[min(sh - 1, max(0, int(v / SPLAT_K))), min(sw - 1, max(0, int(u / SPLAT_K)))]
+    keep_seen = (path_mask > 0.3).astype(np.float32)          # ground that must stay visible: roads + clearings
+    for c_ in spec.get("clear", []):
+        cv2.ellipse(keep_seen, (int(c_[0] / SPLAT_K), int(c_[1] / SPLAT_K)), (int(c_[2] * 0.8 / SPLAT_K), int(c_[2] * 0.8 * 0.55 / SPLAT_K)), 0, 0, 360, 1.0, -1)
+    trees = F["trees"]; names = [t[0] for t in trees]; wts = [t[1] for t in trees]
+    sp = F.get("spacing", 420); cut = F.get("cut", 0.5); n_try = int(W * H / (sp * sp * 0.55) * 6); n_tree = 0
+    for _ in range(n_try):
+        u, v = rnd.uniform(-60, W + 60), rnd.uniform(60, H + 120)
+        d = D(u, v)
+        if d < cut or in_clear(u, v, 180): continue
+        if dist_path_at(u, v) < F.get("path_gap", 170): continue
+        sp_here = sp * (1.25 - 0.5 * min(1.0, (d - cut) / 0.4))          # denser at the heart of a grove
+        if not solid_clear(u, v, sp_here * 0.5): continue
+        nm = rnd.choices(names, wts)[0]; sc_ = rnd.uniform(*F.get("tree_scale", [0.85, 1.15])); fl = rnd.random() < 0.5
+        if paving_overlap(nm, (u, v), sc_, fl) > 0.0: continue
+        if canopy_cover(nm, (u, v), sc_, fl, keep_seen) > F.get("max_canopy_cover", 0.06): continue
+        add(nm, (u, v), sc_, fl, keep=0)
+        placed[-1]["tint"] = round(rnd.uniform(0.9, 1.04), 3)
+        solid_pts.append((u, v, cat["props"][nm]["footprint_px"] * placed[-1]["scale"])); n_tree += 1
+    # rocks: clusters of a big stone with smaller ones round it
+    big = F.get("rocks_big", []); small = F.get("rocks_small", []); n_rock = 0
+    for _ in range(F.get("rock_clusters", 0) * 20):
+        if n_rock >= F.get("rock_clusters", 0): break
+        u, v = rnd.uniform(200, W - 200), rnd.uniform(300, H - 100)
+        if in_clear(u, v, 100) or dist_path_at(u, v) < 150 or not solid_clear(u, v, 160): continue
+        nm = pick(big); fl = rnd.random() < 0.5; sc_ = rnd.uniform(0.8, 1.15)
+        if paving_overlap(nm, (u, v), sc_, fl) > 0.0: continue
+        add(nm, (u, v), sc_, fl, keep=0); solid_pts.append((u, v, cat["props"][nm]["footprint_px"] * placed[-1]["scale"])); n_rock += 1
+        for k in range(rnd.randint(1, 3)):
+            a_ = rnd.uniform(0, 2 * math.pi); r_ = rnd.uniform(140, 260)
+            u2, v2 = u + math.cos(a_) * r_, v + math.sin(a_) * r_ * 0.5
+            nm2 = pick(small); sc2 = rnd.uniform(0.7, 1.1); fl2 = rnd.random() < 0.5
+            if dist_path_at(u2, v2) < 100 or paving_overlap(nm2, (u2, v2), sc2, fl2) > 0.0 or not solid_clear(u2, v2, 40): continue
+            add(nm2, (u2, v2), sc2, fl2, keep=0); solid_pts.append((u2, v2, cat["props"][nm2]["footprint_px"] * placed[-1]["scale"]))
+    # undergrowth clumps: denser near trees and in groves, a few out in the open
+    tree_pts = [(pl["at"][0], pl["at"][1]) for pl in placed if cat["props"][pl["prop"]]["kind"] == "tree"]
+    tg = np.zeros((sh, sw), np.float32)
+    for a, b in tree_pts:
+        if 0 <= a < W and 0 <= b < H: tg[int(b / SPLAT_K), int(a / SPLAT_K)] = 1
+    near = np.clip(cv2.GaussianBlur(tg, (0, 0), 45) * 900, 0, 1)
+    def N(u, v): return near[min(sh - 1, max(0, int(v / SPLAT_K))), min(sw - 1, max(0, int(u / SPLAT_K)))]
+    n_cl = int(W * H / 1e6 * F.get("clumps_per_mpx", 10)); n_c = 0
+    for _ in range(n_cl * 6):
+        if n_c >= n_cl: break
+        u, v = rnd.uniform(40, W - 40), rnd.uniform(140, H - 20)
+        if rnd.random() > 0.25 + 0.75 * N(u, v): continue
+        if in_clear(u, v) or dist_path_at(u, v) < 70: continue
+        kind = rnd.choices(list(F["clumps"].keys()), [F["clumps"][k]["w"] for k in F["clumps"]])[0]; ck = F["clumps"][kind]
+        n_c += 1
+        for k in range(rnd.randint(*ck["n"])):
+            a_ = rnd.uniform(0, 2 * math.pi); r_ = rnd.uniform(0, ck.get("r", 160))
+            u2, v2 = u + math.cos(a_) * r_, v + math.sin(a_) * r_ * 0.55
+            if dist_path_at(u2, v2) < 50 or in_clear(u2, v2) or not solid_clear(u2, v2, 15): continue
+            add(pick(ck["props"]), (u2, v2), rnd.uniform(*ck.get("scale", [0.8, 1.15])), rnd.random() < 0.5, keep=0)
+    # grass tufts and small flowers everywhere off the paving (breaks up the base grass)
+    n_tuft = int(W * H / 1e6 * F.get("tufts_per_mpx", 40)); n_t = 0
+    for _ in range(n_tuft * 3):
+        if n_t >= n_tuft: break
+        u, v = rnd.uniform(30, W - 30), rnd.uniform(130, H - 10)
+        if dist_path_at(u, v) < 40 or in_clear(u, v, -60) or not solid_clear(u, v, 10): continue
+        add(pick(F["tufts"]), (u, v), rnd.uniform(0.55, 0.95), rnd.random() < 0.5, keep=0); n_t += 1
+    # ground litter: leaves and pebbles, mushrooms near trunks
+    n_lit = int(W * H / 1e6 * F.get("litter_per_mpx", 14)); n_l = 0
+    for _ in range(n_lit * 3):
+        if n_l >= n_lit: break
+        u, v = rnd.uniform(30, W - 30), rnd.uniform(130, H - 10)
+        if dist_path_at(u, v) < 25 or in_clear(u, v): continue
+        nm = pick(F["litter_near_trees"]) if rnd.random() < N(u, v) else pick(F["litter"])
+        add(nm, (u, v), rnd.uniform(0.9, 1.4), rnd.random() < 0.5, keep=0); n_l += 1
+    # leaf litter on the ground under groves (dirt layer, ragged), never over the paving
+    lit = np.clip(cv2.GaussianBlur(tg, (0, 0), 30) * 1400, 0, 1) * np.clip(noise_field(300, spec.get("seed", 1) + 9) * 1.8 - 0.35, 0, 1)
+    splat[..., 1] = np.maximum(splat[..., 1], lit * F.get("litter_ground", 0.7) * (1 - splat[..., 0]))
+    print(f"forest: {n_tree} trees, {n_rock} rock clusters, {n_c} undergrowth clumps, {n_t} tufts, {n_l} litter")
+if "forest" in spec: grow_forest(spec["forest"])
+Image.fromarray((splat * 255).astype(np.uint8)).save(f"assets/zones/{name}/splat.png")
 dress_roots()
 for ed in spec.get("edges", []):                     # planting along both edges of a path
     pts = np.array(spec["paths"][ed["path"]]["pts"], np.float32); half = spec["paths"][ed["path"]]["width"] * 0.5
@@ -160,6 +288,11 @@ def local_to_zone(pi, pt):
     return [round(p["at"][0] + dx), round(p["at"][1] + (pt[1] - c["foot"][1]) * s)]
 exits = []
 for ex in spec.get("exits", []):
+    if "at" in ex:                                       # an exit where a path leaves the zone: glow on the path end
+        u, v = ex["at"]; r = ex.get("r", 180)
+        quad = [[u - r, v - r * 0.55], [u + r, v - r * 0.55], [u + r, v + r * 0.55], [u - r, v + r * 0.55]]
+        exits.append({"name": ex["name"], "to": ex["to"], "arrive": ex["arrive"], "poly": quad, "aura": {"poly": quad}})
+        continue
     pi = setpieces[ex["setpiece"]]; c = cat["props"][placed[pi]["prop"]]
     exits.append({"name": ex["name"], "to": ex["to"], "arrive": ex["arrive"],
                   "poly": [local_to_zone(pi, q) for q in c["trigger"]], "aura": {"poly": [local_to_zone(pi, q) for q in c["aura"]]}})
@@ -201,20 +334,20 @@ if "light" in spec:
         c = cat["props"][pl["prop"]]; sc_ = pl["scale"] / LK
         fx_ = (c["size"][0] - c["foot"][0]) if pl["flip"] else c["foot"][0]
         if c["kind"] == "tree":
-            al = np.asarray(Image.open(os.path.join(kit_dir, c["image"])).getchannel("A"), np.float32) / 255
+            al = img_alpha(c["image"]).astype(np.float32) / 255
             if pl["flip"]: al = al[:, ::-1]
             fy_ = c["foot"][1]
-            al[int(fy_ - 0.32 * fy_):] = 0                      # canopy only (trunk shadow is the contact shadow)
+            al = al.copy(); al[int(fy_ - 0.32 * fy_):] = 0       # canopy only (trunk shadow is the contact shadow)
             # image px -> light texels: canopy point (x, y) lands at foot + (x - fx + a*(fy - y), b*(fy - y))
             ox, oy = pl["at"][0] / LK, pl["at"][1] / LK
             M = np.float32([[sc_, -a_sh * sc_, ox - fx_ * sc_ + a_sh * fy_ * sc_], [0, -b_sh * sc_, oy + b_sh * fy_ * sc_]])
-            shadow = np.maximum(shadow, cv2.warpAffine(al, M, (lw, lh), flags=cv2.INTER_LINEAR))
+            warp_max(shadow, np.ascontiguousarray(al), M)
             cv2.circle(trees_d, (int(ox), int(oy)), max(1, int(c["size"][0] * sc_ * 0.35)), 1.0, -1)
         if "shadow" in c:                                   # the art's own contact shadow, as real shade
-            sm = np.asarray(Image.open(os.path.join(kit_dir, c["shadow"])), np.float32) / 255
+            sm = img_alpha(c["shadow"]).astype(np.float32) / 255
             if pl["flip"]: sm = sm[:, ::-1]
             M2 = np.float32([[sc_, 0, pl["at"][0] / LK - fx_ * sc_], [0, sc_, pl["at"][1] / LK - c["foot"][1] * sc_]])
-            ao = np.maximum(ao, cv2.warpAffine(sm, M2, (lw, lh), flags=cv2.INTER_LINEAR) * 0.9)
+            warp_max(ao, np.ascontiguousarray(sm), M2, 0.9)
         if c["kind"] in ("tree", "rock", "bush"):
             r = c["size"][0] * sc_ * (0.16 if c["kind"] == "tree" else 0.30)
             cv2.ellipse(ao, (int(pl["at"][0] / LK), int(pl["at"][1] / LK)), (max(1, int(r)), max(1, int(r * 0.45))), 0, 0, 360, 1.0, -1)
@@ -226,8 +359,7 @@ if "light" in spec:
     canopies = []
     for k, c in cat["props"].items():
         if c["kind"] == "tree":
-            al = np.asarray(Image.open(os.path.join(kit_dir, c["image"])).getchannel("A"), np.float32) / 255
-            al = al[: int(c["foot"][1] * 0.62)]                                   # canopy rows
+            al = img_alpha(c["image"]).astype(np.float32)[: int(c["foot"][1] * 0.62)] / 255   # canopy rows
             canopies.append(al)
     over = np.zeros((lh, lw), np.float32)
     rsc = random.Random(spec.get("seed", 1) + 99)
@@ -279,10 +411,16 @@ for k, ch in (("flagstone", 0), ("dirt", 1)):
     ov = ov * (1 - splat[..., ch:ch + 1]) + gcol[k] * splat[..., ch:ch + 1]
 ov = ov * (1 - splat[..., 2:3]) + np.array([70, 110, 130], np.float32) * splat[..., 2:3]
 ovi = Image.fromarray(ov.clip(0, 255).astype(np.uint8)).convert("RGBA")
+_ov_src = {}; _ov_sized = {}
 for p in sorted(placed, key=lambda p: p["at"][1]):
-    c = cat["props"][p["prop"]]; im = Image.open(os.path.join(kit_dir, c["image"])).convert("RGBA")
+    c = cat["props"][p["prop"]]
+    if c["image"] not in _ov_src:          # downscale each image once (overview is 1/8 scale)
+        im0 = Image.open(os.path.join(kit_dir, c["image"])).convert("RGBA")
+        _ov_src[c["image"]] = im0.resize((max(1, im0.width // 4), max(1, im0.height // 4)), Image.LANCZOS)
     s = p["scale"] / SPLAT_K; w2, h2 = max(1, int(c["size"][0] * s)), max(1, int(c["size"][1] * s))
-    im = im.resize((w2, h2), Image.LANCZOS)
+    key = (c["image"], w2, h2)
+    if key not in _ov_sized: _ov_sized[key] = _ov_src[c["image"]].resize((w2, h2), Image.BILINEAR)
+    im = _ov_sized[key]
     if p["flip"]: im = im.transpose(Image.FLIP_LEFT_RIGHT)
     fx = c["size"][0] - c["foot"][0] if p["flip"] else c["foot"][0]
     ovi.alpha_composite(im, (max(0, int(p["at"][0] / SPLAT_K - fx * s)), max(0, int(p["at"][1] / SPLAT_K - c["foot"][1] * s))))

@@ -230,45 +230,10 @@
    true
   ],
   [
-   "a_roots",
-   1150,
-   700,
-   1.4,
-   false
-  ],
-  [
-   "a_roots",
-   2800,
-   690,
-   1.3,
-   true
-  ],
-  [
-   "a_moss",
-   1560,
-   640,
-   1.6,
-   false
-  ],
-  [
    "a_mushrooms",
    1250,
    720,
    1.0,
-   false
-  ],
-  [
-   "a_moss",
-   2250,
-   1050,
-   1.4,
-   true
-  ],
-  [
-   "a_clover",
-   1300,
-   1000,
-   1.3,
    false
   ],
   [
@@ -297,13 +262,6 @@
    2700,
    760,
    0.9,
-   true
-  ],
-  [
-   "a_clover",
-   2900,
-   860,
-   1.2,
    true
   ]
  ],
@@ -356,9 +314,7 @@
    "props": [
     "a_grass_tall",
     "b_fern",
-    "a_lavender",
-    "a_clover",
-    "a_moss"
+    "a_lavender"
    ],
    "scale": [
     0.85,
@@ -401,7 +357,6 @@
     "a_fern",
     "b_lavender",
     "a_shrub_white",
-    "a_moss",
     "a_bush_round"
    ],
    "keep_off_paths": 150
@@ -420,7 +375,6 @@
     "b_fern",
     "a_lavender",
     "b_bush_round",
-    "a_moss",
     "b_shrub_white"
    ],
    "keep_off_paths": 150
@@ -456,8 +410,7 @@
    "props": [
     "b_lavender",
     "a_bush_round",
-    "a_fern",
-    "a_moss"
+    "a_fern"
    ],
    "keep_off_paths": 150
   },
@@ -524,7 +477,6 @@
     220
    ],
    "props": [
-    "a_clover",
     "b_shrub_white",
     "a_lavender"
    ],
@@ -541,7 +493,6 @@
     220
    ],
    "props": [
-    "a_moss",
     "b_fern",
     "a_lavender"
    ],
@@ -550,7 +501,7 @@
  ],
  "light": {
   "canopy": 0.5,
-  "contact": 0.4,
+  "contact": 0.38,
   "pools": 0.22,
   "dapple_px": 70,
   "shift": [
@@ -558,32 +509,6 @@
    0.16
   ],
   "exposure": 1.0,
-  "mist": [
-   [
-    150,
-    250,
-    450,
-    0.6
-   ],
-   [
-    3750,
-    400,
-    420,
-    0.55
-   ],
-   [
-    100,
-    1600,
-    450,
-    0.55
-   ],
-   [
-    3800,
-    1500,
-    420,
-    0.5
-   ]
-  ],
   "shafts": [
    [
     2500,
@@ -607,7 +532,7 @@
    ]
   ],
   "over_density": 7,
-  "tree_mist": 0.7
+  "tree_mist": 0.0
  },
  "waypoints": [
   {
@@ -644,5 +569,18 @@
   1700,
   960
  ],
- "targets": []
+ "targets": [],
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 4,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ }
 }

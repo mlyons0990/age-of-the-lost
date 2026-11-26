@@ -92,11 +92,36 @@ for q in spec.get("place", []):
         if ov > spec.get("max_paving_overlap", 0.03): bad.append(f"{q[0]} at ({q[1]},{q[2]}): {ov:.0%} of its base is on the path")
 if bad:
     raise SystemExit("Trees/rocks placed on paths (move them):\n  " + "\n  ".join(bad))
+def dress_roots():
+    """Ground round every tree: moss/clover/leaf litter under the root tips and a few tufts at the ends, so roots
+    grow out of the ground instead of sitting on it."""
+    rd = spec.get("root_dressing")
+    if not rd: return
+    for pl in [p_ for p_ in placed if cat["props"][p_["prop"]]["kind"] == "tree"]:
+        c = cat["props"][pl["prop"]]
+        al = np.asarray(Image.open(os.path.join(kit_dir, c["image"])).getchannel("A"))
+        if pl["flip"]: al = al[:, ::-1]
+        fx_ = (c["size"][0] - c["foot"][0]) if pl["flip"] else c["foot"][0]
+        ys, xs = np.where(al[c["foot"][1] - int(0.05 * c["size"][1]):] > 128)
+        if len(xs) == 0: continue
+        spread = max(abs(xs.min() - fx_), abs(xs.max() - fx_)) * pl["scale"]          # root reach, zone px
+        for k in range(rd.get("decals", 6)):
+            a_ = rnd.uniform(0, 2 * math.pi); r_ = spread * rnd.uniform(0.45, 0.95)
+            u, v = pl["at"][0] + math.cos(a_) * r_, pl["at"][1] + math.sin(a_) * r_ * 0.4
+            if dist_path_at(u, v) < 20: continue
+            add(pick(rd["decal_props"]), (u, v), rnd.uniform(1.0, 1.5), rnd.random() < 0.5, keep=0)
+        for k in range(rd.get("tufts", 3)):
+            a_ = rnd.uniform(0.15 * math.pi, 0.85 * math.pi) if rnd.random() < 0.6 else rnd.uniform(0, 2 * math.pi)
+            r_ = spread * rnd.uniform(0.75, 1.05)
+            u, v = pl["at"][0] + math.cos(a_) * r_, pl["at"][1] + math.sin(a_) * r_ * 0.4
+            if dist_path_at(u, v) < 60: continue
+            add(pick(rd["tuft_props"]), (u, v), rnd.uniform(0.75, 1.0), rnd.random() < 0.5, keep=0)
 def clear_of_solid(u, v, gap):
     for pl in placed:
         c = cat["props"][pl["prop"]]
         if c["kind"] in ("tree", "rock") and (u - pl["at"][0]) ** 2 + ((v - pl["at"][1]) / 0.6) ** 2 < (c["footprint_px"] * pl["scale"] + gap) ** 2: return False
     return True
+dress_roots()
 for ed in spec.get("edges", []):                     # planting along both edges of a path
     pts = np.array(spec["paths"][ed["path"]]["pts"], np.float32); half = spec["paths"][ed["path"]]["width"] * 0.5
     seg = np.linalg.norm(np.diff(pts, axis=0), axis=1); L = seg.sum(); t = rnd.uniform(0, ed["spacing"])
@@ -143,6 +168,11 @@ if "waypoint_setpiece" in spec:
     pi = setpieces[spec["waypoint_setpiece"]]; c = cat["props"][placed[pi]["prop"]]
     at = local_to_zone(pi, c["waypoint"])
     waypoints.append({"id": spec["waypoint"]["id"], "name": spec["waypoint"]["name"], "at": at, "centre_of": at, "radius_px": spec["waypoint"].get("radius_px", 200)})
+# waypoints stand on clear ground: nothing planted on or right round the platform
+for wp in spec.get("waypoints", []):
+    rr = wp.get("radius_px", 200) * 1.45
+    placed[:] = [p_ for p_ in placed if cat["props"][p_["prop"]]["kind"] in ("tree", "rock", "setpiece")
+                 or (p_["at"][0] - wp["at"][0]) ** 2 + ((p_["at"][1] - wp["at"][1]) / 0.55) ** 2 > rr ** 2]
 for wp in spec.get("waypoints", []):
     waypoints.append({"id": wp["id"], "name": wp["name"], "at": wp["at"], "centre_of": wp["at"], "radius_px": wp.get("radius_px", 200), "rot_deg": wp.get("rot_deg", 22.9)})
 # collision: per-prop footprints + set-piece blockers + water
@@ -180,12 +210,17 @@ if "light" in spec:
             M = np.float32([[sc_, -a_sh * sc_, ox - fx_ * sc_ + a_sh * fy_ * sc_], [0, -b_sh * sc_, oy + b_sh * fy_ * sc_]])
             shadow = np.maximum(shadow, cv2.warpAffine(al, M, (lw, lh), flags=cv2.INTER_LINEAR))
             cv2.circle(trees_d, (int(ox), int(oy)), max(1, int(c["size"][0] * sc_ * 0.35)), 1.0, -1)
+        if "shadow" in c:                                   # the art's own contact shadow, as real shade
+            sm = np.asarray(Image.open(os.path.join(kit_dir, c["shadow"])), np.float32) / 255
+            if pl["flip"]: sm = sm[:, ::-1]
+            M2 = np.float32([[sc_, 0, pl["at"][0] / LK - fx_ * sc_], [0, sc_, pl["at"][1] / LK - c["foot"][1] * sc_]])
+            ao = np.maximum(ao, cv2.warpAffine(sm, M2, (lw, lh), flags=cv2.INTER_LINEAR) * 0.9)
         if c["kind"] in ("tree", "rock", "bush"):
-            r = c["size"][0] * sc_ * (0.22 if c["kind"] == "tree" else 0.42)
+            r = c["size"][0] * sc_ * (0.16 if c["kind"] == "tree" else 0.30)
             cv2.ellipse(ao, (int(pl["at"][0] / LK), int(pl["at"][1] / LK)), (max(1, int(r)), max(1, int(r * 0.45))), 0, 0, 360, 1.0, -1)
     dapple = np.clip((fbm(LS.get("dapple_px", 40), 3) - 0.45) * 5.0, 0, 1)       # sun flecks through the leaves
     shadow = cv2.GaussianBlur(np.clip((shadow - 0.3) * 2.0, 0, 1), (0, 0), 1.2) * (1 - 0.6 * dapple)
-    ao = cv2.GaussianBlur(ao, (0, 0), 10)
+    ao = cv2.GaussianBlur(ao, (0, 0), 7)
     # the overhead canopy beyond the placed trees: a dappled shade field over the whole zone, thinner where open
     # stamped from the kit's own canopy silhouettes (leaf-shaped edges, like the shade painted in W1)
     canopies = []
@@ -221,7 +256,7 @@ if "light" in spec:
         if cat["props"][pl["prop"]]["kind"] in ("bush", "rock"):
             pl["tint"] = round(float(np.clip(light[min(lh - 1, int(pl["at"][1] / LK)), min(lw - 1, int(pl["at"][0] / LK))], 0.55, 1.1)), 3)
     # mist: pooled among tree bases and toward the canopy edges; shafts where the spec asks
-    mist = cv2.GaussianBlur(trees_d, (0, 0), 80) * LS.get("tree_mist", 1.0) * np.clip(fbm(500, 3) * 1.6 - 0.3, 0, 1)
+    mist = cv2.GaussianBlur(trees_d, (0, 0), 80) * LS.get("tree_mist", 0.0) * np.clip(fbm(500, 3) * 1.6 - 0.3, 0, 1)
     for m_ in LS.get("mist", []):
         e = np.zeros((lh, lw), np.float32); cv2.ellipse(e, (int(m_[0] / LK), int(m_[1] / LK)), (int(m_[2] / LK), int(m_[2] * 0.5 / LK)), 0, 0, 360, m_[3] if len(m_) > 3 else 1.0, -1)
         mist = np.maximum(mist, cv2.GaussianBlur(e, (0, 0), m_[2] / LK * 0.35))
@@ -233,7 +268,7 @@ if "light" in spec:
     for pl in placed:                                   # props standing in mist pick it up at their base
         if cat["props"][pl["prop"]]["kind"] in ("tree", "bush", "rock"):
             mv = float(np.clip(mist[min(lh - 1, int(pl["at"][1] / LK)), min(lw - 1, int(pl["at"][0] / LK))], 0, 1))
-            if mv > 0.02: pl["mist"] = round(mv * 0.45, 3)
+            if mv > 0.02 and LS.get("prop_mist", False): pl["mist"] = round(mv * 0.45, 3)
     fx = np.dstack([np.clip(mist, 0, 1), np.clip(shafts, 0, 1), np.zeros_like(mist)])
     Image.fromarray((fx * 255).astype(np.uint8)).save(f"assets/zones/{name}/fx.png"); fx_name = f"{name}/fx.png"
 # minimap overview (1/8 scale): ground colours + props

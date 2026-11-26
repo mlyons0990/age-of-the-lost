@@ -33,6 +33,32 @@ def clean_alpha(rgba):
     out = rgba.copy(); out[..., 3] = a.astype(np.uint8)
     return out
 
+def split_contact_shadow(rgba, fy):
+    """The image model paints a soft grey contact shadow as semi-transparent pixels round the base. Drawn over our
+    ground it reads as grey/purple haze. Cut it out of the prop (alpha 0) and return it as a mask, so the zone builder
+    bakes it into the light map instead: a real shadow that darkens whatever ground is underneath (grass stays green)."""
+    a = rgba[..., 3].astype(np.float32); rgb = rgba[..., :3].astype(np.float32)
+    mx, mn = rgb.max(2), rgb.min(2); sat = (mx - mn) / np.maximum(mx, 1)
+    core = cv2.dilate((a > 225).astype(np.uint8), np.ones((7, 7), np.uint8)) > 0
+    rows = np.arange(a.shape[0])[:, None] >= fy - 0.18 * a.shape[0]
+    sh = (a > 0) & (a < 225) & (sat < 0.32) & ~core & rows
+    if sh.sum() < 50: return rgba, None
+    mask = np.where(sh, a, 0).astype(np.uint8)
+    out = rgba.copy(); out[..., 3] = np.where(sh, 0, rgba[..., 3]).astype(np.uint8)
+    return out, mask
+
+def clean_decal_edge(rgba):
+    """Decals were painted with a pale, washed-out haze in their feathered edge, which leaves milky rings on the
+    ground. Drop the faint grey haze and tighten the falloff so the edge fades straight into the ground colour."""
+    a = rgba[..., 3].astype(np.float32); rgb = rgba[..., :3].astype(np.float32)
+    mx, mn = rgb.max(2), rgb.min(2); sat = (mx - mn) / np.maximum(mx, 1)
+    haze = (a < 170) & (sat < 0.30)
+    a = np.where(haze, 0, a)
+    a = np.clip((a - 60) / 150.0, 0, 1)
+    a = cv2.GaussianBlur(a, (0, 0), 1.2) * 255
+    out = rgba.copy(); out[..., 3] = a.astype(np.uint8)
+    return out
+
 def save(name, rgba, kind, foot, metres, occludes, footprint_frac=0.0, measure="height"):
     ys, xs = np.where(rgba[..., 3] > 8)
     x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
@@ -44,10 +70,18 @@ def save(name, rgba, kind, foot, metres, occludes, footprint_frac=0.0, measure="
         ppm = (fy - (ys.min() - y0)) / (metres * COS)
     else:                        # flat: width in metres
         ppm = (xs.max() - xs.min()) / metres
+    shadow = None
+    if kind != "decal":
+        crop, shadow = split_contact_shadow(crop, fy)
+    else:
+        crop = clean_decal_edge(crop)
     Image.fromarray(crop, "RGBA").save(f"{OUT}/props/{name}.png", optimize=True)
     cat["props"][name] = {"kind": kind, "image": f"props/{name}.png", "size": [int(crop.shape[1]), int(crop.shape[0])],
                           "foot": [int(round(fx)), int(round(fy))], "ppm": round(float(ppm), 2),
                           "footprint_px": int(round(footprint_frac)), "occludes": occludes}
+    if shadow is not None:
+        Image.fromarray(shadow, "L").save(f"{OUT}/props/{name}_shadow.png", optimize=True)
+        cat["props"][name]["shadow"] = f"props/{name}_shadow.png"
     print(f"{name:14s} {kind:5s} {crop.shape[1]}x{crop.shape[0]} foot ({fx:.0f},{fy:.0f}) ppm {ppm:.1f}")
 
 def tree(name, src, metres):

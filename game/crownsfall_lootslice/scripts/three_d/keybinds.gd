@@ -30,7 +30,8 @@ const ACTIONS := [
 	["keybinds", "Open Key Bindings", "key:F1", ""],
 	["lab_panel", "Show / Hide Lab Panel", "key:F3", ""],
 	["map", "Open Map (Zone / World)", "key:M", ""],
-	["inventory", "Inventory / Character", "key:I", "key:C"],
+	["inventory", "Inventory / Equipment", "key:I", ""],
+	["character", "Character Sheet", "key:C", ""],
 	["skills", "Skills", "key:K", ""],
 ]
 
@@ -189,3 +190,6 @@ func load_from_disk() -> void:
 		if v is Array and v.size() == 2:
 			binds[a] = [str(v[0]), str(v[1])]
 	combine_move_attack = bool(cf.get_value("keybind_options", "combine_move_attack", true))
+	# 11-27: C moved from "Inventory / Character" (second key) to its own Character Sheet action
+	if binds.get("inventory", ["", ""])[1] == "key:C" and binds.get("character", ["", ""])[0] == "key:C":
+		binds["inventory"][1] = ""

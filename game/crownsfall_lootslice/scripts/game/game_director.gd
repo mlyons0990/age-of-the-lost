@@ -34,6 +34,7 @@ var npcs: Array = []             # {id, name, node, pos}
 var pending: Dictionary = {}     # {"kind": "loot"|"npc", "ref": ...} target the hero is walking to
 var dead := false
 var stats: Dictionary = {}
+var auto_gold := true            # Options > Game: walk over gold to pick it up (else click it)
 var save_t := 0.0
 var boss: Node3D = null
 var sfx: Array = []
@@ -49,6 +50,7 @@ var ward_def: Dictionary = {}
 var pending_ground: Array = []   # delayed strikes: {at, t, def}
 
 func setup(owner_lab, st) -> void:
+	auto_gold = bool(preload("res://scripts/three_d/aotl_save.gd").open().get_value("settings", "auto_gold", true))
 	lab = owner_lab
 	state = st
 	quests_def = JSON.parse_string(FileAccess.get_file_as_string("res://data/quests.json"))["quests"]
@@ -752,7 +754,7 @@ func _process(delta: float) -> void:
 	for l in loot.duplicate():
 		if not is_instance_valid(l): loot.erase(l); continue
 		var reach := 1.7 if l.kind == "quest" else 1.0      # quest items can lie against rocks: generous pickup
-		if l.auto_pickup() and Vector2(l.global_position.x - hp.x, l.global_position.z - hp.z).length() < reach:
+		if l.auto_pickup() and (l.kind != "gold" or auto_gold) and Vector2(l.global_position.x - hp.x, l.global_position.z - hp.z).length() < reach:
 			_pickup(l)
 	if not pending.is_empty():
 		var p: Vector3 = pending["pos"]

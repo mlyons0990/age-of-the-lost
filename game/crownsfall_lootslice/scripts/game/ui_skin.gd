@@ -45,8 +45,8 @@ static func tooltip_box() -> StyleBoxTexture:
 static func button_boxes() -> Dictionary:
 	var out := {}
 	for st in ["normal", "hover", "pressed"]:
-		out[st] = box("button_" + st, Vector4(30, 12, 30, 12), Vector4(34, 6, 34, 6))
-	var dis := box("button_pressed", Vector4(30, 12, 30, 12), Vector4(34, 6, 34, 6))
+		out[st] = box("button_" + st, Vector4(30, 12, 30, 12), Vector4(34, 6, 34, 6), false)
+	var dis := box("button_pressed", Vector4(30, 12, 30, 12), Vector4(34, 6, 34, 6), false)
 	dis.modulate_color = Color(0.6, 0.6, 0.6)
 	out["disabled"] = dis
 	return out
@@ -96,7 +96,7 @@ static func tab(text: String, on: bool, w := 170.0) -> Button:
 	b.add_theme_font_size_override("font_size", 17)
 	b.add_theme_color_override("font_color", Color("2a1c0c") if on else IVORY)
 	b.add_theme_color_override("font_hover_color", Color("2a1c0c") if on else Color("ffe7a8"))
-	var sb := box("tab_on" if on else "tab", Vector4(28, 22, 28, 8), Vector4(20, 12, 20, 4))
+	var sb := box("tab_on" if on else "tab", Vector4(28, 22, 28, 8), Vector4(20, 12, 20, 4), false)
 	for st in ["normal", "hover", "pressed", "hover_pressed"]: b.add_theme_stylebox_override(st, sb)
 	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	return b
@@ -170,7 +170,7 @@ static func plaque(text: String, w := 345.0, size := 24) -> TextureRect:
 ## A whole crowned window (fixed size): frame art + a content Control laid over its slate interior.
 ## Returns {"root": Control, "content": Control, "close": TextureButton}.
 static func window(kind: String, title: String) -> Dictionary:
-	var name := {"tall": "window_tall", "small": "window_tall_small", "wide": "window_wide"}[kind]
+	var name: String = {"tall": "window_tall", "small": "window_tall_small", "wide": "window_wide"}[kind]
 	var inner: Rect2 = {"tall": TALL_INNER, "small": TALL_SMALL_INNER, "wide": WIDE_INNER}[kind]
 	var t := tex(name)
 	var root := Control.new()
@@ -204,3 +204,18 @@ static func divider(w: float) -> TextureRect:
 	d.custom_minimum_size = Vector2(w, 18)
 	d.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return d
+
+## Bronze scrollbar for scroll areas (key bindings).
+static func style_scroll(sc: ScrollContainer) -> void:
+	var bar := sc.get_v_scroll_bar()
+	var track := StyleBoxFlat.new(); track.bg_color = Color(0.05, 0.045, 0.04, 0.9)
+	track.border_color = GOLD_DIM; track.set_border_width_all(1); track.set_corner_radius_all(4)
+	track.content_margin_left = 6; track.content_margin_right = 6
+	var grab := StyleBoxFlat.new(); grab.bg_color = Color(0.62, 0.46, 0.24)
+	grab.border_color = Color(0.92, 0.74, 0.4); grab.set_border_width_all(1); grab.set_corner_radius_all(4)
+	var grab_hi := grab.duplicate(); grab_hi.bg_color = Color(0.8, 0.6, 0.3)
+	bar.add_theme_stylebox_override("scroll", track)
+	bar.add_theme_stylebox_override("grabber", grab)
+	bar.add_theme_stylebox_override("grabber_highlight", grab_hi)
+	bar.add_theme_stylebox_override("grabber_pressed", grab_hi)
+	bar.custom_minimum_size.x = 14

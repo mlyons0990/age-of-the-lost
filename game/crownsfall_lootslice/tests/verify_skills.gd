@@ -81,7 +81,7 @@ func _run() -> void:
 		var mods := defs.filter(func(d): return d["mods"].size() == 2).size()
 		check(defs.size() == 6 and basic == 1 and icons == 6 and mods == 6 and SK.class_data(cid).id == cid,
 			"%s: 6 skills, 1 basic, icons, 2 upgrades each" % SK.display_name(cid))
-	check(SK.playable() == ["warrior", "mage"] or SK.playable().size() == 4 or SK.playable().size() == 3, "Title offers only classes whose 3D outfit exists: %s" % [SK.playable()])
+	check(SK.playable() == ["warrior", "rogue", "mage", "cleric"], "All four classes are playable (3D outfits present): %s" % [SK.playable()])
 	# ---------------- Knight ----------------
 	await _start("warrior")
 	var st = lab.game_state
@@ -151,7 +151,12 @@ func _run() -> void:
 	# skill window
 	g.ui.toggle_skills()
 	await _wait(0.2)
-	check(g.ui.sk_panel.visible and g.ui.sk_box.get_child_count() == 8, "K opens the skill window (6 skills)")
+	var nodes: Array = g.ui.sk_box.get_children().filter(func(n): return String(n.name).begins_with("node_"))
+	check(g.ui.sk_panel.visible and nodes.size() == 6, "K opens the skill tree (6 skill nodes)")
+	g.ui.sk_selected = "cleave"; g.ui.refresh_skills(); await _wait(0.1)
+	var upb = g.ui.sk_detail.find_child("rank_up", true, false)
+	var can_rank: bool = st.skill_points > 0 and st.rank("cleave") < 5
+	check(upb != null and upb.disabled == (not can_rank), "Selecting a node shows its rank-up button (points %d, rank %d, disabled %s)" % [st.skill_points, st.rank("cleave"), upb.disabled if upb != null else "none"])
 	await _shot("window_knight")
 	g.ui.toggle_skills()
 	# save

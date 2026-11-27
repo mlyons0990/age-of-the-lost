@@ -41,10 +41,10 @@ static func summary() -> Dictionary:
 		"zone": cf.get_value("game", "zone", "crownsfall"), "play_time": cf.get_value("game", "play_time", 0.0)}
 
 ## A brand-new character: wipes the old character, its waypoints and map exploration (key binds stay).
-static func new_character(cls: String) -> RefCounted:
+static func new_character(cls: String, name := "") -> RefCounted:
 	var s = load("res://scripts/game/game_state.gd").new()
 	s.class_id = cls
-	s.hero_name = String(SKILLS.class_data(cls).hero_name)
+	s.hero_name = name.strip_edges().left(24) if name.strip_edges() != "" else String(SKILLS.class_data(cls).hero_name)
 	var starter := SYS.make_item(1, 0.0, "staff" if cls == "mage" else "weapon", cls)
 	starter["rarity"] = 0; starter["name"] = "Worn " + String(SYS.NAMES[starter["slot"]])
 	s.gear[SYS.default_slot(starter)] = starter

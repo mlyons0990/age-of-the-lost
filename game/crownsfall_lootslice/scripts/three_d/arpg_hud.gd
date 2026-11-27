@@ -4,6 +4,7 @@ extends CanvasLayer
 ## skill bar + MP globe (bottom-right), purple XP bar with level (bottom-centre), overhead nameplate with
 ## level badge and HP/MP bars, thin red bars over enemies. Art reused from the 2D Crownfall HUD.
 
+const UI_SKIN := preload("res://scripts/game/ui_skin.gd")
 const UI := "res://assets/ui/arpg_hud/"
 const TILES := "res://assets/skill_tiles/"
 const GOLD := Color("d9b46a")
@@ -832,6 +833,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		lab.game.ui.toggle_inventory()
 		get_viewport().set_input_as_handled()
 		return
+	if a == "character" and lab.get("game") != null:
+		lab.game.ui.toggle_character()
+		get_viewport().set_input_as_handled()
+		return
 	if a == "skills" and lab.get("game") != null:
 		lab.game.ui.toggle_skills()
 		get_viewport().set_input_as_handled()
@@ -864,53 +869,56 @@ func _bind_text(spec: String) -> String:
 	return t.replace("C+", "Ctrl+").replace("A+", "Alt+").replace("S+", "Shift+").replace("Spc", "Space")
 
 func _build_bind_menu(root: Control, ui_k: float) -> void:
+	# painted AOTL kit frame (scripts/game/ui_skin.gd), like every other game screen
 	bind_menu = PanelContainer.new()
-	var sb := StyleBoxFlat.new()
-	sb.bg_color = Color(0.04, 0.035, 0.035, 0.96)
-	sb.border_color = GOLD
-	sb.set_border_width_all(2)
-	sb.set_corner_radius_all(4)
-	sb.set_content_margin_all(18)
-	bind_menu.add_theme_stylebox_override("panel", sb)
+	bind_menu.add_theme_stylebox_override("panel", UI_SKIN.panel_box(10.0))
 	bind_menu.visible = false
 	root.add_child(bind_menu)
 	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 8)
 	bind_menu.add_child(v)
-	v.add_child(_label("KEY BINDINGS", 24, GOLD))
-	v.add_child(_label("Click a binding, then press any key or mouse button.  Esc cancels · Backspace clears.", 14, Color("cfc7b8"), false))
+	var head := UI_SKIN.plaque("KEY BINDINGS", 330.0, 23)
+	var hc := CenterContainer.new(); hc.custom_minimum_size = head.custom_minimum_size; hc.add_child(head)
+	v.add_child(hc)
+	v.add_child(_label("Click a binding, then press any key or mouse button.  Esc cancels · Backspace clears.", 15, Color("cfc7b8"), false))
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(700, 560)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	UI_SKIN.style_scroll(scroll)
+	v.add_child(scroll)
 	var g := GridContainer.new()
 	g.columns = 3
 	g.add_theme_constant_override("h_separation", 14)
-	v.add_child(g)
+	g.add_theme_constant_override("v_separation", 4)
+	scroll.add_child(g)
 	for h in ["Action", "Primary", "Secondary"]:
-		g.add_child(_label(h, 15, GOLD))
+		g.add_child(_label(h, 16, GOLD))
 	for a in KEYBINDS.ACTIONS:
-		g.add_child(_label(a[1], 15, IVORY, false))
+		var l := _label(a[1], 16, IVORY, false)
+		l.custom_minimum_size = Vector2(300, 0)
+		g.add_child(l)
 		var pair := []
 		for slot in 2:
-			var b := Button.new()
-			b.custom_minimum_size = Vector2(130, 26)
-			b.focus_mode = Control.FOCUS_NONE
+			var b: Button = UI_SKIN.button("", 170.0, 38.0, 15)
 			b.pressed.connect(_start_capture.bind(a[0], slot, b))
 			g.add_child(b)
 			pair.append(b)
 		bind_buttons[a[0]] = pair
-	var combine := CheckBox.new()
-	combine.text = "Combine Move / Interact / Primary Attack on one button"
+	var combine: CheckBox = UI_SKIN.checkbox("Combine Move / Interact / Primary Attack on one button")
 	combine.button_pressed = kb.combine_move_attack
 	combine.toggled.connect(func(on): kb.combine_move_attack = on; kb.save_to_disk())
 	v.add_child(combine)
 	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 16)
 	v.add_child(row)
-	var reset := Button.new()
-	reset.text = "Reset to Defaults"
+	var reset: Button = UI_SKIN.button("Reset to Defaults", 260.0, 48.0, 18)
 	reset.pressed.connect(func(): kb.reset_defaults(); combine.button_pressed = true)
 	row.add_child(reset)
-	var close := Button.new()
-	close.text = "Close"
+	var close: Button = UI_SKIN.button("Close", 260.0, 48.0, 18)
 	close.pressed.connect(toggle_bind_menu)
 	row.add_child(close)
-	bind_status = _label("", 14, Color("e8b85c"), false)
+	bind_status = _label("", 15, Color("e8b85c"), false)
 	v.add_child(bind_status)
 
 var bind_status: Label

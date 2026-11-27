@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_26ybv"]
+
+[resource]
+script = ExtResource("1_26ybv")
+id = "rogue_armor_legendary"
+slot = "armor"
+tint = Color(1.12, 0.95, 0.8, 1)
+glow = Color(1, 0.55, 0.15, 0.8)
+cloth = Color(0.16470589, 0.11372549, 0.22745098, 1)
+metal = Color(0.9411765, 0.72156864, 0.3529412, 1)

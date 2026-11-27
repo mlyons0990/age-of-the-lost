@@ -10,7 +10,19 @@ const MAX_RANK := 5
 const MOD_RANK := 3
 const RANK_DMG := 0.14            # +14% damage per rank above 1
 
-const CLASS_PATHS := {"warrior": "res://data/classes/knight.tres", "mage": "res://data/classes/mage.tres"}
+const CLASS_PATHS := {"warrior": "res://data/classes/knight.tres", "rogue": "res://data/classes/rogue.tres",
+	"mage": "res://data/classes/mage.tres", "cleric": "res://data/classes/cleric.tres"}
+const ORDER := ["warrior", "rogue", "mage", "cleric"]
+
+## Classes the player can pick now: those whose rigged outfit is in the project.
+static func playable() -> Array:
+	var out := []
+	for cid in ORDER:
+		if class_data(cid).hero_model != null: out.append(cid)
+	return out
+
+static func display_name(class_id: String) -> String:
+	return String(class_data(class_id).display_name)
 static var _cache := {}
 
 ## The class's ClassData resource (data/classes/*.tres, edited in the Inspector).

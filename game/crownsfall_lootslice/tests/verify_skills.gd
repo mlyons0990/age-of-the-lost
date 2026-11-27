@@ -72,6 +72,16 @@ func _clear_area() -> void:
 
 func _run() -> void:
 	root.size = Vector2i(1920, 1080)
+	# ---------------- four-class data (Rogue / Cleric outfits pending) ----------------
+	var SK := preload("res://scripts/game/skills.gd")
+	for cid in SK.ORDER:
+		var defs: Array = SK.defs(cid)
+		var basic := defs.filter(func(d): return d.get("basic", false)).size()
+		var icons := defs.filter(func(d): return d["icon_texture"] != null).size()
+		var mods := defs.filter(func(d): return d["mods"].size() == 2).size()
+		check(defs.size() == 6 and basic == 1 and icons == 6 and mods == 6 and SK.class_data(cid).id == cid,
+			"%s: 6 skills, 1 basic, icons, 2 upgrades each" % SK.display_name(cid))
+	check(SK.playable() == ["warrior", "mage"] or SK.playable().size() == 4 or SK.playable().size() == 3, "Title offers only classes whose 3D outfit exists: %s" % [SK.playable()])
 	# ---------------- Knight ----------------
 	await _start("warrior")
 	var st = lab.game_state

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_dwh1o"]
+
+[resource]
+script = ExtResource("1_dwh1o")
+id = "rogue_offhand_common"
+slot = "offhand"
+mesh_prefix = "OFFHAND_"

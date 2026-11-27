@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/cleric_prayer.png" id="1_x4qs3"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_mndef"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_mij3c"]
+
+[sub_resource type="Resource" id="Resource_ajuey"]
+script = ExtResource("3_mij3c")
+id = "miracle"
+display_name = "Miracle"
+description = "Restores 55% life instead."
+overrides = {
+"heal": 0.55
+}
+
+[sub_resource type="Resource" id="Resource_a5h08"]
+script = ExtResource("3_mij3c")
+id = "zeal"
+display_name = "Zeal"
+description = "Also gain 30% damage while it lasts."
+overrides = {
+"buff_dmg": 0.3
+}
+
+[resource]
+script = ExtResource("2_mndef")
+id = "prayer"
+display_name = "Prayer of Mending"
+icon = ExtResource("1_x4qs3")
+description = "Restore 35% life and take 15% less damage for 6 s."
+unlock_level = 5
+animation = "Cast"
+shape = "buff"
+mana_cost = 22.0
+cooldown = 15.0
+numbers = {
+"buff_def": 0.15,
+"duration": 6.0,
+"heal": 0.35
+}
+upgrades = Array[ExtResource("3_mij3c")]([SubResource("Resource_ajuey"), SubResource("Resource_a5h08")])

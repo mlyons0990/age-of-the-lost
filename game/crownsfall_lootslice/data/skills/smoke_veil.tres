@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/rogue_smoke_veil.png" id="1_dae0u"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_3nwhc"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_02lpo"]
+
+[sub_resource type="Resource" id="Resource_7duqa"]
+script = ExtResource("3_02lpo")
+id = "deep_smoke"
+display_name = "Deep Smoke"
+description = "Take 55% less damage instead."
+overrides = {
+"buff_def": 0.55
+}
+
+[sub_resource type="Resource" id="Resource_kc6vo"]
+script = ExtResource("3_02lpo")
+id = "assassin"
+display_name = "Assassin's Focus"
+description = "Also gain 35% damage while it lasts."
+overrides = {
+"buff_dmg": 0.35
+}
+
+[resource]
+script = ExtResource("2_3nwhc")
+id = "smoke_veil"
+display_name = "Smoke Veil"
+icon = ExtResource("1_dae0u")
+description = "Vanish in smoke: restore 15% life and take 35% less damage for 5 s."
+unlock_level = 5
+animation = "Cast"
+shape = "buff"
+mana_cost = 18.0
+cooldown = 14.0
+numbers = {
+"buff_def": 0.35,
+"duration": 5.0,
+"heal": 0.15
+}
+upgrades = Array[ExtResource("3_02lpo")]([SubResource("Resource_7duqa"), SubResource("Resource_kc6vo")])

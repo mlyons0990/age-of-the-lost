@@ -327,7 +327,7 @@ func _drop_loot(m: Node3D) -> void:
 	var n_items := 3 if m.boss else (1 + int(randf() < 0.35) if m.elite else int(randf() < 0.16))
 	for i in n_items:
 		var boost: float = 0.35 if m.boss else (0.12 if m.elite else 0.0)
-		drops.append({"kind": "item", "item": SYS.make_item(m.level, boost, "", state.class_id if randf() < 0.85 else ("mage" if state.class_id == "warrior" else "warrior"))})
+		drops.append({"kind": "item", "item": SYS.make_item(m.level, boost, "", state.class_id if randf() < 0.85 else SKILLS.ORDER.filter(func(c): return c != state.class_id).pick_random())})
 	for i in drops.size():
 		var a := TAU * i / maxf(1.0, drops.size()) + randf() * 0.5
 		var p := at + Vector3(cos(a), 0, sin(a)) * (0.0 if drops.size() == 1 else randf_range(0.6, 1.3))
@@ -597,7 +597,7 @@ func skill_impact(kind: String, direction: Vector3) -> void:
 			p.restore(p.max_hp * float(d.get("heal", 0.0)), 0.0)
 			lab.effects.ring(origin, 1.8, Color("ffd36a"), 0.7)
 			lab.effects.sparks(origin + Vector3.UP, Color("ffd36a"), 24)
-			ui.toast("Rallying Cry", Color("ffd36a"), 1.0, 20)
+			ui.toast(String(d.get("name", "Rallying Cry")), Color("ffd36a"), 1.0, 20)
 		"ward":
 			ward = p.max_hp * float(d.get("ward", 0.3)); ward_t = float(d["duration"]); ward_def = d
 			lab.effects.ring(origin, 1.3, Color("ffb070"), 0.6)
@@ -624,7 +624,7 @@ func _apply_hits(hits: Array, d: Dictionary, id: String, dir: Vector3, centre :=
 		var h := skill_hit(d, id)
 		var away: Vector3 = dir if centre == Vector3.INF else Vector3(m.global_position.x - centre.x, 0, m.global_position.z - centre.z).normalized()
 		var dead_now: bool = m.hit(float(h["amount"]))
-		lab.effects.sparks(m.damage_center(), Color("ffca70") if state.class_id == "warrior" else Color("c3a9ff"), 10)
+		lab.effects.sparks(m.damage_center(), Color("c3a9ff") if state.class_id == "mage" else Color("ffca70"), 10)
 		if dead_now: lab.kills += 1
 		else:
 			m.apply_status(float(d.get("slow", 0.0)), float(d.get("slow_t", 0.0)), float(d.get("stun", 0.0)), float(h["amount"]) * float(d.get("burn", 0.0)), away * float(d.get("knock", 0.0)))
@@ -643,7 +643,7 @@ func _blink(d: Dictionary, aim: Vector3) -> bool:
 	while k > 0.1 and not lab.zone_walkable(to):
 		k -= 0.1; to = from + off * k
 	if not lab.zone_walkable(to) or off.length() * k < 1.0:
-		ui.toast("Cannot fold there", Color("c3a9ff"), 0.8, 18)
+		ui.toast("Cannot reach there", Color("c3a9ff"), 0.8, 18)
 		return false
 	lab.effects.ring(from, 1.0, Color("c3a9ff"), 0.35)
 	p.global_position = Vector3(to.x, from.y, to.z)
@@ -652,8 +652,9 @@ func _blink(d: Dictionary, aim: Vector3) -> bool:
 	lab.zone_route = PackedVector2Array()
 	lab.effects.ring(to, 1.0, Color("c3a9ff"), 0.35)
 	if d.has("radius"):
-		_circle_hit(from, float(d["radius"]), d, "arcane_fold")
-		lab.effects.ring(from, float(d["radius"]), Color("bfe8ff"), 0.5)
+		var at: Vector3 = p.global_position if bool(d.get("land", false)) else from
+		_circle_hit(at, float(d["radius"]), d, String(d.get("id", "arcane_fold")))
+		lab.effects.ring(at, float(d["radius"]), Color("bfe8ff"), 0.5)
 	return true
 
 func _end_ward() -> void:

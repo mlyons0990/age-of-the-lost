@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="ClassData" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_0emij"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_armor_common.tres" id="2_cd0hf"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_armor_magic.tres" id="3_0he5m"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_armor_rare.tres" id="4_pcq5u"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_armor_legendary.tres" id="5_8a7xo"]
+[ext_resource type="PackedScene" path="res://models/higgsfield_rogue/rogue_armed.glb" id="6_uoua5"]
+[ext_resource type="Texture2D" path="res://assets/portraits/rogue.png" id="7_sk7uj"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_offhand_common.tres" id="8_wxxqm"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_offhand_magic.tres" id="9_otxit"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_offhand_rare.tres" id="10_rdxgb"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_offhand_legendary.tres" id="11_b82gf"]
+[ext_resource type="Script" path="res://scripts/game/data/class_data.gd" id="12_25oyl"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="13_ivf2v"]
+[ext_resource type="Resource" path="res://data/skills/twin_cut.tres" id="14_4xnjy"]
+[ext_resource type="Resource" path="res://data/skills/fan_of_knives.tres" id="15_fln0d"]
+[ext_resource type="Resource" path="res://data/skills/shadowstep.tres" id="16_jly0f"]
+[ext_resource type="Resource" path="res://data/skills/smoke_veil.tres" id="17_4lq7h"]
+[ext_resource type="Resource" path="res://data/skills/blade_dance.tres" id="18_t0ne3"]
+[ext_resource type="Resource" path="res://data/skills/death_mark.tres" id="19_vpr7q"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_weapon_common.tres" id="20_1r5sd"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_weapon_magic.tres" id="21_o48wn"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_weapon_rare.tres" id="22_d2uyi"]
+[ext_resource type="Resource" path="res://data/item_visuals/rogue_weapon_legendary.tres" id="23_ss458"]
+
+[resource]
+script = ExtResource("12_25oyl")
+id = "rogue"
+display_name = "Rogue"
+hero_name = "Aldric"
+description = "Twin daggers and a hooded cloak. Fast cuts, thrown knives, a shadowstep and a storm of blades. Light leather, quick to kill and quick to vanish."
+hero_model = ExtResource("6_uoua5")
+portrait = ExtResource("7_sk7uj")
+idle_sprite = ExtResource("7_sk7uj")
+skills = Array[ExtResource("13_ivf2v")]([ExtResource("14_4xnjy"), ExtResource("15_fln0d"), ExtResource("16_jly0f"), ExtResource("17_4lq7h"), ExtResource("18_t0ne3"), ExtResource("19_vpr7q")])
+weapon_visuals = Array[ExtResource("1_0emij")]([ExtResource("20_1r5sd"), ExtResource("21_o48wn"), ExtResource("22_d2uyi"), ExtResource("23_ss458")])
+offhand_visuals = Array[ExtResource("1_0emij")]([ExtResource("8_wxxqm"), ExtResource("9_otxit"), ExtResource("10_rdxgb"), ExtResource("11_b82gf")])
+armor_visuals = Array[ExtResource("1_0emij")]([ExtResource("2_cd0hf"), ExtResource("3_0he5m"), ExtResource("4_pcq5u"), ExtResource("5_8a7xo")])

@@ -1,6 +1,7 @@
 extends CanvasLayer
 ## Game screens over the HUD (same gold/ink style): notifications, area banner, boss bar, NPC dialogue, the
 ## Quartermaster's shop, inventory + character sheet (I / C), death screen, pause menu (Esc) and the epilogue.
+const SKILLS_DB := preload("res://scripts/game/skills.gd")
 const SYS := preload("res://scripts/systems.gd")
 const GD := preload("res://scripts/game_data.gd")
 const SAVE := preload("res://scripts/three_d/aotl_save.gd")
@@ -318,7 +319,7 @@ func _draw_inv() -> void:
 	var c := inv_draw
 	var w := c.size.x
 	c.draw_string(font, Vector2(4, 22), st.hero_name.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1, 22, GOLD)
-	var cls := "Knight" if st.class_id == "warrior" else "Mage"
+	var cls: String = SKILLS_DB.display_name(st.class_id)
 	c.draw_string(font_r, Vector2(w * 0.5, 22), "Level %d %s" % [st.level, cls], HORIZONTAL_ALIGNMENT_RIGHT, w * 0.5 - 4, 17, IVORY)
 	slot_rects = _slot_layout()
 	for slot in slot_rects:

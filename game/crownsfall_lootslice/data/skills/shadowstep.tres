@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/rogue_shadowstep.png" id="1_rsc7x"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_bskr3"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_1hxxf"]
+
+[sub_resource type="Resource" id="Resource_4e4wo"]
+script = ExtResource("3_1hxxf")
+id = "ambush"
+display_name = "Ambush"
+description = "Strike everything within 2.2 m where you land for 1.4x damage."
+overrides = {
+"dmg": 1.4,
+"land": true,
+"radius": 2.2
+}
+
+[sub_resource type="Resource" id="Resource_uc1av"]
+script = ExtResource("3_1hxxf")
+id = "fleet"
+display_name = "Fleet"
+description = "Cooldown reduced to 3.5 s."
+overrides = {
+"cd": 3.5
+}
+
+[resource]
+script = ExtResource("2_bskr3")
+id = "shadowstep"
+display_name = "Shadowstep"
+icon = ExtResource("1_rsc7x")
+description = "Step through the shadows up to 7 m to the cursor."
+unlock_level = 3
+animation = "None"
+shape = "blink"
+mana_cost = 14.0
+cooldown = 6.0
+numbers = {
+"range": 7.0
+}
+upgrades = Array[ExtResource("3_1hxxf")]([SubResource("Resource_4e4wo"), SubResource("Resource_uc1av")])

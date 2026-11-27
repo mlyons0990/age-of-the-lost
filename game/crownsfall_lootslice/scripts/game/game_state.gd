@@ -10,7 +10,7 @@ const VERSION := 1
 const MAX_LEVEL := 60
 const SKILLS := preload("res://scripts/game/skills.gd")
 
-var class_id := "warrior"        # "warrior" (Knight) | "mage"
+var class_id := "warrior"        # "warrior" (Knight) | "rogue" | "mage" | "cleric" (skills.gd CLASS_PATHS)
 var hero_name := "Wayfarer"
 var level := 1
 var xp := 0
@@ -44,13 +44,13 @@ static func summary() -> Dictionary:
 static func new_character(cls: String) -> RefCounted:
 	var s = load("res://scripts/game/game_state.gd").new()
 	s.class_id = cls
-	s.hero_name = "Sir Aldric" if cls == "warrior" else "Maren"
-	var starter := SYS.make_item(1, 0.0, "weapon" if cls == "warrior" else "staff", cls)
+	s.hero_name = String(SKILLS.class_data(cls).hero_name)
+	var starter := SYS.make_item(1, 0.0, "staff" if cls == "mage" else "weapon", cls)
 	starter["rarity"] = 0; starter["name"] = "Worn " + String(SYS.NAMES[starter["slot"]])
 	s.gear[SYS.default_slot(starter)] = starter
-	if cls == "warrior":            # the Knight starts with his shield (it shows on the hero)
+	if cls in ["warrior", "cleric"]:  # Knight and Cleric start with their shield (it shows on the hero)
 		var sh := SYS.make_item(1, 0.0, "offhand", cls)
-		sh["rarity"] = 0; sh["name"] = "Worn Kite Shield"
+		sh["rarity"] = 0; sh["name"] = "Worn Kite Shield" if cls == "warrior" else "Worn Sun Shield"
 		s.gear["offhand"] = sh
 	s.unlock_skills()
 	var first: Array = []
@@ -69,7 +69,7 @@ static func load_saved() -> RefCounted:
 	if not cf.has_section_key("game", "version"): return null
 	var s = load("res://scripts/game/game_state.gd").new()
 	s.class_id = String(cf.get_value("game", "class_id", "warrior"))
-	if not s.class_id in ["warrior", "mage"]: s.class_id = "warrior"
+	if not SKILLS.CLASS_PATHS.has(s.class_id): s.class_id = "warrior"
 	s.hero_name = String(cf.get_value("game", "hero_name", "Wayfarer")).left(24)
 	s.level = clampi(int(cf.get_value("game", "level", 1)), 1, MAX_LEVEL)
 	s.xp = maxi(0, int(cf.get_value("game", "xp", 0)))

@@ -3,6 +3,7 @@ extends Control
 const STATE := preload("res://scripts/game/game_state.gd")
 const BOOT := preload("res://scripts/game/game_boot.gd")
 const SAVE := preload("res://scripts/three_d/aotl_save.gd")
+const SKILLS := preload("res://scripts/game/skills.gd")
 const GOLD := Color("d9b46a")
 const GOLD_DIM := Color("8f7444")
 const IVORY := Color("efe6cf")
@@ -49,7 +50,7 @@ func _ready() -> void:
 	add_child(menu)
 	var info := STATE.summary()
 	if not info.is_empty():
-		var cls := "Knight" if info["class_id"] == "warrior" else "Mage"
+		var cls: String = SKILLS.display_name(String(info["class_id"]))
 		menu.add_child(_button("Continue  —  Level %d %s" % [int(info["level"]), cls], _continue))
 	menu.add_child(_button("New Game", _show_pick))
 	menu.add_child(_button("Quit", func(): get_tree().quit()))
@@ -109,13 +110,16 @@ func _show_pick() -> void:
 	pick.position = Vector2(-520, -150)
 	add_child(pick)
 	var classes := []
-	for cid in ["warrior", "mage"]:
-		var cd: Resource = preload("res://scripts/game/skills.gd").class_data(cid)
+	var ids: Array = SKILLS.playable()
+	var card_w := 480 if ids.size() <= 2 else 340
+	pick.position = Vector2(-(card_w * ids.size() + 40 * (ids.size() - 1)) * 0.5, -150)
+	for cid in ids:
+		var cd: Resource = SKILLS.class_data(cid)
 		classes.append([cid, "THE " + String(cd.display_name).to_upper(), cd.portrait, cd.description])
 	for c in classes:
 		var card := PanelContainer.new()
 		card.add_theme_stylebox_override("panel", _box(Color(0.05, 0.04, 0.04, 0.92), GOLD))
-		card.custom_minimum_size = Vector2(480, 0)
+		card.custom_minimum_size = Vector2(card_w, 0)
 		var v := VBoxContainer.new()
 		v.add_theme_constant_override("separation", 10)
 		card.add_child(v)
@@ -124,15 +128,15 @@ func _show_pick() -> void:
 		tr.texture = c[2]
 		tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		tr.custom_minimum_size = Vector2(440, 260)
+		tr.custom_minimum_size = Vector2(card_w - 40, 260)
 		v.add_child(tr)
 		var d := _label(c[3], 17, IVORY, false)
 		d.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		d.custom_minimum_size = Vector2(440, 0)
+		d.custom_minimum_size = Vector2(card_w - 40, 0)
 		v.add_child(d)
 		var cls: String = c[0]
-		var b := _button("Begin as the " + ("Knight" if cls == "warrior" else "Mage"), func(): _start(cls))
-		b.custom_minimum_size = Vector2(440, 52)
+		var b := _button("Begin as the " + SKILLS.display_name(cls), func(): _start(cls))
+		b.custom_minimum_size = Vector2(card_w - 40, 52)
 		v.add_child(b)
 		pick.add_child(card)
 	var back := _button("Back", func(): pick.queue_free(); menu.visible = true)

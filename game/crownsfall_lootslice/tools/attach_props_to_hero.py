@@ -10,6 +10,10 @@ mode "grip=Action[,maxtilt]": like upright=Action, but the prop is skinned to a 
        (default 40) from vertical: the hand still leads the swing, but a staff cannot flip upside down or lie across
        the body in clips authored for an empty hand (e.g. the Mage's library casts).
 mode "held":    the prop is held flat beside the hand (e.g. a tome), centred just outside the palm.
+mode "aim=Action/x/y/z": like upright=Action, but the prop's +Z points along world direction (x, y, z) in that
+       action's first frame (Blender axes: the hero faces -Y, +X is the hero's left), e.g. a dagger held forward.
+mode "strap=Action/x/y/z": the prop sits on the outside of the forearm (bone = the ForeArm), centred halfway along
+       it, with its +Z (a shield face) pointing along (x, y, z) in that action's first frame.
 Each prop is placed in the rest pose relative to the hand and skinned 100% to that bone, like the knight's
 sword (see attach_r55_weapons_to_knight.py for why rigid skinning, not bone parenting).
 """
@@ -83,6 +87,10 @@ def add_grip(grip, parent, palm_w, axis_w, max_tilt):
         print("grip baked %-12s frames %d-%d hand-only tilt max %.0f deg -> capped %.0f" % (act.name, f0, f1, worst, max_tilt))
 
 
+def hand_of(forearm):
+    return hero.matrix_world @ hero.data.bones[forearm.replace("ForeArm", "Hand")].head_local
+
+
 argv = sys.argv[sys.argv.index("--") + 1:]
 src, out_glb, out_blend = argv[:3]
 specs = argv[3:]
@@ -98,13 +106,15 @@ for spec in specs:
     new = [o for o in bpy.data.objects if o not in before]
     meshes = [o for o in new if o.type == 'MESH']
     side = 1.0 if bone.startswith("Left") else -1.0          # +X is the hero's left (faces −Y)
-    fore = hero.matrix_world @ hero.data.bones[bone.replace("Hand", "ForeArm")].head_local
-    hand = hero.matrix_world @ hero.data.bones[bone].head_local
+    hand_bone = bone.replace("ForeArm", "Hand")
+    fore = hero.matrix_world @ hero.data.bones[hand_bone.replace("Hand", "ForeArm")].head_local
+    hand = hero.matrix_world @ hero.data.bones[hand_bone].head_local
     palm = hand + (hand - fore).normalized() * 0.07
     if mode == "held":
         place = Matrix.Translation(palm + Vector((side * 0.06, -0.02, -0.02))) @ Matrix.Rotation(1.5708, 4, 'Z')
-    elif mode.startswith("upright=") or mode.startswith("grip="):
-        act = bpy.data.actions[mode.split("=", 1)[1].split(",")[0]]
+    elif mode.startswith("upright=") or mode.startswith("grip=") or mode.startswith("aim=") or mode.startswith("strap="):
+        spec_ = mode.split("=", 1)[1]
+        act = bpy.data.actions[spec_.split(",")[0].split("/")[0]]
         hero.animation_data_create(); hero.animation_data.action = act
         try:
             hero.animation_data.action_slot = act.slots[0]
@@ -114,9 +124,18 @@ for spec in specs:
         rest_q = (hero.matrix_world @ hero.data.bones[bone].matrix_local).to_quaternion()
         pose_q = (hero.matrix_world @ hero.pose.bones[bone].matrix).to_quaternion()
         delta = pose_q @ rest_q.inverted()
-        want = delta.inverted() @ Vector((0.0, 0.0, 1.0))      # rest-space direction that becomes world-up
+        target = Vector((0.0, 0.0, 1.0))
+        if mode.startswith("aim=") or mode.startswith("strap="):
+            target = Vector([float(v) for v in spec_.split("/")[1:4]]).normalized()
+        want = delta.inverted() @ target                       # rest-space direction that becomes the target
         rot = Vector((0.0, 0.0, 1.0)).rotation_difference(want).to_matrix().to_4x4()
-        place = Matrix.Translation(palm) @ rot
+        at = palm
+        if mode.startswith("strap="):
+            fa_head = hero.matrix_world @ hero.data.bones[bone].head_local
+            fa_tail = hand_of(bone)
+            mid = fa_head + (fa_tail - fa_head) * 0.42
+            at = mid + target * 0.105                            # strapped on the outside of the forearm, clear of the hand
+        place = Matrix.Translation(at) @ rot
         print("upright in", act.name, "- shaft rest direction", [round(c, 2) for c in want])
     else:
         place = Matrix.Translation(palm)

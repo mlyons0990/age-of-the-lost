@@ -1,36 +1,37 @@
 [gd_resource type="Resource" script_class="ClassData" format=3]
 
-[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_sf5p8"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_common.tres" id="2_j0roa"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_magic.tres" id="3_3d3rd"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_rare.tres" id="4_wjijt"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_legendary.tres" id="5_nsfjo"]
-[ext_resource type="PackedScene" path="res://models/higgsfield_pilot/knight_pilot_armed.glb" id="6_j4b2y"]
-[ext_resource type="Texture2D" path="res://assets/knight/idle_se.png" id="7_xqn0e"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_common.tres" id="8_146si"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_magic.tres" id="9_ifbho"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_rare.tres" id="10_y3vtp"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_legendary.tres" id="11_coh38"]
-[ext_resource type="Script" path="res://scripts/game/data/class_data.gd" id="12_ly5iq"]
-[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="13_n5l6i"]
-[ext_resource type="Resource" path="res://data/skills/slash.tres" id="14_eri10"]
-[ext_resource type="Resource" path="res://data/skills/cleave.tres" id="15_f01pj"]
-[ext_resource type="Resource" path="res://data/skills/charge.tres" id="16_67gey"]
-[ext_resource type="Resource" path="res://data/skills/rally.tres" id="17_w83q5"]
-[ext_resource type="Resource" path="res://data/skills/hammer.tres" id="18_824pr"]
-[ext_resource type="Resource" path="res://data/skills/reprisal.tres" id="19_6e8gq"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_common.tres" id="20_inumy"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_magic.tres" id="21_8kqoj"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_rare.tres" id="22_y8ieg"]
-[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_legendary.tres" id="23_7l03c"]
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_j0roa"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_common.tres" id="2_3d3rd"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_magic.tres" id="3_wjijt"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_rare.tres" id="4_nsfjo"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_armor_legendary.tres" id="5_j4b2y"]
+[ext_resource type="PackedScene" path="res://models/higgsfield_pilot/knight_pilot_armed.glb" id="6_xqn0e"]
+[ext_resource type="Texture2D" path="res://assets/knight/idle_se.png" id="7_146si"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_common.tres" id="8_ifbho"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_magic.tres" id="9_y3vtp"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_rare.tres" id="10_coh38"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_offhand_legendary.tres" id="11_ly5iq"]
+[ext_resource type="Texture2D" path="res://assets/portraits/warrior.png" id="12_n5l6i"]
+[ext_resource type="Script" path="res://scripts/game/data/class_data.gd" id="13_eri10"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="14_f01pj"]
+[ext_resource type="Resource" path="res://data/skills/slash.tres" id="15_67gey"]
+[ext_resource type="Resource" path="res://data/skills/cleave.tres" id="16_w83q5"]
+[ext_resource type="Resource" path="res://data/skills/charge.tres" id="17_824pr"]
+[ext_resource type="Resource" path="res://data/skills/rally.tres" id="18_6e8gq"]
+[ext_resource type="Resource" path="res://data/skills/hammer.tres" id="19_inumy"]
+[ext_resource type="Resource" path="res://data/skills/reprisal.tres" id="20_8kqoj"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_common.tres" id="21_y8ieg"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_magic.tres" id="22_7l03c"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_rare.tres" id="23_0cs54"]
+[ext_resource type="Resource" path="res://data/item_visuals/warrior_weapon_legendary.tres" id="24_y3eux"]
 
 [resource]
-script = ExtResource("12_ly5iq")
+script = ExtResource("13_eri10")
 description = "Sword and shield. Close-quarters strikes, a sweeping cleave and a charging dash. Plate armour and a deep well of life."
-hero_model = ExtResource("6_j4b2y")
-portrait = ExtResource("7_xqn0e")
-idle_sprite = ExtResource("7_xqn0e")
-skills = Array[ExtResource("13_n5l6i")]([ExtResource("14_eri10"), ExtResource("15_f01pj"), ExtResource("16_67gey"), ExtResource("17_w83q5"), ExtResource("18_824pr"), ExtResource("19_6e8gq")])
-weapon_visuals = Array[ExtResource("1_sf5p8")]([ExtResource("20_inumy"), ExtResource("21_8kqoj"), ExtResource("22_y8ieg"), ExtResource("23_7l03c")])
-offhand_visuals = Array[ExtResource("1_sf5p8")]([ExtResource("8_146si"), ExtResource("9_ifbho"), ExtResource("10_y3vtp"), ExtResource("11_coh38")])
-armor_visuals = Array[ExtResource("1_sf5p8")]([ExtResource("2_j0roa"), ExtResource("3_3d3rd"), ExtResource("4_wjijt"), ExtResource("5_nsfjo")])
+hero_model = ExtResource("6_xqn0e")
+portrait = ExtResource("12_n5l6i")
+idle_sprite = ExtResource("7_146si")
+skills = Array[ExtResource("14_f01pj")]([ExtResource("15_67gey"), ExtResource("16_w83q5"), ExtResource("17_824pr"), ExtResource("18_6e8gq"), ExtResource("19_inumy"), ExtResource("20_8kqoj")])
+weapon_visuals = Array[ExtResource("1_j0roa")]([ExtResource("21_y8ieg"), ExtResource("22_7l03c"), ExtResource("23_0cs54"), ExtResource("24_y3eux")])
+offhand_visuals = Array[ExtResource("1_j0roa")]([ExtResource("8_ifbho"), ExtResource("9_y3vtp"), ExtResource("10_coh38"), ExtResource("11_ly5iq")])
+armor_visuals = Array[ExtResource("1_j0roa")]([ExtResource("2_3d3rd"), ExtResource("3_wjijt"), ExtResource("4_nsfjo"), ExtResource("5_j4b2y")])

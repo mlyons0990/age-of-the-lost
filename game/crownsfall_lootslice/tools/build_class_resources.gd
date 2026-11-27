@@ -7,20 +7,39 @@ const SKILL_MOD := preload("res://scripts/game/data/skill_mod.gd")
 const CLASS_DATA := preload("res://scripts/game/data/class_data.gd")
 const ITEM_VISUAL := preload("res://scripts/game/data/item_visual.gd")
 const TABLE := preload("res://tools/skill_table.gd")
+## The four classes of the one customizable hero (owner 11-27: "one fully customizable character that we can change
+## any and all classes with it (warrior, rogue, mage, cleric)"). Same face, body and 24-bone rig; the outfit GLB changes.
+const CLASSES := {
+	"warrior": {"file": "knight", "name": "Knight", "hero": "Sir Aldric", "model": "res://models/higgsfield_pilot/knight_pilot_armed.glb", "portrait": "res://assets/portraits/warrior.png",
+		"weapon_prefix": "WEAPON_", "offhand_prefix": "SHIELD_",
+		"desc": "Sword and shield. Close-quarters strikes, a sweeping cleave and a charging dash. Plate armour and a deep well of life."},
+	"rogue": {"file": "rogue", "name": "Rogue", "hero": "Aldric", "model": "res://models/higgsfield_rogue/rogue_armed.glb", "portrait": "res://assets/portraits/rogue.png",
+		"weapon_prefix": "WEAPON_", "offhand_prefix": "OFFHAND_",
+		"desc": "Twin daggers and a hooded cloak. Fast cuts, thrown knives, a shadowstep and a storm of blades. Light leather, quick to kill and quick to vanish."},
+	"mage": {"file": "mage", "name": "Mage", "hero": "Maren", "model": "res://models/higgsfield_mage/mage_pilot_armed.glb", "portrait": "res://assets/portraits/mage.png",
+		"weapon_prefix": "MAGE_Staff", "offhand_prefix": "MAGE_Tome",
+		"desc": "Staff and spellbook. Fire and frost from afar, a blink, a ward and a falling star. Fragile, but devastating from range."},
+	"cleric": {"file": "cleric", "name": "Cleric", "hero": "Brother Aldric", "model": "res://models/higgsfield_cleric/cleric_armed.glb", "portrait": "res://assets/portraits/cleric.png",
+		"weapon_prefix": "WEAPON_", "offhand_prefix": "SHIELD_",
+		"desc": "Mace and sun shield. Holy strikes that mend you, a shield of light, a prayer and pillars of dawn. Chainmail and steady healing."},
+}
 const SHAPE_KEYS := ["id", "name", "icon", "unlock", "anim", "shape", "cost", "cd", "desc", "mods", "basic"]
 
 func _initialize() -> void:
-	for cls in ["warrior", "mage"]:
+	for cls in CLASSES:
+		var C: Dictionary = CLASSES[cls]
 		var cd = CLASS_DATA.new()
 		cd.id = cls
-		cd.display_name = "Knight" if cls == "warrior" else "Mage"
-		cd.hero_name = "Sir Aldric" if cls == "warrior" else "Maren"
-		cd.description = "Sword and shield. Close-quarters strikes, a sweeping cleave and a charging dash. Plate armour and a deep well of life." if cls == "warrior" else "Staff and spellbook. Fire and frost from afar, a blink, a ward and a falling star. Fragile, but devastating from range."
-		cd.hero_model = load("res://models/higgsfield_pilot/knight_pilot_armed.glb" if cls == "warrior" else "res://models/higgsfield_mage/mage_pilot_armed.glb")
-		cd.portrait = load("res://assets/%s/idle_se.png" % ("knight" if cls == "warrior" else "mage"))
-		cd.idle_sprite = cd.portrait
+		cd.display_name = C["name"]
+		cd.hero_name = C["hero"]
+		cd.description = C["desc"]
+		# Rogue / Cleric: the class is offered on the title screen only once its rigged outfit GLB exists
+		cd.hero_model = load(C["model"]) if ResourceLoader.exists(C["model"]) else null
+		cd.portrait = load(C["portrait"]) if ResourceLoader.exists(C["portrait"]) else null
+		var sprite: String = {"warrior": "res://assets/knight/idle_se.png", "mage": "res://assets/mage/idle_se.png"}.get(cls, C["portrait"])
+		cd.idle_sprite = load(sprite) if ResourceLoader.exists(sprite) else cd.portrait
 		cd.radiant_spells = cls == "mage"
-		cd.starter_weapon = "weapon" if cls == "warrior" else "staff"
+		cd.starter_weapon = "staff" if cls == "mage" else "weapon"
 		var skills: Array[SkillData] = []
 		for d in TABLE.DEFS[cls]:
 			var s = SKILL_DATA.new()
@@ -48,10 +67,10 @@ func _initialize() -> void:
 			ResourceSaver.save(s, path)
 			skills.append(load(path))
 		cd.skills = skills
-		cd.weapon_visuals = _visuals(cls, "weapon", "WEAPON_" if cls == "warrior" else "MAGE_Staff")
-		cd.offhand_visuals = _visuals(cls, "offhand", "SHIELD_" if cls == "warrior" else "MAGE_Tome")
+		cd.weapon_visuals = _visuals(cls, "weapon", C["weapon_prefix"])
+		cd.offhand_visuals = _visuals(cls, "offhand", C["offhand_prefix"])
 		cd.armor_visuals = _visuals(cls, "armor", "")
-		var cpath := "res://data/classes/%s.tres" % ("knight" if cls == "warrior" else "mage")
+		var cpath := "res://data/classes/%s.tres" % C["file"]
 		print("saved ", cpath, " ", ResourceSaver.save(cd, cpath))
 	quit()
 

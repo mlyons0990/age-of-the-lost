@@ -126,8 +126,11 @@ LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T ski
 
 ## Known limits
 
-- Monsters are the original painted 2D enemy art standing in the 3D world (three types). Dedicated 3D monster models,
-  more enemy types and a Hollowmere chapter are content work, not system work.
+- Monsters stay painted 2D sprites in the 3D world (owner 11-27: 2D enemies, 3D heroes). Each of the three types has
+  six painted poses (`assets/enemies/poses`, cut by `tools/cut_enemy_poses.py`): idle, a two-step walk while chasing,
+  wind-up during the red telegraph, strike right after the blow, a hit flinch, and a death pose that holds before
+  the fade; code motion (bob, lean, lunge, flashes) plays on top. Tests: `tests/verify_enemy_poses.gd` (24 checks).
+  More enemy types and a Hollowmere chapter are content work, not system work.
 - NPCs reuse the hero models (no dedicated NPC art yet).
 - Dash, buffs and casts on the Rogue and Cleric still use the shared library clips; only their basic attack and
   Q attack have class clips so far.

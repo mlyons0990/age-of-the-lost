@@ -9,6 +9,16 @@ extends Node3D
 const GD := preload("res://scripts/game_data.gd")
 const HURTBOX := preload("res://scripts/three_d/hurtbox3d.gd")
 const TEX := {"slime": preload("res://assets/enemies/slime.png"), "revenant": preload("res://assets/enemies/revenant.png"), "brute": preload("res://assets/enemies/brute.png")}
+## Painted poses (assets/enemies/poses, tools/cut_enemy_poses.py): idle, walk, windup, strike, hit, death, all at one
+## scale per enemy (idle = IDLE_POSE_PX tall). An enemy without poses keeps its single painting.
+const POSE_DIR := "res://assets/enemies/poses/"
+const POSE_NAMES := ["idle", "walk", "windup", "strike", "hit", "death"]
+const IDLE_POSE_PX := 512.0
+static var _pose_cache := {}
+var poses := {}
+var pose := ""
+var hit_pose_t := 0.0
+var velocity_hint := 0.0         # ground speed this physics frame (m/s), for the walk cycle
 const HEIGHT_M := {"slime": 1.15, "revenant": 2.05, "brute": 2.45}
 const SPEED_M := {"slime": 3.2, "revenant": 3.6, "brute": 2.7}
 const AGGRO_M := 9.0
@@ -102,6 +112,7 @@ func _ready() -> void:
 	shadow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(shadow)
 	sprite = Sprite3D.new()
+	poses = _load_poses(type_key)
 	sprite.texture = TEX[type_key]
 	sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
@@ -111,6 +122,9 @@ func _ready() -> void:
 	sprite.centered = true
 	sprite.offset = Vector2(0, TEX[type_key].get_height() * 0.5)
 	sprite.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	if not poses.is_empty():
+		sprite.pixel_size = height_m / IDLE_POSE_PX
+		_set_pose("idle")
 	if boss: sprite.modulate = Color(1.0, 0.86, 0.92)
 	elif elite: sprite.modulate = Color(1.0, 0.95, 0.85)
 	add_child(sprite)
@@ -152,6 +166,34 @@ static func _ring_texture() -> ImageTexture:
 		_ring = ImageTexture.create_from_image(img)
 	return _ring
 
+static func _load_poses(key: String) -> Dictionary:
+	if _pose_cache.has(key): return _pose_cache[key]
+	var out := {}
+	for p in POSE_NAMES:
+		var path := POSE_DIR + "%s_%s.png" % [key, p]
+		if not ResourceLoader.exists(path): out = {}; break
+		out[p] = load(path)
+	_pose_cache[key] = out
+	return out
+
+## Show one painted pose, bottom-centred on the monster's feet.
+func _set_pose(p: String) -> void:
+	if poses.is_empty() or p == pose: return
+	pose = p
+	var tex: Texture2D = poses[p]
+	sprite.texture = tex
+	sprite.offset = Vector2(0, tex.get_height() * 0.5)
+
+## Which pose the monster's state calls for (the code motion - bob, lean, lunge, flashes - plays on top).
+func _pick_pose() -> String:
+	if state == "dead": return "death"
+	if hit_pose_t > 0.0 or stun_t > 0.0: return "hit"
+	if state == "wind": return "windup"
+	if state == "recover" and lunge > 0.25: return "strike"
+	if state in ["chase", "leash"] and velocity_hint > 0.2:
+		return "walk" if int(t * 3.2 + phase) % 2 == 0 else "idle"   # two-step walk cycle
+	return "idle"
+
 func damage_center() -> Vector3:
 	return global_position + Vector3.UP * height_m * 0.5
 
@@ -166,6 +208,7 @@ func hit(amount: float) -> bool:
 	if not is_alive(): return false
 	hp = maxf(0.0, hp - amount)
 	flash = 0.16
+	hit_pose_t = 0.22
 	if director != null: director.show_damage(damage_center() + Vector3.UP * height_m * 0.35, amount, elite)
 	if state in ["idle", "leash"]: aggro()
 	if hp <= 0.0:
@@ -230,11 +273,21 @@ func _process(delta: float) -> void:
 	t += delta
 	if state == "dead":
 		dead_t += delta
-		sprite.modulate.a = clampf(1.0 - dead_t / 0.9, 0.0, 1.0)
-		sprite.position.y = -dead_t * 0.35
-		shadow.visible = dead_t < 0.6
-		if dead_t > 1.0: queue_free()
+		if poses.is_empty():
+			sprite.modulate.a = clampf(1.0 - dead_t / 0.9, 0.0, 1.0)
+			sprite.position.y = -dead_t * 0.35
+			shadow.visible = dead_t < 0.6
+			if dead_t > 1.0: queue_free()
+		else:
+			# the death pose holds, then sinks and fades
+			_set_pose("death")
+			sprite.modulate = Color(1, 1, 1, clampf(1.0 - (dead_t - 0.8) / 0.7, 0.0, 1.0))
+			sprite.position.y = -maxf(0.0, dead_t - 0.8) * 0.3
+			shadow.visible = dead_t < 1.0
+			if dead_t > 1.5: queue_free()
 		return
+	hit_pose_t = maxf(0.0, hit_pose_t - delta)
+	_set_pose(_pick_pose())
 	flash = maxf(0.0, flash - delta)
 	lunge = maxf(0.0, lunge - delta * 3.5)
 	var base_col := Color(1.0, 0.86, 0.92) if boss else (Color(1.0, 0.95, 0.85) if elite else Color.WHITE)
@@ -251,6 +304,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if state == "dead" or director == null: return
+	velocity_hint = 0.0
 	var hero: Node3D = director.hero()
 	if hero == null: return
 	var to_hero := Vector3(hero.global_position.x - global_position.x, 0, hero.global_position.z - global_position.z)
@@ -365,5 +419,6 @@ func _step(to: Vector3, delta: float, mult: float) -> void:
 			if ol < 0.9 and ol > 0.001: stepv += o / ol * (0.9 - ol) * delta * 3.0
 	var nxt := global_position + stepv
 	if director.walkable(nxt):
+		velocity_hint = stepv.length() / maxf(delta, 0.0001)
 		global_position = nxt
 		_face(d)

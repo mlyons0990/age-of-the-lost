@@ -159,6 +159,7 @@ func _ready() -> void:
 	player.enable_r55_clip_safe_elbow_candidate = use_r55_clip_safe_elbow_candidate
 	player.enable_pilot_knight_candidate = use_pilot_knight_candidate
 	player.enable_pilot_mage_candidate = use_pilot_mage_candidate
+	if game_mode: player.class_data = preload("res://scripts/game/skills.gd").class_data(game_state.class_id)
 	player.position = Vector3(0, 0.08, 1.8)
 	add_child(player)
 	player.impact.connect(_on_impact)

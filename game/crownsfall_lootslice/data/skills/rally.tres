@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/rally.png" id="1_p00cu"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_ggx27"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_6tr56"]
+
+[sub_resource type="Resource" id="Resource_67ame"]
+script = ExtResource("3_6tr56")
+id = "second_wind"
+display_name = "Second Wind"
+description = "Restores 40% life instead."
+overrides = {
+"heal": 0.4
+}
+
+[sub_resource type="Resource" id="Resource_xsbbm"]
+script = ExtResource("3_6tr56")
+id = "iron_will"
+display_name = "Iron Will"
+description = "Also take 30% less damage while it lasts."
+overrides = {
+"buff_def": 0.3
+}
+
+[resource]
+script = ExtResource("2_ggx27")
+id = "rally"
+display_name = "Rallying Cry"
+icon = ExtResource("1_p00cu")
+description = "Restore 25% life and gain 30% damage for 6 s."
+unlock_level = 5
+animation = "Cast"
+shape = "buff"
+mana_cost = 20.0
+cooldown = 16.0
+numbers = {
+"buff_dmg": 0.3,
+"duration": 6.0,
+"heal": 0.25
+}
+upgrades = Array[ExtResource("3_6tr56")]([SubResource("Resource_67ame"), SubResource("Resource_xsbbm")])

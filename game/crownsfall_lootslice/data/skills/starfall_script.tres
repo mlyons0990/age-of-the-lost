@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/starfall_script.png" id="1_2p0wa"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_5xmav"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_ttsn8"]
+
+[sub_resource type="Resource" id="Resource_5mipj"]
+script = ExtResource("3_ttsn8")
+id = "wide_sky"
+display_name = "Wide Sky"
+description = "Radius increased by 40%."
+overrides = {
+"radius": 3.2
+}
+
+[sub_resource type="Resource" id="Resource_fup0w"]
+script = ExtResource("3_ttsn8")
+id = "scorch"
+display_name = "Scorching Fall"
+description = "Burns everything hit for 80% of the hit over 3 s."
+overrides = {
+"burn": 0.8
+}
+
+[resource]
+script = ExtResource("2_5xmav")
+id = "starfall_script"
+display_name = "Starfall Script"
+icon = ExtResource("1_2p0wa")
+description = "Mark a circle at the cursor that strikes after 0.8 s."
+unlock_level = 8
+animation = "Judgment"
+shape = "ground"
+sound = "starfall_script"
+mana_cost = 24.0
+cooldown = 6.0
+numbers = {
+"delay": 0.8,
+"dmg": 2.6,
+"radius": 2.3,
+"reach": 9.0
+}
+upgrades = Array[ExtResource("3_ttsn8")]([SubResource("Resource_5mipj"), SubResource("Resource_fup0w")])

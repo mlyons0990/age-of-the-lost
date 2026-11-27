@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="ClassData" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_tm5w4"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_armor_common.tres" id="2_7pgy1"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_armor_magic.tres" id="3_dfke3"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_armor_rare.tres" id="4_3rej4"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_armor_legendary.tres" id="5_2lla4"]
+[ext_resource type="PackedScene" path="res://models/higgsfield_mage/mage_pilot_armed.glb" id="6_gaqei"]
+[ext_resource type="Texture2D" path="res://assets/mage/idle_se.png" id="7_bcgfw"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_offhand_common.tres" id="8_sw8na"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_offhand_magic.tres" id="9_aivfd"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_offhand_rare.tres" id="10_r16k1"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_offhand_legendary.tres" id="11_br7wy"]
+[ext_resource type="Script" path="res://scripts/game/data/class_data.gd" id="12_gb278"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="13_6m1k4"]
+[ext_resource type="Resource" path="res://data/skills/cinder_thread.tres" id="14_ju3hq"]
+[ext_resource type="Resource" path="res://data/skills/glacial_stitch.tres" id="15_0rhx3"]
+[ext_resource type="Resource" path="res://data/skills/arcane_fold.tres" id="16_yhd4n"]
+[ext_resource type="Resource" path="res://data/skills/ashen_ward.tres" id="17_d5dtq"]
+[ext_resource type="Resource" path="res://data/skills/starfall_script.tres" id="18_ihlbd"]
+[ext_resource type="Resource" path="res://data/skills/winter_crown.tres" id="19_cbdyh"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_weapon_common.tres" id="20_gxv6e"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_weapon_magic.tres" id="21_uonc7"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_weapon_rare.tres" id="22_p3dgs"]
+[ext_resource type="Resource" path="res://data/item_visuals/mage_weapon_legendary.tres" id="23_rl1lr"]
+
+[resource]
+script = ExtResource("12_gb278")
+id = "mage"
+display_name = "Mage"
+hero_name = "Maren"
+description = "Staff and spellbook. Fire and frost from afar, a blink, a ward and a falling star. Fragile, but devastating from range."
+hero_model = ExtResource("6_gaqei")
+portrait = ExtResource("7_bcgfw")
+idle_sprite = ExtResource("7_bcgfw")
+radiant_spells = true
+starter_weapon = "staff"
+skills = Array[ExtResource("13_6m1k4")]([ExtResource("14_ju3hq"), ExtResource("15_0rhx3"), ExtResource("16_yhd4n"), ExtResource("17_d5dtq"), ExtResource("18_ihlbd"), ExtResource("19_cbdyh")])
+weapon_visuals = Array[ExtResource("1_tm5w4")]([ExtResource("20_gxv6e"), ExtResource("21_uonc7"), ExtResource("22_p3dgs"), ExtResource("23_rl1lr")])
+offhand_visuals = Array[ExtResource("1_tm5w4")]([ExtResource("8_sw8na"), ExtResource("9_aivfd"), ExtResource("10_r16k1"), ExtResource("11_br7wy")])
+armor_visuals = Array[ExtResource("1_tm5w4")]([ExtResource("2_7pgy1"), ExtResource("3_dfke3"), ExtResource("4_3rej4"), ExtResource("5_2lla4")])

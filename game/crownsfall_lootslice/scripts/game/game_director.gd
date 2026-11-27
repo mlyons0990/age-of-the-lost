@@ -12,6 +12,8 @@ const LOOT := preload("res://scripts/game/loot_drop.gd")
 const UI := preload("res://scripts/game/game_ui.gd")
 const SYS := preload("res://scripts/systems.gd")
 const SKILLS := preload("res://scripts/game/skills.gd")
+const GEAR_VISUALS := preload("res://scripts/game/gear_visuals.gd")
+var gear_visuals
 const GD := preload("res://scripts/game_data.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const NPC_MODELS := {"knight": "res://models/higgsfield_pilot/knight_pilot_armed.glb", "mage": "res://models/higgsfield_mage/mage_pilot_armed.glb"}
@@ -59,6 +61,10 @@ func setup(owner_lab, st) -> void:
 	ui.setup(self)
 	if state.quest_state("city_reborn") == "":
 		state.set_quest("city_reborn", "active", 0)
+	gear_visuals = GEAR_VISUALS.new()
+	gear_visuals.name = "GearVisuals"
+	lab.player.add_child(gear_visuals)
+	gear_visuals.setup(lab.player.body, lab.player.class_data)
 	apply_stats(true)
 	lab.player.external_costs = true
 	lab.player.primary_action = func(): use_skill(String(state.bar[5]) if state.bar.size() == 8 else "")
@@ -94,6 +100,7 @@ func play(name: String, vol_db := -6.0) -> void:
 
 func apply_stats(full := false) -> void:
 	stats = state.stats()
+	if gear_visuals != null: gear_visuals.apply(state.gear)
 	var p = lab.player
 	var frac_hp: float = p.hp / maxf(1.0, p.max_hp)
 	var frac_mp: float = p.mana / maxf(1.0, p.max_mana)
@@ -743,7 +750,8 @@ func _process(delta: float) -> void:
 	# walk-over pickups (gold, potions, quest items) and the clicked target
 	for l in loot.duplicate():
 		if not is_instance_valid(l): loot.erase(l); continue
-		if l.auto_pickup() and Vector2(l.global_position.x - hp.x, l.global_position.z - hp.z).length() < 1.0:
+		var reach := 1.7 if l.kind == "quest" else 1.0      # quest items can lie against rocks: generous pickup
+		if l.auto_pickup() and Vector2(l.global_position.x - hp.x, l.global_position.z - hp.z).length() < reach:
 			_pickup(l)
 	if not pending.is_empty():
 		var p: Vector3 = pending["pos"]

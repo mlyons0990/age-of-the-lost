@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/cleave.png" id="1_6v63m"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_8ojno"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_4qg7v"]
+
+[sub_resource type="Resource" id="Resource_ybbgb"]
+script = ExtResource("3_4qg7v")
+id = "wide"
+display_name = "Great Arc"
+description = "Strikes all around you and reaches further."
+overrides = {
+"arc": -1.0,
+"range": 3.9
+}
+
+[sub_resource type="Resource" id="Resource_1ad4x"]
+script = ExtResource("3_4qg7v")
+id = "stagger"
+display_name = "Staggering Blow"
+description = "Knocks enemies back and stuns them for 0.6 s."
+overrides = {
+"knock": 1.6,
+"stun": 0.6
+}
+
+[resource]
+script = ExtResource("2_8ojno")
+id = "cleave"
+display_name = "Cleave"
+icon = ExtResource("1_6v63m")
+description = "A sweeping blow that strikes every enemy in front of you."
+animation = "Cleave"
+mana_cost = 12.0
+cooldown = 2.5
+numbers = {
+"arc": -0.3,
+"dmg": 1.55,
+"range": 3.4
+}
+upgrades = Array[ExtResource("3_4qg7v")]([SubResource("Resource_ybbgb"), SubResource("Resource_1ad4x")])

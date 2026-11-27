@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_0701a"]
+
+[resource]
+script = ExtResource("1_0701a")
+id = "mage_offhand_common"
+slot = "offhand"
+mesh_prefix = "MAGE_Tome"

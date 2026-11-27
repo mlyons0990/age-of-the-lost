@@ -48,6 +48,10 @@ static func new_character(cls: String) -> RefCounted:
 	var starter := SYS.make_item(1, 0.0, "weapon" if cls == "warrior" else "staff", cls)
 	starter["rarity"] = 0; starter["name"] = "Worn " + String(SYS.NAMES[starter["slot"]])
 	s.gear[SYS.default_slot(starter)] = starter
+	if cls == "warrior":            # the Knight starts with his shield (it shows on the hero)
+		var sh := SYS.make_item(1, 0.0, "offhand", cls)
+		sh["rarity"] = 0; sh["name"] = "Worn Kite Shield"
+		s.gear["offhand"] = sh
 	s.unlock_skills()
 	var first: Array = []
 	for d in SKILLS.defs(cls):

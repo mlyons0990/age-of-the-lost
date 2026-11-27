@@ -463,7 +463,7 @@ func refresh_skills() -> void:
 		row.add_theme_constant_override("separation", 12)
 		card.add_child(row)
 		var ic := TextureRect.new()
-		ic.texture = load("res://assets/skill_tiles/%s.png" % d["icon"])
+		ic.texture = d.get("icon_texture")
 		ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		ic.custom_minimum_size = Vector2(64, 64)

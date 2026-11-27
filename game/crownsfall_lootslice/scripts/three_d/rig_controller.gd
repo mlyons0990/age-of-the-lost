@@ -186,6 +186,9 @@ func _ready() -> void:
 		model_candidates.push_front({"path": PILOT_KNIGHT, "source": "pilot_knight_opt_in"})
 	if enable_pilot_mage_candidate:
 		model_candidates.push_front({"path": PILOT_MAGE, "source": "pilot_mage_opt_in"})
+	if class_data != null and class_data.hero_model != null:
+		# the game: the hero model comes from the class's ClassData resource (one controller for every class)
+		model_candidates.push_front({"path": class_data.hero_model.resource_path, "source": "pilot_mage_opt_in" if class_data.id == "mage" else "pilot_knight_opt_in"})
 	for option in model_candidates:
 		var path: String = option["path"]
 		if not ResourceLoader.exists(path):
@@ -643,7 +646,8 @@ func _physics_process(delta: float) -> void:
 			cycle_phase = fposmod(animation.current_animation_position / animation.current_animation_length, 1.0)
 		terrain_foot_ik.update_foot_ik(delta, anim_state, cycle_phase)
 
-var death_handler: Callable           # the game: death screen + respawn instead of the lab's instant reset
+var death_handler: Callable
+var class_data: Resource              # scripts/game/data/class_data.gd (the game sets it; labs leave it null)           # the game: death screen + respawn instead of the lab's instant reset
 
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return

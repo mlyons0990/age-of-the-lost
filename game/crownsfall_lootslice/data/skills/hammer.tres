@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/hammer.png" id="1_mn052"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_txqoe"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_52x3u"]
+
+[sub_resource type="Resource" id="Resource_syf40"]
+script = ExtResource("3_52x3u")
+id = "broad"
+display_name = "Broad Standard"
+description = "Radius increased by 40%."
+overrides = {
+"radius": 3.4
+}
+
+[sub_resource type="Resource" id="Resource_uteo2"]
+script = ExtResource("3_52x3u")
+id = "quake"
+display_name = "Quake"
+description = "Stuns everything hit for 1 s."
+overrides = {
+"stun": 1.0
+}
+
+[resource]
+script = ExtResource("2_txqoe")
+id = "hammer"
+display_name = "Sundering Standard"
+icon = ExtResource("1_mn052")
+description = "A delayed standard strike at the cursor that crushes everything in the circle."
+unlock_level = 8
+shape = "ground"
+mana_cost = 26.0
+cooldown = 7.0
+numbers = {
+"delay": 0.45,
+"dmg": 3.0,
+"radius": 2.4,
+"reach": 7.0
+}
+upgrades = Array[ExtResource("3_52x3u")]([SubResource("Resource_syf40"), SubResource("Resource_uteo2")])

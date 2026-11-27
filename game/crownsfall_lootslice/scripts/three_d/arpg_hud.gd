@@ -676,7 +676,7 @@ func _skill_icon(sk: String) -> Texture2D:
 	if sk == "": return null
 	if _in_game():
 		var d: Dictionary = GAME_SKILLS.def(lab.game_state.class_id, sk)
-		return load(TILES + String(d.get("icon", "slash")) + ".png") if not d.is_empty() else null
+		return d.get("icon_texture") if not d.is_empty() else null
 	return load(TILES + HERO_SKILLS[hero][sk] + ".png")
 
 func _refresh_slots() -> void:

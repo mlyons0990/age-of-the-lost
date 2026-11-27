@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/winter_crown.png" id="1_gppwm"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_8qwpg"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_lxad1"]
+
+[sub_resource type="Resource" id="Resource_hwvde"]
+script = ExtResource("3_lxad1")
+id = "crown_wide"
+display_name = "Sovereign's Reach"
+description = "Radius increased by 30%."
+overrides = {
+"radius": 4.2
+}
+
+[sub_resource type="Resource" id="Resource_72flr"]
+script = ExtResource("3_lxad1")
+id = "crown_hold"
+display_name = "Long Winter"
+description = "Stuns for 1.8 s."
+overrides = {
+"stun": 1.8
+}
+
+[resource]
+script = ExtResource("2_8qwpg")
+id = "winter_crown"
+display_name = "Winter Crown"
+icon = ExtResource("1_gppwm")
+description = "A freezing nova that stuns everything around you for 1 s."
+unlock_level = 12
+animation = "Nova"
+shape = "nova"
+sound = "winter_crown"
+mana_cost = 26.0
+cooldown = 9.0
+numbers = {
+"dmg": 2.0,
+"radius": 3.2,
+"stun": 1.0
+}
+upgrades = Array[ExtResource("3_lxad1")]([SubResource("Resource_hwvde"), SubResource("Resource_72flr")])

@@ -108,8 +108,11 @@ func _show_pick() -> void:
 	pick.set_anchors_preset(Control.PRESET_CENTER)
 	pick.position = Vector2(-520, -150)
 	add_child(pick)
-	for c in [["warrior", "THE KNIGHT", "res://assets/knight/idle_se.png", "Sword and shield. Close-quarters strikes, a sweeping cleave and a charging dash. Plate armour and a deep well of life."],
-			["mage", "THE MAGE", "res://assets/mage/idle_se.png", "Staff and spellbook. Ranged bolts, a piercing lance, a nova and a judgment sweep. Fragile, but devastating from afar."]]:
+	var classes := []
+	for cid in ["warrior", "mage"]:
+		var cd: Resource = preload("res://scripts/game/skills.gd").class_data(cid)
+		classes.append([cid, "THE " + String(cd.display_name).to_upper(), cd.portrait, cd.description])
+	for c in classes:
 		var card := PanelContainer.new()
 		card.add_theme_stylebox_override("panel", _box(Color(0.05, 0.04, 0.04, 0.92), GOLD))
 		card.custom_minimum_size = Vector2(480, 0)
@@ -118,7 +121,7 @@ func _show_pick() -> void:
 		card.add_child(v)
 		v.add_child(_label(c[1], 30, GOLD))
 		var tr := TextureRect.new()
-		tr.texture = load(c[2])
+		tr.texture = c[2]
 		tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		tr.custom_minimum_size = Vector2(440, 260)

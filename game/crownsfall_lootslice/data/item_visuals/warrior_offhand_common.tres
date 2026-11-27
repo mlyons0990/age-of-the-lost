@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_1onnm"]
+
+[resource]
+script = ExtResource("1_1onnm")
+id = "warrior_offhand_common"
+slot = "offhand"
+mesh_prefix = "SHIELD_"

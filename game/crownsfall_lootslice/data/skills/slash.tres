@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/slash.png" id="1_xdkah"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_h77mp"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_m7la6"]
+
+[sub_resource type="Resource" id="Resource_2qx5v"]
+script = ExtResource("3_m7la6")
+id = "rend"
+display_name = "Rending Edge"
+description = "Hits make enemies bleed for 45% of the hit over 3 s."
+overrides = {
+"burn": 0.45
+}
+
+[sub_resource type="Resource" id="Resource_nbcrv"]
+script = ExtResource("3_m7la6")
+id = "riposte"
+display_name = "Riposte"
+description = "Restores 9 mana on hit instead of 4."
+overrides = {
+"gain": 9.0
+}
+
+[resource]
+script = ExtResource("2_h77mp")
+id = "slash"
+display_name = "Slash"
+icon = ExtResource("1_xdkah")
+description = "A swift sword strike. Restores 4 mana on hit."
+basic = true
+sound = "slash"
+numbers = {
+"arc": 0.25,
+"dmg": 1.0,
+"gain": 4.0,
+"range": 2.3
+}
+upgrades = Array[ExtResource("3_m7la6")]([SubResource("Resource_2qx5v"), SubResource("Resource_nbcrv")])

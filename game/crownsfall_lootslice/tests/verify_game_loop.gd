@@ -156,7 +156,8 @@ func _run() -> void:
 			if is_instance_valid(l) and l.kind == "quest": page_drop = l
 		check(page_drop != null, "Guardian drops an Archive Page (%s)" % page)
 		if page_drop != null:
-			lab.player.global_position = page_drop.global_position + Vector3(0.3, 0.08, 0)     # walk over it
+			lab.player.global_position = page_drop.global_position + Vector3(0, 0.08, 0)     # walk over it
+			lab.zone_last_ok = lab.player.global_position
 			await _wait(0.2)
 		check(int(lab.game_state.quest("lost_tomes").get("progress", 0)) == before + 1, "Walking over the page collects it (%d/3)" % (before + 1))
 	check(lab.game_state.quest_state("lost_tomes") == "ready", "All three pages: return to Ralden")

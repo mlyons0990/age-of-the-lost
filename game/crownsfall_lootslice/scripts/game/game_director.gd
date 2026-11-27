@@ -11,6 +11,7 @@ const MONSTER := preload("res://scripts/game/monster.gd")
 const LOOT := preload("res://scripts/game/loot_drop.gd")
 const UI := preload("res://scripts/game/game_ui.gd")
 const SYS := preload("res://scripts/systems.gd")
+const SKILLS := preload("res://scripts/game/skills.gd")
 const GD := preload("res://scripts/game_data.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const NPC_MODELS := {"knight": "res://models/higgsfield_pilot/knight_pilot_armed.glb", "mage": "res://models/higgsfield_mage/mage_pilot_armed.glb"}
@@ -35,6 +36,15 @@ var save_t := 0.0
 var boss: Node3D = null
 var sfx: Array = []
 var quest_dirty := true
+var skill_cds := {}              # skill id -> seconds left
+var casting: Dictionary = {}     # the skill whose animation is playing: resolved def + aim + start
+var buff_t := 0.0
+var buff_dmg := 0.0
+var buff_def := 0.0
+var ward := 0.0
+var ward_t := 0.0
+var ward_def: Dictionary = {}
+var pending_ground: Array = []   # delayed strikes: {at, t, def}
 
 func setup(owner_lab, st) -> void:
 	lab = owner_lab
@@ -50,8 +60,11 @@ func setup(owner_lab, st) -> void:
 	if state.quest_state("city_reborn") == "":
 		state.set_quest("city_reborn", "active", 0)
 	apply_stats(true)
+	lab.player.external_costs = true
+	lab.player.primary_action = func(): use_skill(String(state.bar[5]) if state.bar.size() == 8 else "")
 	lab.player.death_handler = _on_hero_died
 	lab.zone_changed.connect(_on_zone_changed)
+	lab.hud.reload_bar()
 	_enter_zone(true)
 
 # ---------------- helpers used by monsters ----------------
@@ -88,21 +101,22 @@ func apply_stats(full := false) -> void:
 	p.max_mana = float(stats["max_mp"])
 	p.hp = p.max_hp if full else clampf(p.max_hp * frac_hp, 1.0, p.max_hp)
 	p.mana = p.max_mana if full else p.max_mana * frac_mp
+	p.mana_regen = float(stats["mana_regen"]) * (1.0 if state.class_id == "mage" else 0.6)
 	p.health_changed.emit(p.hp, p.max_hp)
 
 ## Damage of one hero attack against monsters: the attack's base (combat_targeting3d) scaled by the character's
 ## weapon/spell power from gear and level, with crits.
-func roll_damage(kind: String) -> Dictionary:
-	var base: float = TARGETING.damage_for(kind)
-	var scale: float = (float(stats["spell_power"]) / 12.2 * 0.45) if state.class_id == "mage" else (float(stats["dmg"]) / 10.8 * 0.6)
-	var crit: bool = randf() < float(stats["crit"])
-	return {"amount": round(base * scale * randf_range(0.9, 1.1) * (1.6 if crit else 1.0)), "crit": crit}
-
 func damage_hero(raw: float, from: Node3D) -> void:
 	if dead: return
 	var armor: float = float(stats["armor"])
 	var lvl: int = from.level if from != null and "level" in from else 1
-	var taken: float = raw * (1.0 - armor / (armor + 10.0 * lvl + 40.0))
+	var taken: float = raw * (1.0 - armor / (armor + 10.0 * lvl + 40.0)) * (1.0 - (buff_def if buff_t > 0.0 else 0.0))
+	if ward > 0.0:
+		var soak := minf(ward, taken)
+		ward -= soak; taken -= soak
+		lab.effects.ring(lab.player.global_position, 1.1, Color("ffb070"), 0.25)
+		if ward <= 0.0: _end_ward()
+		if taken <= 0.0: return
 	lab.player.receive_damage(round(maxf(1.0, taken)))
 	show_damage(lab.player.global_position + Vector3.UP * 2.3, round(taken), false, true)
 
@@ -285,6 +299,8 @@ func _on_monster_died(m: Node3D) -> void:
 
 func _level_up(n: int) -> void:
 	apply_stats(true)
+	learn_unlocks()
+	ui.toast("+%d skill point%s  —  press K" % [n, "" if n == 1 else "s"], Color("c9a8ff"), 3.0, 20)
 	lab.effects.ring(lab.player.global_position, 2.4, Color("f2d27a"), 0.9)
 	lab.effects.sparks(lab.player.global_position + Vector3.UP, Color("f2d27a"), 30)
 	ui.toast("LEVEL %d" % state.level, Color("f2d27a"), 3.0, 40)
@@ -463,6 +479,202 @@ func use_potion(kind: String) -> bool:
 	play("potion", -6.0)
 	return true
 
+# ---------------- skills ----------------
+
+func skill_def(id: String) -> Dictionary:
+	return SKILLS.resolved(state.class_id, id, state.skill_mod(id))
+
+func skill_cd_frac(id: String) -> float:
+	var d := skill_def(id)
+	var cd: float = float(d.get("cd", 0.0))
+	return clampf(float(skill_cds.get(id, 0.0)) / cd, 0.0, 1.0) if cd > 0.0 else 0.0
+
+func skill_affordable(id: String) -> bool:
+	return lab.player.mana >= float(skill_def(id).get("cost", 0.0))
+
+## Use a learned skill toward the cursor (or the clicked enemy). Charges mana and cooldown only if it starts.
+func use_skill(id: String) -> bool:
+	if id == "" or dead or lab.zone_traveling or state.rank(id) <= 0: return false
+	var p = lab.player
+	if p.attack_t > 0.0 or p.dodge_t > 0.0: return false
+	if float(skill_cds.get(id, 0.0)) > 0.0: return false
+	var d := skill_def(id)
+	if p.mana < float(d.get("cost", 0.0)):
+		ui.toast("Not enough mana", Color("8ab4ff"), 0.8, 18)
+		return false
+	var aim: Vector3 = p.aim_point
+	if p.attack_target != null and is_instance_valid(p.attack_target): aim = p.attack_target.global_position
+	if d["shape"] == "blink":
+		if not _blink(d, aim): return false
+	else:
+		var before: int = p.attack_serial
+		var anim: String = d["anim"]
+		if state.class_id == "mage" and p.MAGE_SPELLS.has(anim): p.use_skill(anim)
+		else:
+			if p.click_to_move: p._face_aim(); p.move_target = Vector3.INF
+			p._attack(anim, float(p.WARRIOR_SKILLS.get(anim, 0.72)))
+		if p.attack_serial == before: return false
+		casting = {"def": d, "id": id, "aim": aim, "from": p.global_position}
+	p.mana -= float(d.get("cost", 0.0))
+	if float(d.get("cd", 0.0)) > 0.0: skill_cds[id] = float(d["cd"])
+	if SOUNDS.has(id) or ResourceLoader.exists("res://assets/audio/%s.wav" % id): play(id, -10.0)
+	return true
+
+## Base hit of a skill: weapon (Knight) or spell (Mage) power from gear and level, the skill's multiplier, its rank,
+## Rallying Cry, crits.
+func skill_hit(d: Dictionary, id: String) -> Dictionary:
+	var power: float = float(stats["spell_power"]) * 1.9 if state.class_id == "mage" else float(stats["dmg"]) * 1.8
+	var crit: bool = randf() < float(stats["crit"])
+	var amt: float = power * float(d.get("dmg", 1.0)) * SKILLS.damage_mult(state.rank(id)) * (1.0 + (buff_dmg if buff_t > 0.0 else 0.0))
+	return {"amount": round(amt * randf_range(0.92, 1.08) * (1.6 if crit else 1.0)), "crit": crit}
+
+func roll_damage(kind: String) -> Dictionary:
+	var id := String(state.bar[5]) if state.bar.size() == 8 and String(state.bar[5]) != "" else String(SKILLS.defs(state.class_id)[0]["id"])
+	return skill_hit(skill_def(id), id)
+
+## The hero's animation reached its release point: resolve the skill that is playing.
+func skill_impact(kind: String, direction: Vector3) -> void:
+	if casting.is_empty():
+		var id := String(state.bar[5]) if state.bar.size() == 8 else ""
+		if id == "": return
+		casting = {"def": skill_def(id), "id": id, "aim": lab.player.aim_point, "from": lab.player.global_position}
+	var c := casting; casting = {}
+	var d: Dictionary = c["def"]
+	var p = lab.player
+	var origin: Vector3 = p.global_position
+	var dir := Vector3(direction.x, 0, direction.z).normalized()
+	match String(d["shape"]):
+		"arc":
+			var hits := []
+			for m in lab.targets.duplicate():
+				if not _alive(m): continue
+				var off := Vector3(m.global_position.x - origin.x, 0, m.global_position.z - origin.z)
+				var r: float = float(d["range"]) + m.damage_radius()
+				if off.length() <= r and (off.length() < 0.6 or dir.dot(off.normalized()) >= float(d.get("arc", 0.2))): hits.append(m)
+			_apply_hits(hits, d, c["id"], dir)
+		"line":
+			var cands := []
+			for m in lab.targets.duplicate():
+				if not _alive(m): continue
+				var off := Vector3(m.global_position.x - origin.x, 0, m.global_position.z - origin.z)
+				var along := off.dot(dir)
+				var side := (off - dir * along).length()
+				if along > -0.3 and along <= float(d["range"]) and side <= float(d.get("width", 1.0)) * 0.5 + m.damage_radius():
+					cands.append([along, m])
+			cands.sort_custom(func(a, b): return a[0] < b[0])
+			var hits := []
+			for k in mini(int(d.get("pierce", 1)), cands.size()): hits.append(cands[k][1])
+			_apply_hits(hits, d, c["id"], dir)
+		"nova":
+			_circle_hit(origin, float(d["radius"]), d, c["id"])
+			lab.effects.ring(origin, float(d["radius"]), Color("bfe8ff") if state.class_id == "mage" else Color("ffe5a4"), 0.45)
+		"dash":
+			var start: Vector3 = c["from"]
+			var hits := []
+			for m in lab.targets.duplicate():
+				if not _alive(m): continue
+				var off := Vector3(m.global_position.x - start.x, 0, m.global_position.z - start.z)
+				var along := off.dot(dir)
+				if along > -0.5 and along <= float(d["range"]) and (off - dir * along).length() <= float(d.get("width", 1.2)) * 0.5 + m.damage_radius():
+					hits.append(m)
+			_apply_hits(hits, d, c["id"], dir)
+			if d.has("end_radius"):
+				_ground_strike(p.global_position + dir * 2.5, float(d["end_radius"]), d, c["id"], 0.25)
+		"ground":
+			var at: Vector3 = c["aim"] if c["aim"].is_finite() else origin + dir * 3.0
+			var off := Vector3(at.x - origin.x, 0, at.z - origin.z)
+			if off.length() > float(d.get("reach", 7.0)): at = origin + off.normalized() * float(d.get("reach", 7.0))
+			_ground_strike(at, float(d["radius"]), d, c["id"], float(d.get("delay", 0.5)))
+		"buff":
+			buff_t = float(d["duration"]); buff_dmg = float(d.get("buff_dmg", 0.0)); buff_def = float(d.get("buff_def", 0.0))
+			p.restore(p.max_hp * float(d.get("heal", 0.0)), 0.0)
+			lab.effects.ring(origin, 1.8, Color("ffd36a"), 0.7)
+			lab.effects.sparks(origin + Vector3.UP, Color("ffd36a"), 24)
+			ui.toast("Rallying Cry", Color("ffd36a"), 1.0, 20)
+		"ward":
+			ward = p.max_hp * float(d.get("ward", 0.3)); ward_t = float(d["duration"]); ward_def = d
+			lab.effects.ring(origin, 1.3, Color("ffb070"), 0.6)
+
+func _alive(m) -> bool:
+	return is_instance_valid(m) and m.has_method("is_alive") and m.is_alive()
+
+func _circle_hit(at: Vector3, r: float, d: Dictionary, id: String) -> void:
+	var hits := []
+	for m in lab.targets.duplicate():
+		if _alive(m) and Vector2(m.global_position.x - at.x, m.global_position.z - at.z).length() <= r + m.damage_radius(): hits.append(m)
+	_apply_hits(hits, d, id, Vector3.ZERO, at)
+
+func _ground_strike(at: Vector3, r: float, d: Dictionary, id: String, delay: float) -> void:
+	var col := Color("c3a9ff") if state.class_id == "mage" else Color("ffe5a4")
+	lab.effects.ring(at, r, Color(col, 0.6), delay)
+	pending_ground.append({"at": at, "r": r, "def": d, "id": id, "t": delay})
+
+## Damage + statuses + mana/heal per hit.
+func _apply_hits(hits: Array, d: Dictionary, id: String, dir: Vector3, centre := Vector3.INF) -> void:
+	var gained := false
+	for m in hits:
+		if not _alive(m): continue
+		var h := skill_hit(d, id)
+		var away: Vector3 = dir if centre == Vector3.INF else Vector3(m.global_position.x - centre.x, 0, m.global_position.z - centre.z).normalized()
+		var dead_now: bool = m.hit(float(h["amount"]))
+		lab.effects.sparks(m.damage_center(), Color("ffca70") if state.class_id == "warrior" else Color("c3a9ff"), 10)
+		if dead_now: lab.kills += 1
+		else:
+			m.apply_status(float(d.get("slow", 0.0)), float(d.get("slow_t", 0.0)), float(d.get("stun", 0.0)), float(h["amount"]) * float(d.get("burn", 0.0)), away * float(d.get("knock", 0.0)))
+		if d.has("gain") and not gained: lab.player.mana = minf(lab.player.max_mana, lab.player.mana + float(d["gain"])); gained = true
+		if d.has("heal_hit"): lab.player.restore(lab.player.max_hp * float(d["heal_hit"]), 0.0)
+	if not hits.is_empty(): play("hit", -14.0)
+
+func _blink(d: Dictionary, aim: Vector3) -> bool:
+	var p = lab.player
+	if not aim.is_finite(): return false
+	var from: Vector3 = p.global_position
+	var off := Vector3(aim.x - from.x, 0, aim.z - from.z)
+	if off.length() > float(d["range"]): off = off.normalized() * float(d["range"])
+	var to := from + off
+	var k := 1.0
+	while k > 0.1 and not lab.zone_walkable(to):
+		k -= 0.1; to = from + off * k
+	if not lab.zone_walkable(to) or off.length() * k < 1.0:
+		ui.toast("Cannot fold there", Color("c3a9ff"), 0.8, 18)
+		return false
+	lab.effects.ring(from, 1.0, Color("c3a9ff"), 0.35)
+	p.global_position = Vector3(to.x, from.y, to.z)
+	p.stop_moving()
+	lab.zone_last_ok = p.global_position
+	lab.zone_route = PackedVector2Array()
+	lab.effects.ring(to, 1.0, Color("c3a9ff"), 0.35)
+	if d.has("radius"):
+		_circle_hit(from, float(d["radius"]), d, "arcane_fold")
+		lab.effects.ring(from, float(d["radius"]), Color("bfe8ff"), 0.5)
+	return true
+
+func _end_ward() -> void:
+	if ward_def.has("burst"):
+		var d := ward_def.duplicate(); d["dmg"] = d["burst"]
+		_circle_hit(lab.player.global_position, float(d["radius"]), d, "ashen_ward")
+		lab.effects.ring(lab.player.global_position, float(d["radius"]), Color("ff8a4a"), 0.5)
+	ward = 0.0; ward_t = 0.0; ward_def = {}
+
+func _tick_skills(delta: float) -> void:
+	for k in skill_cds.keys(): skill_cds[k] = maxf(0.0, skill_cds[k] - delta)
+	if buff_t > 0.0: buff_t = maxf(0.0, buff_t - delta)
+	if ward_t > 0.0:
+		ward_t -= delta
+		if ward_t <= 0.0: _end_ward()
+	for g in pending_ground.duplicate():
+		g["t"] -= delta
+		if g["t"] <= 0.0:
+			pending_ground.erase(g)
+			_circle_hit(g["at"], g["r"], g["def"], g["id"])
+			lab.effects.cast(g["at"], Color("c3a9ff") if state.class_id == "mage" else Color("ffe5a4"))
+			lab.effects.ring(g["at"], g["r"], Color("ffffff"), 0.3)
+
+func learn_unlocks() -> void:
+	for id in state.unlock_skills():
+		ui.toast("New skill: %s" % SKILLS.def(state.class_id, id)["name"], Color("c9a8ff"), 3.5, 22)
+	lab.hud.reload_bar()
+
 # ---------------- death ----------------
 
 func _on_hero_died() -> void:
@@ -493,13 +705,13 @@ func respawn() -> void:
 
 # ---------------- feedback ----------------
 
-func show_damage(at: Vector3, amount: float, big: bool, to_hero := false) -> void:
+func show_damage(at: Vector3, amount: float, big: bool, to_hero := false, col := Color(0, 0, 0, 0)) -> void:
 	var l := Label3D.new()
 	l.text = str(int(amount))
 	l.font = load("res://assets/fonts/LiberationSerif-Bold.ttf")
 	l.font_size = 56 if big else 44
 	l.pixel_size = 0.005
-	l.modulate = Color("ff5a4a") if to_hero else (Color("ffd36a") if big else Color("fff4dc"))
+	l.modulate = col if col.a > 0.0 else (Color("ff5a4a") if to_hero else (Color("ffd36a") if big else Color("fff4dc")))
 	l.outline_size = 12; l.outline_modulate = Color(0, 0, 0, 0.95)
 	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED; l.no_depth_test = true; l.render_priority = 9
 	lab.add_child(l)
@@ -524,6 +736,7 @@ func autosave() -> void:
 func _process(delta: float) -> void:
 	state.play_time += delta
 	save_t += delta
+	_tick_skills(delta)
 	if save_t > 30.0: autosave()
 	if dead or lab.zone_traveling: return
 	var hp: Vector3 = lab.player.global_position

@@ -56,6 +56,13 @@ var tele: MeshInstance3D
 var tele_mat: StandardMaterial3D
 var hurtbox: Area3D
 var height_m := 1.2
+var slow_t := 0.0
+var slow_mult := 0.0
+var stun_t := 0.0
+var burn_left := 0.0             # total burn damage still to deal
+var burn_t := 0.0
+var burn_tick := 0.0
+var knock := Vector3.ZERO
 
 func setup(key: String, lvl: int, is_elite := false, is_boss := false) -> void:
 	type_key = key
@@ -166,6 +173,45 @@ func hit(amount: float) -> bool:
 		return true
 	return false
 
+## Status effects from hero skills: slow (fraction, seconds), stun (seconds, cancels a wind-up; bosses resist half),
+## burn (total damage over 3 s, refreshes), knockback (metres, bosses immune).
+func apply_status(slow: float, slow_s: float, stun: float, burn_total: float, push: Vector3) -> void:
+	if not is_alive(): return
+	if slow > 0.0 and slow_s > 0.0:
+		slow_mult = maxf(slow_mult if slow_t > 0.0 else 0.0, slow); slow_t = maxf(slow_t, slow_s)
+	if stun > 0.0:
+		stun_t = maxf(stun_t, stun * (0.5 if boss else 1.0))
+		if state == "wind": state = "chase"; tele.visible = false; atk_cd = maxf(atk_cd, 0.4)
+	if burn_total > 0.0:
+		burn_left = maxf(burn_left, burn_total); burn_t = 3.0
+	if not boss and push.length() > 0.01: knock = push * (0.5 if elite else 1.0)
+	if state == "idle": aggro()
+
+func _statuses(delta: float) -> bool:
+	if slow_t > 0.0:
+		slow_t -= delta
+		if slow_t <= 0.0: slow_mult = 0.0
+	if burn_left > 0.0 and burn_t > 0.0:
+		burn_tick -= delta
+		if burn_tick <= 0.0:
+			burn_tick = 0.5
+			var tick := burn_left / maxf(1.0, burn_t / 0.5)
+			burn_left -= tick; burn_t -= 0.5
+			hp = maxf(0.0, hp - tick)
+			if director != null: director.show_damage(damage_center() + Vector3.UP * height_m * 0.3, tick, false, false, Color("ff9a4a"))
+			if hp <= 0.0:
+				_die(); return true
+	if knock.length() > 0.01:
+		var step := knock * minf(1.0, delta * 8.0)
+		var nxt := global_position + step
+		if director.walkable(nxt): global_position = nxt
+		knock -= step
+		if knock.length() < 0.02: knock = Vector3.ZERO
+	if stun_t > 0.0:
+		stun_t -= delta
+		return true
+	return false
+
 func aggro() -> void:
 	if state in ["idle", "leash"]:
 		state = "chase"
@@ -194,6 +240,9 @@ func _process(delta: float) -> void:
 	var base_col := Color(1.0, 0.86, 0.92) if boss else (Color(1.0, 0.95, 0.85) if elite else Color.WHITE)
 	sprite.modulate = base_col.lerp(Color(2.2, 1.6, 1.4), flash / 0.16) if flash > 0.0 else base_col
 	if state == "wind": sprite.modulate = sprite.modulate.lerp(Color(1.5, 0.7, 0.6), 0.35 + 0.25 * sin(t * 30.0))
+	if stun_t > 0.0: sprite.modulate = sprite.modulate.lerp(Color(0.75, 0.9, 1.6), 0.5)
+	elif slow_t > 0.0: sprite.modulate = sprite.modulate.lerp(Color(0.7, 0.85, 1.25), 0.35)
+	elif burn_left > 0.0: sprite.modulate = sprite.modulate.lerp(Color(1.5, 0.85, 0.55), 0.25 + 0.1 * sin(t * 12.0))
 	var bob := sin(t * (5.0 if state == "chase" else 2.0) + phase) * (0.05 if state == "chase" else 0.025) * height_m
 	sprite.position = Vector3(0, bob, 0)
 	sprite.rotation.z = 0.0
@@ -209,6 +258,7 @@ func _physics_process(delta: float) -> void:
 	atk_cd = maxf(0.0, atk_cd - delta)
 	slam_cd = maxf(0.0, slam_cd - delta)
 	var hero_alive: bool = director.hero_alive()
+	if _statuses(delta): return
 	match state:
 		"idle":
 			if hero_alive and dist < AGGRO_M * (1.4 if boss else 1.0) and director.can_see(global_position, hero.global_position):
@@ -306,7 +356,7 @@ func _step(to: Vector3, delta: float, mult: float) -> void:
 	var d := Vector3(to.x - global_position.x, 0, to.z - global_position.z)
 	var L := d.length()
 	if L < 0.01: return
-	var stepv := d / L * minf(L, speed * mult * delta)
+	var stepv := d / L * minf(L, speed * mult * (1.0 - slow_mult) * delta)
 	# keep a little space from pack mates
 	for m in pack:
 		if is_instance_valid(m) and m != self and m.state != "dead":

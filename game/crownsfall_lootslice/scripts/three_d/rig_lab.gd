@@ -1315,6 +1315,9 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	else:
 		effects.slash(player.global_position, direction, color, wide)
 		if kind == "Dash": effects.ring(at, 0.8, Color("f2d17f"), 0.45)
+	if game != null:      # the game resolves skill hits itself (shape, rank, upgrade, statuses)
+		game.skill_impact(kind, direction)
+		return
 	# One physics-backed damage decision per candidate; the VFX remains
 	# responsive even when a nearby target is safely screened by cover.
 	for target in targets:

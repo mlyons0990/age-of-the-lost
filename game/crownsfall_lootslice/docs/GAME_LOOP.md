@@ -33,10 +33,37 @@ game_director.gd (inside the 3D world, rig_lab.gd game_mode)
 game_ui.gd: notifications, area banner, boss bar, dialogue, shop, inventory + character (I / C), death, pause (Esc), epilogue
 ```
 
+## Skills (K) — added 2026-11-27
+
+Six skills per class (`scripts/game/skills.gd`), learned by level, ranked 1–5 with one skill point per level
+(+14% damage per rank), one of two upgrades chosen at rank 3. The Quartermaster refunds all points for 25 gold × level.
+Skills play the hero's existing animations; the director resolves each skill's own shape and effects.
+
+| Knight | Lv | Shape | Upgrades |
+|---|---|---|---|
+| Slash (LMB) | 1 | arc | Rending Edge (bleed) / Riposte (+mana) |
+| Cleave | 1 | wide arc | Great Arc (all around) / Staggering Blow (knockback + stun) |
+| Shield Charge | 3 | dash, stun | Relentless (3.5 s cd) / Shockwave (end burst) |
+| Rallying Cry | 5 | heal + 30% damage | Second Wind (40% heal) / Iron Will (−30% damage taken) |
+| Sundering Standard | 8 | delayed circle at cursor | Broad Standard / Quake (stun) |
+| Citadel Reprisal | 12 | nova, life per hit | Bulwark / Repel |
+
+| Mage | Lv | Shape | Upgrades |
+|---|---|---|---|
+| Cinder Thread (LMB) | 1 | bolt, +mana | Kindle (burn) / Siphon (+mana) |
+| Glacial Stitch | 1 | piercing line, slow | Shatterline (pierce all + freeze) / Deep Cold |
+| Arcane Fold | 3 | blink to cursor | Frost Wake / Quickened Fold |
+| Ashen Ward | 5 | damage shield | Thick Ash / Ember Burst |
+| Starfall Script | 8 | delayed circle at cursor | Wide Sky / Scorching Fall (burn) |
+| Winter Crown | 12 | nova stun | Sovereign's Reach / Long Winter |
+
+Monster statuses: slow, stun (cancels wind-ups; bosses resist half), burn (damage over 3 s), knockback (not bosses).
+Mana regeneration comes from the character's stats (Wisdom). Tests: `tests/verify_skills.gd` (28 checks, both classes).
+
 ## Controls
 
 LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T skills · RMB / MMB skill wells ·
-1–5 potions · Space dodge · I or C inventory · M map (Tab world) · Esc pause · F1 key bindings (all rebindable).
+1–5 potions · Space dodge · K skills · I or C inventory · M map (Tab world) · Esc pause · F1 key bindings (all rebindable).
 
 ## Balance (first pass)
 
@@ -49,4 +76,5 @@ LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T ski
 - Monsters are the original painted 2D enemy art standing in the 3D world (three types). Dedicated 3D monster models,
   more enemy types and a Hollowmere chapter are content work, not system work.
 - NPCs reuse the hero models (no dedicated NPC art yet).
-- No skill tree in this mode yet (the 2D build's mastery graph is not wired in); skills are the hero's four.
+- Skills reuse the heroes' existing animation clips (several skills share one); dedicated clips would come with
+  more Higgsfield animation work (quoted first).

@@ -78,6 +78,9 @@ var spell_cd := 0.0
 var max_mana := 120.0
 var mana := 120.0
 const MANA_REGEN := 6.0
+var mana_regen := MANA_REGEN          # the game sets it from the character's stats
+var external_costs := false           # the game charges mana / cooldowns itself (scripts/game/game_director.gd)
+var primary_action: Callable          # the game: LMB-on-enemy uses the skill in the LMB well
 const WARRIOR_CAST_COST := 20.0
 ## Number keys 1/2/3 trigger skills (legacy labs). The ARPG HUD turns this off: 1-5 are potions, skills are Q E R.
 var number_keys_for_skills := true
@@ -481,14 +484,15 @@ func _mage_or(spell: String, kind: String, duration: float) -> void:
 func cast_spell(spell: String) -> bool:
 	if not MAGE_SPELLS.has(spell) or attack_t > 0.0 or dodge_t > 0.0 or attack_cd > 0.0:
 		return false
-	if float(spell_cds.get(spell, 0.0)) > 0.0:
+	if float(spell_cds.get(spell, 0.0)) > 0.0 and not external_costs:
 		return false
 	var spec: Dictionary = MAGE_SPELLS[spell]
-	if mana < float(spec.get("cost", 0.0)):
+	if mana < float(spec.get("cost", 0.0)) and not external_costs:
 		return false
-	mana -= float(spec.get("cost", 0.0))
+	if not external_costs:
+		mana -= float(spec.get("cost", 0.0))
+		spell_cds[spell] = spec["cd"]
 	spell_variant = spell
-	spell_cds[spell] = spec["cd"]
 	clip_names["Cast"] = clip_names["Mage_" + spell]
 	anim_state = ""
 	attack_serial += 1
@@ -506,9 +510,9 @@ func spell_reach() -> float:
 func _attack(kind: String, duration: float) -> void:
 	if attack_t > 0.0 or dodge_t > 0.0 or attack_cd > 0.0:
 		return
-	if kind == "Cast" and (spell_cd > 0.0 or mana < WARRIOR_CAST_COST):
+	if kind == "Cast" and not external_costs and (spell_cd > 0.0 or mana < WARRIOR_CAST_COST):
 		return
-	if kind == "Cast":
+	if kind == "Cast" and not external_costs:
 		mana -= WARRIOR_CAST_COST
 	if is_pilot_hero() and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
 		duration = PILOT_SLASH_TIME
@@ -556,7 +560,7 @@ func _physics_process(delta: float) -> void:
 	if arm_carry != null:   # ease the arm layer in/out over ~0.2 s so clip changes don't pop
 		arm_carry.influence = move_toward(arm_carry.influence, arm_carry_target, delta * 5.0)
 	attack_cd = maxf(0.0, attack_cd - delta)
-	mana = minf(max_mana, mana + MANA_REGEN * delta)
+	mana = minf(max_mana, mana + mana_regen * delta)
 	for k in spell_cds.keys():
 		spell_cds[k] = maxf(0.0, spell_cds[k] - delta)
 	spell_cd = maxf(0.0, spell_cd - delta)
@@ -681,6 +685,9 @@ var primary_skill_provider: Callable   # ARPG HUD: the skill in the LMB well
 
 func primary_attack() -> void:
 	_face_aim()
+	if primary_action.is_valid():
+		primary_action.call()
+		return
 	var sk: String = primary_skill_provider.call() if primary_skill_provider.is_valid() else ""
 	if sk != "":
 		if MAGE_SPELLS.has(sk) and is_pilot_mage(): cast_spell(sk)

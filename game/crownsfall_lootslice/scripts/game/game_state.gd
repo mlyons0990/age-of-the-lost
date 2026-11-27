@@ -8,6 +8,7 @@ const SYS := preload("res://scripts/systems.gd")
 const GD := preload("res://scripts/game_data.gd")
 const VERSION := 1
 const MAX_LEVEL := 60
+const SKILLS := preload("res://scripts/game/skills.gd")
 
 var class_id := "warrior"        # "warrior" (Knight) | "mage"
 var hero_name := "Wayfarer"
@@ -25,6 +26,9 @@ var play_time := 0.0
 var deaths := 0
 var kills := 0
 var vendor_stock: Array = []
+var skills := {}                 # skill id -> {"rank": int, "mod": String}
+var skill_points := 0
+var bar: Array = []              # 8 skill wells (HUD order), skill ids or ""
 
 static func exists() -> bool:
 	var cf: ConfigFile = SAVE.open()
@@ -44,6 +48,11 @@ static func new_character(cls: String) -> RefCounted:
 	var starter := SYS.make_item(1, 0.0, "weapon" if cls == "warrior" else "staff", cls)
 	starter["rarity"] = 0; starter["name"] = "Worn " + String(SYS.NAMES[starter["slot"]])
 	s.gear[SYS.default_slot(starter)] = starter
+	s.unlock_skills()
+	var first: Array = []
+	for d in SKILLS.defs(cls):
+		if int(d["unlock"]) <= 1: first.append(d["id"])
+	s.bar = [first[1] if first.size() > 1 else "", "", "", "", "", first[0], "", ""]
 	var cf: ConfigFile = SAVE.open()
 	for sec in ["game", "waypoints", "map"]:
 		if cf.has_section(sec): cf.erase_section(sec)
@@ -81,6 +90,15 @@ static func load_saved() -> RefCounted:
 	s.play_time = float(cf.get_value("game", "play_time", 0.0))
 	s.deaths = int(cf.get_value("game", "deaths", 0))
 	s.kills = int(cf.get_value("game", "kills", 0))
+	var sk = cf.get_value("game", "skills", {})
+	if sk is Dictionary:
+		for id in sk:
+			if not SKILLS.def(s.class_id, String(id)).is_empty() and sk[id] is Dictionary:
+				s.skills[String(id)] = {"rank": clampi(int(sk[id].get("rank", 1)), 1, SKILLS.MAX_RANK), "mod": String(sk[id].get("mod", ""))}
+	s.skill_points = clampi(int(cf.get_value("game", "skill_points", 0)), 0, 99)
+	var b = cf.get_value("game", "bar", [])
+	if b is Array and b.size() == 8: s.bar = b
+	s.unlock_skills()
 	for raw in cf.get_value("game", "vendor_stock", []):
 		var it: Dictionary = SYS.clean_item(raw)
 		if not it.is_empty(): s.vendor_stock.append(it)
@@ -88,7 +106,7 @@ static func load_saved() -> RefCounted:
 
 func save() -> bool:
 	var cf: ConfigFile = SAVE.open()
-	for k in ["class_id", "hero_name", "level", "xp", "gold", "potions", "bag", "gear", "quests", "dead_uniques", "zone", "pos", "play_time", "deaths", "kills", "vendor_stock"]:
+	for k in ["class_id", "hero_name", "level", "xp", "gold", "potions", "bag", "gear", "quests", "dead_uniques", "zone", "pos", "play_time", "deaths", "kills", "vendor_stock", "skills", "skill_points", "bar"]:
 		cf.set_value("game", k, get(k))
 	cf.set_value("game", "version", VERSION)
 	return SAVE.commit(cf)
@@ -107,7 +125,48 @@ func add_xp(amount: int) -> int:
 		xp -= xp_need()
 		level += 1
 		gained += 1
+		skill_points += 1
 	return gained
+
+# ---------------- skills ----------------
+
+## Learn every skill the current level allows (rank 1, free). Returns the newly learned skill ids.
+func unlock_skills() -> Array:
+	var out := []
+	for d in SKILLS.defs(class_id):
+		if int(d["unlock"]) <= level and not skills.has(d["id"]):
+			skills[d["id"]] = {"rank": 1, "mod": ""}
+			out.append(d["id"])
+			if bar.size() == 8 and not d["id"] in bar:
+				for i in [0, 1, 2, 3, 4, 7, 6]:
+					if String(bar[i]) == "": bar[i] = d["id"]; break
+	return out
+
+func rank(id: String) -> int:
+	return int(skills.get(id, {}).get("rank", 0))
+
+func skill_mod(id: String) -> String:
+	return String(skills.get(id, {}).get("mod", ""))
+
+## Spend a point on a skill. Returns "" or why not.
+func rank_up(id: String) -> String:
+	if not skills.has(id): return "Not learned yet."
+	if skill_points <= 0: return "No skill points."
+	if rank(id) >= SKILLS.MAX_RANK: return "Already at the highest rank."
+	skills[id]["rank"] = rank(id) + 1
+	skill_points -= 1
+	return ""
+
+func choose_mod(id: String, mod_id: String) -> String:
+	if rank(id) < SKILLS.MOD_RANK: return "Reach rank %d first." % SKILLS.MOD_RANK
+	skills[id]["mod"] = mod_id
+	return ""
+
+## Refund every skill point (ranks back to 1, upgrades cleared), for a gold price paid in town.
+func respec() -> void:
+	for id in skills:
+		skill_points += rank(id) - 1
+		skills[id] = {"rank": 1, "mod": ""}
 
 func stats() -> Dictionary:
 	return SYS.derive(level, gear, {}, class_id)

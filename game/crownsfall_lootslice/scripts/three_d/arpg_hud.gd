@@ -662,10 +662,27 @@ func _plate_label(root: Control, r: Rect2, ui_k: float) -> Label:
 	root.add_child(l)
 	return l
 
+const GAME_SKILLS := preload("res://scripts/game/skills.gd")
+func _in_game() -> bool:
+	return lab.get("game") != null
+
+## The game: the bar holds the character's learned skills (saved with the character).
+func reload_bar() -> void:
+	if not _in_game(): return
+	skill_loadout = lab.game_state.bar.duplicate()
+	_refresh_slots()
+
+func _skill_icon(sk: String) -> Texture2D:
+	if sk == "": return null
+	if _in_game():
+		var d: Dictionary = GAME_SKILLS.def(lab.game_state.class_id, sk)
+		return load(TILES + String(d.get("icon", "slash")) + ".png") if not d.is_empty() else null
+	return load(TILES + HERO_SKILLS[hero][sk] + ".png")
+
 func _refresh_slots() -> void:
 	for i in SKILL_SLOTS:
 		var sk: String = skill_loadout[i]
-		skill_icons[i].texture = load(TILES + HERO_SKILLS[hero][sk] + ".png") if sk != "" else null
+		skill_icons[i].texture = _skill_icon(sk)
 	for i in POTION_SLOTS:
 		var pt: String = potion_loadout[i]
 		potion_icons[i].texture = _tex(POTION_TYPES[pt]["tex"]) if pt != "" else null
@@ -687,9 +704,11 @@ func _refresh_keys() -> void:
 func _open_picker(kind: String, idx: int) -> void:
 	picker.clear()
 	picker_target = [kind, idx]
-	var names: Array = HERO_SKILLS[hero].keys() if kind == "skill" else POTION_TYPES.keys()
+	var names: Array = _skill_names() if kind == "skill" else POTION_TYPES.keys()
 	for n in names.size():
-		picker.add_item(String(names[n]).capitalize(), n)
+		var label := String(names[n]).capitalize()
+		if kind == "skill" and _in_game(): label = String(GAME_SKILLS.def(lab.game_state.class_id, names[n])["name"])
+		picker.add_item(label, n)
 	picker.add_separator()
 	picker.add_item("(Empty)", 99)
 	picker.position = Vector2i(get_viewport().get_mouse_position()) - Vector2i(0, 40 + 24 * names.size())
@@ -697,8 +716,16 @@ func _open_picker(kind: String, idx: int) -> void:
 
 func _on_pick(id: int) -> void:
 	var kind: String = picker_target[0]
-	var names: Array = HERO_SKILLS[hero].keys() if kind == "skill" else POTION_TYPES.keys()
+	var names: Array = _skill_names() if kind == "skill" else POTION_TYPES.keys()
 	assign(kind, picker_target[1], "" if id == 99 else String(names[id]))
+
+func _skill_names() -> Array:
+	if _in_game():
+		var out := []
+		for d in GAME_SKILLS.defs(lab.game_state.class_id):
+			if lab.game_state.rank(d["id"]) > 0: out.append(d["id"])
+		return out
+	return HERO_SKILLS[hero].keys()
 
 ## Put `what` ("" = empty) in skill or potion slot `idx`. A skill already on the bar moves (no duplicates, as in D4).
 func assign(kind: String, idx: int, what: String) -> void:
@@ -724,6 +751,12 @@ func _load_loadout() -> void:
 		if p.size() == 5 and p.all(func(x): return x == "" or POTION_TYPES.has(x)): potion_loadout = p
 
 func _save_loadout() -> void:
+	if _in_game():
+		lab.game_state.bar = skill_loadout.duplicate()
+		var cfp: ConfigFile = SAVE.open()
+		cfp.set_value("loadout_game", "potions", potion_loadout)
+		SAVE.commit(cfp)
+		return
 	var cf: ConfigFile = SAVE.open()
 	cf.set_value("loadout_" + hero, "skills", skill_loadout)
 	cf.set_value("loadout_" + hero, "potions", potion_loadout)
@@ -754,7 +787,9 @@ func pointer_over_ui() -> bool:
 
 func use_skill_slot(i: int) -> void:
 	var sk: String = skill_loadout[i]
-	if sk != "":
+	if sk != "" and _in_game():
+		lab.game.use_skill(sk)
+	elif sk != "":
 		player.use_skill(sk)
 
 var level_label: Label
@@ -795,6 +830,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if a == "inventory" and lab.get("game") != null:
 		lab.game.ui.toggle_inventory()
+		get_viewport().set_input_as_handled()
+		return
+	if a == "skills" and lab.get("game") != null:
+		lab.game.ui.toggle_skills()
 		get_viewport().set_input_as_handled()
 		return
 	if a.begins_with("skill_"):
@@ -935,6 +974,7 @@ func _process(delta: float) -> void:
 func _cooldown_fraction(spell: String) -> float:
 	if spell == "":
 		return 0.0
+	if _in_game(): return lab.game.skill_cd_frac(spell)
 	if player.is_pilot_mage() and player.MAGE_SPELLS.has(spell):
 		var cd: float = player.MAGE_SPELLS[spell]["cd"]
 		return clampf(float(player.spell_cds.get(spell, 0.0)) / cd, 0.0, 1.0) if cd > 0.0 else 0.0
@@ -943,6 +983,7 @@ func _cooldown_fraction(spell: String) -> float:
 	return 0.0
 
 func _unaffordable(spell: String) -> bool:
+	if _in_game(): return spell != "" and not lab.game.skill_affordable(spell)
 	if player.is_pilot_mage() and player.MAGE_SPELLS.has(spell):
 		return player.mana < float(player.MAGE_SPELLS[spell].get("cost", 0.0))
 	return spell == "Cast" and player.mana < player.WARRIOR_CAST_COST

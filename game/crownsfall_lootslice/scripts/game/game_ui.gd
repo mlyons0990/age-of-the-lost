@@ -65,6 +65,7 @@ func setup(director) -> void:
 	boss_bar.draw.connect(_draw_boss)
 	root.add_child(boss_bar)
 	_build_inventory()
+	_build_skills()
 	tip = PanelContainer.new()
 	tip.add_theme_stylebox_override("panel", _box(Color(0.04, 0.035, 0.03, 0.97), GOLD))
 	tip.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -150,10 +151,11 @@ func close_panel() -> void:
 
 ## True while a screen that takes the mouse is open (world clicks ignored).
 func blocking() -> bool:
-	return panel != null or inv.visible
+	return panel != null or inv.visible or (sk_panel != null and sk_panel.visible)
 
 func over_ui(m: Vector2) -> bool:
 	if inv.visible and Rect2(inv.position, inv.size).has_point(m): return true
+	if sk_panel != null and sk_panel.visible and Rect2(sk_panel.position, sk_panel.size).has_point(m): return true
 	if panel != null and is_instance_valid(panel):
 		for c in panel.get_children():
 			if c is Control and Rect2(c.position, c.size).has_point(m): return true
@@ -250,6 +252,10 @@ func open_vendor() -> void:
 		b.mouse_entered.connect(func(): _show_tip(it, "Buy for %d gold" % price))
 		b.mouse_exited.connect(func(): tip.visible = false)
 		v.add_child(b)
+	var respec_cost: int = 25 * st.level
+	v.add_child(_button("Unlearn skills, refund points  (%d gold)" % respec_cost, func():
+		if st.gold < respec_cost: toast("Not enough gold", Color("ff7a6a"), 1.4, 18); return
+		st.gold -= respec_cost; st.respec(); refresh.call(); toast("Skill points refunded — press K", Color("c9a8ff"), 2.0, 18); dir.autosave(), 430.0))
 	v.add_child(_button("Sell all Common items", func():
 		var n := 0; var g := 0
 		for it in st.bag.duplicate():
@@ -418,6 +424,102 @@ func _show_tip(it: Dictionary, extra := "") -> void:
 	var m := root.get_viewport().get_mouse_position()
 	tip.position = Vector2(clampf(m.x - tip.size.x - 18, 8, 99999), clampf(m.y + 10, 8, root.get_viewport_rect().size.y - tip.size.y - 8))
 
+# ---------------- skills (K) ----------------
+
+const SKILLS := preload("res://scripts/game/skills.gd")
+var sk_panel: PanelContainer
+var sk_box: VBoxContainer
+
+func _build_skills() -> void:
+	sk_panel = PanelContainer.new()
+	sk_panel.add_theme_stylebox_override("panel", _box(INK, GOLD))
+	sk_panel.visible = false
+	sk_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	root.add_child(sk_panel)
+	sk_box = VBoxContainer.new()
+	sk_box.add_theme_constant_override("separation", 6)
+	sk_panel.add_child(sk_box)
+
+func toggle_skills() -> void:
+	sk_panel.visible = not sk_panel.visible
+	if sk_panel.visible: refresh_skills()
+
+func refresh_skills() -> void:
+	for c in sk_box.get_children(): c.queue_free()
+	var st = dir.state
+	var head := HBoxContainer.new()
+	head.add_child(_label("SKILLS", 26, GOLD))
+	var sp := Control.new(); sp.size_flags_horizontal = Control.SIZE_EXPAND_FILL; head.add_child(sp)
+	head.add_child(_label("Skill points: %d" % st.skill_points, 20, Color("c9a8ff") if st.skill_points > 0 else Color("a8977a")))
+	sk_box.add_child(head)
+	var hint := _label("Ranks add 14%% damage each. At rank %d choose one upgrade. Click a bar slot to place a skill." % SKILLS.MOD_RANK, 14, Color("a8977a"), false)
+	sk_box.add_child(hint)
+	for d in SKILLS.defs(st.class_id):
+		var id: String = d["id"]
+		var r: int = st.rank(id)
+		var card := PanelContainer.new()
+		card.add_theme_stylebox_override("panel", _box(Color(0.08, 0.065, 0.05, 0.95), GOLD if r > 0 else Color(0.3, 0.27, 0.22), 1))
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 12)
+		card.add_child(row)
+		var ic := TextureRect.new()
+		ic.texture = load("res://assets/skill_tiles/%s.png" % d["icon"])
+		ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		ic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		ic.custom_minimum_size = Vector2(64, 64)
+		if r == 0: ic.modulate = Color(0.35, 0.35, 0.35)
+		row.add_child(ic)
+		var col := VBoxContainer.new()
+		col.add_theme_constant_override("separation", 2)
+		col.custom_minimum_size = Vector2(420, 0)
+		row.add_child(col)
+		var rd: Dictionary = dir.skill_def(id)
+		var title := "%s   %s" % [d["name"], ("Rank %d / %d" % [r, SKILLS.MAX_RANK]) if r > 0 else ("Unlocks at level %d" % int(d["unlock"]))]
+		col.add_child(_label(title, 18, IVORY if r > 0 else Color(0.6, 0.57, 0.5)))
+		var info := String(d["desc"])
+		var costs := []
+		if float(rd.get("cost", 0)) > 0: costs.append("%d mana" % int(rd["cost"]))
+		if float(rd.get("cd", 0)) > 0: costs.append("%.1f s cooldown" % float(rd["cd"]))
+		if rd.has("dmg") and r > 0: costs.append("%d%% damage" % int(round(float(rd["dmg"]) * SKILLS.damage_mult(r) * 100.0)))
+		var dl := _label(info + ("\n" + "  ·  ".join(costs) if not costs.is_empty() else ""), 14, Color("cfc7b8"), false)
+		dl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		dl.custom_minimum_size = Vector2(420, 0)
+		col.add_child(dl)
+		if r >= SKILLS.MOD_RANK or r > 0:
+			var mods := HBoxContainer.new()
+			mods.add_theme_constant_override("separation", 6)
+			for m in d.get("mods", []):
+				var chosen: bool = st.skill_mod(id) == m["id"]
+				var b := _button(("✓ " if chosen else "") + String(m["name"]), func():
+					var why: String = st.choose_mod(id, m["id"])
+					if why != "": toast(why, Color("ff7a6a"), 1.4, 18)
+					refresh_skills(); dir.autosave(), 205.0)
+				b.custom_minimum_size = Vector2(205, 30)
+				b.add_theme_font_size_override("font_size", 14)
+				b.disabled = r < SKILLS.MOD_RANK
+				if chosen: b.add_theme_color_override("font_color", Color("ffe7a8"))
+				b.mouse_entered.connect(func(): _tip_text("[b]%s[/b]\n%s%s" % [m["name"], m["desc"], "" if r >= SKILLS.MOD_RANK else "\n[color=#a8977a]Available at rank %d[/color]" % SKILLS.MOD_RANK]))
+				b.mouse_exited.connect(func(): tip.visible = false)
+				mods.add_child(b)
+			col.add_child(mods)
+		var plus := _button("+", func():
+			var why: String = st.rank_up(id)
+			if why != "": toast(why, Color("ff7a6a"), 1.4, 18)
+			refresh_skills(); dir.autosave(), 44.0)
+		plus.custom_minimum_size = Vector2(44, 44)
+		plus.disabled = r == 0 or r >= SKILLS.MAX_RANK or st.skill_points <= 0
+		row.add_child(plus)
+		sk_box.add_child(card)
+	sk_panel.reset_size()
+	sk_panel.position = Vector2(40, 60)
+
+func _tip_text(bb: String) -> void:
+	tip_label.text = bb
+	tip.visible = true
+	tip.reset_size()
+	var m := root.get_viewport().get_mouse_position()
+	tip.position = Vector2(m.x + 18, clampf(m.y + 10, 8, root.get_viewport_rect().size.y - tip.size.y - 8))
+
 # ---------------- death / pause / epilogue ----------------
 
 func show_death() -> void:
@@ -435,7 +537,7 @@ func show_death() -> void:
 func toggle_pause() -> void:
 	if panel_kind == "pause": close_panel(); return
 	if panel_kind == "death": return
-	if panel != null or inv.visible: close_panel(); inv.visible = false; tip.visible = false; return
+	if panel != null or inv.visible or sk_panel.visible: close_panel(); inv.visible = false; sk_panel.visible = false; tip.visible = false; return
 	var v := _modal("pause", 420.0)
 	var t := _label("PAUSED", 34, GOLD)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

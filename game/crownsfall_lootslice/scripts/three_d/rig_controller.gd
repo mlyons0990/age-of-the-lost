@@ -345,7 +345,6 @@ func _prepare_pilot_knight_clips() -> void:
 		clip_names["Stroll"] = clip_names["Casual_Walk"]
 		for c in ["RunFast", "Casual_Walk"]:
 			animation.get_animation(clip_names[c]).loop_mode = Animation.LOOP_LINEAR
-	_setup_arm_carry()
 	if clip_names.has("Left_Slash"):
 		var trimmed := _trimmed(animation.get_animation(clip_names["Left_Slash"]), 0.0, PILOT_SLASH_END)
 		animation.get_animation_library("").add_animation("Pilot_Slash", trimmed)
@@ -360,6 +359,7 @@ func _prepare_pilot_knight_clips() -> void:
 			var cut := _trimmed(src, spec["t0"], minf(spec["t1"], src.length))
 			animation.get_animation_library("").add_animation("Mage_" + spell, cut)
 			clip_names["Mage_" + spell] = "Mage_" + spell
+	_prepare_weapon_moves()
 	var roll := animation.get_animation(clip_names["Roll_Dodge"])
 	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 	for t in roll.get_track_count():
@@ -370,6 +370,40 @@ func _prepare_pilot_knight_clips() -> void:
 		for k in roll.track_get_key_count(t):
 			var v: Vector3 = roll.track_get_key_value(t, k)
 			roll.track_set_key_value(t, k, Vector3(first.x, v.y, first.z))
+	# Last: the carry pose seeks the player, which caches the clip library; every clip edit and addition above
+	# must come first (a stale cache after later library changes crashed the engine on the next frame, 11-27).
+	_setup_arm_carry()
+
+## Class weapon attacks (ClassData.weapon_moves): trimmed copies named Move_<kind>, played instead of the shared
+## swing for that attack kind, with their own length and contact phase (like the Mage's spells).
+var weapon_moves := {}
+var default_slash := ""
+func _prepare_weapon_moves() -> void:
+	default_slash = String(clip_names.get("Slash", ""))
+	if class_data == null or class_data.get("weapon_moves") == null: return
+	var moves: Dictionary = class_data.weapon_moves
+	for kind in moves:
+		var spec: Dictionary = moves[kind]
+		if not clip_names.has(String(spec["clip"])): continue
+		var src := animation.get_animation(clip_names[String(spec["clip"])])
+		var cut := _trimmed(src, float(spec["t0"]), minf(float(spec["t1"]), src.length))
+		var sk_m := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+		_pin_hips(cut, sk_m.get_bone_rest(sk_m.find_bone("Hips")).origin)
+		animation.get_animation_library("").add_animation("Move_" + String(kind), cut)
+		clip_names["Move_" + String(kind)] = "Move_" + String(kind)
+		weapon_moves[String(kind)] = spec
+
+## Keep the hips' height (crouch / rise) but drop their horizontal travel: the controller moves the hero, so a
+## library clip's root motion would slide him off his spot and snap back when the attack ends.
+## Pinned to the rest position, not the clip's first key: some library clips have already stepped away by the
+## start of the used window.
+static func _pin_hips(anim: Animation, rest: Vector3) -> void:
+	for t in anim.get_track_count():
+		if anim.track_get_type(t) != Animation.TYPE_POSITION_3D or not String(anim.track_get_path(t)).ends_with(":Hips"):
+			continue
+		for k in anim.track_get_key_count(t):
+			var v: Vector3 = anim.track_get_key_value(t, k)
+			anim.track_set_key_value(t, k, Vector3(rest.x, v.y, rest.z))
 
 ## Carry pose = the arms of the Idle's first frame (sword raised ready in the right hand, shield on the left).
 func _setup_arm_carry() -> void:
@@ -409,6 +443,9 @@ func _play(clip: String) -> void:
 		elif clip == "Cast" and spell_variant != "" and String(clip_names[clip]).begins_with("Mage_"):
 			var spec: Dictionary = MAGE_SPELLS[spell_variant]
 			speed = (float(spec["t1"]) - float(spec["t0"])) / float(spec["time"])
+		elif clip == "Slash" and String(clip_names[clip]).begins_with("Move_") and weapon_moves.has(attack_type):
+			var mv: Dictionary = weapon_moves[attack_type]
+			speed = (minf(float(mv["t1"]), animation.get_animation(clip_names[clip]).length + float(mv["t0"])) - float(mv["t0"])) / float(mv["time"])
 		elif is_pilot_hero() and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
 			speed = PILOT_SLASH_END / PILOT_SLASH_TIME
 		elif is_pilot_hero() and PILOT_STRIDE_SPEED.has(clip):
@@ -517,8 +554,14 @@ func _attack(kind: String, duration: float) -> void:
 		return
 	if kind == "Cast" and not external_costs:
 		mana -= WARRIOR_CAST_COST
+	if kind != "Cast" and default_slash != "":
+		var want: String = ("Move_" + kind) if weapon_moves.has(kind) else default_slash
+		if clip_names.get("Slash", "") != want:
+			clip_names["Slash"] = want
+			anim_state = ""            # replay even if the last attack also used the "Slash" slot
 	if is_pilot_hero() and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
 		duration = PILOT_SLASH_TIME
+	if weapon_moves.has(kind): duration = float(weapon_moves[kind]["time"])
 	attack_serial += 1
 	attack_t = duration
 	attack_duration = duration
@@ -620,6 +663,8 @@ func _physics_process(delta: float) -> void:
 		var contact_phase := WEAPON_SWEEP.attack_contact_phase(attack_type)
 		if attack_type == "Cast" and spell_variant != "":
 			contact_phase = float(MAGE_SPELLS[spell_variant]["phase"])
+		elif weapon_moves.has(attack_type) and String(clip_names.get("Slash", "")).begins_with("Move_"):
+			contact_phase = float(weapon_moves[attack_type]["phase"])
 		var contact_due := (clip_phase >= contact_phase if clip_phase >= 0.0 else elapsed >= attack_duration * 0.85)
 		if not has_impacted and contact_due:
 			has_impacted = true

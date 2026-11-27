@@ -14,10 +14,14 @@ P=$A/props
 CLIPS="Idle=$K/knight_pilot.glb@Idle Walk=$K/knight_pilot.glb@Walk Run=$K/knight_pilot.glb@Run Cast=$K/knight_pilot.glb@Cast
   Slash=$K/knight_pilot.glb@Slash Left_Slash=$K/clip_left_slash.glb RunFast=$K/clip_run_fast.glb
   Casual_Walk=$K/clip_casual_walk.glb Roll_Dodge=$K/clip_roll_dodge.glb Dead=$K/clip_dead.glb"
-for c in rogue cleric; do
-  M=game/crownsfall_lootslice/models/higgsfield_$c
-  $B $T/merge_meshy_clips.py -- $A/${c}_rigged.glb $M/${c}_pilot.glb $A/${c}_pilot_source.blend $CLIPS
-done
+# class attack clips (paid library clips on each outfit's own rig, 2026-11-27): Rogue Double_Blade_Spin #91,
+# Cleric Heavy_Hammer_Swing #128 and Double_Combo_Attack #92 (weapon + shield)
+R=game/crownsfall_lootslice/models/higgsfield_rogue
+C=game/crownsfall_lootslice/models/higgsfield_cleric
+$B $T/merge_meshy_clips.py -- $A/rogue_rigged.glb $R/rogue_pilot.glb $A/rogue_pilot_source.blend $CLIPS \
+  Blade_Spin=$R/clip_double_blade_spin.glb
+$B $T/merge_meshy_clips.py -- $A/cleric_rigged.glb $C/cleric_pilot.glb $A/cleric_pilot_source.blend $CLIPS \
+  Hammer_Swing=$C/clip_heavy_hammer_swing.glb Double_Combo=$C/clip_double_combo.glb
 $B $T/attach_props_to_hero.py -- $A/rogue_pilot_source.blend game/crownsfall_lootslice/models/higgsfield_rogue/rogue_armed.glb $A/rogue_armed_source.blend \
   WEAPON_DaggerR=$P/rogue_dagger.glb@RightHand:aim=Idle/0/-1/-0.45 WEAPON_DaggerL=$P/rogue_dagger.glb@LeftHand:aim=Idle/0/-1/-0.45
 $B $T/attach_props_to_hero.py -- $A/cleric_pilot_source.blend game/crownsfall_lootslice/models/higgsfield_cleric/cleric_armed.glb $A/cleric_armed_source.blend \

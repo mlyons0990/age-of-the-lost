@@ -12,6 +12,10 @@ extends Resource
 @export var portrait: Texture2D                ## title-screen card art (existing painted sprite)
 @export var idle_sprite: Texture2D             ## 2D painted pose (existing), e.g. for NPC / UI use
 @export var radiant_spells := false            ## spell VFX layer (Mage)
+## Class weapon attacks: attack kind ("Slash", "Cleave", "Dash") -> {"clip": GLB animation, "t0", "t1": trim (s),
+## "time": played length (s), "phase": measured contact point in the trimmed clip}. Kinds not listed play the
+## shared library swing.
+@export var weapon_moves: Dictionary = {}
 @export_group("Start")
 @export_enum("weapon", "staff") var starter_weapon := "weapon"
 @export var skills: Array[SkillData] = []

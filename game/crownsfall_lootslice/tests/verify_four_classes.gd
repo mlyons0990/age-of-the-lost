@@ -96,6 +96,27 @@ func _run() -> void:
 		if cls == "rogue":
 			var pool: Array = load("res://scripts/systems.gd").drop_pool("rogue")
 			check(not "offhand" in pool, "rogue: no shields drop for the twin-dagger class")
+		# class weapon attacks: the basic attack (LMB) and Q play the class's own clip, hips stay planted
+		var expect: Dictionary = {"warrior": {"Slash": "Pilot_Slash"}, "rogue": {"Slash": "Move_Slash", "Cleave": "Move_Cleave"},
+			"cleric": {"Slash": "Move_Slash", "Cleave": "Move_Cleave"}}.get(cls, {})
+		for kind in expect:
+			p.global_position = lab.zone_px_to_world(5900, 1650) + Vector3.UP * 0.08; lab.zone_last_ok = p.global_position
+			await _clear_area()
+			var ms0 := _pack(1, 1.6)
+			_aim(ms0[0].global_position)
+			p.attack_t = 0.0; p.attack_cd = 0.0; p.dodge_t = 0.0
+			var hp_before: float = ms0[0].hp
+			p._attack(kind, 0.72)
+			var playing: String = p.animation.current_animation
+			var sk: Skeleton3D = p.find_children("*", "Skeleton3D", true, false)[0]
+			var drift := 0.0
+			var t := 0.0
+			while p.attack_t > 0.0 and t < 2.5:
+				await physics_frame; t += 1.0 / 60.0
+				var hips: Vector3 = (sk.global_transform * sk.get_bone_global_pose(sk.find_bone("Hips"))).origin
+				drift = maxf(drift, Vector2(hips.x - p.global_position.x, hips.z - p.global_position.z).length())
+			await physics_frame
+			check(playing == String(expect[kind]) and drift < 0.35, "%s: %s plays %s (hips drift %.2f m)" % [cls, kind, playing, drift])
 		if cls in ["rogue", "cleric"]:
 			st.add_xp(40000); st.unlock_skills(); g.apply_stats()
 			p.global_position = lab.zone_px_to_world(5900, 1650) + Vector3.UP * 0.08; lab.zone_last_ok = p.global_position

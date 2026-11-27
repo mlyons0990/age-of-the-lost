@@ -91,6 +91,12 @@ Each class is a ClassData resource (`data/classes/*.tres`, written by `tools/bui
 offers a class only when its 3D outfit exists. Class portraits are renders of the real 3D heroes
 (`tools/render_class_portraits.gd`). The Rogue's loot pool has no shields (the second dagger is its off-hand).
 
+**Class attacks (2026-11-27):** `ClassData.weapon_moves` gives a class its own clip per attack kind, trimmed and timed
+from measured hand-speed peaks (`tools/measure_clip.gd`), hips pinned to the rest spot (no root-motion slide):
+Rogue Twin Cut / Fan of Knives = Double_Blade_Spin; Cleric Smite = Heavy_Hammer_Swing, Radiant Sweep =
+Double_Combo_Attack (weapon + shield). The controller now reads the arm-carry pose only after every clip is added
+(an earlier order left a stale animation cache that crashed the engine once a rig had more new clips).
+
 ## Painted UI — added 2026-11-27
 
 Every game screen is built from one painted kit that matches the HUD (bronze filigree, slate):
@@ -123,7 +129,7 @@ LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T ski
 - Monsters are the original painted 2D enemy art standing in the 3D world (three types). Dedicated 3D monster models,
   more enemy types and a Hollowmere chapter are content work, not system work.
 - NPCs reuse the hero models (no dedicated NPC art yet).
-- Rogue and Cleric use the Knight's library clips (sword swing, cast); class-specific attack clips are a possible
-  later Higgsfield step (8 credits each, quoted first).
+- Dash, buffs and casts on the Rogue and Cleric still use the shared library clips; only their basic attack and
+  Q attack have class clips so far.
 - Skills reuse the heroes' existing animation clips (several skills share one); dedicated clips would come with
   more Higgsfield animation work (quoted first).

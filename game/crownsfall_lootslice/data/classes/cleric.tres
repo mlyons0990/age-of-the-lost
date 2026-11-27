@@ -33,6 +33,22 @@ description = "Mace and sun shield. Holy strikes that mend you, a shield of ligh
 hero_model = ExtResource("6_66e2q")
 portrait = ExtResource("7_j2xab")
 idle_sprite = ExtResource("7_j2xab")
+weapon_moves = {
+"Cleave": {
+"clip": "Double_Combo",
+"phase": 0.81,
+"t0": 0.2,
+"t1": 1.5,
+"time": 0.95
+},
+"Slash": {
+"clip": "Hammer_Swing",
+"phase": 0.87,
+"t0": 0.4,
+"t1": 1.87,
+"time": 0.85
+}
+}
 skills = Array[ExtResource("13_tr5ee")]([ExtResource("14_wcyu0"), ExtResource("15_v47og"), ExtResource("16_ml2tq"), ExtResource("17_sqb24"), ExtResource("18_u1htr"), ExtResource("19_qovfw")])
 weapon_visuals = Array[ExtResource("1_3dxyf")]([ExtResource("20_2jw5v"), ExtResource("21_qsust"), ExtResource("22_68s6t"), ExtResource("23_4w32o")])
 offhand_visuals = Array[ExtResource("1_3dxyf")]([ExtResource("8_s4nfr"), ExtResource("9_uk3ce"), ExtResource("10_sm2ul"), ExtResource("11_ooxnf")])

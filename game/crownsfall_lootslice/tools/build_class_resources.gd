@@ -15,12 +15,18 @@ const CLASSES := {
 		"desc": "Sword and shield. Close-quarters strikes, a sweeping cleave and a charging dash. Plate armour and a deep well of life."},
 	"rogue": {"file": "rogue", "name": "Rogue", "hero": "Aldric", "model": "res://models/higgsfield_rogue/rogue_armed.glb", "portrait": "res://assets/portraits/rogue.png",
 		"weapon_prefix": "WEAPON_", "offhand_prefix": "OFFHAND_",
+		# Double_Blade_Spin #91, measured hand-speed peaks: R 0.5 s, both 0.9 s, L 1.35 s, R 1.6 s
+		"moves": {"Slash": {"clip": "Blade_Spin", "t0": 0.25, "t1": 1.05, "time": 0.62, "phase": 0.81},
+				  "Cleave": {"clip": "Blade_Spin", "t0": 0.25, "t1": 1.9, "time": 1.0, "phase": 0.76}},
 		"desc": "Twin daggers and a hooded cloak. Fast cuts, thrown knives, a shadowstep and a storm of blades. Light leather, quick to kill and quick to vanish."},
 	"mage": {"file": "mage", "name": "Mage", "hero": "Maren", "model": "res://models/higgsfield_mage/mage_pilot_armed.glb", "portrait": "res://assets/portraits/mage.png",
 		"weapon_prefix": "MAGE_Staff", "offhand_prefix": "MAGE_Tome",
 		"desc": "Staff and spellbook. Fire and frost from afar, a blink, a ward and a falling star. Fragile, but devastating from range."},
 	"cleric": {"file": "cleric", "name": "Cleric", "hero": "Brother Aldric", "model": "res://models/higgsfield_cleric/cleric_armed.glb", "portrait": "res://assets/portraits/cleric.png",
 		"weapon_prefix": "WEAPON_", "offhand_prefix": "SHIELD_",
+		# Heavy_Hammer_Swing #128: raise 0.5-1.2 s, slam peak 1.6-1.68 s; Double_Combo_Attack #92: cuts at 0.7 and 1.25 s
+		"moves": {"Slash": {"clip": "Hammer_Swing", "t0": 0.4, "t1": 1.87, "time": 0.85, "phase": 0.87},
+				  "Cleave": {"clip": "Double_Combo", "t0": 0.2, "t1": 1.5, "time": 0.95, "phase": 0.81}},
 		"desc": "Mace and sun shield. Holy strikes that mend you, a shield of light, a prayer and pillars of dawn. Chainmail and steady healing."},
 }
 const SHAPE_KEYS := ["id", "name", "icon", "unlock", "anim", "shape", "cost", "cd", "desc", "mods", "basic"]
@@ -39,6 +45,7 @@ func _initialize() -> void:
 		var sprite: String = {"warrior": "res://assets/knight/idle_se.png", "mage": "res://assets/mage/idle_se.png"}.get(cls, C["portrait"])
 		cd.idle_sprite = load(sprite) if ResourceLoader.exists(sprite) else cd.portrait
 		cd.radiant_spells = cls == "mage"
+		cd.weapon_moves = C.get("moves", {})
 		cd.starter_weapon = "staff" if cls == "mage" else "weapon"
 		var skills: Array[SkillData] = []
 		for d in TABLE.DEFS[cls]:

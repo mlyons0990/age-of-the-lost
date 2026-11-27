@@ -33,6 +33,22 @@ description = "Twin daggers and a hooded cloak. Fast cuts, thrown knives, a shad
 hero_model = ExtResource("6_uoua5")
 portrait = ExtResource("7_sk7uj")
 idle_sprite = ExtResource("7_sk7uj")
+weapon_moves = {
+"Cleave": {
+"clip": "Blade_Spin",
+"phase": 0.76,
+"t0": 0.25,
+"t1": 1.9,
+"time": 1.0
+},
+"Slash": {
+"clip": "Blade_Spin",
+"phase": 0.81,
+"t0": 0.25,
+"t1": 1.05,
+"time": 0.62
+}
+}
 skills = Array[ExtResource("13_ivf2v")]([ExtResource("14_4xnjy"), ExtResource("15_fln0d"), ExtResource("16_jly0f"), ExtResource("17_4lq7h"), ExtResource("18_t0ne3"), ExtResource("19_vpr7q")])
 weapon_visuals = Array[ExtResource("1_0emij")]([ExtResource("20_1r5sd"), ExtResource("21_o48wn"), ExtResource("22_d2uyi"), ExtResource("23_ss458")])
 offhand_visuals = Array[ExtResource("1_0emij")]([ExtResource("8_wxxqm"), ExtResource("9_otxit"), ExtResource("10_rdxgb"), ExtResource("11_b82gf")])

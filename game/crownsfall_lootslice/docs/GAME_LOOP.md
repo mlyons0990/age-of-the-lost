@@ -95,9 +95,11 @@ offers a class only when its 3D outfit exists. Class portraits are renders of th
 
 Every game screen is built from one painted kit that matches the HUD (bronze filigree, slate):
 `assets/ui/kit` (cut by `tools/cut_ui_kit.py` from art/higgsfield_2026-11/ui_kit), helpers in `scripts/game/ui_skin.gd`.
-- **Hero window — I (Equipment) / C (Character):** a live 3D view of the hero in his gear in a shrine alcove,
-  painted slots with engraved emblems, bag cells; the Character tab has a portrait medallion, attributes, combat
-  stats, journey totals.
+- **Inventory — I (right):** a live 3D view of the hero in his gear in a shrine alcove, painted slots with engraved
+  emblems, quick stats, bag cells.
+- **Character — C (left, its own window; both can be open, as in PoE):** portrait medallion, name, level, experience
+  and skill points; six attribute plaques; the skills on the bar with ranks; Offense / Defence / Journey tabs (hit of the
+  primary attack, crit, damage reduction from armour at your level, regeneration, totals) from the game's own formulas.
 - **Skill tree — K:** tiers by unlock level on a carved slate, socket frames (locked / learned / mastered), rank
   pips, connectors; a detail pane with rank-up and the two upgrade plates.
 - **Esc:** pause menu → Options (Game: volume, combine move/attack, auto gold pickup · Display: fullscreen, vsync,

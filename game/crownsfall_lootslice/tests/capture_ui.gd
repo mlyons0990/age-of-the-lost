@@ -57,9 +57,13 @@ func _run() -> void:
 			await _shot(cls + "_tooltip")
 			g.ui.tip.visible = false
 		g.ui.toggle_character()
-		await _wait(0.3)
-		await _shot(cls + "_character")
-		g.ui.toggle_character()
+		await _wait(0.4)
+		await _shot(cls + "_character")          # character (left) + inventory (right) together
+		if cls == classes[0]:
+			for t in ["defence", "journey"]:
+				g.ui.char_tab = t; g.ui._build_character(); await _wait(0.2); await _shot(cls + "_character_" + t)
+			g.ui.char_tab = "offense"
+		g.ui.toggle_character(); g.ui.toggle_inventory()
 		g.ui.toggle_skills()
 		await _wait(0.3)
 		await _shot(cls + "_skills")

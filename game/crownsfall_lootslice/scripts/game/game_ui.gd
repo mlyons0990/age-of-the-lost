@@ -30,11 +30,11 @@ var boss_bar: Control
 var boss_ref = null
 var panel: Control = null          # the one open modal panel (dialogue / shop / pause / options / death / epilogue)
 var panel_kind := ""
-var inv: Control                   # hero window: Equipment + Character tabs (can be open with the shop)
-var inv_tab := "equipment"
+var inv: Control                   # Inventory window, right (I): live 3D hero, equipment slots, bag (open with the shop)
 var inv_draw: Control              # equipment slots + bag (drawn)
-var char_page: Control             # character sheet
-var tab_row: HBoxContainer
+var char_win: Control              # Character window, left (C): portrait, attributes, skills, Offense / Defence / Journey
+var char_page: Control             # its content
+var char_tab := "offense"
 var hover_item: Dictionary = {}
 var tip: PanelContainer
 var tip_label: RichTextLabel
@@ -162,10 +162,11 @@ func close_panel() -> void:
 
 ## True while a screen that takes the mouse is open (world clicks ignored).
 func blocking() -> bool:
-	return panel != null or inv.visible or (sk_panel != null and sk_panel.visible)
+	return panel != null or inv.visible or char_win.visible or (sk_panel != null and sk_panel.visible)
 
 func over_ui(m: Vector2) -> bool:
 	if inv.visible and Rect2(inv.position, inv.size).has_point(m): return true
+	if char_win.visible and Rect2(char_win.position, char_win.size).has_point(m): return true
 	if sk_panel != null and sk_panel.visible and Rect2(sk_panel.position, sk_panel.size).has_point(m): return true
 	if panel != null and is_instance_valid(panel):
 		for c in panel.get_children():
@@ -276,7 +277,8 @@ func open_vendor() -> void:
 				g += st.sell_value(it); st.remove_from_bag(String(it["uid"])); n += 1
 		st.gold += g; refresh.call(); inv_draw.queue_redraw(); toast("Sold %d items for %d gold" % [n, g], Color("f2d27a"), 1.8, 18); dir.autosave(), 440.0))
 	v.add_child(_button("Leave", func(): close_panel(); inv.visible = false; tip.visible = false, 440.0))
-	_show_inv("equipment")
+	char_win.visible = false
+	_show_inv()
 
 func shop_open() -> bool: return panel_kind == "shop"
 
@@ -289,38 +291,32 @@ const SLOT_ART := {"helm": "slot_helm", "amulet": "slot_amulet", "armor": "slot_
 	"weapon": "slot_weapon", "offhand": "slot_offhand", "belt": "slot_belt", "boots": "slot_boots", "ring2": "slot_ring"}
 
 func _build_inventory() -> void:
-	var w := SKIN.window("tall", "HERO")
+	var w := SKIN.window("tall", "INVENTORY")
 	inv = w["root"]
 	inv.visible = false
 	root.add_child(inv)
 	(w["close"] as TextureButton).pressed.connect(func(): inv.visible = false; tip.visible = false; if shop_open(): close_panel())
 	var content: Control = w["content"]
-	tab_row = HBoxContainer.new()
-	tab_row.add_theme_constant_override("separation", 8)
-	tab_row.alignment = BoxContainer.ALIGNMENT_CENTER
-	tab_row.size = Vector2(content.size.x, 46)
-	content.add_child(tab_row)
-	# equipment page
 	inv_draw = Control.new()
-	inv_draw.position = Vector2(0, 50)
-	inv_draw.size = Vector2(content.size.x, content.size.y - 50)
+	inv_draw.position = Vector2(0, 4)
+	inv_draw.size = Vector2(content.size.x, content.size.y - 4)
 	inv_draw.mouse_filter = Control.MOUSE_FILTER_STOP
 	inv_draw.draw.connect(_draw_inv)
 	inv_draw.gui_input.connect(_inv_input)
 	inv_draw.mouse_exited.connect(func(): tip.visible = false; hover_item = {})
 	content.add_child(inv_draw)
 	var cx := content.size.x * 0.5
-	doll_rect = Rect2(cx - 130, 6, 260, 300)
+	doll_rect = Rect2(cx - 140, 6, 280, 340)
 	_layout_slots(cx)
 	bag_origin = Vector2(cx - SYS.WIDTH * CELL * 0.5, inv_draw.size.y - SYS.HEIGHT * CELL - 2)
 	_build_doll()
-	# character page
-	char_page = Control.new()
-	char_page.position = Vector2(0, 50)
-	char_page.size = Vector2(content.size.x, content.size.y - 50)
-	char_page.mouse_filter = Control.MOUSE_FILTER_PASS
-	content.add_child(char_page)
-	_refresh_tabs()
+	# the character sheet is its own window on the left
+	var cw := SKIN.window("tall", "CHARACTER")
+	char_win = cw["root"]
+	char_win.visible = false
+	root.add_child(char_win)
+	(cw["close"] as TextureButton).pressed.connect(func(): char_win.visible = false; tip.visible = false)
+	char_page = cw["content"]
 
 func _layout_slots(cx: float) -> void:
 	var lx := doll_rect.position.x - 14 - SLOT
@@ -397,38 +393,34 @@ func _doll_update() -> void:
 	doll_cam.look_at(base + Vector3.UP * 0.98, Vector3.UP)
 
 func _process(_dt: float) -> void:
-	if inv != null and inv.visible and inv_tab == "equipment": _doll_update()
+	if inv != null and inv.visible: _doll_update()
 
-func _refresh_tabs() -> void:
-	_clear(tab_row)
-	for t in [["equipment", "Equipment"], ["character", "Character"]]:
-		var b := SKIN.tab(t[1], inv_tab == t[0], 190.0)
-		var id: String = t[0]
-		b.pressed.connect(func(): dir.play("click", -10.0); _show_inv(id))
-		tab_row.add_child(b)
-	inv_draw.visible = inv_tab == "equipment"
-	char_page.visible = inv_tab == "character"
-	if inv_tab == "character": _build_character()
-
-func _show_inv(tab: String) -> void:
-	inv_tab = tab
+## Inventory on the right (I), character sheet on the left (C); both can be open together.
+func _show_inv(_tab := "") -> void:
 	inv.visible = true
 	tip.visible = false
 	if sk_panel != null: sk_panel.visible = false
 	var vs := root.get_viewport_rect().size
 	inv.position = Vector2(vs.x - inv.size.x - 16, maxf(0.0, (vs.y - inv.size.y) * 0.5 - 20))
-	_refresh_tabs()
 	inv_draw.queue_redraw()
+
+func _show_char() -> void:
+	char_win.visible = true
+	tip.visible = false
+	if sk_panel != null: sk_panel.visible = false
+	var vs := root.get_viewport_rect().size
+	char_win.position = Vector2(16, maxf(0.0, (vs.y - char_win.size.y) * 0.5 - 20))
+	_build_character()
 
 func toggle_inventory() -> void:
 	if panel_kind == "shop": return
-	if inv.visible and inv_tab == "equipment": inv.visible = false; tip.visible = false; return
-	_show_inv("equipment")
+	if inv.visible: inv.visible = false; tip.visible = false; return
+	_show_inv()
 
 func toggle_character() -> void:
+	if char_win.visible: char_win.visible = false; tip.visible = false; return
 	if panel_kind == "shop": return
-	if inv.visible and inv_tab == "character": inv.visible = false; tip.visible = false; return
-	_show_inv("character")
+	_show_char()
 
 func _slot_layout() -> Dictionary:
 	return slot_rects
@@ -527,6 +519,7 @@ func _inv_input(e: InputEvent) -> void:
 		dir.autosave()
 		tip.visible = false
 		inv_draw.queue_redraw()
+		if char_win.visible: _build_character()
 
 func _show_tip(it: Dictionary, extra := "") -> void:
 	var col := _rarity_col(it).to_html(false)
@@ -537,22 +530,23 @@ func _show_tip(it: Dictionary, extra := "") -> void:
 	var m := root.get_viewport().get_mouse_position()
 	tip.position = Vector2(clampf(m.x - tip.size.x - 18, 8, 99999), clampf(m.y + 10, 8, root.get_viewport_rect().size.y - tip.size.y - 8))
 
-## Character sheet: portrait medallion, name, class, level and experience, attributes, combat and journey.
+## Character sheet (left window, C): portrait medallion, name, class, level and experience; six attribute plaques;
+## the skills on the bar; Offense / Defence / Journey tabs with every number the game uses.
 func _build_character() -> void:
 	_clear(char_page)
 	var st = dir.state
 	var cd: Resource = SKILLS.class_data(st.class_id)
 	var w := char_page.size.x
-	# portrait medallion: the class render, framed
+	# header: portrait medallion + name, class, experience
 	var med := Control.new()
-	med.position = Vector2(14, 4); med.size = Vector2(170, 170)
+	med.position = Vector2(8, 0); med.size = Vector2(150, 150)
 	med.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	char_page.add_child(med)
 	var face := TextureRect.new()
 	face.texture = cd.portrait
 	face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	face.position = Vector2(22, 22); face.size = Vector2(126, 126)
+	face.position = Vector2(19, 19); face.size = Vector2(112, 112)
 	var sm := ShaderMaterial.new()
 	sm.shader = _portrait_shader()
 	face.material = sm
@@ -563,68 +557,124 @@ func _build_character() -> void:
 	ring.stretch_mode = TextureRect.STRETCH_SCALE
 	ring.set_anchors_preset(Control.PRESET_FULL_RECT)
 	med.add_child(ring)
-	var nm := _label(String(st.hero_name), 30, GOLD)
-	nm.position = Vector2(200, 18)
+	var nm := _label(String(st.hero_name), 28, GOLD)
+	nm.position = Vector2(172, 8)
 	char_page.add_child(nm)
-	var sub := _label("Level %d %s" % [st.level, SKILLS.display_name(st.class_id)], 20, IVORY, false)
-	sub.position = Vector2(200, 60)
+	var sub := _label("Level %d %s" % [st.level, SKILLS.display_name(st.class_id)], 19, IVORY, false)
+	sub.position = Vector2(172, 46)
 	char_page.add_child(sub)
 	var xp := Control.new()
-	xp.position = Vector2(200, 100); xp.size = Vector2(w - 220, 26)
+	xp.position = Vector2(172, 82); xp.size = Vector2(w - 188, 24)
 	xp.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var frac: float = clampf(float(st.xp) / maxf(1.0, float(st.xp_need())), 0.0, 1.0)
 	xp.draw.connect(func():
 		xp.draw_texture_rect(SKIN.tex("slider_track"), Rect2(Vector2.ZERO, xp.size), false)
 		xp.draw_rect(Rect2(Vector2(10, 7), Vector2((xp.size.x - 20) * frac, xp.size.y - 14)), Color(0.55, 0.35, 0.9, 0.9)))
 	char_page.add_child(xp)
-	var xpl := _label("Experience %d / %d" % [st.xp, st.xp_need()], 15, MUTED, false)
-	xpl.position = Vector2(200, 130)
+	var xpl := _label("Experience %d / %d   ·   %d skill point%s" % [st.xp, st.xp_need(), st.skill_points, "" if st.skill_points == 1 else "s"], 14, MUTED, false)
+	xpl.position = Vector2(172, 110)
 	char_page.add_child(xpl)
-	var y := 184.0
-	var dv := SKIN.divider(w - 40); dv.position = Vector2(20, y); char_page.add_child(dv)
-	y += 26
+	# six attribute plaques
 	var s: Dictionary = st.stats()
 	var a: Dictionary = s["attributes"]
-	var col_w := (w - 40) / 2.0
-	var sections := [
-		["Attributes", [["Strength", "%d" % int(a["strength"])], ["Dexterity", "%d" % int(a["dexterity"])], ["Vitality", "%d" % int(a["vitality"])],
-			["Intelligence", "%d" % int(a["intelligence"])], ["Wisdom", "%d" % int(a["wisdom"])], ["Charisma", "%d" % int(a["charisma"])]]],
-		["Combat", [["Life", "%d" % int(s["max_hp"])], ["Mana", "%d" % int(s["max_mp"])], ["Damage", "%d" % int(s["dmg"])],
-			["Spell power", "%d" % int(s["spell_power"])], ["Armour", "%d" % int(s["armor"])], ["Critical chance", "%.1f%%" % (float(s["crit"]) * 100.0)],
-			["Mana regeneration", "%.1f / s" % float(s["mana_regen"])]]]]
-	var top := y
-	for k in sections.size():
-		var x := 20.0 + k * col_w
-		var yy := top
-		var h := _label(String(sections[k][0]).to_upper(), 17, GOLD); h.position = Vector2(x, yy); char_page.add_child(h)
-		yy += 30
-		for row in sections[k][1]:
-			var l := _label(String(row[0]), 16, MUTED, false); l.position = Vector2(x, yy); char_page.add_child(l)
-			var v := _label(String(row[1]), 16, IVORY); v.position = Vector2(x + col_w - 40 - 80, yy)
-			v.custom_minimum_size = Vector2(80, 0); v.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT; char_page.add_child(v)
-			yy += 25
-		y = maxf(y, yy)
-	y += 6
-	dv = SKIN.divider(w - 40); dv.position = Vector2(20, y); char_page.add_child(dv)
-	y += 26
-	var done := 0
-	for q in st.quests.values():
-		if String(q.get("state", "")) == "done": done += 1
-	var hj := _label("JOURNEY", 17, GOLD); hj.position = Vector2(20, y); char_page.add_child(hj)
-	y += 30
-	var journey := [["Time played", _hms(st.play_time)], ["Foes slain", "%d" % st.kills], ["Deaths", "%d" % st.deaths],
-		["Quests completed", "%d" % done], ["Gold", "%d" % st.gold], ["Potions", "%d health · %d mana" % [st.potions["health"], st.potions["mana"]]]]
-	for i in journey.size():
-		var x := 20.0 + (i % 2) * col_w
-		var yy := y + (i / 2) * 25
-		var l := _label(String(journey[i][0]), 16, MUTED, false); l.position = Vector2(x, yy); char_page.add_child(l)
-		var v := _label(String(journey[i][1]), 16, IVORY); v.position = Vector2(x + col_w - 40 - 160, yy)
-		v.custom_minimum_size = Vector2(160, 0); v.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT; char_page.add_child(v)
-	y += 3 * 25 + 10
-	var desc := _label(String(cd.description), 15, Color("cfc7b8"), false)
-	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	desc.position = Vector2(20, y); desc.custom_minimum_size = Vector2(w - 40, 0); desc.size = Vector2(w - 40, 0)
-	char_page.add_child(desc)
+	var attrs := [["Strength", "strength"], ["Dexterity", "dexterity"], ["Vitality", "vitality"], ["Intelligence", "intelligence"], ["Wisdom", "wisdom"], ["Charisma", "charisma"]]
+	var pw := (w - 16 - 2 * 10) / 3.0
+	for i in attrs.size():
+		var r := Rect2(8 + (i % 3) * (pw + 10), 160 + (i / 3) * 66, pw, 58)
+		var plate := PanelContainer.new()
+		plate.add_theme_stylebox_override("panel", SKIN.box("choice", Vector4(26, 18, 26, 18), Vector4(18, 4, 18, 4), false))
+		plate.position = r.position; plate.size = r.size; plate.custom_minimum_size = r.size
+		plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var hb := HBoxContainer.new()
+		hb.alignment = BoxContainer.ALIGNMENT_CENTER
+		hb.add_theme_constant_override("separation", 10)
+		var val := _label("%d" % int(a[attrs[i][1]]), 24, GOLD)
+		hb.add_child(val)
+		hb.add_child(_label(attrs[i][0], 15, IVORY, false))
+		plate.add_child(hb)
+		char_page.add_child(plate)
+	# the skills on the bar
+	var sy := 296.0
+	var sh := _label("SKILLS ON THE BAR", 15, GOLD); sh.position = Vector2(10, sy); char_page.add_child(sh)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 8)
+	row.position = Vector2(10, sy + 24)
+	char_page.add_child(row)
+	var keys := ["Q", "W", "E", "R", "T", "LMB", "MMB", "RMB"]
+	var shown := 0
+	for i in [5, 0, 1, 2, 3, 4, 7, 6]:
+		var id := String(st.bar[i]) if st.bar.size() == 8 else ""
+		var cell := TextureRect.new()
+		cell.texture = SKIN.tex("cell")
+		cell.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		cell.custom_minimum_size = Vector2(60, 60)
+		var d: Dictionary = SKILLS.def(st.class_id, id) if id != "" else {}
+		if not d.is_empty():
+			var ic := TextureRect.new()
+			ic.texture = d.get("icon_texture")
+			ic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			ic.position = Vector2(7, 7); ic.size = Vector2(46, 46)
+			ic.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			cell.add_child(ic)
+			var rk := _label("%d" % st.rank(id), 13, Color("ffe7a8")); rk.position = Vector2(44, 40); cell.add_child(rk)
+			cell.mouse_filter = Control.MOUSE_FILTER_STOP
+			cell.mouse_entered.connect(func(): _tip_text("[b]%s[/b]  ·  rank %d\n%s" % [d["name"], st.rank(id), d["desc"]]))
+			cell.mouse_exited.connect(func(): tip.visible = false)
+		var k := _label(keys[i], 11, MUTED, false); k.position = Vector2(5, 2); cell.add_child(k)
+		row.add_child(cell)
+		shown += 1
+	# Offense / Defence / Journey
+	var tabs := HBoxContainer.new()
+	tabs.add_theme_constant_override("separation", 6)
+	tabs.alignment = BoxContainer.ALIGNMENT_CENTER
+	tabs.position = Vector2(0, sy + 98); tabs.size = Vector2(w, 46)
+	for t in [["offense", "Offense"], ["defence", "Defence"], ["journey", "Journey"]]:
+		var b := SKIN.tab(t[1], char_tab == t[0], 176.0)
+		var tid: String = t[0]
+		b.pressed.connect(func(): dir.play("click", -10.0); char_tab = tid; _build_character())
+		tabs.add_child(b)
+	char_page.add_child(tabs)
+	var rows := _char_rows(st, s)
+	var ly := sy + 152
+	for i in rows.size():
+		var stripe := ColorRect.new()
+		stripe.color = Color(1, 0.9, 0.7, 0.045) if i % 2 == 0 else Color(0, 0, 0, 0.12)
+		stripe.position = Vector2(8, ly - 2); stripe.size = Vector2(w - 16, 28)
+		stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		char_page.add_child(stripe)
+		var l := _label(String(rows[i][0]), 16, MUTED, false); l.position = Vector2(18, ly); char_page.add_child(l)
+		var v := _label(String(rows[i][1]), 16, IVORY); v.position = Vector2(w - 18 - 240, ly)
+		v.custom_minimum_size = Vector2(240, 0); v.size = Vector2(240, 24); v.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		char_page.add_child(v)
+		ly += 28
+
+## The rows of the selected character tab, from the same formulas the game uses (stats, armour, skills).
+func _char_rows(st, s: Dictionary) -> Array:
+	var lvl := int(st.level)
+	match char_tab:
+		"defence":
+			var armor: float = float(s["armor"])
+			var dr: float = armor / (armor + 10.0 * lvl + 40.0)
+			return [["Life", "%d" % int(s["max_hp"])], ["Mana", "%d" % int(s["max_mp"])], ["Armour", "%d" % int(armor)],
+				["Damage reduction (your level)", "%.1f%%" % (dr * 100.0)], ["Mana regeneration", "%.1f / s" % float(s["mana_regen"])],
+				["Health potions", "%d" % int(st.potions["health"])], ["Mana potions", "%d" % int(st.potions["mana"])], ["Deaths", "%d" % int(st.deaths)]]
+		"journey":
+			var done := 0
+			for q in st.quests.values():
+				if String(q.get("state", "")) == "done": done += 1
+			return [["Time played", _hms(st.play_time)], ["Foes slain", "%d" % int(st.kills)], ["Quests completed", "%d" % done],
+				["Gold", "%d" % int(st.gold)], ["Items in the bag", "%d" % st.bag.size()], ["Zone", String(st.zone).capitalize()],
+				["Unspent skill points", "%d" % int(st.skill_points)], ["Class", SKILLS.display_name(st.class_id)]]
+		_:
+			var basic := String(st.bar[5]) if st.bar.size() == 8 else ""
+			var bd: Dictionary = SKILLS.def(st.class_id, basic) if basic != "" else {}
+			var power: float = float(s["spell_power"]) * 1.9 if st.class_id == "mage" else float(s["dmg"]) * 1.8
+			var hit := "—"
+			if not bd.is_empty(): hit = "%d  (%s)" % [int(round(power * float(bd.get("dmg", 1.0)) * SKILLS.damage_mult(st.rank(basic)))), bd["name"]]
+			return [["Weapon damage", "%d" % int(s["dmg"])], ["Spell power", "%d" % int(s["spell_power"])],
+				["Primary attack hit", hit], ["Critical chance", "%.1f%%" % (float(s["crit"]) * 100.0)], ["Critical damage", "160%"],
+				["Skill damage per rank", "+%d%%" % int(round(SKILLS.RANK_DMG * 100.0))], ["Strength bonus", "+%.1f%% damage" % (0.8 * float(s["attributes"]["strength"]))],
+				["Intelligence bonus", "+%.1f%% spells" % ((1.8 if st.class_id == "mage" else 0.6) * float(s["attributes"]["intelligence"]))]]
 
 var _portrait_sh: Shader
 ## Circle-masked portrait, upper body (the render is full length): sample the top third, centred on the head.
@@ -683,6 +733,7 @@ func toggle_skills() -> void:
 	sk_panel.visible = not sk_panel.visible
 	if sk_panel.visible:
 		inv.visible = false
+		char_win.visible = false
 		var vs := root.get_viewport_rect().size
 		sk_panel.position = ((vs - sk_panel.size) * 0.5).floor() - Vector2(0, 40)
 		refresh_skills()
@@ -855,6 +906,7 @@ func _tip_text(bb: String) -> void:
 
 func show_death() -> void:
 	inv.visible = false
+	char_win.visible = false
 	sk_panel.visible = false
 	var v := _modal("death", 600.0)
 	var t := _label("YOU HAVE FALLEN", 40, Color("d8463a"))
@@ -870,7 +922,7 @@ func show_death() -> void:
 func toggle_pause() -> void:
 	if panel_kind in ["pause", "options"]: close_panel(); return
 	if panel_kind == "death": return
-	if panel != null or inv.visible or sk_panel.visible: close_panel(); inv.visible = false; sk_panel.visible = false; tip.visible = false; return
+	if panel != null or inv.visible or char_win.visible or sk_panel.visible: close_panel(); inv.visible = false; char_win.visible = false; sk_panel.visible = false; tip.visible = false; return
 	_open_pause()
 
 func _open_pause() -> void:

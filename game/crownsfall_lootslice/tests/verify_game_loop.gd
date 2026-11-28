@@ -63,6 +63,9 @@ func _run() -> void:
 	check(lab.game_state.quest_state("city_reborn") == "active" and lab.hud.quest_box.get_child_count() == 2, "First quest active and on the tracker")
 	await _wait(0.6)
 	await _shot("town")
+	# painted 2D NPCs (owner: static NPCs are 2D)
+	var painted: Array = g.npcs.filter(func(n): return n.get("sprite") != null and n["sprite"] is Sprite3D)
+	check(painted.size() == 2, "Captain Ralden and Quartermaster Ysolde are painted 2D sprites (%d)" % painted.size())
 	# talk to Ralden by clicking him
 	var ral: Dictionary = g.npcs[0]
 	lab.player.global_position = ral["pos"] + Vector3(1.0, 0.08, 1.0); lab.zone_last_ok = lab.player.global_position
@@ -71,8 +74,13 @@ func _run() -> void:
 	lab.handle_click(sp)
 	await process_frame
 	check(g.ui.panel_kind == "dialogue", "Clicking Captain Ralden opens his dialogue")
+	await process_frame
+	check(ral["sprite"].texture == ral["art"]["talk"], "Ralden switches to his talking pose")
+	check(g.ui.panel.find_children("*", "TextureRect", true, false).any(func(t): return t.texture == ral["art"]["portrait"]), "His portrait is in the dialogue")
 	await _shot("dialogue")
 	g.ui.close_panel(); g.complete_quest("city_reborn")
+	await process_frame; await process_frame
+	check(ral["sprite"].texture == ral["art"]["idle"], "Ralden returns to his idle pose after the talk")
 	check(lab.game_state.quest_state("lost_tomes") == "active", "Accepting gives The Lost Tomes")
 	check(g.quest_view()[0]["markers"].size() == 3, "Three page objectives on the map")
 	# shop

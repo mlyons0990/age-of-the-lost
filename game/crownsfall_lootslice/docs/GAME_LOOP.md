@@ -131,7 +131,9 @@ LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T ski
   wind-up during the red telegraph, strike right after the blow, a hit flinch, and a death pose that holds before
   the fade; code motion (bob, lean, lunge, flashes) plays on top. Tests: `tests/verify_enemy_poses.gd` (24 checks).
   More enemy types and a Hollowmere chapter are content work, not system work.
-- NPCs reuse the hero models (no dedicated NPC art yet).
+- NPCs are painted 2D sprites (owner: static NPCs are 2D): Captain Ralden and Quartermaster Ysolde, idle and talking
+  poses (`assets/npcs`, cut by `tools/cut_npc_art.py`), facing the hero; their portraits sit in the dialogue and the
+  shop. An NPC without art falls back to a stand-in hero model.
 - Dash, buffs and casts on the Rogue and Cleric still use the shared library clips; only their basic attack and
   Q attack have class clips so far.
 - Skills reuse the heroes' existing animation clips (several skills share one); dedicated clips would come with

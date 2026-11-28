@@ -33,15 +33,17 @@ for npc in ["ralden", "quartermaster"]:
     k = IDLE_PX / idle.height
     for name, im in (("idle", idle), ("talk", talk)):
         im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS).save(os.path.join(OUT, "%s_%s.png" % (npc, name)))
-    # portrait: square of 36% of the figure height, centred on the head (mean x of the top 12% of opaque pixels)
+    # portrait: a square of 23% of the figure height centred on the head (the head is the top ~13% of the figure:
+    # centre x = mean x of its opaque pixels, centre y = 7.5% of the height), so the round medallion frames the face
     a = np.array(idle)[:, :, 3] > 40
     h = idle.height
-    ys, xs = np.where(a[: int(h * 0.12)])
+    ys, xs = np.where(a[: int(h * 0.13)])
     cx = int(xs.mean()) if len(xs) else idle.width // 2
-    side = int(h * 0.36)
-    left = max(0, min(idle.width - side, cx - side // 2)) if idle.width >= side else 0
-    box = (left, 0, left + side, side)
+    cy = int(h * 0.075)
+    side = int(h * 0.23)
+    box = (cx - side // 2, cy - int(side * 0.45), cx - side // 2 + side, cy - int(side * 0.45) + side)
     por = Image.new("RGBA", (side, side), (0, 0, 0, 0))
-    por.alpha_composite(idle.crop(box))
+    src = idle.crop((max(0, box[0]), max(0, box[1]), min(idle.width, box[2]), min(h, box[3])))
+    por.alpha_composite(src, (max(0, -box[0]), max(0, -box[1])))
     por.resize((384, 384), Image.LANCZOS).save(os.path.join(OUT, "%s_portrait.png" % npc))
     print(npc, "idle", idle.size, "talk", talk.size, "portrait box", box)

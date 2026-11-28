@@ -1,0 +1,491 @@
+{
+ "kit": "crownsfall",
+ "source": "Higgsfield A1 (2026-11-28), GPT Image 2.6 high, transparent",
+ "pieces": [
+  {
+   "id": "bld_archive_hall",
+   "kind": "building",
+   "file": "bld_archive_hall.png",
+   "size": [
+    933,
+    859
+   ]
+  },
+  {
+   "id": "bld_citizen_home",
+   "kind": "building",
+   "file": "bld_citizen_home.png",
+   "size": [
+    784,
+    882
+   ]
+  },
+  {
+   "id": "bld_guard_barracks",
+   "kind": "building",
+   "file": "bld_guard_barracks.png",
+   "size": [
+    1002,
+    664
+   ]
+  },
+  {
+   "id": "bld_merchant_guild",
+   "kind": "building",
+   "file": "bld_merchant_guild.png",
+   "size": [
+    970,
+    885
+   ]
+  },
+  {
+   "id": "bld_royal_manor",
+   "kind": "building",
+   "file": "bld_royal_manor.png",
+   "size": [
+    959,
+    935
+   ]
+  },
+  {
+   "id": "bld_temple_sanctum",
+   "kind": "building",
+   "file": "bld_temple_sanctum.png",
+   "size": [
+    910,
+    995
+   ]
+  },
+  {
+   "id": "hydrangea_blue",
+   "kind": "foliage",
+   "sheet": "foliage_decor",
+   "file": "hydrangea_blue.png",
+   "size": [
+    288,
+    229
+   ]
+  },
+  {
+   "id": "flower_white",
+   "kind": "foliage",
+   "sheet": "foliage_decor",
+   "file": "flower_white.png",
+   "size": [
+    289,
+    248
+   ]
+  },
+  {
+   "id": "wisteria_hang",
+   "kind": "foliage",
+   "sheet": "foliage_decor",
+   "file": "wisteria_hang.png",
+   "size": [
+    319,
+    298
+   ]
+  },
+  {
+   "id": "ivy_hang",
+   "kind": "foliage",
+   "sheet": "foliage_decor",
+   "file": "ivy_hang.png",
+   "size": [
+    293,
+    329
+   ]
+  },
+  {
+   "id": "lavender",
+   "kind": "foliage",
+   "sheet": "foliage_decor",
+   "file": "lavender.png",
+   "size": [
+    306,
+    258
+   ]
+  },
+  {
+   "id": "flower_basket",
+   "kind": "foliage",
+   "sheet": "foliage_decor",
+   "file": "flower_basket.png",
+   "size": [
+    325,
+    283
+   ]
+  },
+  {
+   "id": "tree_green",
+   "kind": "foliage",
+   "sheet": "foliage_trees",
+   "file": "tree_green.png",
+   "size": [
+    339,
+    383
+   ]
+  },
+  {
+   "id": "tree_blossom",
+   "kind": "foliage",
+   "sheet": "foliage_trees",
+   "file": "tree_blossom.png",
+   "size": [
+    328,
+    358
+   ]
+  },
+  {
+   "id": "tree_amber",
+   "kind": "foliage",
+   "sheet": "foliage_trees",
+   "file": "tree_amber.png",
+   "size": [
+    310,
+    357
+   ]
+  },
+  {
+   "id": "hydrangea_bush",
+   "kind": "foliage",
+   "sheet": "foliage_trees",
+   "file": "hydrangea_bush.png",
+   "size": [
+    215,
+    183
+   ]
+  },
+  {
+   "id": "topiary_urn",
+   "kind": "foliage",
+   "sheet": "foliage_trees",
+   "file": "topiary_urn.png",
+   "size": [
+    145,
+    273
+   ]
+  },
+  {
+   "id": "sapling",
+   "kind": "foliage",
+   "sheet": "foliage_trees",
+   "file": "sapling.png",
+   "size": [
+    176,
+    257
+   ]
+  },
+  {
+   "id": "lm_arch_a",
+   "kind": "landmark",
+   "file": "lm_arch_a.png",
+   "size": [
+    846,
+    916
+   ]
+  },
+  {
+   "id": "lm_arch_b",
+   "kind": "landmark",
+   "file": "lm_arch_b.png",
+   "size": [
+    895,
+    946
+   ]
+  },
+  {
+   "id": "lm_fountain_a",
+   "kind": "landmark",
+   "file": "lm_fountain_a.png",
+   "size": [
+    931,
+    870
+   ]
+  },
+  {
+   "id": "lm_fountain_b",
+   "kind": "landmark",
+   "file": "lm_fountain_b.png",
+   "size": [
+    876,
+    977
+   ]
+  },
+  {
+   "id": "lm_fountain_c",
+   "kind": "landmark",
+   "file": "lm_fountain_c.png",
+   "size": [
+    737,
+    960
+   ]
+  },
+  {
+   "id": "lm_gazebo_a",
+   "kind": "landmark",
+   "file": "lm_gazebo_a.png",
+   "size": [
+    716,
+    972
+   ]
+  },
+  {
+   "id": "lm_gazebo_b",
+   "kind": "landmark",
+   "file": "lm_gazebo_b.png",
+   "size": [
+    829,
+    964
+   ]
+  },
+  {
+   "id": "lm_statue_a",
+   "kind": "landmark",
+   "file": "lm_statue_a.png",
+   "size": [
+    597,
+    965
+   ]
+  },
+  {
+   "id": "lm_statue_b",
+   "kind": "landmark",
+   "file": "lm_statue_b.png",
+   "size": [
+    726,
+    916
+   ]
+  },
+  {
+   "id": "wall_banner_wisteria",
+   "kind": "prop",
+   "sheet": "props_decor",
+   "file": "wall_banner_wisteria.png",
+   "size": [
+    281,
+    324
+   ]
+  },
+  {
+   "id": "banner_standard",
+   "kind": "prop",
+   "sheet": "props_decor",
+   "file": "banner_standard.png",
+   "size": [
+    184,
+    345
+   ]
+  },
+  {
+   "id": "crates_wisteria",
+   "kind": "prop",
+   "sheet": "props_decor",
+   "file": "crates_wisteria.png",
+   "size": [
+    304,
+    300
+   ]
+  },
+  {
+   "id": "flower_barrel",
+   "kind": "prop",
+   "sheet": "props_decor",
+   "file": "flower_barrel.png",
+   "size": [
+    249,
+    301
+   ]
+  },
+  {
+   "id": "apple_basket",
+   "kind": "prop",
+   "sheet": "props_decor",
+   "file": "apple_basket.png",
+   "size": [
+    279,
+    264
+   ]
+  },
+  {
+   "id": "book_crates",
+   "kind": "prop",
+   "sheet": "props_decor",
+   "file": "book_crates.png",
+   "size": [
+    307,
+    292
+   ]
+  },
+  {
+   "id": "market_stall_fruit",
+   "kind": "prop",
+   "sheet": "props_market",
+   "file": "market_stall_fruit.png",
+   "size": [
+    464,
+    371
+   ]
+  },
+  {
+   "id": "market_stall_cloth",
+   "kind": "prop",
+   "sheet": "props_market",
+   "file": "market_stall_cloth.png",
+   "size": [
+    336,
+    329
+   ]
+  },
+  {
+   "id": "covered_wagon",
+   "kind": "prop",
+   "sheet": "props_market",
+   "file": "covered_wagon.png",
+   "size": [
+    365,
+    292
+   ]
+  },
+  {
+   "id": "crate_stack",
+   "kind": "prop",
+   "sheet": "props_market",
+   "file": "crate_stack.png",
+   "size": [
+    264,
+    264
+   ]
+  },
+  {
+   "id": "barrels_sacks",
+   "kind": "prop",
+   "sheet": "props_market",
+   "file": "barrels_sacks.png",
+   "size": [
+    257,
+    251
+   ]
+  },
+  {
+   "id": "balustrade_straight",
+   "kind": "prop",
+   "sheet": "props_stone",
+   "file": "balustrade_straight.png",
+   "size": [
+    356,
+    242
+   ]
+  },
+  {
+   "id": "balustrade_corner",
+   "kind": "prop",
+   "sheet": "props_stone",
+   "file": "balustrade_corner.png",
+   "size": [
+    339,
+    270
+   ]
+  },
+  {
+   "id": "pillar_post",
+   "kind": "prop",
+   "sheet": "props_stone",
+   "file": "pillar_post.png",
+   "size": [
+    161,
+    318
+   ]
+  },
+  {
+   "id": "stone_urn",
+   "kind": "prop",
+   "sheet": "props_stone",
+   "file": "stone_urn.png",
+   "size": [
+    200,
+    313
+   ]
+  },
+  {
+   "id": "flower_planter",
+   "kind": "prop",
+   "sheet": "props_stone",
+   "file": "flower_planter.png",
+   "size": [
+    387,
+    272
+   ]
+  },
+  {
+   "id": "flower_pedestal",
+   "kind": "prop",
+   "sheet": "props_stone",
+   "file": "flower_pedestal.png",
+   "size": [
+    195,
+    287
+   ]
+  },
+  {
+   "id": "lamppost_double",
+   "kind": "prop",
+   "sheet": "props_street",
+   "file": "lamppost_double.png",
+   "size": [
+    192,
+    317
+   ]
+  },
+  {
+   "id": "lamppost_single",
+   "kind": "prop",
+   "sheet": "props_street",
+   "file": "lamppost_single.png",
+   "size": [
+    134,
+    319
+   ]
+  },
+  {
+   "id": "banner_bracket",
+   "kind": "prop",
+   "sheet": "props_street",
+   "file": "banner_bracket.png",
+   "size": [
+    227,
+    290
+   ]
+  },
+  {
+   "id": "banner_pole",
+   "kind": "prop",
+   "sheet": "props_street",
+   "file": "banner_pole.png",
+   "size": [
+    142,
+    355
+   ]
+  },
+  {
+   "id": "bench",
+   "kind": "prop",
+   "sheet": "props_street",
+   "file": "bench.png",
+   "size": [
+    293,
+    205
+   ]
+  },
+  {
+   "id": "notice_board",
+   "kind": "prop",
+   "sheet": "props_street",
+   "file": "notice_board.png",
+   "size": [
+    280,
+    331
+   ]
+  }
+ ]
+}

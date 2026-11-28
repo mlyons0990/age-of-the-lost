@@ -241,15 +241,30 @@ func _spawn_npcs(zid: String) -> void:
 		lab.add_child(node)
 		var at: Vector3 = lab.zone_px_to_world(float(d["at"][0]), float(d["at"][1]))
 		node.global_position = at
-		var packed: PackedScene = load(NPC_MODELS[d["model"]])
-		var body: Node3D = packed.instantiate()
-		body.rotation.y = PI + 0.5
-		node.add_child(body)
-		var ap: AnimationPlayer = body.find_child("AnimationPlayer", true, false)
-		if ap != null:
-			for a in ap.get_animation_list():
-				if String(a).ends_with("Idle"):
-					ap.get_animation(a).loop_mode = Animation.LOOP_LINEAR; ap.play(a); break
+		var art := _npc_art(String(d["id"]))
+		var sprite: Sprite3D = null
+		if not art.is_empty():
+			# painted 2D NPC (owner: static NPCs are 2D), like the enemies: upright, standing on its feet
+			sprite = Sprite3D.new()
+			sprite.texture = art["idle"]
+			sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+			sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+			sprite.shaded = false
+			sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+			sprite.pixel_size = NPC_HEIGHT_M / float((art["idle"] as Texture2D).get_height())
+			sprite.offset = Vector2(0, (art["idle"] as Texture2D).get_height() * 0.5)
+			sprite.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			node.add_child(sprite)
+		else:
+			var packed: PackedScene = load(NPC_MODELS[d["model"]])
+			var body: Node3D = packed.instantiate()
+			body.rotation.y = PI + 0.5
+			node.add_child(body)
+			var ap: AnimationPlayer = body.find_child("AnimationPlayer", true, false)
+			if ap != null:
+				for a in ap.get_animation_list():
+					if String(a).ends_with("Idle"):
+						ap.get_animation(a).loop_mode = Animation.LOOP_LINEAR; ap.play(a); break
 		var lbl := Label3D.new()
 		lbl.text = String(d["name"])
 		lbl.font = load("res://assets/fonts/LiberationSerif-Bold.ttf")
@@ -264,7 +279,38 @@ func _spawn_npcs(zid: String) -> void:
 		mark.billboard = BaseMaterial3D.BILLBOARD_ENABLED; mark.no_depth_test = true; mark.render_priority = 8
 		mark.position = Vector3(0, 2.95, 0)
 		node.add_child(mark)
-		npcs.append({"id": d["id"], "name": d["name"], "node": node, "pos": at, "mark": mark})
+		npcs.append({"id": d["id"], "name": d["name"], "node": node, "pos": at, "mark": mark, "sprite": sprite, "art": art})
+
+## Painted NPC art (assets/npcs/<id>_idle.png, _talk.png, _portrait.png; tools/cut_npc_art.py): {} until it exists,
+## and the NPC keeps its stand-in 3D model.
+const NPC_HEIGHT_M := 1.9
+func _npc_art(id: String) -> Dictionary:
+	var out := {}
+	for k in ["idle", "talk", "portrait"]:
+		var path := "res://assets/npcs/%s_%s.png" % [id, k]
+		if not ResourceLoader.exists(path): return {}
+		out[k] = load(path)
+	return out
+
+func npc_portrait(id: String) -> Texture2D:
+	var a := _npc_art(id)
+	return a.get("portrait")
+
+var talking_npc := ""
+## Talking pose while the hero is in that NPC's dialogue or shop; both face the hero.
+func _update_npc_poses() -> void:
+	var hp: Vector3 = lab.player.global_position
+	if talking_npc != "" and not ui.panel_kind in ["dialogue", "shop"]: talking_npc = ""
+	for n in npcs:
+		var sp = n.get("sprite")
+		if sp == null or not is_instance_valid(sp): continue
+		var art: Dictionary = n["art"]
+		var want: Texture2D = art["talk"] if String(n["id"]) == talking_npc else art["idle"]
+		if sp.texture != want:
+			sp.texture = want
+			sp.offset = Vector2(0, want.get_height() * 0.5)
+		var dx: float = hp.x - (n["node"] as Node3D).global_position.x
+		if absf(dx) > 0.3: sp.flip_h = dx < 0.0
 
 func _update_npc_marks() -> void:
 	for n in npcs:
@@ -416,21 +462,22 @@ func quest_def(id: String) -> Dictionary:
 
 func talk(npc_id: String) -> void:
 	play("click", -8.0)
+	talking_npc = npc_id
 	if npc_id == "quartermaster":
 		ui.open_vendor()
 		return
 	var q := npc_quest(npc_id)
 	if q.is_empty():
-		ui.dialogue("Captain Ralden", ["Crownsfall owes you a debt, Wayfarer. Hollowmere will call for you soon."], [["Farewell", Callable()]])
+		ui.dialogue("Captain Ralden", ["Crownsfall owes you a debt, Wayfarer. Hollowmere will call for you soon."], [["Farewell", Callable()]], npc_portrait(npc_id))
 		return
 	var st: String = state.quest_state(String(q["id"]))
 	var lines: Array = q.get("talk", {}).get(st, ["Captain Ralden", "..."])
 	if q["id"] == "city_reborn":
-		ui.dialogue(lines[0], lines.slice(1), [["I will bring them back.", func(): complete_quest("city_reborn")]])
+		ui.dialogue(lines[0], lines.slice(1), [["I will bring them back.", func(): complete_quest("city_reborn")]], npc_portrait(npc_id))
 	elif st == "ready":
-		ui.dialogue(lines[0], lines.slice(1), [["Claim your reward", func(): complete_quest(String(q["id"]))]])
+		ui.dialogue(lines[0], lines.slice(1), [["Claim your reward", func(): complete_quest(String(q["id"]))]], npc_portrait(npc_id))
 	else:
-		ui.dialogue(lines[0], lines.slice(1), [["On my way.", Callable()]])
+		ui.dialogue(lines[0], lines.slice(1), [["On my way.", Callable()]], npc_portrait(npc_id))
 
 func complete_quest(id: String) -> void:
 	var q := quest_def(id)
@@ -761,6 +808,7 @@ func _process(delta: float) -> void:
 		var reach := 2.2 if pending["kind"] == "npc" else 1.2
 		if Vector2(p.x - hp.x, p.z - hp.z).length() < reach: _arrive_pending()
 		elif lab.player.move_target == Vector3.INF and lab.zone_route.is_empty(): pending = {}
+	_update_npc_poses()
 	if quest_dirty:
 		quest_dirty = false
 		_update_npc_marks()

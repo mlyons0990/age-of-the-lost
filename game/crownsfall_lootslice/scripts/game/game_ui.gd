@@ -216,21 +216,66 @@ func _draw_boss() -> void:
 
 # ---------------- dialogue ----------------
 
-func dialogue(speaker: String, lines: Array, options: Array) -> void:
-	var v := _modal("dialogue", 820.0)
+## NPC dialogue; with a portrait (painted NPC bust) it sits in a medallion beside the text.
+func dialogue(speaker: String, lines: Array, options: Array, portrait: Texture2D = null) -> void:
+	var outer := _modal("dialogue", 900.0 if portrait != null else 820.0)
+	var v := outer
+	if portrait != null:
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 20)
+		outer.add_child(row)
+		row.add_child(_medallion(portrait, 150.0))
+		v = VBoxContainer.new()
+		v.add_theme_constant_override("separation", 10)
+		row.add_child(v)
 	v.add_child(_label(speaker, 26, GOLD))
 	for l in lines:
 		var t := _label(String(l), 19, IVORY, false)
 		t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		t.custom_minimum_size = Vector2(700, 0)
+		t.custom_minimum_size = Vector2(700 if portrait == null else 640, 0)
 		v.add_child(t)
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_END
 	row.add_theme_constant_override("separation", 10)
-	v.add_child(row)
+	outer.add_child(row)
 	for o in options:
 		var cb: Callable = o[1]
 		row.add_child(_button(String(o[0]), func(): close_panel(); if cb.is_valid(): cb.call(), 270.0))
+
+## A portrait in the bronze medallion (NPC busts are square crops; no shader needed).
+func _medallion(tex: Texture2D, sz: float) -> Control:
+	var med := Control.new()
+	med.custom_minimum_size = Vector2(sz, sz)
+	med.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var face := TextureRect.new()
+	face.texture = tex
+	face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	face.position = Vector2(sz * 0.13, sz * 0.13); face.size = Vector2(sz * 0.74, sz * 0.74)
+	var sm := ShaderMaterial.new()
+	sm.shader = _circle_shader()
+	face.material = sm
+	med.add_child(face)
+	var ring := TextureRect.new()
+	ring.texture = SKIN.tex("medallion")
+	ring.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	ring.stretch_mode = TextureRect.STRETCH_SCALE
+	ring.position = Vector2.ZERO; ring.size = Vector2(sz, sz)
+	med.add_child(ring)
+	return med
+
+var _circle_sh: Shader
+func _circle_shader() -> Shader:
+	if _circle_sh == null:
+		_circle_sh = Shader.new()
+		_circle_sh.code = """shader_type canvas_item;
+void fragment() {
+	vec4 c = texture(TEXTURE, UV);
+	float d = distance(UV, vec2(0.5));
+	vec3 bg = mix(vec3(0.16, 0.13, 0.11), vec3(0.05, 0.045, 0.04), d * 2.0);
+	COLOR = vec4(mix(bg, c.rgb, c.a), smoothstep(0.5, 0.48, d));
+}"""
+	return _circle_sh
 
 # ---------------- shop ----------------
 
@@ -240,6 +285,8 @@ func open_vendor() -> void:
 		st.vendor_stock.clear()
 		for i in 4: st.vendor_stock.append(SYS.make_item(st.level, 0.25, "", st.class_id))
 	var v := _modal("shop", 560.0, "QUARTERMASTER")
+	var face: Texture2D = dir.npc_portrait("quartermaster")
+	if face != null: v.add_child(_centered(_medallion(face, 120.0)))
 	var hi := _label("\"Coin for steel, steel for coin. Click your own gear to sell it.\"", 16, Color("cfc7b8"), false)
 	hi.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; hi.custom_minimum_size = Vector2(440, 0)
 	v.add_child(hi)

@@ -1,4 +1,4 @@
-# Age of the Lost — the playable game (Chapter I: The Whisperwood)
+# Age of the Lost — the playable game (Chapter I: The Whisperwood · Chapter II: Hollowmere)
 
 `run/main_scene` is now `scenes/title.tscn`. The labs (`scenes/*_lab.tscn`) and the original 2D build (`main.tscn`)
 are unchanged and still open directly.
@@ -113,6 +113,18 @@ Every game screen is built from one painted kit that matches the HUD (bronze fil
 - Shop, dialogue, death, epilogue, tooltips, key bindings and the title / class pick use the same frame and buttons.
 Visual QA: `tests/capture_ui.gd` screenshots every screen for each class.
 
+## Chapter II: Hollowmere — added 2026-11-28
+| Step | Where | What happens |
+|---|---|---|
+| Into the Mere | Whisperwood, Mossy Arch (south-east) | Given on the Thornwarden turn-in (after the Chapter I epilogue). Walking through the arch completes it. |
+| The Drowned Lanterns | Hollowmere | Three lantern guardians (the Reed-Mother, the Willow Hag, the Bonekeeper) each drop a Warden's Flame. Return to Ralden. |
+| The Drowned Matron | Hollowmere, Sunken Chapel (far east) | Boss, appears only on this quest; summons mire wisps at half life. Return to Ralden → Chapter II epilogue. |
+
+- Zone: `assets/zones/src/hollowmere.kitzone.json` (built by `tools/build_kit_zone.py`): boardwalk, 18 pools, waypoint Ferryman's Rest, monsters levels 5–9.
+- Marsh monsters (`monster.gd` `MORE_TYPES`): bog ghoul, mire lurker, mire wisp, Drowned Matron — data on top of the painted base types (art, tint, speed, height, boss adds).
+- Quests are data: `item_name` + marker `page` (quest items dropped by the guardian with that page), `boss` (kill sets ready), `arrive_zone` (entering completes), `epilogue` {chapter, title, lines}. Chapter I uses the same fields.
+- Test: `tests/verify_hollowmere.gd` (27 checks, Thornwarden turn-in → arch → lanterns → boss → epilogue, save/continue).
+
 ## Controls
 
 LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T skills · RMB / MMB skill wells ·
@@ -130,7 +142,7 @@ LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T ski
   six painted poses (`assets/enemies/poses`, cut by `tools/cut_enemy_poses.py`): idle, a two-step walk while chasing,
   wind-up during the red telegraph, strike right after the blow, a hit flinch, and a death pose that holds before
   the fade; code motion (bob, lean, lunge, flashes) plays on top. Tests: `tests/verify_enemy_poses.gd` (24 checks).
-  More enemy types and a Hollowmere chapter are content work, not system work.
+  Hollowmere is playable on the forest kit (greybox): it needs its own marsh ground/prop art and marsh enemy paintings.
 - NPCs are painted 2D sprites (owner: static NPCs are 2D): Captain Ralden and Quartermaster Ysolde, idle and talking
   poses (`assets/npcs`, cut by `tools/cut_npc_art.py`), facing the hero; their portraits sit in the dialogue and the
   shop. An NPC without art falls back to a stand-in hero model. 11-28: art redone in the AOTL class-art style (v2);

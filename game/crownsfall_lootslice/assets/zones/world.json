@@ -9,398 +9,6 @@
   "title": "Crownsfall and the Known Lands",
   "nodes": [
    {
-    "id": "whisperwood",
-    "zone": "whisperwood_forest",
-    "name": "Whisperwood",
-    "kind": "forest",
-    "at": [
-     0.36,
-     0.42
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 1–2",
-    "blurb": "Old oaks, standing stones and a fae ring; the Greenwood Marches' oldest wood. Present."
-   },
-   {
-    "id": "mossbarrow_crypts",
-    "zone": "mossbarrow_crypts",
-    "name": "Mossbarrow Crypts",
-    "kind": "dungeon",
-    "at": [
-     0.46,
-     0.06
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 2–3",
-    "blurb": "Burial crypt under the Whisperwood's standing stones. Present."
-   },
-   {
-    "id": "hollowmere",
-    "zone": "hollowmere",
-    "name": "Hollowmere",
-    "kind": "forest",
-    "at": [
-     0.48,
-     0.56
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 3–4",
-    "blurb": "Marshlands, drowned lanterns, heavy mist. Present."
-   },
-   {
-    "id": "sunken_chapel",
-    "zone": "sunken_chapel",
-    "name": "Sunken Chapel",
-    "kind": "dungeon",
-    "at": [
-     0.46,
-     0.78
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 3–4",
-    "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless. Echo."
-   },
-   {
-    "id": "greyfen_causeway",
-    "zone": "greyfen_causeway",
-    "name": "Greyfen Causeway",
-    "kind": "heath",
-    "at": [
-     0.6,
-     0.62
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 4–5",
-    "blurb": "Ruined causeway over the salt heath, toll encounter. Present."
-   },
-   {
-    "id": "saltmarrow",
-    "zone": "saltmarrow",
-    "name": "Saltmarrow",
-    "kind": "forest",
-    "at": [
-     0.7,
-     0.72
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Sanctuary",
-    "blurb": "Coastal sanctuary, trade and respite. Present."
-   },
-   {
-    "id": "wreckers_strand",
-    "zone": "wreckers_strand",
-    "name": "Wrecker's Strand",
-    "kind": "forest",
-    "at": [
-     0.8,
-     0.82
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 5–6",
-    "blurb": "Shipwrecks and shoreline combat. Present."
-   },
-   {
-    "id": "smugglers_grotto",
-    "zone": "smugglers_grotto",
-    "name": "Smuggler's Grotto",
-    "kind": "dungeon",
-    "at": [
-     0.9,
-     0.94
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 6–7",
-    "blurb": "Hidden sea cavern of relic smugglers. Present."
-   },
-   {
-    "id": "lanternfall_cliffs",
-    "zone": "lanternfall_cliffs",
-    "name": "Lanternfall Cliffs",
-    "kind": "forest",
-    "at": [
-     0.82,
-     0.6
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 6–7",
-    "blurb": "Clifftop ruins and warden lanterns. Present."
-   },
-   {
-    "id": "riftscar_moor",
-    "zone": "riftscar_moor",
-    "name": "Riftscar Moor",
-    "kind": "forest",
-    "at": [
-     0.76,
-     0.42
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 7–8",
-    "blurb": "Fractured terrain around an open rift. Present."
-   },
-   {
-    "id": "oldwatch",
-    "zone": "oldwatch",
-    "name": "Oldwatch",
-    "kind": "forest",
-    "at": [
-     0.72,
-     0.2
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Sanctuary",
-    "blurb": "Frontier fort, resupply and allies. Present."
-   },
-   {
-    "id": "brackwater_ruins",
-    "zone": "brackwater_ruins",
-    "name": "Brackwater Ruins",
-    "kind": "forest",
-    "at": [
-     0.62,
-     0.32
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 8–9",
-    "blurb": "Golden Age relics flickering between eras; major Lorecasting site. Echo."
-   },
-   {
-    "id": "shattered_observatory",
-    "zone": "shattered_observatory",
-    "name": "Shattered Observatory",
-    "kind": "forest",
-    "at": [
-     0.82,
-     0.08
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 8–9",
-    "blurb": "Observatory ruins on the mountain behind Oldwatch. Present."
-   },
-   {
-    "id": "first_rift",
-    "zone": "first_rift",
-    "name": "The First Rift",
-    "kind": "forest",
-    "at": [
-     0.9,
-     0.36
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 9–10",
-    "blurb": "The breach at the moor's eastern end. Present."
-   },
-   {
-    "id": "crownsfall",
-    "zone": "crownsfall",
-    "name": "Crownsfall",
-    "kind": "town",
-    "at": [
-     0.08,
-     0.42
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Sanctuary",
-    "blurb": "Warm limestone plaza, blue-gold banners, market terraces. Present."
-   },
-   {
-    "id": "kingsroad_fields",
-    "zone": "kingsroad_fields",
-    "name": "Kingsroad Fields",
-    "kind": "heath",
-    "at": [
-     0.22,
-     0.46
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 1–2",
-    "blurb": "Wheat, broken aqueducts, roadside shrines. Present."
-   },
-   {
-    "id": "bramblewatch",
-    "zone": "bramblewatch",
-    "name": "Bramblewatch",
-    "kind": "forest",
-    "at": [
-     0.26,
-     0.24
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 2–3",
-    "blurb": "Timber palisade, autumn orchards, watchfires. Present."
-   },
-   {
-    "id": "mossbell_hamlet",
-    "zone": "mossbell_hamlet",
-    "name": "Mossbell Hamlet",
-    "kind": "town",
-    "at": [
-     0.36,
-     0.1
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 4–5",
-    "blurb": "Moss roofs, millpond, lanterns. Present."
-   },
-   {
-    "id": "silverroot_grove",
-    "zone": "silverroot_grove",
-    "name": "Silverroot Grove",
-    "kind": "forest",
-    "at": [
-     0.44,
-     0.22
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 2–3",
-    "blurb": "Two overlapping forests, amber leaves suspended. Echo."
-   },
-   {
-    "id": "ashen_tollway",
-    "zone": "ashen_tollway",
-    "name": "Ashen Tollway",
-    "kind": "heath",
-    "at": [
-     0.26,
-     0.7
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 3–4",
-    "blurb": "Charred stone road, caravan wrecks. Present."
-   },
-   {
-    "id": "bellwater_mills",
-    "zone": "bellwater_mills",
-    "name": "Bellwater Mills",
-    "kind": "marsh",
-    "at": [
-     0.34,
-     0.84
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 4–5",
-    "blurb": "Waterwheels, canals, cellar sluices. Present."
-   },
-   {
-    "id": "highward_steps",
-    "zone": "highward_steps",
-    "name": "Highward Steps",
-    "kind": "town",
-    "at": [
-     0.1,
-     0.16
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 3–4",
-    "blurb": "Citadel stairs, fountains, heraldic gates. Present."
-   },
-   {
-    "id": "sablemarket_vaults",
-    "zone": "sablemarket_vaults",
-    "name": "Sablemarket Vaults",
-    "kind": "dungeon",
-    "at": [
-     0.03,
-     0.62
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 5–6",
-    "blurb": "Merchant crypts, bronze shutters, secret ledgers. Present."
-   },
-   {
-    "id": "old_crown_cistern",
-    "zone": "old_crown_cistern",
-    "name": "Old Crown Cistern",
-    "kind": "dungeon",
-    "at": [
-     0.07,
-     0.82
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 6–7",
-    "blurb": "Flooded masonry with flickering original streets. Echo."
-   },
-   {
-    "id": "undercroft",
-    "zone": "undercroft",
-    "name": "Undercroft",
-    "kind": "dungeon",
-    "at": [
-     0.17,
-     0.94
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 7–8",
-    "blurb": "Buried crypt avenues, candle niches, violet seepage. Present."
-   },
-   {
-    "id": "cathedral_of_the_nameless",
-    "zone": "cathedral_of_the_nameless",
-    "name": "Cathedral of the Nameless",
-    "kind": "dungeon",
-    "at": [
-     0.56,
-     0.92
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 4–5",
-    "blurb": "Violet ruined nave, shattered stained glass. Echo."
-   },
-   {
-    "id": "first_anchor_chamber",
-    "zone": "first_anchor_chamber",
-    "name": "First Anchor Chamber",
-    "kind": "archive",
-    "at": [
-     0.96,
-     0.52
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 10–10",
-    "blurb": "Huge bronze rings under the cathedral, floating inscriptions. Between."
-   },
-   {
-    "id": "crownsfall_citadel",
-    "zone": "crownsfall_citadel",
-    "name": "Crownsfall Citadel",
-    "kind": "town",
-    "at": [
-     0.2,
-     0.06
-    ],
-    "act": 1,
-    "locked": false,
-    "levels": "Monster level 10–10",
-    "blurb": "Royal court, gathering refugees, dusk over city. Present."
-   },
-   {
     "id": "westgate_refuge",
     "zone": "westgate_refuge",
     "name": "Westgate Refuge",
@@ -1659,6 +1267,398 @@
     "locked": false,
     "levels": "Monster level 70–70",
     "blurb": "Memorial garden and distant horizon. Present/between."
+   },
+   {
+    "id": "whisperwood",
+    "zone": "whisperwood_forest",
+    "name": "Whisperwood",
+    "kind": "forest",
+    "at": [
+     0.36,
+     0.42
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 1–2",
+    "blurb": "Old oaks, standing stones and a fae ring; the Greenwood Marches' oldest wood. Present."
+   },
+   {
+    "id": "mossbarrow_crypts",
+    "zone": "mossbarrow_crypts",
+    "name": "Mossbarrow Crypts",
+    "kind": "dungeon",
+    "at": [
+     0.46,
+     0.06
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 2–3",
+    "blurb": "Burial crypt under the Whisperwood's standing stones. Present."
+   },
+   {
+    "id": "hollowmere",
+    "zone": "hollowmere",
+    "name": "Hollowmere",
+    "kind": "forest",
+    "at": [
+     0.48,
+     0.56
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 3–4",
+    "blurb": "Marshlands, drowned lanterns, heavy mist. Present."
+   },
+   {
+    "id": "sunken_chapel",
+    "zone": "sunken_chapel",
+    "name": "Sunken Chapel",
+    "kind": "dungeon",
+    "at": [
+     0.46,
+     0.78
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 3–4",
+    "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless. Echo."
+   },
+   {
+    "id": "greyfen_causeway",
+    "zone": "greyfen_causeway",
+    "name": "Greyfen Causeway",
+    "kind": "heath",
+    "at": [
+     0.6,
+     0.62
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Ruined causeway over the salt heath, toll encounter. Present."
+   },
+   {
+    "id": "saltmarrow",
+    "zone": "saltmarrow",
+    "name": "Saltmarrow",
+    "kind": "forest",
+    "at": [
+     0.7,
+     0.72
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Coastal sanctuary, trade and respite. Present."
+   },
+   {
+    "id": "wreckers_strand",
+    "zone": "wreckers_strand",
+    "name": "Wrecker's Strand",
+    "kind": "forest",
+    "at": [
+     0.8,
+     0.82
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 5–6",
+    "blurb": "Shipwrecks and shoreline combat. Present."
+   },
+   {
+    "id": "smugglers_grotto",
+    "zone": "smugglers_grotto",
+    "name": "Smuggler's Grotto",
+    "kind": "dungeon",
+    "at": [
+     0.9,
+     0.94
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 6–7",
+    "blurb": "Hidden sea cavern of relic smugglers. Present."
+   },
+   {
+    "id": "lanternfall_cliffs",
+    "zone": "lanternfall_cliffs",
+    "name": "Lanternfall Cliffs",
+    "kind": "forest",
+    "at": [
+     0.82,
+     0.6
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 6–7",
+    "blurb": "Clifftop ruins and warden lanterns. Present."
+   },
+   {
+    "id": "riftscar_moor",
+    "zone": "riftscar_moor",
+    "name": "Riftscar Moor",
+    "kind": "forest",
+    "at": [
+     0.76,
+     0.42
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 7–8",
+    "blurb": "Fractured terrain around an open rift. Present."
+   },
+   {
+    "id": "oldwatch",
+    "zone": "oldwatch",
+    "name": "Oldwatch",
+    "kind": "forest",
+    "at": [
+     0.72,
+     0.2
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Frontier fort, resupply and allies. Present."
+   },
+   {
+    "id": "brackwater_ruins",
+    "zone": "brackwater_ruins",
+    "name": "Brackwater Ruins",
+    "kind": "forest",
+    "at": [
+     0.62,
+     0.32
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 8–9",
+    "blurb": "Golden Age relics flickering between eras; major Lorecasting site. Echo."
+   },
+   {
+    "id": "shattered_observatory",
+    "zone": "shattered_observatory",
+    "name": "Shattered Observatory",
+    "kind": "forest",
+    "at": [
+     0.82,
+     0.08
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 8–9",
+    "blurb": "Observatory ruins on the mountain behind Oldwatch. Present."
+   },
+   {
+    "id": "first_rift",
+    "zone": "first_rift",
+    "name": "The First Rift",
+    "kind": "forest",
+    "at": [
+     0.9,
+     0.36
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 9–10",
+    "blurb": "The breach at the moor's eastern end. Present."
+   },
+   {
+    "id": "crownsfall",
+    "zone": "crownsfall",
+    "name": "Crownsfall",
+    "kind": "town",
+    "at": [
+     0.08,
+     0.42
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Warm limestone plaza, blue-gold banners, market terraces. Present."
+   },
+   {
+    "id": "kingsroad_fields",
+    "zone": "kingsroad_fields",
+    "name": "Kingsroad Fields",
+    "kind": "heath",
+    "at": [
+     0.22,
+     0.46
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 1–2",
+    "blurb": "Wheat, broken aqueducts, roadside shrines. Present."
+   },
+   {
+    "id": "bramblewatch",
+    "zone": "bramblewatch",
+    "name": "Bramblewatch",
+    "kind": "forest",
+    "at": [
+     0.26,
+     0.24
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 2–3",
+    "blurb": "Timber palisade, autumn orchards, watchfires. Present."
+   },
+   {
+    "id": "mossbell_hamlet",
+    "zone": "mossbell_hamlet",
+    "name": "Mossbell Hamlet",
+    "kind": "town",
+    "at": [
+     0.36,
+     0.1
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Moss roofs, millpond, lanterns. Present."
+   },
+   {
+    "id": "silverroot_grove",
+    "zone": "silverroot_grove",
+    "name": "Silverroot Grove",
+    "kind": "forest",
+    "at": [
+     0.44,
+     0.22
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 2–3",
+    "blurb": "Two overlapping forests, amber leaves suspended. Echo."
+   },
+   {
+    "id": "ashen_tollway",
+    "zone": "ashen_tollway",
+    "name": "Ashen Tollway",
+    "kind": "heath",
+    "at": [
+     0.26,
+     0.7
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 3–4",
+    "blurb": "Charred stone road, caravan wrecks. Present."
+   },
+   {
+    "id": "bellwater_mills",
+    "zone": "bellwater_mills",
+    "name": "Bellwater Mills",
+    "kind": "marsh",
+    "at": [
+     0.34,
+     0.84
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Waterwheels, canals, cellar sluices. Present."
+   },
+   {
+    "id": "highward_steps",
+    "zone": "highward_steps",
+    "name": "Highward Steps",
+    "kind": "town",
+    "at": [
+     0.1,
+     0.16
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 3–4",
+    "blurb": "Citadel stairs, fountains, heraldic gates. Present."
+   },
+   {
+    "id": "sablemarket_vaults",
+    "zone": "sablemarket_vaults",
+    "name": "Sablemarket Vaults",
+    "kind": "dungeon",
+    "at": [
+     0.03,
+     0.62
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 5–6",
+    "blurb": "Merchant crypts, bronze shutters, secret ledgers. Present."
+   },
+   {
+    "id": "old_crown_cistern",
+    "zone": "old_crown_cistern",
+    "name": "Old Crown Cistern",
+    "kind": "dungeon",
+    "at": [
+     0.07,
+     0.82
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 6–7",
+    "blurb": "Flooded masonry with flickering original streets. Echo."
+   },
+   {
+    "id": "undercroft",
+    "zone": "undercroft",
+    "name": "Undercroft",
+    "kind": "dungeon",
+    "at": [
+     0.17,
+     0.94
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 7–8",
+    "blurb": "Buried crypt avenues, candle niches, violet seepage. Present."
+   },
+   {
+    "id": "cathedral_of_the_nameless",
+    "zone": "cathedral_of_the_nameless",
+    "name": "Cathedral of the Nameless",
+    "kind": "dungeon",
+    "at": [
+     0.56,
+     0.92
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Violet ruined nave, shattered stained glass. Echo."
+   },
+   {
+    "id": "first_anchor_chamber",
+    "zone": "first_anchor_chamber",
+    "name": "First Anchor Chamber",
+    "kind": "archive",
+    "at": [
+     0.96,
+     0.52
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 10–10",
+    "blurb": "Huge bronze rings under the cathedral, floating inscriptions. Between."
+   },
+   {
+    "id": "crownsfall_citadel",
+    "zone": "crownsfall_citadel",
+    "name": "Crownsfall Citadel",
+    "kind": "town",
+    "at": [
+     0.2,
+     0.06
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 10–10",
+    "blurb": "Royal court, gathering refugees, dusk over city. Present."
    }
   ],
   "links": [

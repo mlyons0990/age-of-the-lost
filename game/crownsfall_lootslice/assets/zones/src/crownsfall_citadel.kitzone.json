@@ -1,6 +1,6 @@
 {
  "name": "Crownsfall Citadel",
- "kit": "assets/kit/forest_hf",
+ "kit": "assets/kit/city",
  "size": [
   7680,
   4944
@@ -8,7 +8,7 @@
  "ppm": 71.8,
  "pitch": 31.0,
  "hero_px_1080": 125.0,
- "ground_base": "flagstone",
+ "ground_base": "cobble_grass",
  "seed": 1742,
  "paths": [
   {
@@ -257,16 +257,53 @@
    300
   ]
  ],
- "place": [],
+ "place": [
+  [
+   "c_lm_fountain_c",
+   3791,
+   2264,
+   1.0,
+   true
+  ],
+  [
+   "c_lm_fountain_c",
+   6069,
+   2268,
+   1.0,
+   false
+  ],
+  [
+   "c_lm_gazebo_a",
+   2380,
+   3161,
+   1.0,
+   false
+  ],
+  [
+   "c_lm_gazebo_a",
+   2110,
+   870,
+   1.0,
+   true
+  ]
+ ],
  "forest": {
   "trees": [
    [
-    "silver",
+    "c_tree_green",
+    2
+   ],
+   [
+    "c_tree_blossom",
+    2
+   ],
+   [
+    "c_tree_amber",
     1
    ]
   ],
-  "spacing": 1900,
-  "cut": 0.9,
+  "spacing": 950,
+  "cut": 0.78,
   "grove_px": 1500,
   "frame": 0.45,
   "frame_px": 900,
@@ -275,7 +312,7 @@
    0.85,
    1.15
   ],
-  "rock_clusters": 4,
+  "rock_clusters": 0,
   "rocks_big": [
    "a_rock_flat",
    "b_rock_flat",
@@ -288,7 +325,7 @@
    "a_rock_small",
    "b_rock_small"
   ],
-  "clumps_per_mpx": 3,
+  "clumps_per_mpx": 2,
   "clumps": {
    "white": {
     "w": 2,
@@ -298,8 +335,11 @@
     ],
     "r": 170,
     "props": [
-     "a_shrub_white",
-     "b_shrub_white"
+     "c_hydrangea_blue",
+     "c_flower_white",
+     "c_lavender",
+     "c_hydrangea_bush",
+     "c_flower_basket"
     ]
    },
    "lavender": {
@@ -310,8 +350,11 @@
     ],
     "r": 170,
     "props": [
-     "a_lavender",
-     "b_lavender"
+     "c_hydrangea_blue",
+     "c_flower_white",
+     "c_lavender",
+     "c_hydrangea_bush",
+     "c_flower_basket"
     ]
    },
    "bushes": {
@@ -322,10 +365,11 @@
     ],
     "r": 170,
     "props": [
-     "a_bush_round",
-     "b_bush_round",
-     "a_bush_yellow",
-     "b_bush_yellow"
+     "c_hydrangea_blue",
+     "c_flower_white",
+     "c_lavender",
+     "c_hydrangea_bush",
+     "c_flower_basket"
     ]
    }
   },
@@ -336,7 +380,7 @@
    "a_grass_tall",
    "a_fern"
   ],
-  "litter_per_mpx": 4,
+  "litter_per_mpx": 0,
   "litter": [
    "a_leaves",
    "a_pebbles"
@@ -350,7 +394,7 @@
   "litter_ground": 0.65,
   "max_canopy_cover": 0.06,
   "cover": {
-   "per_mpx": 4,
+   "per_mpx": 0,
    "props": [
     "ga_tallgrass",
     "ga_longgrass",
@@ -380,40 +424,209 @@
   }
  },
  "root_dressing": {
-  "decals": 3,
-  "tufts": 5,
+  "decals": 0,
+  "tufts": 0,
   "decal_props": [
    "a_leaves"
   ],
   "tuft_props": [
-   "a_grass_tall",
-   "b_grass_tall",
-   "a_fern",
-   "b_fern"
+   "a_grass_tall"
   ]
  },
  "edges": [
   {
    "path": 0,
-   "spacing": 170,
-   "offset": 120,
+   "spacing": 640,
+   "offset": 380,
    "jitter": 120,
-   "density": 0.7,
-   "min_gap": 40,
+   "density": 0.95,
+   "min_gap": 300,
+   "gap_mult": 2.2,
    "props": [
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white"
+    "c_bld_royal_manor",
+    "c_bld_guard_barracks",
+    "c_bld_temple_sanctum",
+    "c_bld_archive_hall"
    ],
    "scale": [
-    0.85,
-    1.2
+    0.95,
+    1.1
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 420,
+   "offset": 40,
+   "jitter": 30,
+   "density": 0.6,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 640,
+   "offset": 380,
+   "jitter": 120,
+   "density": 0.95,
+   "min_gap": 300,
+   "gap_mult": 2.2,
+   "props": [
+    "c_bld_royal_manor",
+    "c_bld_guard_barracks",
+    "c_bld_temple_sanctum",
+    "c_bld_archive_hall"
+   ],
+   "scale": [
+    0.95,
+    1.1
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 420,
+   "offset": 40,
+   "jitter": 30,
+   "density": 0.6,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 640,
+   "offset": 380,
+   "jitter": 120,
+   "density": 0.95,
+   "min_gap": 300,
+   "gap_mult": 2.2,
+   "props": [
+    "c_bld_royal_manor",
+    "c_bld_guard_barracks",
+    "c_bld_temple_sanctum",
+    "c_bld_archive_hall"
+   ],
+   "scale": [
+    0.95,
+    1.1
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 420,
+   "offset": 40,
+   "jitter": 30,
+   "density": 0.6,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 640,
+   "offset": 380,
+   "jitter": 120,
+   "density": 0.95,
+   "min_gap": 300,
+   "gap_mult": 2.2,
+   "props": [
+    "c_bld_royal_manor",
+    "c_bld_guard_barracks",
+    "c_bld_temple_sanctum",
+    "c_bld_archive_hall"
+   ],
+   "scale": [
+    0.95,
+    1.1
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 420,
+   "offset": 40,
+   "jitter": 30,
+   "density": 0.6,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 640,
+   "offset": 380,
+   "jitter": 120,
+   "density": 0.95,
+   "min_gap": 300,
+   "gap_mult": 2.2,
+   "props": [
+    "c_bld_royal_manor",
+    "c_bld_guard_barracks",
+    "c_bld_temple_sanctum",
+    "c_bld_archive_hall"
+   ],
+   "scale": [
+    0.95,
+    1.1
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 420,
+   "offset": 40,
+   "jitter": 30,
+   "density": 0.6,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single"
+   ],
+   "scale": [
+    0.95,
+    1.05
    ]
   }
  ],
  "light": {
-  "canopy": 0.22,
+  "canopy": 0.18,
   "contact": 0.38,
   "pools": 0.28,
   "dapple_px": 40,
@@ -422,9 +635,9 @@
    0.16
   ],
   "exposure": 0.9,
-  "overhead": 0.8,
-  "over_density": 7,
-  "tree_mist": 0.55,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
   "open": [
    [
     6105,
@@ -577,13 +790,20 @@
  },
  "rim": {
   "props": [
-   "a_lavender",
-   "b_lavender",
-   "a_shrub_white",
-   "b_shrub_white"
+   "c_stone_urn",
+   "c_flower_planter",
+   "c_flower_pedestal",
+   "c_topiary_urn",
+   "c_bench",
+   "c_pillar_post",
+   "c_hydrangea_blue",
+   "c_flower_white",
+   "c_lavender",
+   "c_hydrangea_bush",
+   "c_flower_basket"
   ],
-  "density": 1.0,
-  "chance": 0.5
+  "density": 0.8,
+  "chance": 0.45
  },
  "dress": [
   {
@@ -591,54 +811,98 @@
     6105,
     2698
    ],
-   "r": 420,
+   "r": 560,
    "props": [
-    "a_bush_round",
-    "b_bush_round",
-    "a_bush_yellow",
-    "b_bush_yellow",
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white"
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
    ],
-   "n": 6
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
   },
   {
    "at": [
     2370,
     3591
    ],
-   "r": 420,
+   "r": 560,
    "props": [
-    "a_bush_round",
-    "b_bush_round",
-    "a_bush_yellow",
-    "b_bush_yellow",
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white"
+    "c_stone_urn",
+    "c_flower_planter",
+    "c_flower_pedestal",
+    "c_topiary_urn",
+    "c_bench",
+    "c_pillar_post",
+    "c_hydrangea_blue",
+    "c_flower_white",
+    "c_lavender",
+    "c_hydrangea_bush",
+    "c_flower_basket"
    ],
-   "n": 6
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
   },
   {
    "at": [
     1991,
     1300
    ],
-   "r": 420,
+   "r": 560,
    "props": [
-    "a_bush_round",
-    "b_bush_round",
-    "a_bush_yellow",
-    "b_bush_yellow",
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white"
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
    ],
-   "n": 6
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
   }
+ ],
+ "max_paving_overlap": 1.0,
+ "place_keep": true,
+ "edge_keep_out": [
+  [
+   3701,
+   4774,
+   520
+  ],
+  [
+   6105,
+   2698,
+   520
+  ],
+  [
+   2370,
+   3591,
+   520
+  ],
+  [
+   1991,
+   1300,
+   520
+  ],
+  [
+   3902,
+   2784,
+   600
+  ]
  ]
 }

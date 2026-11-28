@@ -161,7 +161,7 @@ for d in spec.get("dress", []):
             if _free_spot(u, v, 30, d.get("on_path", False)):
                 add(dress_rs.choice(d["props"]), (u, v), dress_rs.uniform(*d.get("scale", [0.8, 1.25])), dress_rs.random() < 0.5); break
 for q in spec.get("place", []):                      # deliberate composition: [prop, u, v, scale?, flip?]
-    add(q[0], (q[1], q[2]), q[3] if len(q) > 3 else 1.0, bool(q[4]) if len(q) > 4 else False, keep=0)
+    add(q[0], (q[1], q[2]), q[3] if len(q) > 3 else 1.0, bool(q[4]) if len(q) > 4 else False, keep=None if spec.get("place_keep") else 0)
 def paving_overlap(prop, at, scale, flip):
     """Fraction of a tree/rock's base (roots, lowest 30% of the image) that lies on paths or paved clearings."""
     c = cat["props"][prop]; s_ = scale * (ZPPM / c["ppm"] if "ppm" in c else 1.0)
@@ -352,8 +352,11 @@ for ed in spec.get("edges", []):                     # planting along both edges
             if rnd.random() > ed.get("density", 0.8): continue
             off = half + ed.get("offset", 40) + rnd.uniform(0, ed.get("jitter", 60))
             Q = P + nrm * side * off * np.array([1.0, 0.55])
-            if 0 < Q[0] < W and 0 < Q[1] < H and clear_of_solid(Q[0], Q[1], 20) and dist_path_at(Q[0], Q[1]) >= ed.get("min_gap", 0):
-                add(pick(ed["props"]), (float(Q[0]), float(Q[1])), rnd.uniform(*ed.get("scale", [0.8, 1.15])), rnd.random() < 0.5, keep=0)
+            pr_ = pick(ed["props"]); s_ = rnd.uniform(*ed.get("scale", [0.8, 1.15]))
+            gap_ = max(20, cat["props"][pr_]["footprint_px"] * s_ * ZPPM / cat["props"][pr_].get("ppm", ZPPM) * ed.get("gap_mult", 1.0))
+            if any((Q[0] - k_[0]) ** 2 + ((Q[1] - k_[1]) / 0.55) ** 2 < k_[2] ** 2 for k_ in spec.get("edge_keep_out", [])): continue
+            if 0 < Q[0] < W and 0 < Q[1] < H and clear_of_solid(Q[0], Q[1], gap_) and dist_path_at(Q[0], Q[1]) >= ed.get("min_gap", 0):
+                add(pr_, (float(Q[0]), float(Q[1])), s_, rnd.random() < 0.5, keep=0)
         t += ed["spacing"] * rnd.uniform(0.7, 1.3)
 for rg in spec.get("rings", []):                     # undergrowth / decals around tree bases and rocks
     for k in range(rg["count"]):

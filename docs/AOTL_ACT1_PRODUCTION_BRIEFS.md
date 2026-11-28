@@ -1,5 +1,20 @@
 # Act I production briefs (merged)
 
+## Standing art rule: the game camera (owner, 11-28)
+
+The game is seen from a fixed camera **31 degrees down**, three-quarter view. Every art request must respect it:
+
+- **Ground tiles (top-down, seamless)** may hold only *flat* surface: stone, cobbles, gravel, soil, short lawn. The
+  engine lays them on the ground plane and foreshortens them correctly.
+- **Anything with height** (flower beds, shrubs, hedges, kerbs, bed borders, planters, rubble, fences) must be a
+  **transparent prop painted at the 31° camera angle**, never painted into a top-down tile. Painted top-down, it reads
+  as a flat sticker on the floor.
+- Example: A1-T `plaza_medallion` came back with flower beds painted straight down. It is kept as reference only and is
+  not used as ground.
+- Flower beds are built from camera-angle pieces: raised stone-edged bed sections (straight, corner, end, round),
+  planted with A1's hydrangea, lavender and white flowers.
+
+
 Main route: the reconciled Environment Art Bible for Act I (`docs/AOTL_Act1_Environment_Art_Bible_Reconciled.png`).
 Side areas, and the brief text of every bible zone: Production Pack v2 (`docs/production_pack_v2/Act_I_Production_Briefs.json`).
 Owner decision 11-28: merge both. Palette (art bible): limestone ivory, royal blue, forest green, olive, earth brown, dark umber, violet.

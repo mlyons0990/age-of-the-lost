@@ -80,6 +80,21 @@ BIOMES = {
  "cathedral":  dict(dungeon=True, ground="grass_old", grade=G([0.7, 0.6, 0.86], 0.4, [0.06, 0.02, 0.1, 1.0], [0.6, 0.45, 0.85], [0.4, 0.2, 0.6]), wall=["a_rock_tall", "b_rock_tall"]),
  "anchor":     dict(between=True, ground="dirt", grade=G([0.95, 0.82, 0.66], 0.3, [0.06, 0.04, 0.02, 1.0], [0.75, 0.6, 0.9], [0.22, 0.1, 0.34])),
 }
+# Crownsfall city kit (A1 / A1-T art, tools/build_city_kit.py): buildings along the streets, a landmark behind each
+# square, lamps and banners at the roadside, market / garden props round the squares. Inherited by every city biome.
+C_FLOWERS = ["c_hydrangea_blue", "c_flower_white", "c_lavender", "c_hydrangea_bush", "c_flower_basket"]
+C_STREET = ["c_lamppost_double", "c_lamppost_single", "c_banner_pole", "c_banner_standard", "c_lamppost_single"]
+C_MARKET = ["c_market_stall_fruit", "c_market_stall_cloth", "c_covered_wagon", "c_crate_stack", "c_barrels_sacks", "c_crates_wisteria", "c_apple_basket", "c_flower_barrel"]
+C_GARDEN = ["c_stone_urn", "c_flower_planter", "c_flower_pedestal", "c_topiary_urn", "c_bench", "c_pillar_post"] + C_FLOWERS
+CITYKIT = dict(kit="assets/kit/city", ground="lawn",
+               buildings=["c_bld_citizen_home", "c_bld_citizen_home", "c_bld_merchant_guild", "c_bld_archive_hall", "c_bld_guard_barracks", "c_bld_royal_manor", "c_bld_temple_sanctum"],
+               landmarks=["c_lm_fountain_a", "c_lm_fountain_b", "c_lm_fountain_c", "c_lm_statue_a", "c_lm_statue_b", "c_lm_gazebo_a", "c_lm_gazebo_b"],
+               street=C_STREET, market=C_MARKET, garden=C_GARDEN,
+               trees=[("c_tree_green", 2), ("c_tree_blossom", 2), ("c_tree_amber", 1)])
+BIOMES["city"]["citykit"] = CITYKIT
+BIOMES["citadel"]["citykit"] = dict(CITYKIT, ground="cobble_grass",
+               buildings=["c_bld_royal_manor", "c_bld_guard_barracks", "c_bld_temple_sanctum", "c_bld_archive_hall"],
+               landmarks=["c_lm_statue_a", "c_lm_statue_b", "c_lm_fountain_c", "c_lm_gazebo_a"])
 def mk(template, grade, **over):
     b = copy.deepcopy(BIOMES[template]); b["grade"] = grade; b.update(over); return b
 GOLD = lambda m=1.0: G([1.12 * m, 1.06 * m, 0.9 * m], 0.05, [0.08, 0.07, 0.04, 1.0], [1.0, 0.94, 0.8], [0.32, 0.55, 0.7])
@@ -164,6 +179,8 @@ BIOMES.update({
  "frontier_new":   mk("farmland", G([1.04, 1.04, 0.96], 0.1, [0.05, 0.05, 0.04, 1.0], [0.9, 0.9, 0.88], [0.3, 0.48, 0.58])),
  "memorial":       mk("orchard", G([1.04, 1.0, 0.94], 0.15, [0.06, 0.05, 0.05, 1.0], [0.94, 0.9, 0.9], [0.3, 0.45, 0.6]), pools=(2, 220, 340)),
 })
+for _n in ("veyr", "epoch_iron", "epoch_moon"):   # not Crownsfall stone: keep the greybox forest kit until their own art
+    BIOMES[_n].pop("citykit", None)
 BIOMES.update({"bastion_ruin": mk("hamlet", G([0.86, 0.94, 0.96], 0.36, [0.05, 0.07, 0.08, 1.0], [0.66, 0.8, 0.86], [0.22, 0.34, 0.36]), rocks=80, pools=(5, 360, 520), meadows=4),
                "harbor": mk("city", G([0.98, 1.0, 1.02], 0.22, [0.05, 0.06, 0.08, 1.0], [0.8, 0.84, 0.88], [0.2, 0.36, 0.45]), sea="south")})
 BIOMES.update({"coast_war":      mk("coast", G([0.84, 0.84, 0.88], 0.45, [0.05, 0.04, 0.05, 1.0], [0.62, 0.6, 0.64], [0.16, 0.24, 0.3]))})
@@ -377,6 +394,34 @@ def layout_rooms(zid, d, rng, W, H, exits, between=False):
     boss_room = far[0]
     return dict(hub=hub, pois=pois, paths=paths, patches=patches, pools=pools, rooms=rooms, boss_room=boss_room)
 
+def city_dress(z, ck, lay, exits, key):
+    """Crownsfall city kit: paved ground, the street lined with buildings set back from the road, lamps and banners
+    at the kerb, a landmark at the back of each square (the square itself stays open for NPCs, packs and bosses),
+    market or garden props round it, and the kit's own trees and flowers in the beds."""
+    rs = random.Random(abs(hash(key + "city")) % 99991)
+    z["kit"] = ck["kit"]; z["ground_base"] = ck["ground"]; z["max_paving_overlap"] = 1.0; z["place_keep"] = True
+    f = z["forest"]
+    f["trees"] = [list(t) for t in ck["trees"]]; f["spacing"] = 950; f["cut"] = 0.78
+    for c in f["clumps"].values(): c["props"] = ck["garden"][-5:]
+    f["rock_clusters"] = 0; f["tufts_per_mpx"] = 0; f["litter_per_mpx"] = 0; f["cover"]["per_mpx"] = 0; f["clumps_per_mpx"] = 2
+    z["light"].update({"overhead": 0.0, "over_density": 0, "canopy": 0.18, "tree_mist": 0.0, "mist": []})
+    z["root_dressing"] = {"decals": 0, "tufts": 0, "decal_props": ["a_leaves"], "tuft_props": ["a_grass_tall"]}
+    z["rim"] = {"props": ck["garden"], "density": 0.8, "chance": 0.45}
+    # buildings: both sides of every road, well back from the paving, never near an exit or a square
+    keep = [(e["at"][0], e["at"][1], 520) for e in exits] + [(p[0], p[1], 520) for p in lay["pois"]] + [(lay["hub"][0], lay["hub"][1], 600)]
+    z["edges"] = []
+    for i in range(len(lay["paths"])):
+        z["edges"].append({"path": i, "spacing": 640, "offset": 380, "jitter": 120, "density": 0.95, "min_gap": 300, "gap_mult": 2.2, "props": ck["buildings"], "scale": [0.95, 1.1]})
+        z["edges"].append({"path": i, "spacing": 420, "offset": 40, "jitter": 30, "density": 0.6, "min_gap": 20, "props": ck["street"], "scale": [0.95, 1.05]})
+    z["edge_keep_out"] = [list(k) for k in keep]
+    # a landmark behind each square and the hub; market or garden props round the squares
+    z["place"] = []
+    for j, p in enumerate([lay["hub"]] + lay["pois"]):
+        lm = ck["landmarks"][(j + rs.randrange(len(ck["landmarks"]))) % len(ck["landmarks"])]
+        z["place"].append([lm, p[0] + rs.randint(-120, 120), p[1] - (520 if j == 0 else 430), 1.0, rs.random() < 0.5])
+    z["dress"] = [{"at": p, "r": 560, "props": (ck["market"] if j % 2 == 0 else ck["garden"]), "n": 9, "scale": [0.9, 1.1]}
+                  for j, p in enumerate(lay["pois"])]
+
 def write_spec(zid, d, lay, W, H, exits):
     bio = BIOMES[d["biome"]]
     base = json.load(open("assets/zones/src/greyfen_causeway.kitzone.json"))
@@ -426,6 +471,9 @@ def write_spec(zid, d, lay, W, H, exits):
                 dress.append({"at": p, "r": 420, "props": bio["dress"], "n": 6})
         z["dress"] = dress
         z["edges"] = [{"path": 0, "spacing": 170, "offset": 120, "jitter": 120, "density": 0.7, "min_gap": 40, "props": bio["rim"], "scale": [0.85, 1.2]}]
+    ck = bio.get("citykit")
+    if ck and not (bio.get("dungeon") or bio.get("between")):
+        city_dress(z, ck, lay, exits, key)
     z["exits"] = [{"name": e["name"], "to": e["to"], "at": e["at"], "r": 170, "arrive": e["arrive"]} for e in exits]
     z["waypoints"] = [{"id": key + "_wp", "name": RG(zid)["name"], "at": lay["hub"], "radius_px": 200}]
     z["spawn"] = exits[0]["inside"] if exits else lay["hub"]

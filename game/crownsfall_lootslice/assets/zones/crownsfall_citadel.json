@@ -11,9169 +11,3975 @@
   3701,
   4438
  ],
- "kit": "res://assets/kit/forest_hf",
- "ground_base": "flagstone",
+ "kit": "res://assets/kit/city",
+ "ground_base": "cobble_grass",
  "splat": "crownsfall_citadel/splat.png",
  "map": "crownsfall_citadel/map.jpg",
  "splat_k": 8,
  "overview": "crownsfall_citadel/overview.png",
  "props": [
   {
-   "prop": "a_shrub_white",
+   "prop": "c_pillar_post",
    "at": [
     5222,
     1174
    ],
-   "scale": 0.1476,
-   "flip": false,
-   "tint": 0.694
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    5628,
-    900
-   ],
-   "scale": 0.1329,
-   "flip": true,
-   "tint": 0.593
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2381,
-    1710
-   ],
-   "scale": 0.1315,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6604,
-    1441
-   ],
-   "scale": 0.1885,
-   "flip": true,
-   "tint": 0.692
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6454,
-    1474
-   ],
-   "scale": 0.16,
-   "flip": false,
-   "tint": 0.589
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4701,
-    3140
-   ],
-   "scale": 0.1338,
-   "flip": false,
-   "tint": 0.619
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    4880,
-    3510
-   ],
-   "scale": 0.1049,
-   "flip": false,
-   "tint": 0.61
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    5296,
-    4071
-   ],
-   "scale": 0.1822,
-   "flip": true,
-   "tint": 0.641
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4428,
-    4037
-   ],
-   "scale": 0.1503,
-   "flip": false,
-   "tint": 0.609
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1881,
-    4402
-   ],
-   "scale": 0.1157,
-   "flip": false,
-   "tint": 0.786
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2847,
-    3222
-   ],
-   "scale": 0.1101,
-   "flip": false,
-   "tint": 0.812
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2722,
-    2526
-   ],
-   "scale": 0.114,
-   "flip": false,
-   "tint": 0.609
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6572,
-    2948
-   ],
-   "scale": 0.1693,
-   "flip": true,
-   "tint": 0.567
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6805,
-    2666
-   ],
-   "scale": 0.1639,
-   "flip": false,
-   "tint": 0.678
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5368,
-    2833
-   ],
-   "scale": 0.0974,
-   "flip": false,
-   "tint": 0.786
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6770,
-    2534
-   ],
-   "scale": 0.09,
-   "flip": true,
-   "tint": 0.771
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    1582,
-    1166
-   ],
-   "scale": 0.1724,
-   "flip": false,
-   "tint": 0.63
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1463,
-    1196
-   ],
-   "scale": 0.1114,
-   "flip": true,
-   "tint": 0.784
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2532,
-    3760
-   ],
-   "scale": 0.1283,
-   "flip": false,
-   "tint": 0.745
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2460,
-    3777
-   ],
-   "scale": 0.0863,
-   "flip": true,
-   "tint": 0.775
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2318,
-    3381
-   ],
-   "scale": 0.1196,
-   "flip": false,
-   "tint": 0.715
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1985,
-    3504
-   ],
-   "scale": 0.0925,
-   "flip": false,
-   "tint": 0.717
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    1970,
-    3639
-   ],
-   "scale": 0.1578,
-   "flip": true,
-   "tint": 0.647
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2070,
-    3444
-   ],
-   "scale": 0.2372,
-   "flip": true,
-   "tint": 0.584
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1925,
-    1121
-   ],
-   "scale": 0.0902,
-   "flip": false,
-   "tint": 0.813
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1760,
-    1133
-   ],
-   "scale": 0.1002,
-   "flip": true,
-   "tint": 0.826
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2196,
-    1132
-   ],
-   "scale": 0.0881,
-   "flip": false,
-   "tint": 0.726
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    1976,
-    1119
-   ],
-   "scale": 0.2269,
-   "flip": false,
-   "tint": 0.662
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1843,
-    1514
-   ],
-   "scale": 0.1859,
-   "flip": false,
-   "tint": 0.629
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    1769,
-    1481
-   ],
-   "scale": 0.2424,
-   "flip": false,
-   "tint": 0.555
-  },
-  {
-   "prop": "silver",
-   "at": [
-    204,
-    4270
-   ],
-   "scale": 0.3125,
-   "flip": false,
-   "tint": 0.981,
-   "mist": 0.048
-  },
-  {
-   "prop": "silver",
-   "at": [
-    6842,
-    4927
-   ],
-   "scale": 0.3426,
-   "flip": true,
-   "tint": 0.959,
-   "mist": 0.067
-  },
-  {
-   "prop": "silver",
-   "at": [
-    7154,
-    3143
-   ],
-   "scale": 0.349,
-   "flip": false,
-   "tint": 0.933
-  },
-  {
-   "prop": "silver",
-   "at": [
-    7141,
-    1528
-   ],
-   "scale": 0.3136,
-   "flip": false,
-   "tint": 0.918
-  },
-  {
-   "prop": "silver",
-   "at": [
-    5265,
-    216
-   ],
-   "scale": 0.3345,
-   "flip": false,
-   "tint": 1.019,
-   "mist": 0.087
-  },
-  {
-   "prop": "silver",
-   "at": [
-    4393,
-    1043
-   ],
-   "scale": 0.3,
-   "flip": true,
-   "tint": 1.01,
-   "mist": 0.041
-  },
-  {
-   "prop": "silver",
-   "at": [
-    329,
-    1235
-   ],
-   "scale": 0.3801,
-   "flip": false,
-   "tint": 0.99,
-   "mist": 0.06
-  },
-  {
-   "prop": "silver",
-   "at": [
-    487,
-    2169
-   ],
-   "scale": 0.3891,
-   "flip": true,
-   "tint": 1.025,
-   "mist": 0.109
-  },
-  {
-   "prop": "silver",
-   "at": [
-    1115,
-    5032
-   ],
-   "scale": 0.339,
-   "flip": true,
-   "tint": 1.019,
-   "mist": 0.022
-  },
-  {
-   "prop": "a_rock_tall",
-   "at": [
-    7441,
-    2785
-   ],
-   "scale": 0.1977,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_rock_small",
-   "at": [
-    7222,
-    2756
-   ],
-   "scale": 0.1349,
-   "flip": false,
-   "tint": 0.652
-  },
-  {
-   "prop": "a_rock_small",
-   "at": [
-    7261,
-    2830
-   ],
-   "scale": 0.1139,
-   "flip": false,
-   "tint": 0.674,
-   "mist": 0.012
-  },
-  {
-   "prop": "b_rock_flat",
-   "at": [
-    3455,
-    4053
-   ],
-   "scale": 0.1917,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_rock_small",
-   "at": [
-    3696,
-    4062
-   ],
-   "scale": 0.1394,
+   "scale": 0.3611,
    "flip": false,
    "tint": 0.796
   },
   {
-   "prop": "a_rock_pair",
+   "prop": "c_lavender",
    "at": [
-    4715,
-    592
+    5628,
+    900
    ],
-   "scale": 0.1881,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_rock_small",
-   "at": [
-    4731,
-    463
-   ],
-   "scale": 0.1349,
-   "flip": true,
-   "tint": 0.654
-  },
-  {
-   "prop": "a_rock_small",
-   "at": [
-    4691,
-    673
-   ],
-   "scale": 0.1401,
-   "flip": true,
-   "tint": 0.603
-  },
-  {
-   "prop": "b_rock_tall",
-   "at": [
-    791,
-    1481
-   ],
-   "scale": 0.183,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_rock_small",
-   "at": [
-    719,
-    1564
-   ],
-   "scale": 0.0992,
-   "flip": false,
-   "tint": 0.689
-  },
-  {
-   "prop": "a_rock_small",
-   "at": [
-    752,
-    1362
-   ],
-   "scale": 0.1382,
-   "flip": true,
-   "tint": 0.662
-  },
-  {
-   "prop": "a_rock_small",
-   "at": [
-    881,
-    1380
-   ],
-   "scale": 0.1292,
-   "flip": false,
-   "tint": 0.664
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    7400,
-    634
-   ],
-   "scale": 0.1235,
-   "flip": false,
-   "tint": 0.778
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    7539,
-    599
-   ],
-   "scale": 0.1488,
-   "flip": true,
-   "tint": 0.604
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    275,
-    2380
-   ],
-   "scale": 0.1738,
-   "flip": false,
-   "tint": 0.566,
-   "mist": 0.019
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    181,
-    2281
-   ],
-   "scale": 0.132,
-   "flip": true,
-   "tint": 0.757
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    310,
-    2377
-   ],
-   "scale": 0.1434,
-   "flip": true,
-   "tint": 0.603,
-   "mist": 0.027
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    619,
-    1163
-   ],
-   "scale": 0.1863,
-   "flip": true,
-   "tint": 0.558,
-   "mist": 0.031
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    734,
-    1136
-   ],
-   "scale": 0.1268,
-   "flip": true,
-   "tint": 0.649
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    675,
-    1184
-   ],
-   "scale": 0.1916,
-   "flip": true,
-   "tint": 0.565,
-   "mist": 0.016
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    483,
-    1206
-   ],
-   "scale": 0.1707,
-   "flip": false,
-   "tint": 0.588,
-   "mist": 0.059
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    606,
-    1119
-   ],
-   "scale": 0.1682,
-   "flip": true,
-   "tint": 0.586,
-   "mist": 0.034
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6589,
-    4740
-   ],
-   "scale": 0.1065,
-   "flip": true,
-   "tint": 0.608
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6698,
-    4744
-   ],
-   "scale": 0.1116,
-   "flip": false,
-   "tint": 0.661
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6752,
-    4706
-   ],
-   "scale": 0.1054,
-   "flip": false,
-   "tint": 0.58,
-   "mist": 0.01
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6814,
-    4742
-   ],
-   "scale": 0.1216,
-   "flip": false,
-   "tint": 0.59,
-   "mist": 0.031
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6773,
-    4644
-   ],
-   "scale": 0.1085,
-   "flip": true,
-   "tint": 0.668
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6647,
-    4734
-   ],
-   "scale": 0.1155,
-   "flip": true,
-   "tint": 0.645
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7546,
-    4163
-   ],
-   "scale": 0.1383,
-   "flip": true,
-   "tint": 0.59
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7509,
-    4289
-   ],
-   "scale": 0.1804,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7421,
-    4213
-   ],
-   "scale": 0.1692,
-   "flip": true,
-   "tint": 0.563
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7602,
-    4290
-   ],
-   "scale": 0.1758,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1975,
-    999
-   ],
-   "scale": 0.0914,
-   "flip": true,
-   "tint": 0.721
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2101,
-    976
-   ],
-   "scale": 0.0939,
-   "flip": false,
-   "tint": 0.703
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2237,
-    1007
-   ],
-   "scale": 0.0997,
-   "flip": true,
-   "tint": 0.674
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2100,
-    1018
-   ],
-   "scale": 0.1033,
-   "flip": false,
-   "tint": 0.693
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2473,
-    2949
-   ],
-   "scale": 0.1636,
-   "flip": true,
-   "tint": 0.56
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2601,
-    3070
-   ],
-   "scale": 0.2158,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2449,
-    3064
-   ],
-   "scale": 0.1358,
-   "flip": true,
-   "tint": 0.586
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2531,
-    3039
-   ],
-   "scale": 0.2019,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6152,
-    3823
-   ],
-   "scale": 0.1078,
-   "flip": true,
-   "tint": 0.638
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6194,
-    3825
-   ],
-   "scale": 0.1183,
-   "flip": false,
-   "tint": 0.63
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6039,
-    3806
-   ],
-   "scale": 0.0964,
-   "flip": true,
-   "tint": 0.807
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6078,
-    3780
-   ],
-   "scale": 0.0842,
-   "flip": false,
-   "tint": 0.674
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6092,
-    3787
-   ],
-   "scale": 0.116,
-   "flip": true,
-   "tint": 0.658
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6249,
-    3817
-   ],
-   "scale": 0.1051,
-   "flip": true,
-   "tint": 0.66
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1276,
-    4495
-   ],
-   "scale": 0.0896,
-   "flip": false,
-   "tint": 0.71
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1319,
-    4538
-   ],
-   "scale": 0.1087,
-   "flip": false,
-   "tint": 0.683
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1291,
-    4617
-   ],
-   "scale": 0.0834,
-   "flip": true,
-   "tint": 0.658
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1382,
-    4569
-   ],
-   "scale": 0.0996,
-   "flip": false,
-   "tint": 0.696
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1157,
-    4628
-   ],
-   "scale": 0.1207,
-   "flip": true,
-   "tint": 0.646
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1288,
-    4611
-   ],
-   "scale": 0.1198,
-   "flip": true,
-   "tint": 0.65
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2941,
-    2128
-   ],
-   "scale": 0.0942,
-   "flip": true,
-   "tint": 0.779
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2780,
-    2093
-   ],
-   "scale": 0.0942,
-   "flip": false,
-   "tint": 0.688
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2826,
-    2133
-   ],
-   "scale": 0.108,
-   "flip": false,
-   "tint": 0.729
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2849,
-    2136
-   ],
-   "scale": 0.1185,
-   "flip": true,
-   "tint": 0.653
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2944,
-    2180
-   ],
-   "scale": 0.097,
-   "flip": false,
-   "tint": 0.747
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2891,
-    2198
-   ],
-   "scale": 0.0961,
-   "flip": true,
-   "tint": 0.769
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    3259,
-    1941
-   ],
-   "scale": 0.1418,
-   "flip": false,
-   "tint": 0.589
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2963,
-    2000
-   ],
-   "scale": 0.1557,
-   "flip": true,
-   "tint": 0.565
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1135,
-    955
-   ],
-   "scale": 0.0968,
-   "flip": false,
-   "tint": 0.675
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1118,
-    958
-   ],
-   "scale": 0.1164,
-   "flip": true,
-   "tint": 0.629
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1084,
-    999
-   ],
-   "scale": 0.1245,
-   "flip": true,
-   "tint": 0.618
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1062,
-    949
-   ],
-   "scale": 0.1052,
-   "flip": false,
-   "tint": 0.646
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1182,
-    980
-   ],
-   "scale": 0.0952,
-   "flip": false,
-   "tint": 0.659
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5470,
-    4602
-   ],
-   "scale": 0.1638,
-   "flip": false,
-   "tint": 0.583
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5396,
-    4584
-   ],
-   "scale": 0.1564,
-   "flip": false,
-   "tint": 0.581
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5390,
-    4607
-   ],
-   "scale": 0.1581,
-   "flip": false,
-   "tint": 0.585
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5480,
-    4584
-   ],
-   "scale": 0.1424,
-   "flip": false,
-   "tint": 0.591
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    7547,
-    4050
-   ],
-   "scale": 0.219,
-   "flip": true,
-   "tint": 0.615
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    7570,
-    4096
-   ],
-   "scale": 0.144,
-   "flip": false,
-   "tint": 0.584
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6473,
-    4953
-   ],
-   "scale": 0.1797,
-   "flip": false,
-   "tint": 0.648
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6442,
-    4857
-   ],
-   "scale": 0.1183,
-   "flip": false,
-   "tint": 0.718
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6420,
-    4902
-   ],
-   "scale": 0.1804,
-   "flip": false,
-   "tint": 0.622
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6439,
-    4952
-   ],
-   "scale": 0.2202,
-   "flip": false,
-   "tint": 0.616
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6458,
-    4919
-   ],
-   "scale": 0.1923,
-   "flip": true,
-   "tint": 0.581
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6346,
-    4975
-   ],
-   "scale": 0.1151,
-   "flip": true,
-   "tint": 0.854
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4601,
-    1497
-   ],
-   "scale": 0.1613,
-   "flip": true,
-   "tint": 0.558
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4619,
-    1497
-   ],
-   "scale": 0.1452,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4488,
-    1550
-   ],
-   "scale": 0.1336,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4627,
-    1489
-   ],
-   "scale": 0.1405,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7016,
-    1361
-   ],
-   "scale": 0.0992,
-   "flip": true,
-   "tint": 0.676,
-   "mist": 0.018
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6809,
-    1411
-   ],
-   "scale": 0.0962,
-   "flip": true,
-   "tint": 0.816
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6901,
-    1418
-   ],
-   "scale": 0.104,
-   "flip": false,
-   "tint": 0.686
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2357,
-    2049
-   ],
-   "scale": 0.0956,
-   "flip": false,
-   "tint": 0.674
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2517,
-    2026
-   ],
-   "scale": 0.1059,
-   "flip": false,
-   "tint": 0.662
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2599,
-    2031
-   ],
-   "scale": 0.0953,
-   "flip": false,
-   "tint": 0.663
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    724,
-    4707
-   ],
-   "scale": 0.1978,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    751,
-    4656
-   ],
-   "scale": 0.1209,
-   "flip": false,
-   "tint": 0.595
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    714,
-    4684
-   ],
-   "scale": 0.1814,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    697,
-    4711
-   ],
-   "scale": 0.1205,
-   "flip": false,
-   "tint": 0.569
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    724,
-    4657
-   ],
-   "scale": 0.1928,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    711,
-    4707
-   ],
-   "scale": 0.1353,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7605,
-    4219
-   ],
-   "scale": 0.1176,
-   "flip": true,
-   "tint": 0.624
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    7555,
-    4268
-   ],
-   "scale": 0.118,
-   "flip": false,
-   "tint": 0.589
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7399,
-    4198
-   ],
-   "scale": 0.1165,
-   "flip": true,
-   "tint": 0.594
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    820,
-    4905
-   ],
-   "scale": 0.1396,
-   "flip": false,
-   "tint": 0.606
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    818,
-    4833
-   ],
-   "scale": 0.1504,
-   "flip": false,
-   "tint": 0.606
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    866,
-    4929
-   ],
-   "scale": 0.1758,
-   "flip": true,
-   "tint": 0.576
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    870,
-    4918
-   ],
-   "scale": 0.1749,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    846,
-    4904
-   ],
-   "scale": 0.1566,
-   "flip": true,
-   "tint": 0.553
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5321,
-    1756
-   ],
-   "scale": 0.1665,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5455,
-    1871
-   ],
-   "scale": 0.2022,
-   "flip": true,
-   "tint": 0.638
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5448,
-    1781
-   ],
-   "scale": 0.1822,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5521,
-    1796
-   ],
-   "scale": 0.1716,
-   "flip": true,
-   "tint": 0.574
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    941,
-    3849
-   ],
-   "scale": 0.1808,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    921,
-    3892
-   ],
-   "scale": 0.1717,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    5721,
-    4103
-   ],
-   "scale": 0.1409,
-   "flip": true,
-   "tint": 0.596
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    5818,
-    4122
-   ],
-   "scale": 0.1689,
-   "flip": true,
-   "tint": 0.583
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5880,
-    4106
-   ],
-   "scale": 0.181,
-   "flip": true,
-   "tint": 0.574
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5764,
-    4144
-   ],
-   "scale": 0.2041,
-   "flip": true,
-   "tint": 0.619
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1371,
-    3527
-   ],
-   "scale": 0.1062,
-   "flip": true,
-   "tint": 0.77
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1399,
-    3492
-   ],
-   "scale": 0.1153,
-   "flip": false,
-   "tint": 0.615
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1416,
-    3494
-   ],
-   "scale": 0.1123,
-   "flip": false,
-   "tint": 0.623
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1410,
-    3560
-   ],
-   "scale": 0.1253,
-   "flip": true,
-   "tint": 0.602
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6544,
-    186
-   ],
-   "scale": 0.1726,
-   "flip": false,
-   "tint": 0.702
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6525,
-    167
-   ],
-   "scale": 0.1328,
-   "flip": true,
-   "tint": 0.718
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6567,
-    164
-   ],
-   "scale": 0.1367,
-   "flip": false,
-   "tint": 0.761
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6493,
-    152
-   ],
-   "scale": 0.1578,
-   "flip": false,
-   "tint": 0.774
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1660,
-    4604
-   ],
-   "scale": 0.0856,
-   "flip": false,
-   "tint": 0.728
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1797,
-    4738
-   ],
-   "scale": 0.0912,
-   "flip": true,
-   "tint": 0.74
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1752,
-    4659
-   ],
-   "scale": 0.0952,
-   "flip": true,
-   "tint": 0.714
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1902,
-    4594
-   ],
-   "scale": 0.1594,
-   "flip": false,
-   "tint": 0.649
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1790,
-    4636
-   ],
-   "scale": 0.1294,
-   "flip": true,
-   "tint": 0.665
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    62,
-    264
-   ],
-   "scale": 0.1366,
-   "flip": true,
-   "tint": 0.649
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    172,
-    381
-   ],
-   "scale": 0.1567,
-   "flip": true,
-   "tint": 0.786
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    116,
-    273
-   ],
-   "scale": 0.173,
-   "flip": true,
-   "tint": 0.592
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    140,
-    332
-   ],
-   "scale": 0.1322,
-   "flip": false,
-   "tint": 0.78
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    123,
-    284
-   ],
-   "scale": 0.1585,
-   "flip": true,
-   "tint": 0.601
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    44,
-    295
-   ],
-   "scale": 0.1853,
-   "flip": false,
-   "tint": 0.609
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7468,
-    2175
-   ],
-   "scale": 0.1028,
-   "flip": true,
-   "tint": 0.66
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    7583,
-    2147
-   ],
-   "scale": 0.0896,
-   "flip": true,
-   "tint": 0.72
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    7500,
-    2067
-   ],
-   "scale": 0.0948,
-   "flip": false,
-   "tint": 0.697
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4433,
-    1557
-   ],
-   "scale": 0.1538,
-   "flip": true,
-   "tint": 0.693
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4539,
-    1544
-   ],
-   "scale": 0.1688,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4430,
-    1561
-   ],
-   "scale": 0.1728,
-   "flip": false,
-   "tint": 0.691
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4444,
-    1560
-   ],
-   "scale": 0.1632,
-   "flip": false,
-   "tint": 0.657
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    4650,
-    1469
-   ],
-   "scale": 0.1201,
-   "flip": false,
-   "tint": 0.6
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    4630,
-    1582
-   ],
-   "scale": 0.2087,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    4710,
-    1473
-   ],
-   "scale": 0.1736,
-   "flip": true,
-   "tint": 0.56
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    4699,
-    1583
-   ],
-   "scale": 0.1925,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5223,
-    3716
-   ],
-   "scale": 0.2,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    5289,
-    3755
-   ],
-   "scale": 0.1266,
-   "flip": true,
-   "tint": 0.559
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5272,
-    3795
-   ],
-   "scale": 0.1938,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5216,
-    3794
-   ],
-   "scale": 0.2046,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    473,
-    3582
-   ],
-   "scale": 0.144,
-   "flip": false,
-   "tint": 0.688
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    543,
-    3489
-   ],
-   "scale": 0.1452,
-   "flip": false,
-   "tint": 0.725
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    450,
-    3577
-   ],
-   "scale": 0.1809,
-   "flip": false,
-   "tint": 0.673
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    467,
-    3520
-   ],
-   "scale": 0.1397,
-   "flip": false,
-   "tint": 0.754
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    571,
-    3563
-   ],
-   "scale": 0.1874,
-   "flip": false,
-   "tint": 0.679
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    657,
-    3545
-   ],
-   "scale": 0.1417,
-   "flip": true,
-   "tint": 0.619
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    194,
-    3443
-   ],
-   "scale": 0.095,
-   "flip": true,
-   "tint": 0.649
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    375,
-    3490
-   ],
-   "scale": 0.1157,
-   "flip": true,
-   "tint": 0.801
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    235,
-    3446
-   ],
-   "scale": 0.1193,
-   "flip": true,
-   "tint": 0.759
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    178,
-    3412
-   ],
-   "scale": 0.0905,
-   "flip": true,
-   "tint": 0.804
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5179,
-    2798
-   ],
-   "scale": 0.1158,
-   "flip": false,
-   "tint": 0.688
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5070,
-    2782
-   ],
-   "scale": 0.0931,
-   "flip": false,
-   "tint": 0.662
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5101,
-    2828
-   ],
-   "scale": 0.1036,
-   "flip": false,
-   "tint": 0.631
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5178,
-    2818
-   ],
-   "scale": 0.1082,
-   "flip": true,
-   "tint": 0.585
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5072,
-    2870
-   ],
-   "scale": 0.1163,
-   "flip": false,
-   "tint": 0.621
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6762,
-    4138
-   ],
-   "scale": 0.16,
-   "flip": false,
-   "tint": 0.564
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6783,
-    4093
-   ],
-   "scale": 0.2168,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6776,
-    4191
-   ],
-   "scale": 0.2005,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6783,
-    4182
-   ],
-   "scale": 0.1692,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6661,
-    4239
-   ],
-   "scale": 0.215,
-   "flip": true,
-   "tint": 0.616
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    7587,
-    4562
-   ],
-   "scale": 0.1157,
-   "flip": false,
-   "tint": 0.798
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7698,
-    4462
-   ],
-   "scale": 0.0961,
-   "flip": true,
-   "tint": 0.912
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6260,
-    615
-   ],
-   "scale": 0.1313,
-   "flip": false,
-   "tint": 0.7
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6191,
-    599
-   ],
-   "scale": 0.1875,
-   "flip": false,
-   "tint": 0.613
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6216,
-    612
-   ],
-   "scale": 0.1778,
-   "flip": false,
-   "tint": 0.551
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6104,
-    664
-   ],
-   "scale": 0.15,
-   "flip": true,
-   "tint": 0.669
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6204,
-    595
-   ],
-   "scale": 0.1662,
-   "flip": false,
-   "tint": 0.615
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5708,
-    2320
-   ],
-   "scale": 0.1756,
-   "flip": false,
-   "tint": 0.59
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    5749,
-    2249
-   ],
-   "scale": 0.1237,
-   "flip": true,
-   "tint": 0.626
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    5736,
-    2325
-   ],
-   "scale": 0.1183,
-   "flip": true,
-   "tint": 0.586
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5723,
-    2235
-   ],
-   "scale": 0.1674,
-   "flip": true,
-   "tint": 0.68
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5755,
-    2306
-   ],
-   "scale": 0.1758,
-   "flip": false,
-   "tint": 0.58
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    5708,
-    2389
-   ],
-   "scale": 0.1566,
-   "flip": true,
-   "tint": 0.607
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1571,
-    662
-   ],
-   "scale": 0.1722,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1521,
-    673
-   ],
-   "scale": 0.1523,
-   "flip": true,
-   "tint": 0.59
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1650,
-    634
-   ],
-   "scale": 0.1313,
-   "flip": true,
-   "tint": 0.643
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    1609,
-    675
-   ],
-   "scale": 0.1711,
-   "flip": true,
-   "tint": 0.575
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1560,
-    656
-   ],
-   "scale": 0.1301,
-   "flip": false,
-   "tint": 0.566
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1544,
-    674
-   ],
-   "scale": 0.1526,
-   "flip": false,
-   "tint": 0.559
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    916,
-    573
-   ],
-   "scale": 0.1082,
-   "flip": true,
-   "tint": 0.621
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    793,
-    548
-   ],
-   "scale": 0.0911,
-   "flip": true,
-   "tint": 0.599
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    779,
-    529
-   ],
-   "scale": 0.1117,
-   "flip": true,
-   "tint": 0.597
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    816,
-    536
-   ],
-   "scale": 0.0887,
-   "flip": true,
-   "tint": 0.62
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    7481,
-    377
-   ],
-   "scale": 0.1678,
-   "flip": true,
-   "tint": 0.578
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    7550,
-    355
-   ],
-   "scale": 0.2186,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    7587,
-    329
-   ],
-   "scale": 0.1708,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    7601,
-    340
-   ],
-   "scale": 0.1186,
-   "flip": false,
-   "tint": 0.572
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    7703,
-    291
-   ],
-   "scale": 0.2125,
-   "flip": false,
-   "tint": 0.652
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6190,
-    3683
-   ],
-   "scale": 0.1195,
-   "flip": false,
-   "tint": 0.605
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6219,
-    3668
-   ],
-   "scale": 0.0941,
-   "flip": false,
-   "tint": 0.599
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6236,
-    3676
-   ],
-   "scale": 0.0971,
-   "flip": false,
-   "tint": 0.567
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6275,
-    3675
-   ],
-   "scale": 0.1021,
-   "flip": false,
-   "tint": 0.619
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6242,
-    3686
-   ],
-   "scale": 0.1171,
-   "flip": true,
-   "tint": 0.578
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5604,
-    1218
-   ],
-   "scale": 0.0889,
-   "flip": true,
-   "tint": 0.644
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5607,
-    1324
-   ],
-   "scale": 0.1219,
-   "flip": true,
-   "tint": 0.689
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5640,
-    1216
-   ],
-   "scale": 0.1156,
-   "flip": false,
-   "tint": 0.613
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5642,
-    1252
-   ],
-   "scale": 0.1024,
-   "flip": true,
-   "tint": 0.628
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5338,
-    3777
-   ],
-   "scale": 0.2093,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5220,
-    3727
-   ],
-   "scale": 0.2189,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    5248,
-    3735
-   ],
-   "scale": 0.1586,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5295,
-    3728
-   ],
-   "scale": 0.1642,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5282,
-    3706
-   ],
-   "scale": 0.169,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1144,
-    1445
-   ],
-   "scale": 0.0845,
-   "flip": true,
-   "tint": 0.637
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1019,
-    1408
-   ],
-   "scale": 0.0994,
-   "flip": false,
-   "tint": 0.656
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1150,
-    1453
-   ],
-   "scale": 0.1143,
-   "flip": false,
-   "tint": 0.63
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    919,
-    4148
-   ],
-   "scale": 0.184,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    767,
-    4044
-   ],
-   "scale": 0.1575,
-   "flip": false,
-   "tint": 0.566
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    847,
-    4121
-   ],
-   "scale": 0.1694,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    811,
-    4073
-   ],
-   "scale": 0.1314,
-   "flip": true,
-   "tint": 0.581
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    936,
-    4064
-   ],
-   "scale": 0.1889,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    880,
-    4056
-   ],
-   "scale": 0.1772,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5968,
-    334
-   ],
-   "scale": 0.0854,
-   "flip": false,
-   "tint": 0.839
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6079,
-    437
-   ],
-   "scale": 0.0922,
-   "flip": false,
-   "tint": 0.803
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5915,
-    366
-   ],
-   "scale": 0.0966,
-   "flip": false,
-   "tint": 0.801
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5884,
-    394
-   ],
-   "scale": 0.0929,
-   "flip": true,
-   "tint": 0.83
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6097,
-    413
-   ],
-   "scale": 0.1168,
-   "flip": true,
-   "tint": 0.781
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5989,
-    368
-   ],
-   "scale": 0.0971,
-   "flip": true,
-   "tint": 0.807
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6907,
-    1832
-   ],
-   "scale": 0.1078,
-   "flip": true,
-   "tint": 0.795
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6934,
-    1858
-   ],
-   "scale": 0.1268,
-   "flip": false,
-   "tint": 0.762
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6975,
-    1825
-   ],
-   "scale": 0.1454,
-   "flip": true,
-   "tint": 0.743
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    7031,
-    1863
-   ],
-   "scale": 0.1551,
-   "flip": false,
-   "tint": 0.6
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    7067,
-    1880
-   ],
-   "scale": 0.115,
-   "flip": false,
-   "tint": 0.639
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6984,
-    1885
-   ],
-   "scale": 0.1406,
-   "flip": false,
-   "tint": 0.609
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6260,
-    1889
-   ],
-   "scale": 0.1264,
-   "flip": false,
-   "tint": 0.8
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6118,
-    1921
-   ],
-   "scale": 0.1479,
-   "flip": false,
-   "tint": 0.791
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6181,
-    1930
-   ],
-   "scale": 0.1474,
-   "flip": true,
-   "tint": 0.779
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6374,
-    1891
-   ],
-   "scale": 0.2252,
-   "flip": false,
-   "tint": 0.647
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    4749,
-    186
-   ],
-   "scale": 0.0922,
-   "flip": false,
-   "tint": 0.659
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    4840,
-    196
-   ],
-   "scale": 0.0966,
-   "flip": false,
-   "tint": 0.642
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6984,
-    4512
-   ],
-   "scale": 0.0897,
-   "flip": false,
-   "tint": 0.683
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6864,
-    4462
-   ],
-   "scale": 0.1059,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6963,
-    4501
-   ],
-   "scale": 0.0947,
-   "flip": true,
-   "tint": 0.614
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6933,
-    4453
-   ],
-   "scale": 0.0973,
-   "flip": false,
-   "tint": 0.648
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6878,
-    4449
-   ],
-   "scale": 0.101,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    4808,
-    2084
-   ],
-   "scale": 0.181,
-   "flip": true,
-   "tint": 0.58
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    4820,
-    2082
-   ],
-   "scale": 0.1704,
+   "scale": 0.2012,
    "flip": true,
-   "tint": 0.58
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    4894,
-    2072
-   ],
-   "scale": 0.1451,
-   "flip": false,
-   "tint": 0.588
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    4927,
-    2080
-   ],
-   "scale": 0.1624,
-   "flip": false,
-   "tint": 0.571
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    4935,
-    2153
-   ],
-   "scale": 0.1063,
-   "flip": false,
-   "tint": 0.666
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2676,
-    3261
-   ],
-   "scale": 0.1229,
-   "flip": false,
-   "tint": 0.755
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2731,
-    3243
-   ],
-   "scale": 0.1995,
-   "flip": false,
-   "tint": 0.693
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2783,
-    3149
-   ],
-   "scale": 0.171,
-   "flip": false,
-   "tint": 0.725
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2689,
-    3190
-   ],
-   "scale": 0.1475,
-   "flip": false,
-   "tint": 0.742
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2658,
-    3288
-   ],
-   "scale": 0.1668,
-   "flip": false,
-   "tint": 0.708
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    4684,
-    1622
-   ],
-   "scale": 0.2076,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    4617,
-    1623
-   ],
-   "scale": 0.1634,
-   "flip": false,
-   "tint": 0.566
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    4606,
-    1695
-   ],
-   "scale": 0.1309,
-   "flip": false,
-   "tint": 0.683
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    4641,
-    1586
-   ],
-   "scale": 0.1498,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    4579,
-    1668
-   ],
-   "scale": 0.2023,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6764,
-    1413
-   ],
-   "scale": 0.1459,
-   "flip": true,
-   "tint": 0.778
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6885,
-    1353
-   ],
-   "scale": 0.1408,
-   "flip": false,
-   "tint": 0.779
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6829,
-    1367
-   ],
-   "scale": 0.222,
-   "flip": false,
-   "tint": 0.688
+   "tint": 0.765
   },
   {
-   "prop": "b_bush_round",
+   "prop": "c_flower_planter",
    "at": [
     6942,
-    1363
+    1574
    ],
-   "scale": 0.1794,
+   "scale": 0.2904,
    "flip": true,
-   "tint": 0.582
+   "tint": 0.689
   },
   {
-   "prop": "b_bush_round",
+   "prop": "c_pillar_post",
    "at": [
-    6964,
-    1392
-   ],
-   "scale": 0.2133,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2547,
-    2930
-   ],
-   "scale": 0.2188,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2533,
-    2900
-   ],
-   "scale": 0.1354,
-   "flip": false,
-   "tint": 0.565
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2731,
-    2913
-   ],
-   "scale": 0.1641,
-   "flip": true,
-   "tint": 0.555
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2559,
-    2917
-   ],
-   "scale": 0.1919,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2727,
-    2904
-   ],
-   "scale": 0.1449,
-   "flip": true,
-   "tint": 0.56
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2475,
-    2940
-   ],
-   "scale": 0.1201,
-   "flip": true,
-   "tint": 0.571
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2441,
-    1742
-   ],
-   "scale": 0.132,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    2366,
-    1686
-   ],
-   "scale": 0.1789,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2496,
-    1752
-   ],
-   "scale": 0.1393,
-   "flip": true,
-   "tint": 0.604
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2442,
-    1721
-   ],
-   "scale": 0.171,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    2396,
-    1759
-   ],
-   "scale": 0.1521,
-   "flip": false,
-   "tint": 0.572
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    3599,
-    4097
-   ],
-   "scale": 0.0879,
-   "flip": true,
-   "tint": 0.666
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    3604,
-    4088
-   ],
-   "scale": 0.1144,
-   "flip": false,
-   "tint": 0.702
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    3572,
-    4042
-   ],
-   "scale": 0.087,
-   "flip": true,
-   "tint": 0.686
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    1738,
-    2491
-   ],
-   "scale": 0.1446,
-   "flip": false,
-   "tint": 0.66
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1599,
-    2399
-   ],
-   "scale": 0.1407,
-   "flip": true,
-   "tint": 0.636
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1846,
-    2375
-   ],
-   "scale": 0.162,
-   "flip": true,
-   "tint": 0.598
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1580,
-    2453
-   ],
-   "scale": 0.1524,
-   "flip": false,
-   "tint": 0.665
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1745,
-    2392
-   ],
-   "scale": 0.1388,
-   "flip": true,
-   "tint": 0.627
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6397,
-    4396
-   ],
-   "scale": 0.108,
-   "flip": false,
-   "tint": 0.773
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6485,
-    4330
-   ],
-   "scale": 0.1143,
-   "flip": false,
-   "tint": 0.74
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6515,
-    4356
-   ],
-   "scale": 0.102,
-   "flip": false,
-   "tint": 0.65
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    572,
-    2524
-   ],
-   "scale": 0.0972,
-   "flip": false,
-   "tint": 0.648,
-   "mist": 0.013
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    725,
-    2549
-   ],
-   "scale": 0.1088,
-   "flip": false,
-   "tint": 0.794
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    549,
-    2591
-   ],
-   "scale": 0.0989,
-   "flip": true,
-   "tint": 0.666
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    548,
-    2530
-   ],
-   "scale": 0.0858,
-   "flip": true,
-   "tint": 0.663,
-   "mist": 0.012
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    511,
-    2453
-   ],
-   "scale": 0.1102,
-   "flip": false,
-   "tint": 0.647,
-   "mist": 0.031
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    613,
-    4834
-   ],
-   "scale": 0.0944,
-   "flip": false,
-   "tint": 0.649
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    671,
-    4830
-   ],
-   "scale": 0.0876,
-   "flip": false,
-   "tint": 0.665
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    553,
-    4861
-   ],
-   "scale": 0.0981,
-   "flip": true,
-   "tint": 0.609
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    550,
-    4821
-   ],
-   "scale": 0.1161,
-   "flip": true,
-   "tint": 0.605
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4894,
-    4632
-   ],
-   "scale": 0.1483,
-   "flip": false,
-   "tint": 0.627
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4985,
-    4643
-   ],
-   "scale": 0.1792,
-   "flip": false,
-   "tint": 0.602
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1721,
-    807
-   ],
-   "scale": 0.137,
-   "flip": false,
-   "tint": 0.653
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1885,
-    720
-   ],
-   "scale": 0.1581,
-   "flip": true,
-   "tint": 0.624
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1752,
-    666
-   ],
-   "scale": 0.1517,
-   "flip": false,
-   "tint": 0.623
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2709,
-    775
-   ],
-   "scale": 0.1225,
-   "flip": false,
-   "tint": 0.804
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2741,
-    837
-   ],
-   "scale": 0.2023,
-   "flip": false,
-   "tint": 0.685
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2871,
-    833
-   ],
-   "scale": 0.1528,
-   "flip": true,
-   "tint": 0.731
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2644,
-    854
-   ],
-   "scale": 0.1882,
-   "flip": true,
-   "tint": 0.705
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2795,
-    902
-   ],
-   "scale": 0.1171,
-   "flip": false,
-   "tint": 0.781
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2716,
-    891
-   ],
-   "scale": 0.2189,
-   "flip": false,
-   "tint": 0.66
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5803,
-    4822
-   ],
-   "scale": 0.1597,
-   "flip": false,
-   "tint": 0.75
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    5788,
-    4818
-   ],
-   "scale": 0.1785,
-   "flip": true,
-   "tint": 0.74
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5544,
-    4915
-   ],
-   "scale": 0.1743,
-   "flip": false,
-   "tint": 0.612
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    868,
-    2746
-   ],
-   "scale": 0.1537,
-   "flip": false,
-   "tint": 0.695
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    919,
-    2749
-   ],
-   "scale": 0.1374,
-   "flip": true,
-   "tint": 0.705
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    1029,
-    2713
-   ],
-   "scale": 0.191,
-   "flip": true,
-   "tint": 0.668
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    957,
-    2731
-   ],
-   "scale": 0.1454,
-   "flip": true,
-   "tint": 0.711
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    749,
-    2774
-   ],
-   "scale": 0.1882,
-   "flip": true,
-   "tint": 0.675
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    978,
-    2684
-   ],
-   "scale": 0.1563,
-   "flip": true,
-   "tint": 0.702
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6828,
-    4378
-   ],
-   "scale": 0.2261,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6997,
-    4503
-   ],
-   "scale": 0.1177,
-   "flip": true,
-   "tint": 0.72
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6842,
-    4422
-   ],
-   "scale": 0.202,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6860,
-    4435
-   ],
-   "scale": 0.1144,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6894,
-    4465
-   ],
-   "scale": 0.1807,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4032,
-    196
-   ],
-   "scale": 0.1422,
-   "flip": true,
-   "tint": 0.661
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    3960,
-    135
-   ],
-   "scale": 0.1358,
-   "flip": true,
-   "tint": 0.617
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    3987,
-    148
-   ],
-   "scale": 0.1734,
-   "flip": false,
-   "tint": 0.588
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4073,
-    233
-   ],
-   "scale": 0.142,
-   "flip": false,
-   "tint": 0.661
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    3868,
-    127
-   ],
-   "scale": 0.1781,
-   "flip": false,
-   "tint": 0.603
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6770,
-    1206
-   ],
-   "scale": 0.1627,
-   "flip": false,
-   "tint": 0.603
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6627,
-    1203
-   ],
-   "scale": 0.1143,
-   "flip": false,
-   "tint": 0.658
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6673,
-    1170
-   ],
-   "scale": 0.1619,
-   "flip": true,
-   "tint": 0.587
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6710,
-    1195
-   ],
-   "scale": 0.2126,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6804,
-    1176
-   ],
-   "scale": 0.1369,
-   "flip": false,
-   "tint": 0.63
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6802,
-    1265
-   ],
-   "scale": 0.125,
-   "flip": false,
-   "tint": 0.675
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5779,
-    4402
-   ],
-   "scale": 0.1153,
-   "flip": true,
-   "tint": 0.772
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5840,
-    4435
-   ],
-   "scale": 0.1227,
-   "flip": true,
-   "tint": 0.708
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    5842,
-    4417
-   ],
-   "scale": 0.0908,
-   "flip": false,
-   "tint": 0.736
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5775,
-    4447
-   ],
-   "scale": 0.116,
-   "flip": true,
-   "tint": 0.72
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6029,
-    3432
-   ],
-   "scale": 0.1422,
-   "flip": false,
-   "tint": 0.633
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    5984,
-    3425
-   ],
-   "scale": 0.1476,
-   "flip": false,
-   "tint": 0.707
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6014,
-    3382
-   ],
-   "scale": 0.1401,
-   "flip": true,
-   "tint": 0.558
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    6002,
-    3420
-   ],
-   "scale": 0.1794,
-   "flip": false,
-   "tint": 0.554
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6006,
-    3438
-   ],
-   "scale": 0.1162,
-   "flip": false,
-   "tint": 0.699
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5890,
-    3388
-   ],
-   "scale": 0.1888,
-   "flip": false,
-   "tint": 0.702
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2231,
-    3247
-   ],
-   "scale": 0.1785,
-   "flip": false,
-   "tint": 0.569
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2243,
-    3268
-   ],
-   "scale": 0.125,
-   "flip": true,
-   "tint": 0.589
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2275,
-    3281
-   ],
-   "scale": 0.1418,
-   "flip": true,
-   "tint": 0.63
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2167,
-    3340
-   ],
-   "scale": 0.2261,
-   "flip": true,
-   "tint": 0.585
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    1030,
-    3536
-   ],
-   "scale": 0.1489,
-   "flip": false,
-   "tint": 0.622
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    1018,
-    3460
-   ],
-   "scale": 0.1692,
-   "flip": false,
-   "tint": 0.602
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    906,
-    3518
-   ],
-   "scale": 0.1316,
-   "flip": false,
-   "tint": 0.652
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    963,
-    3448
-   ],
-   "scale": 0.1455,
-   "flip": true,
-   "tint": 0.633
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    800,
-    3494
-   ],
-   "scale": 0.129,
-   "flip": false,
-   "tint": 0.65
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    603,
-    681
-   ],
-   "scale": 0.1959,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    580,
-    685
-   ],
-   "scale": 0.2151,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    651,
-    686
-   ],
-   "scale": 0.2024,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    597,
-    683
-   ],
-   "scale": 0.2045,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    3242,
-    544
-   ],
-   "scale": 0.1734,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    3234,
-    569
-   ],
-   "scale": 0.178,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    3291,
-    462
-   ],
-   "scale": 0.1635,
-   "flip": false,
-   "tint": 0.591
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    3234,
-    538
-   ],
-   "scale": 0.1485,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    3140,
-    503
-   ],
-   "scale": 0.1629,
-   "flip": true,
-   "tint": 0.64
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    3194,
-    520
-   ],
-   "scale": 0.2292,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2351,
-    2470
-   ],
-   "scale": 0.1014,
-   "flip": true,
-   "tint": 0.64
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2376,
-    2540
-   ],
-   "scale": 0.1118,
-   "flip": true,
-   "tint": 0.63
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2414,
-    2471
-   ],
-   "scale": 0.1162,
-   "flip": true,
-   "tint": 0.63
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    7605,
-    3505
-   ],
-   "scale": 0.1059,
-   "flip": false,
-   "tint": 0.751
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7434,
-    3541
-   ],
-   "scale": 0.1246,
-   "flip": false,
-   "tint": 0.687
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7409,
-    3509
-   ],
-   "scale": 0.1203,
-   "flip": false,
-   "tint": 0.714
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7487,
+    4844,
     3539
    ],
-   "scale": 0.0956,
+   "scale": 0.4613,
    "flip": true,
-   "tint": 0.762
+   "tint": 0.702
   },
   {
-   "prop": "b_lavender",
+   "prop": "c_hydrangea_blue",
    "at": [
-    7443,
-    3531
+    2014,
+    3937
    ],
-   "scale": 0.0885,
-   "flip": true,
-   "tint": 0.701
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7546,
-    3508
-   ],
-   "scale": 0.1163,
+   "scale": 0.2456,
    "flip": true,
    "tint": 0.746
   },
   {
-   "prop": "b_shrub_white",
+   "prop": "c_flower_planter",
    "at": [
-    4650,
-    244
+    2097,
+    4193
    ],
-   "scale": 0.156,
-   "flip": true,
-   "tint": 0.564
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4484,
-    237
-   ],
-   "scale": 0.1691,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4390,
-    199
-   ],
-   "scale": 0.1615,
-   "flip": true,
-   "tint": 0.649
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4396,
-    245
-   ],
-   "scale": 0.1652,
-   "flip": true,
-   "tint": 0.64
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4520,
-    204
-   ],
-   "scale": 0.1739,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4424,
-    269
-   ],
-   "scale": 0.1584,
+   "scale": 0.2824,
    "flip": false,
-   "tint": 0.591
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    5521,
-    4498
-   ],
-   "scale": 0.203,
-   "flip": true,
-   "tint": 0.57
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    5546,
-    4566
-   ],
-   "scale": 0.1622,
-   "flip": true,
-   "tint": 0.615
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6507,
-    895
-   ],
-   "scale": 0.1149,
-   "flip": false,
-   "tint": 0.74
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6323,
-    902
-   ],
-   "scale": 0.1097,
-   "flip": false,
-   "tint": 0.733
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6357,
-    838
-   ],
-   "scale": 0.1186,
-   "flip": true,
-   "tint": 0.685
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6408,
-    825
-   ],
-   "scale": 0.1104,
-   "flip": true,
-   "tint": 0.597
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6332,
-    851
-   ],
-   "scale": 0.1194,
-   "flip": false,
-   "tint": 0.676
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6401,
-    836
-   ],
-   "scale": 0.1172,
-   "flip": true,
-   "tint": 0.675
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    7327,
-    3432
-   ],
-   "scale": 0.1725,
-   "flip": false,
-   "tint": 0.567,
-   "mist": 0.016
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    7188,
-    3463
-   ],
-   "scale": 0.171,
-   "flip": false,
-   "tint": 0.671,
-   "mist": 0.013
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    7492,
-    3432
-   ],
-   "scale": 0.2045,
-   "flip": false,
-   "tint": 0.57
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    643,
-    1854
-   ],
-   "scale": 0.0998,
-   "flip": true,
-   "tint": 0.735
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    469,
-    1805
-   ],
-   "scale": 0.1014,
-   "flip": false,
-   "tint": 0.651
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    593,
-    1845
-   ],
-   "scale": 0.0968,
-   "flip": true,
    "tint": 0.669
   },
   {
-   "prop": "b_lavender",
+   "prop": "c_topiary_urn",
    "at": [
-    743,
-    1885
+    6823,
+    2197
    ],
-   "scale": 0.1194,
+   "scale": 0.4608,
    "flip": false,
-   "tint": 0.626
+   "tint": 0.751
   },
   {
-   "prop": "b_lavender",
+   "prop": "c_flower_pedestal",
    "at": [
-    560,
-    1789
+    2099,
+    4617
    ],
-   "scale": 0.109,
+   "scale": 0.3756,
    "flip": true,
-   "tint": 0.643
+   "tint": 0.765
   },
   {
-   "prop": "b_lavender",
+   "prop": "c_pillar_post",
    "at": [
-    668,
-    1889
+    2868,
+    4349
    ],
-   "scale": 0.1045,
+   "scale": 0.3639,
+   "flip": true,
+   "tint": 0.769
+  },
+  {
+   "prop": "c_stone_urn",
+   "at": [
+    2687,
+    4266
+   ],
+   "scale": 0.3613,
    "flip": false,
-   "tint": 0.645,
-   "mist": 0.011
+   "tint": 0.774
   },
   {
-   "prop": "b_shrub_white",
+   "prop": "c_flower_basket",
    "at": [
-    6757,
-    190
+    2721,
+    2401
    ],
-   "scale": 0.1508,
+   "scale": 0.2407,
    "flip": true,
-   "tint": 0.703
+   "tint": 0.709
   },
   {
-   "prop": "b_shrub_white",
+   "prop": "c_hydrangea_blue",
    "at": [
-    6773,
-    211
+    2972,
+    2163
    ],
-   "scale": 0.1329,
-   "flip": true,
-   "tint": 0.743
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6729,
-    173
-   ],
-   "scale": 0.1375,
+   "scale": 0.2944,
    "flip": false,
-   "tint": 0.777
+   "tint": 0.7
   },
   {
-   "prop": "a_shrub_white",
+   "prop": "c_stone_urn",
    "at": [
-    6722,
-    239
+    2393,
+    2709
    ],
-   "scale": 0.1695,
+   "scale": 0.3768,
+   "flip": false,
+   "tint": 0.722
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2847,
+    3222
+   ],
+   "scale": 0.2297,
+   "flip": false,
+   "tint": 0.812
+  },
+  {
+   "prop": "c_flower_pedestal",
+   "at": [
+    5506,
+    2567
+   ],
+   "scale": 0.4497,
+   "flip": false,
+   "tint": 0.745
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1561,
+    1432
+   ],
+   "scale": 0.2517,
+   "flip": false,
+   "tint": 0.781
+  },
+  {
+   "prop": "c_pillar_post",
+   "at": [
+    1462,
+    1208
+   ],
+   "scale": 0.4866,
    "flip": false,
    "tint": 0.766
   },
   {
-   "prop": "b_bush_yellow",
+   "prop": "c_market_stall_fruit",
    "at": [
-    2437,
-    3056
+    5659,
+    2567
    ],
-   "scale": 0.1104,
-   "flip": true,
-   "tint": 0.583
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2558,
-    3055
-   ],
-   "scale": 0.1261,
+   "scale": 0.5538,
    "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2564,
-    3032
-   ],
-   "scale": 0.1613,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    2168,
-    4918
-   ],
-   "scale": 0.1245,
-   "flip": true,
-   "tint": 0.585
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    2111,
-    4858
-   ],
-   "scale": 0.2093,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    2129,
-    4939
-   ],
-   "scale": 0.2293,
-   "flip": true,
-   "tint": 0.59
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    2047,
-    4875
-   ],
-   "scale": 0.1078,
-   "flip": false,
-   "tint": 0.665
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6188,
-    3210
-   ],
-   "scale": 0.1538,
-   "flip": false,
-   "tint": 0.583
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    6125,
-    3179
-   ],
-   "scale": 0.1775,
-   "flip": true,
-   "tint": 0.561
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7115,
-    3443
-   ],
-   "scale": 0.1503,
-   "flip": false,
-   "tint": 0.56,
-   "mist": 0.01
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7085,
-    3361
-   ],
-   "scale": 0.1835,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.02
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7077,
-    3322
-   ],
-   "scale": 0.1399,
-   "flip": true,
-   "tint": 0.581,
-   "mist": 0.023
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    6979,
-    3350
-   ],
-   "scale": 0.1666,
-   "flip": true,
-   "tint": 0.563,
-   "mist": 0.026
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7044,
-    3411
-   ],
-   "scale": 0.1686,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.017
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7035,
-    3406
-   ],
-   "scale": 0.158,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.018
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    398,
-    4460
-   ],
-   "scale": 0.1978,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.017
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    208,
-    4407
-   ],
-   "scale": 0.1182,
-   "flip": false,
-   "tint": 0.629,
-   "mist": 0.034
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    270,
-    4547
-   ],
-   "scale": 0.197,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.017
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    436,
-    4478
-   ],
-   "scale": 0.1292,
-   "flip": true,
-   "tint": 0.591,
-   "mist": 0.012
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6098,
-    906
-   ],
-   "scale": 0.1054,
-   "flip": false,
-   "tint": 0.731
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6221,
-    874
-   ],
-   "scale": 0.1038,
-   "flip": true,
-   "tint": 0.7
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6181,
-    925
-   ],
-   "scale": 0.1223,
-   "flip": false,
-   "tint": 0.698
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6211,
-    895
-   ],
-   "scale": 0.1014,
-   "flip": true,
-   "tint": 0.696
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    3328,
-    761
-   ],
-   "scale": 0.1116,
-   "flip": false,
-   "tint": 0.743
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    3199,
-    813
-   ],
-   "scale": 0.0894,
-   "flip": false,
-   "tint": 0.852
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    3295,
-    748
-   ],
-   "scale": 0.1207,
-   "flip": true,
-   "tint": 0.665
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    3315,
-    751
-   ],
-   "scale": 0.0997,
-   "flip": false,
-   "tint": 0.704
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    3300,
-    768
-   ],
-   "scale": 0.1147,
-   "flip": true,
-   "tint": 0.646
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4933,
-    1317
-   ],
-   "scale": 0.19,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    5101,
-    1362
-   ],
-   "scale": 0.1475,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5004,
-    1290
-   ],
-   "scale": 0.1918,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    3669,
-    3632
-   ],
-   "scale": 0.1865,
-   "flip": true,
-   "tint": 0.665
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    3682,
-    3665
-   ],
-   "scale": 0.1517,
-   "flip": true,
-   "tint": 0.696
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    3699,
-    3593
-   ],
-   "scale": 0.1374,
-   "flip": true,
-   "tint": 0.697
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    3705,
-    3613
-   ],
-   "scale": 0.1492,
-   "flip": true,
-   "tint": 0.658
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2767,
-    4793
-   ],
-   "scale": 0.1493,
-   "flip": false,
-   "tint": 0.552
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    2938,
-    4874
-   ],
-   "scale": 0.1607,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    2825,
-    4852
-   ],
-   "scale": 0.1359,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2845,
-    4862
-   ],
-   "scale": 0.1738,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    2806,
-    4871
-   ],
-   "scale": 0.1424,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7401,
-    1952
-   ],
-   "scale": 0.1794,
-   "flip": true,
    "tint": 0.573
   },
   {
-   "prop": "a_shrub_white",
+   "prop": "c_barrels_sacks",
    "at": [
-    7279,
-    1870
+    5995,
+    2475
    ],
-   "scale": 0.1495,
+   "scale": 0.3984,
    "flip": false,
-   "tint": 0.631
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7236,
-    1939
-   ],
-   "scale": 0.1368,
-   "flip": false,
-   "tint": 0.606
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7354,
-    1936
-   ],
-   "scale": 0.1288,
-   "flip": true,
-   "tint": 0.62
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7215,
-    2008
-   ],
-   "scale": 0.1892,
-   "flip": false,
-   "tint": 0.692
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7205,
-    1959
-   ],
-   "scale": 0.1511,
-   "flip": true,
-   "tint": 0.711
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6393,
-    582
-   ],
-   "scale": 0.1694,
-   "flip": true,
-   "tint": 0.569
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6410,
-    525
-   ],
-   "scale": 0.1901,
-   "flip": true,
    "tint": 0.69
   },
   {
-   "prop": "b_bush_round",
+   "prop": "c_crates_wisteria",
    "at": [
-    6349,
-    548
+    6657,
+    2708
    ],
-   "scale": 0.1745,
-   "flip": true,
-   "tint": 0.679
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    6330,
-    541
-   ],
-   "scale": 0.1729,
-   "flip": true,
-   "tint": 0.684
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    6557,
-    580
-   ],
-   "scale": 0.1095,
-   "flip": false,
-   "tint": 0.651
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    6422,
-    590
-   ],
-   "scale": 0.1501,
-   "flip": true,
-   "tint": 0.7
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7092,
-    3780
-   ],
-   "scale": 0.1182,
-   "flip": false,
-   "tint": 0.571
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    7044,
-    3863
-   ],
-   "scale": 0.1198,
-   "flip": false,
-   "tint": 0.601
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5135,
-    638
-   ],
-   "scale": 0.1109,
-   "flip": false,
-   "tint": 0.662
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    5157,
-    619
-   ],
-   "scale": 0.1154,
-   "flip": false,
-   "tint": 0.804
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1681,
-    2414
-   ],
-   "scale": 0.1157,
-   "flip": true,
-   "tint": 0.631
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1526,
-    2414
-   ],
-   "scale": 0.105,
-   "flip": true,
-   "tint": 0.7
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    1730,
-    2420
-   ],
-   "scale": 0.1014,
-   "flip": false,
-   "tint": 0.656
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1750,
-    2442
-   ],
-   "scale": 0.0929,
-   "flip": true,
-   "tint": 0.732
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6578,
-    4642
-   ],
-   "scale": 0.0871,
-   "flip": false,
-   "tint": 0.608
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6683,
-    4615
-   ],
-   "scale": 0.125,
-   "flip": false,
-   "tint": 0.551
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6731,
-    4645
-   ],
-   "scale": 0.1095,
-   "flip": false,
-   "tint": 0.569
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6732,
-    4563
-   ],
-   "scale": 0.1143,
-   "flip": true,
-   "tint": 0.58
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    6538,
-    4654
-   ],
-   "scale": 0.1162,
-   "flip": false,
-   "tint": 0.63
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    3219,
-    725
-   ],
-   "scale": 0.1478,
-   "flip": false,
-   "tint": 0.666
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    3283,
-    789
-   ],
-   "scale": 0.2046,
-   "flip": true,
-   "tint": 0.679
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    3221,
-    687
-   ],
-   "scale": 0.1461,
-   "flip": true,
-   "tint": 0.618
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    3332,
-    677
-   ],
-   "scale": 0.221,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    3246,
-    677
-   ],
-   "scale": 0.1275,
-   "flip": true,
-   "tint": 0.635
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    3306,
-    697
-   ],
-   "scale": 0.1286,
-   "flip": false,
-   "tint": 0.607
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    1112,
-    618
-   ],
-   "scale": 0.0942,
-   "flip": true,
-   "tint": 0.789
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    880,
-    628
-   ],
-   "scale": 0.1104,
-   "flip": true,
-   "tint": 0.604
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    871,
-    694
-   ],
-   "scale": 0.1182,
-   "flip": true,
-   "tint": 0.612
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    4946,
-    2969
-   ],
-   "scale": 0.1732,
-   "flip": false,
-   "tint": 0.589
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    5104,
-    2953
-   ],
-   "scale": 0.1388,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    5086,
-    2963
-   ],
-   "scale": 0.1446,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2376,
-    2265
-   ],
-   "scale": 0.0858,
-   "flip": false,
-   "tint": 0.765
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2282,
-    2344
-   ],
-   "scale": 0.1086,
-   "flip": true,
-   "tint": 0.639
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2490,
-    2399
-   ],
-   "scale": 0.0969,
-   "flip": true,
-   "tint": 0.632
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1417,
-    2588
-   ],
-   "scale": 0.1315,
-   "flip": false,
-   "tint": 0.685
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    1467,
-    2635
-   ],
-   "scale": 0.1617,
-   "flip": false,
-   "tint": 0.788
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7579,
-    2989
-   ],
-   "scale": 0.1437,
-   "flip": false,
-   "tint": 0.653
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7473,
-    2901
-   ],
-   "scale": 0.1616,
-   "flip": false,
-   "tint": 0.593
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    7552,
-    2916
-   ],
-   "scale": 0.1804,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    7547,
-    2927
-   ],
-   "scale": 0.1511,
-   "flip": false,
-   "tint": 0.553
-  },
-  {
-   "prop": "a_bush_yellow",
-   "at": [
-    7300,
-    2232
-   ],
-   "scale": 0.164,
-   "flip": false,
-   "tint": 0.619
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    7356,
-    2252
-   ],
-   "scale": 0.1082,
-   "flip": false,
-   "tint": 0.717
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    7185,
-    2297
-   ],
-   "scale": 0.2067,
-   "flip": true,
-   "tint": 0.587
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    7445,
-    2190
-   ],
-   "scale": 0.1405,
-   "flip": true,
-   "tint": 0.64
-  },
-  {
-   "prop": "b_bush_yellow",
-   "at": [
-    3768,
-    490
-   ],
-   "scale": 0.1235,
-   "flip": true,
-   "tint": 0.646
-  },
-  {
-   "prop": "b_bush_round",
-   "at": [
-    3906,
-    474
-   ],
-   "scale": 0.1863,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_bush_round",
-   "at": [
-    3937,
-    485
-   ],
-   "scale": 0.1623,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2532,
-    1791
-   ],
-   "scale": 0.1055,
-   "flip": false,
-   "tint": 0.645
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    2617,
-    1775
-   ],
-   "scale": 0.1178,
-   "flip": true,
-   "tint": 0.61
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    2578,
-    1810
-   ],
-   "scale": 0.1157,
+   "scale": 0.3985,
    "flip": true,
    "tint": 0.637
   },
   {
-   "prop": "a_lavender",
+   "prop": "c_flower_barrel",
    "at": [
-    2584,
-    1707
+    5799,
+    2456
    ],
-   "scale": 0.1083,
+   "scale": 0.2769,
    "flip": true,
-   "tint": 0.63
+   "tint": 0.797
   },
   {
-   "prop": "b_shrub_white",
+   "prop": "c_flower_barrel",
    "at": [
-    6059,
-    4555
+    5768,
+    2521
    ],
-   "scale": 0.1518,
-   "flip": true,
-   "tint": 0.681
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    5936,
-    4562
-   ],
-   "scale": 0.1433,
-   "flip": true,
-   "tint": 0.566
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5882,
-    4555
-   ],
-   "scale": 0.159,
+   "scale": 0.2833,
    "flip": false,
-   "tint": 0.595
+   "tint": 0.786
   },
   {
-   "prop": "b_shrub_white",
+   "prop": "c_market_stall_fruit",
    "at": [
-    5951,
-    4438
+    6094,
+    2391
    ],
-   "scale": 0.1501,
-   "flip": false,
-   "tint": 0.68
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5927,
-    4449
-   ],
-   "scale": 0.1692,
-   "flip": false,
-   "tint": 0.678
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    5924,
-    4582
-   ],
-   "scale": 0.1465,
-   "flip": false,
-   "tint": 0.558
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6212,
-    4438
-   ],
-   "scale": 0.1097,
-   "flip": false,
-   "tint": 0.64
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    6226,
-    4440
-   ],
-   "scale": 0.0978,
+   "scale": 0.5186,
    "flip": true,
-   "tint": 0.641
+   "tint": 0.562
   },
   {
-   "prop": "a_lavender",
+   "prop": "c_hydrangea_bush",
    "at": [
-    6461,
-    4496
+    2683,
+    3773
    ],
-   "scale": 0.1087,
+   "scale": 0.4418,
    "flip": false,
-   "tint": 0.683
+   "tint": 0.742
   },
   {
-   "prop": "b_lavender",
+   "prop": "c_bench",
    "at": [
-    6332,
-    4569
+    2384,
+    3782
    ],
-   "scale": 0.1076,
+   "scale": 0.3777,
    "flip": true,
-   "tint": 0.63
+   "tint": 0.703
   },
   {
-   "prop": "b_lavender",
+   "prop": "c_topiary_urn",
    "at": [
-    6280,
-    4438
-   ],
-   "scale": 0.0955,
-   "flip": false,
-   "tint": 0.689
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    6805,
-    4763
-   ],
-   "scale": 0.1309,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.034
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    5580,
-    2478
-   ],
-   "scale": 0.1625,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    5222,
-    3132
-   ],
-   "scale": 0.1878,
-   "flip": false,
-   "tint": 0.687
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    2627,
-    2498
-   ],
-   "scale": 0.1373,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    2856,
-    3776
-   ],
-   "scale": 0.184,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    7368,
-    1264
-   ],
-   "scale": 0.1628,
-   "flip": true,
-   "tint": 0.603
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    7507,
-    923
-   ],
-   "scale": 0.1944,
-   "flip": true,
-   "tint": 0.58
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    1595,
-    4361
-   ],
-   "scale": 0.1704,
-   "flip": true,
-   "tint": 0.623
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    5099,
-    3109
-   ],
-   "scale": 0.1668,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    4753,
-    1802
-   ],
-   "scale": 0.1895,
-   "flip": false,
-   "tint": 0.566
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    4241,
-    4080
-   ],
-   "scale": 0.164,
-   "flip": false,
-   "tint": 0.65
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    5829,
-    1143
-   ],
-   "scale": 0.1723,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_tallgrass",
-   "at": [
-    154,
-    2745
-   ],
-   "scale": 0.1604,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    7559,
-    4321
-   ],
-   "scale": 0.1439,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    1300,
-    1618
-   ],
-   "scale": 0.1895,
-   "flip": true,
-   "tint": 0.592
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    245,
-    1458
-   ],
-   "scale": 0.1637,
-   "flip": true,
-   "tint": 0.607,
-   "mist": 0.046
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    7555,
-    4394
-   ],
-   "scale": 0.1835,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    965,
-    155
-   ],
-   "scale": 0.17,
-   "flip": true,
-   "tint": 0.605
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    2574,
-    4829
-   ],
-   "scale": 0.1786,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    6024,
-    4766
-   ],
-   "scale": 0.1517,
-   "flip": true,
-   "tint": 0.659
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    467,
-    3212
-   ],
-   "scale": 0.163,
-   "flip": false,
-   "tint": 0.775
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    2835,
-    4832
-   ],
-   "scale": 0.1354,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    2808,
-    1563
-   ],
-   "scale": 0.2021,
-   "flip": true,
-   "tint": 0.553
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    6861,
-    4711
-   ],
-   "scale": 0.1553,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.031
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    6308,
-    1970
-   ],
-   "scale": 0.1776,
-   "flip": false,
-   "tint": 0.598
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    1943,
-    3409
-   ],
-   "scale": 0.1726,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    7217,
-    1483
-   ],
-   "scale": 0.1511,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.014
-  },
-  {
-   "prop": "gb_tallgrass",
-   "at": [
-    6574,
+    2234,
     3797
    ],
-   "scale": 0.1938,
+   "scale": 0.4905,
    "flip": true,
-   "tint": 0.55
+   "tint": 0.79
   },
   {
-   "prop": "ga_moss",
+   "prop": "c_topiary_urn",
    "at": [
-    7360,
-    3102
+    1842,
+    3500
    ],
-   "scale": 0.1869,
-   "flip": true,
-   "tint": 0.584
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    1947,
-    4607
-   ],
-   "scale": 0.1947,
-   "flip": true,
-   "tint": 0.577
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    7319,
-    138
-   ],
-   "scale": 0.1887,
-   "flip": false,
-   "tint": 0.603
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    4334,
-    3922
-   ],
-   "scale": 0.1712,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    4331,
-    4027
-   ],
-   "scale": 0.1393,
-   "flip": true,
-   "tint": 0.649
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    6968,
-    4170
-   ],
-   "scale": 0.1906,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    5980,
-    3360
-   ],
-   "scale": 0.1908,
-   "flip": true,
-   "tint": 0.601
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    4694,
-    446
-   ],
-   "scale": 0.1766,
-   "flip": true,
-   "tint": 0.559
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    2064,
-    377
-   ],
-   "scale": 0.2011,
-   "flip": true,
-   "tint": 0.598
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    3560,
-    425
-   ],
-   "scale": 0.1819,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    3029,
-    449
-   ],
-   "scale": 0.1591,
-   "flip": true,
-   "tint": 0.628
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    2820,
-    1743
-   ],
-   "scale": 0.1624,
-   "flip": true,
-   "tint": 0.593
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    113,
-    2772
-   ],
-   "scale": 0.1477,
-   "flip": false,
-   "tint": 0.642
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    3470,
-    1836
-   ],
-   "scale": 0.2053,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    7472,
-    4727
-   ],
-   "scale": 0.1764,
-   "flip": true,
-   "tint": 0.64
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    7095,
-    3784
-   ],
-   "scale": 0.1918,
-   "flip": true,
-   "tint": 0.566
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    3159,
-    1844
-   ],
-   "scale": 0.1621,
-   "flip": false,
-   "tint": 0.603
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    7618,
-    1604
-   ],
-   "scale": 0.1778,
-   "flip": true,
-   "tint": 0.582
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    6580,
-    3225
-   ],
-   "scale": 0.2069,
-   "flip": true,
-   "tint": 0.59
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    4509,
-    4088
-   ],
-   "scale": 0.1922,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    293,
-    3770
-   ],
-   "scale": 0.195,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    2368,
-    2864
-   ],
-   "scale": 0.1562,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    2751,
-    3002
-   ],
-   "scale": 0.1618,
-   "flip": true,
-   "tint": 0.616
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    7323,
-    547
-   ],
-   "scale": 0.1621,
-   "flip": false,
-   "tint": 0.762
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    1651,
-    4235
-   ],
-   "scale": 0.1714,
-   "flip": true,
-   "tint": 0.676
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    1448,
-    4827
-   ],
-   "scale": 0.1897,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.009
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    3406,
-    4902
-   ],
-   "scale": 0.1785,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    569,
-    4757
-   ],
-   "scale": 0.1559,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    5170,
-    1268
-   ],
-   "scale": 0.1712,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_tallgrass",
-   "at": [
-    3433,
-    1709
-   ],
-   "scale": 0.1306,
-   "flip": true,
-   "tint": 0.637
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    1382,
-    2360
-   ],
-   "scale": 0.1672,
-   "flip": true,
-   "tint": 0.585
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    5537,
-    3077
-   ],
-   "scale": 0.1374,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    3777,
-    749
-   ],
-   "scale": 0.1844,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    4706,
-    1373
-   ],
-   "scale": 0.1381,
-   "flip": true,
-   "tint": 0.564
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    6206,
-    4895
-   ],
-   "scale": 0.1982,
-   "flip": false,
-   "tint": 0.59
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    1265,
-    1718
-   ],
-   "scale": 0.1374,
-   "flip": false,
-   "tint": 0.662
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    1883,
-    467
-   ],
-   "scale": 0.1388,
-   "flip": true,
-   "tint": 0.554
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    7480,
-    689
-   ],
-   "scale": 0.1412,
-   "flip": true,
-   "tint": 0.569
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    3633,
-    4116
-   ],
-   "scale": 0.1965,
-   "flip": false,
-   "tint": 0.607
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    1578,
-    3549
-   ],
-   "scale": 0.1853,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    859,
-    2393
-   ],
-   "scale": 0.1969,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    2708,
-    1551
-   ],
-   "scale": 0.1455,
-   "flip": false,
-   "tint": 0.604
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    7081,
-    3400
-   ],
-   "scale": 0.1591,
-   "flip": false,
-   "tint": 0.561,
-   "mist": 0.016
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    2401,
-    3053
-   ],
-   "scale": 0.1786,
-   "flip": true,
-   "tint": 0.601
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    804,
-    2527
-   ],
-   "scale": 0.1867,
-   "flip": false,
-   "tint": 0.684
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    5586,
-    3093
-   ],
-   "scale": 0.1785,
-   "flip": true,
-   "tint": 0.558
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    2071,
-    154
-   ],
-   "scale": 0.1394,
-   "flip": false,
-   "tint": 0.663
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    7421,
-    3831
-   ],
-   "scale": 0.1598,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    1394,
-    4821
-   ],
-   "scale": 0.1934,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.015
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    6984,
-    551
-   ],
-   "scale": 0.1479,
-   "flip": true,
-   "tint": 0.81
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    121,
-    2064
-   ],
-   "scale": 0.1427,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.009
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    5265,
-    498
-   ],
-   "scale": 0.1344,
-   "flip": true,
-   "tint": 0.715,
-   "mist": 0.036
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    4184,
-    270
-   ],
-   "scale": 0.1325,
-   "flip": true,
-   "tint": 0.722
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    5572,
-    4491
-   ],
-   "scale": 0.1374,
-   "flip": false,
-   "tint": 0.652
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    3768,
-    3960
-   ],
-   "scale": 0.1618,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    1648,
-    2394
-   ],
-   "scale": 0.1348,
-   "flip": false,
-   "tint": 0.56
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    6715,
-    2293
-   ],
-   "scale": 0.1888,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    6383,
-    4051
-   ],
-   "scale": 0.1538,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    1678,
-    211
-   ],
-   "scale": 0.1842,
-   "flip": false,
-   "tint": 0.616
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    906,
-    599
-   ],
-   "scale": 0.1839,
-   "flip": false,
-   "tint": 0.554
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    3332,
-    1972
-   ],
-   "scale": 0.2046,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    2979,
-    3904
-   ],
-   "scale": 0.1835,
-   "flip": true,
-   "tint": 0.574
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    7644,
-    4532
-   ],
-   "scale": 0.1532,
-   "flip": false,
-   "tint": 0.642
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    3277,
-    319
-   ],
-   "scale": 0.1948,
-   "flip": true,
-   "tint": 0.592
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    4474,
-    3715
-   ],
-   "scale": 0.15,
-   "flip": false,
-   "tint": 0.709
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    3247,
-    3366
-   ],
-   "scale": 0.1499,
-   "flip": false,
-   "tint": 0.63
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    3264,
-    1172
-   ],
-   "scale": 0.1893,
-   "flip": false,
-   "tint": 0.594
-  },
-  {
-   "prop": "ga_moss",
-   "at": [
-    1834,
-    1031
-   ],
-   "scale": 0.1662,
-   "flip": true,
-   "tint": 0.674
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    6427,
-    3803
-   ],
-   "scale": 0.1783,
-   "flip": false,
-   "tint": 0.589
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    6705,
-    3583
-   ],
-   "scale": 0.1495,
-   "flip": true,
-   "tint": 0.707
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    814,
-    1769
-   ],
-   "scale": 0.1331,
-   "flip": false,
-   "tint": 0.563
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    6676,
-    2920
-   ],
-   "scale": 0.1942,
-   "flip": false,
-   "tint": 0.588
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    6546,
-    4379
-   ],
-   "scale": 0.1991,
-   "flip": false,
-   "tint": 0.555
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    7638,
-    1007
-   ],
-   "scale": 0.143,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    6597,
-    3671
-   ],
-   "scale": 0.1816,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    6614,
-    1834
-   ],
-   "scale": 0.145,
-   "flip": false,
-   "tint": 0.559
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    1905,
-    4319
-   ],
-   "scale": 0.1996,
-   "flip": true,
-   "tint": 0.706
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    3688,
-    4201
-   ],
-   "scale": 0.184,
-   "flip": true,
-   "tint": 0.581
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    2368,
-    1176
-   ],
-   "scale": 0.1441,
-   "flip": true,
-   "tint": 0.677
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    2768,
-    4901
-   ],
-   "scale": 0.1317,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    7381,
-    2390
-   ],
-   "scale": 0.1431,
-   "flip": true,
-   "tint": 0.691
-  },
-  {
-   "prop": "gb_tallgrass",
-   "at": [
-    4103,
-    448
-   ],
-   "scale": 0.1454,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    1908,
-    1065
-   ],
-   "scale": 0.1457,
-   "flip": true,
-   "tint": 0.653
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    904,
-    2672
-   ],
-   "scale": 0.1903,
-   "flip": true,
-   "tint": 0.708
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    6945,
-    882
-   ],
-   "scale": 0.1989,
-   "flip": true,
-   "tint": 0.586
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    2236,
-    174
-   ],
-   "scale": 0.1651,
-   "flip": true,
-   "tint": 0.628
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    6816,
-    3032
-   ],
-   "scale": 0.1739,
+   "scale": 0.4968,
    "flip": false,
    "tint": 0.739
   },
   {
-   "prop": "gb_whiteflowers",
+   "prop": "c_flower_basket",
    "at": [
-    7301,
-    4548
+    2559,
+    3330
    ],
-   "scale": 0.1583,
-   "flip": false,
-   "tint": 0.667
+   "scale": 0.2084,
+   "flip": true,
+   "tint": 0.784
   },
   {
-   "prop": "gb_whiteflowers",
+   "prop": "c_lavender",
    "at": [
-    6015,
-    4821
+    2052,
+    3421
    ],
-   "scale": 0.1373,
+   "scale": 0.1859,
+   "flip": true,
+   "tint": 0.815
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1829,
+    3571
+   ],
+   "scale": 0.2948,
+   "flip": false,
+   "tint": 0.69
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2398,
+    3293
+   ],
+   "scale": 0.1904,
+   "flip": false,
+   "tint": 0.817
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1937,
+    3735
+   ],
+   "scale": 0.2427,
+   "flip": true,
+   "tint": 0.714
+  },
+  {
+   "prop": "c_apple_basket",
+   "at": [
+    2049,
+    1061
+   ],
+   "scale": 0.2178,
+   "flip": false,
+   "tint": 0.726
+  },
+  {
+   "prop": "c_barrels_sacks",
+   "at": [
+    1552,
+    1127
+   ],
+   "scale": 0.3747,
+   "flip": false,
+   "tint": 0.737
+  },
+  {
+   "prop": "c_market_stall_cloth",
+   "at": [
+    2016,
+    1023
+   ],
+   "scale": 0.6902,
+   "flip": true,
+   "tint": 0.583
+  },
+  {
+   "prop": "c_crate_stack",
+   "at": [
+    1851,
+    1032
+   ],
+   "scale": 0.4876,
+   "flip": false,
+   "tint": 0.677
+  },
+  {
+   "prop": "c_market_stall_cloth",
+   "at": [
+    2486,
+    1258
+   ],
+   "scale": 0.6803,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "c_flower_barrel",
+   "at": [
+    2026,
+    1129
+   ],
+   "scale": 0.3334,
+   "flip": false,
+   "tint": 0.75
+  },
+  {
+   "prop": "c_market_stall_fruit",
+   "at": [
+    1757,
+    1467
+   ],
+   "scale": 0.5503,
+   "flip": false,
+   "tint": 0.554
+  },
+  {
+   "prop": "c_crates_wisteria",
+   "at": [
+    2128,
+    1036
+   ],
+   "scale": 0.442,
+   "flip": false,
+   "tint": 0.639
+  },
+  {
+   "prop": "c_market_stall_cloth",
+   "at": [
+    1522,
+    1340
+   ],
+   "scale": 0.6629,
+   "flip": false,
+   "tint": 0.582
+  },
+  {
+   "prop": "c_lm_fountain_c",
+   "at": [
+    3791,
+    2264
+   ],
+   "scale": 0.265,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "c_lm_fountain_c",
+   "at": [
+    6069,
+    2268
+   ],
+   "scale": 0.265,
+   "flip": false,
+   "tint": 0.594
+  },
+  {
+   "prop": "c_lm_gazebo_a",
+   "at": [
+    2380,
+    3161
+   ],
+   "scale": 0.3928,
+   "flip": false,
+   "tint": 0.564
+  },
+  {
+   "prop": "c_lm_gazebo_a",
+   "at": [
+    2110,
+    870
+   ],
+   "scale": 0.3928,
+   "flip": true,
+   "tint": 0.584
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    204,
+    4270
+   ],
+   "scale": 0.9562,
+   "flip": false,
+   "tint": 0.981
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    6842,
+    4927
+   ],
+   "scale": 1.0375,
+   "flip": true,
+   "tint": 0.959
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    6564,
+    4629
+   ],
+   "scale": 1.1106,
+   "flip": false,
+   "tint": 0.908
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    6004,
+    139
+   ],
+   "scale": 1.033,
+   "flip": true,
+   "tint": 0.902
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    6152,
+    1269
+   ],
+   "scale": 0.9779,
+   "flip": false,
+   "tint": 0.986
+  },
+  {
+   "prop": "c_tree_amber",
+   "at": [
+    115,
+    726
+   ],
+   "scale": 0.9476,
+   "flip": false,
+   "tint": 0.983
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    445,
+    2411
+   ],
+   "scale": 1.0276,
+   "flip": true,
+   "tint": 0.954
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    5265,
+    216
+   ],
+   "scale": 1.0235,
+   "flip": false,
+   "tint": 1.019
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    7318,
+    2668
+   ],
+   "scale": 1.1049,
+   "flip": false,
+   "tint": 0.916
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    4393,
+    1043
+   ],
+   "scale": 0.9087,
+   "flip": true,
+   "tint": 1.01
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    7410,
+    1157
+   ],
+   "scale": 1.1804,
+   "flip": false,
+   "tint": 0.915
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    329,
+    1235
+   ],
+   "scale": 1.1511,
+   "flip": false,
+   "tint": 0.99
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    3233,
+    1881
+   ],
+   "scale": 1.0066,
+   "flip": true,
+   "tint": 0.942
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    353,
+    1876
+   ],
+   "scale": 1.0671,
+   "flip": true,
+   "tint": 0.965
+  },
+  {
+   "prop": "c_tree_amber",
+   "at": [
+    815,
+    4227
+   ],
+   "scale": 0.9607,
+   "flip": false,
+   "tint": 0.902
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    1115,
+    5032
+   ],
+   "scale": 1.0267,
+   "flip": true,
+   "tint": 1.019
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    7698,
+    2797
+   ],
+   "scale": 0.9718,
+   "flip": true,
+   "tint": 0.976
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    6611,
+    3857
+   ],
+   "scale": 1.224,
+   "flip": false,
+   "tint": 0.995
+  },
+  {
+   "prop": "c_tree_amber",
+   "at": [
+    7703,
+    4211
+   ],
+   "scale": 1.1503,
+   "flip": false,
+   "tint": 0.935
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    7422,
+    3736
+   ],
+   "scale": 0.9257,
+   "flip": false,
+   "tint": 1.007
+  },
+  {
+   "prop": "c_tree_amber",
+   "at": [
+    71,
+    2237
+   ],
+   "scale": 1.043,
+   "flip": true,
+   "tint": 1.037
+  },
+  {
+   "prop": "c_tree_amber",
+   "at": [
+    840,
+    4867
+   ],
+   "scale": 1.1593,
+   "flip": true,
+   "tint": 0.965
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    -29,
+    4856
+   ],
+   "scale": 1.1893,
+   "flip": false,
+   "tint": 0.923
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    7453,
+    4534
+   ],
+   "scale": 1.0542,
+   "flip": true,
+   "tint": 0.973
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    7574,
+    5027
+   ],
+   "scale": 1.0046,
+   "flip": false,
+   "tint": 0.914
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    -9,
+    2532
+   ],
+   "scale": 1.1461,
+   "flip": false,
+   "tint": 0.999
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    7721,
+    2327
+   ],
+   "scale": 1.2227,
+   "flip": false,
+   "tint": 1.026
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    199,
+    1569
+   ],
+   "scale": 0.991,
+   "flip": true,
+   "tint": 0.939
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    6752,
+    1116
+   ],
+   "scale": 1.1112,
+   "flip": true,
+   "tint": 0.976
+  },
+  {
+   "prop": "c_tree_amber",
+   "at": [
+    4352,
+    1468
+   ],
+   "scale": 1.018,
+   "flip": true,
+   "tint": 0.924
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    7487,
+    3265
+   ],
+   "scale": 0.9153,
+   "flip": false,
+   "tint": 1.009
+  },
+  {
+   "prop": "c_tree_amber",
+   "at": [
+    389,
+    4812
+   ],
+   "scale": 1.1652,
+   "flip": false,
+   "tint": 0.999
+  },
+  {
+   "prop": "c_tree_green",
+   "at": [
+    6494,
+    5056
+   ],
+   "scale": 1.1788,
+   "flip": false,
+   "tint": 0.923
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    3319,
+    203
+   ],
+   "scale": 1.0071,
+   "flip": true,
+   "tint": 0.97
+  },
+  {
+   "prop": "c_tree_blossom",
+   "at": [
+    212,
+    3580
+   ],
+   "scale": 0.9114,
+   "flip": true,
+   "tint": 0.981
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    222,
+    1297
+   ],
+   "scale": 0.2871,
+   "flip": true,
+   "tint": 0.702
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    213,
+    1302
+   ],
+   "scale": 0.4194,
+   "flip": false,
+   "tint": 0.693
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    211,
+    1230
+   ],
+   "scale": 0.2213,
+   "flip": true,
+   "tint": 0.787
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6564,
+    3214
+   ],
+   "scale": 0.2433,
+   "flip": false,
+   "tint": 0.783
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6698,
+    3329
+   ],
+   "scale": 0.2954,
+   "flip": true,
+   "tint": 0.724
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    6690,
+    3239
+   ],
+   "scale": 0.2177,
+   "flip": true,
+   "tint": 0.789
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6764,
+    3254
+   ],
+   "scale": 0.2508,
+   "flip": true,
+   "tint": 0.773
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    941,
+    3849
+   ],
+   "scale": 0.216,
+   "flip": false,
+   "tint": 0.762
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    921,
+    3892
+   ],
+   "scale": 0.2508,
+   "flip": true,
+   "tint": 0.744
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5721,
+    4103
+   ],
+   "scale": 0.1922,
+   "flip": true,
+   "tint": 0.798
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5818,
+    4122
+   ],
+   "scale": 0.2305,
+   "flip": true,
+   "tint": 0.782
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5880,
+    4106
+   ],
+   "scale": 0.2162,
+   "flip": true,
+   "tint": 0.807
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5764,
+    4144
+   ],
+   "scale": 0.2439,
+   "flip": true,
+   "tint": 0.767
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1371,
+    3527
+   ],
+   "scale": 0.2817,
+   "flip": true,
+   "tint": 0.727
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1399,
+    3492
+   ],
+   "scale": 0.1943,
+   "flip": false,
+   "tint": 0.772
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1346,
+    3466
+   ],
+   "scale": 0.2029,
+   "flip": false,
+   "tint": 0.784
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1537,
+    3504
+   ],
+   "scale": 0.4009,
+   "flip": true,
+   "tint": 0.724
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5194,
+    3363
+   ],
+   "scale": 0.2038,
+   "flip": true,
+   "tint": 0.69
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5154,
+    3452
+   ],
+   "scale": 0.2115,
+   "flip": true,
+   "tint": 0.714
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5183,
+    3447
+   ],
+   "scale": 0.2577,
+   "flip": false,
+   "tint": 0.696
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    5097,
+    3380
+   ],
+   "scale": 0.2988,
+   "flip": false,
+   "tint": 0.718
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1660,
+    4604
+   ],
+   "scale": 0.3923,
+   "flip": false,
+   "tint": 0.804
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1797,
+    4738
+   ],
+   "scale": 0.4177,
+   "flip": true,
+   "tint": 0.784
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    1752,
+    4659
+   ],
+   "scale": 0.2086,
+   "flip": true,
+   "tint": 0.853
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1902,
+    4594
+   ],
+   "scale": 0.4786,
+   "flip": false,
+   "tint": 0.74
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1790,
+    4636
+   ],
+   "scale": 0.3887,
+   "flip": true,
+   "tint": 0.798
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    659,
+    4803
+   ],
+   "scale": 0.2294,
+   "flip": false,
+   "tint": 0.737
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    788,
+    4705
+   ],
+   "scale": 0.2322,
+   "flip": true,
+   "tint": 0.789
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    7005,
+    728
+   ],
+   "scale": 0.1966,
+   "flip": false,
+   "tint": 0.811
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7102,
+    641
+   ],
+   "scale": 0.2464,
+   "flip": true,
+   "tint": 0.814
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    7072,
+    691
+   ],
+   "scale": 0.397,
+   "flip": false,
+   "tint": 0.768
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5208,
+    288
+   ],
+   "scale": 0.5375,
+   "flip": true,
+   "tint": 0.722
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5244,
+    239
+   ],
+   "scale": 0.1679,
+   "flip": false,
+   "tint": 0.739
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7507,
+    2108
+   ],
+   "scale": 0.1982,
+   "flip": true,
+   "tint": 0.84
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7617,
+    2034
+   ],
+   "scale": 0.2404,
+   "flip": true,
+   "tint": 0.822
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7509,
+    2050
+   ],
+   "scale": 0.2461,
+   "flip": false,
+   "tint": 0.824
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    7219,
+    474
+   ],
+   "scale": 0.488,
+   "flip": false,
+   "tint": 0.72
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7191,
+    442
+   ],
+   "scale": 0.2144,
+   "flip": false,
+   "tint": 0.826
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7106,
+    369
+   ],
+   "scale": 0.1985,
+   "flip": false,
+   "tint": 0.835
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    7036,
+    410
+   ],
+   "scale": 0.2286,
+   "flip": true,
+   "tint": 0.802
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    7139,
+    396
+   ],
+   "scale": 0.3049,
+   "flip": false,
+   "tint": 0.783
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    7241,
+    360
+   ],
+   "scale": 0.2536,
+   "flip": true,
+   "tint": 0.818
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    82,
+    4089
+   ],
+   "scale": 0.2644,
+   "flip": true,
+   "tint": 0.686
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    251,
+    4064
+   ],
+   "scale": 0.2175,
+   "flip": false,
+   "tint": 0.729
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    151,
+    4141
+   ],
+   "scale": 0.2151,
+   "flip": false,
+   "tint": 0.704
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    143,
+    4177
+   ],
+   "scale": 0.2304,
+   "flip": false,
+   "tint": 0.724
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    165,
+    4112
+   ],
+   "scale": 0.2134,
+   "flip": false,
+   "tint": 0.712
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1130,
+    4373
+   ],
+   "scale": 0.4231,
+   "flip": true,
+   "tint": 0.733
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    1188,
+    4398
+   ],
+   "scale": 0.1749,
+   "flip": true,
+   "tint": 0.848
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1271,
+    4426
+   ],
+   "scale": 0.2719,
+   "flip": false,
+   "tint": 0.784
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    968,
+    1526
+   ],
+   "scale": 0.4192,
+   "flip": true,
+   "tint": 0.726
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    1048,
+    1517
+   ],
+   "scale": 0.2139,
+   "flip": true,
+   "tint": 0.779
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    1161,
+    1585
+   ],
+   "scale": 0.2088,
+   "flip": true,
+   "tint": 0.816
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    1025,
+    1550
+   ],
+   "scale": 0.1855,
+   "flip": false,
+   "tint": 0.838
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1056,
+    1486
+   ],
+   "scale": 0.436,
+   "flip": false,
+   "tint": 0.714
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    963,
+    1575
+   ],
+   "scale": 0.233,
+   "flip": false,
+   "tint": 0.798
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1930,
+    3105
+   ],
+   "scale": 0.3051,
+   "flip": true,
+   "tint": 0.748
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1766,
+    3169
+   ],
+   "scale": 0.2767,
+   "flip": true,
+   "tint": 0.763
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    194,
+    3443
+   ],
+   "scale": 0.2082,
+   "flip": true,
+   "tint": 0.777
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    375,
+    3490
+   ],
+   "scale": 0.2273,
+   "flip": true,
+   "tint": 0.802
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    235,
+    3446
+   ],
+   "scale": 0.2344,
+   "flip": true,
+   "tint": 0.787
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    178,
+    3412
+   ],
+   "scale": 0.1858,
+   "flip": true,
+   "tint": 0.781
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2517,
+    683
+   ],
+   "scale": 0.473,
+   "flip": true,
+   "tint": 0.703
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    2494,
+    664
+   ],
+   "scale": 0.224,
+   "flip": true,
+   "tint": 0.715
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2481,
+    674
+   ],
+   "scale": 0.2486,
+   "flip": false,
+   "tint": 0.733
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    2530,
+    608
+   ],
+   "scale": 0.2369,
+   "flip": true,
+   "tint": 0.77
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    6276,
+    740
+   ],
+   "scale": 0.2245,
+   "flip": false,
+   "tint": 0.697
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6361,
+    852
+   ],
+   "scale": 0.2395,
+   "flip": true,
+   "tint": 0.731
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    6277,
+    840
+   ],
+   "scale": 0.1662,
+   "flip": false,
+   "tint": 0.768
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    6298,
+    750
+   ],
+   "scale": 0.2069,
+   "flip": false,
+   "tint": 0.695
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    6320,
+    790
+   ],
+   "scale": 0.4124,
    "flip": false,
    "tint": 0.685
   },
   {
-   "prop": "ga_tallgrass",
+   "prop": "c_hydrangea_blue",
    "at": [
-    7298,
-    3827
+    7562,
+    4883
    ],
-   "scale": 0.187,
-   "flip": false,
-   "tint": 0.557
-  },
-  {
-   "prop": "ga_meadow",
-   "at": [
-    923,
-    3867
-   ],
-   "scale": 0.1837,
+   "scale": 0.2929,
    "flip": true,
-   "tint": 0.55
+   "tint": 0.777
   },
   {
-   "prop": "ga_meadow",
+   "prop": "c_hydrangea_blue",
    "at": [
-    1793,
-    183
+    7569,
+    4874
    ],
-   "scale": 0.1293,
+   "scale": 0.2472,
    "flip": true,
-   "tint": 0.679
+   "tint": 0.786
   },
   {
-   "prop": "ga_clover",
+   "prop": "c_flower_white",
    "at": [
-    1402,
-    3113
+    4794,
+    1164
    ],
-   "scale": 0.1868,
+   "scale": 0.1996,
    "flip": false,
-   "tint": 0.625
+   "tint": 0.79
   },
   {
-   "prop": "ga_moss",
+   "prop": "c_hydrangea_blue",
    "at": [
-    3345,
-    955
+    4734,
+    1190
    ],
-   "scale": 0.1828,
+   "scale": 0.257,
    "flip": true,
-   "tint": 0.764
+   "tint": 0.753
   },
   {
-   "prop": "ga_whiteflowers",
+   "prop": "c_flower_basket",
    "at": [
-    1725,
-    3216
+    4812,
+    1291
    ],
-   "scale": 0.1712,
+   "scale": 0.2553,
    "flip": false,
-   "tint": 0.749
+   "tint": 0.702
   },
   {
-   "prop": "ga_meadow",
+   "prop": "c_flower_white",
    "at": [
-    845,
-    1125
+    4834,
+    1274
    ],
-   "scale": 0.1478,
+   "scale": 0.2496,
    "flip": false,
-   "tint": 0.644
+   "tint": 0.719
   },
   {
-   "prop": "gb_longgrass",
+   "prop": "c_flower_basket",
    "at": [
-    4511,
-    1531
-   ],
-   "scale": 0.1741,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    472,
-    2304
-   ],
-   "scale": 0.1928,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.097
-  },
-  {
-   "prop": "ga_tallgrass",
-   "at": [
-    499,
-    1979
-   ],
-   "scale": 0.1898,
-   "flip": false,
-   "tint": 0.584,
-   "mist": 0.036
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    633,
-    4438
-   ],
-   "scale": 0.13,
-   "flip": false,
-   "tint": 0.635
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    6936,
-    2652
-   ],
-   "scale": 0.1493,
-   "flip": false,
-   "tint": 0.626
-  },
-  {
-   "prop": "ga_lavenderpatch",
-   "at": [
-    5350,
-    3249
-   ],
-   "scale": 0.1942,
-   "flip": true,
-   "tint": 0.677
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    6921,
-    2508
-   ],
-   "scale": 0.1658,
-   "flip": false,
-   "tint": 0.748
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    5027,
-    2094
-   ],
-   "scale": 0.1866,
-   "flip": false,
-   "tint": 0.571
-  },
-  {
-   "prop": "ga_moss",
-   "at": [
-    5423,
-    4304
-   ],
-   "scale": 0.1498,
-   "flip": true,
-   "tint": 0.625
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    3341,
-    1953
-   ],
-   "scale": 0.1529,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_whiteflowers",
-   "at": [
-    2273,
-    4780
-   ],
-   "scale": 0.2058,
-   "flip": false,
-   "tint": 0.561
-  },
-  {
-   "prop": "gb_tallgrass",
-   "at": [
-    2810,
-    168
-   ],
-   "scale": 0.1772,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    4716,
-    902
-   ],
-   "scale": 0.1383,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    5021,
-    543
-   ],
-   "scale": 0.1706,
-   "flip": false,
-   "tint": 0.632
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    2786,
-    4682
-   ],
-   "scale": 0.1484,
-   "flip": false,
-   "tint": 0.584
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    2372,
-    4786
-   ],
-   "scale": 0.2045,
-   "flip": true,
-   "tint": 0.569
-  },
-  {
-   "prop": "gb_lavenderpatch",
-   "at": [
-    1552,
-    284
-   ],
-   "scale": 0.1515,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_moss",
-   "at": [
-    2779,
-    4616
-   ],
-   "scale": 0.1359,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    206,
-    475
-   ],
-   "scale": 0.147,
-   "flip": false,
-   "tint": 0.853
-  },
-  {
-   "prop": "gb_whiteflowers",
-   "at": [
-    4548,
-    2199
-   ],
-   "scale": 0.1696,
-   "flip": true,
-   "tint": 0.641
-  },
-  {
-   "prop": "gb_meadow",
-   "at": [
-    6607,
-    1807
-   ],
-   "scale": 0.1694,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "gb_tallgrass",
-   "at": [
-    1058,
-    2511
-   ],
-   "scale": 0.1398,
-   "flip": false,
-   "tint": 0.621
-  },
-  {
-   "prop": "ga_moss",
-   "at": [
-    7129,
-    2926
-   ],
-   "scale": 0.1435,
-   "flip": true,
-   "tint": 0.649
-  },
-  {
-   "prop": "gb_longgrass",
-   "at": [
-    3505,
-    410
-   ],
-   "scale": 0.1566,
-   "flip": false,
-   "tint": 0.603
-  },
-  {
-   "prop": "ga_clover",
-   "at": [
-    819,
-    3581
-   ],
-   "scale": 0.1423,
-   "flip": false,
-   "tint": 0.647
-  },
-  {
-   "prop": "gb_clover",
-   "at": [
-    3370,
-    565
-   ],
-   "scale": 0.1314,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "ga_longgrass",
-   "at": [
-    7655,
-    3151
-   ],
-   "scale": 0.1994,
-   "flip": false,
-   "tint": 0.569
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    370,
-    1280
-   ],
-   "scale": 0.1925,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4509,
-    4878
-   ],
-   "scale": 0.3,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5833,
-    4220
-   ],
-   "scale": 0.2216,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2213,
-    1797
+    -78,
+    537
    ],
    "scale": 0.2572,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    4554,
-    1091
-   ],
-   "scale": 0.185,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6306,
-    3977
-   ],
-   "scale": 0.2259,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1585,
-    235
-   ],
-   "scale": 0.302,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    629,
-    4570
-   ],
-   "scale": 0.1832,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7566,
-    1694
-   ],
-   "scale": 0.2872,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2061,
-    981
-   ],
-   "scale": 0.2618,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    3246,
-    3858
-   ],
-   "scale": 0.192,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    2489,
-    1938
-   ],
-   "scale": 0.2076,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    517,
-    1378
-   ],
-   "scale": 0.2861,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    738,
-    3521
-   ],
-   "scale": 0.3104,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6287,
-    4330
-   ],
-   "scale": 0.3047,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7262,
-    349
-   ],
-   "scale": 0.2004,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5682,
-    478
-   ],
-   "scale": 0.3017,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1511,
-    1337
-   ],
-   "scale": 0.2284,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    3186,
-    3809
-   ],
-   "scale": 0.1918,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6482,
-    834
-   ],
-   "scale": 0.2037,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    356,
-    3951
-   ],
-   "scale": 0.2107,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1625,
-    757
-   ],
-   "scale": 0.2084,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1674,
-    510
-   ],
-   "scale": 0.2607,
-   "flip": false
-  },
-  {
-   "prop": "a_roots",
-   "at": [
-    347,
-    4494
-   ],
-   "scale": 0.289,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    4347,
-    4750
-   ],
-   "scale": 0.2277,
-   "flip": false
-  },
-  {
-   "prop": "a_roots",
-   "at": [
-    6858,
-    4875
-   ],
-   "scale": 0.252,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1260,
-    3292
-   ],
-   "scale": 0.208,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1775,
-    4910
-   ],
-   "scale": 0.3119,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5029,
-    631
-   ],
-   "scale": 0.1758,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6211,
-    1470
-   ],
-   "scale": 0.296,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6431,
-    3610
-   ],
-   "scale": 0.2382,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6264,
-    1929
-   ],
-   "scale": 0.2106,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7274,
-    1807
-   ],
-   "scale": 0.2328,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7084,
-    4023
-   ],
-   "scale": 0.2219,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4657,
-    396
-   ],
-   "scale": 0.3033,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    4451,
-    3769
-   ],
-   "scale": 0.1728,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2808,
-    3959
-   ],
-   "scale": 0.2377,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5468,
-    1986
-   ],
-   "scale": 0.2554,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    2439,
-    577
-   ],
-   "scale": 0.2091,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    866,
-    818
-   ],
-   "scale": 0.2824,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    213,
-    3981
-   ],
-   "scale": 0.2317,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    498,
-    4737
-   ],
-   "scale": 0.2093,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6147,
-    1612
-   ],
-   "scale": 0.2242,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4699,
-    4826
-   ],
-   "scale": 0.3014,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5230,
-    1338
-   ],
-   "scale": 0.1798,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7387,
-    3602
-   ],
-   "scale": 0.231,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5961,
-    4739
-   ],
-   "scale": 0.1779,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7155,
-    2338
-   ],
-   "scale": 0.2176,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1421,
-    2621
-   ],
-   "scale": 0.1902,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4985,
-    1205
-   ],
-   "scale": 0.2175,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    4776,
-    1239
-   ],
-   "scale": 0.1833,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7424,
-    305
-   ],
-   "scale": 0.2109,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1123,
-    130
-   ],
-   "scale": 0.2746,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7139,
-    3352
-   ],
-   "scale": 0.19,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1804,
-    3048
-   ],
-   "scale": 0.1656,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4853,
-    3026
-   ],
-   "scale": 0.3062,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    3284,
-    1999
-   ],
-   "scale": 0.3061,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    581,
-    3095
-   ],
-   "scale": 0.2328,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6115,
-    3509
-   ],
-   "scale": 0.22,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    2651,
-    1913
-   ],
-   "scale": 0.2103,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5348,
-    310
-   ],
-   "scale": 0.2255,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1355,
-    1191
-   ],
-   "scale": 0.3056,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2693,
-    2883
-   ],
-   "scale": 0.2193,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7093,
-    1770
-   ],
-   "scale": 0.2925,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5539,
-    3715
-   ],
-   "scale": 0.2839,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7461,
-    3903
-   ],
-   "scale": 0.2467,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1205,
-    2545
-   ],
-   "scale": 0.1721,
-   "flip": true
-  },
-  {
-   "prop": "a_roots",
-   "at": [
-    7098,
-    4836
-   ],
-   "scale": 0.2361,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1356,
-    1334
-   ],
-   "scale": 0.2916,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    974,
-    3902
-   ],
-   "scale": 0.2085,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    2555,
-    2559
-   ],
-   "scale": 0.2143,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1698,
-    2111
-   ],
-   "scale": 0.1585,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7488,
-    2331
-   ],
-   "scale": 0.2258,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1019,
-    232
-   ],
-   "scale": 0.2574,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1972,
-    3780
-   ],
-   "scale": 0.2001,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2908,
-    351
-   ],
-   "scale": 0.3169,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    614,
-    1229
-   ],
-   "scale": 0.2161,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6839,
-    2149
-   ],
-   "scale": 0.1721,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6423,
-    1087
-   ],
-   "scale": 0.1839,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1093,
-    252
-   ],
-   "scale": 0.1888,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5576,
-    3040
-   ],
-   "scale": 0.2353,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2748,
-    2070
-   ],
-   "scale": 0.2751,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2623,
-    1532
-   ],
-   "scale": 0.3142,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4816,
-    4536
-   ],
-   "scale": 0.3079,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1722,
-    1069
-   ],
-   "scale": 0.2054,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6164,
-    529
-   ],
-   "scale": 0.2332,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6952,
-    2425
-   ],
-   "scale": 0.2883,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5208,
-    239
-   ],
-   "scale": 0.291,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    698,
-    1394
-   ],
-   "scale": 0.2629,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1384,
-    1502
-   ],
-   "scale": 0.294,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5539,
-    2990
-   ],
-   "scale": 0.229,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7407,
-    4600
-   ],
-   "scale": 0.3022,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6219,
-    802
-   ],
-   "scale": 0.1602,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    2529,
-    2792
-   ],
-   "scale": 0.2157,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    436,
-    720
-   ],
-   "scale": 0.164,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7286,
-    3760
-   ],
-   "scale": 0.2288,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5810,
-    511
-   ],
-   "scale": 0.2289,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4273,
-    1445
-   ],
-   "scale": 0.2945,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    3457,
-    3746
-   ],
-   "scale": 0.2375,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1031,
-    3475
-   ],
-   "scale": 0.2459,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    882,
-    893
-   ],
-   "scale": 0.1837,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2041,
-    2241
-   ],
-   "scale": 0.3062,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    966,
-    2496
-   ],
-   "scale": 0.2236,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2200,
-    471
-   ],
-   "scale": 0.218,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1474,
-    401
-   ],
-   "scale": 0.1895,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7060,
-    2543
-   ],
-   "scale": 0.3012,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4706,
-    4774
-   ],
-   "scale": 0.3166,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    399,
-    4417
-   ],
-   "scale": 0.1654,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6809,
-    4115
-   ],
-   "scale": 0.2178,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6564,
-    3848
-   ],
-   "scale": 0.2061,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1960,
-    4688
-   ],
-   "scale": 0.2276,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1255,
-    4441
-   ],
-   "scale": 0.2327,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    540,
-    221
-   ],
-   "scale": 0.2056,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6201,
-    4492
-   ],
-   "scale": 0.2262,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2620,
-    2761
-   ],
-   "scale": 0.2215,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1327,
-    2919
-   ],
-   "scale": 0.2244,
-   "flip": true
-  },
-  {
-   "prop": "a_mushrooms",
-   "at": [
-    5224,
-    280
-   ],
-   "scale": 0.2087,
    "flip": false,
-   "tint": 0.75,
-   "mist": 0.082
+   "tint": 0.878
   },
   {
-   "prop": "a_leaves",
+   "prop": "c_flower_basket",
    "at": [
-    4866,
-    3181
+    -73,
+    586
    ],
-   "scale": 0.2693,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    1685,
-    4348
-   ],
-   "scale": 0.1553,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    816,
-    4253
-   ],
-   "scale": 0.1735,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1011,
-    1295
-   ],
-   "scale": 0.2397,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    785,
-    4453
-   ],
-   "scale": 0.1608,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    3567,
-    1672
-   ],
-   "scale": 0.2304,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6539,
-    1358
-   ],
-   "scale": 0.1854,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5204,
-    574
-   ],
-   "scale": 0.226,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4831,
-    2427
-   ],
-   "scale": 0.2363,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7411,
-    390
-   ],
-   "scale": 0.2746,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4780,
-    4873
-   ],
-   "scale": 0.2887,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7169,
-    2431
-   ],
-   "scale": 0.2785,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7093,
-    4440
-   ],
-   "scale": 0.2084,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4789,
-    2034
-   ],
-   "scale": 0.3113,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    43,
-    346
-   ],
-   "scale": 0.3084,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    631,
-    519
-   ],
-   "scale": 0.2962,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    3914,
-    717
-   ],
-   "scale": 0.3098,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7052,
-    3626
-   ],
-   "scale": 0.2129,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    650,
-    1874
-   ],
-   "scale": 0.2333,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5883,
-    1074
-   ],
-   "scale": 0.2305,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6135,
-    1135
-   ],
-   "scale": 0.1724,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5011,
-    1959
-   ],
-   "scale": 0.2034,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4917,
-    2384
-   ],
-   "scale": 0.2102,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5765,
-    3075
-   ],
-   "scale": 0.3092,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7245,
-    4399
-   ],
-   "scale": 0.1675,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    5469,
-    3051
-   ],
-   "scale": 0.1941,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    3036,
-    4713
-   ],
-   "scale": 0.2873,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6527,
-    490
-   ],
-   "scale": 0.2554,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    7580,
-    4855
-   ],
-   "scale": 0.1845,
-   "flip": false
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    6072,
-    963
-   ],
-   "scale": 0.1799,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    2750,
-    241
-   ],
-   "scale": 0.2238,
-   "flip": true
-  },
-  {
-   "prop": "a_pebbles",
-   "at": [
-    647,
-    1147
-   ],
-   "scale": 0.2011,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6825,
-    1177
-   ],
-   "scale": 0.2478,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    178,
-    4278
-   ],
-   "scale": 0.2697,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    229,
-    4270
-   ],
-   "scale": 0.3392,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    192,
-    4259
-   ],
-   "scale": 0.3072,
-   "flip": false
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    176,
-    4282
-   ],
-   "scale": 0.1285,
+   "scale": 0.2308,
    "flip": false,
-   "tint": 0.554,
-   "mist": 0.039
+   "tint": 0.888
   },
   {
-   "prop": "b_fern",
+   "prop": "c_lavender",
    "at": [
-    203,
-    4251
+    1147,
+    4258
    ],
-   "scale": 0.1389,
+   "scale": 0.233,
    "flip": false,
-   "tint": 0.568,
-   "mist": 0.056
+   "tint": 0.781
   },
   {
-   "prop": "b_grass_tall",
+   "prop": "c_lavender",
    "at": [
-    190,
-    4290
+    1275,
+    4236
    ],
-   "scale": 0.1264,
-   "flip": false,
-   "tint": 0.576,
-   "mist": 0.038
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    225,
-    4289
-   ],
-   "scale": 0.1572,
+   "scale": 0.2227,
    "flip": true,
-   "tint": 0.568,
-   "mist": 0.047
+   "tint": 0.778
   },
   {
-   "prop": "a_fern",
+   "prop": "c_lavender",
    "at": [
-    199,
-    4290
+    1183,
+    4210
    ],
-   "scale": 0.1346,
-   "flip": true,
-   "tint": 0.573,
-   "mist": 0.04
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6888,
-    4924
-   ],
-   "scale": 0.3033,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6815,
-    4942
-   ],
-   "scale": 0.3,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    6823,
-    4912
-   ],
-   "scale": 0.2511,
-   "flip": true
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    6873,
-    4940
-   ],
-   "scale": 0.1519,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.087
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    6846,
-    4950
-   ],
-   "scale": 0.1307,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.07
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    6855,
-    4944
-   ],
-   "scale": 0.1447,
+   "scale": 0.2308,
    "flip": false,
-   "tint": 0.55,
-   "mist": 0.076
+   "tint": 0.772
   },
   {
-   "prop": "a_fern",
+   "prop": "c_flower_white",
    "at": [
-    6847,
-    4945
+    1130,
+    4186
    ],
-   "scale": 0.145,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.07
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    6843,
-    4949
-   ],
-   "scale": 0.1247,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.067
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7194,
-    3135
-   ],
-   "scale": 0.2296,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7179,
-    3157
-   ],
-   "scale": 0.2365,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7183,
-    3124
-   ],
-   "scale": 0.2822,
-   "flip": false
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    7161,
-    3162
-   ],
-   "scale": 0.1397,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    7169,
-    3121
-   ],
-   "scale": 0.1377,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    7196,
-    3159
-   ],
-   "scale": 0.1452,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    7121,
-    3159
-   ],
-   "scale": 0.1338,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    7117,
-    3157
-   ],
-   "scale": 0.1452,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7177,
-    1527
-   ],
-   "scale": 0.2807,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7128,
-    1546
-   ],
-   "scale": 0.2421,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    7153,
-    1538
-   ],
-   "scale": 0.3079,
-   "flip": true
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    7099,
-    1541
-   ],
-   "scale": 0.1378,
-   "flip": false,
-   "tint": 0.613
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    7120,
-    1545
-   ],
-   "scale": 0.1245,
-   "flip": false,
-   "tint": 0.608
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    7185,
-    1534
-   ],
-   "scale": 0.1348,
-   "flip": false,
-   "tint": 0.593
-  },
-  {
-   "prop": "b_grass_tall",
-   "at": [
-    7172,
-    1538
-   ],
-   "scale": 0.1591,
-   "flip": true,
-   "tint": 0.593
-  },
-  {
-   "prop": "b_grass_tall",
-   "at": [
-    7177,
-    1511
-   ],
-   "scale": 0.1274,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5260,
-    231
-   ],
-   "scale": 0.2489,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5257,
-    203
-   ],
-   "scale": 0.2879,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    5271,
-    200
-   ],
-   "scale": 0.3338,
-   "flip": true
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    5280,
-    236
-   ],
-   "scale": 0.1355,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.083
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    5277,
-    236
-   ],
-   "scale": 0.1589,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.084
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    5237,
-    235
-   ],
-   "scale": 0.1361,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.086
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    5223,
-    226
-   ],
-   "scale": 0.1311,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.087
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    5287,
-    231
-   ],
-   "scale": 0.1307,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.084
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4411,
-    1026
-   ],
-   "scale": 0.2352,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4369,
-    1050
-   ],
-   "scale": 0.2289,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    4392,
-    1030
-   ],
-   "scale": 0.2961,
-   "flip": false
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    4344,
-    1038
-   ],
-   "scale": 0.1498,
-   "flip": false,
-   "tint": 0.569,
-   "mist": 0.046
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    4350,
-    1034
-   ],
-   "scale": 0.1427,
-   "flip": false,
-   "tint": 0.565,
-   "mist": 0.045
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    4378,
-    1058
-   ],
-   "scale": 0.1513,
-   "flip": false,
-   "tint": 0.568,
-   "mist": 0.046
-  },
-  {
-   "prop": "b_grass_tall",
-   "at": [
-    4372,
-    1059
-   ],
-   "scale": 0.1571,
-   "flip": true,
-   "tint": 0.572,
-   "mist": 0.047
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    4431,
-    1053
-   ],
-   "scale": 0.1648,
-   "flip": true,
-   "tint": 0.558,
-   "mist": 0.03
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    378,
-    1245
-   ],
-   "scale": 0.2838,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    359,
-    1232
-   ],
-   "scale": 0.3195,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    334,
-    1255
-   ],
-   "scale": 0.2767,
-   "flip": false
-  },
-  {
-   "prop": "a_grass_tall",
-   "at": [
-    307,
-    1256
-   ],
-   "scale": 0.1511,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.064
-  },
-  {
-   "prop": "b_grass_tall",
-   "at": [
-    346,
-    1254
-   ],
-   "scale": 0.1495,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.06
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    370,
-    1247
-   ],
-   "scale": 0.1351,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.056
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    392,
-    1228
-   ],
-   "scale": 0.1283,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.055
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    317,
-    1254
-   ],
-   "scale": 0.1534,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.063
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    529,
-    2175
-   ],
-   "scale": 0.311,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    454,
-    2166
-   ],
-   "scale": 0.2442,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    509,
-    2184
-   ],
-   "scale": 0.2487,
-   "flip": true
-  },
-  {
-   "prop": "b_grass_tall",
-   "at": [
-    463,
-    2189
-   ],
-   "scale": 0.1606,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.113
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    520,
-    2190
-   ],
-   "scale": 0.1597,
-   "flip": true,
-   "tint": 0.55,
-   "mist": 0.111
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    535,
-    2177
-   ],
-   "scale": 0.145,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.106
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    529,
-    2155
-   ],
-   "scale": 0.1273,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.1
-  },
-  {
-   "prop": "a_fern",
-   "at": [
-    438,
-    2161
-   ],
-   "scale": 0.1209,
-   "flip": false,
-   "tint": 0.55,
-   "mist": 0.108
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1155,
-    5039
-   ],
-   "scale": 0.332,
-   "flip": false
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1148,
-    5020
-   ],
-   "scale": 0.3138,
-   "flip": true
-  },
-  {
-   "prop": "a_leaves",
-   "at": [
-    1154,
-    5034
-   ],
-   "scale": 0.329,
-   "flip": true
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    1078,
-    5050
-   ],
-   "scale": 0.1227,
-   "flip": true,
-   "tint": 0.96,
-   "mist": 0.014
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    1134,
-    5051
-   ],
-   "scale": 0.1535,
-   "flip": true,
-   "tint": 0.961,
-   "mist": 0.027
-  },
-  {
-   "prop": "b_grass_tall",
-   "at": [
-    1071,
-    5044
-   ],
-   "scale": 0.1413,
-   "flip": true,
-   "tint": 0.949,
-   "mist": 0.012
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    1155,
-    5043
-   ],
-   "scale": 0.1289,
-   "flip": true,
-   "tint": 0.959,
-   "mist": 0.031
-  },
-  {
-   "prop": "b_fern",
-   "at": [
-    1103,
-    5052
-   ],
-   "scale": 0.1376,
-   "flip": true,
-   "tint": 0.961,
-   "mist": 0.019
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    3208,
-    4581
-   ],
-   "scale": 0.1096,
-   "flip": false,
-   "tint": 0.587
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    3869,
-    4606
-   ],
-   "scale": 0.175,
-   "flip": false,
-   "tint": 0.599
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    3437,
-    4315
-   ],
-   "scale": 0.1049,
-   "flip": true,
-   "tint": 0.634
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    3840,
-    4571
-   ],
-   "scale": 0.167,
-   "flip": true,
-   "tint": 0.617
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    4086,
-    4394
-   ],
-   "scale": 0.0959,
-   "flip": true,
-   "tint": 0.862
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    3726,
-    4032
-   ],
-   "scale": 0.157,
-   "flip": false,
-   "tint": 0.635
-  },
-  {
-   "prop": "a_shrub_white",
-   "at": [
-    4250,
-    4220
-   ],
-   "scale": 0.1429,
-   "flip": false,
-   "tint": 0.773
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    3729,
-    3997
-   ],
-   "scale": 0.121,
-   "flip": false,
-   "tint": 0.618
-  },
-  {
-   "prop": "a_lavender",
-   "at": [
-    4312,
-    4008
-   ],
-   "scale": 0.11,
-   "flip": true,
-   "tint": 0.65
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    3657,
-    3852
-   ],
-   "scale": 0.1218,
-   "flip": false,
-   "tint": 0.645
-  },
-  {
-   "prop": "b_lavender",
-   "at": [
-    4349,
-    3800
-   ],
-   "scale": 0.1056,
-   "flip": false,
-   "tint": 0.756
-  },
-  {
-   "prop": "b_shrub_white",
-   "at": [
-    3607,
-    3711
-   ],
-   "scale": 0.1394,
+   "scale": 0.2371,
    "flip": false,
    "tint": 0.765
   },
   {
-   "prop": "b_shrub_white",
+   "prop": "c_lavender",
    "at": [
-    4352,
-    3601
+    589,
+    279
    ],
-   "scale": 0.1353,
+   "scale": 0.1779,
    "flip": true,
+   "tint": 0.858
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    714,
+    354
+   ],
+   "scale": 0.1992,
+   "flip": false,
+   "tint": 0.827
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1268,
+    3622
+   ],
+   "scale": 0.4659,
+   "flip": true,
+   "tint": 0.637
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1347,
+    3650
+   ],
+   "scale": 0.5176,
+   "flip": true,
+   "tint": 0.646
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    1284,
+    3628
+   ],
+   "scale": 0.2298,
+   "flip": true,
+   "tint": 0.683
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1220,
+    3615
+   ],
+   "scale": 0.5313,
+   "flip": false,
+   "tint": 0.66
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1259,
+    3637
+   ],
+   "scale": 0.2433,
+   "flip": false,
+   "tint": 0.654
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    1376,
+    3646
+   ],
+   "scale": 0.4456,
+   "flip": false,
+   "tint": 0.666
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    3572,
+    399
+   ],
+   "scale": 0.3105,
+   "flip": false,
+   "tint": 0.708
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    3541,
+    481
+   ],
+   "scale": 0.2327,
+   "flip": false,
+   "tint": 0.695
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    3424,
+    484
+   ],
+   "scale": 0.2126,
+   "flip": true,
+   "tint": 0.795
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    3561,
+    462
+   ],
+   "scale": 0.5473,
+   "flip": false,
+   "tint": 0.657
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    6816,
+    1241
+   ],
+   "scale": 0.2331,
+   "flip": false,
+   "tint": 0.814
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    6810,
+    1282
+   ],
+   "scale": 0.1647,
+   "flip": true,
+   "tint": 0.866
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    6825,
+    1340
+   ],
+   "scale": 0.4203,
+   "flip": false,
+   "tint": 0.756
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    6916,
+    1250
+   ],
+   "scale": 0.2543,
+   "flip": true,
+   "tint": 0.808
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    2407,
+    2622
+   ],
+   "scale": 0.3066,
+   "flip": false,
+   "tint": 0.634
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2410,
+    2657
+   ],
+   "scale": 0.4692,
+   "flip": true,
+   "tint": 0.601
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2473,
+    2750
+   ],
+   "scale": 0.2198,
+   "flip": true,
+   "tint": 0.753
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2411,
+    2669
+   ],
+   "scale": 0.2407,
+   "flip": false,
+   "tint": 0.659
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2430,
+    2610
+   ],
+   "scale": 0.2526,
+   "flip": true,
+   "tint": 0.693
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2420,
+    2636
+   ],
+   "scale": 0.268,
+   "flip": true,
+   "tint": 0.592
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    105,
+    535
+   ],
+   "scale": 0.2346,
+   "flip": true,
+   "tint": 0.789
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    113,
+    664
+   ],
+   "scale": 0.2744,
+   "flip": true,
+   "tint": 0.77
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    43,
+    614
+   ],
+   "scale": 0.2661,
+   "flip": false,
+   "tint": 0.75
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    61,
+    598
+   ],
+   "scale": 0.228,
+   "flip": false,
+   "tint": 0.753
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    111,
+    547
+   ],
+   "scale": 0.1963,
+   "flip": true,
+   "tint": 0.79
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    89,
+    641
+   ],
+   "scale": 0.2485,
+   "flip": false,
+   "tint": 0.766
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5787,
+    1450
+   ],
+   "scale": 0.41,
+   "flip": true,
+   "tint": 0.725
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    5835,
+    1495
+   ],
+   "scale": 0.2746,
+   "flip": false,
    "tint": 0.752
   },
   {
-   "prop": "a_shrub_white",
+   "prop": "c_lavender",
    "at": [
-    3695,
-    3662
+    5756,
+    1432
    ],
-   "scale": 0.168,
+   "scale": 0.1847,
+   "flip": false,
+   "tint": 0.782
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5704,
+    1520
+   ],
+   "scale": 0.2089,
+   "flip": false,
+   "tint": 0.76
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5677,
+    1489
+   ],
+   "scale": 0.1693,
    "flip": true,
+   "tint": 0.767
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5695,
+    1495
+   ],
+   "scale": 0.2359,
+   "flip": false,
+   "tint": 0.717
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5533,
+    3801
+   ],
+   "scale": 0.4274,
+   "flip": true,
+   "tint": 0.684
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    5688,
+    3841
+   ],
+   "scale": 0.2337,
+   "flip": false,
+   "tint": 0.787
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5408,
+    3842
+   ],
+   "scale": 0.2283,
+   "flip": true,
+   "tint": 0.71
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5379,
+    3832
+   ],
+   "scale": 0.3887,
+   "flip": true,
+   "tint": 0.687
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5438,
+    3808
+   ],
+   "scale": 0.2191,
+   "flip": true,
+   "tint": 0.744
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    4583,
+    490
+   ],
+   "scale": 0.2484,
+   "flip": false,
+   "tint": 0.649
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    4715,
+    501
+   ],
+   "scale": 0.1946,
+   "flip": true,
+   "tint": 0.762
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    4584,
+    479
+   ],
+   "scale": 0.1928,
+   "flip": true,
+   "tint": 0.663
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2767,
+    4078
+   ],
+   "scale": 0.5127,
+   "flip": false,
+   "tint": 0.663
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2658,
+    4046
+   ],
+   "scale": 0.2278,
+   "flip": false,
+   "tint": 0.782
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2625,
+    4059
+   ],
+   "scale": 0.1725,
+   "flip": false,
+   "tint": 0.818
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    378,
+    725
+   ],
+   "scale": 0.4897,
+   "flip": true,
+   "tint": 0.687
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    328,
+    739
+   ],
+   "scale": 0.4755,
+   "flip": false,
+   "tint": 0.717
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    424,
+    667
+   ],
+   "scale": 0.5469,
+   "flip": false,
+   "tint": 0.673
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    364,
+    678
+   ],
+   "scale": 0.4358,
+   "flip": true,
+   "tint": 0.723
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    502,
+    725
+   ],
+   "scale": 0.2445,
+   "flip": false,
+   "tint": 0.769
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    462,
+    693
+   ],
+   "scale": 0.4424,
+   "flip": false,
+   "tint": 0.692
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    6438,
+    4849
+   ],
+   "scale": 0.2002,
+   "flip": true,
+   "tint": 0.719
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    6338,
+    4787
+   ],
+   "scale": 0.2266,
+   "flip": false,
+   "tint": 0.74
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6442,
+    4800
+   ],
+   "scale": 0.3145,
+   "flip": true,
+   "tint": 0.65
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6370,
+    4888
+   ],
+   "scale": 0.3055,
+   "flip": false,
+   "tint": 0.689
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    797,
+    1552
+   ],
+   "scale": 0.4944,
+   "flip": false,
+   "tint": 0.689
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    739,
+    1518
+   ],
+   "scale": 0.208,
+   "flip": false,
+   "tint": 0.796
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    749,
+    1446
+   ],
+   "scale": 0.4491,
+   "flip": true,
+   "tint": 0.668
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    733,
+    1468
+   ],
+   "scale": 0.4091,
+   "flip": false,
+   "tint": 0.693
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    768,
+    1439
+   ],
+   "scale": 0.2139,
+   "flip": true,
+   "tint": 0.742
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    5448,
+    2022
+   ],
+   "scale": 0.2902,
+   "flip": true,
+   "tint": 0.629
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5433,
+    1990
+   ],
+   "scale": 0.265,
+   "flip": false,
+   "tint": 0.659
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5519,
+    1964
+   ],
+   "scale": 0.4844,
+   "flip": true,
+   "tint": 0.657
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5376,
+    1982
+   ],
+   "scale": 0.2122,
+   "flip": false,
+   "tint": 0.72
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5460,
+    2008
+   ],
+   "scale": 0.4136,
+   "flip": true,
+   "tint": 0.609
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    46,
+    4178
+   ],
+   "scale": 0.1997,
+   "flip": false,
+   "tint": 0.738
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    266,
+    4133
+   ],
+   "scale": 0.4225,
+   "flip": false,
+   "tint": 0.66
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    -4,
+    4216
+   ],
+   "scale": 0.1963,
+   "flip": true,
+   "tint": 0.621
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    14,
+    4152
+   ],
+   "scale": 0.2526,
+   "flip": false,
+   "tint": 0.711
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    5998,
+    1752
+   ],
+   "scale": 0.2981,
+   "flip": true,
+   "tint": 0.772
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    6042,
+    1697
+   ],
+   "scale": 0.4182,
+   "flip": false,
+   "tint": 0.732
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    6219,
+    1654
+   ],
+   "scale": 0.2338,
+   "flip": false,
+   "tint": 0.804
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    6041,
+    1732
+   ],
+   "scale": 0.1991,
+   "flip": true,
+   "tint": 0.8
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    6162,
+    1672
+   ],
+   "scale": 0.5133,
+   "flip": false,
+   "tint": 0.702
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    6106,
+    1685
+   ],
+   "scale": 0.2652,
+   "flip": false,
+   "tint": 0.771
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2180,
+    340
+   ],
+   "scale": 0.2208,
+   "flip": true,
+   "tint": 0.788
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2119,
+    420
+   ],
+   "scale": 0.2281,
+   "flip": true,
+   "tint": 0.808
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2183,
+    398
+   ],
+   "scale": 0.4936,
+   "flip": false,
+   "tint": 0.695
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    6908,
+    4630
+   ],
+   "scale": 0.2499,
+   "flip": false,
+   "tint": 0.688
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6996,
+    4628
+   ],
+   "scale": 0.2743,
+   "flip": false,
+   "tint": 0.72
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5750,
+    1623
+   ],
+   "scale": 0.5286,
+   "flip": true,
+   "tint": 0.691
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5718,
+    1672
+   ],
+   "scale": 0.2272,
+   "flip": true,
+   "tint": 0.808
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5744,
+    1573
+   ],
+   "scale": 0.2208,
+   "flip": false,
+   "tint": 0.797
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5896,
+    1611
+   ],
+   "scale": 0.4608,
+   "flip": true,
+   "tint": 0.725
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    264,
+    3254
+   ],
+   "scale": 0.171,
+   "flip": true,
+   "tint": 0.815
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    310,
+    3337
+   ],
+   "scale": 0.4852,
+   "flip": false,
+   "tint": 0.692
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    202,
+    3252
+   ],
+   "scale": 0.2024,
+   "flip": false,
+   "tint": 0.773
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5595,
+    2478
+   ],
+   "scale": 0.2376,
+   "flip": false,
+   "tint": 0.79
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5429,
+    2492
+   ],
+   "scale": 0.1812,
+   "flip": true,
+   "tint": 0.814
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    6986,
+    4293
+   ],
+   "scale": 0.4849,
+   "flip": false,
+   "tint": 0.688
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7050,
+    4299
+   ],
+   "scale": 0.218,
+   "flip": true,
+   "tint": 0.789
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7057,
+    4326
+   ],
+   "scale": 0.2066,
+   "flip": true,
+   "tint": 0.787
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    7084,
+    4430
+   ],
+   "scale": 0.2315,
+   "flip": false,
+   "tint": 0.767
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    7055,
+    4361
+   ],
+   "scale": 0.2574,
+   "flip": false,
+   "tint": 0.752
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1035,
+    4923
+   ],
+   "scale": 0.2406,
+   "flip": false,
+   "tint": 0.729
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    1021,
+    4846
+   ],
+   "scale": 0.2192,
+   "flip": true,
+   "tint": 0.827
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    983,
+    4965
+   ],
+   "scale": 0.1992,
+   "flip": true,
+   "tint": 0.948
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    994,
+    4892
+   ],
+   "scale": 0.191,
+   "flip": false,
+   "tint": 0.845
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1146,
+    4918
+   ],
+   "scale": 0.2885,
+   "flip": false,
+   "tint": 0.789
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2074,
+    3166
+   ],
+   "scale": 0.393,
+   "flip": true,
+   "tint": 0.694
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    2108,
+    3026
+   ],
+   "scale": 0.2604,
+   "flip": false,
+   "tint": 0.748
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2159,
+    3022
+   ],
+   "scale": 0.5437,
+   "flip": true,
+   "tint": 0.688
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2219,
+    3106
+   ],
+   "scale": 0.2241,
+   "flip": false,
+   "tint": 0.77
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2056,
+    3143
+   ],
+   "scale": 0.5417,
+   "flip": true,
+   "tint": 0.656
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    2198,
+    3105
+   ],
+   "scale": 0.2412,
+   "flip": false,
+   "tint": 0.752
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7510,
+    1861
+   ],
+   "scale": 0.2624,
+   "flip": false,
+   "tint": 0.746
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7442,
+    1781
+   ],
+   "scale": 0.1969,
+   "flip": true,
+   "tint": 0.764
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    5281,
+    3383
+   ],
+   "scale": 0.2038,
+   "flip": true,
+   "tint": 0.772
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5056,
+    3275
+   ],
+   "scale": 0.192,
+   "flip": true,
+   "tint": 0.784
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5205,
+    3345
+   ],
+   "scale": 0.2381,
+   "flip": false,
+   "tint": 0.669
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5166,
+    3337
+   ],
+   "scale": 0.1798,
+   "flip": false,
+   "tint": 0.763
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    7324,
+    1983
+   ],
+   "scale": 0.4726,
+   "flip": true,
+   "tint": 0.728
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    7329,
+    2034
+   ],
+   "scale": 0.427,
+   "flip": false,
+   "tint": 0.743
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1057,
+    586
+   ],
+   "scale": 0.2875,
+   "flip": false,
+   "tint": 0.649
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    1053,
+    520
+   ],
+   "scale": 0.1849,
+   "flip": false,
+   "tint": 0.779
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    1077,
+    600
+   ],
+   "scale": 0.2053,
+   "flip": false,
+   "tint": 0.645
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    1093,
+    570
+   ],
+   "scale": 0.2224,
+   "flip": true,
+   "tint": 0.733
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    1064,
+    609
+   ],
+   "scale": 0.269,
+   "flip": true,
+   "tint": 0.651
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    237,
+    1702
+   ],
+   "scale": 0.4811,
+   "flip": true,
+   "tint": 0.726
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    379,
+    1778
+   ],
+   "scale": 0.2431,
+   "flip": true,
+   "tint": 0.793
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    4286,
+    755
+   ],
+   "scale": 0.2212,
+   "flip": false,
+   "tint": 0.655
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    4290,
+    829
+   ],
+   "scale": 0.179,
+   "flip": true,
+   "tint": 0.765
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    4280,
+    766
+   ],
+   "scale": 0.432,
+   "flip": false,
+   "tint": 0.639
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    4325,
+    735
+   ],
+   "scale": 0.1956,
+   "flip": false,
+   "tint": 0.726
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    7489,
+    2678
+   ],
+   "scale": 0.206,
+   "flip": false,
+   "tint": 0.737
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    7479,
+    2646
+   ],
+   "scale": 0.2322,
+   "flip": true,
+   "tint": 0.747
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7480,
+    2618
+   ],
+   "scale": 0.1847,
+   "flip": true,
+   "tint": 0.837
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    7501,
+    2672
+   ],
+   "scale": 0.4528,
+   "flip": true,
+   "tint": 0.72
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7456,
+    2698
+   ],
+   "scale": 0.1914,
+   "flip": true,
+   "tint": 0.793
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2447,
+    4752
+   ],
+   "scale": 0.214,
+   "flip": false,
+   "tint": 0.711
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2445,
+    4741
+   ],
+   "scale": 0.2157,
+   "flip": false,
+   "tint": 0.713
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5110,
+    3645
+   ],
+   "scale": 0.2002,
+   "flip": true,
+   "tint": 0.739
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5119,
+    3539
+   ],
+   "scale": 0.1914,
+   "flip": true,
+   "tint": 0.683
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5106,
+    3582
+   ],
+   "scale": 0.2317,
+   "flip": true,
+   "tint": 0.663
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5161,
+    3485
+   ],
+   "scale": 0.255,
+   "flip": false,
+   "tint": 0.7
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5097,
+    3555
+   ],
+   "scale": 0.4878,
+   "flip": false,
+   "tint": 0.607
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    6403,
+    392
+   ],
+   "scale": 0.1941,
+   "flip": false,
+   "tint": 0.777
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    6346,
+    377
+   ],
+   "scale": 0.2032,
+   "flip": true,
+   "tint": 0.79
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    6421,
+    405
+   ],
+   "scale": 0.227,
+   "flip": true,
+   "tint": 0.794
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    6369,
+    388
+   ],
+   "scale": 0.2713,
+   "flip": true,
+   "tint": 0.757
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2457,
+    2300
+   ],
+   "scale": 0.229,
+   "flip": true,
+   "tint": 0.756
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2427,
+    2327
+   ],
+   "scale": 0.2672,
+   "flip": true,
+   "tint": 0.729
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    2464,
+    2333
+   ],
+   "scale": 0.2649,
+   "flip": false,
+   "tint": 0.711
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    2500,
+    2371
+   ],
+   "scale": 0.5292,
+   "flip": true,
+   "tint": 0.656
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    5930,
+    537
+   ],
+   "scale": 0.2889,
+   "flip": false,
+   "tint": 0.646
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    5936,
+    497
+   ],
+   "scale": 0.1941,
+   "flip": false,
+   "tint": 0.742
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5919,
+    554
+   ],
+   "scale": 0.5381,
+   "flip": false,
+   "tint": 0.632
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    5949,
+    511
+   ],
+   "scale": 0.2172,
+   "flip": false,
+   "tint": 0.709
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5894,
+    619
+   ],
+   "scale": 0.3966,
+   "flip": false,
+   "tint": 0.721
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    4350,
+    3822
+   ],
+   "scale": 0.1715,
+   "flip": true,
+   "tint": 0.846
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    4519,
+    3907
+   ],
+   "scale": 0.2326,
+   "flip": false,
+   "tint": 0.754
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    4443,
+    3867
+   ],
+   "scale": 0.202,
+   "flip": true,
+   "tint": 0.804
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    3135,
+    937
+   ],
+   "scale": 0.22,
+   "flip": false,
+   "tint": 0.787
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    3170,
+    1030
+   ],
+   "scale": 0.2643,
+   "flip": false,
+   "tint": 0.75
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    3094,
+    1004
+   ],
+   "scale": 0.2702,
+   "flip": true,
+   "tint": 0.741
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    3069,
+    959
+   ],
+   "scale": 0.2089,
+   "flip": false,
+   "tint": 0.773
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    221,
+    2479
+   ],
+   "scale": 0.3992,
+   "flip": false,
+   "tint": 0.741
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    21,
+    2492
+   ],
+   "scale": 0.2336,
+   "flip": true,
+   "tint": 0.694
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    140,
+    2424
+   ],
+   "scale": 0.2107,
+   "flip": false,
+   "tint": 0.779
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    2,
+    2450
+   ],
+   "scale": 0.2038,
+   "flip": false,
+   "tint": 0.77
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    200,
+    2536
+   ],
+   "scale": 0.2139,
+   "flip": true,
+   "tint": 0.786
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    211,
+    2438
+   ],
+   "scale": 0.1974,
+   "flip": false,
+   "tint": 0.817
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    827,
+    3244
+   ],
+   "scale": 0.2597,
+   "flip": false,
+   "tint": 0.786
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    890,
+    3223
+   ],
+   "scale": 0.2441,
+   "flip": false,
+   "tint": 0.817
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    861,
+    300
+   ],
+   "scale": 0.4369,
+   "flip": false,
    "tint": 0.699
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    775,
+    317
+   ],
+   "scale": 0.3209,
+   "flip": true,
+   "tint": 0.716
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    417,
+    4597
+   ],
+   "scale": 0.2232,
+   "flip": false,
+   "tint": 0.75
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    410,
+    4553
+   ],
+   "scale": 0.2026,
+   "flip": false,
+   "tint": 0.761
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    317,
+    4518
+   ],
+   "scale": 0.1947,
+   "flip": true,
+   "tint": 0.794
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    370,
+    4535
+   ],
+   "scale": 0.2739,
+   "flip": false,
+   "tint": 0.726
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    374,
+    4597
+   ],
+   "scale": 0.2845,
+   "flip": true,
+   "tint": 0.717
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    380,
+    4488
+   ],
+   "scale": 0.2062,
+   "flip": true,
+   "tint": 0.755
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    1145,
+    249
+   ],
+   "scale": 0.2323,
+   "flip": false,
+   "tint": 0.725
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1173,
+    262
+   ],
+   "scale": 0.2022,
+   "flip": true,
+   "tint": 0.773
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1293,
+    232
+   ],
+   "scale": 0.2416,
+   "flip": true,
+   "tint": 0.758
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    1136,
+    224
+   ],
+   "scale": 0.2612,
+   "flip": false,
+   "tint": 0.717
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    2548,
+    4795
+   ],
+   "scale": 0.2094,
+   "flip": true,
+   "tint": 0.747
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    2503,
+    4787
+   ],
+   "scale": 0.174,
+   "flip": true,
+   "tint": 0.786
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7113,
+    3188
+   ],
+   "scale": 0.2344,
+   "flip": true,
+   "tint": 0.736
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    7094,
+    3224
+   ],
+   "scale": 0.4409,
+   "flip": false,
+   "tint": 0.669
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7062,
+    3239
+   ],
+   "scale": 0.1696,
+   "flip": false,
+   "tint": 0.759
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    7222,
+    3195
+   ],
+   "scale": 0.201,
+   "flip": true,
+   "tint": 0.782
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    7163,
+    3231
+   ],
+   "scale": 0.2408,
+   "flip": true,
+   "tint": 0.766
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    7070,
+    3193
+   ],
+   "scale": 0.485,
+   "flip": true,
+   "tint": 0.651
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    5719,
+    661
+   ],
+   "scale": 0.2448,
+   "flip": false,
+   "tint": 0.766
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    5693,
+    695
+   ],
+   "scale": 0.5294,
+   "flip": true,
+   "tint": 0.672
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    405,
+    1026
+   ],
+   "scale": 0.1917,
+   "flip": false,
+   "tint": 0.804
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    289,
+    935
+   ],
+   "scale": 0.1874,
+   "flip": false,
+   "tint": 0.841
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    435,
+    977
+   ],
+   "scale": 0.2055,
+   "flip": true,
+   "tint": 0.795
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    4463,
+    297
+   ],
+   "scale": 0.307,
+   "flip": false,
+   "tint": 0.697
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    4475,
+    261
+   ],
+   "scale": 0.1925,
+   "flip": false,
+   "tint": 0.771
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    4514,
+    318
+   ],
+   "scale": 0.4314,
+   "flip": true,
+   "tint": 0.677
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    4621,
+    1236
+   ],
+   "scale": 0.4162,
+   "flip": false,
+   "tint": 0.662
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    4629,
+    1130
+   ],
+   "scale": 0.4297,
+   "flip": true,
+   "tint": 0.68
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    4580,
+    1093
+   ],
+   "scale": 0.2443,
+   "flip": false,
+   "tint": 0.738
+  },
+  {
+   "prop": "c_hydrangea_blue",
+   "at": [
+    4615,
+    1224
+   ],
+   "scale": 0.2558,
+   "flip": true,
+   "tint": 0.68
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    4490,
+    1173
+   ],
+   "scale": 0.4902,
+   "flip": false,
+   "tint": 0.641
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    4469,
+    1179
+   ],
+   "scale": 0.4266,
+   "flip": true,
+   "tint": 0.657
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    643,
+    1854
+   ],
+   "scale": 0.2618,
+   "flip": false,
+   "tint": 0.682
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    591,
+    1867
+   ],
+   "scale": 0.2244,
+   "flip": false,
+   "tint": 0.727
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    535,
+    1897
+   ],
+   "scale": 0.4129,
+   "flip": true,
+   "tint": 0.73
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    618,
+    1864
+   ],
+   "scale": 0.5471,
+   "flip": false,
+   "tint": 0.654
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    560,
+    1789
+   ],
+   "scale": 0.4994,
+   "flip": true,
+   "tint": 0.679
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    668,
+    1889
+   ],
+   "scale": 0.4786,
+   "flip": false,
+   "tint": 0.692
+  },
+  {
+   "prop": "c_hydrangea_bush",
+   "at": [
+    6757,
+    190
+   ],
+   "scale": 0.4529,
+   "flip": true,
+   "tint": 0.74
+  },
+  {
+   "prop": "c_flower_basket",
+   "at": [
+    6773,
+    211
+   ],
+   "scale": 0.2115,
+   "flip": true,
+   "tint": 0.762
+  },
+  {
+   "prop": "c_lavender",
+   "at": [
+    6766,
+    237
+   ],
+   "scale": 0.1686,
+   "flip": false,
+   "tint": 0.864
+  },
+  {
+   "prop": "c_flower_white",
+   "at": [
+    6711,
+    269
+   ],
+   "scale": 0.2464,
+   "flip": false,
+   "tint": 0.846
+  },
+  {
+   "prop": "c_bld_royal_manor",
+   "at": [
+    3460,
+    3974
+   ],
+   "scale": 1.0463,
+   "flip": false,
+   "tint": 0.569
+  },
+  {
+   "prop": "c_lamppost_single",
+   "at": [
+    3697,
+    4206
+   ],
+   "scale": 0.79,
+   "flip": false,
+   "tint": 0.721
+  },
+  {
+   "prop": "c_banner_pole",
+   "at": [
+    3940,
+    4409
+   ],
+   "scale": 0.6334,
+   "flip": true,
+   "tint": 0.778
+  },
+  {
+   "prop": "c_lamppost_single",
+   "at": [
+    4239,
+    3849
+   ],
+   "scale": 0.7701,
+   "flip": false,
+   "tint": 0.737
+  },
+  {
+   "prop": "c_lamppost_single",
+   "at": [
+    4036,
+    3408
+   ],
+   "scale": 0.7535,
+   "flip": true,
+   "tint": 0.721
+  },
+  {
+   "prop": "c_lamppost_single",
+   "at": [
+    5234,
+    2732
+   ],
+   "scale": 0.7665,
+   "flip": true,
+   "tint": 0.693
+  },
+  {
+   "prop": "c_lamppost_double",
+   "at": [
+    3508,
+    3574
+   ],
+   "scale": 0.8322,
+   "flip": true,
+   "tint": 0.611
+  },
+  {
+   "prop": "c_lamppost_single",
+   "at": [
+    3461,
+    3394
+   ],
+   "scale": 0.7884,
+   "flip": true,
+   "tint": 0.676
+  },
+  {
+   "prop": "c_lamppost_double",
+   "at": [
+    3014,
+    3486
+   ],
+   "scale": 0.8353,
+   "flip": true,
+   "tint": 0.623
   }
  ],
  "solids": [
+  [
+   5222,
+   1174,
+   9
+  ],
+  [
+   6942,
+   1574,
+   28
+  ],
+  [
+   4844,
+   3539,
+   12
+  ],
+  [
+   2097,
+   4193,
+   27
+  ],
+  [
+   6823,
+   2197,
+   12
+  ],
+  [
+   2099,
+   4617,
+   13
+  ],
+  [
+   2868,
+   4349,
+   9
+  ],
+  [
+   2687,
+   4266,
+   13
+  ],
+  [
+   2393,
+   2709,
+   14
+  ],
+  [
+   5506,
+   2567,
+   16
+  ],
+  [
+   1462,
+   1208,
+   13
+  ],
+  [
+   5659,
+   2567,
+   77
+  ],
+  [
+   5995,
+   2475,
+   31
+  ],
+  [
+   6657,
+   2708,
+   36
+  ],
+  [
+   5799,
+   2456,
+   14
+  ],
+  [
+   5768,
+   2521,
+   14
+  ],
+  [
+   6094,
+   2391,
+   72
+  ],
+  [
+   2384,
+   3782,
+   28
+  ],
+  [
+   2234,
+   3797,
+   13
+  ],
+  [
+   1842,
+   3500,
+   13
+  ],
+  [
+   1552,
+   1127,
+   29
+  ],
+  [
+   2016,
+   1023,
+   70
+  ],
+  [
+   1851,
+   1032,
+   39
+  ],
+  [
+   2486,
+   1258,
+   69
+  ],
+  [
+   2026,
+   1129,
+   17
+  ],
+  [
+   1757,
+   1467,
+   76
+  ],
+  [
+   2128,
+   1036,
+   40
+  ],
+  [
+   1522,
+   1340,
+   67
+  ],
+  [
+   3791,
+   2264,
+   59
+  ],
+  [
+   6069,
+   2268,
+   59
+  ],
+  [
+   2380,
+   3161,
+   84
+  ],
+  [
+   2110,
+   870,
+   84
+  ],
   [
    204,
    4270,
@@ -9185,14 +3991,29 @@
    17
   ],
   [
-   7154,
-   3143,
+   6564,
+   4629,
+   19
+  ],
+  [
+   6004,
+   139,
    18
   ],
   [
-   7141,
-   1528,
+   6152,
+   1269,
    16
+  ],
+  [
+   115,
+   726,
+   15
+  ],
+  [
+   445,
+   2411,
+   17
   ],
   [
    5265,
@@ -9200,84 +4021,184 @@
    17
   ],
   [
+   7318,
+   2668,
+   18
+  ],
+  [
    4393,
    1043,
    15
   ],
   [
-   329,
-   1235,
-   19
+   7410,
+   1157,
+   20
   ],
   [
-   487,
-   2169,
-   20
+   329,
+   1235,
+   18
+  ],
+  [
+   3233,
+   1881,
+   16
+  ],
+  [
+   353,
+   1876,
+   17
+  ],
+  [
+   815,
+   4227,
+   15
   ],
   [
    1115,
    5032,
-   17
+   16
   ],
   [
-   7441,
-   2785,
-   50
+   7698,
+   2797,
+   16
   ],
   [
-   7222,
-   2756,
-   24
+   6611,
+   3857,
+   21
   ],
   [
-   7261,
-   2830,
-   19
-  ],
-  [
-   3455,
-   4053,
-   74
-  ],
-  [
-   3696,
-   4062,
-   24
-  ],
-  [
-   4715,
-   592,
-   68
-  ],
-  [
-   4731,
-   463,
-   23
-  ],
-  [
-   4691,
-   673,
-   24
-  ],
-  [
-   791,
-   1481,
-   45
-  ],
-  [
-   719,
-   1564,
+   7703,
+   4211,
    18
   ],
   [
-   752,
-   1362,
-   23
+   7422,
+   3736,
+   15
   ],
   [
-   881,
-   1380,
-   22
+   71,
+   2237,
+   17
+  ],
+  [
+   840,
+   4867,
+   19
+  ],
+  [
+   -29,
+   4856,
+   20
+  ],
+  [
+   7453,
+   4534,
+   17
+  ],
+  [
+   7574,
+   5027,
+   16
+  ],
+  [
+   -9,
+   2532,
+   18
+  ],
+  [
+   7721,
+   2327,
+   21
+  ],
+  [
+   199,
+   1569,
+   16
+  ],
+  [
+   6752,
+   1116,
+   19
+  ],
+  [
+   4352,
+   1468,
+   16
+  ],
+  [
+   7487,
+   3265,
+   15
+  ],
+  [
+   389,
+   4812,
+   19
+  ],
+  [
+   6494,
+   5056,
+   20
+  ],
+  [
+   3319,
+   203,
+   16
+  ],
+  [
+   212,
+   3580,
+   15
+  ],
+  [
+   3460,
+   3974,
+   361
+  ],
+  [
+   3697,
+   4206,
+   6
+  ],
+  [
+   3940,
+   4409,
+   7
+  ],
+  [
+   4239,
+   3849,
+   6
+  ],
+  [
+   4036,
+   3408,
+   6
+  ],
+  [
+   5234,
+   2732,
+   6
+  ],
+  [
+   3508,
+   3574,
+   10
+  ],
+  [
+   3461,
+   3394,
+   6
+  ],
+  [
+   3014,
+   3486,
+   10
   ],
   [
    1120,

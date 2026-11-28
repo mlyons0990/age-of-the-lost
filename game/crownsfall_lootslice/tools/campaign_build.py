@@ -10,7 +10,7 @@ text (data/quests.json); NPCs (data/npcs.json); lorecast sites and skills (data/
 the per-act world map (assets/zones/world.json); and data/campaign_built.json (positions the tests use).
 Greybox on the forest kit, each zone with its own biome grade; curated art comes later (owner 11-28).
 """
-import argparse, copy, json, math, os, random, subprocess, sys
+import argparse, copy, glob, json, math, os, random, subprocess, sys
 here = os.path.dirname(os.path.abspath(__file__)); root = os.path.dirname(here)
 sys.path.insert(0, here)
 import campaign_design as CD
@@ -90,13 +90,13 @@ C_BEDS = ["c_bed_straight_long", "c_bed_corner", "c_bed_square", "c_bed_round_la
 C_DRIFTS = ["c_drift_lavender", "c_drift_white", "c_drift_mixed", "c_drift_wildflower", "c_drift_ivy"]
 C_MAGIC = ["c_arcane_brazier", "c_crystal_float", "c_orb_levitating", "c_sigil_stone", "c_magic_spring", "c_wisteria_wisp", "c_lantern_float_large", "c_light_motes"]
 C_GARDEN = ["c_stone_urn", "c_flower_pedestal", "c_topiary_urn", "c_bench"] + C_BEDS + C_DRIFTS
-CITYKIT = dict(kit="assets/kit/city", ground="lawn",
+CITYKIT = dict(kit="assets/kit/city", ground="cobble_worn",
                buildings=["c_bld_citizen_home", "c_bld_citizen_home", "c_bld_merchant_guild", "c_bld_archive_hall", "c_bld_guard_barracks", "c_bld_royal_manor", "c_bld_temple_sanctum"],
                landmarks=["c_lm_fountain_a", "c_lm_fountain_b", "c_lm_fountain_c", "c_lm_statue_a", "c_lm_statue_b", "c_lm_gazebo_a", "c_lm_gazebo_b", "c_magic_spring", "c_crystal_float"],
                street=C_STREET, market=C_MARKET, garden=C_GARDEN,
                trees=[("c_tree_green", 2), ("c_tree_blossom", 2), ("c_tree_amber", 1)])
 BIOMES["city"]["citykit"] = CITYKIT
-BIOMES["citadel"]["citykit"] = dict(CITYKIT, ground="cobble_grass",
+BIOMES["citadel"]["citykit"] = dict(CITYKIT, ground="terrace",
                buildings=["c_bld_royal_manor", "c_bld_guard_barracks", "c_bld_temple_sanctum", "c_bld_archive_hall"],
                landmarks=["c_lm_statue_a", "c_lm_statue_b", "c_lm_fountain_c", "c_lm_gazebo_a"])
 def mk(template, grade, **over):
@@ -411,13 +411,23 @@ def city_dress(z, ck, lay, exits, key):
     z["light"].update({"overhead": 0.0, "over_density": 0, "canopy": 0.18, "tree_mist": 0.0, "mist": []})
     z["root_dressing"] = {"decals": 0, "tufts": 0, "decal_props": ["a_leaves"], "tuft_props": ["a_grass_tall"]}
     z["rim"] = {"props": ck["garden"], "density": 0.8, "chance": 0.45}
-    # buildings: both sides of every road, well back from the paving, never near an exit or a square
-    keep = [(e["at"][0], e["at"][1], 520) for e in exits] + [(p[0], p[1], 520) for p in lay["pois"]] + [(lay["hub"][0], lay["hub"][1], 600)]
+    # a dense city: paved ground everywhere (lawn only in park pockets: the kit's "dirt" layer is lawn), buildings
+    # packed as blocks between the streets (largest first), the streets lined with lamps, banners and stalls, and the
+    # gaps between buildings filled with crates, barrels, benches and flower beds (owner 11-28: "much more density")
+    f["frame"] = 0.08; f["spacing"] = 2600; f["cut"] = 0.92
     z["edges"] = []
     for i in range(len(lay["paths"])):
-        z["edges"].append({"path": i, "spacing": 640, "offset": 380, "jitter": 120, "density": 0.95, "min_gap": 300, "gap_mult": 2.2, "props": ck["buildings"], "scale": [0.95, 1.1]})
-        z["edges"].append({"path": i, "spacing": 420, "offset": 40, "jitter": 30, "density": 0.6, "min_gap": 20, "props": ck["street"], "scale": [0.95, 1.05]})
-    z["edge_keep_out"] = [list(k) for k in keep]
+        z["edges"].append({"path": i, "spacing": 230, "offset": 40, "jitter": 25, "density": 0.8, "min_gap": 20, "props": ck["street"], "scale": [0.95, 1.05]})
+        z["edges"].append({"path": i, "spacing": 190, "offset": 150, "jitter": 70, "density": 0.75, "min_gap": 90, "props": ck["market"] + C_BEDS[:6] + ["c_bench", "c_stone_urn"], "scale": [0.9, 1.05]})
+    big = {"c_bld_temple_sanctum": (2, 1300), "c_bld_royal_manor": (5, 1000), "c_bld_merchant_guild": (8, 930),
+           "c_bld_archive_hall": (6, 880), "c_bld_guard_barracks": (5, 900), "c_bld_citizen_home": (110, 520)}
+    if "c_bld_citizen_home" not in ck["buildings"]:      # a citadel quarter: many more of its grand buildings instead
+        big = {b: (n * 4, int(md * 0.9)) for b, (n, md) in big.items()}
+    z["scatter"] = [{"prop": b, "count": n, "min_dist": md, "scale": [0.95, 1.08], "keep_off_paths": 190}
+                    for b, (n, md) in big.items() if b in ck["buildings"]]
+    z["scatter"] += [{"prop": pr, "count": 14, "min_dist": 170, "scale": [0.9, 1.1], "keep_off_paths": 70}
+                     for pr in ["c_crate_stack", "c_barrels_sacks", "c_crates_wisteria", "c_flower_barrel", "c_bench", "c_bed_square",
+                                "c_bed_round_small", "c_hedge_topiary_square", "c_lamppost_single", "c_stone_urn", "c_drift_mixed", "c_drift_lavender"]]
     # a landmark behind each square and the hub; market or garden props round the squares
     z["place"] = []
     for j, p in enumerate([lay["hub"]] + lay["pois"]):
@@ -426,6 +436,15 @@ def city_dress(z, ck, lay, exits, key):
     z["dress"] = [{"at": p, "r": 560, "props": (ck["market"] if j % 3 == 0 else (ck["garden"] if j % 3 == 1 else C_MAGIC + C_BEDS)), "n": 9, "scale": [0.9, 1.1]}
                   for j, p in enumerate(lay["pois"])]
     z["dress"].append({"at": lay["hub"], "r": 700, "props": C_DRIFTS, "n": 10, "scale": [0.9, 1.1]})
+    # streets and squares only: no ponds or loose lawn blobs from the wild layout; squares a little tighter
+    z["patches"] = [dict(p_, layer="flagstone", r=int(min(p_["r"], 720))) for p_ in z["patches"] if p_["layer"] != "water"]
+    # stalls, lamps and beds round the edge of the hub square (its centre stays open for the waypoint)
+    z["dress"].append({"at": lay["hub"], "r": 760, "props": ck["market"] + ["c_lamppost_double", "c_banner_standard", "c_crystal_lamp"] + C_BEDS[:4], "n": 22, "scale": [0.95, 1.05]})
+    # one park pocket: lawn (the kit's "dirt" layer) round the last square, with its trees, a gazebo and beds
+    if lay["pois"]:
+        pk = lay["pois"][-1]
+        z["patches"] = [{"at": pk, "r": 760, "layer": "dirt", "squash": 0.55, "no_rim": True}] + [p_ for p_ in z["patches"] if p_["at"] != pk]
+        z["dress"].append({"at": pk, "r": 760, "props": [t_[0] for t_ in ck["trees"]] * 2 + C_BEDS + ["c_lm_gazebo_a", "c_bench"], "n": 14, "scale": [0.9, 1.1], "on_path": True})
 
 def write_spec(zid, d, lay, W, H, exits):
     bio = BIOMES[d["biome"]]
@@ -507,6 +526,36 @@ for zid in DESIGN:
         p = exit_point(sd, W, H, rng, used); used.append(p)
         ex.append({"to": nb, "at": p, "inside": [int(v) for v in inward(p, W, H, 420)]})
     EXITS[key] = dict(W=W, H=H, list=ex)
+# painted districts (owner 11-28: unique, packed cityscapes): a stitched Higgsfield painting + hand-traced walkable
+# streets (walk.json: walkable polygons, exit polygons, arrival points, hub, points of interest) replace the kit layout
+PAINTED = {"highward_steps": "../../art/higgsfield_2026-11/crownsfall_districts/hw",
+           "crownsfall_citadel": "../../art/higgsfield_2026-11/crownsfall_districts/cit"}
+PAINTED = {k: v for k, v in PAINTED.items() if os.path.exists(v + "/walk.json")}
+PW = {k: json.load(open(v + "/walk.json")) for k, v in PAINTED.items()}
+def _centre(poly): return [int(sum(q[0] for q in poly) / len(poly)), int(sum(q[1] for q in poly) / len(poly))]
+for key, w in PW.items():
+    EXITS[key] = dict(W=13533, H=5808, list=[{"to": to, "at": _centre(poly), "inside": w["arrive"][to]} for to, poly in w["exits"].items()])
+def build_painted(zid, d, key):
+    w = PW[key]; src = PAINTED[key]
+    z = {"size": [13533, 5808], "name": RG(zid)["name"], "world_id": key, "ppm": 120.0, "hero_px_1080": 110.0, "pitch": 31.0, "ground_ratio": 0.43,
+         "scale_note": "Painted district (Higgsfield master + 9-section upscale, 11-28), same scale as the Crownsfall Grand City.",
+         "sources": [{"image": src + "/stitched.png", "at": [0, 0], "feather": 0}],
+         "walkable": w["walkable"], "spawn": next(iter(w["arrive"].values())), "targets": w["pois"][:4], "occluders": [],
+         "exits": [{"name": zname(to), "to": to, "poly": poly, "aura": {"poly": poly}, "arrive": arrive_in(to, key)} for to, poly in w["exits"].items()],
+         "waypoints": [{"id": key + "_wp", "name": RG(zid)["name"], "at": w["hub"], "centre_of": w["hub"], "radius_px": 200}],
+         "map_pois": [{"name": nm, "kind": "landmark", "at": p, "blurb": RG(zid)["look"]} for nm, p in zip(d.get("pois", []), w["pois"])]
+                     + [{"name": zname(to), "kind": "landmark", "at": _centre(poly), "blurb": "To " + zname(to) + "."} for to, poly in w["exits"].items()]}
+    json.dump(z, open(f"assets/zones/src/{key}.zone.json", "w"), indent=1)
+    rt = f"assets/zones/{key}.json"
+    if os.path.exists(src + "/stitched.png") and not args.no_maps:
+        for f in glob.glob(f"assets/zones/{key}/*"):
+            if not f.endswith(".import"): os.remove(f)
+        r = subprocess.run([sys.executable, "tools/build_zone_tiles.py", f"assets/zones/src/{key}.zone.json"], capture_output=True, text=True)
+        print(r.stdout.strip().splitlines()[-1] if r.returncode == 0 else ("BUILD FAILED " + key + "\n" + r.stderr[-1500:]))
+    elif os.path.exists(rt):            # painting not on disk (it is rebuilt from the sections): refresh the runtime JSON only
+        old = json.load(open(rt)); old.update({k: v for k, v in z.items() if k != "sources"}); json.dump(old, open(rt, "w"), indent=1)
+    return {"zid": zid, "W": 13533, "H": 5808, "hub": w["hub"], "pois": w["pois"], "boss": None,
+            "exits": [{"to": to, "at": _centre(poly), "inside": w["arrive"][to]} for to, poly in w["exits"].items()], "kind": d["kind"]}
 def arrive_in(target, from_key):
     """Where a hero lands in `target` coming from `from_key`: just inside target's exit back to from_key."""
     if target in FIXED_EXITS: return FIXED_EXITS[target][from_key]["arrive"]
@@ -520,6 +569,8 @@ maps = {}
 for zid in todo:
     d = DESIGN[zid]; key = d["key"]
     if d["kind"] == "fixed": continue
+    if key in PAINTED:
+        built[key] = build_painted(zid, d, key); continue
     E = EXITS[key]; W, H = E["W"], E["H"]
     exits = [{"name": zname(e["to"]), "to": e["to"], "at": e["at"], "inside": e["inside"], "arrive": arrive_in(e["to"], key)} for e in E["list"]]
     rng = random.Random(abs(hash(key)) % 99991)

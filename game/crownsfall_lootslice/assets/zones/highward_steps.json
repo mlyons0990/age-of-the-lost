@@ -1,4669 +1,526 @@
 {
- "name": "Highward Steps",
  "size": [
-  7680,
-  4944
+  13533,
+  5808
  ],
- "ppm": 71.8,
+ "name": "Highward Steps",
+ "world_id": "highward_steps",
+ "ppm": 120.0,
+ "hero_px_1080": 110.0,
  "pitch": 31.0,
- "hero_px_1080": 125.0,
- "spawn": [
-  3028,
-  4438
- ],
- "kit": "res://assets/kit/city",
- "ground_base": "lawn",
- "splat": "highward_steps/splat.png",
- "map": "highward_steps/map.jpg",
- "splat_k": 8,
- "overview": "highward_steps/overview.png",
- "props": [
-  {
-   "prop": "c_bed_square",
-   "at": [
-    4930,
-    3766
-   ],
-   "scale": 0.398,
-   "flip": false,
-   "tint": 0.77
-  },
-  {
-   "prop": "c_bed_straight_long",
-   "at": [
-    5682,
-    2325
-   ],
-   "scale": 0.2179,
-   "flip": false,
-   "tint": 0.722
-  },
-  {
-   "prop": "c_stone_urn",
-   "at": [
-    1626,
-    2093
-   ],
-   "scale": 0.3261,
-   "flip": true,
-   "tint": 0.819
-  },
-  {
-   "prop": "c_bed_round_large",
-   "at": [
-    1347,
-    1777
-   ],
-   "scale": 0.2516,
-   "flip": true,
-   "tint": 0.761
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    4767,
-    3245
-   ],
-   "scale": 0.1518,
-   "flip": true,
-   "tint": 0.809
-  },
-  {
-   "prop": "c_flower_pedestal",
-   "at": [
-    3858,
-    1081
-   ],
-   "scale": 0.473,
-   "flip": false,
-   "tint": 0.718
-  },
-  {
-   "prop": "c_topiary_urn",
-   "at": [
-    4910,
-    1305
-   ],
-   "scale": 0.3763,
-   "flip": true,
-   "tint": 0.804
-  },
-  {
-   "prop": "c_stone_urn",
-   "at": [
-    7089,
-    2980
-   ],
-   "scale": 0.2994,
-   "flip": true,
-   "tint": 0.777
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6934,
-    2931
-   ],
-   "scale": 0.1042,
-   "flip": false,
-   "tint": 0.879
-  },
-  {
-   "prop": "c_bed_oval",
-   "at": [
-    3898,
-    1446
-   ],
-   "scale": 0.2917,
-   "flip": false,
-   "tint": 0.753
-  },
-  {
-   "prop": "c_bed_corner",
-   "at": [
-    2051,
-    2084
-   ],
-   "scale": 0.3326,
-   "flip": false,
-   "tint": 0.668
-  },
-  {
-   "prop": "c_wisteria_trellis",
-   "at": [
-    3967,
-    2707
-   ],
-   "scale": 0.4089,
-   "flip": false,
-   "tint": 0.591
-  },
-  {
-   "prop": "c_hedge_straight",
-   "at": [
-    4805,
-    2427
-   ],
-   "scale": 0.2113,
-   "flip": false,
-   "tint": 0.728
-  },
-  {
-   "prop": "c_bed_corner",
-   "at": [
-    6756,
-    4143
-   ],
-   "scale": 0.2434,
-   "flip": true,
-   "tint": 0.8
-  },
-  {
-   "prop": "c_crate_stack",
-   "at": [
-    4777,
-    2357
-   ],
-   "scale": 0.4931,
-   "flip": true,
-   "tint": 0.609
-  },
-  {
-   "prop": "c_flower_barrel",
-   "at": [
-    4506,
-    2355
-   ],
-   "scale": 0.3291,
-   "flip": false,
-   "tint": 0.733
-  },
-  {
-   "prop": "c_barrels_sacks",
-   "at": [
-    4862,
-    2505
-   ],
-   "scale": 0.3705,
-   "flip": false,
-   "tint": 0.679
-  },
-  {
-   "prop": "c_apple_basket",
-   "at": [
-    3876,
-    2577
-   ],
-   "scale": 0.2059,
-   "flip": true,
-   "tint": 0.831
-  },
-  {
-   "prop": "c_barrels_sacks",
-   "at": [
-    4504,
-    2254
-   ],
-   "scale": 0.4111,
-   "flip": true,
-   "tint": 0.668
-  },
-  {
-   "prop": "c_crate_stack",
-   "at": [
-    4808,
-    2556
-   ],
-   "scale": 0.4411,
-   "flip": true,
-   "tint": 0.659
-  },
-  {
-   "prop": "c_crate_stack",
-   "at": [
-    4764,
-    2471
-   ],
-   "scale": 0.4822,
-   "flip": true,
-   "tint": 0.622
-  },
-  {
-   "prop": "c_covered_wagon",
-   "at": [
-    4626,
-    2734
-   ],
-   "scale": 0.5811,
-   "flip": true,
-   "tint": 0.566
-  },
-  {
-   "prop": "c_market_stall_fruit",
-   "at": [
-    4401,
-    2301
-   ],
-   "scale": 0.5274,
-   "flip": false,
-   "tint": 0.559
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    1507,
-    811
-   ],
-   "scale": 0.1764,
-   "flip": false,
-   "tint": 0.81
-  },
-  {
-   "prop": "c_bed_crescent",
-   "at": [
-    1337,
-    692
-   ],
-   "scale": 0.2533,
-   "flip": false,
-   "tint": 0.757
-  },
-  {
-   "prop": "c_flower_pedestal",
-   "at": [
-    748,
-    686
-   ],
-   "scale": 0.3994,
-   "flip": true,
-   "tint": 0.695
-  },
-  {
-   "prop": "c_topiary_urn",
-   "at": [
-    1477,
-    773
-   ],
-   "scale": 0.4719,
-   "flip": false,
-   "tint": 0.764
-  },
-  {
-   "prop": "c_bed_corner",
-   "at": [
-    843,
-    699
-   ],
-   "scale": 0.3075,
-   "flip": true,
-   "tint": 0.661
-  },
-  {
-   "prop": "c_bed_oval",
-   "at": [
-    624,
-    1103
-   ],
-   "scale": 0.2897,
-   "flip": false,
-   "tint": 0.66
-  },
-  {
-   "prop": "c_bed_oval",
-   "at": [
-    1416,
-    803
-   ],
-   "scale": 0.3053,
-   "flip": true,
-   "tint": 0.698
-  },
-  {
-   "prop": "c_bed_square",
-   "at": [
-    1303,
-    799
-   ],
-   "scale": 0.3484,
-   "flip": false,
-   "tint": 0.767
-  },
-  {
-   "prop": "c_topiary_urn",
-   "at": [
-    1453,
-    1037
-   ],
-   "scale": 0.4751,
-   "flip": false,
-   "tint": 0.798
-  },
-  {
-   "prop": "c_hedge_topiary_square",
-   "at": [
-    1152,
-    3909
-   ],
-   "scale": 0.4526,
-   "flip": false,
-   "tint": 0.666
-  },
-  {
-   "prop": "c_wisteria_arch_bed",
-   "at": [
-    577,
-    4150
-   ],
-   "scale": 0.4826,
-   "flip": true,
-   "tint": 0.636
-  },
-  {
-   "prop": "c_orb_levitating",
-   "at": [
-    1374,
-    4311
-   ],
-   "scale": 0.5368,
-   "flip": true,
-   "tint": 0.643
-  },
-  {
-   "prop": "c_bed_tree_ring",
-   "at": [
-    1427,
-    4046
-   ],
-   "scale": 0.6023,
-   "flip": false,
-   "tint": 0.632
-  },
-  {
-   "prop": "c_bed_tree_ring",
-   "at": [
-    651,
-    4000
-   ],
-   "scale": 0.6485,
-   "flip": true,
-   "tint": 0.603
-  },
-  {
-   "prop": "c_bed_straight_long",
-   "at": [
-    1466,
-    4225
-   ],
-   "scale": 0.2469,
-   "flip": false,
-   "tint": 0.733
-  },
-  {
-   "prop": "c_arcane_brazier",
-   "at": [
-    1388,
-    4207
-   ],
-   "scale": 0.359,
-   "flip": false,
-   "tint": 0.725
-  },
-  {
-   "prop": "c_bed_round_large",
-   "at": [
-    1040,
-    3943
-   ],
-   "scale": 0.2619,
-   "flip": true,
-   "tint": 0.69
-  },
-  {
-   "prop": "c_bed_tree_ring",
-   "at": [
-    390,
-    4142
-   ],
-   "scale": 0.5552,
-   "flip": false,
-   "tint": 0.669
-  },
-  {
-   "prop": "c_barrels_sacks",
-   "at": [
-    6621,
-    4086
-   ],
-   "scale": 0.3667,
-   "flip": false,
-   "tint": 0.782
-  },
-  {
-   "prop": "c_market_stall_fruit",
-   "at": [
-    7271,
-    4477
-   ],
-   "scale": 0.5769,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_apple_basket",
-   "at": [
-    7266,
-    4237
-   ],
-   "scale": 0.2038,
-   "flip": true,
-   "tint": 0.786
-  },
-  {
-   "prop": "c_crate_stack",
-   "at": [
-    7052,
-    4558
-   ],
-   "scale": 0.4689,
-   "flip": true,
-   "tint": 0.606
-  },
-  {
-   "prop": "c_flower_barrel",
-   "at": [
-    6567,
-    4613
-   ],
-   "scale": 0.3067,
-   "flip": false,
-   "tint": 0.743
-  },
-  {
-   "prop": "c_market_stall_cloth",
-   "at": [
-    7158,
-    4130
-   ],
-   "scale": 0.6194,
-   "flip": false,
-   "tint": 0.555
-  },
-  {
-   "prop": "c_barrels_sacks",
-   "at": [
-    7306,
-    4363
-   ],
-   "scale": 0.406,
-   "flip": true,
-   "tint": 0.635
-  },
-  {
-   "prop": "c_flower_barrel",
-   "at": [
-    7160,
-    4573
-   ],
-   "scale": 0.3016,
-   "flip": false,
-   "tint": 0.687
-  },
-  {
-   "prop": "c_crate_stack",
-   "at": [
-    7172,
-    4303
-   ],
-   "scale": 0.4883,
-   "flip": false,
-   "tint": 0.617
-  },
-  {
-   "prop": "c_lm_statue_a",
-   "at": [
-    3340,
-    1493
-   ],
-   "scale": 0.4283,
-   "flip": false,
-   "tint": 0.577
-  },
-  {
-   "prop": "c_lm_statue_a",
-   "at": [
-    4429,
-    2093
-   ],
-   "scale": 0.4283,
-   "flip": false,
-   "tint": 0.555
-  },
-  {
-   "prop": "c_crystal_float",
-   "at": [
-    1121,
-    516
-   ],
-   "scale": 0.5615,
-   "flip": true,
-   "tint": 0.611
-  },
-  {
-   "prop": "c_lm_gazebo_a",
-   "at": [
-    911,
-    3746
-   ],
-   "scale": 0.3928,
-   "flip": true,
-   "tint": 0.567
-  },
-  {
-   "prop": "c_crystal_float",
-   "at": [
-    6745,
-    3918
-   ],
-   "scale": 0.5615,
-   "flip": true,
-   "tint": 0.682
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    3809,
-    123
-   ],
-   "scale": 0.9902,
-   "flip": false,
-   "tint": 0.999
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    3,
-    1077
-   ],
-   "scale": 1.0938,
-   "flip": true,
-   "tint": 1.036
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    7029,
-    1220
-   ],
-   "scale": 1.0005,
-   "flip": false,
-   "tint": 0.905
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    3355,
-    694
-   ],
-   "scale": 1.2163,
-   "flip": false,
-   "tint": 0.908
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    7532,
-    2039
-   ],
-   "scale": 1.0933,
-   "flip": false,
-   "tint": 0.901
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    -11,
-    3642
-   ],
-   "scale": 0.9953,
-   "flip": false,
-   "tint": 1.015
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    2846,
-    1002
-   ],
-   "scale": 0.9251,
-   "flip": true,
-   "tint": 0.932
-  },
-  {
-   "prop": "c_tree_amber",
-   "at": [
-    5970,
-    264
-   ],
-   "scale": 0.9632,
-   "flip": true,
-   "tint": 1.029
-  },
-  {
-   "prop": "c_tree_amber",
-   "at": [
-    2226,
-    4789
-   ],
-   "scale": 1.0174,
-   "flip": false,
-   "tint": 0.97
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    6174,
-    746
-   ],
-   "scale": 1.0951,
-   "flip": false,
-   "tint": 1.021
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    173,
-    5061
-   ],
-   "scale": 0.9448,
-   "flip": true,
-   "tint": 1.015
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    1202,
-    5030
-   ],
-   "scale": 0.9588,
-   "flip": false,
-   "tint": 0.949
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    5700,
-    1397
-   ],
-   "scale": 1.0004,
-   "flip": true,
-   "tint": 0.961
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    2579,
-    4972
-   ],
-   "scale": 1.1454,
-   "flip": false,
-   "tint": 0.969
-  },
-  {
-   "prop": "c_tree_amber",
-   "at": [
-    6565,
-    5003
-   ],
-   "scale": 1.0192,
-   "flip": false,
-   "tint": 0.967
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    1601,
-    61
-   ],
-   "scale": 1.109,
-   "flip": false,
-   "tint": 0.989
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    4364,
-    5030
-   ],
-   "scale": 1.007,
-   "flip": false,
-   "tint": 0.998
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    4761,
-    4784
-   ],
-   "scale": 1.1081,
-   "flip": true,
-   "tint": 1.029
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    2673,
-    324
-   ],
-   "scale": 1.2194,
-   "flip": false,
-   "tint": 1.017
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    456,
-    3072
-   ],
-   "scale": 1.1577,
-   "flip": false,
-   "tint": 0.978
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    3192,
-    129
-   ],
-   "scale": 0.9401,
-   "flip": true,
-   "tint": 0.905
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    360,
-    4485
-   ],
-   "scale": 1.1758,
-   "flip": true,
-   "tint": 0.908
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    7613,
-    934
-   ],
-   "scale": 1.1531,
-   "flip": false,
-   "tint": 0.988
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    -35,
-    4057
-   ],
-   "scale": 0.9735,
-   "flip": false,
-   "tint": 0.964
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    3645,
-    4949
-   ],
-   "scale": 1.1213,
-   "flip": false,
-   "tint": 0.977
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    -60,
-    2317
-   ],
-   "scale": 1.0848,
-   "flip": true,
-   "tint": 0.939
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    5525,
-    1026
-   ],
-   "scale": 0.9643,
-   "flip": false,
-   "tint": 1.01
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    2073,
-    3513
-   ],
-   "scale": 1.0512,
-   "flip": false,
-   "tint": 0.915
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    3992,
-    4619
-   ],
-   "scale": 1.0191,
-   "flip": true,
-   "tint": 0.967
-  },
-  {
-   "prop": "c_tree_blossom",
-   "at": [
-    7198,
-    1630
-   ],
-   "scale": 0.9648,
-   "flip": false,
-   "tint": 0.918
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    7312,
-    2357
-   ],
-   "scale": 0.944,
-   "flip": true,
-   "tint": 0.92
-  },
-  {
-   "prop": "c_tree_green",
-   "at": [
-    439,
-    1486
-   ],
-   "scale": 1.1491,
-   "flip": false,
-   "tint": 0.952
-  },
-  {
-   "prop": "c_tree_amber",
-   "at": [
-    9,
-    3292
-   ],
-   "scale": 1.1402,
-   "flip": true,
-   "tint": 1.024
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    5292,
-    4016
-   ],
-   "scale": 0.1089,
-   "flip": true,
-   "tint": 0.813
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    5181,
-    3978
-   ],
-   "scale": 0.2386,
-   "flip": false,
-   "tint": 0.739
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    5120,
-    4005
-   ],
-   "scale": 0.204,
-   "flip": false,
-   "tint": 0.783
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    5207,
-    4034
-   ],
-   "scale": 0.2068,
-   "flip": true,
-   "tint": 0.776
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    5266,
-    4010
-   ],
-   "scale": 0.1816,
-   "flip": false,
-   "tint": 0.774
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    715,
-    2393
-   ],
-   "scale": 0.167,
-   "flip": false,
-   "tint": 0.79
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    775,
-    2563
-   ],
-   "scale": 0.175,
-   "flip": true,
-   "tint": 0.78
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    748,
-    2475
-   ],
-   "scale": 0.172,
-   "flip": true,
-   "tint": 0.782
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    658,
-    2469
-   ],
-   "scale": 0.1647,
-   "flip": true,
-   "tint": 0.789
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1270,
-    4520
-   ],
-   "scale": 0.1977,
-   "flip": false,
-   "tint": 0.808
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1320,
-    4572
-   ],
-   "scale": 0.1919,
-   "flip": true,
-   "tint": 0.819
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1148,
-    4496
-   ],
-   "scale": 0.2167,
-   "flip": false,
-   "tint": 0.788
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    1305,
-    4481
-   ],
-   "scale": 0.1168,
-   "flip": true,
-   "tint": 0.883
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    6529,
-    3826
-   ],
-   "scale": 0.1614,
-   "flip": false,
-   "tint": 0.857
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    6526,
-    3768
-   ],
-   "scale": 0.1469,
-   "flip": false,
-   "tint": 0.825
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    6575,
-    3784
-   ],
-   "scale": 0.2145,
-   "flip": true,
-   "tint": 0.806
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6518,
-    3771
-   ],
-   "scale": 0.1618,
-   "flip": true,
-   "tint": 0.824
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6621,
-    3698
-   ],
-   "scale": 0.1507,
-   "flip": false,
-   "tint": 0.845
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6575,
-    3725
-   ],
-   "scale": 0.1099,
-   "flip": true,
-   "tint": 0.873
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    5699,
-    147
-   ],
-   "scale": 0.1473,
-   "flip": false,
-   "tint": 0.747
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    5708,
-    202
-   ],
-   "scale": 0.1209,
-   "flip": true,
-   "tint": 0.788
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    5750,
-    172
-   ],
-   "scale": 0.1792,
-   "flip": true,
-   "tint": 0.752
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    5808,
-    182
-   ],
-   "scale": 0.1491,
-   "flip": true,
-   "tint": 0.758
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    5715,
-    124
-   ],
-   "scale": 0.1962,
-   "flip": true,
-   "tint": 0.722
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    5776,
-    117
-   ],
-   "scale": 0.0914,
-   "flip": false,
-   "tint": 0.8
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3006,
-    149
-   ],
-   "scale": 0.2055,
-   "flip": true,
-   "tint": 0.72
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3075,
-    151
-   ],
-   "scale": 0.1047,
-   "flip": false,
-   "tint": 0.812
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    3031,
-    176
-   ],
-   "scale": 0.1683,
-   "flip": true,
-   "tint": 0.766
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    3002,
-    155
-   ],
-   "scale": 0.1998,
-   "flip": false,
-   "tint": 0.717
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    2954,
-    155
-   ],
-   "scale": 0.209,
-   "flip": false,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    1634,
-    3351
-   ],
-   "scale": 0.1773,
-   "flip": false,
-   "tint": 0.802
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    1492,
-    3286
-   ],
-   "scale": 0.2016,
-   "flip": false,
-   "tint": 0.775
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6134,
-    1808
-   ],
-   "scale": 0.1801,
-   "flip": true,
-   "tint": 0.804
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    5977,
-    1779
-   ],
-   "scale": 0.2235,
-   "flip": true,
-   "tint": 0.758
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6216,
-    1737
-   ],
-   "scale": 0.1751,
-   "flip": true,
-   "tint": 0.801
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6227,
-    1776
-   ],
-   "scale": 0.1182,
-   "flip": false,
-   "tint": 0.838
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    4130,
-    766
-   ],
-   "scale": 0.2021,
-   "flip": false,
-   "tint": 0.773
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4006,
-    842
-   ],
-   "scale": 0.2028,
-   "flip": false,
-   "tint": 0.766
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    3985,
-    761
-   ],
-   "scale": 0.1952,
-   "flip": false,
-   "tint": 0.804
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    3855,
-    719
-   ],
-   "scale": 0.2387,
-   "flip": false,
-   "tint": 0.733
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3867,
-    794
-   ],
-   "scale": 0.1916,
-   "flip": true,
-   "tint": 0.769
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4062,
-    839
-   ],
-   "scale": 0.2263,
-   "flip": true,
-   "tint": 0.737
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    813,
-    2218
-   ],
-   "scale": 0.2145,
-   "flip": false,
-   "tint": 0.737
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    717,
-    2187
-   ],
-   "scale": 0.1928,
-   "flip": true,
-   "tint": 0.748
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    690,
-    2278
-   ],
-   "scale": 0.1173,
-   "flip": true,
-   "tint": 0.824
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    281,
-    2579
-   ],
-   "scale": 0.1825,
-   "flip": false,
-   "tint": 0.772
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    364,
-    2607
-   ],
-   "scale": 0.2056,
-   "flip": true,
-   "tint": 0.742
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    835,
-    4734
-   ],
-   "scale": 0.1932,
-   "flip": true,
-   "tint": 0.794
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    950,
-    4629
-   ],
-   "scale": 0.1733,
-   "flip": true,
-   "tint": 0.834
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    871,
-    4729
-   ],
-   "scale": 0.1116,
-   "flip": true,
-   "tint": 0.851
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    898,
-    4713
-   ],
-   "scale": 0.166,
-   "flip": true,
-   "tint": 0.831
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    869,
-    4672
-   ],
-   "scale": 0.2066,
-   "flip": true,
-   "tint": 0.794
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    755,
-    4753
-   ],
-   "scale": 0.2192,
-   "flip": false,
-   "tint": 0.779
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    4314,
-    4177
-   ],
-   "scale": 0.1569,
-   "flip": false,
-   "tint": 0.795
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    4409,
-    4168
-   ],
-   "scale": 0.2248,
-   "flip": false,
-   "tint": 0.745
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    4349,
-    4208
-   ],
-   "scale": 0.1179,
-   "flip": true,
-   "tint": 0.828
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    4519,
-    4206
-   ],
-   "scale": 0.173,
-   "flip": true,
-   "tint": 0.795
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    4568,
-    4218
-   ],
-   "scale": 0.0994,
-   "flip": false,
-   "tint": 0.855
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    4177,
-    879
-   ],
-   "scale": 0.1669,
-   "flip": true,
-   "tint": 0.801
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3940,
-    833
-   ],
-   "scale": 0.1858,
-   "flip": true,
-   "tint": 0.8
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    1631,
-    1048
-   ],
-   "scale": 0.1129,
-   "flip": false,
-   "tint": 0.851
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    1614,
-    1087
-   ],
-   "scale": 0.181,
-   "flip": true,
-   "tint": 0.782
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    1628,
-    1076
-   ],
-   "scale": 0.2059,
-   "flip": false,
-   "tint": 0.762
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1540,
-    1011
-   ],
-   "scale": 0.2448,
-   "flip": true,
-   "tint": 0.75
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3354,
-    849
-   ],
-   "scale": 0.2043,
-   "flip": true,
-   "tint": 0.687
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3478,
-    895
-   ],
-   "scale": 0.1108,
-   "flip": true,
-   "tint": 0.791
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3460,
-    919
-   ],
-   "scale": 0.1783,
-   "flip": false,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3347,
-    924
-   ],
-   "scale": 0.1074,
-   "flip": true,
-   "tint": 0.765
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    3350,
-    850
-   ],
-   "scale": 0.1836,
-   "flip": false,
-   "tint": 0.689
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    290,
-    2981
-   ],
-   "scale": 0.2091,
-   "flip": false,
-   "tint": 0.724
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    451,
-    2979
-   ],
-   "scale": 0.1734,
-   "flip": false,
-   "tint": 0.798
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    363,
-    2969
-   ],
-   "scale": 0.1867,
-   "flip": true,
-   "tint": 0.762
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    522,
-    2978
-   ],
-   "scale": 0.1835,
-   "flip": true,
-   "tint": 0.81
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7292,
-    906
-   ],
-   "scale": 0.2121,
-   "flip": false,
-   "tint": 0.804
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7294,
-    897
-   ],
-   "scale": 0.181,
-   "flip": false,
-   "tint": 0.814
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    1353,
-    3903
-   ],
-   "scale": 0.1034,
-   "flip": true,
-   "tint": 0.844
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    1303,
-    3813
-   ],
-   "scale": 0.1879,
-   "flip": true,
-   "tint": 0.801
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1468,
-    3852
-   ],
-   "scale": 0.1987,
-   "flip": true,
-   "tint": 0.753
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1419,
-    3840
-   ],
-   "scale": 0.2271,
-   "flip": true,
-   "tint": 0.703
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    1400,
-    3839
-   ],
-   "scale": 0.2249,
-   "flip": true,
-   "tint": 0.73
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    315,
-    3065
-   ],
-   "scale": 0.1789,
-   "flip": false,
-   "tint": 0.774
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    234,
-    2983
-   ],
-   "scale": 0.1895,
-   "flip": true,
-   "tint": 0.746
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    363,
-    3016
-   ],
-   "scale": 0.19,
-   "flip": true,
-   "tint": 0.774
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    309,
-    3099
-   ],
-   "scale": 0.1725,
-   "flip": false,
-   "tint": 0.784
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    7513,
-    2666
-   ],
-   "scale": 0.1591,
-   "flip": true,
-   "tint": 0.834
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7670,
-    2683
-   ],
-   "scale": 0.2207,
-   "flip": false,
-   "tint": 0.766
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7588,
-    2712
-   ],
-   "scale": 0.1915,
-   "flip": true,
-   "tint": 0.787
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7405,
-    4695
-   ],
-   "scale": 0.1971,
-   "flip": false,
-   "tint": 0.731
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7393,
-    4761
-   ],
-   "scale": 0.1894,
-   "flip": true,
-   "tint": 0.738
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    7500,
-    4761
-   ],
-   "scale": 0.1785,
-   "flip": false,
-   "tint": 0.766
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6793,
-    901
-   ],
-   "scale": 0.1069,
-   "flip": true,
-   "tint": 0.83
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6719,
-    876
-   ],
-   "scale": 0.1152,
-   "flip": true,
-   "tint": 0.821
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6720,
-    939
-   ],
-   "scale": 0.0917,
-   "flip": false,
-   "tint": 0.811
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    6747,
-    927
-   ],
-   "scale": 0.2023,
-   "flip": false,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    4123,
-    4232
-   ],
-   "scale": 0.179,
-   "flip": false,
-   "tint": 0.794
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    4022,
-    4274
-   ],
-   "scale": 0.1736,
-   "flip": true,
-   "tint": 0.771
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    4055,
-    4285
-   ],
-   "scale": 0.2217,
-   "flip": false,
-   "tint": 0.727
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    4059,
-    4261
-   ],
-   "scale": 0.1701,
-   "flip": true,
-   "tint": 0.757
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3883,
-    176
-   ],
-   "scale": 0.1906,
-   "flip": false,
-   "tint": 0.754
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3904,
-    112
-   ],
-   "scale": 0.1617,
-   "flip": false,
-   "tint": 0.856
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    3915,
-    180
-   ],
-   "scale": 0.1725,
-   "flip": true,
-   "tint": 0.795
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3887,
-    261
-   ],
-   "scale": 0.1808,
-   "flip": true,
-   "tint": 0.852
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    5218,
-    267
-   ],
-   "scale": 0.1599,
-   "flip": true,
-   "tint": 0.776
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    5367,
-    221
-   ],
-   "scale": 0.212,
-   "flip": false,
-   "tint": 0.749
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    5436,
-    234
-   ],
-   "scale": 0.2029,
-   "flip": false,
-   "tint": 0.749
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    7085,
-    1614
-   ],
-   "scale": 0.1476,
-   "flip": false,
-   "tint": 0.85
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6981,
-    1686
-   ],
-   "scale": 0.2195,
-   "flip": false,
-   "tint": 0.83
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    6936,
-    1608
-   ],
-   "scale": 0.1697,
-   "flip": false,
-   "tint": 0.878
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    795,
-    2268
-   ],
-   "scale": 0.2353,
-   "flip": false,
-   "tint": 0.712
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    744,
-    2305
-   ],
-   "scale": 0.2031,
-   "flip": true,
-   "tint": 0.754
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    630,
-    2294
-   ],
-   "scale": 0.1717,
-   "flip": true,
-   "tint": 0.787
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    501,
-    2339
-   ],
-   "scale": 0.118,
-   "flip": true,
-   "tint": 0.829
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    2200,
-    2949
-   ],
-   "scale": 0.178,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    2076,
-    2835
-   ],
-   "scale": 0.1608,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    2132,
-    2890
-   ],
-   "scale": 0.1056,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    2055,
-    2928
-   ],
-   "scale": 0.1861,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    2130,
-    2899
-   ],
-   "scale": 0.1252,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6586,
-    1360
-   ],
-   "scale": 0.1811,
-   "flip": false,
-   "tint": 0.766
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6567,
-    1355
-   ],
-   "scale": 0.1787,
-   "flip": false,
-   "tint": 0.798
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    6631,
-    1343
-   ],
-   "scale": 0.1538,
-   "flip": false,
-   "tint": 0.779
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6542,
-    1321
-   ],
-   "scale": 0.2018,
-   "flip": true,
-   "tint": 0.78
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    3663,
-    3244
-   ],
-   "scale": 0.1917,
-   "flip": false,
-   "tint": 0.792
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3780,
-    3241
-   ],
-   "scale": 0.1611,
-   "flip": false,
-   "tint": 0.799
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3902,
-    3283
-   ],
-   "scale": 0.1725,
-   "flip": false,
-   "tint": 0.799
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    5426,
-    2922
-   ],
-   "scale": 0.2067,
-   "flip": true,
-   "tint": 0.792
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    5338,
-    2916
-   ],
-   "scale": 0.1739,
-   "flip": false,
-   "tint": 0.822
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    7288,
-    4334
-   ],
-   "scale": 0.1178,
-   "flip": false,
-   "tint": 0.759
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    7284,
-    4310
-   ],
-   "scale": 0.1457,
-   "flip": false,
-   "tint": 0.778
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7399,
-    4369
-   ],
-   "scale": 0.163,
-   "flip": false,
-   "tint": 0.78
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    276,
-    3276
-   ],
-   "scale": 0.1663,
-   "flip": false,
-   "tint": 0.815
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    315,
-    3335
-   ],
-   "scale": 0.1729,
-   "flip": false,
-   "tint": 0.788
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    301,
-    3262
-   ],
-   "scale": 0.1834,
-   "flip": true,
-   "tint": 0.813
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    276,
-    3191
-   ],
-   "scale": 0.2279,
-   "flip": true,
-   "tint": 0.775
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    3047,
-    224
-   ],
-   "scale": 0.193,
-   "flip": true,
-   "tint": 0.752
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    3219,
-    182
-   ],
-   "scale": 0.2087,
-   "flip": false,
-   "tint": 0.7
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3090,
-    229
-   ],
-   "scale": 0.2269,
-   "flip": false,
-   "tint": 0.717
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3064,
-    197
-   ],
-   "scale": 0.1854,
-   "flip": true,
-   "tint": 0.742
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3082,
-    199
-   ],
-   "scale": 0.1211,
-   "flip": false,
-   "tint": 0.754
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3207,
-    175
-   ],
-   "scale": 0.1801,
-   "flip": true,
-   "tint": 0.68
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7581,
-    4062
-   ],
-   "scale": 0.2128,
-   "flip": true,
-   "tint": 0.734
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    7598,
-    4043
-   ],
-   "scale": 0.1756,
-   "flip": false,
-   "tint": 0.726
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7618,
-    4036
-   ],
-   "scale": 0.1963,
-   "flip": true,
-   "tint": 0.737
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7586,
-    4111
-   ],
-   "scale": 0.2119,
-   "flip": true,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7470,
-    4040
-   ],
-   "scale": 0.2103,
-   "flip": true,
-   "tint": 0.763
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3874,
-    4458
-   ],
-   "scale": 0.0873,
-   "flip": true,
-   "tint": 0.879
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    3742,
-    4526
-   ],
-   "scale": 0.2357,
-   "flip": true,
-   "tint": 0.76
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3813,
-    4466
-   ],
-   "scale": 0.1767,
-   "flip": false,
-   "tint": 0.823
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4281,
-    444
-   ],
-   "scale": 0.1887,
-   "flip": true,
-   "tint": 0.834
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    4414,
-    421
-   ],
-   "scale": 0.1744,
-   "flip": true,
-   "tint": 0.884
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    1797,
-    4767
-   ],
-   "scale": 0.1009,
-   "flip": false,
-   "tint": 0.887
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    1865,
-    4667
-   ],
-   "scale": 0.2197,
-   "flip": false,
-   "tint": 0.767
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    1871,
-    4686
-   ],
-   "scale": 0.1876,
-   "flip": false,
-   "tint": 0.778
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    517,
-    1327
-   ],
-   "scale": 0.1061,
-   "flip": false,
-   "tint": 0.79
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    466,
-    1290
-   ],
-   "scale": 0.1481,
-   "flip": true,
-   "tint": 0.752
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    449,
-    1318
-   ],
-   "scale": 0.2059,
-   "flip": true,
-   "tint": 0.713
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    197,
-    3456
-   ],
-   "scale": 0.1853,
-   "flip": false,
-   "tint": 0.831
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    173,
-    3359
-   ],
-   "scale": 0.1057,
-   "flip": true,
-   "tint": 0.783
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    164,
-    3366
-   ],
-   "scale": 0.1003,
-   "flip": true,
-   "tint": 0.795
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    223,
-    3415
-   ],
-   "scale": 0.2024,
-   "flip": true,
-   "tint": 0.802
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    296,
-    3341
-   ],
-   "scale": 0.2294,
-   "flip": true,
-   "tint": 0.754
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    185,
-    3370
-   ],
-   "scale": 0.1963,
-   "flip": true,
-   "tint": 0.765
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3981,
-    333
-   ],
-   "scale": 0.1036,
-   "flip": false,
-   "tint": 0.901
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4020,
-    406
-   ],
-   "scale": 0.1998,
-   "flip": true,
-   "tint": 0.819
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    4036,
-    321
-   ],
-   "scale": 0.1649,
-   "flip": true,
-   "tint": 0.868
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3868,
-    441
-   ],
-   "scale": 0.1696,
-   "flip": false,
-   "tint": 0.829
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4154,
-    406
-   ],
-   "scale": 0.173,
-   "flip": true,
-   "tint": 0.862
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3956,
-    383
-   ],
-   "scale": 0.1563,
-   "flip": false,
-   "tint": 0.854
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    1595,
-    3319
-   ],
-   "scale": 0.209,
-   "flip": true,
-   "tint": 0.777
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    1653,
-    3323
-   ],
-   "scale": 0.16,
-   "flip": true,
-   "tint": 0.803
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1739,
-    3355
-   ],
-   "scale": 0.2143,
-   "flip": true,
-   "tint": 0.774
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    1685,
-    3339
-   ],
-   "scale": 0.1616,
-   "flip": true,
-   "tint": 0.81
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    353,
-    3243
-   ],
-   "scale": 0.1842,
-   "flip": true,
-   "tint": 0.838
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    357,
-    3318
-   ],
-   "scale": 0.1011,
-   "flip": true,
-   "tint": 0.832
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    490,
-    3368
-   ],
-   "scale": 0.1178,
-   "flip": false,
-   "tint": 0.906
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    372,
-    3324
-   ],
-   "scale": 0.2058,
-   "flip": true,
-   "tint": 0.804
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    3585,
-    496
-   ],
-   "scale": 0.1759,
-   "flip": false,
-   "tint": 0.774
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3563,
-    476
-   ],
-   "scale": 0.1674,
-   "flip": false,
-   "tint": 0.776
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    2978,
-    1063
-   ],
-   "scale": 0.1801,
-   "flip": true,
-   "tint": 0.793
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    2972,
-    1009
-   ],
-   "scale": 0.193,
-   "flip": true,
-   "tint": 0.792
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    2787,
-    884
-   ],
-   "scale": 0.157,
-   "flip": true,
-   "tint": 0.816
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    2664,
-    1001
-   ],
-   "scale": 0.1697,
-   "flip": false,
-   "tint": 0.815
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3552,
-    3729
-   ],
-   "scale": 0.172,
-   "flip": true,
-   "tint": 0.816
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3781,
-    3691
-   ],
-   "scale": 0.2253,
-   "flip": false,
-   "tint": 0.75
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    2379,
-    4575
-   ],
-   "scale": 0.1053,
-   "flip": true,
-   "tint": 0.885
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    2451,
-    4568
-   ],
-   "scale": 0.1807,
-   "flip": false,
-   "tint": 0.845
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    2588,
-    4481
-   ],
-   "scale": 0.1653,
-   "flip": true,
-   "tint": 0.858
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    2548,
-    4535
-   ],
-   "scale": 0.1781,
-   "flip": true,
-   "tint": 0.852
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    2616,
-    4531
-   ],
-   "scale": 0.2201,
-   "flip": true,
-   "tint": 0.819
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    517,
-    1283
-   ],
-   "scale": 0.2056,
-   "flip": true,
-   "tint": 0.715
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    641,
-    1272
-   ],
-   "scale": 0.1996,
-   "flip": true,
-   "tint": 0.737
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    552,
-    1250
-   ],
-   "scale": 0.167,
-   "flip": false,
-   "tint": 0.721
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    552,
-    1272
-   ],
-   "scale": 0.2023,
-   "flip": true,
-   "tint": 0.694
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    525,
-    1217
-   ],
-   "scale": 0.2022,
-   "flip": true,
-   "tint": 0.727
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    5101,
-    4329
-   ],
-   "scale": 0.1723,
-   "flip": false,
-   "tint": 0.831
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    5109,
-    4297
-   ],
-   "scale": 0.1642,
-   "flip": false,
-   "tint": 0.837
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4947,
-    4395
-   ],
-   "scale": 0.2452,
-   "flip": true,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4798,
-    4275
-   ],
-   "scale": 0.2149,
-   "flip": false,
-   "tint": 0.8
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    4953,
-    4236
-   ],
-   "scale": 0.2337,
-   "flip": true,
-   "tint": 0.77
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    4888,
-    4233
-   ],
-   "scale": 0.1872,
-   "flip": false,
-   "tint": 0.84
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    5931,
-    3915
-   ],
-   "scale": 0.0991,
-   "flip": false,
-   "tint": 0.775
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    5840,
-    3904
-   ],
-   "scale": 0.1108,
-   "flip": true,
-   "tint": 0.774
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    781,
-    3617
-   ],
-   "scale": 0.2116,
-   "flip": true,
-   "tint": 0.771
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    784,
-    3616
-   ],
-   "scale": 0.119,
-   "flip": true,
-   "tint": 0.779
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    764,
-    3642
-   ],
-   "scale": 0.2379,
-   "flip": true,
-   "tint": 0.742
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    189,
-    2587
-   ],
-   "scale": 0.1753,
-   "flip": true,
-   "tint": 0.765
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    159,
-    2647
-   ],
-   "scale": 0.2104,
-   "flip": false,
-   "tint": 0.709
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6920,
-    3852
-   ],
-   "scale": 0.1693,
-   "flip": true,
-   "tint": 0.846
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6667,
-    3808
-   ],
-   "scale": 0.2122,
-   "flip": false,
-   "tint": 0.829
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6517,
-    320
-   ],
-   "scale": 0.1162,
-   "flip": false,
-   "tint": 0.841
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    6517,
-    343
-   ],
-   "scale": 0.1584,
-   "flip": false,
-   "tint": 0.812
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6536,
-    1340
-   ],
-   "scale": 0.1075,
-   "flip": false,
-   "tint": 0.816
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6607,
-    1355
-   ],
-   "scale": 0.2181,
-   "flip": false,
-   "tint": 0.76
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    6695,
-    1359
-   ],
-   "scale": 0.2088,
-   "flip": false,
-   "tint": 0.798
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    6511,
-    1323
-   ],
-   "scale": 0.1741,
-   "flip": true,
-   "tint": 0.815
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6662,
-    1338
-   ],
-   "scale": 0.2317,
-   "flip": true,
-   "tint": 0.754
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    6528,
-    1380
-   ],
-   "scale": 0.2017,
-   "flip": false,
-   "tint": 0.812
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    5543,
-    720
-   ],
-   "scale": 0.2143,
-   "flip": true,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    5488,
-    807
-   ],
-   "scale": 0.1634,
-   "flip": true,
-   "tint": 0.814
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    5520,
-    783
-   ],
-   "scale": 0.2065,
-   "flip": true,
-   "tint": 0.78
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1447,
-    3830
-   ],
-   "scale": 0.1731,
-   "flip": true,
-   "tint": 0.742
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1526,
-    3789
-   ],
-   "scale": 0.1814,
-   "flip": false,
-   "tint": 0.774
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    1200,
-    4602
-   ],
-   "scale": 0.0975,
-   "flip": false,
-   "tint": 0.884
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    1415,
-    4694
-   ],
-   "scale": 0.2054,
-   "flip": false,
-   "tint": 0.838
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3561,
-    4172
-   ],
-   "scale": 0.0971,
-   "flip": false,
-   "tint": 0.659
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3599,
-    4131
-   ],
-   "scale": 0.1819,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    3520,
-    4123
-   ],
-   "scale": 0.2001,
-   "flip": true,
-   "tint": 0.553
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    3470,
-    4117
-   ],
-   "scale": 0.0958,
-   "flip": false,
-   "tint": 0.565
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    7678,
-    2450
-   ],
-   "scale": 0.1034,
-   "flip": false,
-   "tint": 0.902
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    7574,
-    2493
-   ],
-   "scale": 0.0989,
-   "flip": true,
-   "tint": 0.901
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7637,
-    2481
-   ],
-   "scale": 0.2171,
-   "flip": false,
-   "tint": 0.814
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7554,
-    2453
-   ],
-   "scale": 0.1832,
-   "flip": true,
-   "tint": 0.838
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7580,
-    2455
-   ],
-   "scale": 0.1545,
-   "flip": true,
-   "tint": 0.846
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    809,
-    3115
-   ],
-   "scale": 0.2247,
-   "flip": true,
-   "tint": 0.839
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    669,
-    3099
-   ],
-   "scale": 0.2116,
-   "flip": false,
-   "tint": 0.812
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    560,
-    3000
-   ],
-   "scale": 0.2241,
-   "flip": false,
-   "tint": 0.786
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    627,
-    3049
-   ],
-   "scale": 0.1901,
-   "flip": false,
-   "tint": 0.807
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    631,
-    3030
-   ],
-   "scale": 0.116,
-   "flip": true,
-   "tint": 0.841
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6798,
-    747
-   ],
-   "scale": 0.1715,
-   "flip": true,
-   "tint": 0.778
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6841,
-    698
-   ],
-   "scale": 0.1861,
-   "flip": false,
-   "tint": 0.78
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6954,
-    754
-   ],
-   "scale": 0.1611,
-   "flip": false,
-   "tint": 0.811
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6836,
-    781
-   ],
-   "scale": 0.1672,
-   "flip": false,
-   "tint": 0.791
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    6882,
-    663
-   ],
-   "scale": 0.213,
-   "flip": false,
-   "tint": 0.746
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7301,
-    2809
-   ],
-   "scale": 0.1942,
-   "flip": true,
-   "tint": 0.818
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    7441,
-    2814
-   ],
-   "scale": 0.1218,
-   "flip": true,
-   "tint": 0.778
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    7326,
-    2870
-   ],
-   "scale": 0.1465,
-   "flip": false,
-   "tint": 0.82
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7466,
-    2798
-   ],
-   "scale": 0.1783,
-   "flip": true,
-   "tint": 0.797
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7426,
-    2811
-   ],
-   "scale": 0.1913,
-   "flip": false,
-   "tint": 0.769
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    6148,
-    1432
-   ],
-   "scale": 0.2135,
-   "flip": false,
-   "tint": 0.794
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    6243,
-    1383
-   ],
-   "scale": 0.1771,
-   "flip": true,
-   "tint": 0.836
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6305,
-    1445
-   ],
-   "scale": 0.2366,
-   "flip": false,
-   "tint": 0.773
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6164,
-    1173
-   ],
-   "scale": 0.2299,
-   "flip": true,
-   "tint": 0.779
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    6243,
-    1238
-   ],
-   "scale": 0.208,
-   "flip": true,
-   "tint": 0.798
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    6524,
-    2746
-   ],
-   "scale": 0.1715,
-   "flip": true,
-   "tint": 0.875
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6379,
-    2731
-   ],
-   "scale": 0.0937,
-   "flip": true,
-   "tint": 0.932
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6412,
-    2639
-   ],
-   "scale": 0.1631,
-   "flip": false,
-   "tint": 0.882
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6449,
-    2661
-   ],
-   "scale": 0.1824,
-   "flip": true,
-   "tint": 0.879
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    6286,
-    2801
-   ],
-   "scale": 0.1815,
-   "flip": true,
-   "tint": 0.866
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    6223,
-    2714
-   ],
-   "scale": 0.1196,
-   "flip": true,
-   "tint": 0.907
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7495,
-    1829
-   ],
-   "scale": 0.1773,
-   "flip": true,
-   "tint": 0.768
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7481,
-    1852
-   ],
-   "scale": 0.1904,
-   "flip": true,
-   "tint": 0.766
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7513,
-    1867
-   ],
-   "scale": 0.1505,
-   "flip": false,
-   "tint": 0.823
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7479,
-    1835
-   ],
-   "scale": 0.1593,
-   "flip": false,
-   "tint": 0.749
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    727,
-    1660
-   ],
-   "scale": 0.1949,
-   "flip": false,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    785,
-    1725
-   ],
-   "scale": 0.2228,
-   "flip": false,
-   "tint": 0.727
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    780,
-    1771
-   ],
-   "scale": 0.2451,
-   "flip": false,
-   "tint": 0.683
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    770,
-    1750
-   ],
-   "scale": 0.1203,
-   "flip": true,
-   "tint": 0.737
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    886,
-    1751
-   ],
-   "scale": 0.1615,
-   "flip": false,
-   "tint": 0.751
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    860,
-    1660
-   ],
-   "scale": 0.2155,
-   "flip": true,
-   "tint": 0.721
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1580,
-    2912
-   ],
-   "scale": 0.1951,
-   "flip": true,
-   "tint": 0.782
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    1514,
-    2939
-   ],
-   "scale": 0.1186,
-   "flip": false,
-   "tint": 0.852
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    1445,
-    2889
-   ],
-   "scale": 0.1561,
-   "flip": false,
-   "tint": 0.812
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    1470,
-    2882
-   ],
-   "scale": 0.1722,
-   "flip": true,
-   "tint": 0.805
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    1485,
-    2959
-   ],
-   "scale": 0.1176,
-   "flip": false,
-   "tint": 0.853
-  },
-  {
-   "prop": "c_drift_wildflower",
-   "at": [
-    7631,
-    2957
-   ],
-   "scale": 0.2023,
-   "flip": false,
-   "tint": 0.753
-  },
-  {
-   "prop": "c_drift_white",
-   "at": [
-    7542,
-    2984
-   ],
-   "scale": 0.1745,
-   "flip": true,
-   "tint": 0.778
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7735,
-    2956
-   ],
-   "scale": 0.1743,
-   "flip": true,
-   "tint": 0.859
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    153,
-    4775
-   ],
-   "scale": 0.173,
-   "flip": false,
-   "tint": 0.8
-  },
-  {
-   "prop": "c_drift_ivy",
-   "at": [
-    117,
-    4758
-   ],
-   "scale": 0.0904,
-   "flip": true,
-   "tint": 0.845
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7392,
-    1403
-   ],
-   "scale": 0.2251,
-   "flip": true,
-   "tint": 0.755
-  },
-  {
-   "prop": "c_drift_lavender",
-   "at": [
-    7289,
-    1414
-   ],
-   "scale": 0.1627,
-   "flip": true,
-   "tint": 0.809
-  },
-  {
-   "prop": "c_drift_mixed",
-   "at": [
-    7237,
-    1341
-   ],
-   "scale": 0.1811,
-   "flip": true,
-   "tint": 0.801
-  },
-  {
-   "prop": "c_bld_citizen_home",
-   "at": [
-    3461,
-    4109
-   ],
-   "scale": 0.793,
-   "flip": true,
-   "tint": 0.567
-  },
-  {
-   "prop": "c_bld_merchant_guild",
-   "at": [
-    2230,
-    2896
-   ],
-   "scale": 1.1031,
-   "flip": true,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_banner_pole",
-   "at": [
-    3223,
-    4425
-   ],
-   "scale": 0.6516,
-   "flip": false,
-   "tint": 0.732
-  },
-  {
-   "prop": "c_lamppost_single",
-   "at": [
-    3046,
-    3986
-   ],
-   "scale": 0.757,
-   "flip": false,
-   "tint": 0.744
-  },
-  {
-   "prop": "c_crystal_lamp",
-   "at": [
-    2911,
-    3155
-   ],
-   "scale": 0.5395,
-   "flip": false,
-   "tint": 0.73
-  },
-  {
-   "prop": "c_crystal_lamp",
-   "at": [
-    3144,
-    2750
-   ],
-   "scale": 0.5803,
-   "flip": true,
-   "tint": 0.716
-  },
-  {
-   "prop": "c_bld_citizen_home",
-   "at": [
-    4946,
-    4120
-   ],
-   "scale": 0.7767,
-   "flip": false,
-   "tint": 0.57
-  },
-  {
-   "prop": "c_bld_temple_sanctum",
-   "at": [
-    6018,
-    3463
-   ],
-   "scale": 1.48,
-   "flip": false,
-   "tint": 0.55
-  },
-  {
-   "prop": "c_lantern_float_mid",
-   "at": [
-    5326,
-    3921
-   ],
-   "scale": 0.7361,
-   "flip": false,
-   "tint": 0.637
-  },
-  {
-   "prop": "c_lantern_float_mid",
-   "at": [
-    5748,
-    3916
-   ],
-   "scale": 0.7132,
-   "flip": true,
-   "tint": 0.619
-  },
-  {
-   "prop": "c_banner_pole",
-   "at": [
-    4449,
-    3017
-   ],
-   "scale": 0.6461,
-   "flip": true,
-   "tint": 0.697
-  },
-  {
-   "prop": "c_lamppost_single",
-   "at": [
-    4029,
-    2993
-   ],
-   "scale": 0.8073,
-   "flip": false,
-   "tint": 0.677
-  },
-  {
-   "prop": "c_crystal_lamp",
-   "at": [
-    2010,
-    706
-   ],
-   "scale": 0.5905,
-   "flip": false,
-   "tint": 0.686
-  },
-  {
-   "prop": "c_lamppost_double",
-   "at": [
-    2475,
-    928
-   ],
-   "scale": 0.8829,
-   "flip": true,
-   "tint": 0.602
-  },
-  {
-   "prop": "c_crystal_lamp",
-   "at": [
-    2856,
-    1190
-   ],
-   "scale": 0.5538,
-   "flip": false,
-   "tint": 0.664
-  },
-  {
-   "prop": "c_banner_standard",
-   "at": [
-    2686,
-    1408
-   ],
-   "scale": 0.5883,
-   "flip": true,
-   "tint": 0.633
-  },
-  {
-   "prop": "c_lamppost_single",
-   "at": [
-    3272,
-    1531
-   ],
-   "scale": 0.7779,
-   "flip": true,
-   "tint": 0.663
-  },
-  {
-   "prop": "c_lantern_float_mid",
-   "at": [
-    1779,
-    804
-   ],
-   "scale": 0.6988,
-   "flip": false,
-   "tint": 0.67
-  },
-  {
-   "prop": "c_lantern_float_mid",
-   "at": [
-    2493,
-    3963
-   ],
-   "scale": 0.7048,
-   "flip": true,
-   "tint": 0.683
-  },
-  {
-   "prop": "c_banner_pole",
-   "at": [
-    2110,
-    3995
-   ],
-   "scale": 0.6419,
-   "flip": true,
-   "tint": 0.752
-  },
-  {
-   "prop": "c_banner_standard",
-   "at": [
-    1794,
-    4183
-   ],
-   "scale": 0.6001,
-   "flip": true,
-   "tint": 0.706
-  },
-  {
-   "prop": "c_lantern_float_mid",
-   "at": [
-    1778,
-    3996
-   ],
-   "scale": 0.7523,
-   "flip": true,
-   "tint": 0.645
-  },
-  {
-   "prop": "c_lamppost_single",
-   "at": [
-    5948,
-    4197
-   ],
-   "scale": 0.7748,
-   "flip": true,
-   "tint": 0.66
-  }
- ],
- "solids": [
-  [
-   4930,
-   3766,
-   23
-  ],
-  [
-   5682,
-   2325,
-   24
-  ],
-  [
-   1626,
-   2093,
-   12
-  ],
-  [
-   1347,
-   1777,
-   30
-  ],
-  [
-   3858,
-   1081,
-   17
-  ],
-  [
-   4910,
-   1305,
-   10
-  ],
-  [
-   7089,
-   2980,
-   11
-  ],
-  [
-   3898,
-   1446,
-   32
-  ],
-  [
-   2051,
-   2084,
-   33
-  ],
-  [
-   3967,
-   2707,
-   54
-  ],
-  [
-   4805,
-   2427,
-   22
-  ],
-  [
-   6756,
-   4143,
-   24
-  ],
-  [
-   4777,
-   2357,
-   39
-  ],
-  [
-   4506,
-   2355,
-   16
-  ],
-  [
-   4862,
-   2505,
-   29
-  ],
-  [
-   4504,
-   2254,
-   32
-  ],
-  [
-   4808,
-   2556,
-   35
-  ],
-  [
-   4764,
-   2471,
-   38
-  ],
-  [
-   4626,
-   2734,
-   64
-  ],
-  [
-   4401,
-   2301,
-   73
-  ],
-  [
-   1337,
-   692,
-   20
-  ],
-  [
-   748,
-   686,
-   14
-  ],
-  [
-   1477,
-   773,
-   12
-  ],
-  [
-   843,
-   699,
-   31
-  ],
-  [
-   624,
-   1103,
-   31
-  ],
-  [
-   1416,
-   803,
-   33
-  ],
-  [
-   1303,
-   799,
-   20
-  ],
-  [
-   1453,
-   1037,
-   12
-  ],
-  [
-   1152,
-   3909,
-   32
-  ],
-  [
-   577,
-   4150,
-   41
-  ],
-  [
-   1374,
-   4311,
-   37
-  ],
-  [
-   1427,
-   4046,
-   42
-  ],
-  [
-   651,
-   4000,
-   45
-  ],
-  [
-   1466,
-   4225,
-   27
-  ],
-  [
-   1388,
-   4207,
-   23
-  ],
-  [
-   1040,
-   3943,
-   31
-  ],
-  [
-   390,
-   4142,
-   39
-  ],
-  [
-   6621,
-   4086,
-   28
-  ],
-  [
-   7271,
-   4477,
-   80
-  ],
-  [
-   7052,
-   4558,
-   37
-  ],
-  [
-   6567,
-   4613,
-   15
-  ],
-  [
-   7158,
-   4130,
-   63
-  ],
-  [
-   7306,
-   4363,
-   31
-  ],
-  [
-   7160,
-   4573,
-   15
-  ],
-  [
-   7172,
-   4303,
-   39
-  ],
-  [
-   3340,
-   1493,
-   56
-  ],
-  [
-   4429,
-   2093,
-   56
-  ],
-  [
-   1121,
-   516,
-   36
-  ],
-  [
-   911,
-   3746,
-   84
-  ],
-  [
-   6745,
-   3918,
-   36
-  ],
-  [
-   3809,
-   123,
-   17
-  ],
-  [
-   3,
-   1077,
-   19
-  ],
-  [
-   7029,
-   1220,
-   16
-  ],
-  [
-   3355,
-   694,
-   21
-  ],
-  [
-   7532,
-   2039,
-   19
-  ],
-  [
-   -11,
-   3642,
-   17
-  ],
-  [
-   2846,
-   1002,
-   15
-  ],
-  [
-   5970,
-   264,
-   15
-  ],
-  [
-   2226,
-   4789,
-   16
-  ],
-  [
-   6174,
-   746,
-   19
-  ],
-  [
-   173,
-   5061,
-   15
-  ],
-  [
-   1202,
-   5030,
-   16
-  ],
-  [
-   5700,
-   1397,
-   16
-  ],
-  [
-   2579,
-   4972,
-   19
-  ],
-  [
-   6565,
-   5003,
-   16
-  ],
-  [
-   1601,
-   61,
-   18
-  ],
-  [
-   4364,
-   5030,
-   17
-  ],
-  [
-   4761,
-   4784,
-   18
-  ],
-  [
-   2673,
-   324,
-   20
-  ],
-  [
-   456,
-   3072,
-   19
-  ],
-  [
-   3192,
-   129,
-   15
-  ],
-  [
-   360,
-   4485,
-   19
-  ],
-  [
-   7613,
-   934,
-   18
-  ],
-  [
-   -35,
-   4057,
-   17
-  ],
-  [
-   3645,
-   4949,
-   19
-  ],
-  [
-   -60,
-   2317,
-   17
-  ],
-  [
-   5525,
-   1026,
-   15
-  ],
-  [
-   2073,
-   3513,
-   18
-  ],
-  [
-   3992,
-   4619,
-   16
-  ],
-  [
-   7198,
-   1630,
-   15
-  ],
-  [
-   7312,
-   2357,
-   16
-  ],
-  [
-   439,
-   1486,
-   20
-  ],
-  [
-   9,
-   3292,
-   18
-  ],
-  [
-   3461,
-   4109,
-   212
-  ],
-  [
-   2230,
-   2896,
-   385
-  ],
-  [
-   3223,
-   4425,
-   7
-  ],
-  [
-   3046,
-   3986,
-   6
-  ],
-  [
-   2911,
-   3155,
-   10
-  ],
-  [
-   3144,
-   2750,
-   11
-  ],
-  [
-   4946,
-   4120,
-   207
-  ],
-  [
-   6018,
-   3463,
-   457
-  ],
-  [
-   4449,
-   3017,
-   7
-  ],
-  [
-   4029,
-   2993,
-   6
-  ],
-  [
-   2010,
-   706,
-   11
-  ],
-  [
-   2475,
-   928,
-   11
-  ],
-  [
-   2856,
-   1190,
-   11
-  ],
-  [
-   2686,
-   1408,
-   9
-  ],
-  [
-   3272,
-   1531,
-   6
-  ],
-  [
-   2110,
-   3995,
-   7
-  ],
-  [
-   1794,
-   4183,
-   9
-  ],
-  [
-   5948,
-   4197,
-   6
-  ],
-  [
-   4480,
-   1232,
-   69
-  ],
-  [
-   4592,
-   1232,
-   69
-  ],
-  [
-   4704,
-   1232,
-   69
-  ],
-  [
-   4368,
-   1344,
-   69
-  ],
-  [
-   4480,
-   1344,
-   69
-  ],
-  [
-   4592,
-   1344,
-   69
-  ],
-  [
-   4704,
-   1344,
-   69
-  ],
-  [
-   2688,
-   2576,
-   69
-  ],
-  [
-   2800,
-   2576,
-   69
-  ],
-  [
-   2912,
-   2576,
-   69
-  ],
-  [
-   2800,
-   2688,
-   69
-  ],
-  [
-   2912,
-   2688,
-   69
-  ]
- ],
+ "ground_ratio": 0.43,
+ "scale_note": "Painted district (Higgsfield master + 9-section upscale, 11-28), same scale as the Crownsfall Grand City.",
  "walkable": [
   [
    [
-    40,
-    120
+    6000,
+    2420
    ],
    [
-    11480,
-    120
+    5980,
+    1500
    ],
    [
-    11480,
-    4924
+    6060,
+    650
    ],
    [
-    40,
-    4924
+    5880,
+    300
+   ],
+   [
+    5880,
+    40
+   ],
+   [
+    6260,
+    40
+   ],
+   [
+    6300,
+    300
+   ],
+   [
+    6560,
+    650
+   ],
+   [
+    6850,
+    1500
+   ],
+   [
+    6950,
+    2420
+   ]
+  ],
+  [
+   [
+    4950,
+    2600
+   ],
+   [
+    5600,
+    2400
+   ],
+   [
+    6000,
+    2380
+   ],
+   [
+    5970,
+    3200
+   ],
+   [
+    5300,
+    3100
+   ],
+   [
+    4950,
+    2950
+   ]
+  ],
+  [
+   [
+    7120,
+    2380
+   ],
+   [
+    7400,
+    2350
+   ],
+   [
+    7800,
+    2480
+   ],
+   [
+    8000,
+    2800
+   ],
+   [
+    7700,
+    3100
+   ],
+   [
+    7250,
+    3200
+   ],
+   [
+    7120,
+    3200
+   ]
+  ],
+  [
+   [
+    5970,
+    3100
+   ],
+   [
+    7150,
+    3100
+   ],
+   [
+    7250,
+    3260
+   ],
+   [
+    6050,
+    3260
+   ]
+  ],
+  [
+   [
+    5980,
+    2300
+   ],
+   [
+    6950,
+    2300
+   ],
+   [
+    7150,
+    2440
+   ],
+   [
+    5950,
+    2440
+   ]
+  ],
+  [
+   [
+    6050,
+    3150
+   ],
+   [
+    7250,
+    3150
+   ],
+   [
+    7350,
+    4300
+   ],
+   [
+    7500,
+    5808
+   ],
+   [
+    5950,
+    5808
+   ],
+   [
+    6000,
+    4300
+   ]
+  ],
+  [
+   [
+    7400,
+    2420
+   ],
+   [
+    8200,
+    2470
+   ],
+   [
+    9100,
+    2520
+   ],
+   [
+    9300,
+    2280
+   ],
+   [
+    10000,
+    2280
+   ],
+   [
+    10050,
+    2620
+   ],
+   [
+    11000,
+    2680
+   ],
+   [
+    11100,
+    2900
+   ],
+   [
+    12000,
+    2950
+   ],
+   [
+    12000,
+    3080
+   ],
+   [
+    9300,
+    3080
+   ],
+   [
+    8100,
+    2920
+   ],
+   [
+    7700,
+    2950
+   ]
+  ],
+  [
+   [
+    10900,
+    3020
+   ],
+   [
+    11700,
+    3020
+   ],
+   [
+    12300,
+    3900
+   ],
+   [
+    12900,
+    4500
+   ],
+   [
+    13200,
+    4650
+   ],
+   [
+    13200,
+    5100
+   ],
+   [
+    12600,
+    5100
+   ],
+   [
+    11800,
+    4100
+   ],
+   [
+    11100,
+    3400
+   ]
+  ],
+  [
+   [
+    4950,
+    2620
+   ],
+   [
+    4950,
+    3000
+   ],
+   [
+    4300,
+    3300
+   ],
+   [
+    3500,
+    3500
+   ],
+   [
+    2850,
+    3700
+   ],
+   [
+    2800,
+    4650
+   ],
+   [
+    2050,
+    4750
+   ],
+   [
+    2000,
+    3650
+   ],
+   [
+    3200,
+    3200
+   ],
+   [
+    4000,
+    2700
+   ]
+  ],
+  [
+   [
+    1500,
+    1500
+   ],
+   [
+    2300,
+    1380
+   ],
+   [
+    2800,
+    1350
+   ],
+   [
+    3300,
+    1500
+   ],
+   [
+    3700,
+    1650
+   ],
+   [
+    4300,
+    2100
+   ],
+   [
+    5050,
+    2450
+   ],
+   [
+    5050,
+    2650
+   ],
+   [
+    4700,
+    2680
+   ],
+   [
+    3900,
+    2250
+   ],
+   [
+    3200,
+    2020
+   ],
+   [
+    2300,
+    2000
+   ],
+   [
+    1500,
+    1920
    ]
   ]
  ],
+ "spawn": [
+  6700,
+  5300
+ ],
+ "targets": [
+  [
+   7300,
+   2850
+  ],
+  [
+   2500,
+   1700
+  ],
+  [
+   2400,
+   4250
+  ],
+  [
+   10500,
+   2900
+  ]
+ ],
+ "occluders": [],
  "exits": [
   {
    "name": "Crownsfall",
    "to": "crownsfall",
+   "poly": [
+    [
+     6050,
+     5650
+    ],
+    [
+     7400,
+     5650
+    ],
+    [
+     7400,
+     5800
+    ],
+    [
+     6050,
+     5800
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      6050,
+      5650
+     ],
+     [
+      7400,
+      5650
+     ],
+     [
+      7400,
+      5800
+     ],
+     [
+      6050,
+      5800
+     ]
+    ]
+   },
    "arrive": [
     5450,
     2380
-   ],
-   "poly": [
-    [
-     2858,
-     4680.5
-    ],
-    [
-     3198,
-     4680.5
-    ],
-    [
-     3198,
-     4867.5
-    ],
-    [
-     2858,
-     4867.5
-    ]
-   ],
-   "aura": {
-    "poly": [
-     [
-      2858,
-      4680.5
-     ],
-     [
-      3198,
-      4680.5
-     ],
-     [
-      3198,
-      4867.5
-     ],
-     [
-      2858,
-      4867.5
-     ]
-    ]
-   }
-  },
-  {
-   "name": "Sablemarket Vaults",
-   "to": "sablemarket_vaults",
-   "arrive": [
-    560,
-    2246
-   ],
-   "poly": [
-    [
-     5348,
-     4680.5
-    ],
-    [
-     5688,
-     4680.5
-    ],
-    [
-     5688,
-     4867.5
-    ],
-    [
-     5348,
-     4867.5
-    ]
-   ],
-   "aura": {
-    "poly": [
-     [
-      5348,
-      4680.5
-     ],
-     [
-      5688,
-      4680.5
-     ],
-     [
-      5688,
-      4867.5
-     ],
-     [
-      5348,
-      4867.5
-     ]
-    ]
-   }
+   ]
   },
   {
    "name": "Crownsfall Citadel",
    "to": "crownsfall_citadel",
-   "arrive": [
-    3701,
-    4438
-   ],
    "poly": [
     [
-     1963,
-     96.49999999999999
+     5900,
+     60
     ],
     [
-     2303,
-     96.49999999999999
+     6250,
+     60
     ],
     [
-     2303,
-     283.5
+     6250,
+     260
     ],
     [
-     1963,
-     283.5
+     5900,
+     260
     ]
    ],
    "aura": {
     "poly": [
      [
-      1963,
-      96.49999999999999
+      5900,
+      60
      ],
      [
-      2303,
-      96.49999999999999
+      6250,
+      60
      ],
      [
-      2303,
-      283.5
+      6250,
+      260
      ],
      [
-      1963,
-      283.5
+      5900,
+      260
      ]
     ]
-   }
+   },
+   "arrive": [
+    6800,
+    5300
+   ]
+  },
+  {
+   "name": "Sablemarket Vaults",
+   "to": "sablemarket_vaults",
+   "poly": [
+    [
+     12750,
+     4620
+    ],
+    [
+     13180,
+     4620
+    ],
+    [
+     13180,
+     5080
+    ],
+    [
+     12750,
+     5080
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      12750,
+      4620
+     ],
+     [
+      13180,
+      4620
+     ],
+     [
+      13180,
+      5080
+     ],
+     [
+      12750,
+      5080
+     ]
+    ]
+   },
+   "arrive": [
+    560,
+    2246
+   ]
   }
  ],
  "waypoints": [
@@ -4671,28 +528,23 @@
    "id": "highward_steps_wp",
    "name": "Highward Steps",
    "at": [
-    3451,
-    2013
+    6600,
+    3180
    ],
    "centre_of": [
-    3451,
-    2013
+    6600,
+    3180
    ],
-   "radius_px": 200,
-   "rot_deg": 22.9
+   "radius_px": 200
   }
  ],
- "targets": [],
- "ground_ratio": 0.51,
- "light": "highward_steps/light.png",
- "fx": "highward_steps/fx.png",
  "map_pois": [
   {
    "name": "Heraldic Gate",
    "kind": "landmark",
    "at": [
-    4331,
-    2523
+    7300,
+    2850
    ],
    "blurb": "Citadel stairs, fountains, heraldic gates"
   },
@@ -4700,8 +552,8 @@
    "name": "Pilgrim's Rise",
    "kind": "landmark",
    "at": [
-    1039,
-    946
+    2500,
+    1700
    ],
    "blurb": "Citadel stairs, fountains, heraldic gates"
   },
@@ -4709,8 +561,8 @@
    "name": "Westgarden Terraces",
    "kind": "landmark",
    "at": [
-    946,
-    4176
+    2400,
+    4250
    ],
    "blurb": "Citadel stairs, fountains, heraldic gates"
   },
@@ -4718,8 +570,8 @@
    "name": "Quarantine Post",
    "kind": "landmark",
    "at": [
-    6794,
-    4348
+    10500,
+    2900
    ],
    "blurb": "Citadel stairs, fountains, heraldic gates"
   },
@@ -4727,53 +579,367 @@
    "name": "Crownsfall",
    "kind": "landmark",
    "at": [
-    3028,
-    4774
+    6725,
+    5725
    ],
    "blurb": "To Crownsfall."
-  },
-  {
-   "name": "Sablemarket Vaults",
-   "kind": "landmark",
-   "at": [
-    5518,
-    4774
-   ],
-   "blurb": "To Sablemarket Vaults."
   },
   {
    "name": "Crownsfall Citadel",
    "kind": "landmark",
    "at": [
-    2133,
-    190
+    6075,
+    160
    ],
    "blurb": "To Crownsfall Citadel."
+  },
+  {
+   "name": "Sablemarket Vaults",
+   "kind": "landmark",
+   "at": [
+    12965,
+    4850
+   ],
+   "blurb": "To Sablemarket Vaults."
   }
  ],
- "world_id": "highward_steps",
- "grade": {
-  "mul": [
-   1.08,
-   1.04,
-   0.96
-  ],
-  "desat": 0.1,
-  "lift": [
-   0.06,
-   0.05,
-   0.04,
-   1.0
-  ],
-  "mist": [
-   0.9,
-   0.88,
-   0.84
-  ],
-  "water": [
-   0.3,
-   0.5,
-   0.62
-  ]
- }
+ "tiles": [
+  {
+   "image": "highward_steps/t_0_0.png",
+   "depth": "",
+   "rect": [
+    0,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    0,
+    0,
+    2096,
+    2096
+   ]
+  },
+  {
+   "image": "highward_steps/t_1_0.png",
+   "depth": "",
+   "rect": [
+    2048,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    2000,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "highward_steps/t_2_0.png",
+   "depth": "",
+   "rect": [
+    4096,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    4048,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "highward_steps/t_3_0.png",
+   "depth": "",
+   "rect": [
+    6144,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    6096,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "highward_steps/t_4_0.png",
+   "depth": "",
+   "rect": [
+    8192,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    8144,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "highward_steps/t_5_0.png",
+   "depth": "",
+   "rect": [
+    10240,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    10192,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "highward_steps/t_6_0.png",
+   "depth": "",
+   "rect": [
+    12288,
+    0,
+    1245,
+    2048
+   ],
+   "img_rect": [
+    12240,
+    0,
+    1293,
+    2096
+   ]
+  },
+  {
+   "image": "highward_steps/t_0_1.png",
+   "depth": "",
+   "rect": [
+    0,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    0,
+    2000,
+    2096,
+    2144
+   ]
+  },
+  {
+   "image": "highward_steps/t_1_1.png",
+   "depth": "",
+   "rect": [
+    2048,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    2000,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "highward_steps/t_2_1.png",
+   "depth": "",
+   "rect": [
+    4096,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    4048,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "highward_steps/t_3_1.png",
+   "depth": "",
+   "rect": [
+    6144,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    6096,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "highward_steps/t_4_1.png",
+   "depth": "",
+   "rect": [
+    8192,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    8144,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "highward_steps/t_5_1.png",
+   "depth": "",
+   "rect": [
+    10240,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    10192,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "highward_steps/t_6_1.png",
+   "depth": "",
+   "rect": [
+    12288,
+    2048,
+    1245,
+    2048
+   ],
+   "img_rect": [
+    12240,
+    2000,
+    1293,
+    2144
+   ]
+  },
+  {
+   "image": "highward_steps/t_0_2.png",
+   "depth": "",
+   "rect": [
+    0,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    0,
+    4048,
+    2096,
+    1760
+   ]
+  },
+  {
+   "image": "highward_steps/t_1_2.png",
+   "depth": "",
+   "rect": [
+    2048,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    2000,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "highward_steps/t_2_2.png",
+   "depth": "",
+   "rect": [
+    4096,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    4048,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "highward_steps/t_3_2.png",
+   "depth": "",
+   "rect": [
+    6144,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    6096,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "highward_steps/t_4_2.png",
+   "depth": "",
+   "rect": [
+    8192,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    8144,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "highward_steps/t_5_2.png",
+   "depth": "",
+   "rect": [
+    10240,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    10192,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "highward_steps/t_6_2.png",
+   "depth": "",
+   "rect": [
+    12288,
+    4096,
+    1245,
+    1712
+   ],
+   "img_rect": [
+    12240,
+    4048,
+    1293,
+    1760
+   ]
+  }
+ ],
+ "overview": "highward_steps/overview.png"
 }

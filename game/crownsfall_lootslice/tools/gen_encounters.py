@@ -16,8 +16,17 @@ spec = json.load(open(sys.argv[1]))
 zid = spec["zone"]
 z = json.load(open(os.path.join(root, "assets/zones", zid + ".json")))
 W, H = z["size"]
-splat = Image.open(os.path.join(root, "assets/zones", z["splat"])).convert("RGB")
-sw, sh = splat.size
+# kit zones: the splat's blue channel is water. Painted zones (no splat): their walkable polygons are the ground.
+splat = Image.open(os.path.join(root, "assets/zones", z["splat"])).convert("RGB") if z.get("splat") else None
+sw, sh = splat.size if splat else (1, 1)
+def in_poly(x, y, poly):
+    inside = False; j = len(poly) - 1
+    for i in range(len(poly)):
+        xi, yi = poly[i]; xj, yj = poly[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-9) + xi: inside = not inside
+        j = i
+    return inside
+def on_walk(x, y): return any(in_poly(x, y, p) for p in z.get("walkable", []))
 rng = random.Random(spec.get("seed", 7))
 clear = [list(c) for c in spec.get("keep_clear", [])]
 clear.append([z["spawn"][0], z["spawn"][1], 700])
@@ -31,6 +40,9 @@ def ok(x, y):
     if not (300 < x < W - 300 and 350 < y < H - 300): return False
     for dx in (-140, 0, 140):
         for dy in (-80, 0, 80):
+            if splat is None:
+                if not on_walk(x + dx, y + dy): return False
+                continue
             r, g, b = splat.getpixel((min(sw - 1, int((x + dx) / W * sw)), min(sh - 1, int((y + dy) / H * sh))))
             if b > 60: return False
     for s in z.get("solids", []):

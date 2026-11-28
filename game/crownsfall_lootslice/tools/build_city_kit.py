@@ -22,14 +22,14 @@ shutil.copytree(SRC_FOREST, OUT, ignore=shutil.ignore_patterns("*.import"))
 cat = json.load(open(f"{OUT}/catalog.json"))
 
 # ground: name -> (A1-T tile, repeat in metres). Cobbles ~0.25 m, flagstones ~0.8 m, terrace slabs ~1.2 m.
-GROUND = {"flagstone": ("cobble_ivory", 6.0), "dirt": ("gravel_path", 5.0), "plaza": ("flagstone_plaza", 9.0),
+GROUND = {"flagstone": ("cobble_ivory", 6.0), "dirt": ("grass_garden", 7.0), "gravel": ("gravel_path", 5.0), "plaza": ("flagstone_plaza", 9.0),
           "terrace": ("stone_terrace", 11.0), "lawn": ("grass_garden", 7.0), "cobble_grass": ("cobble_grass", 6.0),
           "cobble_worn": ("cobble_worn", 6.0), "market": ("packed_earth_market", 6.0), "grid": ("paving_grid", 10.0)}
 # NOT ground: plaza_medallion has flower beds painted top-down; anything with height must be a 31-degree prop
 # (docs/AOTL_ACT1_ART_QUOTE.md, standing art rule). Left out of the kit on purpose.
 for k, (src, m) in GROUND.items():
     im = Image.open(f"{SRC_GROUND}/{src}.png").convert("RGB").resize((2048, 2048), Image.LANCZOS)
-    if k == "lawn":          # the painted lawn is a flat, saturated green: calm it toward the forest grass
+    if k in ("lawn", "dirt"):          # the painted lawn is a flat, saturated green: calm it toward the forest grass
         from PIL import ImageEnhance
         im = ImageEnhance.Brightness(ImageEnhance.Color(im).enhance(0.72)).enhance(0.86)
     im.save(f"{OUT}/ground/city_{k}.png", optimize=True)

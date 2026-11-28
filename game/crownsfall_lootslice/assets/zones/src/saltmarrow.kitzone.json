@@ -1,0 +1,1448 @@
+{
+ "name": "Saltmarrow",
+ "kit": "assets/kit/city",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "cobble_worn",
+ "seed": 844,
+ "paths": [
+  {
+   "pts": [
+    [
+     4742,
+     190
+    ],
+    [
+     4742,
+     494
+    ],
+    [
+     4819,
+     1023
+    ],
+    [
+     4765,
+     1541
+    ],
+    [
+     4921,
+     2076
+    ],
+    [
+     4381,
+     2554
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     7540,
+     1492
+    ],
+    [
+     7160,
+     1492
+    ],
+    [
+     6398,
+     2114
+    ],
+    [
+     5512,
+     2536
+    ],
+    [
+     4381,
+     2554
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4765,
+     1541
+    ],
+    [
+     3795,
+     1746
+    ],
+    [
+     3271,
+     1662
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5512,
+     2536
+    ],
+    [
+     6048,
+     2829
+    ],
+    [
+     6600,
+     3418
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     7160,
+     1492
+    ],
+    [
+     6947,
+     1190
+    ],
+    [
+     6458,
+     716
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4381,
+     2554
+    ],
+    [
+     3524,
+     2926
+    ],
+    [
+     2776,
+     3317
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    2776,
+    3317
+   ],
+   "r": 760,
+   "layer": "dirt",
+   "squash": 0.55,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3835,
+    4208
+   ],
+   "r": 468,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3921,
+    2221
+   ],
+   "r": 298,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5669,
+    1861
+   ],
+   "r": 400,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3234,
+    3865
+   ],
+   "r": 417,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5700,
+    1894
+   ],
+   "r": 465,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1111,
+    4235
+   ],
+   "r": 418,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    871,
+    2057
+   ],
+   "r": 441,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1699,
+    3196
+   ],
+   "r": 362,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1245,
+    2241
+   ],
+   "r": 344,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1670,
+    1204
+   ],
+   "r": 349,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1305,
+    1526
+   ],
+   "r": 369,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1099,
+    1608
+   ],
+   "r": 459,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4831,
+    3958
+   ],
+   "r": 374,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4381,
+    2554
+   ],
+   "r": 720,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3271,
+    1662
+   ],
+   "r": 450,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6600,
+    3418
+   ],
+   "r": 517,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6458,
+    716
+   ],
+   "r": 496,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   4742,
+   190,
+   380
+  ],
+  [
+   7540,
+   1492,
+   380
+  ],
+  [
+   3271,
+   1662,
+   300
+  ],
+  [
+   6600,
+   3418,
+   300
+  ],
+  [
+   6458,
+   716,
+   300
+  ],
+  [
+   2776,
+   3317,
+   300
+  ]
+ ],
+ "place": [
+  [
+   "c_lm_fountain_a",
+   4300,
+   2034,
+   1.0,
+   false
+  ],
+  [
+   "c_lm_gazebo_b",
+   3210,
+   1232,
+   1.0,
+   true
+  ],
+  [
+   "c_lm_fountain_c",
+   6525,
+   2988,
+   1.0,
+   true
+  ],
+  [
+   "c_lm_fountain_b",
+   6341,
+   286,
+   1.0,
+   false
+  ],
+  [
+   "c_magic_spring",
+   2659,
+   2887,
+   1.0,
+   true
+  ]
+ ],
+ "forest": {
+  "trees": [
+   [
+    "c_tree_green",
+    2
+   ],
+   [
+    "c_tree_blossom",
+    2
+   ],
+   [
+    "c_tree_amber",
+    1
+   ]
+  ],
+  "spacing": 2600,
+  "cut": 0.92,
+  "grove_px": 1500,
+  "frame": 0.08,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 2,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 5,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 5,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.18,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    3271,
+    1662,
+    560,
+    0.45
+   ],
+   [
+    6600,
+    3418,
+    560,
+    0.45
+   ],
+   [
+    6458,
+    716,
+    560,
+    0.45
+   ],
+   [
+    2776,
+    3317,
+    560,
+    0.45
+   ],
+   [
+    4381,
+    2554,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4381,
+    2334,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "saltmarrow_wp",
+   "name": "Saltmarrow",
+   "at": [
+    4381,
+    2554
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Greyfen Causeway",
+   "to": "greyfen_causeway",
+   "at": [
+    4742,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    8687,
+    4438
+   ]
+  },
+  {
+   "name": "Wrecker's Strand",
+   "to": "wreckers_strand",
+   "at": [
+    7540,
+    1492
+   ],
+   "r": 170,
+   "arrive": [
+    8344,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4742,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Harbour Square",
+   "kind": "landmark",
+   "at": [
+    3271,
+    1662
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Long Pier",
+   "kind": "landmark",
+   "at": [
+    6600,
+    3418
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Net Lofts",
+   "kind": "landmark",
+   "at": [
+    6458,
+    716
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Old Lighthouse",
+   "kind": "landmark",
+   "at": [
+    2776,
+    3317
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Greyfen Causeway",
+   "kind": "landmark",
+   "at": [
+    4742,
+    190
+   ],
+   "blurb": "To Greyfen Causeway."
+  },
+  {
+   "name": "Wrecker's Strand",
+   "kind": "landmark",
+   "at": [
+    7540,
+    1492
+   ],
+   "blurb": "To Wrecker's Strand."
+  }
+ ],
+ "world_id": "saltmarrow",
+ "grade": {
+  "mul": [
+   0.98,
+   1.0,
+   1.02
+  ],
+  "desat": 0.22,
+  "lift": [
+   0.05,
+   0.06,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.84,
+   0.88
+  ],
+  "water": [
+   0.2,
+   0.36,
+   0.45
+  ]
+ },
+ "rim": {
+  "props": [
+   "c_stone_urn",
+   "c_flower_pedestal",
+   "c_topiary_urn",
+   "c_bench",
+   "c_bed_straight_long",
+   "c_bed_corner",
+   "c_bed_square",
+   "c_bed_round_large",
+   "c_bed_oval",
+   "c_bed_round_small",
+   "c_bed_crescent",
+   "c_hedge_straight",
+   "c_hedge_topiary_square",
+   "c_wisteria_trellis",
+   "c_wisteria_arch_bed",
+   "c_bed_tree_ring",
+   "c_drift_lavender",
+   "c_drift_white",
+   "c_drift_mixed",
+   "c_drift_wildflower",
+   "c_drift_ivy"
+  ],
+  "density": 0.8,
+  "chance": 0.45
+ },
+ "dress": [
+  {
+   "at": [
+    3271,
+    1662
+   ],
+   "r": 560,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6600,
+    3418
+   ],
+   "r": 560,
+   "props": [
+    "c_stone_urn",
+    "c_flower_pedestal",
+    "c_topiary_urn",
+    "c_bench",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring",
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6458,
+    716
+   ],
+   "r": 560,
+   "props": [
+    "c_arcane_brazier",
+    "c_crystal_float",
+    "c_orb_levitating",
+    "c_sigil_stone",
+    "c_magic_spring",
+    "c_wisteria_wisp",
+    "c_lantern_float_large",
+    "c_light_motes",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2776,
+    3317
+   ],
+   "r": 560,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4381,
+    2554
+   ],
+   "r": 700,
+   "props": [
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
+   ],
+   "n": 10,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4381,
+    2554
+   ],
+   "r": 760,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_lamppost_double",
+    "c_banner_standard",
+    "c_crystal_lamp",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large"
+   ],
+   "n": 22,
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "at": [
+    2776,
+    3317
+   ],
+   "r": 760,
+   "props": [
+    "c_tree_green",
+    "c_tree_blossom",
+    "c_tree_amber",
+    "c_tree_green",
+    "c_tree_blossom",
+    "c_tree_amber",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring",
+    "c_lm_gazebo_a",
+    "c_bench"
+   ],
+   "n": 14,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "on_path": true
+  }
+ ],
+ "max_paving_overlap": 1.0,
+ "place_keep": true,
+ "scatter": [
+  {
+   "prop": "c_bld_temple_sanctum",
+   "count": 2,
+   "min_dist": 1300,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_royal_manor",
+   "count": 5,
+   "min_dist": 1000,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_merchant_guild",
+   "count": 8,
+   "min_dist": 930,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_archive_hall",
+   "count": 6,
+   "min_dist": 880,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_guard_barracks",
+   "count": 5,
+   "min_dist": 900,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_citizen_home",
+   "count": 110,
+   "min_dist": 520,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_crate_stack",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_barrels_sacks",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_crates_wisteria",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_flower_barrel",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bench",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bed_square",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bed_round_small",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_hedge_topiary_square",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_lamppost_single",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_stone_urn",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_drift_mixed",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_drift_lavender",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  }
+ ]
+}

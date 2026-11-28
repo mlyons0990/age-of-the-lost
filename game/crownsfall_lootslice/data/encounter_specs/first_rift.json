@@ -1,0 +1,78 @@
+{
+ "zone": "first_rift",
+ "levels": [
+  9,
+  10
+ ],
+ "packs": 14,
+ "seed": 571,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "first_rift_0",
+    "first_rift_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "first_rift_1",
+    "first_rift_1",
+    "first_rift_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "first_rift_0",
+    "first_rift_1",
+    "first_rift_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "first_rift_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "first_rift_2",
+    "first_rift_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "first_rift_0",
+    "first_rift_0",
+    "first_rift_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6069,
+    2524
+   ],
+   "types": [],
+   "boss": "first_rift_boss_u",
+   "boss_type": "first_rift_boss",
+   "boss_name": "The Riftwarden",
+   "needs_quest": "Q_A01_R18"
+  }
+ ],
+ "keep_clear": [
+  [
+   6069,
+   2524,
+   700
+  ]
+ ]
+}

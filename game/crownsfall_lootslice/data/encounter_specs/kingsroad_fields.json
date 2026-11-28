@@ -1,0 +1,122 @@
+{
+ "zone": "kingsroad_fields",
+ "levels": [
+  1,
+  2
+ ],
+ "packs": 30,
+ "seed": 978,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "kingsroad_fields_0",
+    "kingsroad_fields_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "kingsroad_fields_1",
+    "kingsroad_fields_1",
+    "kingsroad_fields_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "kingsroad_fields_0",
+    "kingsroad_fields_1",
+    "kingsroad_fields_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "kingsroad_fields_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "kingsroad_fields_2",
+    "kingsroad_fields_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "kingsroad_fields_0",
+    "kingsroad_fields_0",
+    "kingsroad_fields_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    1883,
+    3034
+   ],
+   "types": [
+    "kingsroad_fields_1",
+    "kingsroad_fields_1"
+   ],
+   "elite": false,
+   "guardian": "kingsroad_fields_g1",
+   "elite_type": "kingsroad_fields_0",
+   "elite_name": "Hob Marrow, Bandit Chief",
+   "page": "Q_A01_02_1"
+  },
+  {
+   "at": [
+    6240,
+    1513
+   ],
+   "types": [
+    "kingsroad_fields_1",
+    "kingsroad_fields_1"
+   ],
+   "elite": false,
+   "guardian": "kingsroad_fields_g2",
+   "elite_type": "kingsroad_fields_1",
+   "elite_name": "The Mile-Eater",
+   "page": "Q_A01_02_2"
+  },
+  {
+   "at": [
+    10319,
+    3815
+   ],
+   "types": [
+    "kingsroad_fields_1",
+    "kingsroad_fields_1"
+   ],
+   "elite": false,
+   "guardian": "kingsroad_fields_g3",
+   "elite_type": "kingsroad_fields_2",
+   "elite_name": "Grain-Cart Raider",
+   "page": "Q_A01_02_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   1883,
+   3034,
+   700
+  ],
+  [
+   6240,
+   1513,
+   700
+  ],
+  [
+   10319,
+   3815,
+   700
+  ]
+ ]
+}

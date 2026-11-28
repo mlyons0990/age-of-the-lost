@@ -18,6 +18,10 @@ const WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE := "res://models/AOTL_Warrior_R55_Cl
 ## Higgsfield pilot knight: Meshy 7 mesh + 24-bone auto-rig, our clips retargeted, library Roll_Dodge/Dead,
 ## R52 sword and shield skinned to the hands. Opt-in only (art/higgsfield-pilot-knight branch).
 const PILOT_KNIGHT := "res://models/higgsfield_pilot/knight_pilot_armed.glb"
+## Higgsfield Phase 1 Mage: same Meshy 24-bone rig family; clips shared with the knight (opt-in).
+const PILOT_MAGE := "res://models/higgsfield_mage/mage_pilot_armed.glb"
+## Every Meshy-rigged hero uses the same controller path ("pilot heroes").
+const PILOT_SOURCES := ["pilot_knight_opt_in", "pilot_mage_opt_in"]
 const PILOT_KNIGHT_BONES := ["Hips", "Spine", "Head", "LeftUpLeg", "LeftLeg", "LeftFoot", "RightUpLeg", "RightLeg", "RightFoot", "LeftHand", "RightHand"]
 ## Knight locomotion (measured in Godot 2026-11-20, foot speed at ground contact). Each controller mode uses
 ## the clip whose natural stride fits it, with playback scaled so the planted foot matches the body speed:
@@ -37,6 +41,15 @@ const PILOT_ROLL_TIME := 0.9
 ## main cut) is used; the blade crosses the front at 0.81 s = 57 % of that, the shared contact phase.
 const PILOT_SLASH_END := 1.42
 const PILOT_SLASH_TIME := 0.9
+## Pilot Mage spell set (paid library casts, approved 2026-11-20). Each spell plays its own clip, trimmed to
+## [t0, t1] s and time-scaled to `time`; `phase` is the measured release (hand-speed peak / arm extension) in
+## the trimmed clip, where the controller emits `impact`. LMB / Q / E / R on the Mage (1 / 2 / 3 too in legacy labs).
+const MAGE_SPELLS := {
+	"Bolt":     {"clip": "Cast_Bolt",  "t0": 0.17, "t1": 2.42, "time": 1.25, "phase": 0.33, "cd": 0.0, "reach": 6.0, "cost": 6.0},
+	"Lance":    {"clip": "Cast_Lunge", "t0": 0.0,  "t1": 3.38, "time": 2.0,  "phase": 0.31, "cd": 3.0, "reach": 4.5, "cost": 18.0},
+	"Nova":     {"clip": "Cast_Nova",  "t0": 0.0,  "t1": 2.71, "time": 1.8,  "phase": 0.69, "cd": 5.0, "reach": 0.0, "cost": 30.0},
+	"Judgment": {"clip": "Cast_Sweep", "t0": 0.12, "t1": 2.12, "time": 1.5,  "phase": 0.34, "cd": 3.5, "reach": 3.2, "cost": 24.0},
+}
 const PILOT_SWORD_HAND := "RightHand"   # the 1.83 s library roll is played at ~2x to fit the dodge window
 const WARRIOR_R39 := "res://models/AOTL_Warrior_R39.glb"
 const WARRIOR_R37 := "res://models/AOTL_Warrior_R37.glb"
@@ -61,6 +74,28 @@ var attack_type := "Slash"
 var has_impacted := false
 var dodge_t := 0.0
 var spell_cd := 0.0
+## Mana (ARPG HUD globe). Mage spells cost MAGE_SPELLS[..]["cost"]; the Warrior's Cast costs WARRIOR_CAST_COST.
+var max_mana := 120.0
+var mana := 120.0
+const MANA_REGEN := 6.0
+var mana_regen := MANA_REGEN          # the game sets it from the character's stats
+var external_costs := false           # the game charges mana / cooldowns itself (scripts/game/game_director.gd)
+var primary_action: Callable          # the game: LMB-on-enemy uses the skill in the LMB well
+const WARRIOR_CAST_COST := 20.0
+## Number keys 1/2/3 trigger skills (legacy labs). The ARPG HUD turns this off: 1-5 are potions, skills are Q E R.
+var number_keys_for_skills := true
+## Click-to-move (Diablo / PoE / Last Epoch style), enabled by the ARPG HUD labs: LMB on the ground moves (hold to
+## follow the cursor), LMB on an enemy walks into range and attacks, Shift+LMB attacks in place, Q W E R T cast
+## toward the cursor, Space dodges toward the cursor. WASD is ignored in this mode.
+var click_to_move := false
+var move_target := Vector3.INF          # ground point to walk to (INF = none)
+var attack_target: Node3D = null        # enemy to approach and attack
+var aim_point := Vector3.INF            # cursor on the ground, updated by the lab every frame
+const ARRIVE_RADIUS := 0.18
+const MELEE_RANGE := 1.6
+## Current Mage spell ("" for the generic Cast); cooldowns per spell.
+var spell_variant := ""
+var spell_cds := {}
 var attack_cd := 0.0
 var dodge_cd := 0.0
 var invulnerable := 0.0
@@ -82,6 +117,10 @@ var equipment_debug_equipped := false
 @export var enable_r54_elbow_helper_candidate := false
 @export var enable_r55_clip_safe_elbow_candidate := false
 @export var enable_pilot_knight_candidate := false
+@export var enable_pilot_mage_candidate := false
+
+func is_pilot_hero() -> bool:
+	return active_model_source in PILOT_SOURCES
 
 ## The pilot knight uses Meshy's humanoid bone names and a library roll in place of Dodge.
 func _pilot_knight_is_valid(candidate: Node3D) -> bool:
@@ -145,6 +184,11 @@ func _ready() -> void:
 		model_candidates.push_front({"path": WARRIOR_R55_CLIP_SAFE_ELBOW_CANDIDATE, "source": "warrior_r55_opt_in"})
 	if enable_pilot_knight_candidate:
 		model_candidates.push_front({"path": PILOT_KNIGHT, "source": "pilot_knight_opt_in"})
+	if enable_pilot_mage_candidate:
+		model_candidates.push_front({"path": PILOT_MAGE, "source": "pilot_mage_opt_in"})
+	if class_data != null and class_data.hero_model != null:
+		# the game: the hero model comes from the class's ClassData resource (one controller for every class)
+		model_candidates.push_front({"path": class_data.hero_model.resource_path, "source": "pilot_mage_opt_in" if class_data.id == "mage" else "pilot_knight_opt_in"})
 	for option in model_candidates:
 		var path: String = option["path"]
 		if not ResourceLoader.exists(path):
@@ -153,7 +197,7 @@ func _ready() -> void:
 		if packed == null:
 			continue
 		var candidate := packed.instantiate() as Node3D
-		var valid := candidate != null and (_pilot_knight_is_valid(candidate) if option["source"] == "pilot_knight_opt_in" else _production_model_is_valid(candidate))
+		var valid := candidate != null and (_pilot_knight_is_valid(candidate) if option["source"] in PILOT_SOURCES else _production_model_is_valid(candidate))
 		if valid:
 			body.free()
 			body = candidate
@@ -177,7 +221,7 @@ func _ready() -> void:
 	# GLB and the older models' animation mappings are never altered.
 	if active_model_source in ["warrior_r50_opt_in", "warrior_r52_opt_in", "warrior_r53_opt_in", "warrior_r54_opt_in", "warrior_r55_opt_in"] and clip_names.has("Slash_FullBody_R50"):
 		clip_names["Slash"] = clip_names["Slash_FullBody_R50"]
-	if active_model_source == "pilot_knight_opt_in":
+	if is_pilot_hero():
 		_prepare_pilot_knight_clips()
 		_prepare_pilot_blade()
 		model_yaw_offset = PI
@@ -301,13 +345,21 @@ func _prepare_pilot_knight_clips() -> void:
 		clip_names["Stroll"] = clip_names["Casual_Walk"]
 		for c in ["RunFast", "Casual_Walk"]:
 			animation.get_animation(clip_names[c]).loop_mode = Animation.LOOP_LINEAR
-	_setup_arm_carry()
 	if clip_names.has("Left_Slash"):
 		var trimmed := _trimmed(animation.get_animation(clip_names["Left_Slash"]), 0.0, PILOT_SLASH_END)
 		animation.get_animation_library("").add_animation("Pilot_Slash", trimmed)
 		clip_names["Slash"] = "Pilot_Slash"
 	if clip_names.has("Dead"):
 		clip_names["Death"] = clip_names["Dead"]
+	# Mage spells: trimmed copies named Mage_<Spell> (the paid source clips stay untouched in the GLB).
+	for spell in MAGE_SPELLS:
+		var spec: Dictionary = MAGE_SPELLS[spell]
+		if clip_names.has(spec["clip"]):
+			var src := animation.get_animation(clip_names[spec["clip"]])
+			var cut := _trimmed(src, spec["t0"], minf(spec["t1"], src.length))
+			animation.get_animation_library("").add_animation("Mage_" + spell, cut)
+			clip_names["Mage_" + spell] = "Mage_" + spell
+	_prepare_weapon_moves()
 	var roll := animation.get_animation(clip_names["Roll_Dodge"])
 	var sk := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
 	for t in roll.get_track_count():
@@ -318,6 +370,40 @@ func _prepare_pilot_knight_clips() -> void:
 		for k in roll.track_get_key_count(t):
 			var v: Vector3 = roll.track_get_key_value(t, k)
 			roll.track_set_key_value(t, k, Vector3(first.x, v.y, first.z))
+	# Last: the carry pose seeks the player, which caches the clip library; every clip edit and addition above
+	# must come first (a stale cache after later library changes crashed the engine on the next frame, 11-27).
+	_setup_arm_carry()
+
+## Class weapon attacks (ClassData.weapon_moves): trimmed copies named Move_<kind>, played instead of the shared
+## swing for that attack kind, with their own length and contact phase (like the Mage's spells).
+var weapon_moves := {}
+var default_slash := ""
+func _prepare_weapon_moves() -> void:
+	default_slash = String(clip_names.get("Slash", ""))
+	if class_data == null or class_data.get("weapon_moves") == null: return
+	var moves: Dictionary = class_data.weapon_moves
+	for kind in moves:
+		var spec: Dictionary = moves[kind]
+		if not clip_names.has(String(spec["clip"])): continue
+		var src := animation.get_animation(clip_names[String(spec["clip"])])
+		var cut := _trimmed(src, float(spec["t0"]), minf(float(spec["t1"]), src.length))
+		var sk_m := body.find_children("*", "Skeleton3D", true, false)[0] as Skeleton3D
+		_pin_hips(cut, sk_m.get_bone_rest(sk_m.find_bone("Hips")).origin)
+		animation.get_animation_library("").add_animation("Move_" + String(kind), cut)
+		clip_names["Move_" + String(kind)] = "Move_" + String(kind)
+		weapon_moves[String(kind)] = spec
+
+## Keep the hips' height (crouch / rise) but drop their horizontal travel: the controller moves the hero, so a
+## library clip's root motion would slide him off his spot and snap back when the attack ends.
+## Pinned to the rest position, not the clip's first key: some library clips have already stepped away by the
+## start of the used window.
+static func _pin_hips(anim: Animation, rest: Vector3) -> void:
+	for t in anim.get_track_count():
+		if anim.track_get_type(t) != Animation.TYPE_POSITION_3D or not String(anim.track_get_path(t)).ends_with(":Hips"):
+			continue
+		for k in anim.track_get_key_count(t):
+			var v: Vector3 = anim.track_get_key_value(t, k)
+			anim.track_set_key_value(t, k, Vector3(rest.x, v.y, rest.z))
 
 ## Carry pose = the arms of the Idle's first frame (sword raised ready in the right hand, shield on the left).
 func _setup_arm_carry() -> void:
@@ -352,11 +438,17 @@ func _play(clip: String) -> void:
 		return
 	if anim_state != clip:
 		var speed := 1.0
-		if active_model_source == "pilot_knight_opt_in" and clip == "Dodge":
+		if is_pilot_hero() and clip == "Dodge":
 			speed = animation.get_animation(clip_names[clip]).length / PILOT_ROLL_TIME
-		elif active_model_source == "pilot_knight_opt_in" and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
+		elif clip == "Cast" and spell_variant != "" and String(clip_names[clip]).begins_with("Mage_"):
+			var spec: Dictionary = MAGE_SPELLS[spell_variant]
+			speed = (float(spec["t1"]) - float(spec["t0"])) / float(spec["time"])
+		elif clip == "Slash" and String(clip_names[clip]).begins_with("Move_") and weapon_moves.has(attack_type):
+			var mv: Dictionary = weapon_moves[attack_type]
+			speed = (minf(float(mv["t1"]), animation.get_animation(clip_names[clip]).length + float(mv["t0"])) - float(mv["t0"])) / float(mv["time"])
+		elif is_pilot_hero() and clip == "Slash" and clip_names[clip] == "Pilot_Slash":
 			speed = PILOT_SLASH_END / PILOT_SLASH_TIME
-		elif active_model_source == "pilot_knight_opt_in" and PILOT_STRIDE_SPEED.has(clip):
+		elif is_pilot_hero() and PILOT_STRIDE_SPEED.has(clip):
 			var body_speed: float = {"Walk": WALK_SPEED, "Run": RUN_SPEED, "Stroll": PILOT_STROLL_SPEED}[clip]
 			speed = body_speed / float(PILOT_STRIDE_SPEED[clip])
 		animation.play(clip_names[clip], 0.16, speed)
@@ -366,26 +458,110 @@ func _play(clip: String) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
 		return
+	if click_to_move and not (event is InputEventKey and event.keycode in [KEY_F9, KEY_F10, KEY_F11]):
+		return   # ARPG HUD mode: every action comes through the rebindable key map (arpg_hud.gd / keybinds.gd)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			_attack("Slash", 0.72)
+			_mage_or("Bolt", "Slash", 0.72)
 	elif event is InputEventKey:
 		match event.keycode:
 			KEY_F9: _toggle_terrain_ik()
 			KEY_F10: _toggle_terrain_ik_debug()
 			KEY_F11: _toggle_equipment_socket_preview()
-			KEY_SPACE: _dodge()
-			KEY_1: _attack("Cleave", 0.76)
-			KEY_2: _attack("Dash", 0.68)
-			KEY_3: _attack("Cast", 1.4)
+			KEY_SPACE:
+				if click_to_move: _face_aim()
+				_dodge()
+			# Click-to-move: skills on Q W E (R T reserved), cast toward the cursor.
+			# Legacy WASD labs: W is movement, so the skill row is Q / E / R.
+			KEY_Q: _skill(0)
+			KEY_W:
+				if click_to_move: _skill(1)
+			KEY_E: _skill(1 if not click_to_move else 2)
+			KEY_R:
+				if not click_to_move: _skill(2)
+			KEY_1:
+				if number_keys_for_skills: _mage_or("Lance", "Cleave", 0.76)
+			KEY_2:
+				if number_keys_for_skills: _mage_or("Nova", "Dash", 0.68)
+			KEY_3:
+				if number_keys_for_skills: _mage_or("Judgment", "Cast", 1.4)
+
+func _skill(i: int) -> void:
+	if click_to_move:
+		_face_aim()
+		stop_moving()
+	match i:
+		0: _mage_or("Lance", "Cleave", 0.76)
+		1: _mage_or("Nova", "Dash", 0.68)
+		2: _mage_or("Judgment", "Cast", 1.4)
+
+## Use a skill by name (from a skill-bar slot), toward the cursor in click-to-move mode.
+const WARRIOR_SKILLS := {"Slash": 0.72, "Cleave": 0.76, "Dash": 0.68, "Cast": 1.4}
+func use_skill(skill_name: String) -> void:
+	if click_to_move:
+		_face_aim()
+		stop_moving()
+	if MAGE_SPELLS.has(skill_name) and is_pilot_mage():
+		cast_spell(skill_name)
+	elif WARRIOR_SKILLS.has(skill_name):
+		_attack(skill_name, WARRIOR_SKILLS[skill_name])
+
+func dodge_toward_aim() -> void:
+	_face_aim()
+	stop_moving()
+	_dodge()
+
+func is_pilot_mage() -> bool:
+	return active_model_source == "pilot_mage_opt_in" and clip_names.has("Mage_Judgment")
+
+func _mage_or(spell: String, kind: String, duration: float) -> void:
+	if is_pilot_mage():
+		cast_spell(spell)
+	else:
+		_attack(kind, duration)
+
+## Mage spell: all are "Cast" attacks for combat, with their own clip, timing, release phase and cooldown.
+func cast_spell(spell: String) -> bool:
+	if not MAGE_SPELLS.has(spell) or attack_t > 0.0 or dodge_t > 0.0 or attack_cd > 0.0:
+		return false
+	if float(spell_cds.get(spell, 0.0)) > 0.0 and not external_costs:
+		return false
+	var spec: Dictionary = MAGE_SPELLS[spell]
+	if mana < float(spec.get("cost", 0.0)) and not external_costs:
+		return false
+	if not external_costs:
+		mana -= float(spec.get("cost", 0.0))
+		spell_cds[spell] = spec["cd"]
+	spell_variant = spell
+	clip_names["Cast"] = clip_names["Mage_" + spell]
+	anim_state = ""
+	attack_serial += 1
+	attack_t = spec["time"]
+	attack_duration = spec["time"]
+	attack_type = "Cast"
+	has_impacted = false
+	attack_cd = 0.30
+	_play("Cast")
+	return true
+
+func spell_reach() -> float:
+	return float(MAGE_SPELLS[spell_variant]["reach"]) if spell_variant != "" else 2.2
 
 func _attack(kind: String, duration: float) -> void:
 	if attack_t > 0.0 or dodge_t > 0.0 or attack_cd > 0.0:
 		return
-	if kind == "Cast" and spell_cd > 0.0:
+	if kind == "Cast" and not external_costs and (spell_cd > 0.0 or mana < WARRIOR_CAST_COST):
 		return
-	if active_model_source == "pilot_knight_opt_in" and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
+	if kind == "Cast" and not external_costs:
+		mana -= WARRIOR_CAST_COST
+	if kind != "Cast" and default_slash != "":
+		var want: String = ("Move_" + kind) if weapon_moves.has(kind) else default_slash
+		if clip_names.get("Slash", "") != want:
+			clip_names["Slash"] = want
+			anim_state = ""            # replay even if the last attack also used the "Slash" slot
+	if is_pilot_hero() and kind != "Cast" and clip_names.get("Slash", "") == "Pilot_Slash":
 		duration = PILOT_SLASH_TIME
+	if weapon_moves.has(kind): duration = float(weapon_moves[kind]["time"])
 	attack_serial += 1
 	attack_t = duration
 	attack_duration = duration
@@ -395,10 +571,33 @@ func _attack(kind: String, duration: float) -> void:
 	if kind == "Cast": spell_cd = 3.5
 	_play("Cast" if kind == "Cast" else "Slash")
 
+## Click-to-move steering: walk to the clicked point, or into range of the attack target and then attack.
+func _click_steer() -> Vector3:
+	if attack_t > 0.0 or dodge_t > 0.0:
+		return Vector3.ZERO
+	if attack_target != null:
+		if not is_instance_valid(attack_target) or float(attack_target.get("inactive_t")) > 0.0:
+			attack_target = null
+			return Vector3.ZERO
+		var d := Vector3(attack_target.global_position.x - global_position.x, 0.0, attack_target.global_position.z - global_position.z)
+		if d.length() <= primary_range():
+			primary_attack()
+			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				attack_target = null      # one attack per click; holding LMB keeps attacking
+			return Vector3.ZERO
+		return d.normalized()
+	if move_target.is_finite():
+		var d := Vector3(move_target.x - global_position.x, 0.0, move_target.z - global_position.z)
+		if d.length() <= ARRIVE_RADIUS:
+			move_target = Vector3.INF
+			return Vector3.ZERO
+		return d.normalized()
+	return Vector3.ZERO
+
 func _dodge() -> void:
 	if dodge_t > 0.0 or dodge_cd > 0.0 or attack_t > 0.0:
 		return
-	dodge_t = PILOT_ROLL_TIME if active_model_source == "pilot_knight_opt_in" else 0.65
+	dodge_t = PILOT_ROLL_TIME if is_pilot_hero() else 0.65
 	dodge_cd = 1.1
 	invulnerable = 0.50
 	_play("Dodge")
@@ -407,6 +606,9 @@ func _physics_process(delta: float) -> void:
 	if arm_carry != null:   # ease the arm layer in/out over ~0.2 s so clip changes don't pop
 		arm_carry.influence = move_toward(arm_carry.influence, arm_carry_target, delta * 5.0)
 	attack_cd = maxf(0.0, attack_cd - delta)
+	mana = minf(max_mana, mana + mana_regen * delta)
+	for k in spell_cds.keys():
+		spell_cds[k] = maxf(0.0, spell_cds[k] - delta)
 	spell_cd = maxf(0.0, spell_cd - delta)
 	dodge_cd = maxf(0.0, dodge_cd - delta)
 	invulnerable = maxf(0.0, invulnerable - delta)
@@ -416,6 +618,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_W): input.y -= 1.0
 	if Input.is_key_pressed(KEY_S): input.y += 1.0
 	input = input.normalized()
+	if click_to_move:
+		input = Vector2.ZERO
 	var cam_right := Vector3.RIGHT
 	var cam_forward := Vector3.FORWARD
 	if camera != null:
@@ -427,7 +631,11 @@ func _physics_process(delta: float) -> void:
 	cam_forward = cam_forward.normalized()
 	var moving := (cam_right * input.x + cam_forward * -input.y).normalized()
 	var sprint := Input.is_key_pressed(KEY_SHIFT)
-	var stroll := active_model_source == "pilot_knight_opt_in" and Input.is_key_pressed(KEY_CTRL) and not sprint
+	var stroll := is_pilot_hero() and Input.is_key_pressed(KEY_CTRL) and not sprint
+	if click_to_move:
+		sprint = false   # Shift is "attack in place" in click-to-move games
+		stroll = false
+		moving = _click_steer()
 	if dodge_t > 0.0:
 		dodge_t = maxf(0.0, dodge_t - delta)
 		if moving.length() > 0.1:
@@ -452,10 +660,15 @@ func _physics_process(delta: float) -> void:
 			clip_phase = animation.current_animation_position / animation.current_animation_length
 		# A missing/unloaded animation never makes combat permanently inert.
 		# Fallback at 85% of the requested attack duration only.
-		var contact_due := (clip_phase >= WEAPON_SWEEP.attack_contact_phase(attack_type) if clip_phase >= 0.0 else elapsed >= attack_duration * 0.85)
+		var contact_phase := WEAPON_SWEEP.attack_contact_phase(attack_type)
+		if attack_type == "Cast" and spell_variant != "":
+			contact_phase = float(MAGE_SPELLS[spell_variant]["phase"])
+		elif weapon_moves.has(attack_type) and String(clip_names.get("Slash", "")).begins_with("Move_"):
+			contact_phase = float(weapon_moves[attack_type]["phase"])
+		var contact_due := (clip_phase >= contact_phase if clip_phase >= 0.0 else elapsed >= attack_duration * 0.85)
 		if not has_impacted and contact_due:
 			has_impacted = true
-			impact.emit(global_position + last_face * (2.2 if attack_type == "Cast" else 1.4), attack_type, last_face)
+			impact.emit(global_position + last_face * (spell_reach() if attack_type == "Cast" else 1.4), attack_type, last_face)
 		if attack_t <= 0.0: anim_state = ""
 	else:
 		var move_speed := PILOT_STROLL_SPEED if stroll else (RUN_SPEED if sprint else WALK_SPEED)
@@ -478,11 +691,78 @@ func _physics_process(delta: float) -> void:
 			cycle_phase = fposmod(animation.current_animation_position / animation.current_animation_length, 1.0)
 		terrain_foot_ik.update_foot_ik(delta, anim_state, cycle_phase)
 
+var death_handler: Callable
+var class_data: Resource              # scripts/game/data/class_data.gd (the game sets it; labs leave it null)           # the game: death screen + respawn instead of the lab's instant reset
+
 func receive_damage(damage: float) -> void:
 	if invulnerable > 0.0: return
 	hp = maxf(0.0, hp - damage)
 	health_changed.emit(hp, max_hp)
+	if hp <= 0.0 and death_handler.is_valid():
+		death_handler.call()
+		return
 	if hp <= 0.0:
 		hp = max_hp
 		global_position = Vector3(0, 0.08, 0)
 		health_changed.emit(hp, max_hp)
+
+func play_death() -> void:
+	if clip_names.has("Death"): _play("Death")
+	else: _play("Idle")
+
+func play_idle() -> void:
+	anim_state = ""
+	_play("Idle")
+
+func command_move(point: Vector3) -> void:
+	attack_target = null
+	move_target = Vector3(point.x, global_position.y, point.z)
+
+func command_attack(target: Node3D) -> void:
+	attack_target = target
+	move_target = Vector3.INF
+
+func stop_moving() -> void:
+	move_target = Vector3.INF
+	attack_target = null
+
+func primary_range() -> float:
+	return float(MAGE_SPELLS["Bolt"]["reach"]) * 0.9 if is_pilot_mage() else MELEE_RANGE
+
+## Primary attack (LMB on an enemy / Shift+LMB): Mage Bolt, Warrior Slash.
+var primary_skill_provider: Callable   # ARPG HUD: the skill in the LMB well
+
+func primary_attack() -> void:
+	_face_aim()
+	if primary_action.is_valid():
+		primary_action.call()
+		return
+	var sk: String = primary_skill_provider.call() if primary_skill_provider.is_valid() else ""
+	if sk != "":
+		if MAGE_SPELLS.has(sk) and is_pilot_mage(): cast_spell(sk)
+		elif WARRIOR_SKILLS.has(sk): _attack(sk, WARRIOR_SKILLS[sk])
+	elif is_pilot_mage():
+		cast_spell("Bolt")
+	else:
+		_attack("Slash", 0.72)
+
+func _face_aim() -> void:
+	var at := aim_point
+	if attack_target != null and is_instance_valid(attack_target):
+		at = attack_target.global_position
+	if at.is_finite():
+		var d := Vector3(at.x - global_position.x, 0.0, at.z - global_position.z)
+		if d.length() > 0.05:
+			last_face = d.normalized()
+			if body != null:
+				body.rotation.y = atan2(-last_face.x, -last_face.z) + model_yaw_offset
+
+## Potions (ARPG HUD belt). Returns true if anything was restored.
+func restore(hp_amount: float, mana_amount: float) -> bool:
+	var before_hp := hp
+	var before_mana := mana
+	hp = minf(max_hp, hp + hp_amount)
+	mana = minf(max_mana, mana + mana_amount)
+	if hp != before_hp:
+		health_changed.emit(hp, max_hp)
+	return hp != before_hp or mana != before_mana

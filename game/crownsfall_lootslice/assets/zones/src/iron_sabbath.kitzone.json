@@ -1,0 +1,781 @@
+{
+ "name": "Iron Sabbath",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 4735,
+ "paths": [
+  {
+   "pts": [
+    [
+     3130,
+     4774
+    ],
+    [
+     3130,
+     4470
+    ],
+    [
+     2999,
+     3810
+    ],
+    [
+     3975,
+     3542
+    ],
+    [
+     3887,
+     2897
+    ],
+    [
+     4573,
+     2527
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4573,
+     2527
+    ],
+    [
+     4561.5,
+     1713.5
+    ],
+    [
+     4550,
+     900
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4569,
+     2282
+    ],
+    [
+     5282,
+     2435
+    ],
+    [
+     5423,
+     2291
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2999,
+     3810
+    ],
+    [
+     1723,
+     3826
+    ],
+    [
+     1037,
+     3776
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4551,
+     981
+    ],
+    [
+     3442,
+     1044
+    ],
+    [
+     2119,
+     961
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3975,
+     3542
+    ],
+    [
+     4555,
+     3922
+    ],
+    [
+     5041,
+     4342
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4443,
+    4158
+   ],
+   "r": 382,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2924,
+    645
+   ],
+   "r": 413,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    715,
+    1353
+   ],
+   "r": 302,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    782,
+    2788
+   ],
+   "r": 378,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5227,
+    3250
+   ],
+   "r": 349,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6945,
+    4356
+   ],
+   "r": 442,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1143,
+    953
+   ],
+   "r": 313,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    722,
+    2981
+   ],
+   "r": 338,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6895,
+    664
+   ],
+   "r": 391,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1451,
+    2587
+   ],
+   "r": 317,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6811,
+    2867
+   ],
+   "r": 284,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6100,
+    1903
+   ],
+   "r": 408,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4809,
+    3183
+   ],
+   "r": 476,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4573,
+    2527
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5423,
+    2291
+   ],
+   "r": 363,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1037,
+    3776
+   ],
+   "r": 477,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2119,
+    961
+   ],
+   "r": 589,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5041,
+    4342
+   ],
+   "r": 411,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4490,
+    3464
+   ],
+   "r": 179,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5254,
+    3029
+   ],
+   "r": 210,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   3130,
+   4774,
+   380
+  ],
+  [
+   5423,
+   2291,
+   300
+  ],
+  [
+   1037,
+   3776,
+   300
+  ],
+  [
+   2119,
+   961,
+   300
+  ],
+  [
+   5041,
+   4342,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    5423,
+    2291,
+    560,
+    0.45
+   ],
+   [
+    1037,
+    3776,
+    560,
+    0.45
+   ],
+   [
+    2119,
+    961,
+    560,
+    0.45
+   ],
+   [
+    5041,
+    4342,
+    560,
+    0.45
+   ],
+   [
+    4573,
+    2527,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4573,
+    2307,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "iron_sabbath_wp",
+   "name": "Iron Sabbath",
+   "at": [
+    4573,
+    2527
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Throne of Glass",
+   "to": "throne_of_glass",
+   "at": [
+    3130,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5591,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  3130,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Red Furnaces",
+   "kind": "landmark",
+   "at": [
+    5423,
+    2291
+   ],
+   "blurb": "Smoky industrial city, red furnaces"
+  },
+  {
+   "name": "Smoky Foundry Street",
+   "kind": "landmark",
+   "at": [
+    1037,
+    3776
+   ],
+   "blurb": "Smoky industrial city, red furnaces"
+  },
+  {
+   "name": "The Last Factory",
+   "kind": "landmark",
+   "at": [
+    2119,
+    961
+   ],
+   "blurb": "Smoky industrial city, red furnaces"
+  },
+  {
+   "name": "Evacuation Yard",
+   "kind": "landmark",
+   "at": [
+    5041,
+    4342
+   ],
+   "blurb": "Smoky industrial city, red furnaces"
+  },
+  {
+   "name": "Throne of Glass",
+   "kind": "landmark",
+   "at": [
+    3130,
+    4774
+   ],
+   "blurb": "To Throne of Glass."
+  }
+ ],
+ "world_id": "iron_sabbath",
+ "grade": {
+  "mul": [
+   0.86,
+   0.66,
+   0.6
+  ],
+  "desat": 0.45,
+  "lift": [
+   0.06,
+   0.01,
+   0.0,
+   1.0
+  ],
+  "mist": [
+   0.55,
+   0.45,
+   0.42
+  ],
+  "water": [
+   0.3,
+   0.12,
+   0.08
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5423,
+    2291
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1037,
+    3776
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2119,
+    961
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    5041,
+    4342
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

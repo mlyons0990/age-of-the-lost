@@ -1,0 +1,78 @@
+{
+ "zone": "the_anchor_of_kinship",
+ "levels": [
+  50,
+  50
+ ],
+ "packs": 14,
+ "seed": 649,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_anchor_of_kinship_0",
+    "the_anchor_of_kinship_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_anchor_of_kinship_1",
+    "the_anchor_of_kinship_1",
+    "the_anchor_of_kinship_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_anchor_of_kinship_0",
+    "the_anchor_of_kinship_1",
+    "the_anchor_of_kinship_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_anchor_of_kinship_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_anchor_of_kinship_2",
+    "the_anchor_of_kinship_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_anchor_of_kinship_0",
+    "the_anchor_of_kinship_0",
+    "the_anchor_of_kinship_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6107,
+    2755
+   ],
+   "types": [],
+   "boss": "the_anchor_of_kinship_boss_u",
+   "boss_type": "the_anchor_of_kinship_boss",
+   "boss_name": "The Overwrite Surge",
+   "needs_quest": "Q_A05_15"
+  }
+ ],
+ "keep_clear": [
+  [
+   6107,
+   2755,
+   700
+  ]
+ ]
+}

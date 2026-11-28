@@ -1,0 +1,78 @@
+{
+ "zone": "the_remnant_siege",
+ "levels": [
+  63,
+  64
+ ],
+ "packs": 14,
+ "seed": 807,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_remnant_siege_0",
+    "the_remnant_siege_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_remnant_siege_1",
+    "the_remnant_siege_1",
+    "the_remnant_siege_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_remnant_siege_0",
+    "the_remnant_siege_1",
+    "the_remnant_siege_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_remnant_siege_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_remnant_siege_2",
+    "the_remnant_siege_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_remnant_siege_0",
+    "the_remnant_siege_0",
+    "the_remnant_siege_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6523,
+    1543
+   ],
+   "types": [],
+   "boss": "the_remnant_siege_boss_u",
+   "boss_type": "the_remnant_siege_boss",
+   "boss_name": "The Remnant Vanguard",
+   "needs_quest": "Q_A07_05"
+  }
+ ],
+ "keep_clear": [
+  [
+   6523,
+   1543,
+   700
+  ]
+ ]
+}

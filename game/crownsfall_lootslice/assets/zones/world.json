@@ -1,0 +1,2293 @@
+{
+ "zones": [
+  "crownsfall",
+  "whisperwood"
+ ],
+ "town": "crownsfall",
+ "note": "World order for the waypoint window. Each zone JSON lists its own waypoints. lab_zones: kit-built zones not yet in the travel order whose waypoints still unlock.",
+ "map": {
+  "title": "Crownsfall and the Known Lands",
+  "nodes": [
+   {
+    "id": "westgate_refuge",
+    "zone": "westgate_refuge",
+    "name": "Westgate Refuge",
+    "kind": "forest",
+    "at": [
+     0.07,
+     0.773
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Wagon city under ruined viaduct. Present."
+   },
+   {
+    "id": "thornfen",
+    "zone": "thornfen",
+    "name": "Thornfen",
+    "kind": "forest",
+    "at": [
+     0.131,
+     0.341
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 11–12",
+    "blurb": "Mist bog, drowned chapels, reed boats. Present."
+   },
+   {
+    "id": "glassreed_marsh",
+    "zone": "glassreed_marsh",
+    "name": "Glassreed Marsh",
+    "kind": "forest",
+    "at": [
+     0.193,
+     0.268
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 12–13",
+    "blurb": "Frozen ripples and translucent reeds. Echo."
+   },
+   {
+    "id": "blackpine_reach",
+    "zone": "blackpine_reach",
+    "name": "Blackpine Reach",
+    "kind": "forest",
+    "at": [
+     0.254,
+     0.719
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 12–13",
+    "blurb": "Tall dark conifers, charcoal camps. Present."
+   },
+   {
+    "id": "hearthstone_crossing",
+    "zone": "hearthstone_crossing",
+    "name": "Hearthstone Crossing",
+    "kind": "forest",
+    "at": [
+     0.316,
+     0.675
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 13–14",
+    "blurb": "Mountain trade bridge, stone inns. Present."
+   },
+   {
+    "id": "veyr_meridian_outpost",
+    "zone": "veyr_meridian_outpost",
+    "name": "Veyr Meridian Outpost",
+    "kind": "forest",
+    "at": [
+     0.377,
+     0.236
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Angular silver observatory, suspended instruments. Present."
+   },
+   {
+    "id": "windcut_pass",
+    "zone": "windcut_pass",
+    "name": "Windcut Pass",
+    "kind": "forest",
+    "at": [
+     0.439,
+     0.393
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 14–15",
+    "blurb": "Snow ridges, avalanche galleries. Present."
+   },
+   {
+    "id": "riftglass_quarry",
+    "zone": "riftglass_quarry",
+    "name": "Riftglass Quarry",
+    "kind": "forest",
+    "at": [
+     0.5,
+     0.792
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 15–16",
+    "blurb": "Purple crystalline cuts, abandoned cranes. Present."
+   },
+   {
+    "id": "forgotten_bastion",
+    "zone": "forgotten_bastion",
+    "name": "Forgotten Bastion",
+    "kind": "forest",
+    "at": [
+     0.561,
+     0.532
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 16–17",
+    "blurb": "Two fortress layouts stitched together. Echo."
+   },
+   {
+    "id": "greywake_coast",
+    "zone": "greywake_coast",
+    "name": "Greywake Coast",
+    "kind": "forest",
+    "at": [
+     0.623,
+     0.2
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 16–17",
+    "blurb": "Storm cliffs, wrecks, salt villages. Present."
+   },
+   {
+    "id": "saltmirror_harbor",
+    "zone": "saltmirror_harbor",
+    "name": "Saltmirror Harbor",
+    "kind": "forest",
+    "at": [
+     0.684,
+     0.545
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 17–18",
+    "blurb": "Golden Age docks over modern fishing port. Echo."
+   },
+   {
+    "id": "timekeepers_causeway",
+    "zone": "timekeepers_causeway",
+    "name": "Timekeeper's Causeway",
+    "kind": "forest",
+    "at": [
+     0.746,
+     0.788
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 18–19",
+    "blurb": "Obelisks, shifting stone platforms. Present."
+   },
+   {
+    "id": "scar_of_hollow_rain",
+    "zone": "scar_of_hollow_rain",
+    "name": "Scar of Hollow Rain",
+    "kind": "forest",
+    "at": [
+     0.807,
+     0.381
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 18–19",
+    "blurb": "Rain suspended around a broken town. Between."
+   },
+   {
+    "id": "west_meridian_vault",
+    "zone": "west_meridian_vault",
+    "name": "West Meridian Vault",
+    "kind": "forest",
+    "at": [
+     0.869,
+     0.242
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 19–20",
+    "blurb": "Subterranean observatory, cracked rings. Present."
+   },
+   {
+    "id": "meridian_observatory",
+    "zone": "meridian_observatory",
+    "name": "Meridian Observatory",
+    "kind": "forest",
+    "at": [
+     0.93,
+     0.686
+    ],
+    "act": 2,
+    "locked": false,
+    "levels": "Monster level 20–20",
+    "blurb": "High mountain dome, night sky. Present."
+   },
+   {
+    "id": "sunward_threshold",
+    "zone": "sunward_threshold",
+    "name": "Sunward Threshold",
+    "kind": "forest",
+    "at": [
+     0.07,
+     0.542
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 21–22",
+    "blurb": "Golden light, intact monumental transit gate. Echo."
+   },
+   {
+    "id": "aurelian_forum",
+    "zone": "aurelian_forum",
+    "name": "Aurelian Forum",
+    "kind": "forest",
+    "at": [
+     0.131,
+     0.2
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Marble arcades, gardens, civic amphitheater. Echo."
+   },
+   {
+    "id": "lumen_canal",
+    "zone": "lumen_canal",
+    "name": "Lumen Canal",
+    "kind": "forest",
+    "at": [
+     0.193,
+     0.535
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 22–23",
+    "blurb": "Aqueducts, glass barges, luminous locks. Echo."
+   },
+   {
+    "id": "orchard_of_hours",
+    "zone": "orchard_of_hours",
+    "name": "Orchard of Hours",
+    "kind": "forest",
+    "at": [
+     0.254,
+     0.791
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 22–23",
+    "blurb": "Terraced fruit groves, weather machines. Echo."
+   },
+   {
+    "id": "artificers_ward",
+    "zone": "artificers_ward",
+    "name": "Artificers' Ward",
+    "kind": "forest",
+    "at": [
+     0.316,
+     0.39
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 23–24",
+    "blurb": "Brass workshops, ceramic roofs, clockwork cranes. Echo."
+   },
+   {
+    "id": "sapphire_academy",
+    "zone": "sapphire_academy",
+    "name": "Sapphire Academy",
+    "kind": "forest",
+    "at": [
+     0.377,
+     0.237
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 24–25",
+    "blurb": "Observatory libraries, blue glass domes. Echo."
+   },
+   {
+    "id": "workers_terrace",
+    "zone": "workers_terrace",
+    "name": "Workers' Terrace",
+    "kind": "forest",
+    "at": [
+     0.439,
+     0.678
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Crowded apartments, laundry, public kitchens. Echo."
+   },
+   {
+    "id": "garden_of_civic_memory",
+    "zone": "garden_of_civic_memory",
+    "name": "Garden of Civic Memory",
+    "kind": "forest",
+    "at": [
+     0.5,
+     0.717
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 25–26",
+    "blurb": "Memorial trees, inscribed bronze, fountains. Echo."
+   },
+   {
+    "id": "astral_foundry",
+    "zone": "astral_foundry",
+    "name": "Astral Foundry",
+    "kind": "forest",
+    "at": [
+     0.561,
+     0.266
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 26–27",
+    "blurb": "Vast furnaces, suspended metal rings. Echo."
+   },
+   {
+    "id": "concord_senate",
+    "zone": "concord_senate",
+    "name": "Concord Senate",
+    "kind": "forest",
+    "at": [
+     0.623,
+     0.343
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Gold mosaics, rival delegations. Echo."
+   },
+   {
+    "id": "vael_estate",
+    "zone": "vael_estate",
+    "name": "Vael Estate",
+    "kind": "forest",
+    "at": [
+     0.684,
+     0.774
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 27–28",
+    "blurb": "Modest garden house, children's toys, sunroom. Echo."
+   },
+   {
+    "id": "elyndors_archive",
+    "zone": "elyndors_archive",
+    "name": "Elyndor's Archive",
+    "kind": "forest",
+    "at": [
+     0.746,
+     0.586
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 28–29",
+    "blurb": "Labyrinth of paper, crystal catalogs. Echo."
+   },
+   {
+    "id": "chronicle_perimeter",
+    "zone": "chronicle_perimeter",
+    "name": "Chronicle Perimeter",
+    "kind": "forest",
+    "at": [
+     0.807,
+     0.204
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 28–29",
+    "blurb": "Gigantic anchor pylons, guarded plazas. Echo."
+   },
+   {
+    "id": "preservation_laboratory",
+    "zone": "preservation_laboratory",
+    "name": "Preservation Laboratory",
+    "kind": "forest",
+    "at": [
+     0.869,
+     0.49
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 29–30",
+    "blurb": "Medical bays, sealed test chambers. Echo."
+   },
+   {
+    "id": "concord_crown_spire",
+    "zone": "concord_crown_spire",
+    "name": "Concord Crown Spire",
+    "kind": "forest",
+    "at": [
+     0.93,
+     0.799
+    ],
+    "act": 3,
+    "locked": false,
+    "levels": "Monster level 30–30",
+    "blurb": "Capital skyline and ceremonial engine overlook. Echo."
+   },
+   {
+    "id": "last_dawn_station",
+    "zone": "last_dawn_station",
+    "name": "Last Dawn Station",
+    "kind": "forest",
+    "at": [
+     0.07,
+     0.273
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 31–32",
+    "blurb": "Sunrise rail terminal, evacuation posters. Echo."
+   },
+   {
+    "id": "cinder_orchard",
+    "zone": "cinder_orchard",
+    "name": "Cinder Orchard",
+    "kind": "forest",
+    "at": [
+     0.131,
+     0.335
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 31–32",
+    "blurb": "Golden fields turning to ash. Echo."
+   },
+   {
+    "id": "south_reservoir",
+    "zone": "south_reservoir",
+    "name": "South Reservoir",
+    "kind": "forest",
+    "at": [
+     0.193,
+     0.77
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 32–33",
+    "blurb": "Water towers, collapsed canals. Echo."
+   },
+   {
+    "id": "labor_quarter_siege",
+    "zone": "labor_quarter_siege",
+    "name": "Labor Quarter Siege",
+    "kind": "forest",
+    "at": [
+     0.254,
+     0.596
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 32–33",
+    "blurb": "Barricades, frightened civilians, military patrols. Echo."
+   },
+   {
+    "id": "hall_of_seven_measures",
+    "zone": "hall_of_seven_measures",
+    "name": "Hall of Seven Measures",
+    "kind": "forest",
+    "at": [
+     0.316,
+     0.206
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 33–34",
+    "blurb": "Seven enormous control dials. Echo."
+   },
+   {
+    "id": "vaels_last_road",
+    "zone": "vaels_last_road",
+    "name": "Vael's Last Road",
+    "kind": "forest",
+    "at": [
+     0.377,
+     0.48
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 34–35",
+    "blurb": "Burning avenues, violet rain. Echo."
+   },
+   {
+    "id": "cathedral_before_the_fall",
+    "zone": "cathedral_before_the_fall",
+    "name": "Cathedral Before the Fall",
+    "kind": "forest",
+    "at": [
+     0.439,
+     0.799
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 34–35",
+    "blurb": "Intact stained glass, crowded sanctuary. Echo."
+   },
+   {
+    "id": "senate_of_ash",
+    "zone": "senate_of_ash",
+    "name": "Senate of Ash",
+    "kind": "forest",
+    "at": [
+     0.5,
+     0.443
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 35–36",
+    "blurb": "Shattered dome, emergency council. Echo."
+   },
+   {
+    "id": "chronicle_access_ring",
+    "zone": "chronicle_access_ring",
+    "name": "Chronicle Access Ring",
+    "kind": "forest",
+    "at": [
+     0.561,
+     0.215
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 36–37",
+    "blurb": "Industrial corridors, overloaded coils. Echo."
+   },
+   {
+    "id": "the_first_sundering",
+    "zone": "the_first_sundering",
+    "name": "The First Sundering",
+    "kind": "forest",
+    "at": [
+     0.623,
+     0.631
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 36–37",
+    "blurb": "Capital split by violet seams, falling architecture. Echo."
+   },
+   {
+    "id": "the_empty_morning",
+    "zone": "the_empty_morning",
+    "name": "The Empty Morning",
+    "kind": "forest",
+    "at": [
+     0.684,
+     0.751
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 37–38",
+    "blurb": "Sunless streets with absent silhouettes. Between."
+   },
+   {
+    "id": "remnant_court_refuge",
+    "zone": "remnant_court_refuge",
+    "name": "Remnant Court Refuge",
+    "kind": "forest",
+    "at": [
+     0.746,
+     0.305
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 38–39",
+    "blurb": "Floating palace fragments, formal halls. Between."
+   },
+   {
+    "id": "hollow_choir_reliquary",
+    "zone": "hollow_choir_reliquary",
+    "name": "Hollow Choir Reliquary",
+    "kind": "forest",
+    "at": [
+     0.807,
+     0.299
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 38–39",
+    "blurb": "Resonant black arches, faceless masks. Between."
+   },
+   {
+    "id": "keepers_lantern",
+    "zone": "keepers_lantern",
+    "name": "Keepers' Lantern",
+    "kind": "forest",
+    "at": [
+     0.869,
+     0.747
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 39–40",
+    "blurb": "Archive camp of warm lanterns and paper tags. Between."
+   },
+   {
+    "id": "engine_of_first_night",
+    "zone": "engine_of_first_night",
+    "name": "Engine of First Night",
+    "kind": "forest",
+    "at": [
+     0.93,
+     0.637
+    ],
+    "act": 4,
+    "locked": false,
+    "levels": "Monster level 40–40",
+    "blurb": "The initial control core frozen in disaster. Echo."
+   },
+   {
+    "id": "broken_meridian",
+    "zone": "broken_meridian",
+    "name": "Broken Meridian",
+    "kind": "forest",
+    "at": [
+     0.07,
+     0.212
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 41–42",
+    "blurb": "Observatory torn open, refugee encampments. Present."
+   },
+   {
+    "id": "throne_of_glass",
+    "zone": "throne_of_glass",
+    "name": "Throne of Glass",
+    "kind": "forest",
+    "at": [
+     0.131,
+     0.621
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 41–42",
+    "blurb": "Royal halls from a vanished epoch. Between."
+   },
+   {
+    "id": "rain_kingdom",
+    "zone": "rain_kingdom",
+    "name": "Rain Kingdom",
+    "kind": "forest",
+    "at": [
+     0.193,
+     0.756
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 42–43",
+    "blurb": "Perpetual rain, canals, dark slate towers. Echo."
+   },
+   {
+    "id": "verdant_empire",
+    "zone": "verdant_empire",
+    "name": "Verdant Empire",
+    "kind": "forest",
+    "at": [
+     0.254,
+     0.312
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 42–43",
+    "blurb": "Forest-grown palaces, luminous roots. Echo."
+   },
+   {
+    "id": "iron_sabbath",
+    "zone": "iron_sabbath",
+    "name": "Iron Sabbath",
+    "kind": "forest",
+    "at": [
+     0.316,
+     0.292
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 43–44",
+    "blurb": "Smoky industrial city, red furnaces. Echo."
+   },
+   {
+    "id": "moonfall_republic",
+    "zone": "moonfall_republic",
+    "name": "Moonfall Republic",
+    "kind": "forest",
+    "at": [
+     0.377,
+     0.741
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 44–45",
+    "blurb": "Silver rooftops, open assembly plazas. Echo."
+   },
+   {
+    "id": "orchard_of_lost_children",
+    "zone": "orchard_of_lost_children",
+    "name": "The Orchard of Lost Children",
+    "kind": "forest",
+    "at": [
+     0.439,
+     0.646
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 44–45",
+    "blurb": "Floating houses, small lanterns, gentle grass. Between."
+   },
+   {
+    "id": "court_of_borrowed_faces",
+    "zone": "court_of_borrowed_faces",
+    "name": "Court of Borrowed Faces",
+    "kind": "forest",
+    "at": [
+     0.5,
+     0.221
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 45–46",
+    "blurb": "Mirrored galleries and masks. Between."
+   },
+   {
+    "id": "the_choirs_deep",
+    "zone": "the_choirs_deep",
+    "name": "The Choir's Deep",
+    "kind": "forest",
+    "at": [
+     0.561,
+     0.426
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 46–47",
+    "blurb": "Violet abyss and resonant platforms. Between."
+   },
+   {
+    "id": "unbound_causeway",
+    "zone": "unbound_causeway",
+    "name": "Unbound Causeway",
+    "kind": "forest",
+    "at": [
+     0.623,
+     0.798
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 46–47",
+    "blurb": "Floating bridge fragments from many cultures. Between."
+   },
+   {
+    "id": "crownsfall_of_three_ages",
+    "zone": "crownsfall_of_three_ages",
+    "name": "Crownsfall of Three Ages",
+    "kind": "forest",
+    "at": [
+     0.684,
+     0.497
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Same plaza in three architectural versions. Echo."
+   },
+   {
+    "id": "the_regents_archive",
+    "zone": "the_regents_archive",
+    "name": "The Regent's Archive",
+    "kind": "forest",
+    "at": [
+     0.746,
+     0.203
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 48–49",
+    "blurb": "Royal library, concealed foundation records. Present."
+   },
+   {
+    "id": "hearth_of_names",
+    "zone": "hearth_of_names",
+    "name": "Hearth of Names",
+    "kind": "forest",
+    "at": [
+     0.807,
+     0.579
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 48–49",
+    "blurb": "Keeper sanctuary, warm lights among ruins. Between."
+   },
+   {
+    "id": "riven_royal_court",
+    "zone": "riven_royal_court",
+    "name": "Riven Royal Court",
+    "kind": "forest",
+    "at": [
+     0.869,
+     0.777
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 49–50",
+    "blurb": "Palace breaking into present streets. Between."
+   },
+   {
+    "id": "the_anchor_of_kinship",
+    "zone": "the_anchor_of_kinship",
+    "name": "The Anchor of Kinship",
+    "kind": "archive",
+    "at": [
+     0.93,
+     0.349
+    ],
+    "act": 5,
+    "locked": false,
+    "levels": "Monster level 50–50",
+    "blurb": "Merged refuge, rotating anchor ring. Present/between."
+   },
+   {
+    "id": "crownsfall_under_siege",
+    "zone": "crownsfall_under_siege",
+    "name": "Crownsfall Under Siege",
+    "kind": "forest",
+    "at": [
+     0.07,
+     0.416
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 51–52",
+    "blurb": "Barricades, darkened fountains, civic shelters. Present."
+   },
+   {
+    "id": "greenwood_fracture",
+    "zone": "greenwood_fracture",
+    "name": "Greenwood Fracture",
+    "kind": "forest",
+    "at": [
+     0.131,
+     0.796
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 51–52",
+    "blurb": "Forest split across seasons and ages. Present/echo."
+   },
+   {
+    "id": "bellwater_inundation",
+    "zone": "bellwater_inundation",
+    "name": "Bellwater Inundation",
+    "kind": "forest",
+    "at": [
+     0.193,
+     0.507
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 52–53",
+    "blurb": "Flooded mills, refugee rafts. Present."
+   },
+   {
+    "id": "greywake_armada",
+    "zone": "greywake_armada",
+    "name": "Greywake Armada",
+    "kind": "forest",
+    "at": [
+     0.254,
+     0.202
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 52–53",
+    "blurb": "Wrecked harbor, ships from other epochs. Present."
+   },
+   {
+    "id": "blackpine_winter",
+    "zone": "blackpine_winter",
+    "name": "Blackpine Winter",
+    "kind": "forest",
+    "at": [
+     0.316,
+     0.569
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 53–54",
+    "blurb": "Summer camp surrounded by lethal frost. Present/echo."
+   },
+   {
+    "id": "riftglass_caldera",
+    "zone": "riftglass_caldera",
+    "name": "Riftglass Caldera",
+    "kind": "forest",
+    "at": [
+     0.377,
+     0.78
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 54–55",
+    "blurb": "Fractured quarry, molten violet crystals. Present."
+   },
+   {
+    "id": "veyr_sanctuary",
+    "zone": "veyr_sanctuary",
+    "name": "Veyr Sanctuary",
+    "kind": "forest",
+    "at": [
+     0.439,
+     0.358
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Phase shelters under shifting stars. Present."
+   },
+   {
+    "id": "archive_of_forbidden_futures",
+    "zone": "archive_of_forbidden_futures",
+    "name": "Archive of Forbidden Futures",
+    "kind": "forest",
+    "at": [
+     0.5,
+     0.256
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 55–56",
+    "blurb": "Unrealized histories, unfinished buildings. Between."
+   },
+   {
+    "id": "the_sentinels_wall",
+    "zone": "the_sentinels_wall",
+    "name": "The Sentinel's Wall",
+    "kind": "forest",
+    "at": [
+     0.561,
+     0.705
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 56–57",
+    "blurb": "Continental fortification, refugee roads. Present."
+   },
+   {
+    "id": "meridians_descent",
+    "zone": "meridians_descent",
+    "name": "Meridian's Descent",
+    "kind": "forest",
+    "at": [
+     0.623,
+     0.691
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 56–57",
+    "blurb": "Subsurface silver machinery, dim lamps. Present."
+   },
+   {
+    "id": "the_last_timekeeper",
+    "zone": "the_last_timekeeper",
+    "name": "The Last Timekeeper",
+    "kind": "forest",
+    "at": [
+     0.684,
+     0.246
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 57–58",
+    "blurb": "Clock sanctuary fractured into seconds. Between."
+   },
+   {
+    "id": "the_choirs_procession",
+    "zone": "the_choirs_procession",
+    "name": "The Choir's Procession",
+    "kind": "forest",
+    "at": [
+     0.746,
+     0.374
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 58–59",
+    "blurb": "Violet march across fields and ruined towns. Present/between."
+   },
+   {
+    "id": "confluence_camp",
+    "zone": "confluence_camp",
+    "name": "Confluence Camp",
+    "kind": "forest",
+    "at": [
+     0.807,
+     0.786
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Allied encampment, banners of many epochs. Present."
+   },
+   {
+    "id": "sevenfold_gate",
+    "zone": "sevenfold_gate",
+    "name": "Sevenfold Gate",
+    "kind": "forest",
+    "at": [
+     0.869,
+     0.552
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 59–60",
+    "blurb": "Seven rotating anchor bridges. Between."
+   },
+   {
+    "id": "the_threshold_of_continuance",
+    "zone": "the_threshold_of_continuance",
+    "name": "The Threshold of Continuance",
+    "kind": "forest",
+    "at": [
+     0.93,
+     0.2
+    ],
+    "act": 6,
+    "locked": false,
+    "levels": "Monster level 60–60",
+    "blurb": "A bronze horizon beneath a white sun. Between."
+   },
+   {
+    "id": "the_first_index",
+    "zone": "the_first_index",
+    "name": "The First Index",
+    "kind": "forest",
+    "at": [
+     0.07,
+     0.697
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 61–62",
+    "blurb": "Vast shelves of suspended names. Between."
+   },
+   {
+    "id": "vault_of_continuity",
+    "zone": "vault_of_continuity",
+    "name": "Vault of Continuity",
+    "kind": "forest",
+    "at": [
+     0.131,
+     0.699
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 61–62",
+    "blurb": "Interlocking bronze rings and white light. Between."
+   },
+   {
+    "id": "the_mercy_chamber",
+    "zone": "the_mercy_chamber",
+    "name": "The Mercy Chamber",
+    "kind": "forest",
+    "at": [
+     0.193,
+     0.252
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 62–63",
+    "blurb": "Quiet clinical halls repeating a last conversation. Echo."
+   },
+   {
+    "id": "the_kings_unmaking",
+    "zone": "the_kings_unmaking",
+    "name": "The King's Unmaking",
+    "kind": "forest",
+    "at": [
+     0.254,
+     0.365
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 62–63",
+    "blurb": "Oris's chambers and a crumbling capital. Echo."
+   },
+   {
+    "id": "the_remnant_siege",
+    "zone": "the_remnant_siege",
+    "name": "The Remnant Siege",
+    "kind": "forest",
+    "at": [
+     0.316,
+     0.783
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 63–64",
+    "blurb": "Royal forces at the central gate. Between."
+   },
+   {
+    "id": "the_choirs_last_hymn",
+    "zone": "the_choirs_last_hymn",
+    "name": "The Choir's Last Hymn",
+    "kind": "forest",
+    "at": [
+     0.377,
+     0.562
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 64–65",
+    "blurb": "Cathedral of vibrating black glass. Between."
+   },
+   {
+    "id": "caldrins_vigil",
+    "zone": "caldrins_vigil",
+    "name": "Caldrin's Vigil",
+    "kind": "forest",
+    "at": [
+     0.439,
+     0.201
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 64–65",
+    "blurb": "The cathedral threshold from Act 1, restored. Between."
+   },
+   {
+    "id": "the_seven_chambers",
+    "zone": "the_seven_chambers",
+    "name": "The Seven Chambers",
+    "kind": "forest",
+    "at": [
+     0.5,
+     0.515
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 65–66",
+    "blurb": "Seven themed regulator cells. Between."
+   },
+   {
+    "id": "the_crown_of_empty_histories",
+    "zone": "the_crown_of_empty_histories",
+    "name": "The Crown of Empty Histories",
+    "kind": "forest",
+    "at": [
+     0.561,
+     0.795
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 66–67",
+    "blurb": "Fractured models of entire kingdoms. Between."
+   },
+   {
+    "id": "the_unwritten_shore",
+    "zone": "the_unwritten_shore",
+    "name": "The Unwritten Shore",
+    "kind": "forest",
+    "at": [
+     0.623,
+     0.409
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 66–67",
+    "blurb": "Quiet sea of lights, refugee bridges. Between."
+   },
+   {
+    "id": "chronicle_heart",
+    "zone": "chronicle_heart",
+    "name": "Chronicle Heart",
+    "kind": "forest",
+    "at": [
+     0.684,
+     0.228
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 67–68",
+    "blurb": "Enormous rotating core, reality seams. Between."
+   },
+   {
+    "id": "the_last_decision",
+    "zone": "the_last_decision",
+    "name": "The Last Decision",
+    "kind": "forest",
+    "at": [
+     0.746,
+     0.661
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 68–69",
+    "blurb": "Still chamber, three control paths. Between."
+   },
+   {
+    "id": "crownsfall_reborn",
+    "zone": "crownsfall_reborn",
+    "name": "Crownsfall Reborn",
+    "kind": "forest",
+    "at": [
+     0.807,
+     0.73
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "City altered by chosen outcome. Present."
+   },
+   {
+    "id": "the_open_meridian",
+    "zone": "the_open_meridian",
+    "name": "The Open Meridian",
+    "kind": "forest",
+    "at": [
+     0.869,
+     0.28
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 69–70",
+    "blurb": "New stabilized frontier crossing. Present/between."
+   },
+   {
+    "id": "the_lantern_beyond",
+    "zone": "the_lantern_beyond",
+    "name": "The Lantern Beyond",
+    "kind": "forest",
+    "at": [
+     0.93,
+     0.327
+    ],
+    "act": 7,
+    "locked": false,
+    "levels": "Monster level 70–70",
+    "blurb": "Memorial garden and distant horizon. Present/between."
+   },
+   {
+    "id": "whisperwood",
+    "zone": "whisperwood_forest",
+    "name": "Whisperwood",
+    "kind": "forest",
+    "at": [
+     0.36,
+     0.42
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 1–2",
+    "blurb": "Old oaks, standing stones and a fae ring; the Greenwood Marches' oldest wood. Present."
+   },
+   {
+    "id": "mossbarrow_crypts",
+    "zone": "mossbarrow_crypts",
+    "name": "Mossbarrow Crypts",
+    "kind": "dungeon",
+    "at": [
+     0.46,
+     0.06
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 2–3",
+    "blurb": "Burial crypt under the Whisperwood's standing stones. Present."
+   },
+   {
+    "id": "hollowmere",
+    "zone": "hollowmere",
+    "name": "Hollowmere",
+    "kind": "forest",
+    "at": [
+     0.48,
+     0.56
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 3–4",
+    "blurb": "Marshlands, drowned lanterns, heavy mist. Present."
+   },
+   {
+    "id": "sunken_chapel",
+    "zone": "sunken_chapel",
+    "name": "Sunken Chapel",
+    "kind": "dungeon",
+    "at": [
+     0.46,
+     0.78
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 3–4",
+    "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless. Echo."
+   },
+   {
+    "id": "greyfen_causeway",
+    "zone": "greyfen_causeway",
+    "name": "Greyfen Causeway",
+    "kind": "heath",
+    "at": [
+     0.6,
+     0.62
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Ruined causeway over the salt heath, toll encounter. Present."
+   },
+   {
+    "id": "saltmarrow",
+    "zone": "saltmarrow",
+    "name": "Saltmarrow",
+    "kind": "forest",
+    "at": [
+     0.7,
+     0.72
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Coastal sanctuary, trade and respite. Present."
+   },
+   {
+    "id": "wreckers_strand",
+    "zone": "wreckers_strand",
+    "name": "Wrecker's Strand",
+    "kind": "forest",
+    "at": [
+     0.8,
+     0.82
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 5–6",
+    "blurb": "Shipwrecks and shoreline combat. Present."
+   },
+   {
+    "id": "smugglers_grotto",
+    "zone": "smugglers_grotto",
+    "name": "Smuggler's Grotto",
+    "kind": "dungeon",
+    "at": [
+     0.9,
+     0.94
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 6–7",
+    "blurb": "Hidden sea cavern of relic smugglers. Present."
+   },
+   {
+    "id": "lanternfall_cliffs",
+    "zone": "lanternfall_cliffs",
+    "name": "Lanternfall Cliffs",
+    "kind": "forest",
+    "at": [
+     0.82,
+     0.6
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 6–7",
+    "blurb": "Clifftop ruins and warden lanterns. Present."
+   },
+   {
+    "id": "riftscar_moor",
+    "zone": "riftscar_moor",
+    "name": "Riftscar Moor",
+    "kind": "forest",
+    "at": [
+     0.76,
+     0.42
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 7–8",
+    "blurb": "Fractured terrain around an open rift. Present."
+   },
+   {
+    "id": "oldwatch",
+    "zone": "oldwatch",
+    "name": "Oldwatch",
+    "kind": "forest",
+    "at": [
+     0.72,
+     0.2
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Frontier fort, resupply and allies. Present."
+   },
+   {
+    "id": "brackwater_ruins",
+    "zone": "brackwater_ruins",
+    "name": "Brackwater Ruins",
+    "kind": "forest",
+    "at": [
+     0.62,
+     0.32
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 8–9",
+    "blurb": "Golden Age relics flickering between eras; major Lorecasting site. Echo."
+   },
+   {
+    "id": "shattered_observatory",
+    "zone": "shattered_observatory",
+    "name": "Shattered Observatory",
+    "kind": "forest",
+    "at": [
+     0.82,
+     0.08
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 8–9",
+    "blurb": "Observatory ruins on the mountain behind Oldwatch. Present."
+   },
+   {
+    "id": "first_rift",
+    "zone": "first_rift",
+    "name": "The First Rift",
+    "kind": "forest",
+    "at": [
+     0.9,
+     0.36
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 9–10",
+    "blurb": "The breach at the moor's eastern end. Present."
+   },
+   {
+    "id": "crownsfall",
+    "zone": "crownsfall",
+    "name": "Crownsfall",
+    "kind": "town",
+    "at": [
+     0.08,
+     0.42
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Warm limestone plaza, blue-gold banners, market terraces. Present."
+   },
+   {
+    "id": "kingsroad_fields",
+    "zone": "kingsroad_fields",
+    "name": "Kingsroad Fields",
+    "kind": "heath",
+    "at": [
+     0.22,
+     0.46
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 1–2",
+    "blurb": "Wheat, broken aqueducts, roadside shrines. Present."
+   },
+   {
+    "id": "bramblewatch",
+    "zone": "bramblewatch",
+    "name": "Bramblewatch",
+    "kind": "forest",
+    "at": [
+     0.26,
+     0.24
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 2–3",
+    "blurb": "Timber palisade, autumn orchards, watchfires. Present."
+   },
+   {
+    "id": "mossbell_hamlet",
+    "zone": "mossbell_hamlet",
+    "name": "Mossbell Hamlet",
+    "kind": "town",
+    "at": [
+     0.36,
+     0.1
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Moss roofs, millpond, lanterns. Present."
+   },
+   {
+    "id": "silverroot_grove",
+    "zone": "silverroot_grove",
+    "name": "Silverroot Grove",
+    "kind": "forest",
+    "at": [
+     0.44,
+     0.22
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 2–3",
+    "blurb": "Two overlapping forests, amber leaves suspended. Echo."
+   },
+   {
+    "id": "ashen_tollway",
+    "zone": "ashen_tollway",
+    "name": "Ashen Tollway",
+    "kind": "heath",
+    "at": [
+     0.26,
+     0.7
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 3–4",
+    "blurb": "Charred stone road, caravan wrecks. Present."
+   },
+   {
+    "id": "bellwater_mills",
+    "zone": "bellwater_mills",
+    "name": "Bellwater Mills",
+    "kind": "marsh",
+    "at": [
+     0.34,
+     0.84
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Waterwheels, canals, cellar sluices. Present."
+   },
+   {
+    "id": "highward_steps",
+    "zone": "highward_steps",
+    "name": "Highward Steps",
+    "kind": "town",
+    "at": [
+     0.1,
+     0.16
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Citadel stairs, fountains, heraldic gates. Present."
+   },
+   {
+    "id": "sablemarket_vaults",
+    "zone": "sablemarket_vaults",
+    "name": "Sablemarket Vaults",
+    "kind": "dungeon",
+    "at": [
+     0.03,
+     0.62
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 5–6",
+    "blurb": "Merchant crypts, bronze shutters, secret ledgers. Present."
+   },
+   {
+    "id": "old_crown_cistern",
+    "zone": "old_crown_cistern",
+    "name": "Old Crown Cistern",
+    "kind": "dungeon",
+    "at": [
+     0.07,
+     0.82
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 6–7",
+    "blurb": "Flooded masonry with flickering original streets. Echo."
+   },
+   {
+    "id": "undercroft",
+    "zone": "undercroft",
+    "name": "Undercroft",
+    "kind": "dungeon",
+    "at": [
+     0.17,
+     0.94
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 7–8",
+    "blurb": "Buried crypt avenues, candle niches, violet seepage. Present."
+   },
+   {
+    "id": "cathedral_of_the_nameless",
+    "zone": "cathedral_of_the_nameless",
+    "name": "Cathedral of the Nameless",
+    "kind": "dungeon",
+    "at": [
+     0.56,
+     0.92
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 4–5",
+    "blurb": "Violet ruined nave, shattered stained glass. Echo."
+   },
+   {
+    "id": "first_anchor_chamber",
+    "zone": "first_anchor_chamber",
+    "name": "First Anchor Chamber",
+    "kind": "archive",
+    "at": [
+     0.96,
+     0.52
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Monster level 10–10",
+    "blurb": "Huge bronze rings under the cathedral, floating inscriptions. Between."
+   },
+   {
+    "id": "crownsfall_citadel",
+    "zone": "crownsfall_citadel",
+    "name": "Crownsfall Citadel",
+    "kind": "town",
+    "at": [
+     0.2,
+     0.06
+    ],
+    "act": 1,
+    "locked": false,
+    "levels": "Sanctuary",
+    "blurb": "Royal court, gathering refugees, dusk over city. Present."
+   }
+  ],
+  "links": [
+   [
+    "crownsfall",
+    "kingsroad_fields"
+   ],
+   [
+    "crownsfall",
+    "highward_steps"
+   ],
+   [
+    "kingsroad_fields",
+    "whisperwood"
+   ],
+   [
+    "kingsroad_fields",
+    "bramblewatch"
+   ],
+   [
+    "bramblewatch",
+    "mossbell_hamlet"
+   ],
+   [
+    "kingsroad_fields",
+    "ashen_tollway"
+   ],
+   [
+    "ashen_tollway",
+    "bellwater_mills"
+   ],
+   [
+    "bellwater_mills",
+    "kingsroad_fields"
+   ],
+   [
+    "whisperwood",
+    "silverroot_grove"
+   ],
+   [
+    "whisperwood",
+    "mossbarrow_crypts"
+   ],
+   [
+    "whisperwood",
+    "hollowmere"
+   ],
+   [
+    "hollowmere",
+    "sunken_chapel"
+   ],
+   [
+    "sunken_chapel",
+    "cathedral_of_the_nameless"
+   ],
+   [
+    "hollowmere",
+    "greyfen_causeway"
+   ],
+   [
+    "greyfen_causeway",
+    "saltmarrow"
+   ],
+   [
+    "saltmarrow",
+    "wreckers_strand"
+   ],
+   [
+    "wreckers_strand",
+    "smugglers_grotto"
+   ],
+   [
+    "wreckers_strand",
+    "lanternfall_cliffs"
+   ],
+   [
+    "lanternfall_cliffs",
+    "riftscar_moor"
+   ],
+   [
+    "riftscar_moor",
+    "oldwatch"
+   ],
+   [
+    "riftscar_moor",
+    "brackwater_ruins"
+   ],
+   [
+    "oldwatch",
+    "shattered_observatory"
+   ],
+   [
+    "riftscar_moor",
+    "first_rift"
+   ],
+   [
+    "first_rift",
+    "first_anchor_chamber"
+   ],
+   [
+    "highward_steps",
+    "sablemarket_vaults"
+   ],
+   [
+    "sablemarket_vaults",
+    "old_crown_cistern"
+   ],
+   [
+    "old_crown_cistern",
+    "undercroft"
+   ],
+   [
+    "highward_steps",
+    "crownsfall_citadel"
+   ],
+   [
+    "kingsroad_fields",
+    "westgate_refuge"
+   ],
+   [
+    "westgate_refuge",
+    "thornfen"
+   ],
+   [
+    "thornfen",
+    "glassreed_marsh"
+   ],
+   [
+    "thornfen",
+    "blackpine_reach"
+   ],
+   [
+    "blackpine_reach",
+    "hearthstone_crossing"
+   ],
+   [
+    "hearthstone_crossing",
+    "veyr_meridian_outpost"
+   ],
+   [
+    "veyr_meridian_outpost",
+    "windcut_pass"
+   ],
+   [
+    "windcut_pass",
+    "riftglass_quarry"
+   ],
+   [
+    "riftglass_quarry",
+    "forgotten_bastion"
+   ],
+   [
+    "hearthstone_crossing",
+    "greywake_coast"
+   ],
+   [
+    "greywake_coast",
+    "saltmirror_harbor"
+   ],
+   [
+    "greywake_coast",
+    "timekeepers_causeway"
+   ],
+   [
+    "timekeepers_causeway",
+    "scar_of_hollow_rain"
+   ],
+   [
+    "scar_of_hollow_rain",
+    "west_meridian_vault"
+   ],
+   [
+    "west_meridian_vault",
+    "meridian_observatory"
+   ],
+   [
+    "veyr_meridian_outpost",
+    "meridian_observatory"
+   ],
+   [
+    "meridian_observatory",
+    "sunward_threshold"
+   ],
+   [
+    "sunward_threshold",
+    "aurelian_forum"
+   ],
+   [
+    "aurelian_forum",
+    "lumen_canal"
+   ],
+   [
+    "lumen_canal",
+    "orchard_of_hours"
+   ],
+   [
+    "aurelian_forum",
+    "artificers_ward"
+   ],
+   [
+    "artificers_ward",
+    "sapphire_academy"
+   ],
+   [
+    "aurelian_forum",
+    "workers_terrace"
+   ],
+   [
+    "workers_terrace",
+    "garden_of_civic_memory"
+   ],
+   [
+    "artificers_ward",
+    "astral_foundry"
+   ],
+   [
+    "aurelian_forum",
+    "concord_senate"
+   ],
+   [
+    "garden_of_civic_memory",
+    "vael_estate"
+   ],
+   [
+    "concord_senate",
+    "elyndors_archive"
+   ],
+   [
+    "concord_senate",
+    "chronicle_perimeter"
+   ],
+   [
+    "chronicle_perimeter",
+    "preservation_laboratory"
+   ],
+   [
+    "chronicle_perimeter",
+    "concord_crown_spire"
+   ],
+   [
+    "concord_crown_spire",
+    "last_dawn_station"
+   ],
+   [
+    "last_dawn_station",
+    "cinder_orchard"
+   ],
+   [
+    "cinder_orchard",
+    "south_reservoir"
+   ],
+   [
+    "south_reservoir",
+    "labor_quarter_siege"
+   ],
+   [
+    "labor_quarter_siege",
+    "hall_of_seven_measures"
+   ],
+   [
+    "labor_quarter_siege",
+    "vaels_last_road"
+   ],
+   [
+    "vaels_last_road",
+    "cathedral_before_the_fall"
+   ],
+   [
+    "vaels_last_road",
+    "senate_of_ash"
+   ],
+   [
+    "senate_of_ash",
+    "chronicle_access_ring"
+   ],
+   [
+    "chronicle_access_ring",
+    "the_first_sundering"
+   ],
+   [
+    "the_first_sundering",
+    "the_empty_morning"
+   ],
+   [
+    "the_empty_morning",
+    "remnant_court_refuge"
+   ],
+   [
+    "the_empty_morning",
+    "hollow_choir_reliquary"
+   ],
+   [
+    "the_empty_morning",
+    "keepers_lantern"
+   ],
+   [
+    "keepers_lantern",
+    "engine_of_first_night"
+   ],
+   [
+    "engine_of_first_night",
+    "broken_meridian"
+   ],
+   [
+    "broken_meridian",
+    "throne_of_glass"
+   ],
+   [
+    "throne_of_glass",
+    "rain_kingdom"
+   ],
+   [
+    "throne_of_glass",
+    "verdant_empire"
+   ],
+   [
+    "throne_of_glass",
+    "iron_sabbath"
+   ],
+   [
+    "throne_of_glass",
+    "moonfall_republic"
+   ],
+   [
+    "throne_of_glass",
+    "orchard_of_lost_children"
+   ],
+   [
+    "orchard_of_lost_children",
+    "court_of_borrowed_faces"
+   ],
+   [
+    "court_of_borrowed_faces",
+    "the_choirs_deep"
+   ],
+   [
+    "the_choirs_deep",
+    "unbound_causeway"
+   ],
+   [
+    "unbound_causeway",
+    "crownsfall_of_three_ages"
+   ],
+   [
+    "crownsfall_of_three_ages",
+    "the_regents_archive"
+   ],
+   [
+    "unbound_causeway",
+    "hearth_of_names"
+   ],
+   [
+    "hearth_of_names",
+    "riven_royal_court"
+   ],
+   [
+    "riven_royal_court",
+    "the_anchor_of_kinship"
+   ],
+   [
+    "the_anchor_of_kinship",
+    "crownsfall_under_siege"
+   ],
+   [
+    "crownsfall_under_siege",
+    "greenwood_fracture"
+   ],
+   [
+    "crownsfall_under_siege",
+    "bellwater_inundation"
+   ],
+   [
+    "bellwater_inundation",
+    "greywake_armada"
+   ],
+   [
+    "greenwood_fracture",
+    "blackpine_winter"
+   ],
+   [
+    "blackpine_winter",
+    "riftglass_caldera"
+   ],
+   [
+    "riftglass_caldera",
+    "veyr_sanctuary"
+   ],
+   [
+    "veyr_sanctuary",
+    "archive_of_forbidden_futures"
+   ],
+   [
+    "veyr_sanctuary",
+    "the_sentinels_wall"
+   ],
+   [
+    "veyr_sanctuary",
+    "meridians_descent"
+   ],
+   [
+    "meridians_descent",
+    "the_last_timekeeper"
+   ],
+   [
+    "the_sentinels_wall",
+    "the_choirs_procession"
+   ],
+   [
+    "the_choirs_procession",
+    "confluence_camp"
+   ],
+   [
+    "confluence_camp",
+    "sevenfold_gate"
+   ],
+   [
+    "sevenfold_gate",
+    "the_threshold_of_continuance"
+   ],
+   [
+    "the_threshold_of_continuance",
+    "the_first_index"
+   ],
+   [
+    "the_first_index",
+    "vault_of_continuity"
+   ],
+   [
+    "vault_of_continuity",
+    "the_mercy_chamber"
+   ],
+   [
+    "vault_of_continuity",
+    "the_kings_unmaking"
+   ],
+   [
+    "vault_of_continuity",
+    "the_remnant_siege"
+   ],
+   [
+    "the_remnant_siege",
+    "the_choirs_last_hymn"
+   ],
+   [
+    "the_choirs_last_hymn",
+    "caldrins_vigil"
+   ],
+   [
+    "caldrins_vigil",
+    "the_seven_chambers"
+   ],
+   [
+    "the_seven_chambers",
+    "the_crown_of_empty_histories"
+   ],
+   [
+    "the_crown_of_empty_histories",
+    "the_unwritten_shore"
+   ],
+   [
+    "the_unwritten_shore",
+    "chronicle_heart"
+   ],
+   [
+    "chronicle_heart",
+    "the_last_decision"
+   ],
+   [
+    "the_last_decision",
+    "crownsfall_reborn"
+   ],
+   [
+    "crownsfall_reborn",
+    "the_open_meridian"
+   ],
+   [
+    "crownsfall_reborn",
+    "the_lantern_beyond"
+   ]
+  ],
+  "note": "Map layout in 0..1 of the map area. A zone JSON may set world_id to show as one of these nodes (e.g. the kit build of Whisperwood).",
+  "acts": [
+   {
+    "act": 1,
+    "name": "The Crown That Remembers"
+   },
+   {
+    "act": 2,
+    "name": "Scars of the World"
+   },
+   {
+    "act": 3,
+    "name": "The Age of Gold"
+   },
+   {
+    "act": 4,
+    "name": "The Day the World Ended"
+   },
+   {
+    "act": 5,
+    "name": "The Unwritten Kingdoms"
+   },
+   {
+    "act": 6,
+    "name": "War Against the Hour"
+   },
+   {
+    "act": 7,
+    "name": "Age of the Lost"
+   }
+  ]
+ },
+ "lab_zones": [
+  "archive_of_forbidden_futures",
+  "artificers_ward",
+  "ashen_tollway",
+  "astral_foundry",
+  "aurelian_forum",
+  "bellwater_inundation",
+  "bellwater_mills",
+  "blackpine_reach",
+  "blackpine_winter",
+  "brackwater_ruins",
+  "bramblewatch",
+  "broken_meridian",
+  "caldrins_vigil",
+  "cathedral_before_the_fall",
+  "cathedral_of_the_nameless",
+  "chronicle_access_ring",
+  "chronicle_heart",
+  "chronicle_perimeter",
+  "cinder_orchard",
+  "concord_crown_spire",
+  "concord_senate",
+  "confluence_camp",
+  "court_of_borrowed_faces",
+  "crownsfall_citadel",
+  "crownsfall_of_three_ages",
+  "crownsfall_reborn",
+  "crownsfall_under_siege",
+  "elyndors_archive",
+  "engine_of_first_night",
+  "first_anchor_chamber",
+  "first_rift",
+  "forgotten_bastion",
+  "garden_of_civic_memory",
+  "glassreed_marsh",
+  "greenwood_fracture",
+  "greyfen_causeway",
+  "greywake_armada",
+  "greywake_coast",
+  "hall_of_seven_measures",
+  "hearth_of_names",
+  "hearthstone_crossing",
+  "highward_steps",
+  "hollow_choir_reliquary",
+  "hollowmere",
+  "iron_sabbath",
+  "keepers_lantern",
+  "kingsroad_fields",
+  "labor_quarter_siege",
+  "lanternfall_cliffs",
+  "last_dawn_station",
+  "lumen_canal",
+  "meridian_observatory",
+  "meridians_descent",
+  "moonfall_republic",
+  "mossbarrow_crypts",
+  "mossbell_hamlet",
+  "old_crown_cistern",
+  "oldwatch",
+  "orchard_of_hours",
+  "orchard_of_lost_children",
+  "preservation_laboratory",
+  "rain_kingdom",
+  "remnant_court_refuge",
+  "riftglass_caldera",
+  "riftglass_quarry",
+  "riftscar_moor",
+  "riven_royal_court",
+  "sablemarket_vaults",
+  "saltmarrow",
+  "saltmirror_harbor",
+  "sapphire_academy",
+  "scar_of_hollow_rain",
+  "senate_of_ash",
+  "sevenfold_gate",
+  "shattered_observatory",
+  "silverroot_grove",
+  "smugglers_grotto",
+  "south_reservoir",
+  "sunken_chapel",
+  "sunward_threshold",
+  "the_anchor_of_kinship",
+  "the_choirs_deep",
+  "the_choirs_last_hymn",
+  "the_choirs_procession",
+  "the_crown_of_empty_histories",
+  "the_empty_morning",
+  "the_first_index",
+  "the_first_sundering",
+  "the_kings_unmaking",
+  "the_lantern_beyond",
+  "the_last_decision",
+  "the_last_timekeeper",
+  "the_mercy_chamber",
+  "the_open_meridian",
+  "the_regents_archive",
+  "the_remnant_siege",
+  "the_sentinels_wall",
+  "the_seven_chambers",
+  "the_threshold_of_continuance",
+  "the_unwritten_shore",
+  "thornfen",
+  "throne_of_glass",
+  "timekeepers_causeway",
+  "unbound_causeway",
+  "undercroft",
+  "vael_estate",
+  "vaels_last_road",
+  "vault_of_continuity",
+  "verdant_empire",
+  "veyr_meridian_outpost",
+  "veyr_sanctuary",
+  "west_meridian_vault",
+  "westgate_refuge",
+  "whisperwood_forest",
+  "windcut_pass",
+  "workers_terrace",
+  "wreckers_strand"
+ ]
+}

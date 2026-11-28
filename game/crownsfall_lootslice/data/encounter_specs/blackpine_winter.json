@@ -1,0 +1,78 @@
+{
+ "zone": "blackpine_winter",
+ "levels": [
+  53,
+  54
+ ],
+ "packs": 30,
+ "seed": 926,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "blackpine_winter_0",
+    "blackpine_winter_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "blackpine_winter_1",
+    "blackpine_winter_1",
+    "blackpine_winter_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "blackpine_winter_0",
+    "blackpine_winter_1",
+    "blackpine_winter_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "blackpine_winter_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "blackpine_winter_2",
+    "blackpine_winter_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "blackpine_winter_0",
+    "blackpine_winter_0",
+    "blackpine_winter_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    1014,
+    4040
+   ],
+   "types": [],
+   "boss": "blackpine_winter_boss_u",
+   "boss_type": "blackpine_winter_boss",
+   "boss_name": "The Winter Elemental",
+   "needs_quest": "Q_A06_05"
+  }
+ ],
+ "keep_clear": [
+  [
+   1014,
+   4040,
+   700
+  ]
+ ]
+}

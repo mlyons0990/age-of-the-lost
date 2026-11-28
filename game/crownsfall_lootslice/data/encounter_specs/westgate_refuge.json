@@ -1,0 +1,127 @@
+{
+ "zone": "westgate_refuge",
+ "levels": [
+  11,
+  12
+ ],
+ "packs": 18,
+ "seed": 178,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "westgate_refuge_0",
+    "westgate_refuge_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "westgate_refuge_1",
+    "westgate_refuge_1",
+    "westgate_refuge_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "westgate_refuge_0",
+    "westgate_refuge_1",
+    "westgate_refuge_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "westgate_refuge_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "westgate_refuge_2",
+    "westgate_refuge_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "westgate_refuge_0",
+    "westgate_refuge_0",
+    "westgate_refuge_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6548,
+    2082
+   ],
+   "types": [
+    "westgate_refuge_1",
+    "westgate_refuge_1"
+   ],
+   "elite": false,
+   "guardian": "westgate_refuge_g1",
+   "elite_type": "westgate_refuge_0",
+   "elite_name": "Cache-Raider Brask",
+   "page": "Q_A02_01_1"
+  },
+  {
+   "at": [
+    4668,
+    4334
+   ],
+   "types": [
+    "westgate_refuge_1",
+    "westgate_refuge_1"
+   ],
+   "elite": false,
+   "guardian": "westgate_refuge_g2",
+   "elite_type": "westgate_refuge_1",
+   "elite_name": "The Viaduct Prowler",
+   "page": "Q_A02_01_2"
+  },
+  {
+   "at": [
+    2814,
+    1061
+   ],
+   "types": [
+    "westgate_refuge_1",
+    "westgate_refuge_1"
+   ],
+   "elite": false,
+   "guardian": "westgate_refuge_g3",
+   "elite_type": "westgate_refuge_2",
+   "elite_name": "Record-Thief Moll",
+   "page": "Q_A02_01_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   2117,
+   3089,
+   700
+  ],
+  [
+   6548,
+   2082,
+   700
+  ],
+  [
+   4668,
+   4334,
+   700
+  ],
+  [
+   2814,
+   1061,
+   700
+  ]
+ ]
+}

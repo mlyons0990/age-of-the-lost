@@ -1,0 +1,127 @@
+{
+ "zone": "workers_terrace",
+ "levels": [
+  24,
+  25
+ ],
+ "packs": 18,
+ "seed": 260,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "workers_terrace_0",
+    "workers_terrace_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "workers_terrace_1",
+    "workers_terrace_1",
+    "workers_terrace_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "workers_terrace_0",
+    "workers_terrace_1",
+    "workers_terrace_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "workers_terrace_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "workers_terrace_2",
+    "workers_terrace_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "workers_terrace_0",
+    "workers_terrace_0",
+    "workers_terrace_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5120,
+    3562
+   ],
+   "types": [
+    "workers_terrace_1",
+    "workers_terrace_1"
+   ],
+   "elite": false,
+   "guardian": "workers_terrace_g1",
+   "elite_type": "workers_terrace_0",
+   "elite_name": "Street Agitator",
+   "page": "Q_A03_07_1"
+  },
+  {
+   "at": [
+    5336,
+    946
+   ],
+   "types": [
+    "workers_terrace_1",
+    "workers_terrace_1"
+   ],
+   "elite": false,
+   "guardian": "workers_terrace_g2",
+   "elite_type": "workers_terrace_1",
+   "elite_name": "Requisition Officer",
+   "page": "Q_A03_07_2"
+  },
+  {
+   "at": [
+    997,
+    3967
+   ],
+   "types": [
+    "workers_terrace_1",
+    "workers_terrace_1"
+   ],
+   "elite": false,
+   "guardian": "workers_terrace_g3",
+   "elite_type": "workers_terrace_2",
+   "elite_name": "Collapsed-Stair Brute",
+   "page": "Q_A03_07_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   997,
+   3967,
+   700
+  ],
+  [
+   5120,
+   3562,
+   700
+  ],
+  [
+   5336,
+   946,
+   700
+  ],
+  [
+   997,
+   3967,
+   700
+  ]
+ ]
+}

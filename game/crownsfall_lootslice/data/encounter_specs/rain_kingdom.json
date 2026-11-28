@@ -1,0 +1,78 @@
+{
+ "zone": "rain_kingdom",
+ "levels": [
+  42,
+  43
+ ],
+ "packs": 30,
+ "seed": 842,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "rain_kingdom_0",
+    "rain_kingdom_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "rain_kingdom_1",
+    "rain_kingdom_1",
+    "rain_kingdom_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "rain_kingdom_0",
+    "rain_kingdom_1",
+    "rain_kingdom_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "rain_kingdom_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "rain_kingdom_2",
+    "rain_kingdom_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "rain_kingdom_0",
+    "rain_kingdom_0",
+    "rain_kingdom_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    1957,
+    3868
+   ],
+   "types": [],
+   "boss": "rain_kingdom_boss_u",
+   "boss_type": "rain_kingdom_boss",
+   "boss_name": "The Rain King's Leviathan",
+   "needs_quest": "Q_A05_03"
+  }
+ ],
+ "keep_clear": [
+  [
+   1957,
+   3868,
+   700
+  ]
+ ]
+}

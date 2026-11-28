@@ -1,0 +1,88 @@
+{
+ "zone": "smugglers_grotto",
+ "levels": [
+  6,
+  7
+ ],
+ "packs": 14,
+ "seed": 555,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "smugglers_grotto_0",
+    "smugglers_grotto_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "smugglers_grotto_1",
+    "smugglers_grotto_1",
+    "smugglers_grotto_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "smugglers_grotto_0",
+    "smugglers_grotto_1",
+    "smugglers_grotto_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "smugglers_grotto_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "smugglers_grotto_2",
+    "smugglers_grotto_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "smugglers_grotto_0",
+    "smugglers_grotto_0",
+    "smugglers_grotto_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6485,
+    1322
+   ],
+   "types": [],
+   "boss": "smugglers_grotto_boss_u",
+   "boss_type": "smugglers_grotto_boss",
+   "boss_name": "Corsair Queen Velka",
+   "needs_quest": "Q_A01_R12"
+  }
+ ],
+ "keep_clear": [
+  [
+   3491,
+   3635,
+   700
+  ],
+  [
+   6485,
+   1322,
+   700
+  ],
+  [
+   6485,
+   1322,
+   800
+  ]
+ ]
+}

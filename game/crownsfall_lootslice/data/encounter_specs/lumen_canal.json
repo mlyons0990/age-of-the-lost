@@ -1,0 +1,78 @@
+{
+ "zone": "lumen_canal",
+ "levels": [
+  22,
+  23
+ ],
+ "packs": 30,
+ "seed": 265,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "lumen_canal_0",
+    "lumen_canal_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "lumen_canal_1",
+    "lumen_canal_1",
+    "lumen_canal_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "lumen_canal_0",
+    "lumen_canal_1",
+    "lumen_canal_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "lumen_canal_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "lumen_canal_2",
+    "lumen_canal_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "lumen_canal_0",
+    "lumen_canal_0",
+    "lumen_canal_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3484,
+    1262
+   ],
+   "types": [],
+   "boss": "lumen_canal_boss_u",
+   "boss_type": "lumen_canal_boss",
+   "boss_name": "The Lock Automaton",
+   "needs_quest": "Q_A03_03"
+  }
+ ],
+ "keep_clear": [
+  [
+   3484,
+   1262,
+   700
+  ]
+ ]
+}

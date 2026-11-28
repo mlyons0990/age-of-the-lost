@@ -1,0 +1,866 @@
+{
+ "name": "Thornfen",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 1587,
+ "paths": [
+  {
+   "pts": [
+    [
+     6275,
+     4774
+    ],
+    [
+     6275,
+     4470
+    ],
+    [
+     5589,
+     4035
+    ],
+    [
+     5379,
+     3515
+    ],
+    [
+     5664,
+     2905
+    ],
+    [
+     5490,
+     2379
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     2190,
+     190
+    ],
+    [
+     2190,
+     494
+    ],
+    [
+     3269,
+     754
+    ],
+    [
+     4098,
+     1222
+    ],
+    [
+     4397,
+     2129
+    ],
+    [
+     5490,
+     2379
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     1861,
+     4774
+    ],
+    [
+     1861,
+     4470
+    ],
+    [
+     2647,
+     3420
+    ],
+    [
+     4355,
+     3138
+    ],
+    [
+     5490,
+     2379
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     2647,
+     3420
+    ],
+    [
+     2097,
+     2867
+    ],
+    [
+     1071,
+     2642
+    ]
+   ],
+   "width": 150,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6206,
+     4426
+    ],
+    [
+     6425,
+     4119
+    ],
+    [
+     7100,
+     3974
+    ]
+   ],
+   "width": 174,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     5490,
+     2379
+    ],
+    [
+     6673,
+     1889
+    ],
+    [
+     7666,
+     1600
+    ]
+   ],
+   "width": 140,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2175,
+     4050
+    ],
+    [
+     2923,
+     4240
+    ],
+    [
+     3092,
+     4276
+    ]
+   ],
+   "width": 174,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    10154,
+    1686
+   ],
+   "r": 724,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3919,
+    2055
+   ],
+   "r": 759,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4492,
+    2470
+   ],
+   "r": 655,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5490,
+    2379
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1071,
+    2642
+   ],
+   "r": 287,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7666,
+    1600
+   ],
+   "r": 600,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8939,
+    3963
+   ],
+   "r": 564,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6064,
+    1376
+   ],
+   "r": 641,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    10454,
+    2881
+   ],
+   "r": 575,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7270,
+    2615
+   ],
+   "r": 593,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    991,
+    3271
+   ],
+   "r": 387,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3136,
+    1393
+   ],
+   "r": 680,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    804,
+    3712
+   ],
+   "r": 701,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   6275,
+   4774,
+   380
+  ],
+  [
+   2190,
+   190,
+   380
+  ],
+  [
+   1861,
+   4774,
+   380
+  ],
+  [
+   1071,
+   2642,
+   300
+  ],
+  [
+   7100,
+   3974,
+   300
+  ],
+  [
+   7666,
+   1600,
+   300
+  ],
+  [
+   3092,
+   4276,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    3
+   ],
+   [
+    "gnarled_b",
+    3
+   ],
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 820,
+  "cut": 0.7,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 18,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall",
+    "a_moss"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    1071,
+    2642,
+    560,
+    0.45
+   ],
+   [
+    7100,
+    3974,
+    560,
+    0.45
+   ],
+   [
+    7666,
+    1600,
+    560,
+    0.45
+   ],
+   [
+    3092,
+    4276,
+    560,
+    0.45
+   ],
+   [
+    5490,
+    2379,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    5490,
+    2159,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    8939,
+    3963,
+    902.4000000000001
+   ],
+   [
+    6064,
+    1376,
+    1025.6000000000001
+   ],
+   [
+    10454,
+    2881,
+    920.0
+   ],
+   [
+    7270,
+    2615,
+    948.8000000000001
+   ],
+   [
+    991,
+    3271,
+    619.2
+   ],
+   [
+    3136,
+    1393,
+    1088.0
+   ],
+   [
+    804,
+    3712,
+    1121.6000000000001
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "thornfen_wp",
+   "name": "Thornfen",
+   "at": [
+    5490,
+    2379
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Westgate Refuge",
+   "to": "westgate_refuge",
+   "at": [
+    6275,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    1658,
+    526
+   ]
+  },
+  {
+   "name": "Glassreed Marsh",
+   "to": "glassreed_marsh",
+   "at": [
+    2190,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    2018,
+    4438
+   ]
+  },
+  {
+   "name": "Blackpine Reach",
+   "to": "blackpine_reach",
+   "at": [
+    1861,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    7675,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  6275,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Drowned Chapel",
+   "kind": "landmark",
+   "at": [
+    1071,
+    2642
+   ],
+   "blurb": "Mist bog, drowned chapels, reed boats"
+  },
+  {
+   "name": "Reed-Boat Landing",
+   "kind": "landmark",
+   "at": [
+    7100,
+    3974
+   ],
+   "blurb": "Mist bog, drowned chapels, reed boats"
+  },
+  {
+   "name": "The Sunk Bell",
+   "kind": "landmark",
+   "at": [
+    7666,
+    1600
+   ],
+   "blurb": "Mist bog, drowned chapels, reed boats"
+  },
+  {
+   "name": "Stilt Village",
+   "kind": "landmark",
+   "at": [
+    3092,
+    4276
+   ],
+   "blurb": "Mist bog, drowned chapels, reed boats"
+  },
+  {
+   "name": "Westgate Refuge",
+   "kind": "landmark",
+   "at": [
+    6275,
+    4774
+   ],
+   "blurb": "To Westgate Refuge."
+  },
+  {
+   "name": "Glassreed Marsh",
+   "kind": "landmark",
+   "at": [
+    2190,
+    190
+   ],
+   "blurb": "To Glassreed Marsh."
+  },
+  {
+   "name": "Blackpine Reach",
+   "kind": "landmark",
+   "at": [
+    1861,
+    4774
+   ],
+   "blurb": "To Blackpine Reach."
+  }
+ ],
+ "world_id": "thornfen",
+ "grade": {
+  "mul": [
+   0.82,
+   0.92,
+   0.82
+  ],
+  "desat": 0.32,
+  "lift": [
+   0.03,
+   0.06,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   0.62,
+   0.74,
+   0.66
+  ],
+  "water": [
+   0.18,
+   0.3,
+   0.27
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    1071,
+    2642
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "gnarled_b",
+    "silver",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    7100,
+    3974
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    7666,
+    1600
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    3092,
+    4276
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  }
+ ]
+}

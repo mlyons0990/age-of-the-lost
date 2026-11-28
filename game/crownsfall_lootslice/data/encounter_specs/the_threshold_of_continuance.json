@@ -1,0 +1,78 @@
+{
+ "zone": "the_threshold_of_continuance",
+ "levels": [
+  60,
+  60
+ ],
+ "packs": 14,
+ "seed": 402,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_threshold_of_continuance_0",
+    "the_threshold_of_continuance_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_threshold_of_continuance_1",
+    "the_threshold_of_continuance_1",
+    "the_threshold_of_continuance_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_threshold_of_continuance_0",
+    "the_threshold_of_continuance_1",
+    "the_threshold_of_continuance_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_threshold_of_continuance_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_threshold_of_continuance_2",
+    "the_threshold_of_continuance_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_threshold_of_continuance_0",
+    "the_threshold_of_continuance_0",
+    "the_threshold_of_continuance_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6597,
+    3289
+   ],
+   "types": [],
+   "boss": "the_threshold_of_continuance_boss_u",
+   "boss_type": "the_threshold_of_continuance_boss",
+   "boss_name": "The Continuance's Herald",
+   "needs_quest": "Q_A06_15"
+  }
+ ],
+ "keep_clear": [
+  [
+   6597,
+   3289,
+   700
+  ]
+ ]
+}

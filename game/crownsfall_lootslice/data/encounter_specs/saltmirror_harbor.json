@@ -1,0 +1,78 @@
+{
+ "zone": "saltmirror_harbor",
+ "levels": [
+  17,
+  18
+ ],
+ "packs": 18,
+ "seed": 548,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "saltmirror_harbor_0",
+    "saltmirror_harbor_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "saltmirror_harbor_1",
+    "saltmirror_harbor_1",
+    "saltmirror_harbor_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "saltmirror_harbor_0",
+    "saltmirror_harbor_1",
+    "saltmirror_harbor_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "saltmirror_harbor_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "saltmirror_harbor_2",
+    "saltmirror_harbor_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "saltmirror_harbor_0",
+    "saltmirror_harbor_0",
+    "saltmirror_harbor_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6327,
+    757
+   ],
+   "types": [],
+   "boss": "saltmirror_harbor_boss_u",
+   "boss_type": "saltmirror_harbor_boss",
+   "boss_name": "Temporal Smuggler Vane",
+   "needs_quest": "Q_A02_11"
+  }
+ ],
+ "keep_clear": [
+  [
+   6327,
+   757,
+   700
+  ]
+ ]
+}

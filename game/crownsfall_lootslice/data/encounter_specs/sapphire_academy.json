@@ -1,0 +1,122 @@
+{
+ "zone": "sapphire_academy",
+ "levels": [
+  24,
+  25
+ ],
+ "packs": 14,
+ "seed": 933,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "sapphire_academy_0",
+    "sapphire_academy_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "sapphire_academy_1",
+    "sapphire_academy_1",
+    "sapphire_academy_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "sapphire_academy_0",
+    "sapphire_academy_1",
+    "sapphire_academy_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "sapphire_academy_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "sapphire_academy_2",
+    "sapphire_academy_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "sapphire_academy_0",
+    "sapphire_academy_0",
+    "sapphire_academy_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6074,
+    2419
+   ],
+   "types": [
+    "sapphire_academy_1",
+    "sapphire_academy_1"
+   ],
+   "elite": false,
+   "guardian": "sapphire_academy_g1",
+   "elite_type": "sapphire_academy_0",
+   "elite_name": "Proctor of Glass",
+   "page": "Q_A03_06_1"
+  },
+  {
+   "at": [
+    5880,
+    1347
+   ],
+   "types": [
+    "sapphire_academy_1",
+    "sapphire_academy_1"
+   ],
+   "elite": false,
+   "guardian": "sapphire_academy_g2",
+   "elite_type": "sapphire_academy_1",
+   "elite_name": "Archive Trial Echo",
+   "page": "Q_A03_06_2"
+  },
+  {
+   "at": [
+    4806,
+    3119
+   ],
+   "types": [
+    "sapphire_academy_1",
+    "sapphire_academy_1"
+   ],
+   "elite": false,
+   "guardian": "sapphire_academy_g3",
+   "elite_type": "sapphire_academy_2",
+   "elite_name": "The Index Familiar",
+   "page": "Q_A03_06_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6074,
+   2419,
+   700
+  ],
+  [
+   5880,
+   1347,
+   700
+  ],
+  [
+   4806,
+   3119,
+   700
+  ]
+ ]
+}

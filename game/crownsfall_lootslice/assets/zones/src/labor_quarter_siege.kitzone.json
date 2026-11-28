@@ -1,0 +1,1539 @@
+{
+ "name": "Labor Quarter Siege",
+ "kit": "assets/kit/city",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "cobble_worn",
+ "seed": 2066,
+ "paths": [
+  {
+   "pts": [
+    [
+     4826,
+     4774
+    ],
+    [
+     4826,
+     4470
+    ],
+    [
+     4695,
+     3636
+    ],
+    [
+     3893,
+     3046
+    ],
+    [
+     3257,
+     2396
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2862,
+     190
+    ],
+    [
+     2862,
+     494
+    ],
+    [
+     2992,
+     1128
+    ],
+    [
+     3300,
+     1744
+    ],
+    [
+     3257,
+     2396
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5008,
+     190
+    ],
+    [
+     5008,
+     494
+    ],
+    [
+     4774,
+     1280
+    ],
+    [
+     4026,
+     1843
+    ],
+    [
+     3257,
+     2396
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2940,
+     874
+    ],
+    [
+     2591,
+     980
+    ],
+    [
+     2376,
+     915
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3893,
+     3046
+    ],
+    [
+     3142,
+     3387
+    ],
+    [
+     2187,
+     3771
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4774,
+     1280
+    ],
+    [
+     5893,
+     1789
+    ],
+    [
+     6629,
+     2020
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4799,
+     4303
+    ],
+    [
+     5657,
+     4343
+    ],
+    [
+     6864,
+     4192
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6864,
+    4192
+   ],
+   "r": 760,
+   "layer": "dirt",
+   "squash": 0.55,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5971,
+    688
+   ],
+   "r": 282,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2876,
+    4209
+   ],
+   "r": 401,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2278,
+    878
+   ],
+   "r": 407,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1903,
+    3875
+   ],
+   "r": 457,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6498,
+    1262
+   ],
+   "r": 471,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1633,
+    1332
+   ],
+   "r": 270,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4276,
+    2572
+   ],
+   "r": 446,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1175,
+    943
+   ],
+   "r": 425,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1709,
+    2397
+   ],
+   "r": 450,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2015,
+    2297
+   ],
+   "r": 478,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2077,
+    704
+   ],
+   "r": 291,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3736,
+    1082
+   ],
+   "r": 454,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3257,
+    2396
+   ],
+   "r": 720,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2376,
+    915
+   ],
+   "r": 518,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2187,
+    3771
+   ],
+   "r": 387,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6629,
+    2020
+   ],
+   "r": 561,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   4826,
+   4774,
+   380
+  ],
+  [
+   2862,
+   190,
+   380
+  ],
+  [
+   5008,
+   190,
+   380
+  ],
+  [
+   2376,
+   915,
+   300
+  ],
+  [
+   2187,
+   3771,
+   300
+  ],
+  [
+   6629,
+   2020,
+   300
+  ],
+  [
+   6864,
+   4192,
+   300
+  ]
+ ],
+ "place": [
+  [
+   "c_lm_gazebo_b",
+   3216,
+   1876,
+   1.0,
+   true
+  ],
+  [
+   "c_crystal_float",
+   2478,
+   485,
+   1.0,
+   true
+  ],
+  [
+   "c_lm_statue_a",
+   2238,
+   3341,
+   1.0,
+   false
+  ],
+  [
+   "c_lm_statue_b",
+   6679,
+   1590,
+   1.0,
+   false
+  ],
+  [
+   "c_lm_statue_a",
+   6802,
+   3762,
+   1.0,
+   false
+  ]
+ ],
+ "forest": {
+  "trees": [
+   [
+    "c_tree_green",
+    2
+   ],
+   [
+    "c_tree_blossom",
+    2
+   ],
+   [
+    "c_tree_amber",
+    1
+   ]
+  ],
+  "spacing": 2600,
+  "cut": 0.92,
+  "grove_px": 1500,
+  "frame": 0.08,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 2,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 5,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 5,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 6,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 6,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.18,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    2376,
+    915,
+    560,
+    0.45
+   ],
+   [
+    2187,
+    3771,
+    560,
+    0.45
+   ],
+   [
+    6629,
+    2020,
+    560,
+    0.45
+   ],
+   [
+    6864,
+    4192,
+    560,
+    0.45
+   ],
+   [
+    3257,
+    2396,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3257,
+    2176,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "labor_quarter_siege_wp",
+   "name": "Labor Quarter Siege",
+   "at": [
+    3257,
+    2396
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "South Reservoir",
+   "to": "south_reservoir",
+   "at": [
+    4826,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    3220,
+    526
+   ]
+  },
+  {
+   "name": "Hall of Seven Measures",
+   "to": "hall_of_seven_measures",
+   "at": [
+    2862,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    2189
+   ]
+  },
+  {
+   "name": "Vael's Last Road",
+   "to": "vaels_last_road",
+   "at": [
+    5008,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    3736,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4826,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Barricades",
+   "kind": "landmark",
+   "at": [
+    2376,
+    915
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "Civilian Shelter",
+   "kind": "landmark",
+   "at": [
+    2187,
+    3771
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "Military Patrol Gate",
+   "kind": "landmark",
+   "at": [
+    6629,
+    2020
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "Union Hall",
+   "kind": "landmark",
+   "at": [
+    6864,
+    4192
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "South Reservoir",
+   "kind": "landmark",
+   "at": [
+    4826,
+    4774
+   ],
+   "blurb": "To South Reservoir."
+  },
+  {
+   "name": "Hall of Seven Measures",
+   "kind": "landmark",
+   "at": [
+    2862,
+    190
+   ],
+   "blurb": "To Hall of Seven Measures."
+  },
+  {
+   "name": "Vael's Last Road",
+   "kind": "landmark",
+   "at": [
+    5008,
+    190
+   ],
+   "blurb": "To Vael's Last Road."
+  }
+ ],
+ "world_id": "labor_quarter_siege",
+ "grade": {
+  "mul": [
+   0.86,
+   0.78,
+   0.74
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.04,
+   0.02,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   0.6,
+   0.52,
+   0.5
+  ],
+  "water": [
+   0.2,
+   0.24,
+   0.28
+  ]
+ },
+ "rim": {
+  "props": [
+   "c_stone_urn",
+   "c_flower_pedestal",
+   "c_topiary_urn",
+   "c_bench",
+   "c_bed_straight_long",
+   "c_bed_corner",
+   "c_bed_square",
+   "c_bed_round_large",
+   "c_bed_oval",
+   "c_bed_round_small",
+   "c_bed_crescent",
+   "c_hedge_straight",
+   "c_hedge_topiary_square",
+   "c_wisteria_trellis",
+   "c_wisteria_arch_bed",
+   "c_bed_tree_ring",
+   "c_drift_lavender",
+   "c_drift_white",
+   "c_drift_mixed",
+   "c_drift_wildflower",
+   "c_drift_ivy"
+  ],
+  "density": 0.8,
+  "chance": 0.45
+ },
+ "dress": [
+  {
+   "at": [
+    2376,
+    915
+   ],
+   "r": 560,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2187,
+    3771
+   ],
+   "r": 560,
+   "props": [
+    "c_stone_urn",
+    "c_flower_pedestal",
+    "c_topiary_urn",
+    "c_bench",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring",
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6629,
+    2020
+   ],
+   "r": 560,
+   "props": [
+    "c_arcane_brazier",
+    "c_crystal_float",
+    "c_orb_levitating",
+    "c_sigil_stone",
+    "c_magic_spring",
+    "c_wisteria_wisp",
+    "c_lantern_float_large",
+    "c_light_motes",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6864,
+    4192
+   ],
+   "r": 560,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3257,
+    2396
+   ],
+   "r": 700,
+   "props": [
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
+   ],
+   "n": 10,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3257,
+    2396
+   ],
+   "r": 760,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_lamppost_double",
+    "c_banner_standard",
+    "c_crystal_lamp",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large"
+   ],
+   "n": 22,
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "at": [
+    6864,
+    4192
+   ],
+   "r": 760,
+   "props": [
+    "c_tree_green",
+    "c_tree_blossom",
+    "c_tree_amber",
+    "c_tree_green",
+    "c_tree_blossom",
+    "c_tree_amber",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring",
+    "c_lm_gazebo_a",
+    "c_bench"
+   ],
+   "n": 14,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "on_path": true
+  }
+ ],
+ "max_paving_overlap": 1.0,
+ "place_keep": true,
+ "scatter": [
+  {
+   "prop": "c_bld_temple_sanctum",
+   "count": 2,
+   "min_dist": 1300,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_royal_manor",
+   "count": 5,
+   "min_dist": 1000,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_merchant_guild",
+   "count": 8,
+   "min_dist": 930,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_archive_hall",
+   "count": 6,
+   "min_dist": 880,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_guard_barracks",
+   "count": 5,
+   "min_dist": 900,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_citizen_home",
+   "count": 110,
+   "min_dist": 520,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_crate_stack",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_barrels_sacks",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_crates_wisteria",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_flower_barrel",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bench",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bed_square",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bed_round_small",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_hedge_topiary_square",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_lamppost_single",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_stone_urn",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_drift_mixed",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_drift_lavender",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  }
+ ]
+}

@@ -1,0 +1,811 @@
+{
+ "name": "The Choir's Last Hymn",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 5152,
+ "paths": [
+  {
+   "pts": [
+    [
+     2467,
+     1954
+    ],
+    [
+     1778,
+     2338
+    ],
+    [
+     1212,
+     2821
+    ]
+   ],
+   "width": 292,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1212,
+     2821
+    ],
+    [
+     1136,
+     3414
+    ],
+    [
+     1041,
+     4007
+    ]
+   ],
+   "width": 337,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2467,
+     1954
+    ],
+    [
+     3382,
+     1487
+    ],
+    [
+     4231,
+     956
+    ]
+   ],
+   "width": 335,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4231,
+     956
+    ],
+    [
+     5238,
+     894
+    ],
+    [
+     6240,
+     992
+    ]
+   ],
+   "width": 301,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1212,
+     2821
+    ],
+    [
+     2818,
+     2929
+    ],
+    [
+     4228,
+     3511
+    ]
+   ],
+   "width": 323,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4228,
+     3511
+    ],
+    [
+     5083,
+     3188
+    ],
+    [
+     6043,
+     3177
+    ]
+   ],
+   "width": 302,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4231,
+     956
+    ],
+    [
+     2941,
+     2084
+    ],
+    [
+     1212,
+     2821
+    ]
+   ],
+   "width": 290,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1212,
+     2821
+    ],
+    [
+     3618,
+     1743
+    ],
+    [
+     6240,
+     992
+    ]
+   ],
+   "width": 281,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     3436
+    ],
+    [
+     840,
+     3436
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     3436
+    ],
+    [
+     1041,
+     4007
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     3868,
+     190
+    ],
+    [
+     3868,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     3868,
+     710.0
+    ],
+    [
+     4231,
+     956
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    2467,
+    1954
+   ],
+   "r": 571,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1041,
+    4007
+   ],
+   "r": 539,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6240,
+    992
+   ],
+   "r": 567,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4228,
+    3511
+   ],
+   "r": 445,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6043,
+    3177
+   ],
+   "r": 609,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1212,
+    2821
+   ],
+   "r": 510,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4231,
+    956
+   ],
+   "r": 507,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   3436,
+   380
+  ],
+  [
+   3868,
+   190,
+   380
+  ],
+  [
+   6240,
+   992,
+   300
+  ],
+  [
+   6043,
+   3177,
+   300
+  ],
+  [
+   4231,
+   956,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    2467,
+    1954,
+    485.34999999999997,
+    0.6
+   ],
+   [
+    1041,
+    4007,
+    458.15,
+    0.6
+   ],
+   [
+    6240,
+    992,
+    481.95,
+    0.6
+   ],
+   [
+    4228,
+    3511,
+    378.25,
+    0.6
+   ],
+   [
+    6043,
+    3177,
+    517.65,
+    0.6
+   ],
+   [
+    1212,
+    2821,
+    433.5,
+    0.6
+   ],
+   [
+    4231,
+    956,
+    430.95,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6240,
+    772,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_choirs_last_hymn_wp",
+   "name": "The Choir's Last Hymn",
+   "at": [
+    4228,
+    3511
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "The Remnant Siege",
+   "to": "the_remnant_siege",
+   "at": [
+    140,
+    3436
+   ],
+   "r": 170,
+   "arrive": [
+    5257,
+    526
+   ]
+  },
+  {
+   "name": "Caldrin's Vigil",
+   "to": "caldrins_vigil",
+   "at": [
+    3868,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3732
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  3436
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Vibrating Black Glass",
+   "kind": "landmark",
+   "at": [
+    6240,
+    992
+   ],
+   "blurb": "Cathedral of vibrating black glass"
+  },
+  {
+   "name": "Silence Chamber",
+   "kind": "landmark",
+   "at": [
+    6043,
+    3177
+   ],
+   "blurb": "Cathedral of vibrating black glass"
+  },
+  {
+   "name": "Last Voice",
+   "kind": "landmark",
+   "at": [
+    4231,
+    956
+   ],
+   "blurb": "Cathedral of vibrating black glass"
+  },
+  {
+   "name": "The Remnant Siege",
+   "kind": "landmark",
+   "at": [
+    140,
+    3436
+   ],
+   "blurb": "To The Remnant Siege."
+  },
+  {
+   "name": "Caldrin's Vigil",
+   "kind": "landmark",
+   "at": [
+    3868,
+    190
+   ],
+   "blurb": "To Caldrin's Vigil."
+  }
+ ],
+ "world_id": "the_choirs_last_hymn",
+ "grade": {
+  "mul": [
+   0.6,
+   0.56,
+   0.7
+  ],
+  "desat": 0.55,
+  "lift": [
+   0.02,
+   0.0,
+   0.05,
+   1.0
+  ],
+  "mist": [
+   0.4,
+   0.35,
+   0.55
+  ],
+  "water": [
+   0.12,
+   0.08,
+   0.2
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    2467,
+    1954
+   ],
+   "r": 542.4499999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1041,
+    4007
+   ],
+   "r": 512.05,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6240,
+    992
+   ],
+   "r": 538.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4228,
+    3511
+   ],
+   "r": 422.75,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6043,
+    3177
+   ],
+   "r": 578.55,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1212,
+    2821
+   ],
+   "r": 484.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4231,
+    956
+   ],
+   "r": 481.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

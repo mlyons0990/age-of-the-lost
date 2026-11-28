@@ -1,0 +1,846 @@
+{
+ "name": "The Seven Chambers",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 7433,
+ "paths": [
+  {
+   "pts": [
+    [
+     2404,
+     2719
+    ],
+    [
+     3597,
+     2545
+    ],
+    [
+     4810,
+     2625
+    ]
+   ],
+   "width": 269,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4810,
+     2625
+    ],
+    [
+     5679,
+     2656
+    ],
+    [
+     6468,
+     2382
+    ]
+   ],
+   "width": 287,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4810,
+     2625
+    ],
+    [
+     4986,
+     3143
+    ],
+    [
+     5132,
+     3667
+    ]
+   ],
+   "width": 277,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5132,
+     3667
+    ],
+    [
+     4169,
+     3737
+    ],
+    [
+     3296,
+     4046
+    ]
+   ],
+   "width": 274,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3296,
+     4046
+    ],
+    [
+     2167,
+     4245
+    ],
+    [
+     1035,
+     4060
+    ]
+   ],
+   "width": 305,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4810,
+     2625
+    ],
+    [
+     4475,
+     2008
+    ],
+    [
+     4466,
+     1345
+    ]
+   ],
+   "width": 334,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4466,
+     1345
+    ],
+    [
+     2988,
+     1100
+    ],
+    [
+     1476,
+     1063
+    ]
+   ],
+   "width": 321,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4466,
+     1345
+    ],
+    [
+     5304,
+     2426
+    ],
+    [
+     5132,
+     3667
+    ]
+   ],
+   "width": 329,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1147
+    ],
+    [
+     840,
+     1147
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1147
+    ],
+    [
+     1476,
+     1063
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     5440,
+     4774
+    ],
+    [
+     5440,
+     4214.0
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     5440,
+     4254.0
+    ],
+    [
+     5132,
+     3667
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    2404,
+    2719
+   ],
+   "r": 515,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6468,
+    2382
+   ],
+   "r": 595,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1035,
+    4060
+   ],
+   "r": 532,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1476,
+    1063
+   ],
+   "r": 547,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4466,
+    1345
+   ],
+   "r": 510,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5132,
+    3667
+   ],
+   "r": 638,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3296,
+    4046
+   ],
+   "r": 460,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4810,
+    2625
+   ],
+   "r": 443,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1147,
+   380
+  ],
+  [
+   5440,
+   4774,
+   380
+  ],
+  [
+   6468,
+   2382,
+   300
+  ],
+  [
+   5132,
+   3667,
+   300
+  ],
+  [
+   4810,
+   2625,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    2404,
+    2719,
+    437.75,
+    0.6
+   ],
+   [
+    6468,
+    2382,
+    505.75,
+    0.6
+   ],
+   [
+    1035,
+    4060,
+    452.2,
+    0.6
+   ],
+   [
+    1476,
+    1063,
+    464.95,
+    0.6
+   ],
+   [
+    4466,
+    1345,
+    433.5,
+    0.6
+   ],
+   [
+    5132,
+    3667,
+    542.3,
+    0.6
+   ],
+   [
+    3296,
+    4046,
+    391.0,
+    0.6
+   ],
+   [
+    4810,
+    2625,
+    376.55,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6468,
+    2162,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_seven_chambers_wp",
+   "name": "The Seven Chambers",
+   "at": [
+    4466,
+    1345
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Caldrin's Vigil",
+   "to": "caldrins_vigil",
+   "at": [
+    140,
+    1147
+   ],
+   "r": 170,
+   "arrive": [
+    4286,
+    4438
+   ]
+  },
+  {
+   "name": "The Crown of Empty Histories",
+   "to": "the_crown_of_empty_histories",
+   "at": [
+    5440,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3078
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1147
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Growth Cell",
+   "kind": "landmark",
+   "at": [
+    6468,
+    2382
+   ],
+   "blurb": "Seven themed regulator cells"
+  },
+  {
+   "name": "Flow Cell",
+   "kind": "landmark",
+   "at": [
+    5132,
+    3667
+   ],
+   "blurb": "Seven themed regulator cells"
+  },
+  {
+   "name": "Continuity Cell",
+   "kind": "landmark",
+   "at": [
+    4810,
+    2625
+   ],
+   "blurb": "Seven themed regulator cells"
+  },
+  {
+   "name": "Caldrin's Vigil",
+   "kind": "landmark",
+   "at": [
+    140,
+    1147
+   ],
+   "blurb": "To Caldrin's Vigil."
+  },
+  {
+   "name": "The Crown of Empty Histories",
+   "kind": "landmark",
+   "at": [
+    5440,
+    4774
+   ],
+   "blurb": "To The Crown of Empty Histories."
+  }
+ ],
+ "world_id": "the_seven_chambers",
+ "grade": {
+  "mul": [
+   1.06,
+   0.94,
+   0.72
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.1,
+   0.08,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   0.95,
+   0.88,
+   0.7
+  ],
+  "water": [
+   0.18,
+   0.14,
+   0.08
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    2404,
+    2719
+   ],
+   "r": 489.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6468,
+    2382
+   ],
+   "r": 565.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1035,
+    4060
+   ],
+   "r": 505.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1476,
+    1063
+   ],
+   "r": 519.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4466,
+    1345
+   ],
+   "r": 484.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5132,
+    3667
+   ],
+   "r": 606.1,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3296,
+    4046
+   ],
+   "r": 437.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4810,
+    2625
+   ],
+   "r": 420.84999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

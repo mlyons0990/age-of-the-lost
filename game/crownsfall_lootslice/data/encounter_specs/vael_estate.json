@@ -1,0 +1,88 @@
+{
+ "zone": "vael_estate",
+ "levels": [
+  27,
+  28
+ ],
+ "packs": 20,
+ "seed": 912,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "vael_estate_0",
+    "vael_estate_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "vael_estate_1",
+    "vael_estate_1",
+    "vael_estate_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "vael_estate_0",
+    "vael_estate_1",
+    "vael_estate_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "vael_estate_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "vael_estate_2",
+    "vael_estate_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "vael_estate_0",
+    "vael_estate_0",
+    "vael_estate_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    1822,
+    3916
+   ],
+   "types": [],
+   "boss": "vael_estate_boss_u",
+   "boss_type": "vael_estate_boss",
+   "boss_name": "The Estate Intruder",
+   "needs_quest": "Q_A03_11"
+  }
+ ],
+ "keep_clear": [
+  [
+   909,
+   1465,
+   700
+  ],
+  [
+   1069,
+   1465,
+   700
+  ],
+  [
+   1822,
+   3916,
+   700
+  ]
+ ]
+}

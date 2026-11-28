@@ -1,0 +1,122 @@
+{
+ "zone": "cathedral_before_the_fall",
+ "levels": [
+  34,
+  35
+ ],
+ "packs": 14,
+ "seed": 1,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "cathedral_before_the_fall_0",
+    "cathedral_before_the_fall_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "cathedral_before_the_fall_1",
+    "cathedral_before_the_fall_1",
+    "cathedral_before_the_fall_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "cathedral_before_the_fall_0",
+    "cathedral_before_the_fall_1",
+    "cathedral_before_the_fall_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "cathedral_before_the_fall_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "cathedral_before_the_fall_2",
+    "cathedral_before_the_fall_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "cathedral_before_the_fall_0",
+    "cathedral_before_the_fall_0",
+    "cathedral_before_the_fall_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5567,
+    1919
+   ],
+   "types": [
+    "cathedral_before_the_fall_1",
+    "cathedral_before_the_fall_1"
+   ],
+   "elite": false,
+   "guardian": "cathedral_before_the_fall_g1",
+   "elite_type": "cathedral_before_the_fall_0",
+   "elite_name": "Doorbreaker",
+   "page": "Q_A04_07_1"
+  },
+  {
+   "at": [
+    2367,
+    3899
+   ],
+   "types": [
+    "cathedral_before_the_fall_1",
+    "cathedral_before_the_fall_1"
+   ],
+   "elite": false,
+   "guardian": "cathedral_before_the_fall_g2",
+   "elite_type": "cathedral_before_the_fall_1",
+   "elite_name": "Seam Wraith",
+   "page": "Q_A04_07_2"
+  },
+  {
+   "at": [
+    2279,
+    2826
+   ],
+   "types": [
+    "cathedral_before_the_fall_1",
+    "cathedral_before_the_fall_1"
+   ],
+   "elite": false,
+   "guardian": "cathedral_before_the_fall_g3",
+   "elite_type": "cathedral_before_the_fall_2",
+   "elite_name": "Glass-Fall Horror",
+   "page": "Q_A04_07_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   5567,
+   1919,
+   700
+  ],
+  [
+   2367,
+   3899,
+   700
+  ],
+  [
+   2279,
+   2826,
+   700
+  ]
+ ]
+}

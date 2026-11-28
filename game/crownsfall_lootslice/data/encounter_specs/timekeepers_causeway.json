@@ -1,0 +1,78 @@
+{
+ "zone": "timekeepers_causeway",
+ "levels": [
+  18,
+  19
+ ],
+ "packs": 14,
+ "seed": 291,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "timekeepers_causeway_0",
+    "timekeepers_causeway_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "timekeepers_causeway_1",
+    "timekeepers_causeway_1",
+    "timekeepers_causeway_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "timekeepers_causeway_0",
+    "timekeepers_causeway_1",
+    "timekeepers_causeway_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "timekeepers_causeway_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "timekeepers_causeway_2",
+    "timekeepers_causeway_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "timekeepers_causeway_0",
+    "timekeepers_causeway_0",
+    "timekeepers_causeway_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6387,
+    4108
+   ],
+   "types": [],
+   "boss": "timekeepers_causeway_boss_u",
+   "boss_type": "timekeepers_causeway_boss",
+   "boss_name": "The Interval Guardian",
+   "needs_quest": "Q_A02_12"
+  }
+ ],
+ "keep_clear": [
+  [
+   6387,
+   4108,
+   700
+  ]
+ ]
+}

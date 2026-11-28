@@ -1,0 +1,784 @@
+{
+ "name": "Glassreed Marsh",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 4877,
+ "paths": [
+  {
+   "pts": [
+    [
+     2018,
+     4774
+    ],
+    [
+     2018,
+     4470
+    ],
+    [
+     2498,
+     3992
+    ],
+    [
+     2731,
+     3451
+    ],
+    [
+     3236,
+     2980
+    ],
+    [
+     3151,
+     2357
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3151,
+     2357
+    ],
+    [
+     4406.5,
+     1628.5
+    ],
+    [
+     5662,
+     900
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     2498,
+     3992
+    ],
+    [
+     3036,
+     4236
+    ],
+    [
+     3581,
+     4318
+    ]
+   ],
+   "width": 147,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     3151,
+     2357
+    ],
+    [
+     2216,
+     2226
+    ],
+    [
+     818,
+     1947
+    ]
+   ],
+   "width": 167,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5662,
+     900
+    ],
+    [
+     6005,
+     613
+    ],
+    [
+     6867,
+     662
+    ]
+   ],
+   "width": 187,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3904,
+     1919
+    ],
+    [
+     4379,
+     2187
+    ],
+    [
+     4635,
+     2337
+    ]
+   ],
+   "width": 182,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    3643,
+    1433
+   ],
+   "r": 737,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2195,
+    3507
+   ],
+   "r": 576,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4995,
+    2175
+   ],
+   "r": 501,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3151,
+    2357
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    818,
+    1947
+   ],
+   "r": 401,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6867,
+    662
+   ],
+   "r": 404,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4635,
+    2337
+   ],
+   "r": 429,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    990,
+    2682
+   ],
+   "r": 640,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1928,
+    2736
+   ],
+   "r": 596,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2098,
+    1405
+   ],
+   "r": 553,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6115,
+    2328
+   ],
+   "r": 663,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2668,
+    1675
+   ],
+   "r": 527,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1332,
+    3307
+   ],
+   "r": 673,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6878,
+    2892
+   ],
+   "r": 492,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2251,
+    1579
+   ],
+   "r": 492,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   2018,
+   4774,
+   380
+  ],
+  [
+   3581,
+   4318,
+   300
+  ],
+  [
+   818,
+   1947,
+   300
+  ],
+  [
+   6867,
+   662,
+   300
+  ],
+  [
+   4635,
+   2337,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    4
+   ]
+  ],
+  "spacing": 900,
+  "cut": 0.7,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 18,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall",
+    "a_moss"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3581,
+    4318,
+    560,
+    0.45
+   ],
+   [
+    818,
+    1947,
+    560,
+    0.45
+   ],
+   [
+    6867,
+    662,
+    560,
+    0.45
+   ],
+   [
+    4635,
+    2337,
+    560,
+    0.45
+   ],
+   [
+    3151,
+    2357,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3151,
+    2137,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    990,
+    2682,
+    1024.0
+   ],
+   [
+    1928,
+    2736,
+    953.6
+   ],
+   [
+    2098,
+    1405,
+    884.8000000000001
+   ],
+   [
+    6115,
+    2328,
+    1060.8
+   ],
+   [
+    2668,
+    1675,
+    843.2
+   ],
+   [
+    1332,
+    3307,
+    1076.8
+   ],
+   [
+    6878,
+    2892,
+    787.2
+   ],
+   [
+    2251,
+    1579,
+    787.2
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "glassreed_marsh_wp",
+   "name": "Glassreed Marsh",
+   "at": [
+    3151,
+    2357
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Thornfen",
+   "to": "thornfen",
+   "at": [
+    2018,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    2190,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2018,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Frozen Ripples",
+   "kind": "landmark",
+   "at": [
+    3581,
+    4318
+   ],
+   "blurb": "Frozen ripples and translucent reeds"
+  },
+  {
+   "name": "Surveyor's Stake",
+   "kind": "landmark",
+   "at": [
+    818,
+    1947
+   ],
+   "blurb": "Frozen ripples and translucent reeds"
+  },
+  {
+   "name": "Stable Node",
+   "kind": "landmark",
+   "at": [
+    6867,
+    662
+   ],
+   "blurb": "Frozen ripples and translucent reeds"
+  },
+  {
+   "name": "Translucent Reeds",
+   "kind": "landmark",
+   "at": [
+    4635,
+    2337
+   ],
+   "blurb": "Frozen ripples and translucent reeds"
+  },
+  {
+   "name": "Thornfen",
+   "kind": "landmark",
+   "at": [
+    2018,
+    4774
+   ],
+   "blurb": "To Thornfen."
+  }
+ ],
+ "world_id": "glassreed_marsh",
+ "grade": {
+  "mul": [
+   0.86,
+   0.98,
+   1.06
+  ],
+  "desat": 0.35,
+  "lift": [
+   0.05,
+   0.08,
+   0.1,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.92,
+   1.0
+  ],
+  "water": [
+   0.4,
+   0.62,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3581,
+    4318
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    818,
+    1947
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6867,
+    662
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    4635,
+    2337
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  }
+ ]
+}

@@ -1,0 +1,127 @@
+{
+ "zone": "hearth_of_names",
+ "levels": [
+  48,
+  49
+ ],
+ "packs": 14,
+ "seed": 562,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "hearth_of_names_0",
+    "hearth_of_names_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "hearth_of_names_1",
+    "hearth_of_names_1",
+    "hearth_of_names_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "hearth_of_names_0",
+    "hearth_of_names_1",
+    "hearth_of_names_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "hearth_of_names_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "hearth_of_names_2",
+    "hearth_of_names_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "hearth_of_names_0",
+    "hearth_of_names_0",
+    "hearth_of_names_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5132,
+    1246
+   ],
+   "types": [
+    "hearth_of_names_1",
+    "hearth_of_names_1"
+   ],
+   "elite": false,
+   "guardian": "hearth_of_names_g1",
+   "elite_type": "hearth_of_names_0",
+   "elite_name": "Choir Raider",
+   "page": "Q_A05_13_1"
+  },
+  {
+   "at": [
+    4272,
+    2652
+   ],
+   "types": [
+    "hearth_of_names_1",
+    "hearth_of_names_1"
+   ],
+   "elite": false,
+   "guardian": "hearth_of_names_g2",
+   "elite_type": "hearth_of_names_1",
+   "elite_name": "Name-Eater",
+   "page": "Q_A05_13_2"
+  },
+  {
+   "at": [
+    4117,
+    4150
+   ],
+   "types": [
+    "hearth_of_names_1",
+    "hearth_of_names_1"
+   ],
+   "elite": false,
+   "guardian": "hearth_of_names_g3",
+   "elite_type": "hearth_of_names_2",
+   "elite_name": "Court Seizer",
+   "page": "Q_A05_13_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   2924,
+   1755,
+   700
+  ],
+  [
+   5132,
+   1246,
+   700
+  ],
+  [
+   4272,
+   2652,
+   700
+  ],
+  [
+   4117,
+   4150,
+   700
+  ]
+ ]
+}

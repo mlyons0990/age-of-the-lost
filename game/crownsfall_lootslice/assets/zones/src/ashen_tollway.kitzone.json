@@ -1,0 +1,731 @@
+{
+ "name": "Ashen Tollway",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 7334,
+ "paths": [
+  {
+   "pts": [
+    [
+     7479,
+     190
+    ],
+    [
+     7479,
+     494
+    ],
+    [
+     7263,
+     947
+    ],
+    [
+     6652,
+     1310
+    ],
+    [
+     7191,
+     1938
+    ],
+    [
+     6589,
+     2303
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4576,
+     4774
+    ],
+    [
+     4576,
+     4470
+    ],
+    [
+     4797,
+     3802
+    ],
+    [
+     5267,
+     3245
+    ],
+    [
+     5979,
+     2797
+    ],
+    [
+     6589,
+     2303
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     7191,
+     1938
+    ],
+    [
+     7696,
+     1926
+    ],
+    [
+     7821,
+     2166
+    ]
+   ],
+   "width": 152,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4797,
+     3802
+    ],
+    [
+     4249,
+     3686
+    ],
+    [
+     3254,
+     3478
+    ]
+   ],
+   "width": 188,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4708,
+     4069
+    ],
+    [
+     5772,
+     4191
+    ],
+    [
+     7110,
+     4339
+    ]
+   ],
+   "width": 131,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6652,
+     1310
+    ],
+    [
+     5294,
+     1060
+    ],
+    [
+     4477,
+     999
+    ]
+   ],
+   "width": 174,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    10699,
+    881
+   ],
+   "r": 453,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5301,
+    2046
+   ],
+   "r": 545,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    8599,
+    1986
+   ],
+   "r": 538,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5694,
+    665
+   ],
+   "r": 455,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5117,
+    1851
+   ],
+   "r": 667,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    783,
+    1769
+   ],
+   "r": 574,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6589,
+    2303
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7821,
+    2166
+   ],
+   "r": 497,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3254,
+    3478
+   ],
+   "r": 683,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4477,
+    999
+   ],
+   "r": 473,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   7479,
+   190,
+   380
+  ],
+  [
+   4576,
+   4774,
+   380
+  ],
+  [
+   7821,
+   2166,
+   300
+  ],
+  [
+   3254,
+   3478,
+   300
+  ],
+  [
+   7110,
+   4339,
+   300
+  ],
+  [
+   4477,
+   999,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_b",
+    3
+   ],
+   [
+    "gnarled_a",
+    2
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 55,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    7821,
+    2166,
+    560,
+    0.45
+   ],
+   [
+    3254,
+    3478,
+    560,
+    0.45
+   ],
+   [
+    7110,
+    4339,
+    560,
+    0.45
+   ],
+   [
+    4477,
+    999,
+    560,
+    0.45
+   ],
+   [
+    6589,
+    2303,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6589,
+    2083,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "ashen_tollway_wp",
+   "name": "Ashen Tollway",
+   "at": [
+    6589,
+    2303
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Kingsroad Fields",
+   "to": "kingsroad_fields",
+   "at": [
+    7479,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    5844,
+    4438
+   ]
+  },
+  {
+   "name": "Bellwater Mills",
+   "to": "bellwater_mills",
+   "at": [
+    4576,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    7232,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  7479,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Burnt Caravans",
+   "kind": "landmark",
+   "at": [
+    7821,
+    2166
+   ],
+   "blurb": "Charred stone road, caravan wrecks"
+  },
+  {
+   "name": "Cult Camp",
+   "kind": "landmark",
+   "at": [
+    3254,
+    3478
+   ],
+   "blurb": "Charred stone road, caravan wrecks"
+  },
+  {
+   "name": "Toll Shrine",
+   "kind": "landmark",
+   "at": [
+    7110,
+    4339
+   ],
+   "blurb": "Charred stone road, caravan wrecks"
+  },
+  {
+   "name": "Charred Milestone",
+   "kind": "landmark",
+   "at": [
+    4477,
+    999
+   ],
+   "blurb": "Charred stone road, caravan wrecks"
+  },
+  {
+   "name": "Kingsroad Fields",
+   "kind": "landmark",
+   "at": [
+    7479,
+    190
+   ],
+   "blurb": "To Kingsroad Fields."
+  },
+  {
+   "name": "Bellwater Mills",
+   "kind": "landmark",
+   "at": [
+    4576,
+    4774
+   ],
+   "blurb": "To Bellwater Mills."
+  }
+ ],
+ "world_id": "ashen_tollway",
+ "grade": {
+  "mul": [
+   0.72,
+   0.66,
+   0.62
+  ],
+  "desat": 0.62,
+  "lift": [
+   0.05,
+   0.03,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   0.55,
+   0.5,
+   0.48
+  ],
+  "water": [
+   0.2,
+   0.22,
+   0.24
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    7821,
+    2166
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    3254,
+    3478
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    7110,
+    4339
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    4477,
+    999
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  }
+ ]
+}

@@ -1,0 +1,637 @@
+{
+ "name": "The King's Unmaking",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 411,
+ "paths": [
+  {
+   "pts": [
+    [
+     4780,
+     4774
+    ],
+    [
+     4780,
+     4470
+    ],
+    [
+     4626,
+     3952
+    ],
+    [
+     4886,
+     3419
+    ],
+    [
+     4222,
+     2920
+    ],
+    [
+     4624,
+     2383
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4624,
+     2383
+    ],
+    [
+     3762.0,
+     1641.5
+    ],
+    [
+     2900,
+     900
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4106,
+     1938
+    ],
+    [
+     3696,
+     2100
+    ],
+    [
+     3182,
+     2263
+    ]
+   ],
+   "width": 188,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4764,
+     4418
+    ],
+    [
+     5925,
+     4223
+    ],
+    [
+     6648,
+     4268
+    ]
+   ],
+   "width": 174,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4672,
+     4107
+    ],
+    [
+     3343,
+     4242
+    ],
+    [
+     2395,
+     4338
+    ]
+   ],
+   "width": 164,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4375,
+    3803
+   ],
+   "r": 447,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4886,
+    3746
+   ],
+   "r": 572,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5123,
+    3153
+   ],
+   "r": 555,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3179,
+    1111
+   ],
+   "r": 588,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6800,
+    3856
+   ],
+   "r": 670,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3081,
+    1296
+   ],
+   "r": 567,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4624,
+    2383
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3182,
+    2263
+   ],
+   "r": 650,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6648,
+    4268
+   ],
+   "r": 309,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2395,
+    4338
+   ],
+   "r": 300,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   4780,
+   4774,
+   380
+  ],
+  [
+   3182,
+   2263,
+   300
+  ],
+  [
+   6648,
+   4268,
+   300
+  ],
+  [
+   2395,
+   4338,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_b",
+    3
+   ],
+   [
+    "gnarled_a",
+    2
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 55,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3182,
+    2263,
+    560,
+    0.45
+   ],
+   [
+    6648,
+    4268,
+    560,
+    0.45
+   ],
+   [
+    2395,
+    4338,
+    560,
+    0.45
+   ],
+   [
+    4624,
+    2383,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4624,
+    2163,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_kings_unmaking_wp",
+   "name": "The King's Unmaking",
+   "at": [
+    4624,
+    2383
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Vault of Continuity",
+   "to": "vault_of_continuity",
+   "at": [
+    4780,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5759,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4780,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Oris's Chambers",
+   "kind": "landmark",
+   "at": [
+    3182,
+    2263
+   ],
+   "blurb": "Oris's chambers and a crumbling capital"
+  },
+  {
+   "name": "Crumbling Capital",
+   "kind": "landmark",
+   "at": [
+    6648,
+    4268
+   ],
+   "blurb": "Oris's chambers and a crumbling capital"
+  },
+  {
+   "name": "Promise Balcony",
+   "kind": "landmark",
+   "at": [
+    2395,
+    4338
+   ],
+   "blurb": "Oris's chambers and a crumbling capital"
+  },
+  {
+   "name": "Vault of Continuity",
+   "kind": "landmark",
+   "at": [
+    4780,
+    4774
+   ],
+   "blurb": "To Vault of Continuity."
+  }
+ ],
+ "world_id": "the_kings_unmaking",
+ "grade": {
+  "mul": [
+   1.02,
+   0.94,
+   0.78
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.06,
+   0.05,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   0.9,
+   0.85,
+   0.7
+  ],
+  "water": [
+   0.3,
+   0.35,
+   0.4
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3182,
+    2263
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6648,
+    4268
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    2395,
+    4338
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  }
+ ]
+}

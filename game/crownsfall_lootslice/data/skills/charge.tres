@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/charge.png" id="1_h2hdv"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_ch1j8"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_rnc38"]
+
+[sub_resource type="Resource" id="Resource_arkxm"]
+script = ExtResource("3_rnc38")
+id = "relentless"
+display_name = "Relentless"
+description = "Cooldown reduced to 3.5 s."
+overrides = {
+"cd": 3.5
+}
+
+[sub_resource type="Resource" id="Resource_bvmir"]
+script = ExtResource("3_rnc38")
+id = "shockwave"
+display_name = "Shockwave"
+description = "Ends in a shockwave that hits everything within 2.5 m."
+overrides = {
+"end_radius": 2.5
+}
+
+[resource]
+script = ExtResource("2_ch1j8")
+id = "charge"
+display_name = "Shield Charge"
+icon = ExtResource("1_h2hdv")
+description = "Charge toward the cursor, bashing and stunning every enemy in your path."
+unlock_level = 3
+animation = "Dash"
+shape = "dash"
+mana_cost = 15.0
+cooldown = 6.0
+numbers = {
+"dmg": 1.3,
+"knock": 1.2,
+"range": 6.0,
+"stun": 0.5,
+"width": 1.4
+}
+upgrades = Array[ExtResource("3_rnc38")]([SubResource("Resource_arkxm"), SubResource("Resource_bvmir")])

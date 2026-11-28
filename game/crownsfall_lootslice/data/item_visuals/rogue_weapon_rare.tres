@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_8uxcf"]
+
+[resource]
+script = ExtResource("1_8uxcf")
+id = "rogue_weapon_rare"
+mesh_prefix = "WEAPON_"
+tint = Color(1.08, 1, 0.86, 1)
+glow = Color(1, 0.82, 0.35, 0.55)

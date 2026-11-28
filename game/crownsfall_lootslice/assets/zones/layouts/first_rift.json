@@ -1,0 +1,174 @@
+{
+ "id": "first_rift",
+ "name": "The First Rift",
+ "world_id": "first_rift",
+ "size": [
+  7680,
+  4944
+ ],
+ "seed": 89,
+ "road": "dirt",
+ "main": [
+  [
+   -80,
+   2470
+  ],
+  [
+   1200,
+   2500
+  ],
+  [
+   2400,
+   2470
+  ],
+  [
+   3600,
+   2350
+  ],
+  [
+   4800,
+   2470
+  ],
+  [
+   5900,
+   2470
+  ]
+ ],
+ "rooms": [
+  [
+   2400,
+   2470,
+   420
+  ],
+  [
+   5900,
+   2470,
+   900,
+   "dirt"
+  ]
+ ],
+ "pools": [
+  [
+   7200,
+   2470,
+   800
+  ],
+  [
+   1500,
+   3800,
+   520
+  ],
+  [
+   3600,
+   3900,
+   600
+  ],
+  [
+   4500,
+   900,
+   560
+  ],
+  [
+   2000,
+   1000,
+   400
+  ],
+  [
+   7000,
+   4200,
+   500
+  ],
+  [
+   7000,
+   700,
+   500
+  ]
+ ],
+ "trees": [
+  [
+   "gnarled_b",
+   1
+  ]
+ ],
+ "tree_spacing": 1500,
+ "tree_cut": 0.9,
+ "rocks": 70,
+ "exits": [
+  {
+   "name": "Riftscar Moor",
+   "to": "riftscar_moor",
+   "at": [
+    140,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    11050,
+    2470
+   ]
+  }
+ ],
+ "waypoint": [
+  2400,
+  2470,
+  "first_rift_edge",
+  "Rift's Edge"
+ ],
+ "spawn": [
+  620,
+  2470
+ ],
+ "pois": [
+  {
+   "name": "Moor Road",
+   "kind": "landmark",
+   "at": [
+    160,
+    2470
+   ],
+   "blurb": "Back to Riftscar Moor."
+  },
+  {
+   "name": "Rift's Edge",
+   "kind": "landmark",
+   "at": [
+    2400,
+    2470
+   ],
+   "blurb": "The last waypoint before the breach."
+  },
+  {
+   "name": "The First Rift",
+   "kind": "landmark",
+   "at": [
+    7200,
+    2470
+   ],
+   "blurb": "The breach. On the other side, the hours have stopped."
+  }
+ ],
+ "grade": {
+  "mul": [
+   0.82,
+   0.76,
+   0.92
+  ],
+  "desat": 0.45,
+  "lift": [
+   0.07,
+   0.03,
+   0.1,
+   1.0
+  ],
+  "mist": [
+   0.66,
+   0.5,
+   0.9
+  ],
+  "water": [
+   0.56,
+   0.24,
+   0.8
+  ]
+ }
+}

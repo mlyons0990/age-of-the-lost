@@ -1,0 +1,127 @@
+{
+ "zone": "concord_senate",
+ "levels": [
+  26,
+  27
+ ],
+ "packs": 18,
+ "seed": 352,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "concord_senate_0",
+    "concord_senate_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "concord_senate_1",
+    "concord_senate_1",
+    "concord_senate_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "concord_senate_0",
+    "concord_senate_1",
+    "concord_senate_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "concord_senate_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "concord_senate_2",
+    "concord_senate_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "concord_senate_0",
+    "concord_senate_0",
+    "concord_senate_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5063,
+    3260
+   ],
+   "types": [
+    "concord_senate_1",
+    "concord_senate_1"
+   ],
+   "elite": false,
+   "guardian": "concord_senate_g1",
+   "elite_type": "concord_senate_0",
+   "elite_name": "Senate Enforcer",
+   "page": "Q_A03_10_1"
+  },
+  {
+   "at": [
+    1226,
+    3881
+   ],
+   "types": [
+    "concord_senate_1",
+    "concord_senate_1"
+   ],
+   "elite": false,
+   "guardian": "concord_senate_g2",
+   "elite_type": "concord_senate_1",
+   "elite_name": "Oris's Clerk",
+   "page": "Q_A03_10_2"
+  },
+  {
+   "at": [
+    1598,
+    1082
+   ],
+   "types": [
+    "concord_senate_1",
+    "concord_senate_1"
+   ],
+   "elite": false,
+   "guardian": "concord_senate_g3",
+   "elite_type": "concord_senate_2",
+   "elite_name": "The Rigged Ballot Guard",
+   "page": "Q_A03_10_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   1598,
+   1082,
+   700
+  ],
+  [
+   5063,
+   3260,
+   700
+  ],
+  [
+   1226,
+   3881,
+   700
+  ],
+  [
+   1598,
+   1082,
+   700
+  ]
+ ]
+}

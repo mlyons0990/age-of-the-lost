@@ -1,0 +1,804 @@
+{
+ "name": "The Regent's Archive",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 6955,
+ "paths": [
+  {
+   "pts": [
+    [
+     1609,
+     3933
+    ],
+    [
+     2539,
+     3646
+    ],
+    [
+     3022,
+     2990
+    ]
+   ],
+   "width": 327,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3022,
+     2990
+    ],
+    [
+     3865,
+     3261
+    ],
+    [
+     4513,
+     3746
+    ]
+   ],
+   "width": 332,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4513,
+     3746
+    ],
+    [
+     5510,
+     3790
+    ],
+    [
+     6503,
+     3705
+    ]
+   ],
+   "width": 298,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3022,
+     2990
+    ],
+    [
+     2123,
+     2748
+    ],
+    [
+     1288,
+     2405
+    ]
+   ],
+   "width": 325,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6503,
+     3705
+    ],
+    [
+     6377,
+     2998
+    ],
+    [
+     6235,
+     2294
+    ]
+   ],
+   "width": 304,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6235,
+     2294
+    ],
+    [
+     6033,
+     1750
+    ],
+    [
+     5468,
+     1373
+    ]
+   ],
+   "width": 266,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5468,
+     1373
+    ],
+    [
+     4154,
+     981
+    ],
+    [
+     2744,
+     1074
+    ]
+   ],
+   "width": 285,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3022,
+     2990
+    ],
+    [
+     4627,
+     3709
+    ],
+    [
+     6503,
+     3705
+    ]
+   ],
+   "width": 278,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1435
+    ],
+    [
+     840,
+     1435
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1435
+    ],
+    [
+     1288,
+     2405
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    1609,
+    3933
+   ],
+   "r": 511,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4513,
+    3746
+   ],
+   "r": 557,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5468,
+    1373
+   ],
+   "r": 441,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3022,
+    2990
+   ],
+   "r": 446,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1288,
+    2405
+   ],
+   "r": 496,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2744,
+    1074
+   ],
+   "r": 509,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6235,
+    2294
+   ],
+   "r": 598,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6503,
+    3705
+   ],
+   "r": 496,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1435,
+   380
+  ],
+  [
+   6503,
+   3705,
+   300
+  ],
+  [
+   6235,
+   2294,
+   300
+  ],
+  [
+   5468,
+   1373,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    1609,
+    3933,
+    434.34999999999997,
+    0.6
+   ],
+   [
+    4513,
+    3746,
+    473.45,
+    0.6
+   ],
+   [
+    5468,
+    1373,
+    374.84999999999997,
+    0.6
+   ],
+   [
+    3022,
+    2990,
+    379.09999999999997,
+    0.6
+   ],
+   [
+    1288,
+    2405,
+    421.59999999999997,
+    0.6
+   ],
+   [
+    2744,
+    1074,
+    432.65,
+    0.6
+   ],
+   [
+    6235,
+    2294,
+    508.3,
+    0.6
+   ],
+   [
+    6503,
+    3705,
+    421.59999999999997,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6503,
+    3485,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_regents_archive_wp",
+   "name": "The Regent's Archive",
+   "at": [
+    4513,
+    3746
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Crownsfall of Three Ages",
+   "to": "crownsfall_of_three_ages",
+   "at": [
+    140,
+    1435
+   ],
+   "r": 170,
+   "arrive": [
+    2450,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1435
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Royal Library",
+   "kind": "landmark",
+   "at": [
+    6503,
+    3705
+   ],
+   "blurb": "Royal library, concealed foundation records"
+  },
+  {
+   "name": "Concealed Foundation Records",
+   "kind": "landmark",
+   "at": [
+    6235,
+    2294
+   ],
+   "blurb": "Royal library, concealed foundation records"
+  },
+  {
+   "name": "King Aldren's Notes",
+   "kind": "landmark",
+   "at": [
+    5468,
+    1373
+   ],
+   "blurb": "Royal library, concealed foundation records"
+  },
+  {
+   "name": "Crownsfall of Three Ages",
+   "kind": "landmark",
+   "at": [
+    140,
+    1435
+   ],
+   "blurb": "To Crownsfall of Three Ages."
+  }
+ ],
+ "world_id": "the_regents_archive",
+ "grade": {
+  "mul": [
+   0.86,
+   0.86,
+   1.04
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.04,
+   0.04,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.75,
+   0.75,
+   0.95
+  ],
+  "water": [
+   0.2,
+   0.25,
+   0.5
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    1609,
+    3933
+   ],
+   "r": 485.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4513,
+    3746
+   ],
+   "r": 529.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5468,
+    1373
+   ],
+   "r": 418.95,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3022,
+    2990
+   ],
+   "r": 423.7,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1288,
+    2405
+   ],
+   "r": 471.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2744,
+    1074
+   ],
+   "r": 483.54999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6235,
+    2294
+   ],
+   "r": 568.1,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6503,
+    3705
+   ],
+   "r": 471.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

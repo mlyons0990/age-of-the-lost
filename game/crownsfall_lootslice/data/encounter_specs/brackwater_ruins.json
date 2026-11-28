@@ -1,0 +1,127 @@
+{
+ "zone": "brackwater_ruins",
+ "levels": [
+  8,
+  9
+ ],
+ "packs": 30,
+ "seed": 404,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "brackwater_ruins_0",
+    "brackwater_ruins_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "brackwater_ruins_1",
+    "brackwater_ruins_1",
+    "brackwater_ruins_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "brackwater_ruins_0",
+    "brackwater_ruins_1",
+    "brackwater_ruins_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "brackwater_ruins_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "brackwater_ruins_2",
+    "brackwater_ruins_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "brackwater_ruins_0",
+    "brackwater_ruins_0",
+    "brackwater_ruins_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6057,
+    1503
+   ],
+   "types": [
+    "brackwater_ruins_1",
+    "brackwater_ruins_1"
+   ],
+   "elite": false,
+   "guardian": "brackwater_ruins_g1",
+   "elite_type": "brackwater_ruins_0",
+   "elite_name": "The Seal-Warden West",
+   "page": "Q_A01_R16_1"
+  },
+  {
+   "at": [
+    5052,
+    4406
+   ],
+   "types": [
+    "brackwater_ruins_1",
+    "brackwater_ruins_1"
+   ],
+   "elite": false,
+   "guardian": "brackwater_ruins_g2",
+   "elite_type": "brackwater_ruins_1",
+   "elite_name": "The Signal-Keeper",
+   "page": "Q_A01_R16_2"
+  },
+  {
+   "at": [
+    8949,
+    3668
+   ],
+   "types": [
+    "brackwater_ruins_1",
+    "brackwater_ruins_1"
+   ],
+   "elite": false,
+   "guardian": "brackwater_ruins_g3",
+   "elite_type": "brackwater_ruins_2",
+   "elite_name": "The Seal-Warden East",
+   "page": "Q_A01_R16_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6057,
+   1503,
+   700
+  ],
+  [
+   5052,
+   4406,
+   700
+  ],
+  [
+   8949,
+   3668,
+   700
+  ],
+  [
+   2480,
+   2425,
+   800
+  ]
+ ]
+}

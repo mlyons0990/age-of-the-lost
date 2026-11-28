@@ -1,0 +1,122 @@
+{
+ "zone": "last_dawn_station",
+ "levels": [
+  31,
+  32
+ ],
+ "packs": 18,
+ "seed": 714,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "last_dawn_station_0",
+    "last_dawn_station_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "last_dawn_station_1",
+    "last_dawn_station_1",
+    "last_dawn_station_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "last_dawn_station_0",
+    "last_dawn_station_1",
+    "last_dawn_station_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "last_dawn_station_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "last_dawn_station_2",
+    "last_dawn_station_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "last_dawn_station_0",
+    "last_dawn_station_0",
+    "last_dawn_station_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6776,
+    2674
+   ],
+   "types": [
+    "last_dawn_station_1",
+    "last_dawn_station_1"
+   ],
+   "elite": false,
+   "guardian": "last_dawn_station_g1",
+   "elite_type": "last_dawn_station_0",
+   "elite_name": "Alarm Anomaly",
+   "page": "Q_A04_01_1"
+  },
+  {
+   "at": [
+    2771,
+    3936
+   ],
+   "types": [
+    "last_dawn_station_1",
+    "last_dawn_station_1"
+   ],
+   "elite": false,
+   "guardian": "last_dawn_station_g2",
+   "elite_type": "last_dawn_station_1",
+   "elite_name": "Panicked Guard Captain",
+   "page": "Q_A04_01_2"
+  },
+  {
+   "at": [
+    3152,
+    1581
+   ],
+   "types": [
+    "last_dawn_station_1",
+    "last_dawn_station_1"
+   ],
+   "elite": false,
+   "guardian": "last_dawn_station_g3",
+   "elite_type": "last_dawn_station_2",
+   "elite_name": "Rail Construct",
+   "page": "Q_A04_01_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6776,
+   2674,
+   700
+  ],
+  [
+   2771,
+   3936,
+   700
+  ],
+  [
+   3152,
+   1581,
+   700
+  ]
+ ]
+}

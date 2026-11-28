@@ -1,0 +1,78 @@
+{
+ "zone": "meridians_descent",
+ "levels": [
+  56,
+  57
+ ],
+ "packs": 14,
+ "seed": 41,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "meridians_descent_0",
+    "meridians_descent_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "meridians_descent_1",
+    "meridians_descent_1",
+    "meridians_descent_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "meridians_descent_0",
+    "meridians_descent_1",
+    "meridians_descent_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "meridians_descent_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "meridians_descent_2",
+    "meridians_descent_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "meridians_descent_0",
+    "meridians_descent_0",
+    "meridians_descent_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6465,
+    4003
+   ],
+   "types": [],
+   "boss": "meridians_descent_boss_u",
+   "boss_type": "meridians_descent_boss",
+   "boss_name": "The Descent Warden",
+   "needs_quest": "Q_A06_10"
+  }
+ ],
+ "keep_clear": [
+  [
+   6465,
+   4003,
+   700
+  ]
+ ]
+}

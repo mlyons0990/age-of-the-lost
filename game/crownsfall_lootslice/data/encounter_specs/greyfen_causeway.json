@@ -1,0 +1,78 @@
+{
+ "zone": "greyfen_causeway",
+ "levels": [
+  4,
+  5
+ ],
+ "packs": 30,
+ "seed": 206,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "greyfen_causeway_0",
+    "greyfen_causeway_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "greyfen_causeway_1",
+    "greyfen_causeway_1",
+    "greyfen_causeway_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "greyfen_causeway_0",
+    "greyfen_causeway_1",
+    "greyfen_causeway_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "greyfen_causeway_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "greyfen_causeway_2",
+    "greyfen_causeway_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "greyfen_causeway_0",
+    "greyfen_causeway_0",
+    "greyfen_causeway_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    9349,
+    3514
+   ],
+   "types": [],
+   "boss": "greyfen_causeway_boss_u",
+   "boss_type": "greyfen_causeway_boss",
+   "boss_name": "The Tollkeeper",
+   "needs_quest": "Q_A01_R09"
+  }
+ ],
+ "keep_clear": [
+  [
+   9349,
+   3514,
+   700
+  ]
+ ]
+}

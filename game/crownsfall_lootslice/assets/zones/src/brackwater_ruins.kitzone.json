@@ -1,0 +1,766 @@
+{
+ "name": "Brackwater Ruins",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 7397,
+ "paths": [
+  {
+   "pts": [
+    [
+     6618,
+     4774
+    ],
+    [
+     6618,
+     4470
+    ],
+    [
+     6420,
+     3908
+    ],
+    [
+     6245,
+     3336
+    ],
+    [
+     5260,
+     3088
+    ],
+    [
+     5007,
+     2549
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     5007,
+     2549
+    ],
+    [
+     4954.5,
+     1724.5
+    ],
+    [
+     4902,
+     900
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     4938,
+     1477
+    ],
+    [
+     5255,
+     1580
+    ],
+    [
+     6057,
+     1443
+    ]
+   ],
+   "width": 139,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6519,
+     4189
+    ],
+    [
+     5773,
+     4193
+    ],
+    [
+     5052,
+     4346
+    ]
+   ],
+   "width": 143,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6402,
+     3850
+    ],
+    [
+     7471,
+     3604
+    ],
+    [
+     8949,
+     3608
+    ]
+   ],
+   "width": 181,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4996,
+     2384
+    ],
+    [
+     3572,
+     2537
+    ],
+    [
+     2480,
+     2425
+    ]
+   ],
+   "width": 140,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    2076,
+    3934
+   ],
+   "r": 700,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4544,
+    2861
+   ],
+   "r": 634,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    1835,
+    821
+   ],
+   "r": 544,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2707,
+    3052
+   ],
+   "r": 534,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5007,
+    2549
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6057,
+    1443
+   ],
+   "r": 279,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8949,
+    3608
+   ],
+   "r": 222,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2480,
+    2425
+   ],
+   "r": 433,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7376,
+    1186
+   ],
+   "r": 371,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9859,
+    2181
+   ],
+   "r": 494,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9884,
+    1300
+   ],
+   "r": 508,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5340,
+    3698
+   ],
+   "r": 405,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1195,
+    2881
+   ],
+   "r": 505,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   6618,
+   4774,
+   380
+  ],
+  [
+   6057,
+   1443,
+   300
+  ],
+  [
+   5052,
+   4346,
+   300
+  ],
+  [
+   8949,
+   3608,
+   300
+  ],
+  [
+   2480,
+   2425,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    2
+   ],
+   [
+    "oak_b",
+    2
+   ],
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 900,
+  "cut": 0.7,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 80,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall",
+    "a_moss"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    6057,
+    1443,
+    560,
+    0.45
+   ],
+   [
+    5052,
+    4346,
+    560,
+    0.45
+   ],
+   [
+    8949,
+    3608,
+    560,
+    0.45
+   ],
+   [
+    2480,
+    2425,
+    560,
+    0.45
+   ],
+   [
+    5007,
+    2549,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    5007,
+    2329,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    7376,
+    1186,
+    593.6
+   ],
+   [
+    9859,
+    2181,
+    790.4000000000001
+   ],
+   [
+    9884,
+    1300,
+    812.8000000000001
+   ],
+   [
+    5340,
+    3698,
+    648.0
+   ],
+   [
+    1195,
+    2881,
+    808.0
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "brackwater_ruins_wp",
+   "name": "Brackwater Ruins",
+   "at": [
+    5007,
+    2549
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Riftscar Moor",
+   "to": "riftscar_moor",
+   "at": [
+    6618,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    7342,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  6618,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Seal-House West",
+   "kind": "landmark",
+   "at": [
+    6057,
+    1443
+   ],
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
+  },
+  {
+   "name": "Signal Tower",
+   "kind": "landmark",
+   "at": [
+    5052,
+    4346
+   ],
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
+  },
+  {
+   "name": "Seal-House East",
+   "kind": "landmark",
+   "at": [
+    8949,
+    3608
+   ],
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
+  },
+  {
+   "name": "Sentinel's Post",
+   "kind": "landmark",
+   "at": [
+    2480,
+    2425
+   ],
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
+  },
+  {
+   "name": "Riftscar Moor",
+   "kind": "landmark",
+   "at": [
+    6618,
+    4774
+   ],
+   "blurb": "To Riftscar Moor."
+  }
+ ],
+ "world_id": "brackwater_ruins",
+ "grade": {
+  "mul": [
+   0.86,
+   0.94,
+   0.96
+  ],
+  "desat": 0.36,
+  "lift": [
+   0.05,
+   0.07,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.66,
+   0.8,
+   0.86
+  ],
+  "water": [
+   0.22,
+   0.34,
+   0.36
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6057,
+    1443
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "oak_b",
+    "silver",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    5052,
+    4346
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    8949,
+    3608
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "oak_b",
+    "silver",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    2480,
+    2425
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  }
+ ]
+}

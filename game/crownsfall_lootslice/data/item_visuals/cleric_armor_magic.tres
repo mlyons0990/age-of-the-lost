@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_8jotd"]
+
+[resource]
+script = ExtResource("1_8jotd")
+id = "cleric_armor_magic"
+slot = "armor"
+tint = Color(0.92, 0.97, 1.08, 1)
+glow = Color(0.45, 0.65, 1, 0.35)
+cloth = Color(0.18431373, 0.37254903, 0.65882355, 1)
+metal = Color(0.8117647, 0.84705883, 0.9019608, 1)

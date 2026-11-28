@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/rogue_blade_dance.png" id="1_k16hg"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_oonrm"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_oi55f"]
+
+[sub_resource type="Resource" id="Resource_osylm"]
+script = ExtResource("3_oi55f")
+id = "flurry"
+display_name = "Flurry"
+description = "Ends in a spin that hits everything within 2.5 m."
+overrides = {
+"end_radius": 2.5
+}
+
+[sub_resource type="Resource" id="Resource_6cb3h"]
+script = ExtResource("3_oi55f")
+id = "hamstring"
+display_name = "Hamstring"
+description = "Everything cut is slowed by 50% for 2.5 s."
+overrides = {
+"slow": 0.5,
+"slow_t": 2.5
+}
+
+[resource]
+script = ExtResource("2_oonrm")
+id = "blade_dance"
+display_name = "Blade Dance"
+icon = ExtResource("1_k16hg")
+description = "Dash to the cursor, cutting through every enemy in your path."
+unlock_level = 8
+animation = "Dash"
+shape = "dash"
+mana_cost = 22.0
+cooldown = 6.0
+numbers = {
+"dmg": 1.9,
+"range": 6.5,
+"width": 1.6
+}
+upgrades = Array[ExtResource("3_oi55f")]([SubResource("Resource_osylm"), SubResource("Resource_6cb3h")])

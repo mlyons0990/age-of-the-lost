@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/rogue_death_mark.png" id="1_vdxxv"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_3pn75"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_ipxhm"]
+
+[sub_resource type="Resource" id="Resource_yb7l2"]
+script = ExtResource("3_ipxhm")
+id = "reaper"
+display_name = "Reaper"
+description = "Recover 5% life per enemy hit."
+overrides = {
+"heal_hit": 0.05
+}
+
+[sub_resource type="Resource" id="Resource_q5kq1"]
+script = ExtResource("3_ipxhm")
+id = "wide_storm"
+display_name = "Wide Storm"
+description = "Radius increased by 35%."
+overrides = {
+"radius": 4.0
+}
+
+[resource]
+script = ExtResource("2_3pn75")
+id = "death_mark"
+display_name = "Death Mark"
+icon = ExtResource("1_vdxxv")
+description = "A storm of blades around you; everything hit bleeds for 80% of the hit over 3 s."
+unlock_level = 12
+animation = "Cleave"
+shape = "nova"
+mana_cost = 26.0
+cooldown = 9.0
+numbers = {
+"burn": 0.8,
+"dmg": 2.3,
+"radius": 3.0
+}
+upgrades = Array[ExtResource("3_ipxhm")]([SubResource("Resource_yb7l2"), SubResource("Resource_q5kq1")])

@@ -1,0 +1,122 @@
+{
+ "zone": "senate_of_ash",
+ "levels": [
+  35,
+  36
+ ],
+ "packs": 18,
+ "seed": 883,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "senate_of_ash_0",
+    "senate_of_ash_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "senate_of_ash_1",
+    "senate_of_ash_1",
+    "senate_of_ash_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "senate_of_ash_0",
+    "senate_of_ash_1",
+    "senate_of_ash_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "senate_of_ash_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "senate_of_ash_2",
+    "senate_of_ash_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "senate_of_ash_0",
+    "senate_of_ash_0",
+    "senate_of_ash_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    4283,
+    1426
+   ],
+   "types": [
+    "senate_of_ash_1",
+    "senate_of_ash_1"
+   ],
+   "elite": false,
+   "guardian": "senate_of_ash_g1",
+   "elite_type": "senate_of_ash_0",
+   "elite_name": "Senate Guard",
+   "page": "Q_A04_08_1"
+  },
+  {
+   "at": [
+    882,
+    2921
+   ],
+   "types": [
+    "senate_of_ash_1",
+    "senate_of_ash_1"
+   ],
+   "elite": false,
+   "guardian": "senate_of_ash_g2",
+   "elite_type": "senate_of_ash_1",
+   "elite_name": "Oris Loyalist",
+   "page": "Q_A04_08_2"
+  },
+  {
+   "at": [
+    5181,
+    3552
+   ],
+   "types": [
+    "senate_of_ash_1",
+    "senate_of_ash_1"
+   ],
+   "elite": false,
+   "guardian": "senate_of_ash_g3",
+   "elite_type": "senate_of_ash_2",
+   "elite_name": "The Ash Usher",
+   "page": "Q_A04_08_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   4283,
+   1426,
+   700
+  ],
+  [
+   882,
+   2921,
+   700
+  ],
+  [
+   5181,
+   3552,
+   700
+  ]
+ ]
+}

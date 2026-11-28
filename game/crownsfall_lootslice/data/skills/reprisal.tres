@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/harvest.png" id="1_y1qev"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_s8st0"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_sxvb2"]
+
+[sub_resource type="Resource" id="Resource_mjiii"]
+script = ExtResource("3_sxvb2")
+id = "bulwark"
+display_name = "Bulwark"
+description = "Recover 7% life per enemy hit."
+overrides = {
+"heal_hit": 0.07
+}
+
+[sub_resource type="Resource" id="Resource_puxvq"]
+script = ExtResource("3_sxvb2")
+id = "repel"
+display_name = "Repel"
+description = "Hurls enemies away and stuns them for 1 s."
+overrides = {
+"knock": 3.0,
+"stun": 1.0
+}
+
+[resource]
+script = ExtResource("2_s8st0")
+id = "reprisal"
+display_name = "Citadel Reprisal"
+icon = ExtResource("1_y1qev")
+description = "Repel everything around you and recover 4% life per enemy hit."
+unlock_level = 12
+animation = "Cleave"
+shape = "nova"
+mana_cost = 26.0
+cooldown = 8.0
+numbers = {
+"dmg": 2.1,
+"heal_hit": 0.04,
+"radius": 3.0
+}
+upgrades = Array[ExtResource("3_sxvb2")]([SubResource("Resource_mjiii"), SubResource("Resource_puxvq")])

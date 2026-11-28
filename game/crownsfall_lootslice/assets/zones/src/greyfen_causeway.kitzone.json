@@ -1,0 +1,722 @@
+{
+ "name": "Greyfen Causeway",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 5003,
+ "paths": [
+  {
+   "pts": [
+    [
+     140,
+     2977
+    ],
+    [
+     520,
+     2977
+    ],
+    [
+     2560,
+     2079
+    ],
+    [
+     4838,
+     3012
+    ],
+    [
+     6928,
+     2495
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     8687,
+     4774
+    ],
+    [
+     8687,
+     4470
+    ],
+    [
+     7614,
+     4018
+    ],
+    [
+     7875,
+     3000
+    ],
+    [
+     6928,
+     2495
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     7770,
+     3407
+    ],
+    [
+     8384,
+     3454
+    ],
+    [
+     9349,
+     3514
+    ]
+   ],
+   "width": 184,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2560,
+     2079
+    ],
+    [
+     2779,
+     1497
+    ],
+    [
+     3028,
+     1110
+    ]
+   ],
+   "width": 137,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     520,
+     2977
+    ],
+    [
+     1111,
+     3467
+    ],
+    [
+     1480,
+     3974
+    ]
+   ],
+   "width": 178,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6928,
+     2495
+    ],
+    [
+     7253,
+     1887
+    ],
+    [
+     7597,
+     1179
+    ]
+   ],
+   "width": 158,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6338,
+    2176
+   ],
+   "r": 560,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    7697,
+    3311
+   ],
+   "r": 633,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    8744,
+    2929
+   ],
+   "r": 542,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    702,
+    2077
+   ],
+   "r": 558,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6866,
+    4413
+   ],
+   "r": 455,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    10306,
+    929
+   ],
+   "r": 758,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6928,
+    2495
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    9349,
+    3514
+   ],
+   "r": 715,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3028,
+    1110
+   ],
+   "r": 400,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7597,
+    1179
+   ],
+   "r": 452,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   2977,
+   380
+  ],
+  [
+   8687,
+   4774,
+   380
+  ],
+  [
+   9349,
+   3514,
+   300
+  ],
+  [
+   3028,
+   1110,
+   300
+  ],
+  [
+   1480,
+   3974,
+   300
+  ],
+  [
+   7597,
+   1179,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_b",
+    3
+   ],
+   [
+    "gnarled_a",
+    2
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 55,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    9349,
+    3514,
+    560,
+    0.45
+   ],
+   [
+    3028,
+    1110,
+    560,
+    0.45
+   ],
+   [
+    1480,
+    3974,
+    560,
+    0.45
+   ],
+   [
+    7597,
+    1179,
+    560,
+    0.45
+   ],
+   [
+    6928,
+    2495,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6928,
+    2275,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "greyfen_causeway_wp",
+   "name": "Greyfen Causeway",
+   "at": [
+    6928,
+    2495
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Hollowmere",
+   "to": "hollowmere",
+   "at": [
+    140,
+    2977
+   ],
+   "r": 170,
+   "arrive": [
+    10960,
+    3391
+   ]
+  },
+  {
+   "name": "Saltmarrow",
+   "to": "saltmarrow",
+   "at": [
+    8687,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5350,
+    900
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  2977
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Toll Tower",
+   "kind": "landmark",
+   "at": [
+    9349,
+    3514
+   ],
+   "blurb": "Ruined causeway over the salt heath, toll encounter"
+  },
+  {
+   "name": "Sunken Wagons",
+   "kind": "landmark",
+   "at": [
+    3028,
+    1110
+   ],
+   "blurb": "Ruined causeway over the salt heath, toll encounter"
+  },
+  {
+   "name": "Heron Stones",
+   "kind": "landmark",
+   "at": [
+    1480,
+    3974
+   ],
+   "blurb": "Ruined causeway over the salt heath, toll encounter"
+  },
+  {
+   "name": "Saltpan Shrine",
+   "kind": "landmark",
+   "at": [
+    7597,
+    1179
+   ],
+   "blurb": "Ruined causeway over the salt heath, toll encounter"
+  },
+  {
+   "name": "Hollowmere",
+   "kind": "landmark",
+   "at": [
+    140,
+    2977
+   ],
+   "blurb": "To Hollowmere."
+  },
+  {
+   "name": "Saltmarrow",
+   "kind": "landmark",
+   "at": [
+    8687,
+    4774
+   ],
+   "blurb": "To Saltmarrow."
+  }
+ ],
+ "world_id": "greyfen_causeway",
+ "grade": {
+  "mul": [
+   0.72,
+   0.66,
+   0.62
+  ],
+  "desat": 0.62,
+  "lift": [
+   0.05,
+   0.03,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   0.55,
+   0.5,
+   0.48
+  ],
+  "water": [
+   0.2,
+   0.22,
+   0.24
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    9349,
+    3514
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    3028,
+    1110
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    1480,
+    3974
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    7597,
+    1179
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  }
+ ]
+}

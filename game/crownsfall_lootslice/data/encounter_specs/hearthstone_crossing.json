@@ -1,0 +1,122 @@
+{
+ "zone": "hearthstone_crossing",
+ "levels": [
+  13,
+  14
+ ],
+ "packs": 30,
+ "seed": 335,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "hearthstone_crossing_0",
+    "hearthstone_crossing_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "hearthstone_crossing_1",
+    "hearthstone_crossing_1",
+    "hearthstone_crossing_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "hearthstone_crossing_0",
+    "hearthstone_crossing_1",
+    "hearthstone_crossing_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "hearthstone_crossing_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "hearthstone_crossing_2",
+    "hearthstone_crossing_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "hearthstone_crossing_0",
+    "hearthstone_crossing_0",
+    "hearthstone_crossing_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    9608,
+    854
+   ],
+   "types": [
+    "hearthstone_crossing_1",
+    "hearthstone_crossing_1"
+   ],
+   "elite": false,
+   "guardian": "hearthstone_crossing_g1",
+   "elite_type": "hearthstone_crossing_0",
+   "elite_name": "Toll-Breaker Hask",
+   "page": "Q_A02_05_1"
+  },
+  {
+   "at": [
+    6139,
+    3191
+   ],
+   "types": [
+    "hearthstone_crossing_1",
+    "hearthstone_crossing_1"
+   ],
+   "elite": false,
+   "guardian": "hearthstone_crossing_g2",
+   "elite_type": "hearthstone_crossing_1",
+   "elite_name": "The Span Ravager",
+   "page": "Q_A02_05_2"
+  },
+  {
+   "at": [
+    3212,
+    1410
+   ],
+   "types": [
+    "hearthstone_crossing_1",
+    "hearthstone_crossing_1"
+   ],
+   "elite": false,
+   "guardian": "hearthstone_crossing_g3",
+   "elite_type": "hearthstone_crossing_2",
+   "elite_name": "Bridge Saboteur",
+   "page": "Q_A02_05_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   9608,
+   854,
+   700
+  ],
+  [
+   6139,
+   3191,
+   700
+  ],
+  [
+   3212,
+   1410,
+   700
+  ]
+ ]
+}

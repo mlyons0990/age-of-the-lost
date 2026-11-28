@@ -1,0 +1,122 @@
+{
+ "zone": "the_first_index",
+ "levels": [
+  61,
+  62
+ ],
+ "packs": 14,
+ "seed": 469,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_first_index_0",
+    "the_first_index_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_first_index_1",
+    "the_first_index_1",
+    "the_first_index_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_first_index_0",
+    "the_first_index_1",
+    "the_first_index_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_first_index_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_first_index_2",
+    "the_first_index_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_first_index_0",
+    "the_first_index_0",
+    "the_first_index_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5532,
+    4150
+   ],
+   "types": [
+    "the_first_index_1",
+    "the_first_index_1"
+   ],
+   "elite": false,
+   "guardian": "the_first_index_g1",
+   "elite_type": "the_first_index_0",
+   "elite_name": "Index Devourer",
+   "page": "Q_A07_01_1"
+  },
+  {
+   "at": [
+    5060,
+    2258
+   ],
+   "types": [
+    "the_first_index_1",
+    "the_first_index_1"
+   ],
+   "elite": false,
+   "guardian": "the_first_index_g2",
+   "elite_type": "the_first_index_1",
+   "elite_name": "Shelf Warden",
+   "page": "Q_A07_01_2"
+  },
+  {
+   "at": [
+    4938,
+    3279
+   ],
+   "types": [
+    "the_first_index_1",
+    "the_first_index_1"
+   ],
+   "elite": false,
+   "guardian": "the_first_index_g3",
+   "elite_type": "the_first_index_2",
+   "elite_name": "The Name-Collector",
+   "page": "Q_A07_01_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   5532,
+   4150,
+   700
+  ],
+  [
+   5060,
+   2258,
+   700
+  ],
+  [
+   4938,
+   3279,
+   700
+  ]
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "zone": "mossbarrow_crypts",
+ "levels": [
+  2,
+  3
+ ],
+ "packs": 14,
+ "seed": 282,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "mossbarrow_crypts_1",
+    "mossbarrow_crypts_1",
+    "mossbarrow_crypts_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_1",
+    "mossbarrow_crypts_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "mossbarrow_crypts_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "mossbarrow_crypts_2",
+    "mossbarrow_crypts_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5901,
+    2786
+   ],
+   "types": [],
+   "boss": "mossbarrow_crypts_boss_u",
+   "boss_type": "mossbarrow_crypts_boss",
+   "boss_name": "Barrow-Lord Ostric",
+   "needs_quest": "Q_A01_R05"
+  }
+ ],
+ "keep_clear": [
+  [
+   5901,
+   2786,
+   700
+  ],
+  [
+   5901,
+   2786,
+   800
+  ]
+ ]
+}

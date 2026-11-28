@@ -1,0 +1,122 @@
+{
+ "zone": "glassreed_marsh",
+ "levels": [
+  12,
+  13
+ ],
+ "packs": 20,
+ "seed": 625,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "glassreed_marsh_0",
+    "glassreed_marsh_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "glassreed_marsh_1",
+    "glassreed_marsh_1",
+    "glassreed_marsh_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "glassreed_marsh_0",
+    "glassreed_marsh_1",
+    "glassreed_marsh_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "glassreed_marsh_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "glassreed_marsh_2",
+    "glassreed_marsh_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "glassreed_marsh_0",
+    "glassreed_marsh_0",
+    "glassreed_marsh_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3581,
+    4378
+   ],
+   "types": [
+    "glassreed_marsh_1",
+    "glassreed_marsh_1"
+   ],
+   "elite": false,
+   "guardian": "glassreed_marsh_g1",
+   "elite_type": "glassreed_marsh_0",
+   "elite_name": "The Glass Heron",
+   "page": "Q_A02_03_1"
+  },
+  {
+   "at": [
+    818,
+    2007
+   ],
+   "types": [
+    "glassreed_marsh_1",
+    "glassreed_marsh_1"
+   ],
+   "elite": false,
+   "guardian": "glassreed_marsh_g2",
+   "elite_type": "glassreed_marsh_1",
+   "elite_name": "Reflection of the Surveyor",
+   "page": "Q_A02_03_2"
+  },
+  {
+   "at": [
+    6867,
+    722
+   ],
+   "types": [
+    "glassreed_marsh_1",
+    "glassreed_marsh_1"
+   ],
+   "elite": false,
+   "guardian": "glassreed_marsh_g3",
+   "elite_type": "glassreed_marsh_2",
+   "elite_name": "The Still Pike",
+   "page": "Q_A02_03_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   3581,
+   4378,
+   700
+  ],
+  [
+   818,
+   2007,
+   700
+  ],
+  [
+   6867,
+   722,
+   700
+  ]
+ ]
+}

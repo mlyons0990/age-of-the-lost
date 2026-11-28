@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="ClassData" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_3dxyf"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_armor_common.tres" id="2_vuqvf"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_armor_magic.tres" id="3_esjsf"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_armor_rare.tres" id="4_6etxj"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_armor_legendary.tres" id="5_h3sb8"]
+[ext_resource type="PackedScene" path="res://models/higgsfield_cleric/cleric_armed.glb" id="6_66e2q"]
+[ext_resource type="Texture2D" path="res://assets/portraits/cleric.png" id="7_j2xab"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_offhand_common.tres" id="8_s4nfr"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_offhand_magic.tres" id="9_uk3ce"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_offhand_rare.tres" id="10_sm2ul"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_offhand_legendary.tres" id="11_ooxnf"]
+[ext_resource type="Script" path="res://scripts/game/data/class_data.gd" id="12_y2uj4"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="13_tr5ee"]
+[ext_resource type="Resource" path="res://data/skills/smite.tres" id="14_wcyu0"]
+[ext_resource type="Resource" path="res://data/skills/radiant_sweep.tres" id="15_v47og"]
+[ext_resource type="Resource" path="res://data/skills/sanctuary.tres" id="16_ml2tq"]
+[ext_resource type="Resource" path="res://data/skills/prayer.tres" id="17_sqb24"]
+[ext_resource type="Resource" path="res://data/skills/dawnfall.tres" id="18_u1htr"]
+[ext_resource type="Resource" path="res://data/skills/consecrate.tres" id="19_qovfw"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_weapon_common.tres" id="20_2jw5v"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_weapon_magic.tres" id="21_qsust"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_weapon_rare.tres" id="22_68s6t"]
+[ext_resource type="Resource" path="res://data/item_visuals/cleric_weapon_legendary.tres" id="23_4w32o"]
+
+[resource]
+script = ExtResource("12_y2uj4")
+id = "cleric"
+display_name = "Cleric"
+hero_name = "Brother Aldric"
+description = "Mace and sun shield. Holy strikes that mend you, a shield of light, a prayer and pillars of dawn. Chainmail and steady healing."
+hero_model = ExtResource("6_66e2q")
+portrait = ExtResource("7_j2xab")
+idle_sprite = ExtResource("7_j2xab")
+weapon_moves = {
+"Cleave": {
+"clip": "Double_Combo",
+"phase": 0.81,
+"t0": 0.2,
+"t1": 1.5,
+"time": 0.95
+},
+"Slash": {
+"clip": "Hammer_Swing",
+"phase": 0.87,
+"t0": 0.4,
+"t1": 1.87,
+"time": 0.85
+}
+}
+skills = Array[ExtResource("13_tr5ee")]([ExtResource("14_wcyu0"), ExtResource("15_v47og"), ExtResource("16_ml2tq"), ExtResource("17_sqb24"), ExtResource("18_u1htr"), ExtResource("19_qovfw")])
+weapon_visuals = Array[ExtResource("1_3dxyf")]([ExtResource("20_2jw5v"), ExtResource("21_qsust"), ExtResource("22_68s6t"), ExtResource("23_4w32o")])
+offhand_visuals = Array[ExtResource("1_3dxyf")]([ExtResource("8_s4nfr"), ExtResource("9_uk3ce"), ExtResource("10_sm2ul"), ExtResource("11_ooxnf")])
+armor_visuals = Array[ExtResource("1_3dxyf")]([ExtResource("2_vuqvf"), ExtResource("3_esjsf"), ExtResource("4_6etxj"), ExtResource("5_h3sb8")])

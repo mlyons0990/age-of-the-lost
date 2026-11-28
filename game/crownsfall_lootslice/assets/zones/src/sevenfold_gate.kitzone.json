@@ -1,0 +1,773 @@
+{
+ "name": "Sevenfold Gate",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 2357,
+ "paths": [
+  {
+   "pts": [
+    [
+     4034,
+     1649
+    ],
+    [
+     5041,
+     1496
+    ],
+    [
+     6042,
+     1320
+    ]
+   ],
+   "width": 260,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4034,
+     1649
+    ],
+    [
+     3662,
+     2240
+    ],
+    [
+     3474,
+     2877
+    ]
+   ],
+   "width": 297,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3474,
+     2877
+    ],
+    [
+     2998,
+     3260
+    ],
+    [
+     2771,
+     3754
+    ]
+   ],
+   "width": 272,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3474,
+     2877
+    ],
+    [
+     2365,
+     2481
+    ],
+    [
+     1142,
+     2581
+    ]
+   ],
+   "width": 265,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6042,
+     1320
+    ],
+    [
+     6080,
+     2007
+    ],
+    [
+     6487,
+     2625
+    ]
+   ],
+   "width": 291,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1142,
+     2581
+    ],
+    [
+     1531,
+     1823
+    ],
+    [
+     1418,
+     1018
+    ]
+   ],
+   "width": 313,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1885
+    ],
+    [
+     840,
+     1885
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1885
+    ],
+    [
+     1142,
+     2581
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     5618,
+     190
+    ],
+    [
+     5618,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     5618,
+     710.0
+    ],
+    [
+     6042,
+     1320
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4034,
+    1649
+   ],
+   "r": 588,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3474,
+    2877
+   ],
+   "r": 511,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2771,
+    3754
+   ],
+   "r": 478,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6042,
+    1320
+   ],
+   "r": 453,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1142,
+    2581
+   ],
+   "r": 466,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6487,
+    2625
+   ],
+   "r": 449,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1418,
+    1018
+   ],
+   "r": 445,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1885,
+   380
+  ],
+  [
+   5618,
+   190,
+   380
+  ],
+  [
+   6487,
+   2625,
+   300
+  ],
+  [
+   6042,
+   1320,
+   300
+  ],
+  [
+   4034,
+   1649,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    4034,
+    1649,
+    499.8,
+    0.6
+   ],
+   [
+    3474,
+    2877,
+    434.34999999999997,
+    0.6
+   ],
+   [
+    2771,
+    3754,
+    406.3,
+    0.6
+   ],
+   [
+    6042,
+    1320,
+    385.05,
+    0.6
+   ],
+   [
+    1142,
+    2581,
+    396.09999999999997,
+    0.6
+   ],
+   [
+    6487,
+    2625,
+    381.65,
+    0.6
+   ],
+   [
+    1418,
+    1018,
+    378.25,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6487,
+    2405,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "sevenfold_gate_wp",
+   "name": "Sevenfold Gate",
+   "at": [
+    3474,
+    2877
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Confluence Camp",
+   "to": "confluence_camp",
+   "at": [
+    140,
+    1885
+   ],
+   "r": 170,
+   "arrive": [
+    5239,
+    526
+   ]
+  },
+  {
+   "name": "The Threshold of Continuance",
+   "to": "the_threshold_of_continuance",
+   "at": [
+    5618,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1213
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1885
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Seven Rotating Bridges",
+   "kind": "landmark",
+   "at": [
+    6487,
+    2625
+   ],
+   "blurb": "Seven rotating anchor bridges"
+  },
+  {
+   "name": "Measure Plinths",
+   "kind": "landmark",
+   "at": [
+    6042,
+    1320
+   ],
+   "blurb": "Seven rotating anchor bridges"
+  },
+  {
+   "name": "The Gate Proper",
+   "kind": "landmark",
+   "at": [
+    4034,
+    1649
+   ],
+   "blurb": "Seven rotating anchor bridges"
+  },
+  {
+   "name": "Confluence Camp",
+   "kind": "landmark",
+   "at": [
+    140,
+    1885
+   ],
+   "blurb": "To Confluence Camp."
+  },
+  {
+   "name": "The Threshold of Continuance",
+   "kind": "landmark",
+   "at": [
+    5618,
+    190
+   ],
+   "blurb": "To The Threshold of Continuance."
+  }
+ ],
+ "world_id": "sevenfold_gate",
+ "grade": {
+  "mul": [
+   1.02,
+   0.92,
+   0.72
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.08,
+   0.06,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   0.95,
+   0.85,
+   0.65
+  ],
+  "water": [
+   0.35,
+   0.25,
+   0.12
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4034,
+    1649
+   ],
+   "r": 558.6,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3474,
+    2877
+   ],
+   "r": 485.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2771,
+    3754
+   ],
+   "r": 454.09999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6042,
+    1320
+   ],
+   "r": 430.34999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1142,
+    2581
+   ],
+   "r": 442.7,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6487,
+    2625
+   ],
+   "r": 426.54999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1418,
+    1018
+   ],
+   "r": 422.75,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

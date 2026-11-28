@@ -1,0 +1,851 @@
+{
+ "name": "Bellwater Inundation",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass",
+ "seed": 7736,
+ "paths": [
+  {
+   "pts": [
+    [
+     4167,
+     190
+    ],
+    [
+     4167,
+     494
+    ],
+    [
+     4842,
+     1263
+    ],
+    [
+     4492,
+     2087
+    ],
+    [
+     4427,
+     2897
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     7007,
+     190
+    ],
+    [
+     7007,
+     494
+    ],
+    [
+     6588,
+     1526
+    ],
+    [
+     5554,
+     2236
+    ],
+    [
+     4427,
+     2897
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4427,
+     2897
+    ],
+    [
+     3612,
+     3027
+    ],
+    [
+     2791,
+     2961
+    ]
+   ],
+   "width": 147,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6071,
+     1881
+    ],
+    [
+     7257,
+     2374
+    ],
+    [
+     7849,
+     2682
+    ]
+   ],
+   "width": 184,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4167,
+     494
+    ],
+    [
+     3084,
+     490
+    ],
+    [
+     2389,
+     698
+    ]
+   ],
+   "width": 149,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     7007,
+     494
+    ],
+    [
+     8193,
+     507
+    ],
+    [
+     9219,
+     675
+    ]
+   ],
+   "width": 154,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5968,
+     4904
+    ],
+    [
+     5848,
+     4148
+    ],
+    [
+     5963,
+     3393
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  },
+  {
+   "pts": [
+    [
+     8758,
+     4904
+    ],
+    [
+     9281,
+     4606
+    ],
+    [
+     9136,
+     4308
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    649,
+    2157
+   ],
+   "r": 508,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4595,
+    2646
+   ],
+   "r": 426,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4427,
+    2897
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2791,
+    2961
+   ],
+   "r": 425,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    9219,
+    675
+   ],
+   "r": 693,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    10794,
+    1754
+   ],
+   "r": 558,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    8981,
+    4237
+   ],
+   "r": 874,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    943,
+    1259
+   ],
+   "r": 685,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4412,
+    3911
+   ],
+   "r": 718,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5963,
+    3393
+   ],
+   "r": 613,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9136,
+    4308
+   ],
+   "r": 734,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    10101,
+    3006
+   ],
+   "r": 563,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3508,
+    1185
+   ],
+   "r": 708,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   4167,
+   190,
+   380
+  ],
+  [
+   7007,
+   190,
+   380
+  ],
+  [
+   2791,
+   2961,
+   300
+  ],
+  [
+   7849,
+   2682,
+   300
+  ],
+  [
+   2389,
+   698,
+   300
+  ],
+  [
+   9219,
+   675,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    2
+   ],
+   [
+    "oak_b",
+    2
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 1050,
+  "cut": 0.76,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 22,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    2791,
+    2961,
+    560,
+    0.45
+   ],
+   [
+    7849,
+    2682,
+    560,
+    0.45
+   ],
+   [
+    2389,
+    698,
+    560,
+    0.45
+   ],
+   [
+    9219,
+    675,
+    560,
+    0.45
+   ],
+   [
+    4427,
+    2897,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4427,
+    2677,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    10794,
+    1754,
+    892.8000000000001
+   ],
+   [
+    8981,
+    4237,
+    1398.4
+   ],
+   [
+    943,
+    1259,
+    1096.0
+   ],
+   [
+    4412,
+    3911,
+    1148.8
+   ],
+   [
+    5963,
+    3393,
+    980.8000000000001
+   ],
+   [
+    9136,
+    4308,
+    1174.4
+   ],
+   [
+    10101,
+    3006,
+    900.8000000000001
+   ],
+   [
+    3508,
+    1185,
+    1132.8
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "bellwater_inundation_wp",
+   "name": "Bellwater Inundation",
+   "at": [
+    4427,
+    2897
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Crownsfall Under Siege",
+   "to": "crownsfall_under_siege",
+   "at": [
+    4167,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    1877,
+    4438
+   ]
+  },
+  {
+   "name": "Greywake Armada",
+   "to": "greywake_armada",
+   "at": [
+    7007,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1389
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4167,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Flooded Mills",
+   "kind": "landmark",
+   "at": [
+    2791,
+    2961
+   ],
+   "blurb": "Flooded mills, refugee rafts"
+  },
+  {
+   "name": "Refugee Rafts",
+   "kind": "landmark",
+   "at": [
+    7849,
+    2682
+   ],
+   "blurb": "Flooded mills, refugee rafts"
+  },
+  {
+   "name": "Valve House",
+   "kind": "landmark",
+   "at": [
+    2389,
+    698
+   ],
+   "blurb": "Flooded mills, refugee rafts"
+  },
+  {
+   "name": "Returning Tide",
+   "kind": "landmark",
+   "at": [
+    9219,
+    675
+   ],
+   "blurb": "Flooded mills, refugee rafts"
+  },
+  {
+   "name": "Crownsfall Under Siege",
+   "kind": "landmark",
+   "at": [
+    4167,
+    190
+   ],
+   "blurb": "To Crownsfall Under Siege."
+  },
+  {
+   "name": "Greywake Armada",
+   "kind": "landmark",
+   "at": [
+    7007,
+    190
+   ],
+   "blurb": "To Greywake Armada."
+  }
+ ],
+ "world_id": "bellwater_inundation",
+ "grade": {
+  "mul": [
+   0.82,
+   0.88,
+   0.92
+  ],
+  "desat": 0.35,
+  "lift": [
+   0.02,
+   0.04,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.66,
+   0.72,
+   0.8
+  ],
+  "water": [
+   0.2,
+   0.3,
+   0.38
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    2791,
+    2961
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    7849,
+    2682
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    2389,
+    698
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    9219,
+    675
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,611 @@
+{
+ "name": "The Anchor of Kinship",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 4483,
+ "paths": [
+  {
+   "pts": [
+    [
+     3972,
+     2764
+    ],
+    [
+     5041,
+     2972
+    ],
+    [
+     6107,
+     2755
+    ]
+   ],
+   "width": 281,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6107,
+     2755
+    ],
+    [
+     6025,
+     3364
+    ],
+    [
+     5976,
+     3976
+    ]
+   ],
+   "width": 280,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3972,
+     2764
+    ],
+    [
+     3023,
+     3577
+    ],
+    [
+     1631,
+     3875
+    ]
+   ],
+   "width": 291,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     2958
+    ],
+    [
+     840,
+     2958
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     2958
+    ],
+    [
+     1631,
+     3875
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     140,
+     1767
+    ],
+    [
+     840,
+     1767
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1767
+    ],
+    [
+     1631,
+     3875
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    3972,
+    2764
+   ],
+   "r": 601,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5976,
+    3976
+   ],
+   "r": 505,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1631,
+    3875
+   ],
+   "r": 493,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6107,
+    2755
+   ],
+   "r": 872,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   2958,
+   380
+  ],
+  [
+   140,
+   1767,
+   380
+  ],
+  [
+   6107,
+   2755,
+   300
+  ],
+  [
+   3972,
+   2764,
+   300
+  ],
+  [
+   1631,
+   3875,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    3972,
+    2764,
+    510.84999999999997,
+    0.6
+   ],
+   [
+    5976,
+    3976,
+    429.25,
+    0.6
+   ],
+   [
+    1631,
+    3875,
+    419.05,
+    0.6
+   ],
+   [
+    6107,
+    2755,
+    741.1999999999999,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6107,
+    2535,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_anchor_of_kinship_wp",
+   "name": "The Anchor of Kinship",
+   "at": [
+    5976,
+    3976
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Riven Royal Court",
+   "to": "riven_royal_court",
+   "at": [
+    140,
+    2958
+   ],
+   "r": 170,
+   "arrive": [
+    2437,
+    526
+   ]
+  },
+  {
+   "name": "Crownsfall Under Siege",
+   "to": "crownsfall_under_siege",
+   "at": [
+    140,
+    1767
+   ],
+   "r": 170,
+   "arrive": [
+    7120,
+    1952
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  2958
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Rotating Anchor Ring",
+   "kind": "landmark",
+   "at": [
+    6107,
+    2755
+   ],
+   "blurb": "Merged refuge, rotating anchor ring"
+  },
+  {
+   "name": "Merged Refuge",
+   "kind": "landmark",
+   "at": [
+    3972,
+    2764
+   ],
+   "blurb": "Merged refuge, rotating anchor ring"
+  },
+  {
+   "name": "Family's Door",
+   "kind": "landmark",
+   "at": [
+    1631,
+    3875
+   ],
+   "blurb": "Merged refuge, rotating anchor ring"
+  },
+  {
+   "name": "Riven Royal Court",
+   "kind": "landmark",
+   "at": [
+    140,
+    2958
+   ],
+   "blurb": "To Riven Royal Court."
+  },
+  {
+   "name": "Crownsfall Under Siege",
+   "kind": "landmark",
+   "at": [
+    140,
+    1767
+   ],
+   "blurb": "To Crownsfall Under Siege."
+  }
+ ],
+ "world_id": "the_anchor_of_kinship",
+ "grade": {
+  "mul": [
+   0.95,
+   0.82,
+   0.66
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.06,
+   0.04,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   0.75,
+   0.6,
+   0.9
+  ],
+  "water": [
+   0.22,
+   0.1,
+   0.34
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3972,
+    2764
+   ],
+   "r": 570.9499999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5976,
+    3976
+   ],
+   "r": 479.75,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1631,
+    3875
+   ],
+   "r": 468.34999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6107,
+    2755
+   ],
+   "r": 828.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

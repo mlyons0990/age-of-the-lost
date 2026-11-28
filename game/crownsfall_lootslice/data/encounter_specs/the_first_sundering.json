@@ -1,0 +1,122 @@
+{
+ "zone": "the_first_sundering",
+ "levels": [
+  36,
+  37
+ ],
+ "packs": 30,
+ "seed": 873,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "the_first_sundering_0",
+    "the_first_sundering_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_first_sundering_1",
+    "the_first_sundering_1",
+    "the_first_sundering_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_first_sundering_0",
+    "the_first_sundering_1",
+    "the_first_sundering_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_first_sundering_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_first_sundering_2",
+    "the_first_sundering_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_first_sundering_0",
+    "the_first_sundering_0",
+    "the_first_sundering_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3995,
+    3853
+   ],
+   "types": [
+    "the_first_sundering_1",
+    "the_first_sundering_1"
+   ],
+   "elite": false,
+   "guardian": "the_first_sundering_g1",
+   "elite_type": "the_first_sundering_0",
+   "elite_name": "Seam Collapse",
+   "page": "Q_A04_10_1"
+  },
+  {
+   "at": [
+    7577,
+    1729
+   ],
+   "types": [
+    "the_first_sundering_1",
+    "the_first_sundering_1"
+   ],
+   "elite": false,
+   "guardian": "the_first_sundering_g2",
+   "elite_type": "the_first_sundering_1",
+   "elite_name": "Falling-Tower Horror",
+   "page": "Q_A04_10_2"
+  },
+  {
+   "at": [
+    2645,
+    1534
+   ],
+   "types": [
+    "the_first_sundering_1",
+    "the_first_sundering_1"
+   ],
+   "elite": false,
+   "guardian": "the_first_sundering_g3",
+   "elite_type": "the_first_sundering_2",
+   "elite_name": "The Unmaking",
+   "page": "Q_A04_10_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   3995,
+   3853,
+   700
+  ],
+  [
+   7577,
+   1729,
+   700
+  ],
+  [
+   2645,
+   1534,
+   700
+  ]
+ ]
+}

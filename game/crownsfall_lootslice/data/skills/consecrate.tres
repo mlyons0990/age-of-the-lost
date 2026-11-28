@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/cleric_consecrate.png" id="1_npksj"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_r3bvx"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_gsqwq"]
+
+[sub_resource type="Resource" id="Resource_olo0h"]
+script = ExtResource("3_gsqwq")
+id = "holy_ground"
+display_name = "Holy Ground"
+description = "Radius increased by 30%."
+overrides = {
+"radius": 4.2
+}
+
+[sub_resource type="Resource" id="Resource_04wmo"]
+script = ExtResource("3_gsqwq")
+id = "absolution"
+display_name = "Absolution"
+description = "Recover 8% life per enemy hit."
+overrides = {
+"heal_hit": 0.08
+}
+
+[resource]
+script = ExtResource("2_r3bvx")
+id = "consecrate"
+display_name = "Consecration"
+icon = ExtResource("1_npksj")
+description = "Hallow the ground around you: burns enemies and recovers 5% life per enemy hit."
+unlock_level = 12
+animation = "Cleave"
+shape = "nova"
+mana_cost = 26.0
+cooldown = 8.0
+numbers = {
+"burn": 0.5,
+"dmg": 2.0,
+"heal_hit": 0.05,
+"radius": 3.2
+}
+upgrades = Array[ExtResource("3_gsqwq")]([SubResource("Resource_olo0h"), SubResource("Resource_04wmo")])

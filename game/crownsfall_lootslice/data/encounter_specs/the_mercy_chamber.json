@@ -1,0 +1,122 @@
+{
+ "zone": "the_mercy_chamber",
+ "levels": [
+  62,
+  63
+ ],
+ "packs": 14,
+ "seed": 158,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_mercy_chamber_0",
+    "the_mercy_chamber_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_mercy_chamber_1",
+    "the_mercy_chamber_1",
+    "the_mercy_chamber_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_mercy_chamber_0",
+    "the_mercy_chamber_1",
+    "the_mercy_chamber_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_mercy_chamber_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_mercy_chamber_2",
+    "the_mercy_chamber_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_mercy_chamber_0",
+    "the_mercy_chamber_0",
+    "the_mercy_chamber_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6530,
+    2979
+   ],
+   "types": [
+    "the_mercy_chamber_1",
+    "the_mercy_chamber_1"
+   ],
+   "elite": false,
+   "guardian": "the_mercy_chamber_g1",
+   "elite_type": "the_mercy_chamber_0",
+   "elite_name": "Repeating Orderly",
+   "page": "Q_A07_03_1"
+  },
+  {
+   "at": [
+    5853,
+    4179
+   ],
+   "types": [
+    "the_mercy_chamber_1",
+    "the_mercy_chamber_1"
+   ],
+   "elite": false,
+   "guardian": "the_mercy_chamber_g2",
+   "elite_type": "the_mercy_chamber_1",
+   "elite_name": "Mercy Echo",
+   "page": "Q_A07_03_2"
+  },
+  {
+   "at": [
+    5821,
+    1803
+   ],
+   "types": [
+    "the_mercy_chamber_1",
+    "the_mercy_chamber_1"
+   ],
+   "elite": false,
+   "guardian": "the_mercy_chamber_g3",
+   "elite_type": "the_mercy_chamber_2",
+   "elite_name": "The Last Patient's Warden",
+   "page": "Q_A07_03_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6530,
+   2979,
+   700
+  ],
+  [
+   5853,
+   4179,
+   700
+  ],
+  [
+   5821,
+   1803,
+   700
+  ]
+ ]
+}

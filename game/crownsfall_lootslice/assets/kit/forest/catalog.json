@@ -1,0 +1,217 @@
+{
+ "ppm": 85.6,
+ "props": {
+  "tree_oak": {
+   "kind": "tree",
+   "image": "props/tree_oak.png",
+   "size": [
+    915,
+    791
+   ],
+   "foot": [
+    406,
+    745
+   ],
+   "footprint_px": 70,
+   "occludes": true
+  },
+  "stele": {
+   "kind": "poi",
+   "image": "props/stele.png",
+   "size": [
+    859,
+    866
+   ],
+   "foot": [
+    416,
+    771
+   ],
+   "footprint_px": 150,
+   "occludes": true
+  },
+  "chest": {
+   "kind": "cache",
+   "image": "props/chest.png",
+   "size": [
+    350,
+    218
+   ],
+   "foot": [
+    191,
+    194
+   ],
+   "footprint_px": 40,
+   "occludes": false
+  },
+  "rock_mossy": {
+   "kind": "rock",
+   "image": "props/rock_mossy.png",
+   "size": [
+    426,
+    201
+   ],
+   "foot": [
+    206,
+    176
+   ],
+   "footprint_px": 120,
+   "occludes": true
+  },
+  "shrine_ruins": {
+   "kind": "setpiece",
+   "image": "props/shrine_ruins.png",
+   "size": [
+    1573,
+    1069
+   ],
+   "foot": [
+    786,
+    964
+   ],
+   "footprint_px": 0,
+   "occludes": false,
+   "blockers": [
+    [
+     195,
+     675,
+     45
+    ],
+    [
+     360,
+     540,
+     45
+    ],
+    [
+     592,
+     405,
+     40
+    ],
+    [
+     795,
+     420,
+     40
+    ],
+    [
+     930,
+     435,
+     40
+    ],
+    [
+     1080,
+     450,
+     40
+    ],
+    [
+     1275,
+     600,
+     40
+    ],
+    [
+     1350,
+     615,
+     40
+    ],
+    [
+     322,
+     690,
+     50
+    ],
+    [
+     1275,
+     682,
+     60
+    ]
+   ],
+   "waypoint": [
+    750,
+    698
+   ]
+  },
+  "crownsfall_stairs": {
+   "kind": "setpiece",
+   "image": "props/crownsfall_stairs.png",
+   "size": [
+    1263,
+    797
+   ],
+   "foot": [
+    631,
+    768
+   ],
+   "footprint_px": 0,
+   "occludes": false,
+   "aura": [
+    [
+     420,
+     390
+    ],
+    [
+     870,
+     300
+    ],
+    [
+     1050,
+     570
+    ],
+    [
+     630,
+     705
+    ]
+   ],
+   "trigger": [
+    [
+     300,
+     330
+    ],
+    [
+     860,
+     260
+    ],
+    [
+     800,
+     150
+    ],
+    [
+     300,
+     200
+    ]
+   ],
+   "blockers": [
+    [
+     400,
+     470,
+     55
+    ],
+    [
+     930,
+     330,
+     55
+    ],
+    [
+     1080,
+     520,
+     55
+    ],
+    [
+     600,
+     700,
+     55
+    ]
+   ]
+  }
+ },
+ "ground": {
+  "grass": {
+   "image": "ground/grass.png",
+   "tile_px": 1120
+  },
+  "flagstone": {
+   "image": "ground/flagstone.png",
+   "tile_px": 1600
+  },
+  "dirt": {
+   "image": "ground/dirt.png",
+   "tile_px": 1000
+  }
+ }
+}

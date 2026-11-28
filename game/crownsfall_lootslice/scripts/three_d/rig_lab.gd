@@ -1,8 +1,28 @@
 extends Node3D
+const WAYPOINTS := preload("res://scripts/three_d/waypoints.gd")
+const WAYPOINT_PANEL := preload("res://scripts/three_d/waypoint_panel.gd")
+const WAYPOINT_MESH := preload("res://scripts/three_d/waypoint_mesh.gd")
+const WAYPOINT_ROT_DEG := 22.9   # house style (owner 11-22): every waypoint's bottom star point tilts slightly right, as at the Whisperwood shrine
+const WAYPOINT_TOP := "res://assets/props/waypoint_top.png"
+const WAYPOINT_SPRITE := "res://assets/props/waypoint_wp3.png"          # master waypoint (WP3, painted at game camera)
+const WAYPOINT_SPRITE_META := "res://assets/props/waypoint_wp3.json"
+const WAYPOINT_SPRITE_LIT := "res://assets/props/waypoint_wp4_lit.png"  # glowing version (WP4), when generated
+const WAYPOINT_SIGIL_V := 0.445     # painted rune sigil centre (fraction of image height; measured from the WP4 glow)
+const WAYPOINT_SIGIL_W := 0.40      # glow size relative to the image width (the basin)
+const WAYPOINT_TOP_LIT := "res://assets/props/waypoint_top_lit.png"
+const WAYPOINT_ART := "res://assets/props/waypoint_plinth.png"
+const WAYPOINT_ART_LIT := "res://assets/props/waypoint_plinth_lit.png"   # WP2: same platform, runes glowing
+const WAYPOINT_ART_RATIO := 0.51   # ground ratio the plinth art was flattened to (tools/build_waypoint_art.py)
+const WAYPOINT_ART_PX := 374.0     # image width in painting pixels (footprint 89% of it, fits the shrine floor rings)
+const WAYPOINT_ART_BASIN_U := 0.009 # basin centre this fraction of the image width right of its centre (tools/build_waypoint_art.py)
+const WAYPOINT_ART_BASIN_V := 0.054 # basin centre sits this fraction of the image height above its centre (tools/build_waypoint_art.py)
+const WAYPOINT_RUNE_M := 1.8       # glowing rune circle fitted to the painted basin
 ## Standalone playable 3D art/rig/VFX testbed for the next developer.
 ## This deliberately does NOT replace the established 2D plaza; keep both.
 const HERO := preload("res://scripts/three_d/rig_controller.gd")
 const FX := preload("res://scripts/three_d/rig_effects.gd")
+const RADIANT_FX := preload("res://scripts/three_d/radiant_vfx.gd")
+const ARPG_HUD := preload("res://scripts/three_d/arpg_hud.gd")
 const DUMMY := preload("res://scripts/three_d/training_dummy.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const WEAPON_SWEEP := preload("res://scripts/three_d/weapon_sweep3d.gd")
@@ -24,12 +44,85 @@ var mode := "3D articulated rig lab"
 @export var use_r54_elbow_helper_candidate := false
 @export var use_r55_clip_safe_elbow_candidate := false
 @export var use_pilot_knight_candidate := false
+@export var use_pilot_mage_candidate := false
+## Phase 4 groundwork: Hollow Sun radiant FX for the Cast attack (opt-in).
+@export var radiant_spell_fx := false
+## ARPG HUD after the owner's 2.5D lab mockup (globes, belts, minimap, quests, nameplates). Opt-in.
+@export var arpg_hud := false
+## Crownsfall plaza dressing (owner plaza reference): limestone flagstones with the compass-rose mosaic, the existing
+## Citadel v17 as a backdrop, warm sunlight. Opt-in; replaces the white test floor visuals only (same collision).
+@export var crownsfall_plaza := false
+## 2D painted zone (owner direction 2026-11-21: "a 2D game with a few 3D elements; each zone is a 2D environment").
+## Name of assets/zones/<zone>.json. The painting is laid on the ground and viewed by an orthographic camera at the
+## painting's own pitch, so it appears exactly as painted while the 3D heroes walk over it and cast real shadows.
+@export var painted_zone := ""
+@export var game_mode := false        # the playable game (scenes/game.tscn): character, monsters, quests, loot, saves
+const GAME_STATE := preload("res://scripts/game/game_state.gd")
+const GAME_BOOT := preload("res://scripts/game/game_boot.gd")
+const GAME_DIRECTOR := preload("res://scripts/game/game_director.gd")
+var game                              # scripts/game/game_director.gd when game_mode
+var game_state
+var ZONE_PPM := 93.0                 # painting pixels per ground metre (per zone: zone JSON "ppm")
+var ZONE_SCREEN_PPM := 93.0          # screen px per metre at 1080p (derived from HERO_PX_1080)
+const HERO_PX_1080 := 110.0          # owner reference: hero ~110 px at 1080p (zones opt in with "hero_px_1080")
+var ZONE_PITCH := 52.0              # camera pitch over painted zones (zone JSON "pitch" or pitch_override)
+@export var pitch_override := 0.0   # >0: comparison renders (camera-angle study)
+@export var ppm_override := 0.0
+var zone: Dictionary = {}
+var zone_refs: Array = []             # [Environment, sun, floor shape] for rebuilding on travel
+var zone_exits: Array = []            # {name, to, arrive, poly (world xz)}
+var zone_exit_armed := false          # set once the hero has stepped off every exit (no bounce on arrival)
+var zone_traveling := false
+var zone_waypoints: Array = []        # {id, name, pos, node} in this zone
+var waypoint_net                      # scripts/three_d/waypoints.gd (shared across zones)
+var waypoint_pending := ""            # waypoint the player clicked; its window opens on arrival
+var waypoint_panel: CanvasLayer
+signal waypoint_unlocked(id: String)
+var zone_block: Array = []            # blocked polygons (world xz) cut out of the walkable area
+var zone_nav_nodes := PackedVector2Array()  # pathfinding: corner points (world xz) just off every obstacle corner
+var zone_nav_links: Array = []        # per node: Array of [neighbour index, distance] with a clear straight line
+var zone_route := PackedVector2Array() # remaining corners of the current click-to-move route
+const NAV_CLEARANCE := 0.45           # metres kept between the hero's path and walls / pillars / water
+var xray_enabled := true             # occluded-actor silhouette (hero stays visible behind pillars, trees, railings)
+var xray_mat: ShaderMaterial
+var kit_grid: AStarGrid2D            # kit zones: grid navigation (thousands of obstacles; visibility graph too slow)
+const KIT_CELL := 0.5                 # metres per nav cell
+var kit_origin := Vector2.ZERO
+var zone_tiles: Array = []            # {node, mat, rect (zone px), image, depth, state 0=unloaded 1=loading 2=shown}
+signal zone_changed(name: String)
+var zone_walk: Array = []            # walkable polygons in world XZ (PackedVector2Array each)
+var zone_last_ok := Vector3.INF
+const CITADEL := "res://assets/25d/citadel/AOTL_Citadel_MasonryArt_v17.glb"
+var hud: CanvasLayer
+var radiant: Node3D
 const PILOT_CAMERA_FOV := 32.0
 const PILOT_CAMERA_PITCH := 52.0
 @export var pilot_camera_distance := 21.0
 
 ## Same compass direction as the lab's original camera, pitched 52° down, at a distance that makes
 ## the 1.75 m knight ~100 px tall on a 1080p screen.
+var zone_cam_focus := Vector3.INF
+
+## Orthographic camera at the painting's pitch, following the hero but never showing past the painting's edges.
+func _zone_camera(delta: float) -> void:
+	var vs := get_viewport().get_visible_rect().size
+	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+	camera.size = 1080.0 / ZONE_SCREEN_PPM          # world metres per screen height: hero ~100 px at 1080p
+	var size: Array = zone["size"]
+	var sp: float = sin(deg_to_rad(ZONE_PITCH))
+	var half_w: float = float(size[0]) / ZONE_PPM * 0.5
+	var half_d: float = float(size[1]) / ZONE_PPM / sp * 0.5
+	var view_w: float = camera.size * vs.x / vs.y * 0.5
+	var view_d: float = camera.size / sp * 0.5
+	var t: Vector3 = player.global_position
+	t.x = clampf(t.x, -half_w + view_w, half_w - view_w)
+	t.z = clampf(t.z, -half_d + view_d, half_d - view_d)
+	t.y = 0.0
+	zone_cam_focus = t if not zone_cam_focus.is_finite() else zone_cam_focus.lerp(t, minf(1.0, delta * 6.0))
+	var p := deg_to_rad(ZONE_PITCH)
+	camera.global_position = zone_cam_focus + Vector3(0, sin(p), cos(p)) * 60.0
+	camera.look_at(zone_cam_focus, Vector3.UP)
+
 func pilot_camera_offset() -> Vector3:
 	var flat := Vector2(8.5, 11.0).normalized()
 	var p := deg_to_rad(PILOT_CAMERA_PITCH)
@@ -45,6 +138,15 @@ var sword_sweep_material: StandardMaterial3D
 
 func _ready() -> void:
 	get_tree().auto_accept_quit=true # This independent lab never changes the saved plaza actor.
+	if game_mode:
+		game_state = GAME_STATE.load_saved() if not GAME_BOOT.new_game else null
+		if game_state == null and GAME_BOOT.new_game: game_state = GAME_STATE.load_saved()
+		if game_state == null: game_state = GAME_STATE.new_character(GAME_BOOT.class_id if GAME_BOOT.class_id != "" else "warrior")
+		GAME_BOOT.new_game = false
+		use_pilot_knight_candidate = game_state.class_id == "warrior"
+		use_pilot_mage_candidate = game_state.class_id == "mage"
+		radiant_spell_fx = game_state.class_id == "mage"
+		painted_zone = game_state.zone if ResourceLoader.exists("res://assets/zones/%s.json" % game_state.zone) else "crownsfall"
 	_build_world()
 	_create_sword_sweep_visualizer()
 	player = CharacterBody3D.new()
@@ -56,12 +158,14 @@ func _ready() -> void:
 	player.enable_r54_elbow_helper_candidate = use_r54_elbow_helper_candidate
 	player.enable_r55_clip_safe_elbow_candidate = use_r55_clip_safe_elbow_candidate
 	player.enable_pilot_knight_candidate = use_pilot_knight_candidate
+	player.enable_pilot_mage_candidate = use_pilot_mage_candidate
+	if game_mode: player.class_data = preload("res://scripts/game/skills.gd").class_data(game_state.class_id)
 	player.position = Vector3(0, 0.08, 1.8)
 	add_child(player)
 	player.impact.connect(_on_impact)
 	player.health_changed.connect(_on_hp)
 	camera = Camera3D.new()
-	if use_pilot_knight_candidate:
+	if use_pilot_knight_candidate or use_pilot_mage_candidate:
 		# Owner target (2026-11-20): PoE-style perspective, ~100 px tall knight at 1080p.
 		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
 		camera.fov = PILOT_CAMERA_FOV
@@ -73,13 +177,39 @@ func _ready() -> void:
 	player.camera = camera
 	effects = FX.new()
 	add_child(effects)
-	for i in 4:
+	if radiant_spell_fx:
+		radiant = RADIANT_FX.new()
+		radiant.name = "RadiantFX"
+		add_child(radiant)
+	for i in (0 if game_mode else 4):
 		var e := Node3D.new()
 		e.set_script(DUMMY)
 		e.position = Vector3(-4.2 + i * 2.8, 0.0, -3.6 - (i % 2) * 1.4)
 		add_child(e)
 		targets.append(e)
-	_build_hud()
+	if not zone.is_empty():
+		var sp: Array = zone["spawn"]
+		player.global_position = zone_px_to_world(float(sp[0]), float(sp[1])) + Vector3.UP * 0.08
+		zone_stream(true)
+		apply_xray(player)
+		var tps0: Array = zone.get("targets", [])
+		for i in targets.size():          # a zone places as many dummies as it lists; the rest are parked
+			if i < tps0.size():
+				targets[i].global_position = zone_px_to_world(float(tps0[i][0]), float(tps0[i][1]))
+			else:
+				targets[i].global_position = Vector3(0, -50, 0); targets[i].visible = false
+	if arpg_hud:
+		hud = ARPG_HUD.new()
+		hud.name = "ArpgHud"
+		add_child(hud)
+		hud.setup(self)
+	else:
+		_build_hud()
+	if game_mode:
+		game = GAME_DIRECTOR.new()
+		game.name = "Game"
+		add_child(game)
+		game.setup(self, game_state)
 
 func _create_sword_sweep_visualizer() -> void:
 	sword_sweep_debug = MeshInstance3D.new()
@@ -174,6 +304,13 @@ func _build_world() -> void:
 	shape.size = Vector3(28, 0.4, 28)
 	collision.shape = shape
 	floor.add_child(collision)
+	if painted_zone != "":
+		zone_refs = [settings, sun, shape]
+		_build_zone(settings, sun, shape)
+		return
+	if crownsfall_plaza:
+		_build_plaza(settings, sun)
+		return
 	_box(Vector3(0,-0.22,0), Vector3(28,0.4,28), Color("e0d9c5"))
 	for x in range(-13, 14, 2):
 		for z in range(-13, 14, 2):
@@ -198,6 +335,833 @@ func _build_world() -> void:
 		for z in range(-12,13,4):
 			_sphere(Vector3(x,1.1,float(z)),.55,Color("78966c"))
 			_sphere(Vector3(x+0.2,1.45,float(z)),.30,Color("d9d4a4"))
+
+func zone_px_to_world(u: float, v: float) -> Vector3:
+	var size: Array = zone["size"]
+	return Vector3((u - float(size[0]) * 0.5) / ZONE_PPM, 0.0, (v - float(size[1]) * 0.5) / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH)))
+
+func _build_zone(settings: Environment, sun: DirectionalLight3D, shape: BoxShape3D) -> void:
+	for n in ["ZonePainting", "ZoneShadowCatcher", "ZoneDecor"]:
+		var old := get_node_or_null(n)
+		if old != null:
+			remove_child(old); old.queue_free()
+	var zpath := painted_zone if painted_zone.begins_with("res://") else "res://assets/zones/%s.json" % painted_zone
+	zone = JSON.parse_string(FileAccess.get_file_as_string(zpath))
+	ZONE_PPM = float(zone.get("ppm", ZONE_PPM))     # world scale measured from the painting's own props
+	ZONE_PITCH = pitch_override if pitch_override > 0.0 else float(zone.get("pitch", 52.0))   # painted zones use 31 (owner-approved); legacy paintings 52
+	if ppm_override > 0.0: ZONE_PPM = ppm_override
+	# hero size on screen is fixed (owner reference: ~110 px at 1080p); the painting is scaled to match it
+	ZONE_SCREEN_PPM = float(zone.get("hero_px_1080", 0.0)) / (1.75 * cos(deg_to_rad(ZONE_PITCH))) if zone.has("hero_px_1080") else ZONE_PPM
+	var size: Array = zone["size"]
+	var w: float = float(size[0]) / ZONE_PPM
+	var d: float = float(size[1]) / ZONE_PPM / sin(deg_to_rad(ZONE_PITCH))
+	shape.size = Vector3(w, 0.4, d)
+	settings.background_color = Color("1a1714")
+	settings.ambient_light_color = Color("e8e0d2")
+	settings.ambient_light_energy = 0.6
+	sun.light_energy = 1.0
+	sun.light_color = Color("fff3e0")
+	sun.shadow_opacity = 0.55
+	sun.look_at_from_position(Vector3.ZERO, Vector3(0.45, -0.78, 0.45))   # painted light: upper-left/back
+	# painting: one or more tiles of a large zone canvas, streamed in/out around the camera (tools/build_zone_tiles.py)
+	var holder := Node3D.new()
+	holder.name = "ZonePainting"
+	add_child(holder)
+	zone_tiles.clear()
+	if zone.has("kit"):
+		_build_kit_zone(holder, w, d)
+	var tiles: Array = [] if zone.has("kit") else zone.get("tiles", [])
+	if tiles.is_empty() and not zone.has("kit"):
+		tiles = [{"image": zone["image"], "depth": zone.get("depth", ""), "rect": [0, 0, size[0], size[1]], "img_rect": [0, 0, size[0], size[1]]}]
+	var sp_: float = sin(deg_to_rad(ZONE_PITCH))
+	for t in tiles:
+		var r: Array = t["rect"]; var ir: Array = t["img_rect"]
+		var tile := MeshInstance3D.new()
+		tile.name = "ZoneTile_%d_%d" % [int(r[0]), int(r[1])]
+		var tm := PlaneMesh.new()
+		tm.size = Vector2(float(r[2]) / ZONE_PPM, float(r[3]) / ZONE_PPM / sp_)
+		tile.mesh = tm
+		tile.position = zone_px_to_world(float(r[0]) + float(r[2]) * 0.5, float(r[1]) + float(r[3]) * 0.5)
+		var mat := ShaderMaterial.new()
+		mat.shader = load("res://shaders/zone_painting.gdshader")
+		mat.set_shader_parameter("use_depth", String(t.get("depth", "")) != "")
+		mat.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
+		mat.set_shader_parameter("uv_offset", Vector2((float(r[0]) - float(ir[0])) / float(ir[2]), (float(r[1]) - float(ir[1])) / float(ir[3])))
+		mat.set_shader_parameter("uv_scale", Vector2(float(r[2]) / float(ir[2]), float(r[3]) / float(ir[3])))
+		tile.material_override = mat
+		tile.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		tile.visible = false
+		holder.add_child(tile)
+		zone_tiles.append({"node": tile, "mat": mat, "rect": Rect2(float(r[0]), float(r[1]), float(r[2]), float(r[3])),
+			"image": "res://assets/zones/" + String(t["image"]),
+			"depth": ("res://assets/zones/" + String(t["depth"])) if String(t.get("depth", "")) != "" else "", "state": 0})
+	var catcher := MeshInstance3D.new()             # receives the heroes' real shadows on the painting
+	catcher.name = "ZoneShadowCatcher"
+	var cm := PlaneMesh.new(); cm.size = Vector2(w, d); catcher.mesh = cm
+	var sm := StandardMaterial3D.new()
+	sm.shadow_to_opacity = true
+	sm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	sm.albedo_color = Color(0.05, 0.04, 0.06, 1.0)
+	catcher.material_override = sm
+	catcher.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	catcher.position.y = 0.01
+	add_child(catcher)
+	zone_walk.clear()
+	for poly in zone["walkable"]:
+		var pts := PackedVector2Array()
+		for p in poly:
+			var wp := zone_px_to_world(float(p[0]), float(p[1]))
+			pts.append(Vector2(wp.x, wp.z))
+		zone_walk.append(pts)
+	zone_block.clear()
+	for poly in zone.get("blocked", []):                # ruins, water, columns inside the walkable outline
+		var bp := PackedVector2Array()
+		for p in poly:
+			var wp := zone_px_to_world(float(p[0]), float(p[1]))
+			bp.append(Vector2(wp.x, wp.z))
+		zone_block.append(bp)
+	if waypoint_net == null:
+		waypoint_net = WAYPOINTS.new()
+	var decor := Node3D.new()
+	decor.name = "ZoneDecor"
+	add_child(decor)
+	zone_exits.clear()
+	for ex in zone.get("exits", []):
+		var ep := PackedVector2Array()
+		var c := Vector3.ZERO
+		for p in ex["poly"]:
+			var wp := zone_px_to_world(float(p[0]), float(p[1]))
+			ep.append(Vector2(wp.x, wp.z)); c += wp
+		c /= float(ex["poly"].size())
+		zone_exits.append({"name": ex["name"], "to": ex["to"], "arrive": ex["arrive"], "poly": ep})
+		if ex.has("aura"): _build_threshold_portal(decor, ex)
+		else: _build_portal(decor, ep, c, String(ex["name"]))
+	zone_waypoints.clear()
+	for wdef in zone.get("waypoints", []):
+		var wp_pos := zone_px_to_world(float(wdef["at"][0]), float(wdef["at"][1]))
+		var rot := float(wdef.get("rot_deg", WAYPOINT_ROT_DEG))
+		if wdef.has("face"):   # aim the bottom star point at a painted feature (e.g. the stream)
+			var fdir := zone_px_to_world(float(wdef["face"][0]), float(wdef["face"][1])) - wp_pos
+			rot = rad_to_deg(atan2(fdir.x, fdir.z))
+		zone_waypoints.append({"id": wdef["id"], "name": wdef["name"], "pos": wp_pos, "node": _build_waypoint(decor, wp_pos, String(wdef["id"]), float(wdef.get("radius_px", 167.0)), rot)})
+	_build_zone_nav()
+	zone_exit_armed = false
+
+## Zone-exit portal: blue/gold light curtain standing on the exit, a glow on the ground, rising sparks and the
+## destination's name, so the player can always tell an exit to another area apart from the scenery.
+## Zone-exit portal anchored to a painted threshold (owner 11-22: portals must look organic, set into a staircase,
+## doorway or cave mouth). Zone JSON exit "aura": {"poly": [edge_left, edge_right, far_right, far_left]} in painting
+## px: the first two points are the exit edge (top step / doorway line, between its posts), the last two where the glow
+## fades out down the steps. Builds: glow flowing over the painted steps toward the exit, a light veil standing in the
+## opening on the exit edge, sparks rising along it, a soft blue light and the destination name.
+func _build_threshold_portal(parent: Node3D, ex: Dictionary) -> void:
+	var label := String(ex["name"])
+	var q: Array = ex["aura"]["poly"]
+	var P := []
+	for p in q: P.append(zone_px_to_world(float(p[0]), float(p[1])))
+	var root := Node3D.new(); root.name = "Portal_" + label.replace(" ", "")
+	root.add_to_group("zone_portal")
+	parent.add_child(root)
+	# glow on the steps
+	var st := SurfaceTool.new(); st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var uv := [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 1)]
+	for i in [0, 1, 2, 0, 2, 3]:
+		st.set_uv(uv[i]); st.add_vertex(P[i] + Vector3.UP * 0.03)
+	var glow := MeshInstance3D.new(); glow.name = "StepGlow"; glow.mesh = st.commit()
+	var gm := ShaderMaterial.new(); gm.shader = load("res://shaders/threshold_glow.gdshader")
+	glow.material_override = gm
+	glow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(glow)
+	# veil standing in the opening on the exit edge
+	var e0: Vector3 = P[0]; var e1: Vector3 = P[1]
+	var mid := (e0 + e1) * 0.5
+	var along := e1 - e0
+	var width := along.length()
+	var curtain := MeshInstance3D.new(); curtain.name = "Veil"
+	var cq := QuadMesh.new(); cq.size = Vector2(width, 2.3); curtain.mesh = cq
+	var cm := ShaderMaterial.new(); cm.shader = load("res://shaders/portal_aura.gdshader"); cm.set_shader_parameter("strength", 0.85)
+	curtain.material_override = cm
+	curtain.position = mid + Vector3.UP * 1.15
+	curtain.rotation.y = -atan2(along.z, along.x)
+	curtain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(curtain)
+	var sparks := CPUParticles3D.new(); sparks.name = "Sparks"
+	sparks.amount = 36; sparks.lifetime = 2.0; sparks.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	sparks.emission_box_extents = Vector3(width * 0.42, 0.05, 0.25)
+	sparks.position = mid + Vector3.UP * 0.1
+	sparks.rotation.y = curtain.rotation.y
+	sparks.direction = Vector3.UP; sparks.spread = 10.0; sparks.gravity = Vector3(0, 0.3, 0)
+	sparks.initial_velocity_min = 0.3; sparks.initial_velocity_max = 0.9
+	sparks.scale_amount_min = 0.03; sparks.scale_amount_max = 0.07
+	var sm := SphereMesh.new(); sm.radius = 0.5; sm.height = 1.0; sm.radial_segments = 6; sm.rings = 3
+	var smat := StandardMaterial3D.new(); smat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	smat.vertex_color_use_as_albedo = true; smat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	sm.material = smat; sparks.mesh = sm
+	var grad := Gradient.new(); grad.set_color(0, Color(1.0, 0.85, 0.45, 1)); grad.set_color(1, Color(0.35, 0.65, 1.0, 0))
+	sparks.color_ramp = grad
+	root.add_child(sparks)
+	var light := OmniLight3D.new(); light.light_color = Color(0.45, 0.7, 1.0); light.light_energy = 1.2; light.omni_range = width
+	light.position = mid + Vector3.UP * 1.0; light.shadow_enabled = false
+	root.add_child(light)
+	var lbl := Label3D.new()
+	lbl.text = "▲ " + label
+	lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	lbl.no_depth_test = true; lbl.fixed_size = true; lbl.pixel_size = 0.0011
+	lbl.font_size = 26; lbl.outline_size = 8
+	lbl.modulate = Color("f2d38a"); lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
+	lbl.position = mid + Vector3.UP * 2.6
+	lbl.add_to_group("zone_exit_label")
+	root.add_child(lbl)
+
+func _build_portal(parent: Node3D, poly: PackedVector2Array, centre: Vector3, label: String) -> void:
+	var mn := Vector2(INF, INF); var mx := -mn
+	for p in poly:
+		mn = mn.min(p); mx = mx.max(p)
+	var width := clampf(mx.x - mn.x, 1.6, 7.0)
+	var root := Node3D.new(); root.name = "Portal_" + label.replace(" ", "")
+	# stand the aura on the exit's threshold: the edge facing the walkable area (the side nearest the zone centre)
+	var to_mid := -Vector2(centre.x, centre.z).normalized()
+	var edge := Vector2(centre.x, centre.z)
+	if absf(to_mid.y) >= absf(to_mid.x):
+		edge.y = mn.y + 0.4 if to_mid.y < 0.0 else mx.y - 0.4
+	else:
+		edge.x = mn.x + 0.4 if to_mid.x < 0.0 else mx.x - 0.4
+	root.position = Vector3(edge.x, 0.0, edge.y)
+	root.add_to_group("zone_portal")
+	parent.add_child(root)
+	var curtain := MeshInstance3D.new()
+	var q := QuadMesh.new(); q.size = Vector2(width, 3.2); curtain.mesh = q
+	var cm := ShaderMaterial.new(); cm.shader = load("res://shaders/portal_aura.gdshader"); cm.set_shader_parameter("strength", 1.35)
+	curtain.material_override = cm
+	curtain.position.y = 1.6
+	curtain.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(curtain)
+	var disc := MeshInstance3D.new()
+	var dq := PlaneMesh.new(); dq.size = Vector2(width * 1.25, 1.6); disc.mesh = dq
+	var dm := ShaderMaterial.new(); dm.shader = load("res://shaders/waypoint_rune.gdshader"); dm.set_shader_parameter("lit", 0.55)
+	disc.material_override = dm
+	disc.position.y = 0.03
+	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(disc)
+	var sparks := CPUParticles3D.new()
+	sparks.amount = 40; sparks.lifetime = 1.8; sparks.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	sparks.emission_box_extents = Vector3(width * 0.45, 0.05, 0.3)
+	sparks.direction = Vector3.UP; sparks.spread = 12.0; sparks.gravity = Vector3(0, 0.35, 0)
+	sparks.initial_velocity_min = 0.4; sparks.initial_velocity_max = 1.1
+	sparks.scale_amount_min = 0.04; sparks.scale_amount_max = 0.09
+	var sm := SphereMesh.new(); sm.radius = 0.5; sm.height = 1.0; sm.radial_segments = 6; sm.rings = 3
+	var smat := StandardMaterial3D.new(); smat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	smat.albedo_color = Color(1.0, 0.85, 0.45); smat.vertex_color_use_as_albedo = true
+	smat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	sm.material = smat; sparks.mesh = sm
+	var grad := Gradient.new(); grad.set_color(0, Color(1.0, 0.85, 0.45, 1)); grad.set_color(1, Color(0.35, 0.65, 1.0, 0))
+	sparks.color_ramp = grad
+	root.add_child(sparks)
+	var light := OmniLight3D.new(); light.light_color = Color(0.45, 0.7, 1.0); light.light_energy = 1.4; light.omni_range = 4.0
+	light.position.y = 1.0; light.shadow_enabled = false
+	root.add_child(light)
+	var lbl := Label3D.new()
+	lbl.text = "▼ " + label
+	lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	lbl.no_depth_test = true; lbl.fixed_size = true; lbl.pixel_size = 0.0011
+	lbl.font_size = 26; lbl.outline_size = 8
+	lbl.modulate = Color("f2d38a"); lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
+	lbl.position.y = 2.9
+	lbl.add_to_group("zone_exit_label")
+	root.add_child(lbl)
+
+## Waypoint: rune circle on the ground (grey until unlocked, then blue/gold with a pillar of light) and a label.
+func _build_waypoint(parent: Node3D, at: Vector3, id: String, radius_px := 167.0, rot_deg := 0.0) -> Node3D:
+	var root := Node3D.new(); root.name = "Waypoint_" + id; root.position = at
+	root.add_to_group("zone_waypoint")
+	parent.add_child(root)
+	var sigil_dz := 0.0
+	var rune_size := WAYPOINT_RUNE_M
+	# WP3: the master waypoint, painted at the game camera (owner-approved). Used as-is (no warping): laid on the
+	# ground like the zone paintings, its ground centre (mean of the 8 star tips, tools/build_waypoint_sprite.py) on
+	# the waypoint point. The painted rune sigil is raised; the glow sits on it.
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WAYPOINT_SPRITE_META))
+	var tex: Texture2D = load(WAYPOINT_SPRITE)
+	var pw := radius_px / float(meta["tip_radius_frac"]) / ZONE_PPM
+	var ph := pw * float(tex.get_height()) / float(tex.get_width()) / sin(deg_to_rad(ZONE_PITCH))
+	var plat := MeshInstance3D.new(); plat.name = "Platform"
+	var pmesh := PlaneMesh.new(); pmesh.size = Vector2(pw, ph); plat.mesh = pmesh
+	var pmat := StandardMaterial3D.new()
+	pmat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	pmat.albedo_texture = tex
+	pmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	pmat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	pmat.render_priority = -1          # glow and beam draw over the painting
+	plat.material_override = pmat
+	var cu: Array = meta["centre_uv"]
+	plat.position = Vector3(-(float(cu[0]) - 0.5) * pw, 0.015, -(float(cu[1]) - 0.5) * ph)
+	plat.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(plat)
+	sigil_dz = (WAYPOINT_SIGIL_V - float(cu[1])) * ph       # painted sigil appears this far "north" of the ground centre
+	rune_size = WAYPOINT_SIGIL_W * pw
+	var disc := MeshInstance3D.new(); disc.name = "Rune"
+	var pm := PlaneMesh.new(); pm.size = Vector2(rune_size, rune_size * 0.95); disc.mesh = pm
+	var dm := ShaderMaterial.new(); dm.shader = load("res://shaders/waypoint_rune.gdshader")
+	dm.render_priority = 1
+	disc.material_override = dm; disc.position = Vector3(0, 0.03, sigil_dz)
+	disc.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(disc)
+	var beam := MeshInstance3D.new(); beam.name = "Beam"
+	var q := QuadMesh.new(); q.size = Vector2(1.1, 3.4); beam.mesh = q
+	var bm := ShaderMaterial.new(); bm.shader = load("res://shaders/portal_aura.gdshader"); bm.set_shader_parameter("strength", 0.55)
+	beam.material_override = bm; beam.position = Vector3(0, 1.7, sigil_dz)
+	beam.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(beam)
+	var lbl := Label3D.new(); lbl.name = "Label"
+	lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	lbl.no_depth_test = true; lbl.fixed_size = true; lbl.pixel_size = 0.001
+	lbl.font_size = 24; lbl.outline_size = 8
+	lbl.outline_modulate = Color(0.08, 0.06, 0.04, 0.9)
+	lbl.position.y = 3.6
+	root.add_child(lbl)
+	_waypoint_visual(root, waypoint_net != null and waypoint_net.is_unlocked(id))
+	return root
+
+func _waypoint_visual(node: Node3D, open: bool) -> void:
+	var plat := node.get_node_or_null("Platform") as MeshInstance3D
+	if plat != null and ResourceLoader.exists(WAYPOINT_SPRITE_LIT):
+		# the painting carries the runes: dormant = carved stone, discovered = the glowing version (WP4)
+		(plat.material_override as StandardMaterial3D).albedo_texture = load(WAYPOINT_SPRITE_LIT if open else WAYPOINT_SPRITE)
+		(node.get_node("Rune") as MeshInstance3D).visible = false
+	(node.get_node("Rune") as MeshInstance3D).material_override.set_shader_parameter("lit", 1.0 if open else 0.0)
+	(node.get_node("Beam") as MeshInstance3D).visible = open
+	# undiscovered waypoints are simply part of the world (dormant stone, no label) until the hero finds them
+	var lbl := node.get_node("Label") as Label3D
+	lbl.text = "Waypoint"
+	lbl.modulate = Color("9fd0ff")
+	lbl.visible = open
+
+func waypoint_at(at: Vector3, radius := 1.6) -> Dictionary:
+	for w in zone_waypoints:
+		if Vector2(at.x - w["pos"].x, at.z - w["pos"].z).length() <= radius:
+			return w
+	return {}
+
+func _waypoint_tick() -> void:
+	if player == null or zone_waypoints.is_empty(): return
+	var here := waypoint_at(player.global_position, 1.4)
+	if here.is_empty():
+		if waypoint_panel != null and is_instance_valid(waypoint_panel) and waypoint_at(player.global_position, 3.0).is_empty():
+			waypoint_panel.close()
+		return
+	if waypoint_net.unlock(here["id"]):
+		_waypoint_visual(here["node"], true)
+		effects.ring(here["pos"], 1.3, Color("9fd0ff"), 0.8)
+		waypoint_unlocked.emit(here["id"])
+	if waypoint_pending == here["id"]:
+		waypoint_pending = ""
+		open_waypoint_panel(here["id"])
+
+func open_waypoint_panel(here_id: String) -> void:
+	if waypoint_panel != null and is_instance_valid(waypoint_panel):
+		waypoint_panel.queue_free()
+	player.stop_moving()
+	waypoint_panel = WAYPOINT_PANEL.new(waypoint_net, here_id)
+	waypoint_panel.travel_requested.connect(teleport_to_waypoint)
+	add_child(waypoint_panel)
+
+## Teleport to an unlocked waypoint in any zone (town included): fade, load that zone if needed, arrive just in front.
+func teleport_to_waypoint(id: String) -> void:
+	if not waypoint_net.is_unlocked(id) or zone_traveling: return
+	var e: Dictionary = waypoint_net.get_entry(id)
+	if waypoint_panel != null and is_instance_valid(waypoint_panel): waypoint_panel.close()
+	await travel_to(String(e["zone"]), [float(e["at"][0]), float(e["at"][1]) + 150.0])
+
+func zone_world_to_px(at: Vector3) -> Vector2:
+	var size: Array = zone["size"]
+	return Vector2(at.x * ZONE_PPM + float(size[0]) * 0.5, at.z * ZONE_PPM * sin(deg_to_rad(ZONE_PITCH)) + float(size[1]) * 0.5)
+
+## Tile streaming (D4-style seamless region): tiles near the camera are loaded on a worker thread and shown; tiles far
+## away drop their textures. `sync` loads the near ones immediately (zone entry, so the first frame is never blank).
+func zone_stream(sync := false) -> void:
+	if zone_tiles.is_empty():
+		return
+	var vs := get_viewport().get_visible_rect().size
+	var focus: Vector3 = zone_cam_focus if zone_cam_focus.is_finite() else (player.global_position if player != null else Vector3.ZERO)
+	var c := zone_world_to_px(focus)
+	var half := Vector2(vs.x / vs.y, 1.0) * (1080.0 / ZONE_SCREEN_PPM) * 0.5 * ZONE_PPM
+	half.x = maxf(half.x, 15.0 * ZONE_PPM)                 # minimap sees ~30 m around the hero
+	var near := Rect2(c - half * 1.6, half * 3.2)
+	var far := Rect2(c - half * 2.6, half * 5.2)
+	for t in zone_tiles:
+		var r: Rect2 = t["rect"]
+		if near.intersects(r):
+			if t["state"] == 0:
+				if sync:
+					_zone_tile_apply(t, load(t["image"]), load(t["depth"]) if t["depth"] != "" else null)
+				else:
+					ResourceLoader.load_threaded_request(t["image"])
+					if t["depth"] != "": ResourceLoader.load_threaded_request(t["depth"])
+					t["state"] = 1
+			if t["state"] == 1:
+				var ok: bool = ResourceLoader.load_threaded_get_status(t["image"]) == ResourceLoader.THREAD_LOAD_LOADED
+				if t["depth"] != "": ok = ok and ResourceLoader.load_threaded_get_status(t["depth"]) == ResourceLoader.THREAD_LOAD_LOADED
+				if ok or sync:
+					_zone_tile_apply(t, ResourceLoader.load_threaded_get(t["image"]),
+						ResourceLoader.load_threaded_get(t["depth"]) if t["depth"] != "" else null)
+		elif not far.intersects(r) and t["state"] == 2:
+			t["mat"].set_shader_parameter("painting", null)
+			t["mat"].set_shader_parameter("depthmap", null)
+			t["node"].visible = false
+			t["state"] = 0
+
+func _zone_tile_apply(t: Dictionary, tex: Texture2D, dep: Texture2D) -> void:
+	t["mat"].set_shader_parameter("painting", tex)
+	if dep != null: t["mat"].set_shader_parameter("depthmap", dep)
+	t["node"].visible = true
+	t["state"] = 2
+
+func zone_tiles_shown() -> int:
+	var n := 0
+	for t in zone_tiles:
+		if t["state"] == 2: n += 1
+	return n
+
+# ---------- pathfinding (visibility graph over the walk map) ----------
+## Clear straight line on walkable ground, keeping NAV_CLEARANCE from edges (sampled every 0.2 m).
+# ---------- kit zones (owner 11-22: zones are assembled from reusable ground textures and props) ----------
+func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
+	var kit := String(zone["kit"])
+	# biome grade (zone JSON "grade": {"mul": [r,g,b], "lift": [r,g,b,a], "desat": x}); neutral when absent
+	var gr_: Dictionary = zone.get("grade", {})
+	var mul: Array = gr_.get("mul", [1, 1, 1]); var lift: Array = gr_.get("lift", [0, 0, 0, 0])
+	RenderingServer.global_shader_parameter_set("kit_grade", Color(float(mul[0]), float(mul[1]), float(mul[2])))
+	RenderingServer.global_shader_parameter_set("kit_lift", Color(float(lift[0]), float(lift[1]), float(lift[2]), float(lift[3])))
+	RenderingServer.global_shader_parameter_set("kit_desat", float(gr_.get("desat", 0.0)))
+	var mc: Array = gr_.get("mist", [0.74, 0.64, 0.88]); var wc: Array = gr_.get("water", [0.32, 0.48, 0.55])
+	RenderingServer.global_shader_parameter_set("kit_mist", Color(float(mc[0]), float(mc[1]), float(mc[2])))
+	RenderingServer.global_shader_parameter_set("kit_water", Color(float(wc[0]), float(wc[1]), float(wc[2])))
+	var cat: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(kit + "/catalog.json"))
+	var sz: Array = zone["size"]
+	var sp_: float = sin(deg_to_rad(ZONE_PITCH))
+	var g := MeshInstance3D.new(); g.name = "KitGround"
+	var pm := PlaneMesh.new(); pm.size = Vector2(w, d); g.mesh = pm
+	var gm := ShaderMaterial.new(); gm.shader = load("res://shaders/kit_ground.gdshader")
+	var gr: Dictionary = cat["ground"]
+	gm.set_shader_parameter("base_tex", load(kit + "/" + String(gr[zone.get("ground_base", "grass")]["image"])))
+	gm.set_shader_parameter("path_tex", load(kit + "/" + String(gr["flagstone"]["image"])))
+	gm.set_shader_parameter("dirt_tex", load(kit + "/" + String(gr["dirt"]["image"])))
+	gm.set_shader_parameter("splat", load("res://assets/zones/" + String(zone["splat"])))
+	gm.set_shader_parameter("zone_px", Vector2(float(sz[0]), float(sz[1])))
+	var world_space: bool = gr["flagstone"].has("tile_m")      # v2 kits: top-down textures repeating in metres
+	var tk := "tile_m" if world_space else "tile_px"
+	gm.set_shader_parameter("world_space", world_space)
+	gm.set_shader_parameter("ppm", ZONE_PPM)
+	gm.set_shader_parameter("sin_pitch", sp_)
+	gm.set_shader_parameter("base_tile", float(gr[zone.get("ground_base", "grass")][tk]))
+	gm.set_shader_parameter("path_tile", float(gr["flagstone"][tk]))
+	gm.set_shader_parameter("dirt_tile", float(gr["dirt"][tk]))
+	var light_tex: Texture2D = null
+	if zone.has("light"):
+		light_tex = load("res://assets/zones/" + String(zone["light"]))
+		gm.set_shader_parameter("light_map", light_tex)
+		gm.set_shader_parameter("use_light", true)
+	var fx_tex: Texture2D = load("res://assets/zones/" + String(zone["fx"])) if zone.has("fx") else null
+	if fx_tex != null: gm.set_shader_parameter("fx_map", fx_tex)
+	gm.render_priority = -2
+	g.material_override = gm
+	g.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	holder.add_child(g)
+	var props := Node3D.new(); props.name = "KitProps"; holder.add_child(props)
+	var shader: Shader = load("res://shaders/kit_prop.gdshader")
+	var fringe_shader: Shader = load("res://shaders/kit_prop_fringe.gdshader")
+	var decal_shader: Shader = load("res://shaders/kit_decal.gdshader")
+	var tex_cache := {}
+	# Undergrowth and ground details are drawn in batches (one MultiMesh per image): thousands of pieces cost a
+	# few dozen draw calls. Trees, rocks and set pieces stay individual nodes (collision/occlusion tests use them).
+	var batches := {}
+	for p in zone["props"]:
+		var c: Dictionary = cat["props"][p["prop"]]
+		if c["kind"] in ["bush", "decal"]:
+			var key_b := String(p["prop"])
+			if not batches.has(key_b): batches[key_b] = []
+			batches[key_b].append(p)
+			continue
+		var scale_: float = float(p["scale"])
+		var iw: float = float(c["size"][0]) * scale_; var ih: float = float(c["size"][1]) * scale_
+		var fx: float = (float(c["size"][0]) - float(c["foot"][0])) if bool(p["flip"]) else float(c["foot"][0])
+		var fy: float = float(c["foot"][1])
+		var foot := zone_px_to_world(float(p["at"][0]), float(p["at"][1]))
+		var qm := PlaneMesh.new(); qm.size = Vector2(iw / ZONE_PPM, ih / ZONE_PPM / sp_)
+		var node := MeshInstance3D.new(); node.mesh = qm
+		# image centre relative to its foot point, on the ground plane
+		node.position = foot + Vector3((iw * 0.5 - fx * scale_) / ZONE_PPM, 0.02 if c["kind"] == "setpiece" else 0.03, (ih * 0.5 - fy * scale_) / ZONE_PPM / sp_)
+		var key := String(c["image"])
+		if not tex_cache.has(key): tex_cache[key] = load(kit + "/" + key)
+		if c["kind"] == "decal":           # flat: blended onto the ground, lit by the light map, never occludes
+			node.position.y = 0.012
+			var dm := ShaderMaterial.new(); dm.shader = decal_shader
+			dm.set_shader_parameter("tex", tex_cache[key])
+			dm.set_shader_parameter("flip", bool(p["flip"]))
+			dm.set_shader_parameter("zone_world", Vector2(w, d))
+			if light_tex != null: dm.set_shader_parameter("light_map", light_tex)
+			if fx_tex != null: dm.set_shader_parameter("fx_map", fx_tex)
+			dm.render_priority = -1
+			node.material_override = dm
+		else:
+			var m := ShaderMaterial.new(); m.shader = shader
+			var fr := ShaderMaterial.new(); fr.shader = fringe_shader      # soft painted edge, blended
+			for mm in [m, fr]:
+				mm.set_shader_parameter("tex", tex_cache[key])
+				mm.set_shader_parameter("foot_v", fy / float(c["size"][1]))
+				mm.set_shader_parameter("tex_rows", ih)
+				mm.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
+				mm.set_shader_parameter("occludes", bool(c["occludes"]))
+				mm.set_shader_parameter("flip", bool(p["flip"]))
+				mm.set_shader_parameter("tint", float(p.get("tint", 1.0)))
+				mm.set_shader_parameter("mist", float(p.get("mist", 0.0)))
+				mm.set_shader_parameter("mist_rows", 0.3 if c["kind"] == "tree" else 2.0)
+			m.render_priority = -1 if c["kind"] == "setpiece" else 0
+			fr.render_priority = m.render_priority
+			m.next_pass = fr
+			node.material_override = m
+		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		node.name = "%s_%d" % [p["prop"], props.get_child_count()]
+		props.add_child(node)
+	for key_b in batches:
+		var c: Dictionary = cat["props"][key_b]
+		var list: Array = batches[key_b]
+		var is_decal: bool = c["kind"] == "decal"
+		var im_key := String(c["image"])
+		if not tex_cache.has(im_key): tex_cache[im_key] = load(kit + "/" + im_key)
+		var mm_ := MultiMesh.new()
+		mm_.transform_format = MultiMesh.TRANSFORM_3D
+		mm_.use_custom_data = true
+		var unit := PlaneMesh.new(); unit.size = Vector2(1, 1)
+		mm_.mesh = unit
+		mm_.instance_count = list.size()
+		var fy: float = float(c["foot"][1])
+		for i in list.size():
+			var p: Dictionary = list[i]
+			var scale_: float = float(p["scale"])
+			var iw: float = float(c["size"][0]) * scale_; var ih: float = float(c["size"][1]) * scale_
+			var fx: float = (float(c["size"][0]) - float(c["foot"][0])) if bool(p["flip"]) else float(c["foot"][0])
+			var foot := zone_px_to_world(float(p["at"][0]), float(p["at"][1]))
+			var pos := foot + Vector3((iw * 0.5 - fx * scale_) / ZONE_PPM, 0.012 if is_decal else 0.03, (ih * 0.5 - fy * scale_) / ZONE_PPM / sp_)
+			mm_.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3(iw / ZONE_PPM, 1.0, ih / ZONE_PPM / sp_)), pos))
+			mm_.set_instance_custom_data(i, Color(float(p.get("tint", 1.0)), 1.0 if bool(p["flip"]) else 0.0, ih, float(p.get("mist", 0.0))))
+		var mmi := MultiMeshInstance3D.new(); mmi.multimesh = mm_
+		mmi.name = "Batch_%s" % key_b
+		mmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		if is_decal:
+			var dm := ShaderMaterial.new(); dm.shader = decal_shader
+			dm.set_shader_parameter("tex", tex_cache[im_key])
+			dm.set_shader_parameter("use_instance", true)
+			dm.set_shader_parameter("zone_world", Vector2(w, d))
+			if light_tex != null: dm.set_shader_parameter("light_map", light_tex)
+			if fx_tex != null: dm.set_shader_parameter("fx_map", fx_tex)
+			dm.render_priority = -1
+			mmi.material_override = dm
+		else:
+			var m := ShaderMaterial.new(); m.shader = shader
+			var fr := ShaderMaterial.new(); fr.shader = fringe_shader
+			for mm in [m, fr]:
+				mm.set_shader_parameter("tex", tex_cache[im_key])
+				mm.set_shader_parameter("use_instance", true)
+				mm.set_shader_parameter("foot_v", fy / float(c["size"][1]))
+				mm.set_shader_parameter("z_per_row", 1.0 / ZONE_PPM / sp_)
+				mm.set_shader_parameter("occludes", bool(c["occludes"]))
+				mm.set_shader_parameter("soft_upright", true)
+				mm.set_shader_parameter("mist_rows", 2.0)
+			m.next_pass = fr
+			mmi.material_override = m
+		mmi.set_meta("instances", list.size())
+		props.add_child(mmi)
+	if fx_tex != null:                     # light shafts over everything (ground mist is in the ground/prop colour)
+		var fxn := MeshInstance3D.new(); fxn.name = "KitShafts"
+		var fpm := PlaneMesh.new(); fpm.size = Vector2(w, d); fxn.mesh = fpm
+		fxn.position.y = 0.06
+		var fm := ShaderMaterial.new(); fm.shader = load("res://shaders/kit_shafts.gdshader")
+		fm.set_shader_parameter("fx_map", fx_tex)
+		fm.set_shader_parameter("zone_px", Vector2(float(sz[0]), float(sz[1])))
+		fm.render_priority = 6
+		fxn.material_override = fm
+		fxn.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		holder.add_child(fxn)
+	_build_kit_nav(w, d)
+
+## Grid navigation for kit zones: every prop footprint, set-piece blocker and pond is rasterised as solid cells.
+func _build_kit_nav(w: float, d: float) -> void:
+	kit_grid = AStarGrid2D.new()
+	kit_origin = Vector2(-w * 0.5, -d * 0.5)
+	kit_grid.region = Rect2i(0, 0, int(ceil(w / KIT_CELL)), int(ceil(d / KIT_CELL)))
+	kit_grid.cell_size = Vector2(KIT_CELL, KIT_CELL)
+	kit_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+	kit_grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_OCTILE
+	kit_grid.update()
+	var sp_: float = sin(deg_to_rad(ZONE_PITCH))
+	var sz: Array = zone["size"]
+	# outside the walkable border
+	var wb: Array = zone["walkable"][0]
+	var a0 := zone_px_to_world(float(wb[0][0]), float(wb[0][1])); var a1 := zone_px_to_world(float(wb[2][0]), float(wb[2][1]))
+	for x in kit_grid.region.size.x:
+		for y in kit_grid.region.size.y:
+			var p := kit_origin + Vector2(x + 0.5, y + 0.5) * KIT_CELL
+			if p.x < a0.x or p.x > a1.x or p.y < a0.z or p.y > a1.z: kit_grid.set_point_solid(Vector2i(x, y))
+	for s_ in zone["solids"]:
+		var c := zone_px_to_world(float(s_[0]), float(s_[1]))
+		var rx: float = float(s_[2]) / ZONE_PPM
+		var rz: float = (float(s_[3]) if s_.size() > 3 else float(s_[2]) * 0.5) / ZONE_PPM / sp_   # footprints drawn as ground ellipses
+		var cx0 := int(floor((c.x - rx - kit_origin.x) / KIT_CELL)); var cx1 := int(ceil((c.x + rx - kit_origin.x) / KIT_CELL))
+		var cy0 := int(floor((c.z - rz - kit_origin.y) / KIT_CELL)); var cy1 := int(ceil((c.z + rz - kit_origin.y) / KIT_CELL))
+		for x in range(maxi(0, cx0), mini(kit_grid.region.size.x, cx1 + 1)):
+			for y in range(maxi(0, cy0), mini(kit_grid.region.size.y, cy1 + 1)):
+				var p := kit_origin + Vector2(x + 0.5, y + 0.5) * KIT_CELL
+				var dx := (p.x - c.x) / rx; var dz := (p.y - c.z) / rz
+				if dx * dx + dz * dz <= 1.0: kit_grid.set_point_solid(Vector2i(x, y))
+
+func _kit_cell(p: Vector2) -> Vector2i:
+	return Vector2i(int(floor((p.x - kit_origin.x) / KIT_CELL)), int(floor((p.y - kit_origin.y) / KIT_CELL)))
+
+func _kit_free(p: Vector2) -> bool:
+	var c := _kit_cell(p)
+	return kit_grid.is_in_boundsv(c) and not kit_grid.is_point_solid(c)
+
+func _kit_find_path(from: Vector2, to: Vector2) -> PackedVector2Array:
+	var a := _kit_cell(from); var b := _kit_cell(to)
+	if not _kit_free(to):              # goal inside an obstacle: nearest free cell toward the start
+		var found := false
+		for i in range(1, 60):
+			var q := to.lerp(from, float(i) / 60.0)
+			if _kit_free(q): to = q; b = _kit_cell(q); found = true; break
+		if not found: return PackedVector2Array()
+	if not kit_grid.is_in_boundsv(a) or kit_grid.is_point_solid(a): return PackedVector2Array([to])
+	var ids := kit_grid.get_id_path(a, b)
+	if ids.is_empty(): return PackedVector2Array()
+	var pts := PackedVector2Array()
+	for id in ids: pts.append(kit_origin + (Vector2(id) + Vector2(0.5, 0.5)) * KIT_CELL)
+	pts[pts.size() - 1] = to
+	# string-pull: keep only the corners needed for straight clear lines
+	var out := PackedVector2Array(); var cur := from; var i := 0
+	while i < pts.size() - 1:
+		var j := pts.size() - 1
+		while j > i + 1 and not _kit_line_free(cur, pts[j]): j -= 1
+		out.append(pts[j]); cur = pts[j]; i = j
+	if out.is_empty(): out.append(to)
+	return out
+
+func _kit_line_free(a: Vector2, b: Vector2) -> bool:
+	var n := int(ceil(a.distance_to(b) / (KIT_CELL * 0.5))) + 1
+	for k in n + 1:
+		if not _kit_free(a.lerp(b, float(k) / float(n))): return false
+	return true
+
+func zone_line_clear(a: Vector2, b: Vector2) -> bool:
+	var n := int(ceil(a.distance_to(b) / 0.2)) + 1
+	for i in n + 1:
+		var p := a.lerp(b, float(i) / float(n))
+		if not _walk_xz(p, NAV_CLEARANCE * 0.8): return false
+	return true
+
+func _walk_xz(p: Vector2, clearance := 0.0) -> bool:
+	if not zone_walkable(Vector3(p.x, 0, p.y)): return false
+	if clearance <= 0.0: return true
+	for k in 8:
+		var o := Vector2.RIGHT.rotated(TAU * float(k) / 8.0) * clearance
+		if not zone_walkable(Vector3(p.x + o.x, 0, p.y + o.y)): return false
+	return true
+
+func _build_zone_nav() -> void:
+	zone_nav_nodes = PackedVector2Array(); zone_nav_links.clear(); zone_route = PackedVector2Array()
+	if zone.has("kit"): return             # kit zones use the grid (_build_kit_nav)
+	kit_grid = null
+	var polys: Array = []
+	polys.append_array(zone_walk); polys.append_array(zone_block)
+	for poly in polys:
+		var m: int = (poly as PackedVector2Array).size()
+		for i in m:
+			var v: Vector2 = poly[i]
+			var e1: Vector2 = (v - poly[(i - 1 + m) % m]).normalized()
+			var e2: Vector2 = (poly[(i + 1) % m] - v).normalized()
+			var bis := (e1 - e2)
+			if bis.length() < 0.01: bis = Vector2(-e1.y, e1.x)
+			bis = bis.normalized()
+			for sgn in [1.0, -1.0]:        # step off the corner to whichever side is walkable
+				var c: Vector2 = v + bis * sgn * (NAV_CLEARANCE * 1.6)
+				if _walk_xz(c, NAV_CLEARANCE * 0.8):
+					zone_nav_nodes.append(c)
+					break
+	# where two walkable polygons overlap, the corners of their union are edge crossings, not polygon vertices: add a
+	# node beside each crossing so routes can turn there (painted cities are many overlapping street polygons)
+	var off := NAV_CLEARANCE * 1.6 * 0.7
+	for a in zone_walk.size():
+		for b in range(a + 1, zone_walk.size()):
+			var pa: PackedVector2Array = zone_walk[a]; var pb: PackedVector2Array = zone_walk[b]
+			for i in pa.size():
+				for j in pb.size():
+					var hit = Geometry2D.segment_intersects_segment(pa[i], pa[(i + 1) % pa.size()], pb[j], pb[(j + 1) % pb.size()])
+					if hit == null: continue
+					for d in [Vector2(1, 1), Vector2(1, -1), Vector2(-1, 1), Vector2(-1, -1)]:
+						var c: Vector2 = hit + d * off
+						if _walk_xz(c, NAV_CLEARANCE * 0.8): zone_nav_nodes.append(c)
+	for i in zone_nav_nodes.size():
+		var links: Array = []
+		for j in zone_nav_nodes.size():
+			if i != j and zone_line_clear(zone_nav_nodes[i], zone_nav_nodes[j]):
+				links.append([j, zone_nav_nodes[i].distance_to(zone_nav_nodes[j])])
+		zone_nav_links.append(links)
+
+## Shortest walkable route from `from` to `to` (world xz). Returns the corners to walk through, ending at the goal
+## (or the nearest walkable point on the way to it when the goal itself is blocked).
+func zone_find_path(from: Vector2, to: Vector2) -> PackedVector2Array:
+	if kit_grid != null and zone.has("kit"): return _kit_find_path(from, to)
+	if not _walk_xz(to):
+		var t := 1.0
+		var found := false
+		while t > 0.0:
+			t -= 0.02
+			var q := from.lerp(to, t)
+			if _walk_xz(q): to = q; found = true; break
+		if not found: return PackedVector2Array()
+	if zone_line_clear(from, to) or zone_nav_nodes.is_empty():
+		return PackedVector2Array([to])
+	var n := zone_nav_nodes.size()
+	var S := n; var G := n + 1              # start / goal as extra nodes
+	var start_links: Array = []; var goal_links := {}
+	for i in n:
+		if zone_line_clear(from, zone_nav_nodes[i]): start_links.append([i, from.distance_to(zone_nav_nodes[i])])
+		if zone_line_clear(zone_nav_nodes[i], to): goal_links[i] = zone_nav_nodes[i].distance_to(to)
+	var dist := {S: 0.0}; var prev := {}; var open := [S]; var done := {}
+	while not open.is_empty():
+		var best := 0
+		var best_f := INF
+		for k in open.size():
+			var u0: int = open[k]
+			var pu: Vector2 = from if u0 == S else (to if u0 == G else zone_nav_nodes[u0])
+			var f: float = dist[u0] + pu.distance_to(to)
+			if f < best_f: best_f = f; best = k
+		var u: int = open[best]; open.remove_at(best)
+		if u == G: break
+		if done.has(u): continue
+		done[u] = true
+		var nbrs: Array = start_links if u == S else zone_nav_links[u]
+		var extra: Array = []
+		if u != S and goal_links.has(u): extra = [[G, goal_links[u]]]
+		for e in nbrs + extra:
+			var v: int = e[0]; var nd: float = dist[u] + float(e[1])
+			if not dist.has(v) or nd < dist[v]:
+				dist[v] = nd; prev[v] = u
+				if not open.has(v): open.append(v)
+	if not prev.has(G):
+		return PackedVector2Array()
+	var out := PackedVector2Array([to])
+	var c: int = prev[G]
+	while c != S:
+		out.insert(0, zone_nav_nodes[c]); c = prev[c]
+	return out
+
+## Click-to-move inside a painted zone: route around obstacles and walk the corners one by one.
+func zone_move_to(dest: Vector3) -> void:
+	var path := zone_find_path(Vector2(player.global_position.x, player.global_position.z), Vector2(dest.x, dest.z))
+	zone_route = path
+	if path.is_empty():
+		player.stop_moving(); return
+	var first := zone_route[0]; zone_route.remove_at(0)
+	player.command_move(Vector3(first.x, 0, first.y))
+
+func _zone_route_tick() -> void:
+	if zone_route.is_empty() or player == null: return
+	if not player.move_target.is_finite():    # reached the current corner: head for the next one
+		var nxt := zone_route[0]; zone_route.remove_at(0)
+		player.command_move(Vector3(nxt.x, 0, nxt.y))
+
+## Gold silhouette over the hero wherever painted scenery hides him (material_overlay on every mesh of the actor).
+func apply_xray(actor: Node3D) -> void:
+	if xray_mat == null:
+		xray_mat = ShaderMaterial.new()
+		xray_mat.shader = load("res://shaders/occluded_actor.gdshader")
+	for m in actor.find_children("*", "MeshInstance3D", true, false):
+		(m as MeshInstance3D).material_overlay = xray_mat if xray_enabled else null
+
+func zone_exit_at(at: Vector3) -> Dictionary:
+	for ex in zone_exits:
+		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), ex["poly"]):
+			return ex
+	return {}
+
+## Leave through an exit: fade out, swap the painting/walk map/targets, place the hero at `arrive`, fade in.
+func travel_to(to: String, arrive: Array) -> void:
+	if game != null:
+		var r: Array = game.remap_travel(to, arrive)
+		to = r[0]; arrive = r[1]
+	zone_traveling = true
+	player.stop_moving()
+	var fade_layer := CanvasLayer.new(); fade_layer.layer = 50
+	var fade := ColorRect.new(); fade.color = Color(0, 0, 0, 0)
+	fade.set_anchors_preset(Control.PRESET_FULL_RECT); fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	fade_layer.add_child(fade); add_child(fade_layer)
+	var tw := create_tween(); tw.tween_property(fade, "color:a", 1.0, 0.3)
+	await tw.finished
+	painted_zone = to
+	_build_zone(zone_refs[0], zone_refs[1], zone_refs[2])
+	player.global_position = zone_px_to_world(float(arrive[0]), float(arrive[1])) + Vector3.UP * 0.08
+	player.velocity = Vector3.ZERO
+	zone_last_ok = player.global_position
+	zone_cam_focus = Vector3.INF
+	zone_stream(true)
+	var tps: Array = zone.get("targets", [])
+	for i in targets.size():
+		if i < tps.size():
+			targets[i].global_position = zone_px_to_world(float(tps[i][0]), float(tps[i][1]))
+			targets[i].visible = true
+		else:
+			targets[i].global_position = Vector3(0, -50, 0); targets[i].visible = false
+	zone_changed.emit(to)
+	var tw2 := create_tween(); tw2.tween_property(fade, "color:a", 0.0, 0.35)
+	await tw2.finished
+	fade_layer.queue_free()
+	zone_traveling = false
+
+func zone_walkable(at: Vector3) -> bool:
+	if kit_grid != null and zone.has("kit"): return _kit_free(Vector2(at.x, at.z))
+	for poly in zone_block:
+		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), poly):
+			return false
+	for poly in zone_walk:
+		if Geometry2D.is_point_in_polygon(Vector2(at.x, at.z), poly):
+			return true
+	return zone_walk.is_empty()
+
+func _build_plaza(settings: Environment, sun: DirectionalLight3D) -> void:
+	settings.background_color = Color("8fa9c6")
+	settings.ambient_light_color = Color("c9d0dc")
+	settings.ambient_light_energy = 0.38
+	settings.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	settings.tonemap_exposure = 0.78
+	sun.light_energy = 0.85
+	sun.light_color = Color("fff7ec")
+	sun.rotation_degrees = Vector3(-52, -38, 0)
+	var floor_mesh := MeshInstance3D.new()
+	floor_mesh.name = "PlazaFloor"
+	var pm := PlaneMesh.new()
+	pm.size = Vector2(28, 28)
+	floor_mesh.mesh = pm
+	var mat := StandardMaterial3D.new()
+	mat.albedo_texture = load("res://assets/env/plaza_floor.png")
+	mat.normal_enabled = true
+	mat.normal_texture = load("res://assets/env/plaza_floor_normal.png")
+	mat.normal_scale = 0.6
+	mat.roughness = 0.85
+	floor_mesh.material_override = mat
+	floor_mesh.position = Vector3(0, -0.0, 0)
+	add_child(floor_mesh)
+	# outer apron so the plaza does not end in the void at the camera's edge
+	var apron := MeshInstance3D.new()
+	var ap := PlaneMesh.new(); ap.size = Vector2(120, 120); apron.mesh = ap
+	var am := StandardMaterial3D.new(); am.albedo_color = Color("b9ad93"); am.roughness = 0.95
+	apron.material_override = am; apron.position = Vector3(0, -0.03, 0)
+	add_child(apron)
+	if ResourceLoader.exists(CITADEL):
+		var cit: Node3D = (load(CITADEL) as PackedScene).instantiate()
+		cit.name = "CitadelBackdrop"
+		cit.rotation.y = PI                       # stairs face the plaza (south)
+		cit.position = Vector3(0, -0.02, -7.5)
+		add_child(cit)
 
 func _add_terrain_fixture(center: Vector3, dims: Vector3, slope_radians: float, tint: Color) -> void:
 	var platform := StaticBody3D.new()
@@ -272,12 +1236,43 @@ func _build_hud() -> void:
 
 func _process(delta: float) -> void:
 	if player == null: return
-	var goal: Vector3 = player.global_position + (pilot_camera_offset() if use_pilot_knight_candidate else Vector3(8.5, 11.0, 11.0))
-	camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
-	camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
+	if player.click_to_move:
+		var mouse := get_viewport().get_mouse_position()
+		player.aim_point = cursor_ground(mouse)
+		# hold LMB on the ground to keep walking toward the cursor
+		var holding_move: bool = hud.kb.held("move") if hud != null else Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+		var standing: bool = hud.kb.held("force_stand") if hud != null else Input.is_key_pressed(KEY_SHIFT)
+		var over_ui: bool = hud != null and hud.pointer_over_ui()
+		if holding_move and not standing and not over_ui and player.attack_target == null and player.aim_point.is_finite():
+			player.command_move(player.aim_point)
+	if not zone.is_empty():
+		_zone_camera(delta)
+		zone_stream()
+	else:
+		var goal: Vector3 = player.global_position + (pilot_camera_offset() if (use_pilot_knight_candidate or use_pilot_mage_candidate) else Vector3(8.5, 11.0, 11.0))
+		camera.global_position = camera.global_position.lerp(goal, minf(1.0, delta * 6.0))
+		camera.look_at(player.global_position + Vector3.UP * 1.25, Vector3.UP)
+	if info == null: return
 	info.text = "Targets: %d  ·  Model: %s  ·  IK: %s  ·  Equipment sockets: %s  ·  Sweep: %s  ·  Reach releases: %d" % [kills, player.active_model_source, ("ON" if player.terrain_ik_available and player.terrain_ik_enabled else ("OFF" if player.terrain_ik_available else "unsupported")), ("preview" if player.equipment_debug_equipped else ("ready" if player.equipment_sockets_available else "unsupported")), ("STRICT" if strict_weapon_sweep else "baseline"), player.terrain_foot_ik.contact_releases if player.terrain_ik_available else 0]
 
 func _physics_process(_delta: float) -> void:
+	if not zone.is_empty() and player != null:
+		if zone_walkable(player.global_position):
+			zone_last_ok = player.global_position
+		elif zone_last_ok.is_finite():
+			player.global_position = Vector3(zone_last_ok.x, player.global_position.y, zone_last_ok.z)
+			player.velocity.x = 0.0; player.velocity.z = 0.0
+			player.stop_moving()
+		var on_exit := zone_exit_at(player.global_position)
+		if on_exit.is_empty():
+			zone_exit_armed = true
+		elif zone_exit_armed and not zone_traveling:
+			travel_to(String(on_exit["to"]), on_exit["arrive"])
+		_zone_route_tick()
+		_waypoint_tick()
+	_physics_body()
+
+func _physics_body() -> void:
 	if player == null or not player.equipment_sockets_available or player.equipment_sockets == null:
 		contact_samples.clear()
 		_draw_sword_sweep()
@@ -322,12 +1317,13 @@ func _physics_process(_delta: float) -> void:
 		if not WEAPON_SWEEP.swept_samples_touch_target(recent, center, target.damage_radius()):
 			continue
 		sweep_hit_instances[target.get_instance_id()] = true
-		var dead: bool = target.hit(TARGETING.damage_for(player.attack_type))
+		var dead: bool = target.hit(attack_damage(player.attack_type))
 		effects.sparks(target.global_position + Vector3.UP, Color("ffca70"), 12)
 		if dead:
 			kills += 1
 
 func _on_hp(current: float, maximum: float) -> void:
+	if hpbar == null: return
 	hpbar.max_value = maximum
 	hpbar.value = current
 
@@ -335,16 +1331,26 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 	var spell := kind == "Cast"
 	var color := Color("b0a0ff") if spell else (Color("ffe5a4") if kind == "Cleave" else Color("8acaff"))
 	var wide := kind == "Cleave"
-	if spell:
+	if spell and radiant:
+		radiant.spell(player.spell_variant, player.global_position, direction, player.global_position.distance_to(at))
+	elif spell:
 		effects.cast(at, color)
 	else:
 		effects.slash(player.global_position, direction, color, wide)
 		if kind == "Dash": effects.ring(at, 0.8, Color("f2d17f"), 0.45)
+	if game != null:      # the game resolves skill hits itself (shape, rank, upgrade, statuses)
+		game.skill_impact(kind, direction)
+		return
 	# One physics-backed damage decision per candidate; the VFX remains
 	# responsive even when a nearby target is safely screened by cover.
 	for target in targets:
 		if target.inactive_t > 0: continue
 		var allowed := TARGETING.can_hit(get_world_3d(), player, player.global_position, direction, target.global_position, kind)
+		# ranged Mage spells (Bolt, Lance) reach as far as their projectile, in a narrow cone
+		if spell and player.spell_variant in ["Bolt", "Lance"]:
+			var reach: float = float(player.MAGE_SPELLS[player.spell_variant]["reach"]) + 0.6
+			allowed = TARGETING.within_attack_arc(player.global_position, direction, target.global_position, reach, 0.7) \
+				and TARGETING.world_line_of_sight(get_world_3d(), player.global_position, target.global_position, player.get_rid())
 		if strict_weapon_sweep and kind != "Cast":
 			# Blade contacts are resolved continuously in _physics_process,
 			# not at a separate one-shot event (prevents early/duplicate hits).
@@ -355,14 +1361,76 @@ func _on_impact(at: Vector3, kind: String, direction: Vector3) -> void:
 		if allowed:
 			if actively_swinging:
 				sweep_hit_instances[target.get_instance_id()] = true
-			var dead: bool = target.hit(TARGETING.damage_for(kind))
-			effects.sparks(target.global_position + Vector3.UP * 1.0, color, 12)
+			var dead: bool = target.hit(attack_damage(kind))
+			effects.sparks(target.damage_center() if target.has_method("damage_center") else target.global_position + Vector3.UP, color, 12)
+			if game != null: game.play("hit", -14.0)
 			if dead: kills += 1
+
+## Damage of one hero attack: the attack's base, scaled by the character's gear and level in the game.
+func attack_damage(kind: String) -> float:
+	if game != null: return float(game.roll_damage(kind)["amount"])
+	return TARGETING.damage_for(kind)
 
 func _back_to_plaza() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
 
+## --- click-to-move (ARPG HUD labs) ---
+func cursor_ground(screen: Vector2) -> Vector3:
+	if camera == null or player == null:
+		return Vector3.INF
+	var o := camera.project_ray_origin(screen)
+	var d := camera.project_ray_normal(screen)
+	if absf(d.y) < 1e-4:
+		return Vector3.INF
+	var t: float = (player.global_position.y - o.y) / d.y
+	return o + d * t if t > 0.0 else Vector3.INF
+
+## The live enemy under the cursor: its body on screen, or its footprint on the ground.
+func enemy_under(screen: Vector2) -> Node3D:
+	var ground := cursor_ground(screen)
+	var best: Node3D = null
+	var best_d := INF
+	var px := 46.0 * get_viewport().get_visible_rect().size.y / 1080.0
+	for t in targets:
+		if t.inactive_t > 0.0:
+			continue
+		var sp := camera.unproject_position(t.global_position + Vector3.UP * 1.0)
+		var d := sp.distance_to(screen)
+		if ground.is_finite():
+			var g := Vector2(ground.x - t.global_position.x, ground.z - t.global_position.z).length()
+			if g < 0.8: d = minf(d, g * px)
+		if d < px and d < best_d:
+			best_d = d
+			best = t
+	return best
+
+func handle_click(screen: Vector2, force_stand := false, combine_move_attack := true) -> void:
+	if game != null and game.handle_click(screen): return
+	var ground := cursor_ground(screen)
+	player.aim_point = ground
+	var enemy := enemy_under(screen) if (combine_move_attack or force_stand) else null
+	if force_stand:
+		player.stop_moving()
+		if enemy != null: player.attack_target = enemy
+		player.primary_attack()
+		player.attack_target = null
+	elif enemy != null:
+		zone_route = PackedVector2Array()
+		player.command_attack(enemy)
+	elif ground.is_finite():
+		var wp := waypoint_at(ground) if not zone.is_empty() else {}
+		waypoint_pending = String(wp["id"]) if not wp.is_empty() else ""
+		var dest: Vector3 = wp["pos"] if not wp.is_empty() else ground
+		if zone.is_empty(): player.command_move(dest)
+		else: zone_move_to(dest)
+		effects.ring(dest, 0.25, Color("f2d17f"), 0.35)
+		if not wp.is_empty() and waypoint_at(player.global_position, 1.4).get("id", "") == waypoint_pending:
+			waypoint_pending = ""
+			open_waypoint_panel(String(wp["id"]))
+
 func _unhandled_input(event: InputEvent) -> void:
+	if hud == null and player != null and player.click_to_move and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		handle_click(event.position, Input.is_key_pressed(KEY_SHIFT))
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
 		strict_weapon_sweep = not strict_weapon_sweep
 		contact_samples.clear()
@@ -371,4 +1439,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_draw_sword_sweep()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ESCAPE,KEY_F7]:
+		if game != null:
+			if event.keycode == KEY_ESCAPE: game.ui.toggle_pause()
+			return
 		_back_to_plaza()

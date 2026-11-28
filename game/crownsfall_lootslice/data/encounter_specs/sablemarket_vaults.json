@@ -1,0 +1,78 @@
+{
+ "zone": "sablemarket_vaults",
+ "levels": [
+  5,
+  6
+ ],
+ "packs": 14,
+ "seed": 589,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "sablemarket_vaults_0",
+    "sablemarket_vaults_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "sablemarket_vaults_1",
+    "sablemarket_vaults_1",
+    "sablemarket_vaults_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "sablemarket_vaults_0",
+    "sablemarket_vaults_1",
+    "sablemarket_vaults_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "sablemarket_vaults_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "sablemarket_vaults_2",
+    "sablemarket_vaults_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "sablemarket_vaults_0",
+    "sablemarket_vaults_0",
+    "sablemarket_vaults_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6699,
+    2516
+   ],
+   "types": [],
+   "boss": "sablemarket_vaults_boss_u",
+   "boss_type": "sablemarket_vaults_boss",
+   "boss_name": "Relic Broker Quell",
+   "needs_quest": "Q_A01_10"
+  }
+ ],
+ "keep_clear": [
+  [
+   6699,
+   2516,
+   700
+  ]
+ ]
+}

@@ -1,0 +1,823 @@
+{
+ "name": "Preservation Laboratory",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 1970,
+ "paths": [
+  {
+   "pts": [
+    [
+     4172,
+     1357
+    ],
+    [
+     3729,
+     1843
+    ],
+    [
+     2988,
+     2049
+    ]
+   ],
+   "width": 299,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2988,
+     2049
+    ],
+    [
+     2630,
+     1567
+    ],
+    [
+     2338,
+     1063
+    ]
+   ],
+   "width": 268,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4172,
+     1357
+    ],
+    [
+     5142,
+     1633
+    ],
+    [
+     6143,
+     1843
+    ]
+   ],
+   "width": 261,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2988,
+     2049
+    ],
+    [
+     3249,
+     2665
+    ],
+    [
+     3226,
+     3311
+    ]
+   ],
+   "width": 330,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3226,
+     3311
+    ],
+    [
+     2420,
+     3678
+    ],
+    [
+     1574,
+     3989
+    ]
+   ],
+   "width": 312,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1574,
+     3989
+    ],
+    [
+     1231,
+     3529
+    ],
+    [
+     1164,
+     3006
+    ]
+   ],
+   "width": 273,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3226,
+     3311
+    ],
+    [
+     4347,
+     3586
+    ],
+    [
+     5493,
+     3374
+    ]
+   ],
+   "width": 315,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2338,
+     1063
+    ],
+    [
+     1670,
+     2007
+    ],
+    [
+     1164,
+     3006
+    ]
+   ],
+   "width": 334,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5493,
+     3374
+    ],
+    [
+     5765,
+     2596
+    ],
+    [
+     6143,
+     1843
+    ]
+   ],
+   "width": 312,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1339
+    ],
+    [
+     840,
+     1339
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1339
+    ],
+    [
+     2338,
+     1063
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4172,
+    1357
+   ],
+   "r": 499,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6143,
+    1843
+   ],
+   "r": 540,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3226,
+    3311
+   ],
+   "r": 436,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5493,
+    3374
+   ],
+   "r": 488,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2988,
+    2049
+   ],
+   "r": 559,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2338,
+    1063
+   ],
+   "r": 542,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1164,
+    3006
+   ],
+   "r": 594,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1574,
+    3989
+   ],
+   "r": 572,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1339,
+   380
+  ],
+  [
+   6143,
+   1843,
+   300
+  ],
+  [
+   5493,
+   3374,
+   300
+  ],
+  [
+   4172,
+   1357,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    4172,
+    1357,
+    424.15,
+    0.6
+   ],
+   [
+    6143,
+    1843,
+    459.0,
+    0.6
+   ],
+   [
+    3226,
+    3311,
+    370.59999999999997,
+    0.6
+   ],
+   [
+    5493,
+    3374,
+    414.8,
+    0.6
+   ],
+   [
+    2988,
+    2049,
+    475.15,
+    0.6
+   ],
+   [
+    2338,
+    1063,
+    460.7,
+    0.6
+   ],
+   [
+    1164,
+    3006,
+    504.9,
+    0.6
+   ],
+   [
+    1574,
+    3989,
+    486.2,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6143,
+    1623,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "preservation_laboratory_wp",
+   "name": "Preservation Laboratory",
+   "at": [
+    3226,
+    3311
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Chronicle Perimeter",
+   "to": "chronicle_perimeter",
+   "at": [
+    140,
+    1339
+   ],
+   "r": 170,
+   "arrive": [
+    6893,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1339
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Medical Bays",
+   "kind": "landmark",
+   "at": [
+    6143,
+    1843
+   ],
+   "blurb": "Medical bays, sealed test chambers"
+  },
+  {
+   "name": "Sealed Test Chambers",
+   "kind": "landmark",
+   "at": [
+    5493,
+    3374
+   ],
+   "blurb": "Medical bays, sealed test chambers"
+  },
+  {
+   "name": "Sera's Workbench",
+   "kind": "landmark",
+   "at": [
+    4172,
+    1357
+   ],
+   "blurb": "Medical bays, sealed test chambers"
+  },
+  {
+   "name": "Chronicle Perimeter",
+   "kind": "landmark",
+   "at": [
+    140,
+    1339
+   ],
+   "blurb": "To Chronicle Perimeter."
+  }
+ ],
+ "world_id": "preservation_laboratory",
+ "grade": {
+  "mul": [
+   1.04,
+   1.04,
+   1.06
+  ],
+  "desat": 0.35,
+  "lift": [
+   0.1,
+   0.1,
+   0.11,
+   1.0
+  ],
+  "mist": [
+   0.95,
+   0.95,
+   1.0
+  ],
+  "water": [
+   0.4,
+   0.55,
+   0.6
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4172,
+    1357
+   ],
+   "r": 474.04999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6143,
+    1843
+   ],
+   "r": 513.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3226,
+    3311
+   ],
+   "r": 414.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5493,
+    3374
+   ],
+   "r": 463.59999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2988,
+    2049
+   ],
+   "r": 531.05,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2338,
+    1063
+   ],
+   "r": 514.9,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1164,
+    3006
+   ],
+   "r": 564.3,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1574,
+    3989
+   ],
+   "r": 543.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

@@ -1,0 +1,596 @@
+{
+ "name": "Silverroot Grove",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 8007,
+ "paths": [
+  {
+   "pts": [
+    [
+     2462,
+     4774
+    ],
+    [
+     2462,
+     4470
+    ],
+    [
+     3047,
+     3945
+    ],
+    [
+     2738,
+     3201
+    ],
+    [
+     3142,
+     2631
+    ],
+    [
+     3662,
+     2091
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3662,
+     2091
+    ],
+    [
+     4440.0,
+     1495.5
+    ],
+    [
+     5218,
+     900
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3817,
+     1971
+    ],
+    [
+     3174,
+     1885
+    ],
+    [
+     3056,
+     1699
+    ]
+   ],
+   "width": 160,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     2637,
+     4312
+    ],
+    [
+     2465,
+     4256
+    ],
+    [
+     1795,
+     4059
+    ]
+   ],
+   "width": 156,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5218,
+     900
+    ],
+    [
+     6260,
+     705
+    ],
+    [
+     6868,
+     870
+    ]
+   ],
+   "width": 157,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    627,
+    2522
+   ],
+   "r": 752,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3662,
+    2091
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1795,
+    4059
+   ],
+   "r": 368,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6868,
+    870
+   ],
+   "r": 711,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1527,
+    2502
+   ],
+   "r": 312,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   2462,
+   4774,
+   380
+  ],
+  [
+   3056,
+   1699,
+   300
+  ],
+  [
+   1795,
+   4059,
+   300
+  ],
+  [
+   6868,
+   870,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    5
+   ],
+   [
+    "oak_a",
+    2
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 620,
+  "cut": 0.55,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 16,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "lavender": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3056,
+    1699,
+    560,
+    0.45
+   ],
+   [
+    1795,
+    4059,
+    560,
+    0.45
+   ],
+   [
+    6868,
+    870,
+    560,
+    0.45
+   ],
+   [
+    3662,
+    2091,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3662,
+    1871,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    1527,
+    2502,
+    499.20000000000005
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "silverroot_grove_wp",
+   "name": "Silverroot Grove",
+   "at": [
+    3662,
+    2091
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Whisperwood",
+   "to": "whisperwood_forest",
+   "at": [
+    2462,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    6450,
+    4050
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2462,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "The Old Hunter's Bow",
+   "kind": "landmark",
+   "at": [
+    3056,
+    1699
+   ],
+   "blurb": "Two overlapping forests, amber leaves suspended"
+  },
+  {
+   "name": "Suspended Leaves",
+   "kind": "landmark",
+   "at": [
+    1795,
+    4059
+   ],
+   "blurb": "Two overlapping forests, amber leaves suspended"
+  },
+  {
+   "name": "Twin Oaks",
+   "kind": "landmark",
+   "at": [
+    6868,
+    870
+   ],
+   "blurb": "Two overlapping forests, amber leaves suspended"
+  },
+  {
+   "name": "Whisperwood",
+   "kind": "landmark",
+   "at": [
+    2462,
+    4774
+   ],
+   "blurb": "To Whisperwood."
+  }
+ ],
+ "world_id": "silverroot_grove",
+ "grade": {
+  "mul": [
+   1.16,
+   1.0,
+   0.72
+  ],
+  "desat": 0.2,
+  "lift": [
+   0.08,
+   0.05,
+   0.0,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.86,
+   0.6
+  ],
+  "water": [
+   0.5,
+   0.45,
+   0.3
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3056,
+    1699
+   ],
+   "r": 380,
+   "props": [
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_rock_small",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    1795,
+    4059
+   ],
+   "r": 420,
+   "props": [
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6868,
+    870
+   ],
+   "r": 420,
+   "props": [
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_rock_small"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,689 @@
+{
+ "name": "Oldwatch",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 2684,
+ "paths": [
+  {
+   "pts": [
+    [
+     2928,
+     4774
+    ],
+    [
+     2928,
+     4470
+    ],
+    [
+     3307,
+     3894
+    ],
+    [
+     3956,
+     3369
+    ],
+    [
+     4130,
+     2755
+    ],
+    [
+     3863,
+     2057
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3967,
+     190
+    ],
+    [
+     3967,
+     494
+    ],
+    [
+     3959,
+     885
+    ],
+    [
+     3655,
+     1267
+    ],
+    [
+     3541,
+     1655
+    ],
+    [
+     3863,
+     2057
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3541,
+     1655
+    ],
+    [
+     2720,
+     1799
+    ],
+    [
+     1930,
+     1930
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3959,
+     845
+    ],
+    [
+     4863,
+     947
+    ],
+    [
+     6260,
+     863
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4077,
+     2939
+    ],
+    [
+     5507,
+     3038
+    ],
+    [
+     6338,
+     3150
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4250,
+    3075
+   ],
+   "r": 581,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4996,
+    3523
+   ],
+   "r": 435,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    675,
+    1371
+   ],
+   "r": 615,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5703,
+    2575
+   ],
+   "r": 609,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5445,
+    2215
+   ],
+   "r": 598,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    1031,
+    4440
+   ],
+   "r": 576,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3863,
+    2057
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1930,
+    1930
+   ],
+   "r": 494,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6260,
+    863
+   ],
+   "r": 436,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6338,
+    3150
+   ],
+   "r": 474,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   2928,
+   4774,
+   380
+  ],
+  [
+   3967,
+   190,
+   380
+  ],
+  [
+   1930,
+   1930,
+   300
+  ],
+  [
+   6260,
+   863,
+   300
+  ],
+  [
+   6338,
+   3150,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    2
+   ],
+   [
+    "oak_b",
+    2
+   ],
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 900,
+  "cut": 0.7,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 18,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall",
+    "a_moss"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    1930,
+    1930,
+    560,
+    0.45
+   ],
+   [
+    6260,
+    863,
+    560,
+    0.45
+   ],
+   [
+    6338,
+    3150,
+    560,
+    0.45
+   ],
+   [
+    3863,
+    2057,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3863,
+    1837,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "oldwatch_wp",
+   "name": "Oldwatch",
+   "at": [
+    3863,
+    2057
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Riftscar Moor",
+   "to": "riftscar_moor",
+   "at": [
+    2928,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5127,
+    526
+   ]
+  },
+  {
+   "name": "Shattered Observatory",
+   "to": "shattered_observatory",
+   "at": [
+    3967,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    4010
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2928,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Watch Yard",
+   "kind": "landmark",
+   "at": [
+    1930,
+    1930
+   ],
+   "blurb": "Frontier fort, resupply and allies"
+  },
+  {
+   "name": "Old Tower",
+   "kind": "landmark",
+   "at": [
+    6260,
+    863
+   ],
+   "blurb": "Frontier fort, resupply and allies"
+  },
+  {
+   "name": "Scout's Post",
+   "kind": "landmark",
+   "at": [
+    6338,
+    3150
+   ],
+   "blurb": "Frontier fort, resupply and allies"
+  },
+  {
+   "name": "Riftscar Moor",
+   "kind": "landmark",
+   "at": [
+    2928,
+    4774
+   ],
+   "blurb": "To Riftscar Moor."
+  },
+  {
+   "name": "Shattered Observatory",
+   "kind": "landmark",
+   "at": [
+    3967,
+    190
+   ],
+   "blurb": "To Shattered Observatory."
+  }
+ ],
+ "world_id": "oldwatch",
+ "grade": {
+  "mul": [
+   0.96,
+   0.92,
+   0.86
+  ],
+  "desat": 0.25,
+  "lift": [
+   0.05,
+   0.04,
+   0.03,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.78,
+   0.74
+  ],
+  "water": [
+   0.25,
+   0.35,
+   0.4
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    1930,
+    1930
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6260,
+    863
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6338,
+    3150
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  }
+ ]
+}

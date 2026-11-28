@@ -1,0 +1,122 @@
+{
+ "zone": "moonfall_republic",
+ "levels": [
+  44,
+  45
+ ],
+ "packs": 18,
+ "seed": 424,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "moonfall_republic_0",
+    "moonfall_republic_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "moonfall_republic_1",
+    "moonfall_republic_1",
+    "moonfall_republic_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "moonfall_republic_0",
+    "moonfall_republic_1",
+    "moonfall_republic_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "moonfall_republic_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "moonfall_republic_2",
+    "moonfall_republic_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "moonfall_republic_0",
+    "moonfall_republic_0",
+    "moonfall_republic_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3476,
+    4048
+   ],
+   "types": [
+    "moonfall_republic_1",
+    "moonfall_republic_1"
+   ],
+   "elite": false,
+   "guardian": "moonfall_republic_g1",
+   "elite_type": "moonfall_republic_0",
+   "elite_name": "Assembly Breaker",
+   "page": "Q_A05_06_1"
+  },
+  {
+   "at": [
+    3186,
+    1457
+   ],
+   "types": [
+    "moonfall_republic_1",
+    "moonfall_republic_1"
+   ],
+   "elite": false,
+   "guardian": "moonfall_republic_g2",
+   "elite_type": "moonfall_republic_1",
+   "elite_name": "Charter Thief",
+   "page": "Q_A05_06_2"
+  },
+  {
+   "at": [
+    6649,
+    2554
+   ],
+   "types": [
+    "moonfall_republic_1",
+    "moonfall_republic_1"
+   ],
+   "elite": false,
+   "guardian": "moonfall_republic_g3",
+   "elite_type": "moonfall_republic_2",
+   "elite_name": "The Moonglass Guardian",
+   "page": "Q_A05_06_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   3476,
+   4048,
+   700
+  ],
+  [
+   3186,
+   1457,
+   700
+  ],
+  [
+   6649,
+   2554,
+   700
+  ]
+ ]
+}

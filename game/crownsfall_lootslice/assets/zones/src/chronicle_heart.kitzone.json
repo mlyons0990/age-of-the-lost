@@ -1,0 +1,558 @@
+{
+ "name": "Chronicle Heart",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 6516,
+ "paths": [
+  {
+   "pts": [
+    [
+     6385,
+     3419
+    ],
+    [
+     5488,
+     3642
+    ],
+    [
+     4664,
+     3985
+    ]
+   ],
+   "width": 311,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6385,
+     3419
+    ],
+    [
+     6066,
+     2340
+    ],
+    [
+     5894,
+     1243
+    ]
+   ],
+   "width": 327,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     3582
+    ],
+    [
+     840,
+     3582
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     3582
+    ],
+    [
+     4664,
+     3985
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     2482,
+     4774
+    ],
+    [
+     2482,
+     4214.0
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     2482,
+     4254.0
+    ],
+    [
+     4664,
+     3985
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6385,
+    3419
+   ],
+   "r": 560,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4664,
+    3985
+   ],
+   "r": 431,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5894,
+    1243
+   ],
+   "r": 632,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   3582,
+   380
+  ],
+  [
+   2482,
+   4774,
+   380
+  ],
+  [
+   6385,
+   3419,
+   300
+  ],
+  [
+   4664,
+   3985,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    6385,
+    3419,
+    476.0,
+    0.6
+   ],
+   [
+    4664,
+    3985,
+    366.34999999999997,
+    0.6
+   ],
+   [
+    5894,
+    1243,
+    537.1999999999999,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6385,
+    3199,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "chronicle_heart_wp",
+   "name": "Chronicle Heart",
+   "at": [
+    5894,
+    1243
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "The Unwritten Shore",
+   "to": "the_unwritten_shore",
+   "at": [
+    140,
+    3582
+   ],
+   "r": 170,
+   "arrive": [
+    1953,
+    526
+   ]
+  },
+  {
+   "name": "The Last Decision",
+   "to": "the_last_decision",
+   "at": [
+    2482,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3608
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  3582
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Rotating Core",
+   "kind": "landmark",
+   "at": [
+    6385,
+    3419
+   ],
+   "blurb": "Enormous rotating core, reality seams"
+  },
+  {
+   "name": "Reality Seams",
+   "kind": "landmark",
+   "at": [
+    4664,
+    3985
+   ],
+   "blurb": "Enormous rotating core, reality seams"
+  },
+  {
+   "name": "The Unwritten Shore",
+   "kind": "landmark",
+   "at": [
+    140,
+    3582
+   ],
+   "blurb": "To The Unwritten Shore."
+  },
+  {
+   "name": "The Last Decision",
+   "kind": "landmark",
+   "at": [
+    2482,
+    4774
+   ],
+   "blurb": "To The Last Decision."
+  }
+ ],
+ "world_id": "chronicle_heart",
+ "grade": {
+  "mul": [
+   1.1,
+   1.04,
+   0.9
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.16,
+   0.15,
+   0.12,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.98,
+   0.92
+  ],
+  "water": [
+   0.45,
+   0.3,
+   0.6
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6385,
+    3419
+   ],
+   "r": 532.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4664,
+    3985
+   ],
+   "r": 409.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5894,
+    1243
+   ],
+   "r": 600.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

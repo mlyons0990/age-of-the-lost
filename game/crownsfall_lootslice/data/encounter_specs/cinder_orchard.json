@@ -1,0 +1,78 @@
+{
+ "zone": "cinder_orchard",
+ "levels": [
+  31,
+  32
+ ],
+ "packs": 30,
+ "seed": 150,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "cinder_orchard_0",
+    "cinder_orchard_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "cinder_orchard_1",
+    "cinder_orchard_1",
+    "cinder_orchard_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "cinder_orchard_0",
+    "cinder_orchard_1",
+    "cinder_orchard_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "cinder_orchard_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "cinder_orchard_2",
+    "cinder_orchard_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "cinder_orchard_0",
+    "cinder_orchard_0",
+    "cinder_orchard_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6511,
+    4125
+   ],
+   "types": [],
+   "boss": "cinder_orchard_boss_u",
+   "boss_type": "cinder_orchard_boss",
+   "boss_name": "The Fault Fruit",
+   "needs_quest": "Q_A04_02"
+  }
+ ],
+ "keep_clear": [
+  [
+   6511,
+   4125,
+   700
+  ]
+ ]
+}

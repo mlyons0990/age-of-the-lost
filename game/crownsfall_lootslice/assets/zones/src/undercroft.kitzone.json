@@ -1,0 +1,823 @@
+{
+ "name": "Undercroft",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 3558,
+ "paths": [
+  {
+   "pts": [
+    [
+     2702,
+     2114
+    ],
+    [
+     3448,
+     2443
+    ],
+    [
+     3749,
+     3047
+    ]
+   ],
+   "width": 262,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3749,
+     3047
+    ],
+    [
+     2845,
+     2917
+    ],
+    [
+     1989,
+     3166
+    ]
+   ],
+   "width": 303,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1989,
+     3166
+    ],
+    [
+     1631,
+     3572
+    ],
+    [
+     1378,
+     4020
+    ]
+   ],
+   "width": 323,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3749,
+     3047
+    ],
+    [
+     4537,
+     3331
+    ],
+    [
+     5208,
+     3750
+    ]
+   ],
+   "width": 263,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5208,
+     3750
+    ],
+    [
+     5467,
+     3056
+    ],
+    [
+     6033,
+     2472
+    ]
+   ],
+   "width": 291,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6033,
+     2472
+    ],
+    [
+     6054,
+     1944
+    ],
+    [
+     6093,
+     1418
+    ]
+   ],
+   "width": 282,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6093,
+     1418
+    ],
+    [
+     5267,
+     1306
+    ],
+    [
+     4585,
+     944
+    ]
+   ],
+   "width": 291,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1989,
+     3166
+    ],
+    [
+     4152,
+     3273
+    ],
+    [
+     6033,
+     2472
+    ]
+   ],
+   "width": 307,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6033,
+     2472
+    ],
+    [
+     4311,
+     2580
+    ],
+    [
+     2702,
+     2114
+    ]
+   ],
+   "width": 310,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     3094
+    ],
+    [
+     840,
+     3094
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     3094
+    ],
+    [
+     1989,
+     3166
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    2702,
+    2114
+   ],
+   "r": 479,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5208,
+    3750
+   ],
+   "r": 439,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6093,
+    1418
+   ],
+   "r": 441,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6033,
+    2472
+   ],
+   "r": 556,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1989,
+    3166
+   ],
+   "r": 437,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4585,
+    944
+   ],
+   "r": 560,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1378,
+    4020
+   ],
+   "r": 515,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3749,
+    3047
+   ],
+   "r": 470,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   3094,
+   380
+  ],
+  [
+   6093,
+   1418,
+   300
+  ],
+  [
+   6033,
+   2472,
+   300
+  ],
+  [
+   5208,
+   3750,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    2702,
+    2114,
+    407.15,
+    0.6
+   ],
+   [
+    5208,
+    3750,
+    373.15,
+    0.6
+   ],
+   [
+    6093,
+    1418,
+    374.84999999999997,
+    0.6
+   ],
+   [
+    6033,
+    2472,
+    472.59999999999997,
+    0.6
+   ],
+   [
+    1989,
+    3166,
+    371.45,
+    0.6
+   ],
+   [
+    4585,
+    944,
+    476.0,
+    0.6
+   ],
+   [
+    1378,
+    4020,
+    437.75,
+    0.6
+   ],
+   [
+    3749,
+    3047,
+    399.5,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6093,
+    1198,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "undercroft_wp",
+   "name": "Undercroft",
+   "at": [
+    4585,
+    944
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Old Crown Cistern",
+   "to": "old_crown_cistern",
+   "at": [
+    140,
+    3094
+   ],
+   "r": 170,
+   "arrive": [
+    4869,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  3094
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Sunken Archive",
+   "kind": "landmark",
+   "at": [
+    6093,
+    1418
+   ],
+   "blurb": "Buried crypt avenues, candle niches, violet seepage"
+  },
+  {
+   "name": "Candle Niches",
+   "kind": "landmark",
+   "at": [
+    6033,
+    2472
+   ],
+   "blurb": "Buried crypt avenues, candle niches, violet seepage"
+  },
+  {
+   "name": "Cathedral Underdeep Stair",
+   "kind": "landmark",
+   "at": [
+    5208,
+    3750
+   ],
+   "blurb": "Buried crypt avenues, candle niches, violet seepage"
+  },
+  {
+   "name": "Old Crown Cistern",
+   "kind": "landmark",
+   "at": [
+    140,
+    3094
+   ],
+   "blurb": "To Old Crown Cistern."
+  }
+ ],
+ "world_id": "undercroft",
+ "grade": {
+  "mul": [
+   0.6,
+   0.58,
+   0.7
+  ],
+  "desat": 0.45,
+  "lift": [
+   0.03,
+   0.02,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.56,
+   0.5,
+   0.7
+  ],
+  "water": [
+   0.18,
+   0.16,
+   0.24
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    2702,
+    2114
+   ],
+   "r": 455.04999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5208,
+    3750
+   ],
+   "r": 417.04999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6093,
+    1418
+   ],
+   "r": 418.95,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6033,
+    2472
+   ],
+   "r": 528.1999999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1989,
+    3166
+   ],
+   "r": 415.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4585,
+    944
+   ],
+   "r": 532.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1378,
+    4020
+   ],
+   "r": 489.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3749,
+    3047
+   ],
+   "r": 446.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

@@ -1,0 +1,83 @@
+{
+ "zone": "remnant_court_refuge",
+ "levels": [
+  38,
+  39
+ ],
+ "packs": 14,
+ "seed": 938,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "remnant_court_refuge_0",
+    "remnant_court_refuge_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "remnant_court_refuge_1",
+    "remnant_court_refuge_1",
+    "remnant_court_refuge_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "remnant_court_refuge_0",
+    "remnant_court_refuge_1",
+    "remnant_court_refuge_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "remnant_court_refuge_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "remnant_court_refuge_2",
+    "remnant_court_refuge_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "remnant_court_refuge_0",
+    "remnant_court_refuge_0",
+    "remnant_court_refuge_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6343,
+    3183
+   ],
+   "types": [],
+   "boss": "remnant_court_refuge_boss_u",
+   "boss_type": "remnant_court_refuge_boss",
+   "boss_name": "Ysara's Champion",
+   "needs_quest": "Q_A04_12"
+  }
+ ],
+ "keep_clear": [
+  [
+   3323,
+   3243,
+   700
+  ],
+  [
+   6343,
+   3183,
+   700
+  ]
+ ]
+}

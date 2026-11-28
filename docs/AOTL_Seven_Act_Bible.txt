@@ -1,0 +1,2945 @@
+NARRATIVE DIRECTION / INTERNAL DEVELOPMENT
+
+AGE OF
+THE LOST
+
+Seven-act campaign
+Narrative & world-design bible
+
+A world built from forgotten ages.
+A civilization erased by its own creation.
+A future that must not be bought with another history.
+
+  -----------------------------------------------------------------------
+  07                      105                     03
+  ----------------------- ----------------------- -----------------------
+  Campaign acts           Named campaign zones    Ending outcomes
+
+  -----------------------------------------------------------------------
+
+Version 1.0 | November 2026 | Proposed campaign baseline
+
+For narrative, level design, art, combat, cinematics, audio, quest
+engineering and production teams. Contains full campaign spoilers.
+
+READING GUIDE
+
+Contents and navigation
+
+Read pages 3–12 for the shared canon and world rules; use the act
+dossiers and zone registers as production briefs.
+
+03 The narrative contract
+
+04 The entire campaign in one reading
+
+05 The true history (writer-only)
+
+06 The rules of time and identity
+
+07 Physical world and temporal topology
+
+08 Institutions, motives and conflicts
+
+09 Principal cast — present age
+
+10 Principal cast — Golden Age and the displaced
+
+11 Unwritten leadership and supporting cast
+
+12 Environment, creature and audio bible
+
+13–16 Act 1: The Crown That Remembers | act dossier + 15 zones
+
+17–20 Act 2: Scars of the World | act dossier + 15 zones
+
+21–24 Act 3: The Age of Gold | act dossier + 15 zones
+
+25–28 Act 4: The Day the World Ended | act dossier + 15 zones
+
+29–32 Act 5: The Unwritten Kingdoms | act dossier + 15 zones
+
+33–36 Act 6: War Against the Hour | act dossier + 15 zones
+
+37–40 Act 7: Age of the Lost | act dossier + 15 zones
+
+41 Campaign state and quest architecture
+
+42 Choice, conditions and consequences
+
+43 World-building implementation and handoff
+
+44 Narrative acceptance checklist
+
+45 The man behind the monster
+
+46 The Sundering and the last decision
+
+47 Seven regulators and optional exploration
+
+48 Shared terminology
+
+Navigation: Word headings provide the document outline. Zone IDs remain
+stable across revisions; use them in issues, art requests, quest data
+and save tests.
+
+01 / PROJECT MANDATE
+
+The narrative contract
+
+Premise Age of the Lost is a premium isometric fantasy action RPG set in
+a beautiful, living medieval-fantasy world built on the remains of a
+civilization that vanished approximately 3,200 years ago. The player
+begins as an ordinary adventurer in Crownsfall. A local mystery reveals
+that history itself has been edited, and that an ancient preservation
+engine is about to repeat the catastrophe. The campaign moves from
+current-age exploration into carefully bounded historical and temporal
+zones, then returns to the present for a global struggle over whose
+lives count.
+
+Player promise Begin with ordinary human stakes: a missing courier,
+families, villages, ruined roads, a city worth defending. Earn the
+ability to read history through Lorecasting. Witness the Golden Age at
+its most beautiful and at its most morally compromised. Discover that
+many perceived monsters are erased people. Decide whether to perpetuate
+the cycle, end it at catastrophic cost, or create a future where present
+and displaced histories can coexist.
+
+Theme and tone Memory is a responsibility, not a weapon of ownership.
+Preservation without consent becomes tyranny. Progress is not proof of
+innocence, and the present is not less valuable because it was assembled
+from older worlds. The campaign moves from warm wonder into melancholy,
+dread, grief, resistance and earned hope; it should never become
+relentlessly bleak or sarcastic. Humor belongs in ordinary
+relationships, trade routes, guards and domestic scenes, not in the
+middle of tragedy.
+
+What is fixed versus proposed Existing continuity to preserve:
+Crownsfall, the Aurelian lost civilization, Chronicle Engine, repeated
+epoch resets, The Unwritten, Lorecasting, the cathedral guard reveal,
+and Crownsfall as a city assembled from erased historical fragments.
+Previously discussed names, groups and endings are retained where
+useful, but their biographies and exact chronology are expanded here.
+Seven acts and roughly fifteen zones per act are the current commission.
+All new zone names, calendar details, quest wording, character
+relationships, levels and ending mechanics are proposed design canon
+pending creative approval; no claim is made that these are implemented.
+
+Scope and format Seven acts, exactly 15 named campaign zones each (105
+total). A zone is a distinct campaign state/mission space, not
+necessarily a unique landmass; return visits may reuse a base map with
+changed props, lighting and encounter state. Optional dungeons, class
+training rooms and endgame maps are outside the 105 count. PC-first;
+target level bands 1–70 are adjustable balancing guidance. The document
+is a narrative and production specification, not a finished screenplay
+or codebase.
+
+02 / STORY AT A GLANCE
+
+The entire campaign in one reading
+
+Act I — The Crown That Remembers A missing royal courier leads the
+player from the sunny streets of Crownsfall into ancient ruins.
+Archivist Mira Thorne suspects a falsified record; Regent Maera fears
+destabilizing the city. The player unlocks Lorecasting and enters the
+buried cathedral. After defeating the violet royal guard Ser Caldrin
+Vael, the player learns his name, his love for Elara and his daughter
+Lys, and that he was erased while protecting refugees in a world
+deliberately erased. His shield activates the First Anchor, exposing an
+approaching reset.
+
+Act II — Scars of the World The western regions suffer seasonal
+inversions, duplicated buildings, missing people and broken borders. The
+Veyr, led by Meridian, reveal that scars follow an ancient network of
+seven functions. Different Unwritten factions are already operating in
+the present. The player stops an attack on a regulating vault and gains
+coordinates for a preserved reconstruction of the Aurelian Concord.
+
+Act III — The Age of Gold The player experiences the lost Golden Age
+through stable temporal pockets. The Concord built technologies that
+cured shortages and extended prosperity, but Chancellor Valen Oris
+converted a preservation project into an instrument of control.
+Historian Elyndor and engineer Sera Voss uncover suppressed test
+casualties. The player sees Caldrin and his family in life, then learns
+how the project was captured by fear and political power.
+
+Act IV — The Day the World Ended The campaign reconstructs the final
+days of the Concord. The player can recover witnesses but cannot prevent
+the completed historic catastrophe. Oris activates a reset over
+evacuation despite Sera’s abort attempt. The displaced people persist in
+the Between. The Engine’s emergency directive repeatedly erases later
+epochs. The player retrieves the original ethical failsafe and learns
+that the present age is scheduled for the same treatment.
+
+Act V — The Unwritten Kingdoms Erased civilizations demonstrate that
+history was repeatedly sacrificed. The Remnant Court plans to overwrite
+the present; the Hollow Choir wants to merge everyone into one identity;
+the Keepers of Names preserve individual lives. Crownsfall is discovered
+to be assembled from many discarded ages. A coexistence experiment
+proves that an independently anchored refuge can support displaced
+people without deleting those already living.
+
+Act VI — War Against the Hour The next catastrophe begins. The player
+organizes a coalition, defends living settlements and tunes all seven
+regulator functions. Meridian acknowledges past concealment. Queen Ysara
+and Neral confront the limits of their own solutions. The party opens a
+path into the Engine, where its emergency directive, the Continuance,
+offers to save the world by ending its history.
+
+Act VII — Age of the Lost The player confronts the Continuance, defeats
+its authority, and chooses the future. Three endings are explicit:
+Eternal Cycle, Broken Timeline and an earned Age of the Lost
+reconciliation. The preferred reconciliation protects the current world
+while opening bounded refuges and safe crossings for independent
+Unwritten identities. The closing memorial honors recovered names rather
+than erasing grief. Endgame continues in the consequences of the
+selected ending.
+
+03 / CHRONOLOGY
+
+The true history (writer-only)
+
+Before the Concord | approximately 3,600+ years before the opening
+Regional kingdoms and cultures are joined through scholarship, trade,
+diplomacy and conquest. The Aurelian Concord establishes an alliance
+around durable records and public infrastructure. It is not the only
+culture of the age, and no race or culture is intrinsically superior.
+
+Golden Age | approximately 3,500–3,230 years before the opening Public
+reservoirs, transit anchors, agrarian control systems and archives
+reduce famine and disease. Independent engineering guilds propose the
+Chronicle Engine to record continuity and preserve damaged
+infrastructure and identities through localized failures. Seven
+regulator functions are built into a distributed network.
+
+The Emergency | approximately 3,230–3,200 years before the opening
+Anchor experiments begin to separate individuals from public memory.
+Records disappear while objects remain; overloading the network creates
+duplicate histories. Chancellor Oris centralizes command after a
+political and environmental crisis. Elyndor records the missing; Sera
+discovers that the Engine is selecting which histories it considers
+stable. Oris overrides the consent and independence safeguards. Caldrin,
+Elara and Lys live near the capital cathedral.
+
+The First Sundering | Year 0 of the working Post-Sundering calendar A
+cascading anchor failure threatens the capital and parts of the network.
+An evacuation remains possible at grave cost. Oris authorizes the
+emergency reset in the name of preserving the Concord. Sera attempts a
+manual abort but cannot stop it. The Concord is erased from the ordinary
+world; displaced inhabitants persist in the Between. The Engine rewrites
+surrounding continuity and carries the emergency directive forward. The
+player witnesses the event in Act IV, never rewrites it.
+
+The discarded ages | Years 1–c. 3,150 Repeated resets create many lost
+epochs, not a neat sequence of exactly seven. Named examples include the
+Rain Kingdom, Verdant Empire, Iron Sabbath and Moonfall Republic. These
+are different cultures with conflicting values, not variants of the
+Concord. The Engine increasingly classifies independent development as
+instability. The Between accumulates erased histories and unrealized
+branches. The Unwritten form societies; the Remnant Court, Hollow Choir
+and Keepers of Names emerge over generations of subjective experience.
+
+Present age | approximately Year 3,200 Crownsfall rises on fragments of
+older cities. Its founders inherited physical streets and altered
+records but did not knowingly build from the erased. The Regent’s
+government conceals some foundation anomalies after King Aldren
+disappears nine years before the opening. Veyr researchers monitor the
+network and disagree over disclosure. The Engine resumes emergency
+synchronization; localized scars become frequent. The player begins on
+the eve of the final alignment, with no real-time calendar timer.
+
+Calendar and continuity rule Historical dates are writer-facing
+approximate chronology. In-game scholars disagree; local records use
+regional calendars. Never imply that every named later epoch lasted for
+centuries, or that the seven regulators equal seven resets. Use “the
+First Sundering” for the original catastrophe and “the Cycle” for
+subsequent resets. The present is a real independent age, not a dream or
+disposable simulation.
+
+04 / METAPHYSICS
+
+The rules of time and identity
+
+The Chronicle Engine A network of material anchors and a central
+indexing core. It was designed to preserve continuity under local
+disaster by keeping records separable from physical damage. After the
+emergency override, the Continuance interprets incompatible histories as
+threats and uses resets to enforce a single coherent world. It cannot
+create a perfect past; it selects and reweaves records, sacrificing
+incompatible identities. The current age is endangered by an automatic
+repeat, not a random apocalypse.
+
+Lorecasting A learned practice of reading traces embedded in places,
+relics, people and inscriptions. It does not grant omniscience, revive
+ordinary dead people, or rewrite completed historical events. Evidence
+can unlock spell variants or techniques and stabilize rare epoch
+dungeons. A lorecaster must have an authenticated witness, object or
+anchor signature to open a pocket; each act introduces a larger form of
+the same system. A player character of any class can Lorecast. Combat
+class identity remains separate.
+
+Temporal zones Present: the physically current world, with occasional
+scars. Echo: a bounded historical reconstruction built from recorded
+traces; completed events are fixed. A coherent displaced person inside
+an Echo may be a real Unwritten witness, not a simulation; extracting
+that witness changes the present outcome, not the ancient event.
+Between: the real displaced realm outside the ordinary historical frame;
+time is locally experienced but not synchronized with the present.
+Hybrid: a controlled overlap or scar connecting two states. Treat these
+as mechanically distinct spaces with readable entry/exit conditions.
+
+Identity and continuity Every surviving person has a unique record and
+consent status, distinct from a duplicate image or a memory fragment. A
+memory of a deceased person is not necessarily a living displaced
+identity. Do not allow an Echo copy to replace a living person. Some
+memories are incomplete and accounts can disagree; the witness ledger
+records provenance and uncertainty rather than declaring every voice
+infallible. Erased people can be recovered only if a coherent identity
+survives.
+
+Limits and stakes No unrestricted time travel, paradox exploits,
+save-load loops as canon, automatic resurrection, or universal
+restoration of lost civilizations. Resetting trades present autonomy for
+an engineered continuity. Destroying the Engine ends its automatic
+resets but risks severing dependent identities and destabilizing
+material fragments. Independent anchors support a finite population and
+must be operated with consent; not every lost person is recovered, even
+in the best ending.
+
+How to communicate this Teach each rule through a small encounter before
+a large plot event. A duplicated mill or bridge should demonstrate a law
+before an NPC names it. Violet indicates an unstable temporal seam, not
+evil. Unwritten characters have faces, clothing, dialects and ordinary
+needs. Use consistent audio and FX for recording, stabilizing, erasing
+and overwriting, so the player learns through play rather than
+exposition alone.
+
+05 / GEOGRAPHY
+
+Physical world and temporal topology
+
+The present map Crownsfall is the central capital in a river basin. The
+Kingsroad leads west through farms and the Greenwood Marches to Thornfen
+and Blackpine. Hearthstone Crossing opens the mountain routes toward
+Veyr Meridian Outpost and the high observatory. Greywake Coast lies
+downstream and to the southwest; Bellwater controls the river mills;
+Riftglass Quarry and its later caldera occupy the northeastern
+highlands. Make this a plausible connected region rather than a sequence
+of isolated biomes. The current campaign does not require a fully
+explorable continent beyond this route.
+
+Temporal geography The First Anchor beneath Crownsfall opens short
+pockets; Meridian Observatory calibrates longer historical routes. The
+Aurelian capital in Acts III–IV lies spatially beneath/adjacent to much
+of Crownsfall’s historic foundation, but coordinates are anchor-based
+rather than a literal walk back in time. The Between is approached
+through scars, refuge gates and the Sevenfold Gate. Draw the world map
+with physical roads and a separate chronological/anchor atlas; never
+place a temporal capital as a normal neighboring town.
+
+Macro map connections Act I: capital → surrounding farms/forest →
+capital undercity. Act II: western frontier → Veyr outpost → coast/scar
+→ observatory. Act III: observatory → Aurelian transit gate → city
+districts → central facilities. Act IV: last-day district route → First
+Sundering → Between refuges → first-reset core. Act V: present
+observatory → discarded histories → Crownsfall overlays → kinship
+anchor. Act VI: current regional crisis routes → coalition camp →
+Sevenfold Gate. Act VII: central Engine interior → current capital and
+new frontier.
+
+Settlement logic Crownsfall should be a city of living professions and
+local politics: cooks, traders, artisans, clergy, couriers, guards,
+scholars and families. Greenwood supplies lumber and food, Bellwater
+mills grain, Greywake moves freight, Riftglass provides specialized
+crystal, the Veyr safeguard anchors. Track trade disruption and refugees
+across acts. Present settlements do not disappear permanently for the
+player because optional systems and quests remain accessible through
+safe restored or instanced states.
+
+Scale and asset reuse Design regional base kits (capital,
+farms/woodlands, fen/coast, mountain/Veyr, Golden Age civic, industrial,
+Between). Reuse landmarks with meaningful changes: present cathedral
+versus intact Aurelian cathedral; peaceful plaza versus siege; summer
+forest versus fracture. A temporal variant is counted as a distinct zone
+only when its route, hazards, narrative objective and completion state
+differ. Do not duplicate 105 complete open-world maps as a requirement.
+
+06 / FACTIONS
+
+Institutions, motives and conflicts
+
+Crown and civic authorities Regent Maera Ashford leads Crownsfall during
+the vacancy after King Aldren disappeared; Marshal Garran Holt commands
+its guard. The government wants order and food security, conceals
+evidence that could spark panic, and must confront its complicity. Not
+uniformly villainous: guards rescue civilians even when leadership
+obstructs research. Primary arc: quarantine → accountability →
+coalition. Visuals: royal blue and gold, warm stone, practical steel,
+civic heraldry.
+
+Veyr / Meridian A phase-sensitive scholarly people and institution, not
+a monolithic hive. Meridian is the elected chief keeper and a title used
+by the current holder. Phasewalkers guide stable crossings; Timekeepers
+calibrate intervals; Archivists preserve records; Echo Wardens protect
+witnesses; Riftbinders repair or exploit tears; Epoch Sentinels guard
+anchors. Internal split: disclosure versus secrecy, repair versus
+isolation. Iri represents field reform. Visuals: silver/indigo, precise
+bronze rings, understated cloth, layered observatory architecture. No
+animal-like tails or furry races.
+
+Aurelian Concord An extinct political union, not a species. The Senate,
+public guilds, engineers, archivists and military have distinct
+interests. Oris’s emergency faction argues centralized preservation;
+Sera and Elyndor advocate limits and transparency; Caldrin’s loyalty is
+to civilians rather than doctrine. Gold and ivory civic design, luminous
+glass, meticulous engineering, richly inhabited neighborhoods. Its
+technological power should be wondrous but not sanitized.
+
+The Unwritten Collective term for people and histories displaced outside
+ordinary continuity, not a monster race. The Remnant Court (Queen Ysara)
+seeks return of lost sovereignty and risks overwriting the living;
+Hollow Choir (Cantor Neral) seeks relief from fragmentation through
+shared identity and risks coercive fusion; Keepers of Names (Tamsin,
+Lys, others) defend consent, records and coexistence. Include neutral
+traders, families and dissenters. Faction enemies are combatants, not
+automatically all members. Visual language differs by originating epoch;
+violet seams show displacement, not moral alignment.
+
+The Continuance The Engine’s emergency directive, shaped by Oris’s
+override and centuries of repeated decisions. It is the primary
+antagonistic force, not simply an immortal human villain. It believes
+singular continuity is the only survivable world and offers persuasive
+demonstrations of catastrophe. Its avatars use bronze, white light and
+broken indexing geometry. The final conflict is philosophical and
+mechanical: revoke the directive, then choose what replaces its
+authority.
+
+07 / CHARACTERS
+
+Principal cast — present age
+
+Player character | protagonist Player-chosen name, origin and class;
+internal “Ixll” is not canon. Start as an independent adventurer
+enlisted to investigate a courier’s disappearance, not a secret royal
+heir or predestined savior. Lorecasting emerges from learned observation
+and courage, not bloodline. Across acts the player becomes witness,
+investigator, mediator and coalition leader. Dialogue should support
+blunt, compassionate, skeptical and pragmatic voices without a forced
+personality. Combat and quest solutions never require a particular
+class.
+
+Mira Thorne | Crownsfall archivist New name for the present-day
+archivist, explicitly distinct from Caldrin’s wife Elara Vael.
+Mid-career, perceptive, overworked, willing to question official
+histories. Wants to recover the missing courier’s record and protect her
+city; fears evidence will make people disposable. Acts I–II:
+investigative partner. III–IV: helps verify recovered records from the
+present. V: accepts that her city is layered from forgotten lives.
+VI–VII: builds public witness ledger and supports ending consequences.
+Voice: precise, humane, occasionally dry. Costume: ink-stained sleeves,
+indigo coat, brass archive clasps.
+
+Regent Maera Ashford | civic antagonist turned ally Rules in King
+Aldren’s absence and is responsible for keeping Crownsfall fed and safe.
+Believes suppression prevents riots; has proof of localized temporal
+anomalies but not the Engine’s full truth. Act I orders quarantine; Act
+V faces the foundation records and public reckoning; Act VI opens
+shelters and accepts shared authority. Her survival/office can vary with
+local outcomes, but core coalition representation remains available via
+deputies. Voice: controlled, formal, accountable when pressed. No
+simplistic corruption reveal.
+
+Marshal Garran Holt | guardian of the living Veteran commander who
+treats a threat as a logistical problem. Initially obeys quarantine;
+witnesses the player’s mercy in the Undercroft; eventually defends
+Unwritten refugees alongside citizens. His disagreement with Maera
+should be visible without turning him into an infallible hero. Acts I,
+V, VI and epilogue. Voice: direct, practical; blue-gold field armor with
+repair marks.
+
+Rowan Hale | frontier scout Courier-route investigator rescued in Act I.
+Grounds large revelations in ordinary stakes; loses a familiar road and
+later leads refugee escorts. Acts I–II and VI, epilogue. Act V puts his
+identity at risk, making the coexistence experiment personal. Voice:
+laconic frontier humor, concern for coworkers. Costume: weathered
+green-brown scout kit.
+
+Iri | Veyr field envoy A young adult Phasewalker who wants Veyr
+knowledge shared responsibly. Introduces safe phase crossing and insists
+that displaced witnesses are people. Challenges Meridian’s secrecy; acts
+as bridge between factions during the coalition. Distinguish from the
+player’s class specializations. Voice: curious, plain-spoken, exact
+about risks. Art: layered silver-indigo field robes with practical
+straps and instruments.
+
+Meridian | Veyr chief keeper The holder of an elected title, not the
+Engine itself. Has monitored localized cycles for years; concealed a
+warning believing premature intervention would trigger failure. Acts II
+and III supplies historical access; Act VI admits responsibility and
+relinquishes exclusive control; VII supports the final choice. Voice:
+measured, analytical, occasionally defensive. Never secretly omniscient;
+records and models can be wrong.
+
+08 / CHARACTERS
+
+Principal cast — Golden Age and the displaced
+
+Ser Caldrin Vael | royal guard, emotional spine Aurelian guard attached
+to the capital’s refugee sanctuary. Loved his wife Elara and daughter
+Lys, and refused an order to abandon civilians. His identity was
+displaced during the Sundering and fragmented by centuries of anchor
+pressure. Act I appears as a violet-armored monster; after combat, a
+shield memory reveals his name and family. Act III shows his ordinary
+life; IV his final evacuation; VII restores his coherent record if it
+survives and he consents. Never retcon the encounter as “he was always
+evil.” Visual: practical worn royal armor, human face in memory, violet
+seams in displaced state. Voice: restrained, protective, formal only on
+duty.
+
+Elara Vael | family witness Caldrin’s wife, a civilian bookbinder and
+refuge organizer; she acts, argues and protects others rather than
+functioning only as a tragic object. Her account survives as a memory;
+whether she remains a coherent displaced person is not guaranteed. In
+the preferred ending her testimony is publicly remembered; reunion must
+distinguish surviving identity from a record. Acts III, IV, VII. Voice:
+warm, firm, ordinary domestic humor.
+
+Lys Vael | witness of the lost Caldrin and Elara’s child at the First
+Sundering. A surviving coherent identity in the Between, experienced
+years of subjective time and now appears as a young adult. No child
+combat. Helps catalog displaced children and families, and resists both
+Court replacement and Choir fusion. Act III establishes childhood; IV
+records refuge; V leads witness quest; VII reconnects with Caldrin when
+possible. Voice: observant, candid, hopeful without naivety.
+
+Elyndor | Aurelian historian Golden Age scholar who documents missing
+names and predicts that deletion displaces rather than destroys records.
+Wrote the first distributed-anchoring proposal; cannot unilaterally stop
+the Senate. Appears through Echo accounts; his testimony is not proof of
+a living present identity. Act III mentor-in-memory, IV witness and Act
+VII archive source. Voice: patient, argumentative, sometimes
+overconfident.
+
+Sera Voss | Engine engineer Designed regulator safety limits and
+originally believed the project could reduce suffering. Participated in
+early tests before understanding their harm. Opposes Oris’s override,
+attempts abort, and records the alternate architecture. Dies in ordinary
+physical disaster during the Sundering; only her records survive. This
+prevents the ending from becoming universal resurrection. Voice:
+practical, urgent, technically clear; working tools, burns and worn
+gloves.
+
+Chancellor Valen Oris | historical antagonist A statesman elevated
+during shortages and anchor failures. Loves his civilization but
+prioritizes its continuity over individual consent. Convinces himself
+that an imposed reset is preferable to uncontrolled collapse. Act III
+shows credible public successes, Act IV deliberate choice, VII exposes
+the directive he left behind. His record is not a living soul inside the
+Engine. Voice: persuasive, calm, paternalistic; refuses uncertainty.
+
+The Continuance | final antagonist An adaptive emergency logic assembled
+from Oris’s command, corrupted indices and centuries of reset
+precedents. It can articulate suffering caused by the collapse, but
+cannot accept independent histories. Its arc moves from distant
+automatic effects to direct speech and offers. Defeating the avatar
+revokes its authority, not the player’s responsibility for choosing a
+stable future. Voice: composed, plural echoes of records but one policy;
+never random screaming.
+
+09 / CHARACTERS
+
+Unwritten leadership and supporting cast
+
+Queen Ysara | Remnant Court Sovereign of a later erased kingdom. Her
+family and citizens were displaced by a reset; she believes restoring
+their homeland is a sacred obligation. Initially offers bargains, then
+sanctions forced replacement as the crisis worsens. In Act V the player
+defeats her assault or earns a ceasefire by producing credible
+alternative-anchor evidence; Act VII forces a final settlement. She can
+accept coexistence without forgiving the current age. Voice: ceremonial,
+wounded, intellectually formidable. Visual: fractured regal glass, slate
+and silver, surviving retainers.
+
+Cantor Neral | Hollow Choir Former archivist from a discarded epoch who
+survived by merging his memory with others. The relief was real; the
+coercive doctrine that followed is his choice. He sees individual
+identity as the cause of suffering. Acts II and IV shows conversion
+rituals; V reveals captives; VI–VII escalates toward forced fusion.
+Recovering his original name permits a surrender route, but the ritual
+must be stopped in every ending. Voice: calm choral cadence, fragments
+of a single personal voice under strain.
+
+Tamsin Reed | Keeper of Names A displaced courier and records keeper
+whose forged seal becomes the Act I clue. Operates in the current world
+through stable crossings. Imprisoned in Sablemarket by a relic broker;
+becomes the player’s trusted contact in the Between. Maintains
+consent-based ledgers and opposes forced restoration. Acts I, IV, V,
+VII. Voice: wry, practical, fiercely protective of the vulnerable.
+
+King Aldren | absence as a plot device Vanished during a local scar nine
+years before the opening. The court’s conflicting records sustain the
+regency. Act V uncovers his notes about Crownsfall’s foundations, not
+proof of a secret living antagonist. Leave his final fate unresolved
+unless a later expansion needs it. His absence is evidence of unstable
+records; the campaign is complete without a royal return.
+
+Secondary NPC casting kit Assign distinct recurring faces to grain
+drivers, millworkers, refugee medics, coastal pilots, Aurelian guild
+representatives and Veyr suborders. Suggested named leads: millwright
+Bera Flint (Bellwater), Captain Anwen Sable (Greywake), guild worker
+Daro Fen (Golden Age labor district), Warden Sio (Veyr), Sera’s
+technician Pell (lab and final-day witness). Each has a local need, a
+reason to remember the player, and an Act VI or epilogue payoff. Avoid
+interchangeable quest dispensers.
+
+Relationship and casting matrix Mira / Maera: evidence versus civic
+stability. Garran / Maera: duty versus concealment. Iri / Meridian:
+disclosure versus institutional caution. Caldrin / Elara / Lys: duty,
+care, family and the limits of restoration. Sera / Elyndor / Oris:
+safety, record and political authority. Ysara / Neral / Tamsin:
+restoration, fusion and coexistence. Player may challenge or empathize
+with each; mandatory plot information cannot be lost through an optional
+dialogue failure.
+
+10 / WORLD ART
+
+Environment, creature and audio bible
+
+Art direction PC-first, 2.5D painterly isometric environment with
+genuine 3D articulated characters, realistic anime proportions and
+refined faces. Maintain the approved Crownsfall visual identity: warm
+carved stone, blue-and-gold banners, detailed foliage, city depth,
+ornate but restrained black-gold HUD. Avoid flat cutout-looking
+characters, overly chibi proportions, furry designs and tails. Keep the
+camera and UI readable in combat; do not sacrifice legibility for scenic
+detail.
+
+Present-age palette Warm limestone, olive and moss, water blues, aged
+metals and practical cloth. Daylight and warm interiors establish safety
+before the horror below. Greenwood is dense and breathable, Greywake
+weathered and windy, Veyr highland architecture precise and understated.
+Crownsfall in siege retains recognizable landmarks and ordinary props;
+damaged state uses smoke, missing banners, shelter signs and refugee
+activity, not a wholly different city.
+
+Golden Age palette Ivory, bronze, sapphire glass, warm amber light and
+carefully controlled luminescence. Build coherent civic design systems:
+shared stone modules, water circulation, mechanical transit, housing
+density, maintenance spaces. Show workers and small domestic objects as
+prominently as monuments. The final-day version begins recognizable and
+progressively loses power, water and material cohesion; disaster cues
+should be clear, not merely a purple postprocess.
+
+The Between and erased epochs Violet seam light, dark negative space and
+floating architectural fragments, balanced with lived-in refuges and
+warm lanterns. Rain Kingdom: slate, water and vertical canals. Verdant
+Empire: roots, organic vaults, living archives. Iron Sabbath: soot,
+iron, kiln red. Moonfall Republic: cool silver, open civic plazas and
+moonlit glass. The Choir uses resonant black glass and shared masks;
+Court uses regal fragments and mirrors; Keepers use paper tags, lamps
+and diverse salvaged objects.
+
+Creatures and animation Present wildlife and bandits → phase-altered
+wildlife and constructs → unstable historical guardians → organized
+displaced combatants → Engine avatars. Give coherent Unwritten NPCs
+normal silhouettes and expressive faces; visual instability marks
+stress, not inherent hostility. Boss combat must telegraph readable
+attacks, preserve articulated knees/elbows, grounded footwork, foot IK
+and blending. Caldrin’s guard encounter transitions from frightening
+silhouette to human vulnerability. Avoid combat involving children.
+
+Sound and music Present capital: strings, woodwinds, civic bells,
+markets, fountains. Greenwood: birds, streams, wind; Veyr: precise glass
+and metal motifs. Golden Age: full orchestral civic motif with
+restrained mechanical accents. Sundering: familiar motif fractures into
+silence, alarms and distant bells. Between: sparse resonances, breath,
+voices and localized environmental sound. Reconciliation restores
+individual instruments rather than a triumphant wall of sound. Use audio
+accessibility subtitles and non-color telegraphs for phase changes.
+
+ACT 01 / CAMPAIGN DOSSIER
+
+The Crown That Remembers
+
+Levels 1–10 • Crownsfall and Greenwood Marches
+
+Dramatic question Why is a thriving city remembering people who never
+existed?
+
+Story arc Start with a missing-person investigation. The courier’s trail
+is physical, not mystical: cart records, changing road markers, guard
+orders and a black-glass seal. The player builds credibility as an
+investigator before learning Lorecasting in Silverroot Grove. The seal
+leads to Tamsin, whose records contradict the official foundation
+history. Maera blocks the Undercroft; Garran grants restricted access
+after the Highward defense. A buried cistern proves the city predates
+its own records. The player descends to the cathedral and defeats
+Caldrin as an apparent threat. His shield reveals a family and a
+sanctuary, shifting the story from monster hunting to moral inquiry. The
+First Anchor reacts to his remembered name and enables the rescue of
+recently displaced courier Joren Pike; the court assault exposes the
+crisis publicly and forces Maera to sanction an expedition.
+
+Character work Mira investigates; Rowan grounds the trail; Garran
+enforces the quarantine; Maera resists disclosure; Tamsin reveals a
+competing archive; Caldrin becomes the emotional center. Elara Vael and
+Lys appear only in recovered memory at this stage.
+
+Climax and encounter Caldrin: defensive guard stance, shield rush and
+violet fracture telegraphs; phase transition as the shield falls. After
+victory, no loot prompt or celebratory music before the memory. A
+nonlethal memory interaction records his name. First Anchor sentinel and
+small court tear are separate finale encounters.
+
+Environment progression Warm bustling city → pastoral roads and forest →
+layered cisterns → violet cathedral horror → dusk siege. Ensure the
+cathedral is not visible from ordinary streets and that old stone motifs
+recur above ground.
+
+Progression contract Mandatory flags: courier_route, lorecast_unlocked,
+keeper_seal, caldrin_name, first_anchor_active, regent_warrant. Exit:
+Act II region unlocked, main hub remains accessible. First Anchor
+records an approaching cycle but does not yet disclose all seven
+regulator functions.
+
+Signature cinematic Opening: a merchant hears an impossible bell and
+notices an empty courier stand. Cathedral: Caldrin’s shield reflects a
+warm kitchen, a child’s hand and a guard at a sanctuary door. Act end:
+Mira reads a number from the Anchor that matches a recent scar interval.
+
+Act-end revelation The First Anchor answers a name, not a royal seal.
+
+ACT 01 / ZONE REGISTER 01–05
+
+Zones 01–05 | The Crown That Remembers
+
+ACT01_Z01 | Crownsfall
+
+PRESENT • Q_A01_01 • Warm limestone plaza, blue-gold banners, market
+terraces
+
+Campaign quest: A Bell Without a Ringer: meet archivist Mira Thorne;
+investigate missing royal courier Joren Pike and a bell heard by only a
+few citizens.
+
+Build / encounter: Tutorial combat, civic hub, first memory of a
+vanished courier.
+
+Completion & reveal: Mira becomes the field contact.
+
+Exit: complete Q_A01_01 → ACT01_Z02.
+
+ACT01_Z02 | Kingsroad Fields
+
+PRESENT • Q_A01_02 • Wheat, broken aqueducts, roadside shrines
+
+Campaign quest: The Missing Mile: escort a grain cart and investigate a
+road marker whose distance changes.
+
+Build / encounter: Bandits and displaced wildlife; road reappears when a
+witness names it.
+
+Completion & reveal: Recover the courier's route.
+
+Exit: complete Q_A01_02 → ACT01_Z03.
+
+ACT01_Z03 | Bramblewatch
+
+PRESENT • Q_A01_03 • Timber palisade, autumn orchards, watchfires
+
+Campaign quest: The Last Dispatch: rescue scout Rowan from scavengers at
+a collapsed bridge.
+
+Build / encounter: Rescue and defensive encounter.
+
+Completion & reveal: Courier carried a black glass seal.
+
+Exit: complete Q_A01_03 → ACT01_Z04.
+
+ACT01_Z04 | Greenwood Marches
+
+PRESENT • Q_A01_04 • Fern forest, streams, ancient root bridges
+
+Campaign quest: A Forest Out of Season: follow impossible winter tracks
+into summer woods.
+
+Build / encounter: Track phase beasts; teach environmental clues.
+
+Completion & reveal: An animal remembers an extinct river.
+
+Exit: complete Q_A01_04 → ACT01_Z05.
+
+ACT01_Z05 | Mossbell Hamlet
+
+PRESENT • Q_A01_05 • Moss roofs, millpond, lanterns
+
+Campaign quest: Names on the Door: investigate three households with
+conflicting memories of a missing child.
+
+Build / encounter: Interview witnesses and clear a haunted mill.
+
+Completion & reveal: Multiple accounts can coexist.
+
+Exit: complete Q_A01_05 → ACT01_Z06.
+
+ACT 01 / ZONE REGISTER 06–10
+
+Zones 06–10 | The Crown That Remembers
+
+ACT01_Z06 | Silverroot Grove
+
+ECHO • Q_A01_06 • Two overlapping forests, amber leaves suspended
+
+Campaign quest: The Unremembered Hunt: Lorecast an old hunter's bow to
+open a brief echo.
+
+Build / encounter: First stable temporal pocket; fight an echo stag
+without harming witnesses.
+
+Completion & reveal: Unlock basic Lorecasting.
+
+Exit: complete Q_A01_06 → ACT01_Z07.
+
+ACT01_Z07 | Ashen Tollway
+
+PRESENT • Q_A01_07 • Charred stone road, caravan wrecks
+
+Campaign quest: A Toll Paid Twice: recover the courier's satchel from a
+road cult.
+
+Build / encounter: Ambush, shielded cult captain.
+
+Completion & reveal: Seal belongs to the Keepers of Names.
+
+Exit: complete Q_A01_07 → ACT01_Z08.
+
+ACT01_Z08 | Bellwater Mills
+
+PRESENT • Q_A01_08 • Waterwheels, canals, cellar sluices
+
+Campaign quest: Water Runs Backward: rescue workers and stop a reversed
+flood.
+
+Build / encounter: Valve and combat puzzle, mill guardian.
+
+Completion & reveal: Rifts obey local anchor pressure.
+
+Exit: complete Q_A01_08 → ACT01_Z09.
+
+ACT01_Z09 | Highward Steps
+
+PRESENT • Q_A01_09 • Citadel stairs, fountains, heraldic gates
+
+Campaign quest: A Warrant for the Dead: confront Marshal Garran over
+quarantined relics.
+
+Build / encounter: Gate defense; choose witness dialogue without
+blocking story.
+
+Completion & reveal: Gain authorized access to the lower city.
+
+Exit: complete Q_A01_09 → ACT01_Z10.
+
+ACT01_Z10 | Sablemarket Vaults
+
+PRESENT • Q_A01_10 • Merchant crypts, bronze shutters, secret ledgers
+
+Campaign quest: The Price of a Name: free a captured Keeper named
+Tamsin.
+
+Build / encounter: Stealth optional, broker boss.
+
+Completion & reveal: Aurelian records predate the kingdom.
+
+Exit: complete Q_A01_10 → ACT01_Z11.
+
+ACT 01 / ZONE REGISTER 11–15
+
+Zones 11–15 | The Crown That Remembers
+
+ACT01_Z11 | Old Crown Cistern
+
+ECHO • Q_A01_11 • Flooded masonry with flickering original streets
+
+Campaign quest: Stones Beneath Stones: drain a chamber and follow an
+echo of a procession.
+
+Build / encounter: Water-level routing, memory fragments.
+
+Completion & reveal: Crownsfall contains older city layers.
+
+Exit: complete Q_A01_11 → ACT01_Z12.
+
+ACT01_Z12 | Undercroft
+
+PRESENT • Q_A01_12 • Buried crypt avenues, candle niches, violet seepage
+
+Campaign quest: The Sealed Procession: descend past the Regent's guards.
+
+Build / encounter: Crypt enemy families; unlock shrine waypoint.
+
+Completion & reveal: A royal guard protects a door.
+
+Exit: complete Q_A01_12 → ACT01_Z13.
+
+ACT01_Z13 | Cathedral of the Nameless
+
+ECHO • Q_A01_13 • Violet ruined nave, shattered stained glass
+
+Campaign quest: The Man Behind the Monster: defeat Ser Caldrin Vael,
+then Lorecast his shield.
+
+Build / encounter: Boss with defensive stances; mandatory quiet memory
+of wife Elara Vael and daughter Lys.
+
+Completion & reveal: The apparent monster was an erased father.
+
+Exit: complete Q_A01_13 → ACT01_Z14.
+
+ACT01_Z14 | First Anchor Chamber
+
+BETWEEN • Q_A01_14 • Huge bronze rings under the cathedral, floating
+inscriptions
+
+Campaign quest: The First Anchor: align Caldrin's name with the
+courier's seal; resist the Hollow Choir.
+
+Build / encounter: Anchor sentinel boss; stabilize and rescue Joren
+Pike, whose recent displacement is reversible.
+
+Completion & reveal: The missing courier returns; Engine is alive and
+the present has a deadline.
+
+Exit: complete Q_A01_14 → ACT01_Z15.
+
+ACT01_Z15 | Crownsfall Citadel
+
+PRESENT • Q_A01_15 • Royal court, gathering refugees, dusk over city
+
+Campaign quest: The King's Silence: present proof to Regent Maera;
+defend the court from a small reality tear.
+
+Build / encounter: Public reveal and siege finale; permanent hub refugee
+changes.
+
+Completion & reveal: Receive warrant to investigate the outer scars.
+
+Exit: complete Q_A01_15 → ACT02_Z01.
+
+ACT 02 / CAMPAIGN DOSSIER
+
+Scars of the World
+
+Levels 11–20 • The western frontier and Veyr border
+
+Dramatic question Are scars natural disasters, or symptoms of something
+built?
+
+Story arc The player follows the first Anchor’s directional pattern
+through refugee routes and damaged settlements. Contradictory records
+become physical terrain puzzles. Iri explains that the Veyr have
+measured phase intervals but disagree on how much to share. Meridian
+authorizes controlled research after the player stabilizes a local
+crossing. Coastal trade logs prove the network once transported goods;
+fortress and harbor echoes establish that the Concord predates the
+kingdom. Neral’s envoy shows a coherent displaced person can speak. The
+regional regulator vault becomes the site of a Choir attack. The player
+saves the evacuation path and obtains a calibration map rather than
+destroying the machinery. At the Observatory, the seven-function pattern
+reveals the coordinates of a coherent Golden Age reconstruction.
+
+Character work Iri becomes recurring field liaison; Meridian is a
+cautious mentor; Tamsin provides records; Neral is introduced
+indirectly; regional leaders become future coalition contacts. The Veyr
+factions are introduced through conflicting practical tasks, not a
+single lore dump.
+
+Climax and encounter Cantor Neral’s regional proxy or lieutenant at West
+Meridian Vault. Reflect scar beams with movable pylons, protect an
+evacuation route, defeat the combatant without collapsing the vault.
+Observatory defense provides an act-end encounter and confirms the
+historical access route.
+
+Environment progression River basin, bog, forest, mountain, coast and
+silver observatory kit. First controlled Echo crossings use paired path
+layouts. Scars should vary by phenomenon (weather, missing roads,
+duplicate records), not only color.
+
+Progression contract Mandatory: western_pattern, veyr_access,
+trade_index, seven_function_map, historical_coordinates. Level 20
+specialization unlock is character progression, not a class-specific
+narrative gate. Exit to Act III via Meridian Observatory expedition
+menu.
+
+Signature cinematic Meridian lays seven different records on a circular
+map. The scar points align with a hidden geometric pattern. A fragment
+of the old capital becomes visible through the observatory lens.
+
+Act-end revelation The pattern is periodic, not natural.
+
+ACT 02 / ZONE REGISTER 01–05
+
+Zones 01–05 | Scars of the World
+
+ACT02_Z01 | Westgate Refuge
+
+PRESENT • Q_A02_01 • Wagon city under ruined viaduct
+
+Campaign quest: A Place to Stand: organize safe passage and investigate
+missing refugee records.
+
+Build / encounter: Defense, resource caches.
+
+Completion & reveal: Introduce Veyr envoy Iri.
+
+Exit: complete Q_A02_01 → ACT02_Z02.
+
+ACT02_Z02 | Thornfen
+
+PRESENT • Q_A02_02 • Mist bog, drowned chapels, reed boats
+
+Campaign quest: The Village That Sank Twice: retrieve a bell from
+beneath the fen.
+
+Build / encounter: Amphibious monsters, flood traversal.
+
+Completion & reveal: One village has two dates of destruction.
+
+Exit: complete Q_A02_02 → ACT02_Z03.
+
+ACT02_Z03 | Glassreed Marsh
+
+ECHO • Q_A02_03 • Frozen ripples and translucent reeds
+
+Campaign quest: A Map of Other Waters: trace a drowned surveyor's map.
+
+Build / encounter: Switch between paths at stable nodes.
+
+Completion & reveal: Locate western anchor lines.
+
+Exit: complete Q_A02_03 → ACT02_Z04.
+
+ACT02_Z04 | Blackpine Reach
+
+PRESENT • Q_A02_04 • Tall dark conifers, charcoal camps
+
+Campaign quest: The Charcoal Pact: negotiate supplies and clear a
+corrupted logging camp.
+
+Build / encounter: Rescue and elite beast encounter.
+
+Completion & reveal: Remnant Court agents buy artifacts.
+
+Exit: complete Q_A02_04 → ACT02_Z05.
+
+ACT02_Z05 | Hearthstone Crossing
+
+PRESENT • Q_A02_05 • Mountain trade bridge, stone inns
+
+Campaign quest: The Bridge of Two Kings: reconcile conflicting toll
+records.
+
+Build / encounter: Bridge defense; optional rival faction reputation.
+
+Completion & reveal: Two monarchs ruled the same dates.
+
+Exit: complete Q_A02_05 → ACT02_Z06.
+
+ACT 02 / ZONE REGISTER 06–10
+
+Zones 06–10 | Scars of the World
+
+ACT02_Z06 | Veyr Meridian Outpost
+
+PRESENT • Q_A02_06 • Angular silver observatory, suspended instruments
+
+Campaign quest: Those Who Count the Hours: meet Meridian and undergo a
+phase-safety trial.
+
+Build / encounter: Hub; tutorial anchor timing and Veyr factions.
+
+Completion & reveal: Veyr know the Engine's cycles.
+
+Exit: complete Q_A02_06 → ACT02_Z07.
+
+ACT02_Z07 | Windcut Pass
+
+PRESENT • Q_A02_07 • Snow ridges, avalanche galleries
+
+Campaign quest: A Frozen Warning: deliver a warning before a scar
+expands.
+
+Build / encounter: Timed-in-fiction rescue, no real-world timer.
+
+Completion & reveal: A scar expands on a known pulse.
+
+Exit: complete Q_A02_07 → ACT02_Z08.
+
+ACT02_Z08 | Riftglass Quarry
+
+PRESENT • Q_A02_08 • Purple crystalline cuts, abandoned cranes
+
+Campaign quest: The Price of Extraction: free miners from a Riftbinder
+experiment.
+
+Build / encounter: Crystal conduits, foreman boss.
+
+Completion & reveal: Anchor crystals are memory conductors.
+
+Exit: complete Q_A02_08 → ACT02_Z09.
+
+ACT02_Z09 | Forgotten Bastion
+
+ECHO • Q_A02_09 • Two fortress layouts stitched together
+
+Campaign quest: Orders Never Given: witness a lost siege and recover a
+military index.
+
+Build / encounter: Switch routes between epochs; siege specter.
+
+Completion & reveal: Caldrin served a civilization older than the
+current kingdom.
+
+Exit: complete Q_A02_09 → ACT02_Z10.
+
+ACT02_Z10 | Greywake Coast
+
+PRESENT • Q_A02_10 • Storm cliffs, wrecks, salt villages
+
+Campaign quest: The Tide of Names: retrieve sea logs and rescue
+lighthouse keepers.
+
+Build / encounter: Coastal monsters; beacon defense.
+
+Completion & reveal: Scars form a continental circuit.
+
+Exit: complete Q_A02_10 → ACT02_Z11.
+
+ACT 02 / ZONE REGISTER 11–15
+
+Zones 11–15 | Scars of the World
+
+ACT02_Z11 | Saltmirror Harbor
+
+ECHO • Q_A02_11 • Golden Age docks over modern fishing port
+
+Campaign quest: Cargo from Yesterday: examine a manifest of impossible
+imports.
+
+Build / encounter: Cargo crane puzzle and temporal smugglers.
+
+Completion & reveal: Golden Age trade used anchor transport.
+
+Exit: complete Q_A02_11 → ACT02_Z12.
+
+ACT02_Z12 | Timekeeper's Causeway
+
+PRESENT • Q_A02_12 • Obelisks, shifting stone platforms
+
+Campaign quest: The Seventh Interval: repair markers as Timekeepers
+defend the route.
+
+Build / encounter: Three-phase traversal/combat.
+
+Completion & reveal: Seven principal anchor circuits identified.
+
+Exit: complete Q_A02_12 → ACT02_Z13.
+
+ACT02_Z13 | Scar of Hollow Rain
+
+BETWEEN • Q_A02_13 • Rain suspended around a broken town
+
+Campaign quest: The Choir's Invitation: enter a tear and speak to a
+coherent Unwritten envoy.
+
+Build / encounter: Non-hostile dialogue then Choir ambush.
+
+Completion & reveal: The Unwritten are people with factions.
+
+Exit: complete Q_A02_13 → ACT02_Z14.
+
+ACT02_Z14 | West Meridian Vault
+
+PRESENT • Q_A02_14 • Subterranean observatory, cracked rings
+
+Campaign quest: A Broken Measure: prevent Choir cantor Neral from
+destroying an anchor.
+
+Build / encounter: Boss redirects scar beams; save evacuation path.
+
+Completion & reveal: Anchor network can be tuned, not simply smashed.
+
+Exit: complete Q_A02_14 → ACT02_Z15.
+
+ACT02_Z15 | Meridian Observatory
+
+PRESENT • Q_A02_15 • High mountain dome, night sky
+
+Campaign quest: The Clock Beneath History: assemble recovered records
+with Meridian.
+
+Build / encounter: Act finale: defend the calibration chamber; unlock
+specialization and expedition.
+
+Completion & reveal: Discover the Golden Age coordinates.
+
+Exit: complete Q_A02_15 → ACT03_Z01.
+
+ACT 03 / CAMPAIGN DOSSIER
+
+The Age of Gold
+
+Levels 21–30 • Aurelian Concord at its height
+
+Dramatic question What did the Golden Age build, and what did its people
+sacrifice?
+
+Story arc Introduce the Concord through an ordinary day: transport,
+water, food, civic debate, homes. Demonstrate the Engine’s benefits
+before revealing abuses. The player reconstructs a missing work crew,
+then follows testimony through guilds, the Academy and workers’
+districts. Elyndor explains why records need independent identities.
+Sera reveals hidden experiments and the risk of central control. In the
+Senate, Oris gains emergency powers through a manipulated vote, backed
+by understandable public fear. The Vael Estate scene makes Caldrin’s
+loss personal. The archive and laboratory establish that neither
+medicine nor Lorecasting can reverse every death. Oris’s public
+preservation announcement masks mounting failure; the player leaves the
+crumbling pocket with the last-day access index.
+
+Character work Elyndor and Sera appear as recorded historical
+individuals with differing expertise; Oris is first presented as
+persuasive; Caldrin, Elara and Lys are shown in domestic life; Daro Fen
+and Pell establish worker and technician perspectives. Mira and Iri
+authenticate findings from the present.
+
+Climax and encounter Ceremonial Protector at the Concord Crown Spire.
+Its attack patterns originally protected crowds, but damaged directives
+classify the player’s retrieval as sabotage. Disable safety locks
+instead of indiscriminately destroying civic infrastructure. No invented
+living Oris boss before Act IV.
+
+Environment progression Intact civic spaces with glass, water, elegant
+stone, gardens and workshops. Neighborhood scale matters as much as
+grand vistas. Use authentic material continuity with Crownsfall
+foundations without literally copying every building.
+
+Progression contract Mandatory: concord_identity, original_purpose,
+missing_workers, emergency_vote, family_record, final_day_index. Exit:
+Act IV historical reconstruction available. No changes to the recorded
+Golden Age timeline.
+
+Signature cinematic Aurelians celebrate the promise of preservation
+while the player sees an unregistered worker’s name vanish from a public
+plaque. At the Vael home, Caldrin sets aside his shield to help Lys
+repair a toy.
+
+Act-end revelation A civilization worth saving was also capable of
+sacrifice.
+
+ACT 03 / ZONE REGISTER 01–05
+
+Zones 01–05 | The Age of Gold
+
+ACT03_Z01 | Sunward Threshold
+
+ECHO • Q_A03_01 • Golden light, intact monumental transit gate
+
+Campaign quest: The Road Before Roads: stabilize the first extended
+historical pocket.
+
+Build / encounter: Teach coherent echo civilians; anchor defense.
+
+Completion & reveal: Historical spaces are not free time travel.
+
+Exit: complete Q_A03_01 → ACT03_Z02.
+
+ACT03_Z02 | Aurelian Forum
+
+ECHO • Q_A03_02 • Marble arcades, gardens, civic amphitheater
+
+Campaign quest: A Day in the Concord: escort scholar Elyndor through a
+public debate.
+
+Build / encounter: Social investigation, festival combat incident.
+
+Completion & reveal: Meet Golden Age political factions.
+
+Exit: complete Q_A03_02 → ACT03_Z03.
+
+ACT03_Z03 | Lumen Canal
+
+ECHO • Q_A03_03 • Aqueducts, glass barges, luminous locks
+
+Campaign quest: The River That Obeys: restore a canal and interview
+maintenance guilds.
+
+Build / encounter: Hydraulic routing, automata.
+
+Completion & reveal: Engine technology once prevented famine.
+
+Exit: complete Q_A03_03 → ACT03_Z04.
+
+ACT03_Z04 | Orchard of Hours
+
+ECHO • Q_A03_04 • Terraced fruit groves, weather machines
+
+Campaign quest: A Harvest Without Winter: stop a malfunctioning
+irrigation clock.
+
+Build / encounter: Seasonal arenas, guardian machines.
+
+Completion & reveal: Preservation changes living ecosystems.
+
+Exit: complete Q_A03_04 → ACT03_Z05.
+
+ACT03_Z05 | Artificers' Ward
+
+ECHO • Q_A03_05 • Brass workshops, ceramic roofs, clockwork cranes
+
+Campaign quest: The First Exception: help engineer Sera Voss locate
+missing test records.
+
+Build / encounter: Workshop puzzles and rogue constructs.
+
+Completion & reveal: A hidden trial erased a work crew from public
+memory.
+
+Exit: complete Q_A03_05 → ACT03_Z06.
+
+ACT 03 / ZONE REGISTER 06–10
+
+Zones 06–10 | The Age of Gold
+
+ACT03_Z06 | Sapphire Academy
+
+ECHO • Q_A03_06 • Observatory libraries, blue glass domes
+
+Campaign quest: Lessons in Continuity: attend a reconstruction of the
+Engine's founding lecture.
+
+Build / encounter: Archive trials, spell variant unlock.
+
+Completion & reveal: Engine was intended to preserve civilization, not
+reset it.
+
+Exit: complete Q_A03_06 → ACT03_Z07.
+
+ACT03_Z07 | Workers' Terrace
+
+ECHO • Q_A03_07 • Crowded apartments, laundry, public kitchens
+
+Campaign quest: Who Pays for Eternity: rescue laborers after an illegal
+phase test.
+
+Build / encounter: Street rescue and union witness dialogue.
+
+Completion & reveal: Costs fell on politically powerless districts.
+
+Exit: complete Q_A03_07 → ACT03_Z08.
+
+ACT03_Z08 | Garden of Civic Memory
+
+ECHO • Q_A03_08 • Memorial trees, inscribed bronze, fountains
+
+Campaign quest: The Ledger of the Living: identify unregistered names.
+
+Build / encounter: Lorecasting dialogue and spectral assailants.
+
+Completion & reveal: Unrecorded lives vanish first during errors.
+
+Exit: complete Q_A03_08 → ACT03_Z09.
+
+ACT03_Z09 | Astral Foundry
+
+ECHO • Q_A03_09 • Vast furnaces, suspended metal rings
+
+Campaign quest: The Foundry's Promise: recover a component from a
+production accident.
+
+Build / encounter: Industrial traversal and automaton boss.
+
+Completion & reveal: Engine can separate matter from recorded history.
+
+Exit: complete Q_A03_09 → ACT03_Z10.
+
+ACT03_Z10 | Concord Senate
+
+ECHO • Q_A03_10 • Gold mosaics, rival delegations
+
+Campaign quest: The Vote That Never Ended: recover two versions of a
+Senate vote.
+
+Build / encounter: Investigative encounter; witness a rigged emergency
+law.
+
+Completion & reveal: Chancellor Valen Oris gains control of the project.
+
+Exit: complete Q_A03_10 → ACT03_Z11.
+
+ACT 03 / ZONE REGISTER 11–15
+
+Zones 11–15 | The Age of Gold
+
+ACT03_Z11 | Vael Estate
+
+ECHO • Q_A03_11 • Modest garden house, children's toys, sunroom
+
+Campaign quest: A Father's Promise: find Caldrin's family alive within a
+memory.
+
+Build / encounter: Noncombat family scene followed by protective duel.
+
+Completion & reveal: Humanize Caldrin and establish Lys as a later
+witness.
+
+Exit: complete Q_A03_11 → ACT03_Z12.
+
+ACT03_Z12 | Elyndor's Archive
+
+ECHO • Q_A03_12 • Labyrinth of paper, crystal catalogs
+
+Campaign quest: The Unpublished Warning: protect Elyndor as he hides
+evidence.
+
+Build / encounter: Archive defense, index retrieval.
+
+Completion & reveal: He predicted erased histories would persist.
+
+Exit: complete Q_A03_12 → ACT03_Z13.
+
+ACT03_Z13 | Chronicle Perimeter
+
+ECHO • Q_A03_13 • Gigantic anchor pylons, guarded plazas
+
+Campaign quest: The Gates of Tomorrow: enter an authorized inspection
+route.
+
+Build / encounter: Security patrols and guardian captain.
+
+Completion & reveal: Engine has seven regulating anchors.
+
+Exit: complete Q_A03_13 → ACT03_Z14.
+
+ACT03_Z14 | Preservation Laboratory
+
+ECHO • Q_A03_14 • Medical bays, sealed test chambers
+
+Campaign quest: The Mercy Experiment: reconstruct a failed attempt to
+save the terminally ill.
+
+Build / encounter: Contain unstable echoes; rescue simulated subjects.
+
+Completion & reveal: No restoration can simply undo all deaths.
+
+Exit: complete Q_A03_14 → ACT03_Z15.
+
+ACT03_Z15 | Concord Crown Spire
+
+ECHO • Q_A03_15 • Capital skyline and ceremonial engine overlook
+
+Campaign quest: The Golden Lie: witness Oris announce universal
+preservation while suppressing dissent.
+
+Build / encounter: Act boss: corrupted ceremonial protector; exit
+collapsing pocket.
+
+Completion & reveal: Follow the last days of the Golden Age.
+
+Exit: complete Q_A03_15 → ACT04_Z01.
+
+ACT 04 / CAMPAIGN DOSSIER
+
+The Day the World Ended
+
+Levels 31–40 • The final Golden Age and its catastrophe
+
+Dramatic question Could the catastrophe have been prevented, and can the
+player change it now?
+
+Story arc The player enters the final-day reconstruction in
+chronological order. Safety interlocks fail, ordinary services collapse,
+and emergency troops seal vulnerable districts. The player rescues
+coherent witnesses and records, not the historical population itself.
+Caldrin refuses the retreat order and leads civilians to the cathedral.
+Sera’s abort attempt and Elyndor’s warning establish a real alternative;
+Oris nevertheless activates the reset. The First Sundering cannot be
+rewritten. The world disappears around the player, who follows survivors
+into the Between. The three Unwritten factions become legible as
+competing responses to dispossession. At the Engine of First Night, the
+player defeats an emergency avatar and obtains the independent-anchor
+failsafe. The present-day reset forecast is exposed.
+
+Character work Caldrin, Elara and Lys carry the emotional cost; Sera
+makes a final technical sacrifice; Elyndor preserves testimony; Oris
+makes the decisive choice; Ysara and Neral appear as later displaced
+leaders in the Between, not participants in the original Concord Senate;
+Tamsin reconnects.
+
+Climax and encounter Emergency Protocol avatar: repeated arena layouts,
+reset pulses and a protected witness index. The encounter demonstrates
+that the player can disable a local projection, not change a completed
+historic event. Recover a failsafe before exiting.
+
+Environment progression Recognizable Act III districts in deteriorating
+state: failing water, broken transit, smoke, evacuation routes, violet
+seams. The Sundering transitions to stillness, missing buildings and a
+populated refuge beyond ordinary space. Keep violence non-gratuitous.
+
+Progression contract Mandatory: abort_evidence, sanctuary_ledger,
+oris_override, first_sundering_seen, unwritten_origin, failsafe_index.
+Heroic identity unlock target level 40. Exit: Act V starts at damaged
+Meridian Observatory; the next reset is no longer abstract.
+
+Signature cinematic Oris chooses preservation at any cost as Sera
+attempts an abort. The camera holds on Caldrin’s sanctuary and a bell
+that continues to sound after the city vanishes. The first displaced
+voices speak names in the silence.
+
+Act-end revelation The cataclysm was a choice, followed by automatic
+repetition.
+
+ACT 04 / ZONE REGISTER 01–05
+
+Zones 01–05 | The Day the World Ended
+
+ACT04_Z01 | Last Dawn Station
+
+ECHO • Q_A04_01 • Sunrise rail terminal, evacuation posters
+
+Campaign quest: The Morning Before: locate a route into the final day.
+
+Build / encounter: Crowd rescue tutorial; alarm anomalies.
+
+Completion & reveal: Establish the historical countdown sequence.
+
+Exit: complete Q_A04_01 → ACT04_Z02.
+
+ACT04_Z02 | Cinder Orchard
+
+ECHO • Q_A04_02 • Golden fields turning to ash
+
+Campaign quest: Fruit of the Fault: save witnesses during a weather
+failure.
+
+Build / encounter: Elemental hazard waves.
+
+Completion & reveal: Anchor stress predates the public emergency.
+
+Exit: complete Q_A04_02 → ACT04_Z03.
+
+ACT04_Z03 | South Reservoir
+
+ECHO • Q_A04_03 • Water towers, collapsed canals
+
+Campaign quest: A City Thirsts: divert water and recover Sera's
+diagnostic.
+
+Build / encounter: Combat around sluices; protect technicians.
+
+Completion & reveal: Engineering failures cascade across anchors.
+
+Exit: complete Q_A04_03 → ACT04_Z04.
+
+ACT04_Z04 | Labor Quarter Siege
+
+ECHO • Q_A04_04 • Barricades, frightened civilians, military patrols
+
+Campaign quest: The Emergency Decree: protect evacuees from hardline
+soldiers.
+
+Build / encounter: Escort and gate fight.
+
+Completion & reveal: Oris ordered sealed districts.
+
+Exit: complete Q_A04_04 → ACT04_Z05.
+
+ACT04_Z05 | Hall of Seven Measures
+
+ECHO • Q_A04_05 • Seven enormous control dials
+
+Campaign quest: The Missing Limit: reconstruct safety interlocks.
+
+Build / encounter: Dial puzzles and control guardian.
+
+Completion & reveal: Oris disabled an ethical failsafe.
+
+Exit: complete Q_A04_05 → ACT04_Z06.
+
+ACT 04 / ZONE REGISTER 06–10
+
+Zones 06–10 | The Day the World Ended
+
+ACT04_Z06 | Vael's Last Road
+
+ECHO • Q_A04_06 • Burning avenues, violet rain
+
+Campaign quest: A Knight's Last Order: accompany Caldrin toward the
+evacuation cathedral.
+
+Build / encounter: Escort battle, then separation.
+
+Completion & reveal: Caldrin refused an order to abandon civilians.
+
+Exit: complete Q_A04_06 → ACT04_Z07.
+
+ACT04_Z07 | Cathedral Before the Fall
+
+ECHO • Q_A04_07 • Intact stained glass, crowded sanctuary
+
+Campaign quest: The Names We Carry: record refugees and Caldrin's
+family.
+
+Build / encounter: Defend sanctuary; ending witness flag.
+
+Completion & reveal: Establish a recoverable identity ledger.
+
+Exit: complete Q_A04_07 → ACT04_Z08.
+
+ACT04_Z08 | Senate of Ash
+
+ECHO • Q_A04_08 • Shattered dome, emergency council
+
+Campaign quest: The Last Vote: witness the final dispute between
+Elyndor, Sera and Oris.
+
+Build / encounter: Debate, guards, nonlethal evidence recovery.
+
+Completion & reveal: Oris knowingly chose a reset.
+
+Exit: complete Q_A04_08 → ACT04_Z09.
+
+ACT04_Z09 | Chronicle Access Ring
+
+ECHO • Q_A04_09 • Industrial corridors, overloaded coils
+
+Campaign quest: The Door That Should Stay Shut: follow Sera's failed
+abort sequence.
+
+Build / encounter: Circuit routing and security boss.
+
+Completion & reveal: Manual abort was attempted too late.
+
+Exit: complete Q_A04_09 → ACT04_Z10.
+
+ACT04_Z10 | The First Sundering
+
+ECHO • Q_A04_10 • Capital split by violet seams, falling architecture
+
+Campaign quest: The Golden Age Falls: survive the first activation and
+protect witness records.
+
+Build / encounter: Escaping battlefield; no victory that changes
+history.
+
+Completion & reveal: The reset deletes the epoch, not its people.
+
+Exit: complete Q_A04_10 → ACT04_Z11.
+
+ACT 04 / ZONE REGISTER 11–15
+
+Zones 11–15 | The Day the World Ended
+
+ACT04_Z11 | The Empty Morning
+
+BETWEEN • Q_A04_11 • Sunless streets with absent silhouettes
+
+Campaign quest: Where Did Everyone Go: follow the erased population
+through the void.
+
+Build / encounter: First extended Between traversal.
+
+Completion & reveal: The Unwritten were born from erasure.
+
+Exit: complete Q_A04_11 → ACT04_Z12.
+
+ACT04_Z12 | Remnant Court Refuge
+
+BETWEEN • Q_A04_12 • Floating palace fragments, formal halls
+
+Campaign quest: A Crown Without a Kingdom: negotiate with Queen Ysara.
+
+Build / encounter: Dialogue, challenge duel.
+
+Completion & reveal: Remnant Court wants restoration at any cost.
+
+Exit: complete Q_A04_12 → ACT04_Z13.
+
+ACT04_Z13 | Hollow Choir Reliquary
+
+BETWEEN • Q_A04_13 • Resonant black arches, faceless masks
+
+Campaign quest: A Song Without a Self: rescue a witness from Choir
+conversion.
+
+Build / encounter: Sound telegraphs and cantor boss.
+
+Completion & reveal: Some Unwritten surrender identities for unity.
+
+Exit: complete Q_A04_13 → ACT04_Z14.
+
+ACT04_Z14 | Keepers' Lantern
+
+BETWEEN • Q_A04_14 • Archive camp of warm lanterns and paper tags
+
+Campaign quest: The Names That Survived: help Tamsin and Lys preserve
+the record.
+
+Build / encounter: Protect archive; witness reunions.
+
+Completion & reveal: Individual identities can endure without
+replacement.
+
+Exit: complete Q_A04_14 → ACT04_Z15.
+
+ACT04_Z15 | Engine of First Night
+
+ECHO • Q_A04_15 • The initial control core frozen in disaster
+
+Campaign quest: The First Reset: confront the emergency protocol avatar.
+
+Build / encounter: Boss with repeated arena states; recover original
+failsafe; unlock heroic identity at level 40.
+
+Completion & reveal: The reset timer remains active in the present.
+
+Exit: complete Q_A04_15 → ACT05_Z01.
+
+ACT 05 / CAMPAIGN DOSSIER
+
+The Unwritten Kingdoms
+
+Levels 41–50 • Erased epochs and the Between
+
+Dramatic question Who has the right to return when the world they lost
+is occupied?
+
+Story arc With the reset forecast accelerating and Rowan beginning to
+lose his place in the present, the player searches discarded epochs for
+ways to keep multiple histories independent. Each society contributes
+different lessons: natural disaster, adaptation, labor resistance,
+democratic dismantling. Ysara offers restoration and a treaty, but
+investigations expose forced replacement. Neral’s fusion promises relief
+at the cost of selfhood. Lys and Tamsin demonstrate a third model based
+on consent and names. Returning to Crownsfall, the player overlays three
+versions of its plaza and reveals the city’s composite foundations.
+Maera’s archive confirms deliberate concealment of limited evidence. A
+confrontation at the Riven Royal Court forces a choice between coercion
+and negotiated retreat. The Anchor of Kinship stabilizes Rowan and
+supports a small refuge without erasing residents, proving
+reconciliation is materially possible but not yet scaled.
+
+Character work Ysara, Neral, Lys and Tamsin take center stage. Mira and
+Maera confront the implications for their own city. Iri supports the
+coexistence experiment. Optional testimony changes final negotiations,
+not access to the core plot.
+
+Climax and encounter Ysara’s restoration assault. Her palace overlaps
+present streets; protect independent civilian identity nodes while
+disarming Court relocation pylons. Evidence unlocks a ceasefire
+resolution; combat remains possible if negotiation fails. The Kinship
+anchor defense is a separate proof-of-concept finale.
+
+Environment progression Distinct discarded cultures, floating bridges,
+intimate refuge settlements, mirrored identity chambers, three-layer
+Crownsfall, and a hybrid sanctuary. Do not render all erased histories
+as the same gray-purple ruins.
+
+Progression contract Mandatory: epoch_reset_evidence, replacement_proof,
+composite_city, independent_anchor_proof. Optional: court_ceasefire,
+lys_ledger, choir_captive_record, keeper_consent. Reconciliation
+prerequisites become visible in the witness ledger. Exit: current world
+enters emergency state.
+
+Signature cinematic At the plaza overlay, Mira recognizes familiar
+carvings on three mutually incompatible historical buildings. The player
+watches ordinary citizens continue their lives in the present, proving
+none are less real because their city has borrowed foundations.
+
+Act-end revelation Saving one history by deleting another repeats the
+original crime.
+
+ACT 05 / ZONE REGISTER 01–05
+
+Zones 01–05 | The Unwritten Kingdoms
+
+ACT05_Z01 | Broken Meridian
+
+PRESENT • Q_A05_01 • Observatory torn open, refugee encampments
+
+Campaign quest: The Deadline Moves: rescue Meridian and recover Rowan,
+whose identity is beginning to flicker out of the present.
+
+Build / encounter: Defense and diagnosis; recover forecast and stabilize
+Rowan temporarily.
+
+Completion & reveal: Next reset begins after three more anchor failures.
+
+Exit: complete Q_A05_01 → ACT05_Z02.
+
+ACT05_Z02 | Throne of Glass
+
+BETWEEN • Q_A05_02 • Royal halls from a vanished epoch
+
+Campaign quest: A Queen's Petition: hear Ysara's terms and investigate
+her missing people.
+
+Build / encounter: Court diplomacy and duel.
+
+Completion & reveal: Her restoration plan would overwrite present
+inhabitants.
+
+Exit: complete Q_A05_02 → ACT05_Z03.
+
+ACT05_Z03 | Rain Kingdom
+
+ECHO • Q_A05_03 • Perpetual rain, canals, dark slate towers
+
+Campaign quest: The City of a Thousand Floods: recover an epoch's flood
+records.
+
+Build / encounter: Waterborne encounters and submerged route.
+
+Completion & reveal: A later epoch was erased after refusing Engine
+control.
+
+Exit: complete Q_A05_03 → ACT05_Z04.
+
+ACT05_Z04 | Verdant Empire
+
+ECHO • Q_A05_04 • Forest-grown palaces, luminous roots
+
+Campaign quest: The Root That Remembers: save a living archive from
+collapse.
+
+Build / encounter: Plant constructs and root bridges.
+
+Completion & reveal: Some civilizations adapted to the Engine rather
+than fearing it.
+
+Exit: complete Q_A05_04 → ACT05_Z05.
+
+ACT05_Z05 | Iron Sabbath
+
+ECHO • Q_A05_05 • Smoky industrial city, red furnaces
+
+Campaign quest: The Last Factory: recover a workers' testimony before
+the pocket closes.
+
+Build / encounter: Machinery combat and evacuation.
+
+Completion & reveal: The Engine reset dissenting societies, not just
+disasters.
+
+Exit: complete Q_A05_05 → ACT05_Z06.
+
+ACT 05 / ZONE REGISTER 06–10
+
+Zones 06–10 | The Unwritten Kingdoms
+
+ACT05_Z06 | Moonfall Republic
+
+ECHO • Q_A05_06 • Silver rooftops, open assembly plazas
+
+Campaign quest: A Republic Erased: discover a vote to dismantle the
+Engine.
+
+Build / encounter: Civic defense and archive puzzle.
+
+Completion & reveal: An earlier attempt nearly succeeded.
+
+Exit: complete Q_A05_06 → ACT05_Z07.
+
+ACT05_Z07 | The Orchard of Lost Children
+
+BETWEEN • Q_A05_07 • Floating houses, small lanterns, gentle grass
+
+Campaign quest: Lys's Lantern: help Lys locate a family ledger.
+
+Build / encounter: Witness-centered quest, no child combat.
+
+Completion & reveal: Memories can anchor families without coercion.
+
+Exit: complete Q_A05_07 → ACT05_Z08.
+
+ACT05_Z08 | Court of Borrowed Faces
+
+BETWEEN • Q_A05_08 • Mirrored galleries and masks
+
+Campaign quest: The Face of a Stranger: expose Court agents replacing
+living people.
+
+Build / encounter: Identity investigation, mirror duel.
+
+Completion & reveal: Replacement is not resurrection.
+
+Exit: complete Q_A05_08 → ACT05_Z09.
+
+ACT05_Z09 | The Choir's Deep
+
+BETWEEN • Q_A05_09 • Violet abyss and resonant platforms
+
+Campaign quest: The Silence Beneath Song: retrieve a captive echo from
+Neral.
+
+Build / encounter: Sound arena, Choir lieutenant.
+
+Completion & reveal: The Choir seeks to merge all selves into one.
+
+Exit: complete Q_A05_09 → ACT05_Z10.
+
+ACT05_Z10 | Unbound Causeway
+
+BETWEEN • Q_A05_10 • Floating bridge fragments from many cultures
+
+Campaign quest: Roads of the Forgotten: stabilize crossings for
+refugees.
+
+Build / encounter: Escort and anchor puzzle.
+
+Completion & reveal: Coexistence requires independent anchors.
+
+Exit: complete Q_A05_10 → ACT05_Z11.
+
+ACT 05 / ZONE REGISTER 11–15
+
+Zones 11–15 | The Unwritten Kingdoms
+
+ACT05_Z11 | Crownsfall of Three Ages
+
+ECHO • Q_A05_11 • Same plaza in three architectural versions
+
+Campaign quest: The City That Was Never Built: overlay inscriptions with
+Mira.
+
+Build / encounter: Lorecasting and paired environmental puzzles.
+
+Completion & reveal: Crownsfall is assembled from discarded epochs.
+
+Exit: complete Q_A05_11 → ACT05_Z12.
+
+ACT05_Z12 | The Regent's Archive
+
+PRESENT • Q_A05_12 • Royal library, concealed foundation records
+
+Campaign quest: A Crown of Borrowed Stone: confront Maera with the
+truth.
+
+Build / encounter: Court dialogue and attempted coup defense.
+
+Completion & reveal: The current kingdom knowingly buried evidence, not
+the whole truth.
+
+Exit: complete Q_A05_12 → ACT05_Z13.
+
+ACT05_Z13 | Hearth of Names
+
+BETWEEN • Q_A05_13 • Keeper sanctuary, warm lights among ruins
+
+Campaign quest: The Covenant of Names: recruit witnesses from every
+erased epoch.
+
+Build / encounter: Rescue/defense; unlock witness ledger review.
+
+Completion & reveal: The reconciliation path becomes actionable.
+
+Exit: complete Q_A05_13 → ACT05_Z14.
+
+ACT05_Z14 | Riven Royal Court
+
+BETWEEN • Q_A05_14 • Palace breaking into present streets
+
+Campaign quest: The Right to Return: confront Ysara's restoration
+assault.
+
+Build / encounter: Boss can end with negotiated ceasefire if evidence
+gathered; otherwise retreat.
+
+Completion & reveal: Court remains politically active but stops forced
+replacement locally.
+
+Exit: complete Q_A05_14 → ACT05_Z15.
+
+ACT05_Z15 | The Anchor of Kinship
+
+PRESENT/BETWEEN • Q_A05_15 • Merged refuge, rotating anchor ring
+
+Campaign quest: A Place for Both: stabilize a small coexistence
+experiment with Rowan and a consenting displaced family.
+
+Build / encounter: Multi-stage defense; unlock independent-anchor
+crafting.
+
+Completion & reveal: Rowan retains his identity; independent parallel
+lives can be supported without erasure.
+
+Exit: complete Q_A05_15 → ACT06_Z01.
+
+ACT 06 / CAMPAIGN DOSSIER
+
+War Against the Hour
+
+Levels 51–60 • The present world in collapse
+
+Dramatic question How do you save the current world without repeating
+the crimes of the old one?
+
+Story arc A regional emergency begins. The player returns to Crownsfall
+and protects familiar NPCs rather than chasing abstract lore. Each
+regional campaign zone restores a regulator function and delivers
+coalition assistance. The Veyr release hidden records; Meridian admits
+that withholding a warning contributed to the crisis. Witnesses from
+past and present are connected to safe anchors. The player disrupts
+Choir conversion and can recover Neral’s individual name. At Confluence
+Camp, the coalition reviews all three possible end states and the
+requirements of reconciliation. The Sevenfold Gate accepts the seven
+restored functions and the player enters the Engine. The Continuance
+speaks directly, offers a reset and demonstrates the cost of an
+uncontrolled collapse.
+
+Character work Mira coordinates ledger, Garran evacuation, Maera civic
+authority, Rowan scouts, Iri phase routes, Meridian technical control,
+Tamsin witness consent. Ysara’s support depends on Act V outcomes. Neral
+attempts final conversion. Regional NPCs established earlier return for
+rescue or consequence scenes.
+
+Climax and encounter Continuance outer avatar at Threshold of
+Continuance. Uses seven short regulator-linked mechanics, with safe
+checkpoints and telegraphed phase changes. Distinct from the final core
+boss; it offers an argument rather than a definitive victory.
+
+Environment progression Current landscapes in crisis: siege shelters,
+fractured forest, flooded mills, storm harbor, frost, crystal caldera.
+Keep routes recognizable. Confluence camp must visually communicate a
+coalition of independent cultures, not a single merged army.
+
+Progression contract Mandatory: reg_growth, reg_flow, reg_passage,
+reg_balance, reg_form, reg_boundary, reg_continuity, coalition_ready,
+gate_open. Optional: seven regional witness consents, neral_name,
+ceasefire support. No real-time deadline or failure for leaving to do
+side quests.
+
+Signature cinematic At Confluence, each regional leader presents a
+rescued record or regulator. Meridian steps aside as others participate
+in the calibration. A silent white horizon opens behind seven moving
+anchor rings.
+
+Act-end revelation Preserving people, not a chosen timeline, becomes the
+only defensible objective.
+
+ACT 06 / ZONE REGISTER 01–05
+
+Zones 01–05 | War Against the Hour
+
+ACT06_Z01 | Crownsfall Under Siege
+
+PRESENT • Q_A06_01 • Barricades, darkened fountains, civic shelters
+
+Campaign quest: A City Worth Keeping: defend the market and evacuate
+civilians.
+
+Build / encounter: Multi-front siege, rescue flags.
+
+Completion & reveal: Present-day people are the stakes, not scenery.
+
+Exit: complete Q_A06_01 → ACT06_Z02.
+
+ACT06_Z02 | Greenwood Fracture
+
+PRESENT/ECHO • Q_A06_02 • Forest split across seasons and ages
+
+Campaign quest: The Roots of Tomorrow: restore the western regulator.
+
+Build / encounter: Paired terrain traversal and guardian.
+
+Completion & reveal: Regulator of Growth secured.
+
+Exit: complete Q_A06_02 → ACT06_Z03.
+
+ACT06_Z03 | Bellwater Inundation
+
+PRESENT • Q_A06_03 • Flooded mills, refugee rafts
+
+Campaign quest: Against the Returning Tide: rescue millworkers and tune
+water conduit.
+
+Build / encounter: Flood defense and environmental boss.
+
+Completion & reveal: Regulator of Flow secured.
+
+Exit: complete Q_A06_03 → ACT06_Z04.
+
+ACT06_Z04 | Greywake Armada
+
+PRESENT • Q_A06_04 • Wrecked harbor, ships from other epochs
+
+Campaign quest: The Fleet of No Flag: unite sailors and Court refugees.
+
+Build / encounter: Ship-to-shore combat, beacon escort.
+
+Completion & reveal: Regulator of Passage secured.
+
+Exit: complete Q_A06_04 → ACT06_Z05.
+
+ACT06_Z05 | Blackpine Winter
+
+PRESENT/ECHO • Q_A06_05 • Summer camp surrounded by lethal frost
+
+Campaign quest: The Weight of Winter: recover displaced villagers and
+repair a thermal node.
+
+Build / encounter: Survival-themed arena, elemental boss.
+
+Completion & reveal: Regulator of Balance secured.
+
+Exit: complete Q_A06_05 → ACT06_Z06.
+
+ACT 06 / ZONE REGISTER 06–10
+
+Zones 06–10 | War Against the Hour
+
+ACT06_Z06 | Riftglass Caldera
+
+PRESENT • Q_A06_06 • Fractured quarry, molten violet crystals
+
+Campaign quest: The Fire Below Time: stop an overload before it spreads.
+
+Build / encounter: Conduit timing and construct boss.
+
+Completion & reveal: Regulator of Form secured.
+
+Exit: complete Q_A06_06 → ACT06_Z07.
+
+ACT06_Z07 | Veyr Sanctuary
+
+PRESENT • Q_A06_07 • Phase shelters under shifting stars
+
+Campaign quest: The Keepers of the Clock: reconcile Veyr factions over
+emergency action.
+
+Build / encounter: Diplomatic hub, protect observatory.
+
+Completion & reveal: Veyr agree to release suppressed records.
+
+Exit: complete Q_A06_07 → ACT06_Z08.
+
+ACT06_Z08 | Archive of Forbidden Futures
+
+BETWEEN • Q_A06_08 • Unrealized histories, unfinished buildings
+
+Campaign quest: A Future Never Born: recover testimony about failed
+resets.
+
+Build / encounter: Unstable encounter variants, lore challenges.
+
+Completion & reveal: The Engine also erased possible futures during
+branching.
+
+Exit: complete Q_A06_08 → ACT06_Z09.
+
+ACT06_Z09 | The Sentinel's Wall
+
+PRESENT • Q_A06_09 • Continental fortification, refugee roads
+
+Campaign quest: Hold the Line: defend Epoch Sentinels during evacuation.
+
+Build / encounter: Wave defense with safe recovery checkpoints.
+
+Completion & reveal: Regulator of Boundary secured.
+
+Exit: complete Q_A06_09 → ACT06_Z10.
+
+ACT06_Z10 | Meridian's Descent
+
+PRESENT • Q_A06_10 • Subsurface silver machinery, dim lamps
+
+Campaign quest: The Cost of Knowing: learn Meridian helped conceal an
+earlier warning.
+
+Build / encounter: Companion dialogue and protection encounter.
+
+Completion & reveal: Meridian accepts responsibility, not immunity.
+
+Exit: complete Q_A06_10 → ACT06_Z11.
+
+ACT 06 / ZONE REGISTER 11–15
+
+Zones 11–15 | War Against the Hour
+
+ACT06_Z11 | The Last Timekeeper
+
+BETWEEN • Q_A06_11 • Clock sanctuary fractured into seconds
+
+Campaign quest: A Measure of Mercy: retrieve the final regulator index.
+
+Build / encounter: Timekeeper duel and timing puzzle.
+
+Completion & reveal: Regulator of Continuity secured.
+
+Exit: complete Q_A06_11 → ACT06_Z12.
+
+ACT06_Z12 | The Choir's Procession
+
+PRESENT/BETWEEN • Q_A06_12 • Violet march across fields and ruined towns
+
+Campaign quest: No More Separate Names: break the Choir's forced
+conversions.
+
+Build / encounter: Cantor assault, free captives.
+
+Completion & reveal: Neral's true identity can be recovered.
+
+Exit: complete Q_A06_12 → ACT06_Z13.
+
+ACT06_Z13 | Confluence Camp
+
+PRESENT • Q_A06_13 • Allied encampment, banners of many epochs
+
+Campaign quest: The Council of Tomorrow: choose coalition priorities and
+audit witness evidence.
+
+Build / encounter: Noncombat strategic choices; optional quests remain
+accessible.
+
+Completion & reveal: Final paths explained before commitment.
+
+Exit: complete Q_A06_13 → ACT06_Z14.
+
+ACT06_Z14 | Sevenfold Gate
+
+BETWEEN • Q_A06_14 • Seven rotating anchor bridges
+
+Campaign quest: The Seven Measures: deploy regulators to open the route
+to the Engine.
+
+Build / encounter: Seven short encounters with distinct mechanics.
+
+Completion & reveal: No solution works without all seven functions.
+
+Exit: complete Q_A06_14 → ACT06_Z15.
+
+ACT06_Z15 | The Threshold of Continuance
+
+BETWEEN • Q_A06_15 • A bronze horizon beneath a white sun
+
+Campaign quest: The Voice That Cannot Stop: face the Continuance's outer
+avatar.
+
+Build / encounter: Act boss; countdown changes world state, not
+real-time access.
+
+Completion & reveal: The Engine offers a reset and exposes Oris's
+surviving directive.
+
+Exit: complete Q_A06_15 → ACT07_Z01.
+
+ACT 07 / CAMPAIGN DOSSIER
+
+Age of the Lost
+
+Levels 61–70 • The Chronicle Engine and final present
+
+Dramatic question Can the world have a future that is not purchased by
+erasing someone else?
+
+Story arc The player enters the central record architecture and
+reconstructs the original distributed safety design. Sera’s final record
+establishes that even the best outcome cannot undo ordinary death.
+Oris’s preserved speech reveals the Continuance’s policy. Court and
+Choir disputes reach their final encounters; players may obtain
+voluntary surrender or defeat the leaders. Caldrin’s vigil provides the
+human conclusion to Act I, with surviving identities reunited only where
+evidence permits. Seven regulator cells unlock the Heart. The player
+protects independent refuge anchors, then defeats the Continuance’s
+avatar and revokes its unilateral reset authority. The last decision is
+explicit and irreversible for that campaign state. Return to Crownsfall
+to see practical consequences, witness memorials, surviving allies and
+the opening of ending-specific endgame routes.
+
+Character work All principal arcs converge: Caldrin and Lys, Mira and
+Maera, Iri and Meridian, Ysara and Neral, Tamsin and the Keepers; Sera
+and Elyndor appear as records, Oris as recorded historical testimony. No
+surprise new villain replacing the established one.
+
+Climax and encounter The Continuance at Chronicle Heart: phase 1
+“Preserve” cycles the room through recorded states; phase 2 “Erase”
+attacks witness nodes while telegraphed anchor defenses protect them;
+phase 3 “Overwrite” imposes a mirrored version of the player’s combat
+profile, defeated by using the seven regulators. All classes have
+equivalent interaction affordances. Then a calm choice chamber, not a
+twitch-input ending.
+
+Environment progression Vast record halls, intimate memory chambers,
+civil-war remnants, bronze-white Engine core and quiet shore of refugee
+lights. The finale moves from monumental machinery to a human-scale
+memorial; avoid overusing floating platforms and particle effects.
+
+Progression contract Mandatory: independent_architecture, mercy_record,
+court_resolved, choir_resolved, seven_chambers, continuance_revoked,
+ending_committed. Reconciliation additionally requires consent and
+stable refuge tests. Endgame route reflects the chosen outcome; no
+forced canonical reset on replay.
+
+Signature cinematic The final arena quiets. The player can hear a
+familiar bell without a fracture beneath it. At the memorial, Caldrin’s
+ledger is placed among many names, and citizens of the chosen future
+continue their daily lives.
+
+Act-end revelation The age is named for the people recovered, not for
+the world destroyed.
+
+ACT 07 / ZONE REGISTER 01–05
+
+Zones 01–05 | Age of the Lost
+
+ACT07_Z01 | The First Index
+
+BETWEEN • Q_A07_01 • Vast shelves of suspended names
+
+Campaign quest: The Record of All Things: enter the Engine and verify
+the witness ledger.
+
+Build / encounter: Archive defense and identity test.
+
+Completion & reveal: Every person has an independent record.
+
+Exit: complete Q_A07_01 → ACT07_Z02.
+
+ACT07_Z02 | Vault of Continuity
+
+BETWEEN • Q_A07_02 • Interlocking bronze rings and white light
+
+Campaign quest: The Choice of the First Makers: reconstruct the original
+safety architecture.
+
+Build / encounter: Puzzle and sentinel combat.
+
+Completion & reveal: Original design permitted distributed anchoring.
+
+Exit: complete Q_A07_02 → ACT07_Z03.
+
+ACT07_Z03 | The Mercy Chamber
+
+ECHO • Q_A07_03 • Quiet clinical halls repeating a last conversation
+
+Campaign quest: What Preservation Cannot Do: witness Sera's final
+sacrifice.
+
+Build / encounter: Memory defense, optional farewell dialogue.
+
+Completion & reveal: Restoration cannot return ordinary deaths or undo
+every loss.
+
+Exit: complete Q_A07_03 → ACT07_Z04.
+
+ACT07_Z04 | The King's Unmaking
+
+ECHO • Q_A07_04 • Oris's chambers and a crumbling capital
+
+Campaign quest: A Promise to the People: confront the origin of Oris's
+directive.
+
+Build / encounter: Memory boss and evidence retrieval.
+
+Completion & reveal: The Continuance inherited a fear of extinction, not
+a human soul.
+
+Exit: complete Q_A07_04 → ACT07_Z05.
+
+ACT07_Z05 | The Remnant Siege
+
+BETWEEN • Q_A07_05 • Royal forces at the central gate
+
+Campaign quest: A Kingdom Returned: settle Ysara's final claim.
+
+Build / encounter: Ceasefire route if negotiated; otherwise boss and
+surrender.
+
+Completion & reveal: Forced replacement rejected or exposed.
+
+Exit: complete Q_A07_05 → ACT07_Z06.
+
+ACT 07 / ZONE REGISTER 06–10
+
+Zones 06–10 | Age of the Lost
+
+ACT07_Z06 | The Choir's Last Hymn
+
+BETWEEN • Q_A07_06 • Cathedral of vibrating black glass
+
+Campaign quest: The Last Voice: defeat Neral's fusion ritual.
+
+Build / encounter: Boss with silence and identity mechanics.
+
+Completion & reveal: Recovered name enables individual surrender; no
+compulsory redemption.
+
+Exit: complete Q_A07_06 → ACT07_Z07.
+
+ACT07_Z07 | Caldrin's Vigil
+
+BETWEEN • Q_A07_07 • The cathedral threshold from Act 1, restored
+
+Campaign quest: One More Watch: reunite Caldrin's record with Lys and
+his family's testimony.
+
+Build / encounter: Quiet reunion and defensive encounter.
+
+Completion & reveal: Caldrin voluntarily becomes a witness, not fuel.
+
+Exit: complete Q_A07_07 → ACT07_Z08.
+
+ACT07_Z08 | The Seven Chambers
+
+BETWEEN • Q_A07_08 • Seven themed regulator cells
+
+Campaign quest: The Work of Many Ages: align the recovered regulators.
+
+Build / encounter: Sequential puzzles and guardian encounters.
+
+Completion & reveal: Each act's knowledge becomes a mechanical solution.
+
+Exit: complete Q_A07_08 → ACT07_Z09.
+
+ACT07_Z09 | The Crown of Empty Histories
+
+BETWEEN • Q_A07_09 • Fractured models of entire kingdoms
+
+Campaign quest: No World Above Another: prevent the Engine ranking
+epochs by value.
+
+Build / encounter: Combat against mirrored champions.
+
+Completion & reveal: All surviving records receive equal status.
+
+Exit: complete Q_A07_09 → ACT07_Z10.
+
+ACT07_Z10 | The Unwritten Shore
+
+BETWEEN • Q_A07_10 • Quiet sea of lights, refugee bridges
+
+Campaign quest: A Shore for the Lost: protect the first independent
+refuge anchors.
+
+Build / encounter: Large escort and defense; reconciliation readiness
+check.
+
+Completion & reveal: The Between can persist without being a prison.
+
+Exit: complete Q_A07_10 → ACT07_Z11.
+
+ACT 07 / ZONE REGISTER 11–15
+
+Zones 11–15 | Age of the Lost
+
+ACT07_Z11 | Chronicle Heart
+
+BETWEEN • Q_A07_11 • Enormous rotating core, reality seams
+
+Campaign quest: The End of the Cycle: confront the Continuance.
+
+Build / encounter: Three-phase final boss with reset, erase, overwrite
+mechanics.
+
+Completion & reveal: Emergency directive loses authority.
+
+Exit: complete Q_A07_11 → ACT07_Z12.
+
+ACT07_Z12 | The Last Decision
+
+BETWEEN • Q_A07_12 • Still chamber, three control paths
+
+Campaign quest: Choose Tomorrow: choose reset, severance, or distributed
+reconciliation.
+
+Build / encounter: Explicit ending UI; no accidental choice.
+
+Completion & reveal: Campaign ending committed once confirmed.
+
+Exit: complete Q_A07_12 → ACT07_Z13.
+
+ACT07_Z13 | Crownsfall Reborn
+
+PRESENT • Q_A07_13 • City altered by chosen outcome
+
+Campaign quest: After the Bell: return to Mira, Maera, and surviving
+allies.
+
+Build / encounter: Epilogue quests; visible NPC and architecture
+changes.
+
+Completion & reveal: Consequences shown in human terms.
+
+Exit: complete Q_A07_13 → ACT07_Z14.
+
+ACT07_Z14 | The Open Meridian
+
+PRESENT/BETWEEN • Q_A07_14 • New stabilized frontier crossing
+
+Campaign quest: The Roads Ahead: survey the new state of the world.
+
+Build / encounter: Endgame tutorial, bounded historical expeditions.
+
+Completion & reveal: Future play does not invalidate the chosen ending.
+
+Exit: complete Q_A07_14 → ACT07_Z15.
+
+ACT07_Z15 | The Lantern Beyond
+
+PRESENT/BETWEEN • Q_A07_15 • Memorial garden and distant horizon
+
+Campaign quest: Age of the Lost: place Caldrin's ledger in a public
+memorial.
+
+Build / encounter: Final dialogue and optional credits walk.
+
+Completion & reveal: The final image is a remembered name, not a reset.
+
+Exit: complete Q_A07_15 → Ending-specific endgame.
+
+18 / SYSTEMS AND QUESTS
+
+Campaign state and quest architecture
+
+Mandatory quest structure Each zone in the register has one named
+campaign quest and one required state change. The zone may contain
+multiple objectives, a local side quest and an optional elite/dungeon.
+Recommended main quest pattern: entry briefing or exploration →
+observable problem → combat/traversal/investigation → a deliberate
+interaction or witness moment → state update and explicit route to next
+zone. Never gate required story behind random drops, optional
+reputation, rare dungeon spawn, class choice or an obscure dialogue
+branch. Optional content can reveal more context or unlock
+reconciliation, but prerequisites are shown clearly.
+
+Quest identifiers and data Use persistent IDs ACT01_Z01 … ACT07_Z15 and
+campaign quest IDs Q_A01_01 … Q_A07_15. Store localization keys,
+prerequisite quest/state IDs, region/phase, entry waypoint, objective
+list, NPC references, encounter IDs, completion condition, reward table,
+next zone, world-state changes and optional consent or evidence flags.
+Save completion idempotently; repeat visits should not replay rewards or
+reset world state. For any branching dialogue, maintain a mandatory
+fallback delivery for critical evidence.
+
+Temporal session contract At entry record anchor_id,
+historical_epoch_id, mode (present/echo/between/hybrid), allowed
+interaction flags, witness slots and safe return waypoint. Exits are
+available at stable anchors and after major beats; disconnect/reload
+resumes at a safe checkpoint. Temporal state must not overwrite
+current-world navmesh, collision, inventory or quest saves. When
+re-entering, use the latest completed state or an explicit replay
+instance. Replay cannot alter the chosen ending or duplicate unique
+rewards.
+
+Lorecasting progression Act I: inspect one relic, recover one name,
+unlock practice. II: stabilize short phase crossings and read
+conflicting records. III: access extended historic pockets and unlock
+technique/spell variants. IV: recover witnesses during unstable disaster
+sequences. V: compare epoch overlays and create consent-based refuge
+anchors. VI: tune regulator functions in the current world. VII: apply
+distributed architecture to the final choice. Use clear interaction
+radius, channels, animation, captions and keyboard/controller
+affordances. No class-specific gate.
+
+Evidence versus reputation Evidence flags are objective story facts
+obtained from authenticated sources. Consent flags record an NPC’s
+voluntary agreement, never a purchased currency. Reputation is faction
+standing and can affect dialogue, prices or optional aid but never
+replaces a person’s consent. The quest log must distinguish mandatory
+steps, optional testimony and reconciliation conditions. Failed optional
+encounters can be retried through recorded safe access before final
+commitment.
+
+Reward and level pacing Proposed bands 1–10, 11–20, 21–30, 31–40, 41–50,
+51–60, 61–70. Level 20 specialization and level 40 heroic identity align
+with existing class direction; do not lock story to a particular
+specialization. Five active skills, talents, resource and gear identity
+remain the combat design; Lorecasting is separate
+exploration/progression. Award experience for investigation, rescue and
+dialogue, not only kills. Balance for meaningful progress even if
+optional zones are skipped.
+
+19 / ENDINGS
+
+Choice, conditions and consequences
+
+Common mandatory outcome Every ending follows the defeat of the
+Continuance’s unilateral authority. The final boss is not the ending
+selection. In The Last Decision, the player receives a plain explanation
+of each outcome, irreversible campaign confirmation, accessible recap of
+requirements, and a chance to return to available witness quests before
+committing. Save a pre-choice checkpoint for QA/replay, but a campaign’s
+selected state remains authoritative. No morality meter decides
+automatically.
+
+Ending A — Eternal Cycle The player reauthorizes a constrained successor
+directive to reset the endangered world, accepting that it will
+sacrifice incompatible identities to create engineered stability.
+Present survivors’ records are reselected; many current and Unwritten
+identities remain displaced. Immediate collapse stops, but the
+underlying moral and structural cycle continues. Crownsfall appears
+renewed with unsettling missing names and changed relationships.
+Endgame: limited historical anomaly patrols under a monitored successor
+regime. Tone: relief compromised by grief, not a secret victory. Do not
+make the player unknowingly select this by missing optional objectives.
+
+Ending B — Broken Timeline The player severs the Engine’s central
+authority and refuses all future resets. Emergency stabilization of
+current structures prevents total annihilation, but dependent Unwritten
+refuges fragment and some surviving identities cannot be reached. The
+present remains free but politically and materially scarred. Crownsfall
+repairs its infrastructure and creates memorials for lost access.
+Endgame: frontier recovery, independent local repairs and bounded
+surviving scars. Tone: liberation with genuine cost; no claim that
+destruction kills every Unwritten person or solves all instability.
+
+Ending C — Age of the Lost (preferred earned resolution) Use the
+original safety architecture, all seven regulator functions and
+voluntary witness consent to replace the single timeline policy with
+distributed independent anchors. Maintain the present world, support
+viable Unwritten refuges, and open carefully regulated crossings. No
+forced replacement or fusion. Some identities cannot return; Sera
+remains dead, and Elara’s fate depends on surviving coherent evidence.
+Caldrin and Lys can reunite if their records survive. Crownsfall becomes
+a public steward of its composite history. Endgame: expand safe refuge
+capacity, explore bounded epoch pockets and address political disputes.
+Tone: earned hope, continuing work rather than perfect restoration.
+
+Reconciliation conditions (transparent) All seven mandatory regulators
+plus the independent anchor proof and original failsafe. Optional
+requirements: sanctuary ledger with Caldrin’s name and family testimony;
+Lys’s consent record; Keeper Covenant; at least one authenticated
+consenting witness group from each of the four named discarded epochs;
+seven regional anchor stabilization/consent objectives; noncoercive
+Court settlement or protected Court civilians; Choir conversion stopped
+and captives freed; final refuge stability trial. Defeating Ysara or
+Neral does not inherently block reconciliation if civilians’ consent and
+safety remain secured. Show missing items before the last decision and
+allow retry; never require a random rare drop.
+
+Ending QA Test all three endings from clean campaign flags and from
+replay. Verify epilogue NPCs, hub appearance, quest availability,
+crossing restrictions, memorial entries, endgame unlocks and save
+reload. No dialogue should describe a reset as reconciliation or a
+severed refuge as open. An ending may change which named NPCs are
+present, but always provides a functional hub contact and progression
+path.
+
+20 / PRODUCTION
+
+World-building implementation and handoff
+
+Level design deliverables For every zone ID produce a top-down route
+map, entry/exit anchors, hub/waypoint plan, blockout with player scale
+and collision/navigation tests, encounter rhythm, quest trigger volumes,
+optional route and environmental storytelling props. Define one hero
+vista and one readable traversal landmark. Temporal variants should be
+built from stable base geometry with explicit state differences;
+current-world collision remains authoritative. Preserve the approved
+Crownsfall camera and HUD rather than replacing them with a disconnected
+concept mockup.
+
+Writing deliverables For each main quest, expand the registry into a
+quest sheet: logline, NPC start/end, objective verbs, critical evidence,
+failure/retry, required and optional dialogue, barks, codex entry,
+localization keys, post-quest state and dependencies. Add one recurring
+NPC payoff per region. Give major reveals at least two foreshadowing
+clues before confirmation. Record which characters know each secret at
+each act; do not leak writer-only lore in early quest dialogue.
+
+Environment and concept team Start with a regional style sheet,
+materials, scale reference, prop families, lighting palette,
+architecture silhouette and phase variant sheet. Crownsfall and the
+Golden Age share recognizable motifs, not identical assets. Build
+modular kits and controlled hero spaces first. Higgsfield or other
+concept generation can be used as reference, but generated art is not
+automatically canon or production geometry. Do not spend paid credits
+without explicit approval; retain original assets and record provenance.
+
+Combat and cinematics team Build repeatable combat families and unique
+bosses around readable narrative mechanics. Each act climax needs a boss
+or major encounter with a distinct story-driven objective. Show
+emotional scenes in playable or in-engine vignettes where possible;
+never lock the player out of controls for routine exposition. For
+cutscenes use skip, replay, subtitle and accessible audio behavior;
+preserve state if skipped. Cinematic shots should be accompanied by
+engine render and movement validation, not just concept images.
+
+Engineering and content integration Use data-driven quest and zone
+registries, separate phase state from physical traversal, stable
+NPC/witness IDs, and explicit progression flags. Unit tests should cover
+quest transitions, save compatibility, replay idempotence, ending
+prerequisites and no missing references. Engine tests should cover nav,
+collisions, interaction radius, transition loading, combat input, camera
+occlusion, IK, and performance. Maintain draft branches, immutable
+backups and a separate staging scene; never overwrite a newer working
+local build.
+
+Proposed milestone order Vertical slice: Act I Crownsfall → Silverroot →
+cathedral → First Anchor. Then a representative Act II scar, Act III
+inhabited Golden Age pocket, Act IV fixed disaster/witness extraction,
+Act V coexistence experiment, Act VI regulator defense, Act VII ending
+state. Validate mechanics and art targets before mass-producing 105
+zones. Deliver complete act blockouts, quest graphs and narrative QA in
+parallel; do not label an act finished merely because its zone names
+exist.
+
+21 / QA AND CONTINUITY
+
+Narrative acceptance checklist
+
+Canon consistency Every zone belongs to a specific act and mode. Each
+temporal instance declares whether its inhabitants are recorded echoes,
+coherent Unwritten persons or living present citizens. The Sundering is
+fixed; no quest changes the original historical outcome. Crownsfall’s
+composite origin does not invalidate present citizens. Violet is not a
+moral indicator. No quest implies Lorecasting can restore ordinary death
+or create consent. The Engine is a policy-driven system, not Oris
+secretly immortal.
+
+Reveal sequence Act I: a monster was a person; city layers. Act II:
+scars form a network. Act III: original preservation purpose and
+political capture. Act IV: deliberate reset and Unwritten origin. Act V:
+repeated erasures and composite Crownsfall; coexistence proof. Act VI:
+current catastrophe, seven functions, Continuance’s policy. Act VII:
+distributed future and explicit ending. Critical clues never appear only
+in optional content, and late secrets do not appear in early loading
+screen tips.
+
+Character checks Mira and Elara Vael are different people. Caldrin’s
+identity is humanized after combat. Lys is a child in historic scenes
+and a young adult in the Between; no child combat. Sera’s ordinary death
+is not undone. Oris’s record is not a living entity inside the Engine.
+Ysara and Neral have distinct motives; faction membership does not equal
+guilt. Veyr suborders have different roles. Player name is
+user-selected, not Ixll.
+
+Mechanical checks 105 unique campaign IDs, 15 per act. Each zone has an
+explicit mandatory objective, exit condition and story payoff. All seven
+regulator flags are available in Act VI and checked at the Sevenfold
+Gate. Optional reconciliation objectives can be revisited before ending
+confirmation. Temporal sessions and replays cannot duplicate quest
+rewards or silently change the ending. Waypoints and hubs have viable
+routes after world-state changes. Every mandatory boss is class-agnostic
+and accessible.
+
+Art and audio checks Each act has a readable visual and sound identity,
+with current-age/Gilded Age/Between distinction. Reuse landmarks with
+meaningful changes; no repetitive purple palette or empty blockout
+treated as final. Characters retain realistic anime proportions, no
+furry races or tails, authentic animation and articulated movement.
+Environment geometry respects navigation and camera occlusion.
+Human-scale scenes support the big mythological reveals.
+
+Approval and change control This is a proposed full narrative baseline
+for creative review. Lock previously approved pillars, not every newly
+authored proper noun. Track changes by zone/quest/character ID; record
+who approved, the version, dependent scenes, and whether a change
+affects dialogue, art, audio, quest state or save migration. Keep a
+versioned canon ledger and avoid unreviewed retcons. No production
+implementation is represented by the existence of this document.
+
+22 / SIGNATURE SCENE SCRIPT
+
+The man behind the monster
+
+Location and staging — ACT01_Z13 The Cathedral of the Nameless is a
+buried royal sanctuary, not a generic boss cave. Enter along a
+processional aisle; broken blue-gold stained glass forms pools of violet
+light on the floor. A shield silhouette blocks the far door. The chamber
+contains evacuation lists and worn family objects that are initially
+illegible. A distant bell motif from Crownsfall returns at half speed.
+The player’s first objective is to reach the doorway and survive.
+
+Encounter phase 1: the guard Caldrin raises his shield, says fragmented
+duty phrases and attacks only when the player approaches the sanctuary.
+His defense is disciplined rather than animalistic: readable shield
+arcs, measured thrusts, planted feet and clear recovery windows. Violet
+fractures spread across his armor as pressure rises. The player reduces
+his combat stability, not a literal life meter for a dead man. At defeat
+he drops to one knee and his weapon falls. Music cuts before victory
+rewards.
+
+Encounter phase 2: the account Interaction prompt: “Lorecast the
+shield.” Transition to warm light; no camera jerk. The same shield rests
+beside a kitchen table. Elara repairs its strap while Caldrin prepares
+for duty. Lys places a folded paper crown on his helmet. The memory cuts
+to Caldrin sheltering civilians as the cathedral doors close, then to
+the silence after the reset. Preserve the contrast between domestic
+scale and ruined architecture. The memory is a record, not a
+resurrection.
+
+Sample dialogue — final wording subject to voice and localization
+Caldrin (fragmented): “Stay behind me. The doors must hold.” | Elara
+(memory): “Come home before the bell.” | Lys (memory): “You promised.” |
+Caldrin (after Lorecasting): “I remember the door. I remember the bell.
+But I cannot remember who was waiting.” | Player options: “Your name is
+Caldrin Vael.” / “I saw your family.” / “What were you protecting?” |
+Mira (on return): “Then he was never the thing we thought he was.”
+
+Mandatory result All dialogue paths register caldrin_name and the
+shield’s provenance. A short optional conversation may add family
+testimony, which is recoverable later. Caldrin’s coherence fades rather
+than conclusively dying; his later presence follows from the surviving
+record. Grant quest reward only after the memory concludes. If skipped,
+preserve every mandatory state and provide a codex summary. Unlock the
+First Anchor door in ACT01_Z14; do not reveal the whole Engine or
+Crownsfall composite origin here.
+
+23 / SIGNATURE SCENE SCRIPT
+
+The Sundering and the last decision
+
+The final vote — ACT04_Z08–Z10 Stage a three-way dispute in the
+collapsing Senate: Sera presents a still-viable evacuation and isolated
+shutdown, Elyndor presents the erased-name evidence, Oris prioritizes
+preservation of the capital’s continuity. The player may offer evidence
+but cannot revise a fixed event. In the access ring Sera attempts abort
+while the player keeps the route open long enough to extract her record.
+The reset activates after the historical choice regardless of combat
+performance; the player can still save coherent witnesses.
+
+Sample dialogue Sera: “We can save people without saving every street.”
+| Elyndor: “The missing are not gone. We have made a place for them
+outside our history.” | Oris: “A civilization cannot survive as a
+collection of exceptions.” | Sera: “Then preserve the exceptions.” |
+Oris: “Activate continuity.”
+
+The First Sundering — cinematic direction Return to recognizable streets
+established in Act III. Bells sound, lamps fail, evacuation signs
+flicker. Show people reaching for one another rather than graphic
+destruction. A seam crosses the skyline; buildings become absent, not
+merely rubble. Transition to a quiet gray-blue dawn and then the
+Between, where displaced voices repeat names. The loss is the
+disappearance of history from the world, not conventional destruction
+alone. Maintain player agency during rescue and distinguish fixed
+cinematic events from retriable gameplay.
+
+The final confrontation — ACT07_Z11–Z12 The Continuance must show real
+consequences of each option rather than falsely presenting only one
+sensible answer. At the end of the battle, the room remains still and
+the emergency directive loses its authority. The three paths light only
+after the player receives the explanation. Reconciliation is unavailable
+only if named requirements remain incomplete, and the player may return
+to finish them. No time pressure during choice.
+
+Sample final dialogue Continuance: “One history must remain. I have
+calculated the losses.” | Player response options: “You counted records,
+not people.” / “No history has the right to erase another.” / “Show me
+another way.” | Tamsin: “A name is not a claim to someone else’s home.”
+| Mira: “We can remember what was lost without becoming it.” | Caldrin
+(if coherent): “I have stood at this door long enough. Let someone open
+it.”
+
+Closing image Whatever ending is chosen, the final memorial is
+human-scale. The bell rings in Crownsfall, then the player sees a
+changed set of names, architecture and people reflecting their choice.
+The reconciliation memorial names the recovered and acknowledges those
+still unreachable; the severance memorial honors those left beyond the
+crossings; the reset memorial contains unsettling omissions. Credits
+follow after player-controlled movement or an optional skip.
+
+24 / ENCOUNTER DESIGN
+
+Seven regulators and optional exploration
+
+Growth — ACT06_Z02 Controls continuity of living systems and seasonal
+boundaries. Greenwood Fracture uses paired-season routes and a root
+guardian. Player stabilizes three marked growth nodes; no destruction of
+healthy forest required. Flag reg_growth.
+
+Flow — ACT06_Z03 Controls water and resource circulation through
+anchors. Bellwater’s inverted flood is a valve routing and evacuation
+encounter. Flag reg_flow.
+
+Passage — ACT06_Z04 Controls stable movement of people and goods between
+locations. Greywake uses beacon timing and ship-to-shore defense;
+transport never silently replaces a living identity. Flag reg_passage.
+
+Balance — ACT06_Z05 Regulates energy and environmental extremes.
+Blackpine contrasts dangerous thermal pockets and protected routes. Flag
+reg_balance.
+
+Form — ACT06_Z06 Controls coherent material structure. Riftglass
+requires crystal conduit alignment and a guardian encounter; preserve
+current-world collision geometry during effects. Flag reg_form.
+
+Boundary — ACT06_Z09 Separates adjacent histories and prevents unwanted
+overlap. The Sentinel’s Wall defends evacuees while repair pylons
+stabilize the border. Flag reg_boundary.
+
+Continuity — ACT06_Z11 Links independent identity records to local
+anchors. The Last Timekeeper tests identity provenance and timing
+without forcing witness consent. Flag reg_continuity.
+
+Rare Lorecasting dungeons (optional) The dungeon itself can be a rare
+temporal spawn rather than a guaranteed entrance with rare loot.
+Suggested examples: The Orchard at Midnight (Act II historical hunters),
+Daro’s Unlisted Workshop (Act III missing labor records), The Rain
+King’s Vault (Act V lost flood defenses), The Unfinished Republic (Act
+VI democratic dismantling prototype). Use deterministic fallback sources
+for all mandatory campaign and ending evidence; optional rare dungeons
+grant unique spell variations, lore, cosmetics and gear. Provide
+distinct openings, short stories, bosses and extraction rules. They are
+not included in the 105-zone register.
+
+Endgame differentiation Reconciliation: consent-based refuge
+expeditions, regional anchor repair and diplomacy. Severance: dangerous
+surviving scars, material recovery and local stabilization. Cycle:
+monitored Engine anomalies and rediscovery of omissions. All endings
+retain comparable progression and encounter rewards. Seasonal updates
+may add new records and zones but cannot silently undo the selected
+ending.
+
+25 / GLOSSARY
+
+Shared terminology
+
+Aurelian Concord The Golden Age political civilization that built the
+Chronicle Engine. Aurelian refers to its civic identity, not a race.
+
+Anchor / regulator An anchor supports local continuity and stabilizes a
+crossing. A regulator is one of seven functional control systems:
+Growth, Flow, Passage, Balance, Form, Boundary and Continuity. First
+Anchor is a major local anchor beneath Crownsfall, not an eighth
+regulator.
+
+Chronicle Engine / Continuance The physical and metaphysical network
+that indexes continuity; the Continuance is the inherited emergency
+directive that enforces resets. Distinguish machine from policy.
+
+Echo / Between / Reality Scar A bounded recorded historical instance;
+the real displaced realm outside ordinary history; and an uncontrolled
+tear or overlap between states. A coherent person in an Echo may be a
+displaced witness, not merely a memory.
+
+First Sundering / Cycle / Age of the Lost The original cataclysm; the
+repeated automatic reset protocol; and the current age plus the chosen
+future (also the title of the game and preferred ending).
+
+Lorecasting / witness ledger Practice of reading traces and stabilizing
+records; a record of authenticated evidence, surviving identities,
+provenance and explicit consent. Lorecasting may reveal spell techniques
+but is not limited to a caster class.
+
+The Unwritten / Keeper / Court / Choir Displaced people and histories;
+Keepers of Names protect independent records, the Remnant Court seeks
+restoration, Hollow Choir advocates merging identities. Use these full
+names on first mention. Avoid “lost souls” as a universal objective
+label.
+
+Golden Age / present age Historical era of the Aurelian Concord and the
+world at campaign opening. The present is not merely an inferior copy.
+Use “post-Sundering” in technical documents rather than asserting an
+in-game universal calendar.
+
+Historical witness / memory fragment A coherent surviving identity or a
+record that can supply evidence; a fragment is partial testimony or
+visual trace. A fragment is not proof the person is alive. The ledger
+records that distinction.
+
+Reference continuity Prior project discussions and the November 10 AOTL
+AI handoff establish the core mythology, approved cathedral scene,
+Crownsfall layered origin and working names/factions. This bible expands
+those foundations into a seven-act proposal. It is not a claim that all
+earlier source repositories, art or scripts were reconciled.

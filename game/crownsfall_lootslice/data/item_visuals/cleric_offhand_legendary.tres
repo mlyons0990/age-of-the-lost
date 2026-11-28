@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_d5jgl"]
+
+[resource]
+script = ExtResource("1_d5jgl")
+id = "cleric_offhand_legendary"
+slot = "offhand"
+mesh_prefix = "SHIELD_"
+tint = Color(1.12, 0.95, 0.8, 1)
+glow = Color(1, 0.55, 0.15, 0.8)

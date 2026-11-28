@@ -1,0 +1,985 @@
+{
+ "safe_zones": [
+  "crownsfall",
+  "veyr_meridian_outpost",
+  "aurelian_forum",
+  "veyr_sanctuary",
+  "confluence_camp",
+  "crownsfall_reborn",
+  "saltmarrow",
+  "oldwatch",
+  "highward_steps",
+  "crownsfall_citadel",
+  "westgate_refuge",
+  "workers_terrace",
+  "concord_senate",
+  "crownsfall_of_three_ages"
+ ],
+ "zones": {
+  "crownsfall": [
+   {
+    "id": "mira",
+    "name": "Mira Thorne",
+    "model": "mage",
+    "at": [
+     7188,
+     3332
+    ],
+    "tint": [
+     0.82,
+     0.84,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "Archivist of Crownsfall. 'Records do not lie, people do. Lately I am not sure which is which.'"
+   },
+   {
+    "id": "ralden",
+    "name": "Captain Ralden",
+    "model": "knight",
+    "at": [
+     7271,
+     3200
+    ],
+    "tint": [
+     0.82,
+     0.86,
+     1.0
+    ],
+    "height": 1.8,
+    "idle": "Captain of the city watch. 'Mira finds the questions. I keep the people who ask them alive.'"
+   },
+   {
+    "id": "quartermaster",
+    "name": "Quartermaster Ysolde",
+    "model": "mage",
+    "at": [
+     6518,
+     3200
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ],
+  "bramblewatch": [
+   {
+    "id": "rowan",
+    "name": "Rowan Hale",
+    "model": "knight",
+    "at": [
+     7319,
+     1936
+    ],
+    "tint": [
+     0.78,
+     0.9,
+     0.7
+    ],
+    "height": 1.8,
+    "idle": "Scout of the courier roads. 'Every road out here used to go somewhere.'"
+   }
+  ],
+  "mossbell_hamlet": [
+   {
+    "id": "widow_ansel",
+    "name": "Widow Ansel",
+    "model": "mage",
+    "at": [
+     739,
+     1675
+    ],
+    "tint": [
+     0.9,
+     0.95,
+     0.82
+    ],
+    "height": 1.7,
+    "idle": "'Three doors, three families, one missing girl. Everyone remembers her differently.'"
+   }
+  ],
+  "bellwater_mills": [
+   {
+    "id": "bera",
+    "name": "Bera Flint",
+    "model": "knight",
+    "at": [
+     9800,
+     1914
+    ],
+    "tint": [
+     0.9,
+     0.86,
+     0.78
+    ],
+    "height": 1.8,
+    "idle": "Millwright of Bellwater. 'The water ran uphill for an hour. Then it remembered how not to.'"
+   }
+  ],
+  "highward_steps": [
+   {
+    "id": "garran",
+    "name": "Marshal Garran Holt",
+    "model": "knight",
+    "at": [
+     7300,
+     2910
+    ],
+    "tint": [
+     0.86,
+     0.88,
+     1.0
+    ],
+    "height": 1.8,
+    "idle": "'The Regent wants order. I want my people alive. Today those are the same thing.'"
+   },
+   {
+    "id": "highward_steps_trader",
+    "name": "Highward Trader",
+    "model": "mage",
+    "at": [
+     7460,
+     2910
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ],
+  "sablemarket_vaults": [
+   {
+    "id": "tamsin",
+    "name": "Tamsin Reed",
+    "model": "mage",
+    "at": [
+     4731,
+     2366
+    ],
+    "tint": [
+     0.86,
+     0.8,
+     0.95
+    ],
+    "height": 1.7,
+    "idle": "Keeper of Names. 'A name is not a claim to someone else's home.'"
+   }
+  ],
+  "first_anchor_chamber": [
+   {
+    "id": "joren",
+    "name": "Joren Pike",
+    "model": "knight",
+    "at": [
+     3748,
+     3166
+    ],
+    "tint": [
+     0.92,
+     0.86,
+     0.8
+    ],
+    "height": 1.8,
+    "idle": "The missing royal courier. 'I was on the road. Then I was nowhere. Then I heard you say my route.'"
+   }
+  ],
+  "crownsfall_citadel": [
+   {
+    "id": "maera",
+    "name": "Regent Maera Ashford",
+    "model": "mage",
+    "at": [
+     11300,
+     2860
+    ],
+    "tint": [
+     0.86,
+     0.86,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'I kept this city fed by keeping it calm. I may have kept it ignorant too.'"
+   },
+   {
+    "id": "crownsfall_citadel_trader",
+    "name": "Crownsfall Trader",
+    "model": "mage",
+    "at": [
+     6460,
+     2500
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ],
+  "westgate_refuge": [
+   {
+    "id": "iri",
+    "name": "Iri",
+    "model": "mage",
+    "at": [
+     6880,
+     2428
+    ],
+    "tint": [
+     0.78,
+     0.8,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "Veyr Phasewalker. 'The people the scars take are people. Say it with me.'"
+   },
+   {
+    "id": "westgate_refuge_trader",
+    "name": "Westgate Trader",
+    "model": "mage",
+    "at": [
+     7040,
+     2428
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ],
+  "veyr_meridian_outpost": [
+   {
+    "id": "meridian",
+    "name": "Meridian",
+    "model": "mage",
+    "at": [
+     1413,
+     2149
+    ],
+    "tint": [
+     0.74,
+     0.76,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "Chief keeper of the Veyr. 'Records and models can be wrong. Mine included.'"
+   },
+   {
+    "id": "sio",
+    "name": "Warden Sio",
+    "model": "knight",
+    "at": [
+     1573,
+     2149
+    ],
+    "tint": [
+     0.8,
+     0.82,
+     1.0
+    ],
+    "height": 1.8,
+    "idle": "Echo Warden of the Veyr. Supplies for those who cross.",
+    "vendor": true
+   }
+  ],
+  "greywake_coast": [
+   {
+    "id": "anwen",
+    "name": "Captain Anwen Sable",
+    "model": "knight",
+    "at": [
+     8650,
+     2611
+    ],
+    "tint": [
+     0.8,
+     0.9,
+     0.95
+    ],
+    "height": 1.8,
+    "idle": "Greywake pilot. 'The beacons kept ships alive. Now they keep something else away.'"
+   }
+  ],
+  "meridian_observatory": [
+   {
+    "id": "meridian_obs",
+    "name": "Meridian",
+    "model": "mage",
+    "at": [
+     3070,
+     2121
+    ],
+    "tint": [
+     0.74,
+     0.76,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'Seven records, one pattern. The scars are periodic, not natural.'"
+   }
+  ],
+  "aurelian_forum": [
+   {
+    "id": "elyndor",
+    "name": "Elyndor",
+    "model": "mage",
+    "at": [
+     6592,
+     4452
+    ],
+    "tint": [
+     1.0,
+     0.94,
+     0.8
+    ],
+    "height": 1.7,
+    "idle": "Aurelian historian. 'Deletion displaces records. It does not destroy them.'"
+   },
+   {
+    "id": "aurelian_forum_trader",
+    "name": "Aurelian Trader",
+    "model": "mage",
+    "at": [
+     6752,
+     4452
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ],
+  "workers_terrace": [
+   {
+    "id": "daro",
+    "name": "Daro Fen",
+    "model": "knight",
+    "at": [
+     997,
+     3967
+    ],
+    "tint": [
+     0.95,
+     0.86,
+     0.72
+    ],
+    "height": 1.8,
+    "idle": "Guild worker of the labour district. 'Who pays for eternity? Us. Always us.'"
+   },
+   {
+    "id": "workers_terrace_trader",
+    "name": "Workers' Trader",
+    "model": "mage",
+    "at": [
+     1157,
+     3967
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ],
+  "concord_senate": [
+   {
+    "id": "oris",
+    "name": "Chancellor Valen Oris",
+    "model": "knight",
+    "at": [
+     1598,
+     1082
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.76
+    ],
+    "height": 1.8,
+    "idle": "'A civilization cannot survive as a collection of exceptions.'"
+   },
+   {
+    "id": "concord_senate_trader",
+    "name": "Concord Trader",
+    "model": "mage",
+    "at": [
+     1758,
+     1082
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ],
+  "vael_estate": [
+   {
+    "id": "caldrin_life",
+    "name": "Ser Caldrin Vael",
+    "model": "knight",
+    "at": [
+     909,
+     1465
+    ],
+    "tint": [
+     0.86,
+     0.9,
+     1.0
+    ],
+    "height": 1.8,
+    "idle": "'Stay behind me. The doors must hold. That is the job.'"
+   },
+   {
+    "id": "elara",
+    "name": "Elara Vael",
+    "model": "mage",
+    "at": [
+     1069,
+     1465
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.86
+    ],
+    "height": 1.7,
+    "idle": "Bookbinder and refuge organiser. 'Come home before the bell.'"
+   }
+  ],
+  "preservation_laboratory": [
+   {
+    "id": "sera",
+    "name": "Sera Voss",
+    "model": "mage",
+    "at": [
+     3226,
+     3371
+    ],
+    "tint": [
+     0.95,
+     0.92,
+     0.86
+    ],
+    "height": 1.7,
+    "idle": "Engine engineer. 'We can save people without saving every street.'"
+   },
+   {
+    "id": "pell",
+    "name": "Pell",
+    "model": "knight",
+    "at": [
+     3386,
+     3371
+    ],
+    "tint": [
+     0.9,
+     0.9,
+     0.86
+    ],
+    "height": 1.8,
+    "idle": "Sera's technician. Keeps the logs, keeps the lights on.",
+    "vendor": true
+   }
+  ],
+  "remnant_court_refuge": [
+   {
+    "id": "ysara",
+    "name": "Queen Ysara",
+    "model": "mage",
+    "at": [
+     3323,
+     3243
+    ],
+    "tint": [
+     0.86,
+     0.9,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "Sovereign of the Remnant Court. 'Restoring my people is not a request.'"
+   }
+  ],
+  "keepers_lantern": [
+   {
+    "id": "tamsin_b",
+    "name": "Tamsin Reed",
+    "model": "mage",
+    "at": [
+     3826,
+     3450
+    ],
+    "tint": [
+     0.86,
+     0.8,
+     0.95
+    ],
+    "height": 1.7,
+    "idle": "'The names that survived. Help me keep them that way.'"
+   },
+   {
+    "id": "lys",
+    "name": "Lys Vael",
+    "model": "mage",
+    "at": [
+     3986,
+     3450
+    ],
+    "tint": [
+     0.92,
+     0.9,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "A young adult now, in the Between. 'I still have the paper crown.'"
+   }
+  ],
+  "broken_meridian": [
+   {
+    "id": "rowan5",
+    "name": "Rowan Hale",
+    "model": "knight",
+    "at": [
+     5667,
+     3908
+    ],
+    "tint": [
+     0.78,
+     0.9,
+     0.7
+    ],
+    "height": 1.8,
+    "idle": "'Some mornings I'm not sure which road I grew up on.'"
+   }
+  ],
+  "throne_of_glass": [
+   {
+    "id": "ysara5",
+    "name": "Queen Ysara",
+    "model": "mage",
+    "at": [
+     3110,
+     3965
+    ],
+    "tint": [
+     0.86,
+     0.9,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'You came to petition a queen without a kingdom. Speak.'"
+   }
+  ],
+  "orchard_of_lost_children": [
+   {
+    "id": "lys5",
+    "name": "Lys Vael",
+    "model": "mage",
+    "at": [
+     4218,
+     3202
+    ],
+    "tint": [
+     0.92,
+     0.9,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'Every lantern is a child someone forgot. We are cataloguing them, one by one.'"
+   }
+  ],
+  "the_regents_archive": [
+   {
+    "id": "maera5",
+    "name": "Regent Maera Ashford",
+    "model": "mage",
+    "at": [
+     4513,
+     3806
+    ],
+    "tint": [
+     0.86,
+     0.86,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'A crown of borrowed stone. I suspected. I did not want to know.'"
+   },
+   {
+    "id": "mira5",
+    "name": "Mira Thorne",
+    "model": "mage",
+    "at": [
+     4673,
+     3806
+    ],
+    "tint": [
+     0.82,
+     0.84,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'The city is layered from forgotten lives. That makes it more ours, not less.'"
+   }
+  ],
+  "hearth_of_names": [
+   {
+    "id": "tamsin5",
+    "name": "Tamsin Reed",
+    "model": "mage",
+    "at": [
+     2924,
+     1755
+    ],
+    "tint": [
+     0.86,
+     0.8,
+     0.95
+    ],
+    "height": 1.7,
+    "idle": "'The Covenant of Names: no record taken without consent.'"
+   }
+  ],
+  "crownsfall_under_siege": [
+   {
+    "id": "garran6",
+    "name": "Marshal Garran Holt",
+    "model": "knight",
+    "at": [
+     6931,
+     795
+    ],
+    "tint": [
+     0.82,
+     0.86,
+     1.0
+    ],
+    "height": 1.8,
+    "idle": "'Citizens and Unwritten alike. Nobody gets left at the door.'"
+   }
+  ],
+  "veyr_sanctuary": [
+   {
+    "id": "meridian6",
+    "name": "Meridian",
+    "model": "mage",
+    "at": [
+     3290,
+     2313
+    ],
+    "tint": [
+     0.74,
+     0.76,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'I concealed the warning. I was wrong. The clock is yours as much as ours.'"
+   },
+   {
+    "id": "iri6",
+    "name": "Iri",
+    "model": "mage",
+    "at": [
+     3450,
+     2313
+    ],
+    "tint": [
+     0.78,
+     0.8,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'Every faction is here. Try to keep them in one room.'",
+    "vendor": true
+   }
+  ],
+  "confluence_camp": [
+   {
+    "id": "mira6",
+    "name": "Mira Thorne",
+    "model": "mage",
+    "at": [
+     4608,
+     2241
+    ],
+    "tint": [
+     0.82,
+     0.84,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'Every faction. One table. Tell them what tomorrow costs.'"
+   },
+   {
+    "id": "bera6",
+    "name": "Bera Flint",
+    "model": "knight",
+    "at": [
+     4768,
+     2241
+    ],
+    "tint": [
+     0.9,
+     0.86,
+     0.78
+    ],
+    "height": 1.8,
+    "idle": "Quartermaster to the coalition.",
+    "vendor": true
+   }
+  ],
+  "caldrins_vigil": [
+   {
+    "id": "caldrin7",
+    "name": "Ser Caldrin Vael",
+    "model": "knight",
+    "at": [
+     5876,
+     3484
+    ],
+    "tint": [
+     0.86,
+     0.9,
+     1.0
+    ],
+    "height": 1.8,
+    "idle": "'I have stood at this door long enough. Let someone open it.'"
+   }
+  ],
+  "the_last_decision": [
+   {
+    "id": "tamsin7",
+    "name": "Tamsin Reed",
+    "model": "mage",
+    "at": [
+     4004,
+     1251
+    ],
+    "tint": [
+     0.86,
+     0.8,
+     0.95
+    ],
+    "height": 1.7,
+    "idle": "'A name is not a claim to someone else's home.'"
+   },
+   {
+    "id": "mira7",
+    "name": "Mira Thorne",
+    "model": "mage",
+    "at": [
+     4164,
+     1251
+    ],
+    "tint": [
+     0.82,
+     0.84,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'We can remember what was lost without becoming it.'"
+   }
+  ],
+  "crownsfall_reborn": [
+   {
+    "id": "mira_r",
+    "name": "Mira Thorne",
+    "model": "mage",
+    "at": [
+     4575,
+     2541
+    ],
+    "tint": [
+     0.82,
+     0.84,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'After the bell. Let's see what kind of city we chose.'"
+   },
+   {
+    "id": "garran_r",
+    "name": "Marshal Garran Holt",
+    "model": "knight",
+    "at": [
+     4735,
+     2541
+    ],
+    "tint": [
+     0.82,
+     0.86,
+     1.0
+    ],
+    "height": 1.8,
+    "idle": "Keeping order in a changed city.",
+    "vendor": true
+   }
+  ],
+  "saltmarrow": [
+   {
+    "id": "harbourmaster",
+    "name": "Harbourmaster Wenna",
+    "model": "mage",
+    "at": [
+     7230,
+     2600
+    ],
+    "tint": [
+     0.8,
+     0.9,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'The tide still comes in, Wayfarer, even if the ships don't.'"
+   },
+   {
+    "id": "chandler",
+    "name": "Chandler Brisk",
+    "model": "knight",
+    "at": [
+     8460,
+     3510
+    ],
+    "tint": [
+     1.0,
+     0.88,
+     0.72
+    ],
+    "height": 1.8,
+    "idle": "Ship's chandler and general goods.",
+    "vendor": true
+   }
+  ],
+  "wreckers_strand": [
+   {
+    "id": "harbourmaster_s",
+    "name": "Harbourmaster Wenna",
+    "model": "mage",
+    "at": [
+     6100,
+     798
+    ],
+    "tint": [
+     0.8,
+     0.9,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'I came up the Strand myself. Bring me those lenses.'"
+   }
+  ],
+  "smugglers_grotto": [
+   {
+    "id": "tamsin",
+    "name": "Tamsin Reed",
+    "model": "mage",
+    "at": [
+     3491,
+     3635
+    ],
+    "tint": [
+     0.86,
+     0.8,
+     0.95
+    ],
+    "height": 1.7,
+    "idle": "Keeper of Names. 'A name is not a claim to someone else's home.'"
+   }
+  ],
+  "oldwatch": [
+   {
+    "id": "rowan_o",
+    "name": "Rowan Hale",
+    "model": "knight",
+    "at": [
+     11800,
+     3310
+    ],
+    "tint": [
+     0.78,
+     0.9,
+     0.7
+    ],
+    "height": 1.8,
+    "idle": "Scout of the courier roads. 'Every road out here used to go somewhere.'"
+   },
+   {
+    "id": "hode",
+    "name": "Sergeant Hode",
+    "model": "knight",
+    "at": [
+     8860,
+     2310
+    ],
+    "tint": [
+     0.86,
+     0.9,
+     0.86
+    ],
+    "height": 1.8,
+    "idle": "Quartermaster of the watch.",
+    "vendor": true
+   }
+  ],
+  "crownsfall_of_three_ages": [
+   {
+    "id": "mira_3a",
+    "name": "Mira Thorne",
+    "model": "mage",
+    "at": [
+     4370,
+     2348
+    ],
+    "tint": [
+     0.82,
+     0.84,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'Three versions of one plaza. Read the stones with me.'"
+   },
+   {
+    "id": "crownsfall_of_three_ages_trader",
+    "name": "Crownsfall Trader",
+    "model": "mage",
+    "at": [
+     4530,
+     2348
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
+   }
+  ]
+ }
+}

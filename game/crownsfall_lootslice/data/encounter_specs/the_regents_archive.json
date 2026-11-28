@@ -1,0 +1,88 @@
+{
+ "zone": "the_regents_archive",
+ "levels": [
+  48,
+  49
+ ],
+ "packs": 14,
+ "seed": 438,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_regents_archive_0",
+    "the_regents_archive_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_regents_archive_1",
+    "the_regents_archive_1",
+    "the_regents_archive_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_regents_archive_0",
+    "the_regents_archive_1",
+    "the_regents_archive_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_regents_archive_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_regents_archive_2",
+    "the_regents_archive_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_regents_archive_0",
+    "the_regents_archive_0",
+    "the_regents_archive_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6503,
+    3705
+   ],
+   "types": [],
+   "boss": "the_regents_archive_boss_u",
+   "boss_type": "the_regents_archive_boss",
+   "boss_name": "Coup Captain Hollis",
+   "needs_quest": "Q_A05_12"
+  }
+ ],
+ "keep_clear": [
+  [
+   4513,
+   3806,
+   700
+  ],
+  [
+   4673,
+   3806,
+   700
+  ],
+  [
+   6503,
+   3705,
+   700
+  ]
+ ]
+}

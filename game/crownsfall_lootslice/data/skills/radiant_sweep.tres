@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/cleric_radiant_sweep.png" id="1_67dvg"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_v1c5x"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_ovd7s"]
+
+[sub_resource type="Resource" id="Resource_prq70"]
+script = ExtResource("3_ovd7s")
+id = "dazzle"
+display_name = "Dazzle"
+description = "Stuns everything hit for 0.6 s."
+overrides = {
+"stun": 0.6
+}
+
+[sub_resource type="Resource" id="Resource_llpbx"]
+script = ExtResource("3_ovd7s")
+id = "mercy"
+display_name = "Mercy"
+description = "Recover 4% life per enemy hit."
+overrides = {
+"heal_hit": 0.04
+}
+
+[resource]
+script = ExtResource("2_v1c5x")
+id = "radiant_sweep"
+display_name = "Radiant Sweep"
+icon = ExtResource("1_67dvg")
+description = "A wide holy sweep; recover 2% life per enemy hit."
+animation = "Cleave"
+mana_cost = 12.0
+cooldown = 3.0
+numbers = {
+"arc": -0.3,
+"dmg": 1.4,
+"heal_hit": 0.02,
+"range": 3.2
+}
+upgrades = Array[ExtResource("3_ovd7s")]([SubResource("Resource_prq70"), SubResource("Resource_llpbx")])

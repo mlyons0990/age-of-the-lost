@@ -1,0 +1,804 @@
+{
+ "name": "The Mercy Chamber",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 6881,
+ "paths": [
+  {
+   "pts": [
+    [
+     3014,
+     3023
+    ],
+    [
+     2115,
+     2802
+    ],
+    [
+     1211,
+     3007
+    ]
+   ],
+   "width": 283,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3014,
+     3023
+    ],
+    [
+     3892,
+     3186
+    ],
+    [
+     4794,
+     3254
+    ]
+   ],
+   "width": 269,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4794,
+     3254
+    ],
+    [
+     5582,
+     2859
+    ],
+    [
+     6530,
+     2919
+    ]
+   ],
+   "width": 271,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4794,
+     3254
+    ],
+    [
+     5170,
+     3789
+    ],
+    [
+     5853,
+     4119
+    ]
+   ],
+   "width": 331,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3014,
+     3023
+    ],
+    [
+     3497,
+     2536
+    ],
+    [
+     3980,
+     2050
+    ]
+   ],
+   "width": 313,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3980,
+     2050
+    ],
+    [
+     4840,
+     1698
+    ],
+    [
+     5821,
+     1743
+    ]
+   ],
+   "width": 263,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3980,
+     2050
+    ],
+    [
+     2862,
+     1626
+    ],
+    [
+     1634,
+     1434
+    ]
+   ],
+   "width": 310,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1211,
+     3007
+    ],
+    [
+     3047,
+     2773
+    ],
+    [
+     4794,
+     3254
+    ]
+   ],
+   "width": 312,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     2198
+    ],
+    [
+     840,
+     2198
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     2198
+    ],
+    [
+     1211,
+     3007
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    3014,
+    3023
+   ],
+   "r": 506,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5853,
+    4119
+   ],
+   "r": 463,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1211,
+    3007
+   ],
+   "r": 572,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5821,
+    1743
+   ],
+   "r": 593,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1634,
+    1434
+   ],
+   "r": 634,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3980,
+    2050
+   ],
+   "r": 588,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4794,
+    3254
+   ],
+   "r": 532,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6530,
+    2919
+   ],
+   "r": 612,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   2198,
+   380
+  ],
+  [
+   6530,
+   2919,
+   300
+  ],
+  [
+   5853,
+   4119,
+   300
+  ],
+  [
+   5821,
+   1743,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    3014,
+    3023,
+    430.09999999999997,
+    0.6
+   ],
+   [
+    5853,
+    4119,
+    393.55,
+    0.6
+   ],
+   [
+    1211,
+    3007,
+    486.2,
+    0.6
+   ],
+   [
+    5821,
+    1743,
+    504.05,
+    0.6
+   ],
+   [
+    1634,
+    1434,
+    538.9,
+    0.6
+   ],
+   [
+    3980,
+    2050,
+    499.8,
+    0.6
+   ],
+   [
+    4794,
+    3254,
+    452.2,
+    0.6
+   ],
+   [
+    6530,
+    2919,
+    520.1999999999999,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6530,
+    2699,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_mercy_chamber_wp",
+   "name": "The Mercy Chamber",
+   "at": [
+    4794,
+    3254
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Vault of Continuity",
+   "to": "vault_of_continuity",
+   "at": [
+    140,
+    2198
+   ],
+   "r": 170,
+   "arrive": [
+    2473,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  2198
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Clinical Halls",
+   "kind": "landmark",
+   "at": [
+    6530,
+    2919
+   ],
+   "blurb": "Quiet clinical halls repeating a last conversation"
+  },
+  {
+   "name": "Last Conversation",
+   "kind": "landmark",
+   "at": [
+    5853,
+    4119
+   ],
+   "blurb": "Quiet clinical halls repeating a last conversation"
+  },
+  {
+   "name": "Farewell Room",
+   "kind": "landmark",
+   "at": [
+    5821,
+    1743
+   ],
+   "blurb": "Quiet clinical halls repeating a last conversation"
+  },
+  {
+   "name": "Vault of Continuity",
+   "kind": "landmark",
+   "at": [
+    140,
+    2198
+   ],
+   "blurb": "To Vault of Continuity."
+  }
+ ],
+ "world_id": "the_mercy_chamber",
+ "grade": {
+  "mul": [
+   1.0,
+   1.02,
+   1.04
+  ],
+  "desat": 0.55,
+  "lift": [
+   0.14,
+   0.14,
+   0.15,
+   1.0
+  ],
+  "mist": [
+   0.95,
+   0.95,
+   0.98
+  ],
+  "water": [
+   0.4,
+   0.45,
+   0.5
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3014,
+    3023
+   ],
+   "r": 480.7,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5853,
+    4119
+   ],
+   "r": 439.84999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1211,
+    3007
+   ],
+   "r": 543.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5821,
+    1743
+   ],
+   "r": 563.35,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1634,
+    1434
+   ],
+   "r": 602.3,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3980,
+    2050
+   ],
+   "r": 558.6,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4794,
+    3254
+   ],
+   "r": 505.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6530,
+    2919
+   ],
+   "r": 581.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

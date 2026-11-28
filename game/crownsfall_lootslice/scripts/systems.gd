@@ -93,7 +93,9 @@ static func make_item(level: int, boost := 0.0, forced := "", class_id := "warri
 	return it
 
 static func drop_pool(class_id: String) -> Array:
-	return ["staff", "wand", "focus", "robe", "hood", "wraps", "slippers", "belt", "amulet", "ring"] if class_id == "mage" else ["weapon", "offhand", "armor", "helm", "gloves", "boots", "belt", "amulet", "ring"]
+	if class_id == "mage": return ["staff", "wand", "focus", "robe", "hood", "wraps", "slippers", "belt", "amulet", "ring"]
+	if class_id == "rogue": return ["weapon", "armor", "helm", "gloves", "boots", "belt", "amulet", "ring"]   # twin daggers: no shield
+	return ["weapon", "offhand", "armor", "helm", "gloves", "boots", "belt", "amulet", "ring"]
 
 static func default_slot(item: Dictionary) -> String:
 	return {"ring": "ring1", "staff": "weapon", "wand": "weapon", "focus": "offhand", "robe": "armor", "hood": "helm", "wraps": "gloves", "slippers": "boots"}.get(String(item.get("slot", "")), String(item.get("slot", "")))

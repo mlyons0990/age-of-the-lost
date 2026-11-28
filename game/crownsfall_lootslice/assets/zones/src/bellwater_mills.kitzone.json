@@ -1,0 +1,783 @@
+{
+ "name": "Bellwater Mills",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass",
+ "seed": 6665,
+ "paths": [
+  {
+   "pts": [
+    [
+     7232,
+     190
+    ],
+    [
+     7232,
+     494
+    ],
+    [
+     6822,
+     952
+    ],
+    [
+     7486,
+     1507
+    ],
+    [
+     6642,
+     1927
+    ],
+    [
+     6865,
+     2443
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4574,
+     190
+    ],
+    [
+     4574,
+     494
+    ],
+    [
+     5507,
+     1048
+    ],
+    [
+     5737,
+     1996
+    ],
+    [
+     6865,
+     2443
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6865,
+     2443
+    ],
+    [
+     6841,
+     2885
+    ],
+    [
+     7282,
+     3688
+    ]
+   ],
+   "width": 153,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4574,
+     494
+    ],
+    [
+     3792,
+     879
+    ],
+    [
+     2861,
+     1292
+    ]
+   ],
+   "width": 165,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     7486,
+     1507
+    ],
+    [
+     8789,
+     1828
+    ],
+    [
+     9800,
+     1854
+    ]
+   ],
+   "width": 141,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5507,
+     1048
+    ],
+    [
+     6060,
+     852
+    ],
+    [
+     6024,
+     763
+    ]
+   ],
+   "width": 178,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     3177,
+     40
+    ],
+    [
+     2952,
+     1081
+    ],
+    [
+     2931,
+     2123
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    8734,
+    4065
+   ],
+   "r": 390,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    9670,
+    831
+   ],
+   "r": 634,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6865,
+    2443
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7282,
+    3688
+   ],
+   "r": 519,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2861,
+    1292
+   ],
+   "r": 588,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    9800,
+    1854
+   ],
+   "r": 394,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6024,
+    763
+   ],
+   "r": 262,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8877,
+    3688
+   ],
+   "r": 667,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4384,
+    2614
+   ],
+   "r": 453,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2931,
+    2123
+   ],
+   "r": 472,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   7232,
+   190,
+   380
+  ],
+  [
+   4574,
+   190,
+   380
+  ],
+  [
+   7282,
+   3688,
+   300
+  ],
+  [
+   2861,
+   1292,
+   300
+  ],
+  [
+   9800,
+   1854,
+   300
+  ],
+  [
+   6024,
+   763,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    2
+   ],
+   [
+    "oak_b",
+    2
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 1050,
+  "cut": 0.76,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 22,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    7282,
+    3688,
+    560,
+    0.45
+   ],
+   [
+    2861,
+    1292,
+    560,
+    0.45
+   ],
+   [
+    9800,
+    1854,
+    560,
+    0.45
+   ],
+   [
+    6024,
+    763,
+    560,
+    0.45
+   ],
+   [
+    6865,
+    2443,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6865,
+    2223,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    8877,
+    3688,
+    1067.2
+   ],
+   [
+    4384,
+    2614,
+    724.8000000000001
+   ],
+   [
+    2931,
+    2123,
+    755.2
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "bellwater_mills_wp",
+   "name": "Bellwater Mills",
+   "at": [
+    6865,
+    2443
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Ashen Tollway",
+   "to": "ashen_tollway",
+   "at": [
+    7232,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    4576,
+    4438
+   ]
+  },
+  {
+   "name": "Kingsroad Fields",
+   "to": "kingsroad_fields",
+   "at": [
+    4574,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    8033,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  7232,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Great Waterwheel",
+   "kind": "landmark",
+   "at": [
+    7282,
+    3688
+   ],
+   "blurb": "Waterwheels, canals, cellar sluices"
+  },
+  {
+   "name": "Cellar Sluices",
+   "kind": "landmark",
+   "at": [
+    2861,
+    1292
+   ],
+   "blurb": "Waterwheels, canals, cellar sluices"
+  },
+  {
+   "name": "Mill Yard",
+   "kind": "landmark",
+   "at": [
+    9800,
+    1854
+   ],
+   "blurb": "Waterwheels, canals, cellar sluices"
+  },
+  {
+   "name": "Grain Canal",
+   "kind": "landmark",
+   "at": [
+    6024,
+    763
+   ],
+   "blurb": "Waterwheels, canals, cellar sluices"
+  },
+  {
+   "name": "Ashen Tollway",
+   "kind": "landmark",
+   "at": [
+    7232,
+    190
+   ],
+   "blurb": "To Ashen Tollway."
+  },
+  {
+   "name": "Kingsroad Fields",
+   "kind": "landmark",
+   "at": [
+    4574,
+    190
+   ],
+   "blurb": "To Kingsroad Fields."
+  }
+ ],
+ "world_id": "bellwater_mills",
+ "grade": {
+  "mul": [
+   0.96,
+   1.0,
+   1.02
+  ],
+  "desat": 0.12,
+  "lift": [
+   0.02,
+   0.04,
+   0.05,
+   1.0
+  ],
+  "mist": [
+   0.78,
+   0.84,
+   0.9
+  ],
+  "water": [
+   0.24,
+   0.42,
+   0.52
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    7282,
+    3688
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    2861,
+    1292
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    9800,
+    1854
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6024,
+    763
+   ],
+   "r": 520,
+   "props": [
+    "silver",
+    "oak_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 9
+  }
+ ]
+}

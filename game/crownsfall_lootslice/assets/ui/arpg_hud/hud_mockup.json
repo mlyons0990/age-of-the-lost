@@ -1,0 +1,190 @@
+{
+ "source": "Owner HUD mockup close-ups (2026-11-20), background removed with OpenCV GrabCut; baked skill icons and Q W E R T letters blanked so live icons/keys draw on top. Refined: exact anti-aliased ring circles, straight panel edges, smoothed statue outline, background leaves removed; images pre-scaled (image_scale) so they draw ~1:1 at 1080p. Coordinates stay in source (close-up) pixels.",
+ "screen_orb_radius_1080p": 86,
+ "left": {
+  "file": "hud_left.png",
+  "size": [
+   1284,
+   465
+  ],
+  "orb": [
+   315,
+   245,
+   184
+  ],
+  "orb_inner": [
+   318,
+   247,
+   160
+  ],
+  "potions": [
+   [
+    528,
+    245,
+    90,
+    145
+   ],
+   [
+    628,
+    245,
+    90,
+    145
+   ],
+   [
+    726,
+    245,
+    90,
+    145
+   ],
+   [
+    825,
+    245,
+    90,
+    145
+   ],
+   [
+    923,
+    245,
+    90,
+    145
+   ]
+  ],
+  "chest": [
+   1048,
+   270,
+   90,
+   100
+  ],
+  "xp_housing": [
+   1165,
+   405,
+   119,
+   55
+  ],
+  "xp_inner": [
+   1218,
+   415,
+   66,
+   20
+  ],
+  "label_anchor": [
+   512,
+   150
+  ],
+  "image_scale": 0.465,
+  "orb_outer": [
+   304,
+   250,
+   198
+  ],
+  "disc": [
+   302,
+   248,
+   164,
+   170
+  ]
+ },
+ "right": {
+  "file": "hud_right.png",
+  "size": [
+   1284,
+   442
+  ],
+  "orb": [
+   995,
+   235,
+   172
+  ],
+  "orb_inner": [
+   997,
+   237,
+   142
+  ],
+  "skills": [
+   [
+    140,
+    230,
+    120,
+    120
+   ],
+   [
+    278,
+    230,
+    120,
+    120
+   ],
+   [
+    417,
+    230,
+    120,
+    120
+   ],
+   [
+    556,
+    230,
+    120,
+    120
+   ],
+   [
+    695,
+    230,
+    120,
+    120
+   ]
+  ],
+  "keys": [
+   [
+    140,
+    362,
+    120,
+    53
+   ],
+   [
+    278,
+    362,
+    120,
+    53
+   ],
+   [
+    417,
+    362,
+    120,
+    53
+   ],
+   [
+    556,
+    362,
+    120,
+    53
+   ],
+   [
+    695,
+    362,
+    120,
+    53
+   ]
+  ],
+  "xp_housing": [
+   0,
+   395,
+   95,
+   40
+  ],
+  "label_anchor": [
+   805,
+   135
+  ],
+  "image_scale": 0.505,
+  "orb_outer": [
+   999,
+   233,
+   182
+  ],
+  "disc": [
+   1002,
+   231,
+   155,
+   159
+  ]
+ }
+}

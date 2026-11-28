@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/cleric_dawnfall.png" id="1_ql7st"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_pf0ga"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_h30it"]
+
+[sub_resource type="Resource" id="Resource_x8yyo"]
+script = ExtResource("3_h30it")
+id = "high_noon"
+display_name = "High Noon"
+description = "Radius increased by 40%."
+overrides = {
+"radius": 3.4
+}
+
+[sub_resource type="Resource" id="Resource_2x6ri"]
+script = ExtResource("3_h30it")
+id = "judged"
+display_name = "Judged"
+description = "Stuns everything hit for 1 s."
+overrides = {
+"stun": 1.0
+}
+
+[resource]
+script = ExtResource("2_pf0ga")
+id = "dawnfall"
+display_name = "Dawnfall"
+icon = ExtResource("1_ql7st")
+description = "Call a pillar of sunlight down at the cursor after 0.6 s."
+unlock_level = 8
+animation = "Cast"
+shape = "ground"
+mana_cost = 24.0
+cooldown = 6.5
+numbers = {
+"delay": 0.6,
+"dmg": 2.8,
+"radius": 2.4,
+"reach": 8.0
+}
+upgrades = Array[ExtResource("3_h30it")]([SubResource("Resource_x8yyo"), SubResource("Resource_2x6ri")])

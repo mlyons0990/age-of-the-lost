@@ -1,0 +1,122 @@
+{
+ "zone": "archive_of_forbidden_futures",
+ "levels": [
+  55,
+  56
+ ],
+ "packs": 14,
+ "seed": 702,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "archive_of_forbidden_futures_0",
+    "archive_of_forbidden_futures_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "archive_of_forbidden_futures_1",
+    "archive_of_forbidden_futures_1",
+    "archive_of_forbidden_futures_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "archive_of_forbidden_futures_0",
+    "archive_of_forbidden_futures_1",
+    "archive_of_forbidden_futures_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "archive_of_forbidden_futures_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "archive_of_forbidden_futures_2",
+    "archive_of_forbidden_futures_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "archive_of_forbidden_futures_0",
+    "archive_of_forbidden_futures_0",
+    "archive_of_forbidden_futures_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6315,
+    2160
+   ],
+   "types": [
+    "archive_of_forbidden_futures_1",
+    "archive_of_forbidden_futures_1"
+   ],
+   "elite": false,
+   "guardian": "archive_of_forbidden_futures_g1",
+   "elite_type": "archive_of_forbidden_futures_0",
+   "elite_name": "Variant Horror",
+   "page": "Q_A06_08_1"
+  },
+  {
+   "at": [
+    6142,
+    1007
+   ],
+   "types": [
+    "archive_of_forbidden_futures_1",
+    "archive_of_forbidden_futures_1"
+   ],
+   "elite": false,
+   "guardian": "archive_of_forbidden_futures_g2",
+   "elite_type": "archive_of_forbidden_futures_1",
+   "elite_name": "Unborn Sentinel",
+   "page": "Q_A06_08_2"
+  },
+  {
+   "at": [
+    5688,
+    3361
+   ],
+   "types": [
+    "archive_of_forbidden_futures_1",
+    "archive_of_forbidden_futures_1"
+   ],
+   "elite": false,
+   "guardian": "archive_of_forbidden_futures_g3",
+   "elite_type": "archive_of_forbidden_futures_2",
+   "elite_name": "Possibility Eater",
+   "page": "Q_A06_08_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6315,
+   2160,
+   700
+  ],
+  [
+   6142,
+   1007,
+   700
+  ],
+  [
+   5688,
+   3361,
+   700
+  ]
+ ]
+}

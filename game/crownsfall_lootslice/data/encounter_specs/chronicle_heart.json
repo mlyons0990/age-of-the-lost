@@ -1,0 +1,78 @@
+{
+ "zone": "chronicle_heart",
+ "levels": [
+  67,
+  68
+ ],
+ "packs": 14,
+ "seed": 724,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "chronicle_heart_0",
+    "chronicle_heart_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "chronicle_heart_1",
+    "chronicle_heart_1",
+    "chronicle_heart_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "chronicle_heart_0",
+    "chronicle_heart_1",
+    "chronicle_heart_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "chronicle_heart_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "chronicle_heart_2",
+    "chronicle_heart_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "chronicle_heart_0",
+    "chronicle_heart_0",
+    "chronicle_heart_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6385,
+    3419
+   ],
+   "types": [],
+   "boss": "chronicle_heart_boss_u",
+   "boss_type": "chronicle_heart_boss",
+   "boss_name": "The Continuance",
+   "needs_quest": "Q_A07_11"
+  }
+ ],
+ "keep_clear": [
+  [
+   6385,
+   3419,
+   700
+  ]
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "zone": "chronicle_access_ring",
+ "levels": [
+  36,
+  37
+ ],
+ "packs": 14,
+ "seed": 231,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "chronicle_access_ring_0",
+    "chronicle_access_ring_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "chronicle_access_ring_1",
+    "chronicle_access_ring_1",
+    "chronicle_access_ring_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "chronicle_access_ring_0",
+    "chronicle_access_ring_1",
+    "chronicle_access_ring_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "chronicle_access_ring_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "chronicle_access_ring_2",
+    "chronicle_access_ring_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "chronicle_access_ring_0",
+    "chronicle_access_ring_0",
+    "chronicle_access_ring_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6625,
+    1803
+   ],
+   "types": [],
+   "boss": "chronicle_access_ring_boss_u",
+   "boss_type": "chronicle_access_ring_boss",
+   "boss_name": "The Security Warden",
+   "needs_quest": "Q_A04_09"
+  }
+ ],
+ "keep_clear": [
+  [
+   6625,
+   1803,
+   700
+  ]
+ ]
+}

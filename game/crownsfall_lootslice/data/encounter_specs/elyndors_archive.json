@@ -1,0 +1,122 @@
+{
+ "zone": "elyndors_archive",
+ "levels": [
+  28,
+  29
+ ],
+ "packs": 14,
+ "seed": 539,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "elyndors_archive_0",
+    "elyndors_archive_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "elyndors_archive_1",
+    "elyndors_archive_1",
+    "elyndors_archive_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "elyndors_archive_0",
+    "elyndors_archive_1",
+    "elyndors_archive_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "elyndors_archive_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "elyndors_archive_2",
+    "elyndors_archive_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "elyndors_archive_0",
+    "elyndors_archive_0",
+    "elyndors_archive_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6644,
+    4134
+   ],
+   "types": [
+    "elyndors_archive_1",
+    "elyndors_archive_1"
+   ],
+   "elite": false,
+   "guardian": "elyndors_archive_g1",
+   "elite_type": "elyndors_archive_0",
+   "elite_name": "Archive Saboteur",
+   "page": "Q_A03_12_1"
+  },
+  {
+   "at": [
+    6064,
+    2221
+   ],
+   "types": [
+    "elyndors_archive_1",
+    "elyndors_archive_1"
+   ],
+   "elite": false,
+   "guardian": "elyndors_archive_g2",
+   "elite_type": "elyndors_archive_1",
+   "elite_name": "Catalog Wraith",
+   "page": "Q_A03_12_2"
+  },
+  {
+   "at": [
+    4961,
+    3816
+   ],
+   "types": [
+    "elyndors_archive_1",
+    "elyndors_archive_1"
+   ],
+   "elite": false,
+   "guardian": "elyndors_archive_g3",
+   "elite_type": "elyndors_archive_2",
+   "elite_name": "The Burned-Page Golem",
+   "page": "Q_A03_12_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6644,
+   4134,
+   700
+  ],
+  [
+   6064,
+   2221,
+   700
+  ],
+  [
+   4961,
+   3816,
+   700
+  ]
+ ]
+}

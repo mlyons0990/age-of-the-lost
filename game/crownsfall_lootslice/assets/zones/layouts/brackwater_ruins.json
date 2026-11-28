@@ -1,0 +1,288 @@
+{
+ "id": "brackwater_ruins",
+ "name": "Brackwater Ruins",
+ "world_id": "brackwater",
+ "size": [
+  11520,
+  4944
+ ],
+ "seed": 79,
+ "main": [
+  [
+   -80,
+   2470
+  ],
+  [
+   1000,
+   2470
+  ],
+  [
+   2000,
+   2300
+  ],
+  [
+   3000,
+   2450
+  ],
+  [
+   4000,
+   2400
+  ],
+  [
+   5000,
+   2250
+  ],
+  [
+   6000,
+   2400
+  ],
+  [
+   7200,
+   2300
+  ],
+  [
+   8400,
+   2500
+  ],
+  [
+   9400,
+   2400
+  ]
+ ],
+ "branches": [
+  [
+   [
+    3000,
+    2450
+   ],
+   [
+    3100,
+    3300
+   ],
+   [
+    3200,
+    3900
+   ]
+  ],
+  [
+   [
+    6000,
+    2400
+   ],
+   [
+    6100,
+    1600
+   ],
+   [
+    6200,
+    1000
+   ]
+  ],
+  [
+   [
+    8400,
+    2500
+   ],
+   [
+    8700,
+    3300
+   ],
+   [
+    9000,
+    3900
+   ]
+  ]
+ ],
+ "rooms": [
+  [
+   4000,
+   2400,
+   420
+  ],
+  [
+   3200,
+   3950,
+   420
+  ],
+  [
+   6200,
+   950,
+   460
+  ],
+  [
+   9000,
+   3950,
+   420
+  ],
+  [
+   9400,
+   2400,
+   620
+  ],
+  [
+   1800,
+   1200,
+   380
+  ],
+  [
+   7200,
+   1300,
+   380
+  ],
+  [
+   5200,
+   3800,
+   380
+  ],
+  [
+   10500,
+   1500,
+   420
+  ]
+ ],
+ "pools": [
+  [
+   1400,
+   3600,
+   520
+  ],
+  [
+   5000,
+   1100,
+   420
+  ],
+  [
+   7600,
+   3700,
+   480
+  ],
+  [
+   10600,
+   3500,
+   460
+  ],
+  [
+   2600,
+   800,
+   360
+  ]
+ ],
+ "trees": [
+  [
+   "silver",
+   2
+  ],
+  [
+   "gnarled_a",
+   2
+  ]
+ ],
+ "tree_spacing": 1100,
+ "tree_cut": 0.78,
+ "rocks": 80,
+ "exits": [
+  {
+   "name": "Riftscar Moor",
+   "to": "riftscar_moor",
+   "at": [
+    140,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    8200,
+    4400
+   ]
+  }
+ ],
+ "waypoint": [
+  4000,
+  2400,
+  "brackwater_forum",
+  "Drowned Forum"
+ ],
+ "spawn": [
+  620,
+  2470
+ ],
+ "pois": [
+  {
+   "name": "Moor Path",
+   "kind": "landmark",
+   "at": [
+    160,
+    2470
+   ],
+   "blurb": "North to Riftscar Moor."
+  },
+  {
+   "name": "Drowned Forum",
+   "kind": "landmark",
+   "at": [
+    4000,
+    2400
+   ],
+   "blurb": "A Concord forum. Its columns flicker between whole and broken."
+  },
+  {
+   "name": "Seal-House West",
+   "kind": "landmark",
+   "at": [
+    3200,
+    3950
+   ],
+   "blurb": "Where the outpost kept its seals."
+  },
+  {
+   "name": "Signal Tower",
+   "kind": "landmark",
+   "at": [
+    6200,
+    950
+   ],
+   "blurb": "A tower that is sometimes there."
+  },
+  {
+   "name": "Seal-House East",
+   "kind": "landmark",
+   "at": [
+    9000,
+    3950
+   ],
+   "blurb": "A second seal-house, half underwater."
+  },
+  {
+   "name": "Sentinel's Post",
+   "kind": "secret",
+   "at": [
+    9400,
+    2400
+   ],
+   "blurb": "A Concord sentinel, stepping in and out of time."
+  }
+ ],
+ "grade": {
+  "mul": [
+   0.86,
+   0.94,
+   0.96
+  ],
+  "desat": 0.36,
+  "lift": [
+   0.05,
+   0.07,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.66,
+   0.8,
+   0.86
+  ],
+  "water": [
+   0.22,
+   0.34,
+   0.36
+  ]
+ }
+}

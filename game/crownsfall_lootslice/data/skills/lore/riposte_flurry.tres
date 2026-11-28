@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/echo_strike.png" id="1_lc"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_lc"]
+
+[resource]
+script = ExtResource("2_lc")
+id = "riposte_flurry"
+display_name = "Riposte Flurry"
+icon = ExtResource("1_lc")
+description = "Lorecast (Corsair Duelist Serrin Vale): a whirl of Concord duelling cuts through everything in front of you."
+animation = "Slash"
+shape = "arc"
+mana_cost = 12.0
+cooldown = 3.0
+numbers = {
+"arc": -0.4,
+"dmg": 2.1,
+"range": 3.2
+}

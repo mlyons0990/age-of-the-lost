@@ -1,0 +1,78 @@
+{
+ "zone": "sunward_threshold",
+ "levels": [
+  21,
+  22
+ ],
+ "packs": 20,
+ "seed": 386,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "sunward_threshold_0",
+    "sunward_threshold_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "sunward_threshold_1",
+    "sunward_threshold_1",
+    "sunward_threshold_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "sunward_threshold_0",
+    "sunward_threshold_1",
+    "sunward_threshold_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "sunward_threshold_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "sunward_threshold_2",
+    "sunward_threshold_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "sunward_threshold_0",
+    "sunward_threshold_0",
+    "sunward_threshold_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    1275,
+    2032
+   ],
+   "types": [],
+   "boss": "sunward_threshold_boss_u",
+   "boss_type": "sunward_threshold_boss",
+   "boss_name": "Gate Anchor Warden",
+   "needs_quest": "Q_A03_01"
+  }
+ ],
+ "keep_clear": [
+  [
+   1275,
+   2032,
+   700
+  ]
+ ]
+}

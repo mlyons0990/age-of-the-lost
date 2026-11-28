@@ -1,0 +1,78 @@
+{
+ "zone": "vault_of_continuity",
+ "levels": [
+  61,
+  62
+ ],
+ "packs": 14,
+ "seed": 383,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "vault_of_continuity_0",
+    "vault_of_continuity_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "vault_of_continuity_1",
+    "vault_of_continuity_1",
+    "vault_of_continuity_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "vault_of_continuity_0",
+    "vault_of_continuity_1",
+    "vault_of_continuity_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "vault_of_continuity_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "vault_of_continuity_2",
+    "vault_of_continuity_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "vault_of_continuity_0",
+    "vault_of_continuity_0",
+    "vault_of_continuity_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6433,
+    1629
+   ],
+   "types": [],
+   "boss": "vault_of_continuity_boss_u",
+   "boss_type": "vault_of_continuity_boss",
+   "boss_name": "The Continuity Sentinel",
+   "needs_quest": "Q_A07_02"
+  }
+ ],
+ "keep_clear": [
+  [
+   6433,
+   1629,
+   700
+  ]
+ ]
+}

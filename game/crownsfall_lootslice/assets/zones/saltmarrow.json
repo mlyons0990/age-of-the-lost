@@ -1,0 +1,676 @@
+{
+ "size": [
+  13533,
+  5808
+ ],
+ "name": "Saltmarrow",
+ "world_id": "saltmarrow",
+ "ppm": 120.0,
+ "hero_px_1080": 110.0,
+ "pitch": 31.0,
+ "ground_ratio": 0.43,
+ "scale_note": "Painted district (Higgsfield master + 9-section upscale, 11-28), same scale as the Crownsfall Grand City.",
+ "walkable": [
+  [
+   [
+    4850,
+    0
+   ],
+   [
+    5450,
+    0
+   ],
+   [
+    6250,
+    1450
+   ],
+   [
+    5050,
+    1450
+   ]
+  ],
+  [
+   [
+    4500,
+    1450
+   ],
+   [
+    7800,
+    1450
+   ],
+   [
+    7800,
+    2650
+   ],
+   [
+    5400,
+    2750
+   ],
+   [
+    4500,
+    2550
+   ]
+  ],
+  [
+   [
+    7600,
+    2000
+   ],
+   [
+    13533,
+    1880
+   ],
+   [
+    13533,
+    2340
+   ],
+   [
+    7600,
+    2450
+   ]
+  ],
+  [
+   [
+    5900,
+    2600
+   ],
+   [
+    6450,
+    2600
+   ],
+   [
+    6450,
+    3400
+   ],
+   [
+    5900,
+    3400
+   ]
+  ],
+  [
+   [
+    200,
+    3200
+   ],
+   [
+    11200,
+    3300
+   ],
+   [
+    11200,
+    3680
+   ],
+   [
+    200,
+    3620
+   ]
+  ],
+  [
+   [
+    5750,
+    3450
+   ],
+   [
+    6800,
+    3450
+   ],
+   [
+    6850,
+    5550
+   ],
+   [
+    5800,
+    5550
+   ]
+  ],
+  [
+   [
+    10200,
+    3350
+   ],
+   [
+    11400,
+    3450
+   ],
+   [
+    12050,
+    4000
+   ],
+   [
+    11700,
+    4300
+   ],
+   [
+    10200,
+    3700
+   ]
+  ]
+ ],
+ "spawn": [
+  5350,
+  900
+ ],
+ "targets": [
+  [
+   7000,
+   2200
+  ],
+  [
+   6300,
+   5000
+  ],
+  [
+   1800,
+   3400
+  ],
+  [
+   11500,
+   3800
+  ]
+ ],
+ "occluders": [],
+ "exits": [
+  {
+   "name": "Greyfen Causeway",
+   "to": "greyfen_causeway",
+   "poly": [
+    [
+     4850,
+     20
+    ],
+    [
+     5450,
+     20
+    ],
+    [
+     5500,
+     220
+    ],
+    [
+     4880,
+     220
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      4850,
+      20
+     ],
+     [
+      5450,
+      20
+     ],
+     [
+      5500,
+      220
+     ],
+     [
+      4880,
+      220
+     ]
+    ]
+   },
+   "arrive": [
+    8687,
+    4438
+   ]
+  },
+  {
+   "name": "Wrecker's Strand",
+   "to": "wreckers_strand",
+   "poly": [
+    [
+     13250,
+     1800
+    ],
+    [
+     13533,
+     1800
+    ],
+    [
+     13533,
+     2320
+    ],
+    [
+     13250,
+     2320
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      13250,
+      1800
+     ],
+     [
+      13533,
+      1800
+     ],
+     [
+      13533,
+      2320
+     ],
+     [
+      13250,
+      2320
+     ]
+    ]
+   },
+   "arrive": [
+    8344,
+    526
+   ]
+  }
+ ],
+ "waypoints": [
+  {
+   "id": "saltmarrow_wp",
+   "name": "Saltmarrow",
+   "at": [
+    5000,
+    2250
+   ],
+   "centre_of": [
+    5000,
+    2250
+   ],
+   "radius_px": 200
+  }
+ ],
+ "map_pois": [
+  {
+   "name": "Harbour Square",
+   "kind": "landmark",
+   "at": [
+    7000,
+    2200
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Long Pier",
+   "kind": "landmark",
+   "at": [
+    6300,
+    5000
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Net Lofts",
+   "kind": "landmark",
+   "at": [
+    1800,
+    3400
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Old Lighthouse",
+   "kind": "landmark",
+   "at": [
+    11500,
+    3800
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Greyfen Causeway",
+   "kind": "landmark",
+   "at": [
+    5170,
+    120
+   ],
+   "blurb": "To Greyfen Causeway."
+  },
+  {
+   "name": "Wrecker's Strand",
+   "kind": "landmark",
+   "at": [
+    13391,
+    2060
+   ],
+   "blurb": "To Wrecker's Strand."
+  }
+ ],
+ "tiles": [
+  {
+   "image": "saltmarrow/t_0_0.png",
+   "depth": "",
+   "rect": [
+    0,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    0,
+    0,
+    2096,
+    2096
+   ]
+  },
+  {
+   "image": "saltmarrow/t_1_0.png",
+   "depth": "",
+   "rect": [
+    2048,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    2000,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "saltmarrow/t_2_0.png",
+   "depth": "",
+   "rect": [
+    4096,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    4048,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "saltmarrow/t_3_0.png",
+   "depth": "",
+   "rect": [
+    6144,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    6096,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "saltmarrow/t_4_0.png",
+   "depth": "",
+   "rect": [
+    8192,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    8144,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "saltmarrow/t_5_0.png",
+   "depth": "",
+   "rect": [
+    10240,
+    0,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    10192,
+    0,
+    2144,
+    2096
+   ]
+  },
+  {
+   "image": "saltmarrow/t_6_0.png",
+   "depth": "",
+   "rect": [
+    12288,
+    0,
+    1245,
+    2048
+   ],
+   "img_rect": [
+    12240,
+    0,
+    1293,
+    2096
+   ]
+  },
+  {
+   "image": "saltmarrow/t_0_1.png",
+   "depth": "",
+   "rect": [
+    0,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    0,
+    2000,
+    2096,
+    2144
+   ]
+  },
+  {
+   "image": "saltmarrow/t_1_1.png",
+   "depth": "",
+   "rect": [
+    2048,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    2000,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "saltmarrow/t_2_1.png",
+   "depth": "",
+   "rect": [
+    4096,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    4048,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "saltmarrow/t_3_1.png",
+   "depth": "",
+   "rect": [
+    6144,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    6096,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "saltmarrow/t_4_1.png",
+   "depth": "",
+   "rect": [
+    8192,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    8144,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "saltmarrow/t_5_1.png",
+   "depth": "",
+   "rect": [
+    10240,
+    2048,
+    2048,
+    2048
+   ],
+   "img_rect": [
+    10192,
+    2000,
+    2144,
+    2144
+   ]
+  },
+  {
+   "image": "saltmarrow/t_6_1.png",
+   "depth": "",
+   "rect": [
+    12288,
+    2048,
+    1245,
+    2048
+   ],
+   "img_rect": [
+    12240,
+    2000,
+    1293,
+    2144
+   ]
+  },
+  {
+   "image": "saltmarrow/t_0_2.png",
+   "depth": "",
+   "rect": [
+    0,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    0,
+    4048,
+    2096,
+    1760
+   ]
+  },
+  {
+   "image": "saltmarrow/t_1_2.png",
+   "depth": "",
+   "rect": [
+    2048,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    2000,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "saltmarrow/t_2_2.png",
+   "depth": "",
+   "rect": [
+    4096,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    4048,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "saltmarrow/t_3_2.png",
+   "depth": "",
+   "rect": [
+    6144,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    6096,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "saltmarrow/t_4_2.png",
+   "depth": "",
+   "rect": [
+    8192,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    8144,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "saltmarrow/t_5_2.png",
+   "depth": "",
+   "rect": [
+    10240,
+    4096,
+    2048,
+    1712
+   ],
+   "img_rect": [
+    10192,
+    4048,
+    2144,
+    1760
+   ]
+  },
+  {
+   "image": "saltmarrow/t_6_2.png",
+   "depth": "",
+   "rect": [
+    12288,
+    4096,
+    1245,
+    1712
+   ],
+   "img_rect": [
+    12240,
+    4048,
+    1293,
+    1760
+   ]
+  }
+ ],
+ "overview": "saltmarrow/overview.png"
+}

@@ -1,0 +1,78 @@
+{
+ "zone": "the_choirs_procession",
+ "levels": [
+  58,
+  59
+ ],
+ "packs": 30,
+ "seed": 646,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "the_choirs_procession_0",
+    "the_choirs_procession_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_choirs_procession_1",
+    "the_choirs_procession_1",
+    "the_choirs_procession_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_choirs_procession_0",
+    "the_choirs_procession_1",
+    "the_choirs_procession_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_choirs_procession_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_choirs_procession_2",
+    "the_choirs_procession_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_choirs_procession_0",
+    "the_choirs_procession_0",
+    "the_choirs_procession_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    8125,
+    1704
+   ],
+   "types": [],
+   "boss": "the_choirs_procession_boss_u",
+   "boss_type": "the_choirs_procession_boss",
+   "boss_name": "Cantor Neral, Ascendant",
+   "needs_quest": "Q_A06_12"
+  }
+ ],
+ "keep_clear": [
+  [
+   8125,
+   1704,
+   700
+  ]
+ ]
+}

@@ -1,0 +1,786 @@
+{
+ "name": "Moonfall Republic",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 7007,
+ "paths": [
+  {
+   "pts": [
+    [
+     140,
+     1595
+    ],
+    [
+     520,
+     1595
+    ],
+    [
+     1559,
+     2004
+    ],
+    [
+     2681,
+     2289
+    ],
+    [
+     3609,
+     2866
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3609,
+     2866
+    ],
+    [
+     5194.5,
+     3107.5
+    ],
+    [
+     6780,
+     3349
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4084,
+     2938
+    ],
+    [
+     3998,
+     3575
+    ],
+    [
+     3476,
+     3988
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2456,
+     2232
+    ],
+    [
+     2811,
+     1875
+    ],
+    [
+     3186,
+     1397
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6304,
+     3276
+    ],
+    [
+     6359,
+     2876
+    ],
+    [
+     6649,
+     2494
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     1559,
+     2004
+    ],
+    [
+     896,
+     2375
+    ],
+    [
+     721,
+     2787
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6980,
+    2521
+   ],
+   "r": 326,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2956,
+    3192
+   ],
+   "r": 414,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2768,
+    868
+   ],
+   "r": 291,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2341,
+    3938
+   ],
+   "r": 323,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5549,
+    2306
+   ],
+   "r": 323,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1090,
+    772
+   ],
+   "r": 281,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2907,
+    4360
+   ],
+   "r": 335,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1754,
+    616
+   ],
+   "r": 438,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4429,
+    928
+   ],
+   "r": 450,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2995,
+    3978
+   ],
+   "r": 433,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6710,
+    2905
+   ],
+   "r": 267,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1640,
+    1136
+   ],
+   "r": 478,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4049,
+    1038
+   ],
+   "r": 275,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1180,
+    1308
+   ],
+   "r": 311,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3609,
+    2866
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3476,
+    3988
+   ],
+   "r": 404,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3186,
+    1397
+   ],
+   "r": 403,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6649,
+    2494
+   ],
+   "r": 427,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    721,
+    2787
+   ],
+   "r": 371,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6912,
+    849
+   ],
+   "r": 161,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1746,
+    1461
+   ],
+   "r": 180,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1595,
+   380
+  ],
+  [
+   3476,
+   3988,
+   300
+  ],
+  [
+   3186,
+   1397,
+   300
+  ],
+  [
+   6649,
+   2494,
+   300
+  ],
+  [
+   721,
+   2787,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3476,
+    3988,
+    560,
+    0.45
+   ],
+   [
+    3186,
+    1397,
+    560,
+    0.45
+   ],
+   [
+    6649,
+    2494,
+    560,
+    0.45
+   ],
+   [
+    721,
+    2787,
+    560,
+    0.45
+   ],
+   [
+    3609,
+    2866,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3609,
+    2646,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "moonfall_republic_wp",
+   "name": "Moonfall Republic",
+   "at": [
+    3609,
+    2866
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Throne of Glass",
+   "to": "throne_of_glass",
+   "at": [
+    140,
+    1595
+   ],
+   "r": 170,
+   "arrive": [
+    7120,
+    1132
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1595
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Silver Rooftops",
+   "kind": "landmark",
+   "at": [
+    3476,
+    3988
+   ],
+   "blurb": "Silver rooftops, open assembly plazas"
+  },
+  {
+   "name": "Assembly Plaza",
+   "kind": "landmark",
+   "at": [
+    3186,
+    1397
+   ],
+   "blurb": "Silver rooftops, open assembly plazas"
+  },
+  {
+   "name": "Republic Archive",
+   "kind": "landmark",
+   "at": [
+    6649,
+    2494
+   ],
+   "blurb": "Silver rooftops, open assembly plazas"
+  },
+  {
+   "name": "Civic Defence Line",
+   "kind": "landmark",
+   "at": [
+    721,
+    2787
+   ],
+   "blurb": "Silver rooftops, open assembly plazas"
+  },
+  {
+   "name": "Throne of Glass",
+   "kind": "landmark",
+   "at": [
+    140,
+    1595
+   ],
+   "blurb": "To Throne of Glass."
+  }
+ ],
+ "world_id": "moonfall_republic",
+ "grade": {
+  "mul": [
+   0.86,
+   0.9,
+   1.06
+  ],
+  "desat": 0.55,
+  "lift": [
+   0.08,
+   0.09,
+   0.14,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.85,
+   1.0
+  ],
+  "water": [
+   0.3,
+   0.36,
+   0.55
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3476,
+    3988
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    3186,
+    1397
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6649,
+    2494
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    721,
+    2787
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "zone": "riven_royal_court",
+ "levels": [
+  49,
+  50
+ ],
+ "packs": 14,
+ "seed": 909,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "riven_royal_court_0",
+    "riven_royal_court_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "riven_royal_court_1",
+    "riven_royal_court_1",
+    "riven_royal_court_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "riven_royal_court_0",
+    "riven_royal_court_1",
+    "riven_royal_court_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "riven_royal_court_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "riven_royal_court_2",
+    "riven_royal_court_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "riven_royal_court_0",
+    "riven_royal_court_0",
+    "riven_royal_court_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6392,
+    1781
+   ],
+   "types": [],
+   "boss": "riven_royal_court_boss_u",
+   "boss_type": "riven_royal_court_boss",
+   "boss_name": "Queen Ysara",
+   "needs_quest": "Q_A05_14"
+  }
+ ],
+ "keep_clear": [
+  [
+   6392,
+   1781,
+   700
+  ]
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "zone": "ashen_tollway",
+ "levels": [
+  3,
+  4
+ ],
+ "packs": 30,
+ "seed": 924,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "ashen_tollway_0",
+    "ashen_tollway_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "ashen_tollway_1",
+    "ashen_tollway_1",
+    "ashen_tollway_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "ashen_tollway_0",
+    "ashen_tollway_1",
+    "ashen_tollway_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "ashen_tollway_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "ashen_tollway_2",
+    "ashen_tollway_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "ashen_tollway_0",
+    "ashen_tollway_0",
+    "ashen_tollway_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3254,
+    3478
+   ],
+   "types": [],
+   "boss": "ashen_tollway_boss_u",
+   "boss_type": "ashen_tollway_boss",
+   "boss_name": "Cult Captain Varro",
+   "needs_quest": "Q_A01_07"
+  }
+ ],
+ "keep_clear": [
+  [
+   3254,
+   3478,
+   700
+  ]
+ ]
+}

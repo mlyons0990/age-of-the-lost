@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/arcane_fold.png" id="1_at116"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_n4de1"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_3chxe"]
+
+[sub_resource type="Resource" id="Resource_t72mx"]
+script = ExtResource("3_3chxe")
+id = "fold_frost"
+display_name = "Frost Wake"
+description = "Leaves a burst of cold where you were: 1.2x damage and 50% slow."
+overrides = {
+"dmg": 1.2,
+"radius": 2.5,
+"slow": 0.5,
+"slow_t": 2.0
+}
+
+[sub_resource type="Resource" id="Resource_8thc6"]
+script = ExtResource("3_3chxe")
+id = "fold_quick"
+display_name = "Quickened Fold"
+description = "Cooldown reduced to 4.5 s."
+overrides = {
+"cd": 4.5
+}
+
+[resource]
+script = ExtResource("2_n4de1")
+id = "arcane_fold"
+display_name = "Arcane Fold"
+icon = ExtResource("1_at116")
+description = "Blink up to 7 m to the cursor onto open ground."
+unlock_level = 3
+animation = "None"
+shape = "blink"
+sound = "arcane_fold"
+mana_cost = 16.0
+cooldown = 8.0
+numbers = {
+"range": 7.0
+}
+upgrades = Array[ExtResource("3_3chxe")]([SubResource("Resource_t72mx"), SubResource("Resource_8thc6")])

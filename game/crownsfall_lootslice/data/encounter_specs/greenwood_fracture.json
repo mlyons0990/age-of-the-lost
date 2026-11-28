@@ -1,0 +1,78 @@
+{
+ "zone": "greenwood_fracture",
+ "levels": [
+  51,
+  52
+ ],
+ "packs": 30,
+ "seed": 731,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "greenwood_fracture_0",
+    "greenwood_fracture_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "greenwood_fracture_1",
+    "greenwood_fracture_1",
+    "greenwood_fracture_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "greenwood_fracture_0",
+    "greenwood_fracture_1",
+    "greenwood_fracture_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "greenwood_fracture_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "greenwood_fracture_2",
+    "greenwood_fracture_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "greenwood_fracture_0",
+    "greenwood_fracture_0",
+    "greenwood_fracture_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    7025,
+    650
+   ],
+   "types": [],
+   "boss": "greenwood_fracture_boss_u",
+   "boss_type": "greenwood_fracture_boss",
+   "boss_name": "The Root Guardian",
+   "needs_quest": "Q_A06_02"
+  }
+ ],
+ "keep_clear": [
+  [
+   7025,
+   650,
+   700
+  ]
+ ]
+}

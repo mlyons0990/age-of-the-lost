@@ -1,0 +1,207 @@
+{
+ "id": "oldwatch",
+ "name": "Oldwatch",
+ "world_id": "oldwatch",
+ "size": [
+  7680,
+  4944
+ ],
+ "seed": 83,
+ "main": [
+  [
+   3840,
+   5000
+  ],
+  [
+   3840,
+   4200
+  ],
+  [
+   3840,
+   3200
+  ],
+  [
+   3840,
+   2400
+  ]
+ ],
+ "branches": [
+  [
+   [
+    3840,
+    2400
+   ],
+   [
+    5000,
+    2200
+   ],
+   [
+    6200,
+    2050
+   ],
+   [
+    7700,
+    2000
+   ]
+  ],
+  [
+   [
+    3840,
+    2400
+   ],
+   [
+    2600,
+    2300
+   ],
+   [
+    1500,
+    2100
+   ]
+  ]
+ ],
+ "rooms": [
+  [
+   3840,
+   2400,
+   950
+  ],
+  [
+   1500,
+   2050,
+   460
+  ],
+  [
+   5400,
+   1300,
+   420
+  ],
+  [
+   2300,
+   3500,
+   380
+  ]
+ ],
+ "trees": [
+  [
+   "gnarled_a",
+   1
+  ],
+  [
+   "silver",
+   1
+  ]
+ ],
+ "tree_spacing": 1300,
+ "tree_cut": 0.85,
+ "rocks": 30,
+ "mist": "none",
+ "exits": [
+  {
+   "name": "Riftscar Moor",
+   "to": "riftscar_moor",
+   "at": [
+    3840,
+    4780
+   ],
+   "r": 170,
+   "arrive": [
+    5600,
+    600
+   ]
+  },
+  {
+   "name": "The Shattered Observatory",
+   "to": "shattered_observatory",
+   "at": [
+    7540,
+    2000
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2470
+   ]
+  }
+ ],
+ "waypoint": [
+  3840,
+  2400,
+  "oldwatch_yard",
+  "Oldwatch"
+ ],
+ "spawn": [
+  3840,
+  2900
+ ],
+ "pois": [
+  {
+   "name": "South Gate",
+   "kind": "landmark",
+   "at": [
+    3840,
+    4780
+   ],
+   "blurb": "Down to Riftscar Moor."
+  },
+  {
+   "name": "Watch Yard",
+   "kind": "landmark",
+   "at": [
+    3840,
+    2400
+   ],
+   "blurb": "The fort's yard, full of refugees from the moor."
+  },
+  {
+   "name": "Scholar's Tent",
+   "kind": "landmark",
+   "at": [
+    1500,
+    2050
+   ],
+   "blurb": "Ione Thessaly's tent, buried in paper."
+  },
+  {
+   "name": "Old Tower",
+   "kind": "landmark",
+   "at": [
+    5400,
+    1300
+   ],
+   "blurb": "The watchtower that gave the fort its name."
+  },
+  {
+   "name": "Mountain Stair",
+   "kind": "landmark",
+   "at": [
+    7540,
+    2000
+   ],
+   "blurb": "Up to the Shattered Observatory."
+  }
+ ],
+ "grade": {
+  "mul": [
+   0.94,
+   0.92,
+   0.92
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.05,
+   0.05,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.78,
+   0.76,
+   0.82
+  ],
+  "water": [
+   0.2,
+   0.3,
+   0.36
+  ]
+ }
+}

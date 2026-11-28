@@ -1,0 +1,122 @@
+{
+ "zone": "lanternfall_cliffs",
+ "levels": [
+  6,
+  7
+ ],
+ "packs": 30,
+ "seed": 917,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "lanternfall_cliffs_0",
+    "lanternfall_cliffs_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "lanternfall_cliffs_1",
+    "lanternfall_cliffs_1",
+    "lanternfall_cliffs_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "lanternfall_cliffs_0",
+    "lanternfall_cliffs_1",
+    "lanternfall_cliffs_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "lanternfall_cliffs_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "lanternfall_cliffs_2",
+    "lanternfall_cliffs_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "lanternfall_cliffs_0",
+    "lanternfall_cliffs_0",
+    "lanternfall_cliffs_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5020,
+    866
+   ],
+   "types": [
+    "lanternfall_cliffs_1",
+    "lanternfall_cliffs_1"
+   ],
+   "elite": false,
+   "guardian": "lanternfall_cliffs_g1",
+   "elite_type": "lanternfall_cliffs_0",
+   "elite_name": "The West Keeper",
+   "page": "Q_A01_R13_1"
+  },
+  {
+   "at": [
+    8971,
+    2251
+   ],
+   "types": [
+    "lanternfall_cliffs_1",
+    "lanternfall_cliffs_1"
+   ],
+   "elite": false,
+   "guardian": "lanternfall_cliffs_g2",
+   "elite_type": "lanternfall_cliffs_1",
+   "elite_name": "The High Keeper",
+   "page": "Q_A01_R13_2"
+  },
+  {
+   "at": [
+    926,
+    2029
+   ],
+   "types": [
+    "lanternfall_cliffs_1",
+    "lanternfall_cliffs_1"
+   ],
+   "elite": false,
+   "guardian": "lanternfall_cliffs_g3",
+   "elite_type": "lanternfall_cliffs_2",
+   "elite_name": "The East Keeper",
+   "page": "Q_A01_R13_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   5020,
+   866,
+   700
+  ],
+  [
+   8971,
+   2251,
+   700
+  ],
+  [
+   926,
+   2029,
+   700
+  ]
+ ]
+}

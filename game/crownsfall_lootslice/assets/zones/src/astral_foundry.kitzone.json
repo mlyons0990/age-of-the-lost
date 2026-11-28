@@ -1,0 +1,823 @@
+{
+ "name": "Astral Foundry",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 1422,
+ "paths": [
+  {
+   "pts": [
+    [
+     2112,
+     2896
+    ],
+    [
+     2078,
+     3439
+    ],
+    [
+     2147,
+     3981
+    ]
+   ],
+   "width": 321,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2147,
+     3981
+    ],
+    [
+     3276,
+     3830
+    ],
+    [
+     4407,
+     3977
+    ]
+   ],
+   "width": 265,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4407,
+     3977
+    ],
+    [
+     5484,
+     4164
+    ],
+    [
+     6550,
+     3943
+    ]
+   ],
+   "width": 314,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6550,
+     3943
+    ],
+    [
+     6709,
+     3299
+    ],
+    [
+     6578,
+     2653
+    ]
+   ],
+   "width": 307,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6578,
+     2653
+    ],
+    [
+     5331,
+     2430
+    ],
+    [
+     4524,
+     1691
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4524,
+     1691
+    ],
+    [
+     5187,
+     1405
+    ],
+    [
+     5785,
+     1049
+    ]
+   ],
+   "width": 264,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4524,
+     1691
+    ],
+    [
+     3226,
+     1389
+    ],
+    [
+     1868,
+     1354
+    ]
+   ],
+   "width": 324,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4524,
+     1691
+    ],
+    [
+     5785,
+     2693
+    ],
+    [
+     6550,
+     3943
+    ]
+   ],
+   "width": 298,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2112,
+     2896
+    ],
+    [
+     3034,
+     3698
+    ],
+    [
+     4407,
+     3977
+    ]
+   ],
+   "width": 338,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1482
+    ],
+    [
+     840,
+     1482
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1482
+    ],
+    [
+     1868,
+     1354
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    2112,
+    2896
+   ],
+   "r": 589,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5785,
+    1049
+   ],
+   "r": 469,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4524,
+    1691
+   ],
+   "r": 557,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6578,
+    2653
+   ],
+   "r": 575,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1868,
+    1354
+   ],
+   "r": 462,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4407,
+    3977
+   ],
+   "r": 570,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2147,
+    3981
+   ],
+   "r": 437,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6550,
+    3943
+   ],
+   "r": 485,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1482,
+   380
+  ],
+  [
+   6550,
+   3943,
+   300
+  ],
+  [
+   6578,
+   2653,
+   300
+  ],
+  [
+   5785,
+   1049,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    2112,
+    2896,
+    500.65,
+    0.6
+   ],
+   [
+    5785,
+    1049,
+    398.65,
+    0.6
+   ],
+   [
+    4524,
+    1691,
+    473.45,
+    0.6
+   ],
+   [
+    6578,
+    2653,
+    488.75,
+    0.6
+   ],
+   [
+    1868,
+    1354,
+    392.7,
+    0.6
+   ],
+   [
+    4407,
+    3977,
+    484.5,
+    0.6
+   ],
+   [
+    2147,
+    3981,
+    371.45,
+    0.6
+   ],
+   [
+    6550,
+    3943,
+    412.25,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6550,
+    3723,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "astral_foundry_wp",
+   "name": "Astral Foundry",
+   "at": [
+    4407,
+    3977
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Artificers' Ward",
+   "to": "artificers_ward",
+   "at": [
+    140,
+    1482
+   ],
+   "r": 170,
+   "arrive": [
+    7120,
+    3266
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1482
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Vast Furnace",
+   "kind": "landmark",
+   "at": [
+    6550,
+    3943
+   ],
+   "blurb": "Vast furnaces, suspended metal rings"
+  },
+  {
+   "name": "Suspended Rings",
+   "kind": "landmark",
+   "at": [
+    6578,
+    2653
+   ],
+   "blurb": "Vast furnaces, suspended metal rings"
+  },
+  {
+   "name": "Foundry Floor",
+   "kind": "landmark",
+   "at": [
+    5785,
+    1049
+   ],
+   "blurb": "Vast furnaces, suspended metal rings"
+  },
+  {
+   "name": "Artificers' Ward",
+   "kind": "landmark",
+   "at": [
+    140,
+    1482
+   ],
+   "blurb": "To Artificers' Ward."
+  }
+ ],
+ "world_id": "astral_foundry",
+ "grade": {
+  "mul": [
+   1.06,
+   0.84,
+   0.66
+  ],
+  "desat": 0.25,
+  "lift": [
+   0.08,
+   0.03,
+   0.0,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.7,
+   0.5
+  ],
+  "water": [
+   0.5,
+   0.25,
+   0.1
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    2112,
+    2896
+   ],
+   "r": 559.55,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5785,
+    1049
+   ],
+   "r": 445.54999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4524,
+    1691
+   ],
+   "r": 529.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6578,
+    2653
+   ],
+   "r": 546.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1868,
+    1354
+   ],
+   "r": 438.9,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4407,
+    3977
+   ],
+   "r": 541.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2147,
+    3981
+   ],
+   "r": 415.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6550,
+    3943
+   ],
+   "r": 460.75,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

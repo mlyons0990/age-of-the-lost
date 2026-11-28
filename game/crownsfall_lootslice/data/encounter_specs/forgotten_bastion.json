@@ -1,0 +1,78 @@
+{
+ "zone": "forgotten_bastion",
+ "levels": [
+  16,
+  17
+ ],
+ "packs": 14,
+ "seed": 968,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "forgotten_bastion_0",
+    "forgotten_bastion_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "forgotten_bastion_1",
+    "forgotten_bastion_1",
+    "forgotten_bastion_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "forgotten_bastion_0",
+    "forgotten_bastion_1",
+    "forgotten_bastion_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "forgotten_bastion_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "forgotten_bastion_2",
+    "forgotten_bastion_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "forgotten_bastion_0",
+    "forgotten_bastion_0",
+    "forgotten_bastion_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6371,
+    1082
+   ],
+   "types": [],
+   "boss": "forgotten_bastion_boss_u",
+   "boss_type": "forgotten_bastion_boss",
+   "boss_name": "The Siege Specter",
+   "needs_quest": "Q_A02_09"
+  }
+ ],
+ "keep_clear": [
+  [
+   6371,
+   1082,
+   700
+  ]
+ ]
+}

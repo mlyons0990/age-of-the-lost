@@ -1,0 +1,78 @@
+{
+ "zone": "engine_of_first_night",
+ "levels": [
+  40,
+  40
+ ],
+ "packs": 14,
+ "seed": 597,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "engine_of_first_night_0",
+    "engine_of_first_night_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "engine_of_first_night_1",
+    "engine_of_first_night_1",
+    "engine_of_first_night_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "engine_of_first_night_0",
+    "engine_of_first_night_1",
+    "engine_of_first_night_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "engine_of_first_night_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "engine_of_first_night_2",
+    "engine_of_first_night_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "engine_of_first_night_0",
+    "engine_of_first_night_0",
+    "engine_of_first_night_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6079,
+    2397
+   ],
+   "types": [],
+   "boss": "engine_of_first_night_boss_u",
+   "boss_type": "engine_of_first_night_boss",
+   "boss_name": "The First Reset",
+   "needs_quest": "Q_A04_15"
+  }
+ ],
+ "keep_clear": [
+  [
+   6079,
+   2397,
+   700
+  ]
+ ]
+}

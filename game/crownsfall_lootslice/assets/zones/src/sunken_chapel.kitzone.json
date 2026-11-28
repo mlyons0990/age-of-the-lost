@@ -1,0 +1,907 @@
+{
+ "name": "Sunken Chapel",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 8880,
+ "paths": [
+  {
+   "pts": [
+    [
+     5196,
+     1429
+    ],
+    [
+     4473,
+     1213
+    ],
+    [
+     3818,
+     901
+    ]
+   ],
+   "width": 295,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3818,
+     901
+    ],
+    [
+     2968,
+     1144
+    ],
+    [
+     2067,
+     1244
+    ]
+   ],
+   "width": 312,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5196,
+     1429
+    ],
+    [
+     5008,
+     2124
+    ],
+    [
+     4511,
+     2731
+    ]
+   ],
+   "width": 336,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4511,
+     2731
+    ],
+    [
+     5354,
+     2816
+    ],
+    [
+     6205,
+     2833
+    ]
+   ],
+   "width": 313,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4511,
+     2731
+    ],
+    [
+     3642,
+     2939
+    ],
+    [
+     2757,
+     2774
+    ]
+   ],
+   "width": 329,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2757,
+     2774
+    ],
+    [
+     2740,
+     3314
+    ],
+    [
+     2493,
+     3824
+    ]
+   ],
+   "width": 316,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6205,
+     2833
+    ],
+    [
+     5628,
+     3462
+    ],
+    [
+     5212,
+     4158
+    ]
+   ],
+   "width": 287,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2757,
+     2774
+    ],
+    [
+     4266,
+     2390
+    ],
+    [
+     5196,
+     1429
+    ]
+   ],
+   "width": 273,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3818,
+     901
+    ],
+    [
+     4462,
+     1753
+    ],
+    [
+     4511,
+     2731
+    ]
+   ],
+   "width": 326,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1779
+    ],
+    [
+     840,
+     1779
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1779
+    ],
+    [
+     2067,
+     1244
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     3284,
+     4774
+    ],
+    [
+     3284,
+     4214.0
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     3284,
+     4254.0
+    ],
+    [
+     2493,
+     3824
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5196,
+    1429
+   ],
+   "r": 531,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2493,
+    3824
+   ],
+   "r": 527,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2757,
+    2774
+   ],
+   "r": 528,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4511,
+    2731
+   ],
+   "r": 496,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5212,
+    4158
+   ],
+   "r": 475,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2067,
+    1244
+   ],
+   "r": 637,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6205,
+    2833
+   ],
+   "r": 533,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3818,
+    901
+   ],
+   "r": 430,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2375,
+    3955
+   ],
+   "r": 168,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5321,
+    4276
+   ],
+   "r": 152,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1912,
+    1403
+   ],
+   "r": 203,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1779,
+   380
+  ],
+  [
+   3284,
+   4774,
+   380
+  ],
+  [
+   6205,
+   2833,
+   300
+  ],
+  [
+   5212,
+   4158,
+   300
+  ],
+  [
+   5196,
+   1429,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    5196,
+    1429,
+    451.34999999999997,
+    0.6
+   ],
+   [
+    2493,
+    3824,
+    447.95,
+    0.6
+   ],
+   [
+    2757,
+    2774,
+    448.8,
+    0.6
+   ],
+   [
+    4511,
+    2731,
+    421.59999999999997,
+    0.6
+   ],
+   [
+    5212,
+    4158,
+    403.75,
+    0.6
+   ],
+   [
+    2067,
+    1244,
+    541.4499999999999,
+    0.6
+   ],
+   [
+    6205,
+    2833,
+    453.05,
+    0.6
+   ],
+   [
+    3818,
+    901,
+    365.5,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6205,
+    2613,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "sunken_chapel_wp",
+   "name": "Sunken Chapel",
+   "at": [
+    4511,
+    2731
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Hollowmere",
+   "to": "hollowmere",
+   "at": [
+    140,
+    1779
+   ],
+   "r": 170,
+   "arrive": [
+    8245,
+    4438
+   ]
+  },
+  {
+   "name": "Cathedral of the Nameless",
+   "to": "cathedral_of_the_nameless",
+   "at": [
+    3284,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1509
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1779
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Flooded Nave",
+   "kind": "landmark",
+   "at": [
+    6205,
+    2833
+   ],
+   "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless"
+  },
+  {
+   "name": "Oracle's Pool",
+   "kind": "landmark",
+   "at": [
+    5212,
+    4158
+   ],
+   "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless"
+  },
+  {
+   "name": "The Scorched Altar",
+   "kind": "landmark",
+   "at": [
+    5196,
+    1429
+   ],
+   "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless"
+  },
+  {
+   "name": "Hollowmere",
+   "kind": "landmark",
+   "at": [
+    140,
+    1779
+   ],
+   "blurb": "To Hollowmere."
+  },
+  {
+   "name": "Cathedral of the Nameless",
+   "kind": "landmark",
+   "at": [
+    3284,
+    4774
+   ],
+   "blurb": "To Cathedral of the Nameless."
+  }
+ ],
+ "world_id": "sunken_chapel",
+ "grade": {
+  "mul": [
+   0.56,
+   0.66,
+   0.72
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.02,
+   0.04,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.5,
+   0.6,
+   0.66
+  ],
+  "water": [
+   0.12,
+   0.24,
+   0.3
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5196,
+    1429
+   ],
+   "r": 504.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2493,
+    3824
+   ],
+   "r": 500.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2757,
+    2774
+   ],
+   "r": 501.59999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4511,
+    2731
+   ],
+   "r": 471.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5212,
+    4158
+   ],
+   "r": 451.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2067,
+    1244
+   ],
+   "r": 605.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6205,
+    2833
+   ],
+   "r": 506.34999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3818,
+    901
+   ],
+   "r": 408.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

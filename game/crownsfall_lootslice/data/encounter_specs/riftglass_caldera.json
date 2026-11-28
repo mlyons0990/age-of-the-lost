@@ -1,0 +1,78 @@
+{
+ "zone": "riftglass_caldera",
+ "levels": [
+  54,
+  55
+ ],
+ "packs": 30,
+ "seed": 599,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "riftglass_caldera_0",
+    "riftglass_caldera_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "riftglass_caldera_1",
+    "riftglass_caldera_1",
+    "riftglass_caldera_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "riftglass_caldera_0",
+    "riftglass_caldera_1",
+    "riftglass_caldera_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "riftglass_caldera_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "riftglass_caldera_2",
+    "riftglass_caldera_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "riftglass_caldera_0",
+    "riftglass_caldera_0",
+    "riftglass_caldera_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    8785,
+    2786
+   ],
+   "types": [],
+   "boss": "riftglass_caldera_boss_u",
+   "boss_type": "riftglass_caldera_boss",
+   "boss_name": "The Caldera Construct",
+   "needs_quest": "Q_A06_06"
+  }
+ ],
+ "keep_clear": [
+  [
+   8785,
+   2786,
+   700
+  ]
+ ]
+}

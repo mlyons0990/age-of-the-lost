@@ -1,0 +1,1039 @@
+{
+ "name": "Throne of Glass",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 7917,
+ "paths": [
+  {
+   "pts": [
+    [
+     4895,
+     3775
+    ],
+    [
+     4031,
+     4059
+    ],
+    [
+     3110,
+     3905
+    ]
+   ],
+   "width": 312,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3110,
+     3905
+    ],
+    [
+     2119,
+     3658
+    ],
+    [
+     1261,
+     3218
+    ]
+   ],
+   "width": 269,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1261,
+     3218
+    ],
+    [
+     1339,
+     2711
+    ],
+    [
+     1533,
+     2222
+    ]
+   ],
+   "width": 304,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1533,
+     2222
+    ],
+    [
+     1197,
+     1718
+    ],
+    [
+     1264,
+     1159
+    ]
+   ],
+   "width": 313,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4895,
+     3775
+    ],
+    [
+     4815,
+     2964
+    ],
+    [
+     5350,
+     2256
+    ]
+   ],
+   "width": 266,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5350,
+     2256
+    ],
+    [
+     4887,
+     1841
+    ],
+    [
+     4585,
+     1352
+    ]
+   ],
+   "width": 281,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3110,
+     3905
+    ],
+    [
+     4321,
+     3149
+    ],
+    [
+     5350,
+     2256
+    ]
+   ],
+   "width": 303,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1261,
+     3218
+    ],
+    [
+     3355,
+     2854
+    ],
+    [
+     5350,
+     2256
+    ]
+   ],
+   "width": 324,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1265
+    ],
+    [
+     840,
+     1265
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1265
+    ],
+    [
+     1264,
+     1159
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     3971,
+     4774
+    ],
+    [
+     3971,
+     4214.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     3971,
+     4254.0
+    ],
+    [
+     3110,
+     3905
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     1898,
+     190
+    ],
+    [
+     1898,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     1898,
+     710.0
+    ],
+    [
+     1264,
+     1159
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     5591,
+     190
+    ],
+    [
+     5591,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     5591,
+     710.0
+    ],
+    [
+     4585,
+     1352
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     7540,
+     1132
+    ],
+    [
+     6840,
+     1132
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     6890,
+     1132
+    ],
+    [
+     4585,
+     1352
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     7540,
+     2346
+    ],
+    [
+     6840,
+     2346
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     6890,
+     2346
+    ],
+    [
+     5350,
+     2256
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4895,
+    3775
+   ],
+   "r": 516,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5350,
+    2256
+   ],
+   "r": 550,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1533,
+    2222
+   ],
+   "r": 437,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1261,
+    3218
+   ],
+   "r": 632,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4585,
+    1352
+   ],
+   "r": 525,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1264,
+    1159
+   ],
+   "r": 444,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3110,
+    3905
+   ],
+   "r": 503,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1265,
+   380
+  ],
+  [
+   3971,
+   4774,
+   380
+  ],
+  [
+   1898,
+   190,
+   380
+  ],
+  [
+   5591,
+   190,
+   380
+  ],
+  [
+   7540,
+   1132,
+   380
+  ],
+  [
+   7540,
+   2346,
+   380
+  ],
+  [
+   4895,
+   3775,
+   300
+  ],
+  [
+   5350,
+   2256,
+   300
+  ],
+  [
+   4585,
+   1352,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    4895,
+    3775,
+    438.59999999999997,
+    0.6
+   ],
+   [
+    5350,
+    2256,
+    467.5,
+    0.6
+   ],
+   [
+    1533,
+    2222,
+    371.45,
+    0.6
+   ],
+   [
+    1261,
+    3218,
+    537.1999999999999,
+    0.6
+   ],
+   [
+    4585,
+    1352,
+    446.25,
+    0.6
+   ],
+   [
+    1264,
+    1159,
+    377.4,
+    0.6
+   ],
+   [
+    3110,
+    3905,
+    427.55,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    4895,
+    3555,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "throne_of_glass_wp",
+   "name": "Throne of Glass",
+   "at": [
+    3110,
+    3905
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Broken Meridian",
+   "to": "broken_meridian",
+   "at": [
+    140,
+    1265
+   ],
+   "r": 170,
+   "arrive": [
+    8539,
+    4438
+   ]
+  },
+  {
+   "name": "Rain Kingdom",
+   "to": "rain_kingdom",
+   "at": [
+    3971,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    7110,
+    526
+   ]
+  },
+  {
+   "name": "Verdant Empire",
+   "to": "verdant_empire",
+   "at": [
+    1898,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    7270,
+    4438
+   ]
+  },
+  {
+   "name": "Iron Sabbath",
+   "to": "iron_sabbath",
+   "at": [
+    5591,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    3130,
+    4438
+   ]
+  },
+  {
+   "name": "Moonfall Republic",
+   "to": "moonfall_republic",
+   "at": [
+    7540,
+    1132
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1595
+   ]
+  },
+  {
+   "name": "The Orchard of Lost Children",
+   "to": "orchard_of_lost_children",
+   "at": [
+    7540,
+    2346
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1553
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1265
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Royal Halls",
+   "kind": "landmark",
+   "at": [
+    4895,
+    3775
+   ],
+   "blurb": "Royal halls from a vanished epoch"
+  },
+  {
+   "name": "Petition Floor",
+   "kind": "landmark",
+   "at": [
+    5350,
+    2256
+   ],
+   "blurb": "Royal halls from a vanished epoch"
+  },
+  {
+   "name": "Duel Dais",
+   "kind": "landmark",
+   "at": [
+    4585,
+    1352
+   ],
+   "blurb": "Royal halls from a vanished epoch"
+  },
+  {
+   "name": "Broken Meridian",
+   "kind": "landmark",
+   "at": [
+    140,
+    1265
+   ],
+   "blurb": "To Broken Meridian."
+  },
+  {
+   "name": "Rain Kingdom",
+   "kind": "landmark",
+   "at": [
+    3971,
+    4774
+   ],
+   "blurb": "To Rain Kingdom."
+  },
+  {
+   "name": "Verdant Empire",
+   "kind": "landmark",
+   "at": [
+    1898,
+    190
+   ],
+   "blurb": "To Verdant Empire."
+  },
+  {
+   "name": "Iron Sabbath",
+   "kind": "landmark",
+   "at": [
+    5591,
+    190
+   ],
+   "blurb": "To Iron Sabbath."
+  },
+  {
+   "name": "Moonfall Republic",
+   "kind": "landmark",
+   "at": [
+    7540,
+    1132
+   ],
+   "blurb": "To Moonfall Republic."
+  },
+  {
+   "name": "The Orchard of Lost Children",
+   "kind": "landmark",
+   "at": [
+    7540,
+    2346
+   ],
+   "blurb": "To The Orchard of Lost Children."
+  }
+ ],
+ "world_id": "throne_of_glass",
+ "grade": {
+  "mul": [
+   0.9,
+   0.95,
+   1.06
+  ],
+  "desat": 0.5,
+  "lift": [
+   0.08,
+   0.09,
+   0.12,
+   1.0
+  ],
+  "mist": [
+   0.85,
+   0.9,
+   1.0
+  ],
+  "water": [
+   0.3,
+   0.36,
+   0.5
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4895,
+    3775
+   ],
+   "r": 490.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5350,
+    2256
+   ],
+   "r": 522.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1533,
+    2222
+   ],
+   "r": 415.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1261,
+    3218
+   ],
+   "r": 600.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4585,
+    1352
+   ],
+   "r": 498.75,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1264,
+    1159
+   ],
+   "r": 421.79999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3110,
+    3905
+   ],
+   "r": 477.84999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

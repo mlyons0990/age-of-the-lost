@@ -1,0 +1,917 @@
+{
+ "name": "Wrecker's Strand",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 6387,
+ "paths": [
+  {
+   "pts": [
+    [
+     8344,
+     190
+    ],
+    [
+     8344,
+     494
+    ],
+    [
+     7242,
+     875
+    ],
+    [
+     7168,
+     1937
+    ],
+    [
+     6228,
+     2425
+    ],
+    [
+     5161,
+     2829
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     11380,
+     2417
+    ],
+    [
+     11000,
+     2417
+    ],
+    [
+     8964,
+     1810
+    ],
+    [
+     7093,
+     2574
+    ],
+    [
+     5161,
+     2829
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     4296,
+     190
+    ],
+    [
+     4296,
+     494
+    ],
+    [
+     3975,
+     1174
+    ],
+    [
+     5073,
+     1599
+    ],
+    [
+     4943,
+     2245
+    ],
+    [
+     5161,
+     2829
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     5008,
+     2420
+    ],
+    [
+     4019,
+     2585
+    ],
+    [
+     3046,
+     2664
+    ]
+   ],
+   "width": 180,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     10796,
+     2356
+    ],
+    [
+     10619,
+     2729
+    ],
+    [
+     9972,
+     3290
+    ]
+   ],
+   "width": 180,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     7242,
+     875
+    ],
+    [
+     6853,
+     981
+    ],
+    [
+     6100,
+     738
+    ]
+   ],
+   "width": 166,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     8344,
+     494
+    ],
+    [
+     9575,
+     545
+    ],
+    [
+     10578,
+     820
+    ]
+   ],
+   "width": 162,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    10795,
+    2546
+   ],
+   "r": 545,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2120,
+    3809
+   ],
+   "r": 480,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5630,
+    3323
+   ],
+   "r": 482,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5161,
+    2829
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3046,
+    2664
+   ],
+   "r": 310,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6100,
+    738
+   ],
+   "r": 366,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7514,
+    3148
+   ],
+   "r": 383,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4563,
+    3999
+   ],
+   "r": 342,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    0,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    900,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1800,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2700,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3600,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4500,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5400,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6300,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7200,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    8100,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9000,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9900,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    10800,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    11700,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   8344,
+   190,
+   380
+  ],
+  [
+   11380,
+   2417,
+   380
+  ],
+  [
+   4296,
+   190,
+   380
+  ],
+  [
+   3046,
+   2664,
+   300
+  ],
+  [
+   9972,
+   3290,
+   300
+  ],
+  [
+   6100,
+   738,
+   300
+  ],
+  [
+   10578,
+   820,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    2
+   ],
+   [
+    "gnarled_b",
+    1
+   ]
+  ],
+  "spacing": 1100,
+  "cut": 0.7,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 18,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall",
+    "a_moss"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3046,
+    2664,
+    560,
+    0.45
+   ],
+   [
+    9972,
+    3290,
+    560,
+    0.45
+   ],
+   [
+    6100,
+    738,
+    560,
+    0.45
+   ],
+   [
+    10578,
+    820,
+    560,
+    0.45
+   ],
+   [
+    5161,
+    2829,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    5161,
+    2609,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    7514,
+    3148,
+    612.8000000000001
+   ],
+   [
+    4563,
+    3999,
+    547.2
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "wreckers_strand_wp",
+   "name": "Wrecker's Strand",
+   "at": [
+    5161,
+    2829
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Saltmarrow",
+   "to": "saltmarrow",
+   "at": [
+    8344,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    12700,
+    2100
+   ]
+  },
+  {
+   "name": "Smuggler's Grotto",
+   "to": "smugglers_grotto",
+   "at": [
+    11380,
+    2417
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    2941
+   ]
+  },
+  {
+   "name": "Lanternfall Cliffs",
+   "to": "lanternfall_cliffs",
+   "at": [
+    4296,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3054
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  8344,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Tide Pools",
+   "kind": "landmark",
+   "at": [
+    3046,
+    2664
+   ],
+   "blurb": "Shipwrecks and shoreline combat"
+  },
+  {
+   "name": "Wreck of the Gilded Oath",
+   "kind": "landmark",
+   "at": [
+    9972,
+    3290
+   ],
+   "blurb": "Shipwrecks and shoreline combat"
+  },
+  {
+   "name": "Driftwood Camp",
+   "kind": "landmark",
+   "at": [
+    6100,
+    738
+   ],
+   "blurb": "Shipwrecks and shoreline combat"
+  },
+  {
+   "name": "Warden's Rock",
+   "kind": "landmark",
+   "at": [
+    10578,
+    820
+   ],
+   "blurb": "Shipwrecks and shoreline combat"
+  },
+  {
+   "name": "Saltmarrow",
+   "kind": "landmark",
+   "at": [
+    8344,
+    190
+   ],
+   "blurb": "To Saltmarrow."
+  },
+  {
+   "name": "Smuggler's Grotto",
+   "kind": "landmark",
+   "at": [
+    11380,
+    2417
+   ],
+   "blurb": "To Smuggler's Grotto."
+  },
+  {
+   "name": "Lanternfall Cliffs",
+   "kind": "landmark",
+   "at": [
+    4296,
+    190
+   ],
+   "blurb": "To Lanternfall Cliffs."
+  }
+ ],
+ "world_id": "wreckers_strand",
+ "grade": {
+  "mul": [
+   0.94,
+   0.98,
+   1.02
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.04,
+   0.06,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.84,
+   0.9
+  ],
+  "water": [
+   0.16,
+   0.32,
+   0.42
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3046,
+    2664
+   ],
+   "r": 520,
+   "props": [
+    "silver",
+    "gnarled_b",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    9972,
+    3290
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    6100,
+    738
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    10578,
+    820
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  }
+ ]
+}

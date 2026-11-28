@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemVisual" format=3]
+
+[ext_resource type="Script" path="res://scripts/game/data/item_visual.gd" id="1_wg4xw"]
+
+[resource]
+script = ExtResource("1_wg4xw")
+id = "cleric_offhand_magic"
+slot = "offhand"
+mesh_prefix = "SHIELD_"
+tint = Color(0.92, 0.97, 1.08, 1)
+glow = Color(0.45, 0.65, 1, 0.35)

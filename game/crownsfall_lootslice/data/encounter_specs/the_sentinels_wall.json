@@ -1,0 +1,78 @@
+{
+ "zone": "the_sentinels_wall",
+ "levels": [
+  56,
+  57
+ ],
+ "packs": 30,
+ "seed": 386,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "the_sentinels_wall_0",
+    "the_sentinels_wall_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_sentinels_wall_1",
+    "the_sentinels_wall_1",
+    "the_sentinels_wall_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_sentinels_wall_0",
+    "the_sentinels_wall_1",
+    "the_sentinels_wall_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_sentinels_wall_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_sentinels_wall_2",
+    "the_sentinels_wall_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_sentinels_wall_0",
+    "the_sentinels_wall_0",
+    "the_sentinels_wall_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    10711,
+    713
+   ],
+   "types": [],
+   "boss": "the_sentinels_wall_boss_u",
+   "boss_type": "the_sentinels_wall_boss",
+   "boss_name": "The Wall-Breaker",
+   "needs_quest": "Q_A06_09"
+  }
+ ],
+ "keep_clear": [
+  [
+   10711,
+   713,
+   700
+  ]
+ ]
+}

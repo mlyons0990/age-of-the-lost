@@ -1,0 +1,48 @@
+{
+ "name": "Whisperwood \u2014 Seam Test",
+ "size": [
+  9247,
+  2160
+ ],
+ "ppm": 85.6,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_ratio": 0.51,
+ "sources": [
+  {
+   "image": "tests/fixtures/zones/ww_seamtest.png",
+   "at": [
+    0,
+    0
+   ],
+   "feather": 0
+  }
+ ],
+ "walkable": [
+  [
+   [
+    60,
+    60
+   ],
+   [
+    9180,
+    60
+   ],
+   [
+    9180,
+    2100
+   ],
+   [
+    60,
+    2100
+   ]
+  ]
+ ],
+ "spawn": [
+  4736,
+  1200
+ ],
+ "targets": [],
+ "exits": [],
+ "waypoints": []
+}

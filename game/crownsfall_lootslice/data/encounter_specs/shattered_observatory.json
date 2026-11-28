@@ -1,0 +1,78 @@
+{
+ "zone": "shattered_observatory",
+ "levels": [
+  8,
+  9
+ ],
+ "packs": 14,
+ "seed": 480,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "shattered_observatory_0",
+    "shattered_observatory_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "shattered_observatory_1",
+    "shattered_observatory_1",
+    "shattered_observatory_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "shattered_observatory_0",
+    "shattered_observatory_1",
+    "shattered_observatory_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "shattered_observatory_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "shattered_observatory_2",
+    "shattered_observatory_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "shattered_observatory_0",
+    "shattered_observatory_0",
+    "shattered_observatory_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6580,
+    1411
+   ],
+   "types": [],
+   "boss": "shattered_observatory_boss_u",
+   "boss_type": "shattered_observatory_boss",
+   "boss_name": "The Orrery Golem",
+   "needs_quest": "Q_A01_R17"
+  }
+ ],
+ "keep_clear": [
+  [
+   6580,
+   1411,
+   700
+  ]
+ ]
+}

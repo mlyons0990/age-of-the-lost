@@ -1,0 +1,122 @@
+{
+ "zone": "unbound_causeway",
+ "levels": [
+  46,
+  47
+ ],
+ "packs": 14,
+ "seed": 556,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "unbound_causeway_0",
+    "unbound_causeway_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "unbound_causeway_1",
+    "unbound_causeway_1",
+    "unbound_causeway_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "unbound_causeway_0",
+    "unbound_causeway_1",
+    "unbound_causeway_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "unbound_causeway_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "unbound_causeway_2",
+    "unbound_causeway_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "unbound_causeway_0",
+    "unbound_causeway_0",
+    "unbound_causeway_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6462,
+    2020
+   ],
+   "types": [
+    "unbound_causeway_1",
+    "unbound_causeway_1"
+   ],
+   "elite": false,
+   "guardian": "unbound_causeway_g1",
+   "elite_type": "unbound_causeway_0",
+   "elite_name": "Bridge Severer",
+   "page": "Q_A05_10_1"
+  },
+  {
+   "at": [
+    5155,
+    4105
+   ],
+   "types": [
+    "unbound_causeway_1",
+    "unbound_causeway_1"
+   ],
+   "elite": false,
+   "guardian": "unbound_causeway_g2",
+   "elite_type": "unbound_causeway_1",
+   "elite_name": "Drift Wraith",
+   "page": "Q_A05_10_2"
+  },
+  {
+   "at": [
+    5313,
+    3168
+   ],
+   "types": [
+    "unbound_causeway_1",
+    "unbound_causeway_1"
+   ],
+   "elite": false,
+   "guardian": "unbound_causeway_g3",
+   "elite_type": "unbound_causeway_2",
+   "elite_name": "Span Colossus",
+   "page": "Q_A05_10_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6462,
+   2020,
+   700
+  ],
+  [
+   5155,
+   4105,
+   700
+  ],
+  [
+   5313,
+   3168,
+   700
+  ]
+ ]
+}

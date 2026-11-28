@@ -1,0 +1,894 @@
+{
+ "name": "Sablemarket Vaults",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 667,
+ "paths": [
+  {
+   "pts": [
+    [
+     4318,
+     1284
+    ],
+    [
+     3452,
+     1199
+    ],
+    [
+     2668,
+     916
+    ]
+   ],
+   "width": 269,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4318,
+     1284
+    ],
+    [
+     4742,
+     1746
+    ],
+    [
+     4731,
+     2306
+    ]
+   ],
+   "width": 275,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4731,
+     2306
+    ],
+    [
+     4918,
+     2808
+    ],
+    [
+     5045,
+     3322
+    ]
+   ],
+   "width": 262,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4318,
+     1284
+    ],
+    [
+     5272,
+     1324
+    ],
+    [
+     6228,
+     1353
+    ]
+   ],
+   "width": 260,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2668,
+     916
+    ],
+    [
+     2087,
+     1316
+    ],
+    [
+     1738,
+     1844
+    ]
+   ],
+   "width": 272,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4731,
+     2306
+    ],
+    [
+     5712,
+     2425
+    ],
+    [
+     6699,
+     2516
+    ]
+   ],
+   "width": 308,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1738,
+     1844
+    ],
+    [
+     1547,
+     2655
+    ],
+    [
+     1970,
+     3417
+    ]
+   ],
+   "width": 268,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1970,
+     3417
+    ],
+    [
+     2654,
+     2218
+    ],
+    [
+     2668,
+     916
+    ]
+   ],
+   "width": 263,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     2668,
+     916
+    ],
+    [
+     3991,
+     2045
+    ],
+    [
+     5045,
+     3322
+    ]
+   ],
+   "width": 281,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     2246
+    ],
+    [
+     840,
+     2246
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     2246
+    ],
+    [
+     1738,
+     1844
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     2163,
+     4774
+    ],
+    [
+     2163,
+     4214.0
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     2163,
+     4254.0
+    ],
+    [
+     1970,
+     3417
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4318,
+    1284
+   ],
+   "r": 504,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1970,
+    3417
+   ],
+   "r": 531,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4731,
+    2306
+   ],
+   "r": 592,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1738,
+    1844
+   ],
+   "r": 477,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5045,
+    3322
+   ],
+   "r": 604,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2668,
+    916
+   ],
+   "r": 468,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6228,
+    1353
+   ],
+   "r": 600,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6699,
+    2516
+   ],
+   "r": 471,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   2246,
+   380
+  ],
+  [
+   2163,
+   4774,
+   380
+  ],
+  [
+   6699,
+   2516,
+   300
+  ],
+  [
+   6228,
+   1353,
+   300
+  ],
+  [
+   5045,
+   3322,
+   300
+  ],
+  [
+   4318,
+   1284,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    4318,
+    1284,
+    428.4,
+    0.6
+   ],
+   [
+    1970,
+    3417,
+    451.34999999999997,
+    0.6
+   ],
+   [
+    4731,
+    2306,
+    503.2,
+    0.6
+   ],
+   [
+    1738,
+    1844,
+    405.45,
+    0.6
+   ],
+   [
+    5045,
+    3322,
+    513.4,
+    0.6
+   ],
+   [
+    2668,
+    916,
+    397.8,
+    0.6
+   ],
+   [
+    6228,
+    1353,
+    510.0,
+    0.6
+   ],
+   [
+    6699,
+    2516,
+    400.34999999999997,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6699,
+    2296,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "sablemarket_vaults_wp",
+   "name": "Sablemarket Vaults",
+   "at": [
+    4731,
+    2306
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Highward Steps",
+   "to": "highward_steps",
+   "at": [
+    140,
+    2246
+   ],
+   "r": 170,
+   "arrive": [
+    12300,
+    4300
+   ]
+  },
+  {
+   "name": "Old Crown Cistern",
+   "to": "old_crown_cistern",
+   "at": [
+    2163,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3293
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  2246
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Broker's Counting Room",
+   "kind": "landmark",
+   "at": [
+    6699,
+    2516
+   ],
+   "blurb": "Merchant crypts, bronze shutters, secret ledgers"
+  },
+  {
+   "name": "Bronze Shutters",
+   "kind": "landmark",
+   "at": [
+    6228,
+    1353
+   ],
+   "blurb": "Merchant crypts, bronze shutters, secret ledgers"
+  },
+  {
+   "name": "Secret Ledgers",
+   "kind": "landmark",
+   "at": [
+    5045,
+    3322
+   ],
+   "blurb": "Merchant crypts, bronze shutters, secret ledgers"
+  },
+  {
+   "name": "The Cells",
+   "kind": "landmark",
+   "at": [
+    4318,
+    1284
+   ],
+   "blurb": "Merchant crypts, bronze shutters, secret ledgers"
+  },
+  {
+   "name": "Highward Steps",
+   "kind": "landmark",
+   "at": [
+    140,
+    2246
+   ],
+   "blurb": "To Highward Steps."
+  },
+  {
+   "name": "Old Crown Cistern",
+   "kind": "landmark",
+   "at": [
+    2163,
+    4774
+   ],
+   "blurb": "To Old Crown Cistern."
+  }
+ ],
+ "world_id": "sablemarket_vaults",
+ "grade": {
+  "mul": [
+   0.7,
+   0.62,
+   0.52
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.04,
+   0.03,
+   0.01,
+   1.0
+  ],
+  "mist": [
+   0.6,
+   0.5,
+   0.4
+  ],
+  "water": [
+   0.2,
+   0.2,
+   0.2
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4318,
+    1284
+   ],
+   "r": 478.79999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1970,
+    3417
+   ],
+   "r": 504.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4731,
+    2306
+   ],
+   "r": 562.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1738,
+    1844
+   ],
+   "r": 453.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5045,
+    3322
+   ],
+   "r": 573.8,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2668,
+    916
+   ],
+   "r": 444.59999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6228,
+    1353
+   ],
+   "r": 570.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6699,
+    2516
+   ],
+   "r": 447.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

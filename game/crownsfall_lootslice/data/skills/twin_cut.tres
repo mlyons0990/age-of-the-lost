@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/rogue_twin_cut.png" id="1_ieisb"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_0m0id"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_yaeja"]
+
+[sub_resource type="Resource" id="Resource_4mnr1"]
+script = ExtResource("3_yaeja")
+id = "venom"
+display_name = "Envenomed Edge"
+description = "Hits poison enemies for 55% of the hit over 3 s."
+overrides = {
+"burn": 0.55
+}
+
+[sub_resource type="Resource" id="Resource_k5aj3"]
+script = ExtResource("3_yaeja")
+id = "quickhand"
+display_name = "Quick Hands"
+description = "Restores 10 mana on hit instead of 5."
+overrides = {
+"gain": 10.0
+}
+
+[resource]
+script = ExtResource("2_0m0id")
+id = "twin_cut"
+display_name = "Twin Cut"
+icon = ExtResource("1_ieisb")
+description = "Two quick dagger strikes. Restores 5 mana on hit."
+basic = true
+numbers = {
+"arc": 0.3,
+"dmg": 0.9,
+"gain": 5.0,
+"range": 2.1
+}
+upgrades = Array[ExtResource("3_yaeja")]([SubResource("Resource_4mnr1"), SubResource("Resource_k5aj3")])

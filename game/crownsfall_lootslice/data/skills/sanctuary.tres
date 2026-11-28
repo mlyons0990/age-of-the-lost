@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/cleric_sanctuary.png" id="1_6tkwl"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_r6sjn"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_mod.gd" id="3_y7jlk"]
+
+[sub_resource type="Resource" id="Resource_gabo8"]
+script = ExtResource("3_y7jlk")
+id = "bastion"
+display_name = "Bastion"
+description = "Absorbs 55% of your life instead."
+overrides = {
+"ward": 0.55
+}
+
+[sub_resource type="Resource" id="Resource_6fn8i"]
+script = ExtResource("3_y7jlk")
+id = "nova_light"
+display_name = "Breaking Dawn"
+description = "When the shield ends or breaks it bursts for 1.5x damage around you."
+overrides = {
+"burst": 1.5,
+"radius": 3.0
+}
+
+[resource]
+script = ExtResource("2_r6sjn")
+id = "sanctuary"
+display_name = "Sanctuary"
+icon = ExtResource("1_6tkwl")
+description = "A shield of light absorbs damage equal to 35% of your life for 5 s."
+unlock_level = 3
+animation = "Cast"
+shape = "ward"
+mana_cost = 18.0
+cooldown = 12.0
+numbers = {
+"duration": 5.0,
+"ward": 0.35
+}
+upgrades = Array[ExtResource("3_y7jlk")]([SubResource("Resource_gabo8"), SubResource("Resource_6fn8i")])

@@ -1,0 +1,122 @@
+{
+ "zone": "crownsfall_of_three_ages",
+ "levels": [
+  47,
+  48
+ ],
+ "packs": 18,
+ "seed": 183,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "crownsfall_of_three_ages_0",
+    "crownsfall_of_three_ages_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "crownsfall_of_three_ages_1",
+    "crownsfall_of_three_ages_1",
+    "crownsfall_of_three_ages_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "crownsfall_of_three_ages_0",
+    "crownsfall_of_three_ages_1",
+    "crownsfall_of_three_ages_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "crownsfall_of_three_ages_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "crownsfall_of_three_ages_2",
+    "crownsfall_of_three_ages_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "crownsfall_of_three_ages_0",
+    "crownsfall_of_three_ages_0",
+    "crownsfall_of_three_ages_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    764,
+    3042
+   ],
+   "types": [
+    "crownsfall_of_three_ages_1",
+    "crownsfall_of_three_ages_1"
+   ],
+   "elite": false,
+   "guardian": "crownsfall_of_three_ages_g1",
+   "elite_type": "crownsfall_of_three_ages_0",
+   "elite_name": "Echo of the First Founder",
+   "page": "Q_A05_11_1"
+  },
+  {
+   "at": [
+    4675,
+    3823
+   ],
+   "types": [
+    "crownsfall_of_three_ages_1",
+    "crownsfall_of_three_ages_1"
+   ],
+   "elite": false,
+   "guardian": "crownsfall_of_three_ages_g2",
+   "elite_type": "crownsfall_of_three_ages_1",
+   "elite_name": "Plaza Overlap",
+   "page": "Q_A05_11_2"
+  },
+  {
+   "at": [
+    6165,
+    1473
+   ],
+   "types": [
+    "crownsfall_of_three_ages_1",
+    "crownsfall_of_three_ages_1"
+   ],
+   "elite": false,
+   "guardian": "crownsfall_of_three_ages_g3",
+   "elite_type": "crownsfall_of_three_ages_2",
+   "elite_name": "The Bell-Shade",
+   "page": "Q_A05_11_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   764,
+   3042,
+   700
+  ],
+  [
+   4675,
+   3823,
+   700
+  ],
+  [
+   6165,
+   1473,
+   700
+  ]
+ ]
+}

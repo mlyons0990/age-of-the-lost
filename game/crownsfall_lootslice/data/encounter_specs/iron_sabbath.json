@@ -1,0 +1,78 @@
+{
+ "zone": "iron_sabbath",
+ "levels": [
+  43,
+  44
+ ],
+ "packs": 18,
+ "seed": 252,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "iron_sabbath_0",
+    "iron_sabbath_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "iron_sabbath_1",
+    "iron_sabbath_1",
+    "iron_sabbath_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "iron_sabbath_0",
+    "iron_sabbath_1",
+    "iron_sabbath_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "iron_sabbath_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "iron_sabbath_2",
+    "iron_sabbath_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "iron_sabbath_0",
+    "iron_sabbath_0",
+    "iron_sabbath_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    2119,
+    961
+   ],
+   "types": [],
+   "boss": "iron_sabbath_boss_u",
+   "boss_type": "iron_sabbath_boss",
+   "boss_name": "The Last Factory Engine",
+   "needs_quest": "Q_A05_05"
+  }
+ ],
+ "keep_clear": [
+  [
+   2119,
+   961,
+   700
+  ]
+ ]
+}

@@ -1,56 +1,56 @@
 {
  "zone": "first_rift",
  "levels": [
-  14,
-  15
+  9,
+  10
  ],
  "packs": 14,
- "seed": 89,
- "spacing": 900,
+ "seed": 571,
+ "spacing": 700,
  "groups": [
   [
    5,
    [
-    "clockwork_soldier",
-    "clockwork_soldier"
+    "first_rift_0",
+    "first_rift_0"
    ]
   ],
   [
    3,
    [
-    "rift_mite",
-    "rift_mite",
-    "rift_mite"
+    "first_rift_1",
+    "first_rift_1",
+    "first_rift_1"
    ]
   ],
   [
    3,
    [
-    "clockwork_soldier",
-    "rift_mite",
-    "rift_mite"
+    "first_rift_0",
+    "first_rift_1",
+    "first_rift_1"
    ]
   ],
   [
    2,
    [
-    "rift_beast"
+    "first_rift_2"
    ],
    true
   ],
   [
    2,
    [
-    "rift_beast",
-    "clockwork_soldier"
+    "first_rift_2",
+    "first_rift_0"
    ]
   ],
   [
    1,
    [
-    "clockwork_soldier",
-    "clockwork_soldier",
-    "clockwork_soldier"
+    "first_rift_0",
+    "first_rift_0",
+    "first_rift_0"
    ],
    true
   ]
@@ -58,15 +58,21 @@
  "fixed": [
   {
    "at": [
-    5900,
-    2470
+    6069,
+    2524
    ],
    "types": [],
-   "boss": "riftwarden",
-   "boss_type": "riftwarden",
+   "boss": "first_rift_boss_u",
+   "boss_type": "first_rift_boss",
    "boss_name": "The Riftwarden",
-   "needs_quest": "the_first_rift"
+   "needs_quest": "Q_A01_R18"
   }
  ],
- "keep_clear": []
+ "keep_clear": [
+  [
+   6069,
+   2524,
+   700
+  ]
+ ]
 }

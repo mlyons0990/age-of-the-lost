@@ -1,0 +1,83 @@
+{
+ "zone": "silverroot_grove",
+ "levels": [
+  2,
+  3
+ ],
+ "packs": 20,
+ "seed": 524,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "silverroot_grove_0",
+    "silverroot_grove_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "silverroot_grove_1",
+    "silverroot_grove_1",
+    "silverroot_grove_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "silverroot_grove_0",
+    "silverroot_grove_1",
+    "silverroot_grove_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "silverroot_grove_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "silverroot_grove_2",
+    "silverroot_grove_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "silverroot_grove_0",
+    "silverroot_grove_0",
+    "silverroot_grove_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6868,
+    870
+   ],
+   "types": [],
+   "boss": "silverroot_grove_boss_u",
+   "boss_type": "silverroot_grove_boss",
+   "boss_name": "The Echo Stag",
+   "needs_quest": "Q_A01_06"
+  }
+ ],
+ "keep_clear": [
+  [
+   6868,
+   870,
+   700
+  ],
+  [
+   3056,
+   1699,
+   800
+  ]
+ ]
+}

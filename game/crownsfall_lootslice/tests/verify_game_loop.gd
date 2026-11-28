@@ -1,7 +1,8 @@
 extends SceneTree
-## The playable game, end to end (owner 11-26 "one cohesive system, near release ready"): title -> new Knight ->
-## Crownsfall -> Captain Ralden's quest -> Whisperwood -> monsters fight back -> kills give XP, gold, potions, gear ->
-## equip changes stats -> guardians drop the 3 Archive Pages -> turn in -> Thornwarden boss -> turn in -> epilogue;
+## The playable game, end to end, on the bible's Act I (docs/AOTL_Seven_Act_Narrative_and_World_Design_Bible.docx):
+## new Knight -> Crownsfall -> Mira Thorne's "A Bell Without a Ringer" -> the Kingsroad Gate -> Kingsroad Fields ->
+## monsters fight back -> kills give XP, gold, potions, gear -> equip changes stats -> guardians drop the 3 Courier's
+## Waymarks -> Bramblewatch: Scavenger Chief Kettle -> Rowan Hale takes the dispatch -> Caldrin's memory panel;
 ## death and respawn; the save restores everything.
 var checks := 0
 var failures := 0
@@ -58,52 +59,58 @@ func _run() -> void:
 	check(g != null and lab.game_state.class_id == "warrior", "Game scene starts a new Knight")
 	check(g.zone_id() == "crownsfall" and g.in_town(), "Starts in Crownsfall (sanctuary)")
 	check(lab.game_state.level == 1 and lab.player.max_hp == float(lab.game_state.stats()["max_hp"]), "Level 1, life from the character sheet (%d)" % int(lab.player.max_hp))
-	check(g.npcs.size() == 2, "Captain Ralden and the Quartermaster stand in town")
+	check(g.npcs.size() == 3, "Mira Thorne, Captain Ralden and the Quartermaster stand in town")
 	for n in g.npcs: check(lab.zone_walkable(n["pos"]), "%s stands on walkable ground" % n["name"])
-	check(lab.game_state.quest_state("city_reborn") == "active" and lab.hud.quest_box.get_child_count() == 2, "First quest active and on the tracker")
+	check(lab.game_state.quest_state("Q_A01_01") == "active" and lab.hud.quest_box.get_child_count() >= 1, "Q_A01_01 A Bell Without a Ringer is active and on the tracker")
 	await _wait(0.6)
 	await _shot("town")
 	# painted 2D NPCs (owner: static NPCs are 2D)
 	var painted: Array = g.npcs.filter(func(n): return n.get("sprite") != null and n["sprite"] is Sprite3D)
-	check(painted.size() == 2, "Captain Ralden and Quartermaster Ysolde are painted 2D sprites (%d)" % painted.size())
-	# talk to Ralden by clicking him
+	check(painted.size() == 2, "Captain Ralden and Quartermaster Ysolde are painted 2D sprites (Mira's painting is in the art pass) (%d)" % painted.size())
+	# talk to Mira by clicking her
 	var ral: Dictionary = g.npcs[0]
+	var qm: Dictionary = g.npcs[2]
 	lab.player.global_position = ral["pos"] + Vector3(1.0, 0.08, 1.0); lab.zone_last_ok = lab.player.global_position
 	var sp: Vector2 = lab.camera.unproject_position(ral["pos"] + Vector3.UP * 1.1)
 	await process_frame
 	lab.handle_click(sp)
 	await process_frame
-	check(g.ui.panel_kind == "dialogue", "Clicking Captain Ralden opens his dialogue")
+	check(g.ui.panel_kind == "dialogue", "Clicking Mira Thorne opens her dialogue")
 	await process_frame
-	check(ral["sprite"].texture == ral["art"]["talk"], "Ralden switches to his talking pose")
-	check(g.ui.panel.find_children("*", "TextureRect", true, false).any(func(t): return t.texture == ral["art"]["portrait"]), "His portrait is in the dialogue")
 	await _shot("dialogue")
-	g.ui.close_panel(); g.complete_quest("city_reborn")
+	g.ui.close_panel(); g.complete_quest("Q_A01_01")
 	await process_frame; await process_frame
-	check(ral["sprite"].texture == ral["art"]["idle"], "Ralden returns to his idle pose after the talk")
-	check(lab.game_state.quest_state("lost_tomes") == "active", "Accepting gives The Lost Tomes")
-	check(g.quest_view()[0]["markers"].size() == 3, "Three page objectives on the map")
-	# shop
+	check(lab.game_state.quest_state("Q_A01_02") == "active", "Mira sends the hero on Q_A01_02 The Missing Mile")
+	check(g.quest_view()[0]["markers"].size() == 3, "Three waymark objectives on the map")
+	# shop (the Quartermaster's painted talking pose and portrait)
 	g.talk("quartermaster")
 	check(g.ui.panel_kind == "shop" and g.ui.inv.visible, "Quartermaster opens the shop with the inventory")
+	await process_frame; await process_frame
+	check(qm["sprite"].texture == qm["art"]["talk"], "Ysolde switches to her talking pose")
+	check(g.ui.panel.find_children("*", "TextureRect", true, false).any(func(t): return t.texture == qm["art"]["portrait"]), "Her portrait is in the shop")
 	var gold0: int = lab.game_state.gold; var hp0: int = lab.game_state.potions["health"]
 	lab.game_state.gold = 100
 	await _shot("shop")
 	g.ui.close_panel(); g.ui.inv.visible = false
 	lab.game_state.gold = gold0
-	# travel to Whisperwood through the exit
-	lab.travel_to("whisperwood", [0, 0])
+	for i in 4: await process_frame
+	check(qm["sprite"].texture == qm["art"]["idle"], "Ysolde returns to her idle pose")
+	# out through the Kingsroad Gate
+	var gate: Dictionary = {}
+	for e in lab.zone["exits"]: if e["to"] == "kingsroad_fields": gate = e
+	check(not gate.is_empty(), "Crownsfall has the Kingsroad Gate at the bottom of the plaza")
+	lab.travel_to("kingsroad_fields", gate["arrive"])
 	await _wait(1.6)
-	check(g.zone_id() == "whisperwood_forest", "The Crownsfall exit leads to the kit-built Whisperwood")
+	check(g.zone_id() == "kingsroad_fields", "The gate leads to Kingsroad Fields")
 	var n_mon := 0
 	for m in g.monsters: n_mon += 1
-	check(n_mon >= 80, "Whisperwood is populated (%d monsters)" % n_mon)
-	check(_guardian("page_1") != null and _guardian("page_2") != null and _guardian("page_3") != null, "The three page guardians are in place")
-	check(g.boss == null, "The Thornwarden is not there before its quest")
+	check(n_mon >= 50, "Kingsroad Fields is populated (%d monsters)" % n_mon)
+	check(_guardian("Q_A01_02_1") != null and _guardian("Q_A01_02_2") != null and _guardian("Q_A01_02_3") != null, "The three waymark guardians are in place")
+	check(g.boss == null, "No boss on the Kingsroad")
 	# monsters fight back: put the hero next to a pack
 	var target = null
 	for m in g.monsters:
-		if m.type_key == "slime" and not m.elite and m.drops_page == "": target = m; break
+		if m.type_key == "kingsroad_fields_1" and not m.elite and m.drops_page == "": target = m; break
 	lab.player.global_position = target.global_position + Vector3(1.2, 0.08, 0); lab.zone_last_ok = lab.player.global_position
 	var hp_before: float = lab.player.hp
 	await _wait(3.0)
@@ -119,10 +126,10 @@ func _run() -> void:
 	check(not is_instance_valid(target) or target.hp < hp_m, "Clicking a monster attacks it with the hero's own swing")
 	if not is_instance_valid(target) or not target.is_alive():
 		for m in g.monsters:
-			if is_instance_valid(m) and m.type_key == "slime" and not m.elite and m.drops_page == "": target = m; break
+			if is_instance_valid(m) and m.type_key == "kingsroad_fields_1" and not m.elite and m.drops_page == "": target = m; break
 	var xp0: int = lab.game_state.xp; var lv0: int = lab.game_state.level
 	var hits := await _kill(target)
-	check(hits >= 1 and hits <= 4, "A Hollowling takes %d hero hits at level 1" % hits)
+	check(hits >= 1 and hits <= 5, "Field-vermin take %d hero hits at level 1" % hits)
 	check(lab.game_state.xp > xp0 or lab.game_state.level > lv0, "Kills give XP")
 	# kill a few packs to level up and get loot
 	var killed := 0
@@ -153,22 +160,23 @@ func _run() -> void:
 	await _shot("inventory")
 	g.ui.toggle_inventory()
 	# pages
-	for page in ["page_1", "page_2", "page_3"]:
+	for page in ["Q_A01_02_1", "Q_A01_02_2", "Q_A01_02_3"]:
 		var gm = _guardian(page)
-		var before: int = int(lab.game_state.quest("lost_tomes").get("progress", 0))
+		var before: int = int(lab.game_state.quest("Q_A01_02").get("progress", 0))
 		lab.player.global_position = gm.global_position + Vector3(4.0, 0.08, 0); lab.zone_last_ok = lab.player.global_position
 		await _kill(gm)
 		await _wait(0.1)
 		var page_drop = null
 		for l in g.loot:
 			if is_instance_valid(l) and l.kind == "quest": page_drop = l
-		check(page_drop != null, "Guardian drops an Archive Page (%s)" % page)
+		check(page_drop != null, "Guardian drops a Courier's Waymark (%s)" % page)
 		if page_drop != null:
 			lab.player.global_position = page_drop.global_position + Vector3(0, 0.08, 0)     # walk over it
 			lab.zone_last_ok = lab.player.global_position
 			await _wait(0.2)
-		check(int(lab.game_state.quest("lost_tomes").get("progress", 0)) == before + 1, "Walking over the page collects it (%d/3)" % (before + 1))
-	check(lab.game_state.quest_state("lost_tomes") == "ready", "All three pages: return to Ralden")
+		await _wait(0.2)
+		check(int(lab.game_state.quest("Q_A01_02").get("progress", 0)) == before + 1 or lab.game_state.quest_state("Q_A01_02") == "done", "Walking over the waymark collects it (%d/3)" % (before + 1))
+	check(lab.game_state.quest_state("Q_A01_02") == "done" and lab.game_state.quest_state("Q_A01_03") == "active", "All three waymarks: the courier's route is found; The Last Dispatch begins")
 	# death
 	var hpd: float = lab.player.max_hp
 	g.damage_hero(99999.0, null)
@@ -178,21 +186,24 @@ func _run() -> void:
 	g.ui.close_panel(); g.respawn()
 	await _wait(1.8)
 	check(not g.dead and g.zone_id() == "crownsfall" and lab.player.hp == lab.player.max_hp, "Respawn in Crownsfall at full life")
-	g.talk("ralden")
-	check(g.ui.panel_kind == "dialogue", "Ralden takes the pages")
-	g.ui.close_panel(); g.complete_quest("lost_tomes")
-	check(lab.game_state.quest_state("thornwarden") == "active", "The Thornwarden quest begins")
+	g.talk("mira")
+	check(g.ui.panel_kind == "dialogue", "Mira still talks to the hero")
+	g.ui.close_panel()
 	# save + reload mid-game
 	g.autosave()
 	var lv_saved: int = lab.game_state.level; var gold_saved: int = lab.game_state.gold; var bag_saved: int = lab.game_state.bag.size()
 	boot.class_id = ""; boot.new_game = false
 	await _start()
 	check(lab.game_state.level == lv_saved and lab.game_state.gold == gold_saved and lab.game_state.bag.size() == bag_saved and lab.game_state.gear["weapon"]["name"] == "Test Blade", "Continue restores level, gold, bag and gear")
-	check(lab.game_state.quest_state("thornwarden") == "active" and lab.game_state.dead_uniques.has("page_fae"), "Continue restores quests and slain guardians")
-	# boss
-	lab.travel_to("whisperwood", [0, 0])
+	check(lab.game_state.quest_state("Q_A01_03") == "active" and lab.game_state.dead_uniques.has("kingsroad_fields_g2"), "Continue restores quests and slain guardians")
+	lab.travel_to("kingsroad_fields", [620, 2470])
 	await _wait(1.6)
-	check(g.boss != null and _guardian("page_1") == null, "Thornwarden appears; slain guardians stay dead")
+	check(_guardian("Q_A01_02_1") == null, "Slain guardians stay dead")
+	# boss: Bramblewatch
+	var bw: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/campaign_built.json"))["bramblewatch"]
+	lab.travel_to("bramblewatch", bw["exits"][0]["inside"])
+	await _wait(1.6)
+	check(g.boss != null and g.boss.ename == "Scavenger Chief Kettle", "Scavenger Chief Kettle holds the collapsed bridge")
 	lab.player.global_position = g.boss.global_position + Vector3(3.0, 0.08, 0); lab.zone_last_ok = lab.player.global_position
 	await _wait(2.0)
 	check(g.boss.state != "idle" and g.ui.boss_bar.visible, "Boss engages; boss bar shows")
@@ -203,13 +214,17 @@ func _run() -> void:
 	await _wait(0.3)
 	check(g.monsters.size() > 0 and b.summoned, "Boss summons adds at half life")
 	await _kill(b)
-	check(lab.game_state.quest_state("thornwarden") == "ready", "Slaying the Thornwarden completes the objective")
+	check(lab.game_state.quest_state("Q_A01_03") == "ready", "Slaying Kettle: report to Rowan Hale")
 	check(g.loot.size() >= 3, "The boss drops a hoard")
-	lab.travel_to("crownsfall", [1920, 1100])
-	await _wait(1.6)
-	g.talk("ralden"); g.ui.close_panel(); g.complete_quest("thornwarden")
+	g.talk("rowan")
+	check(g.ui.panel_kind == "dialogue", "Rowan Hale takes the news (the courier carried a black glass seal)")
+	g.ui.close_panel(); g.complete_quest("Q_A01_03")
+	check(lab.game_state.quest_state("Q_A01_04") == "active", "A Forest Out of Season begins")
+	# the cathedral memory panel (bible signature scene) shows on The Man Behind the Monster
+	lab.game_state.set_quest("Q_A01_13", "ready", 1)
+	g.complete_quest("Q_A01_13")
 	await _wait(0.2)
-	check(g.ui.panel_kind == "epilogue", "Chapter complete: epilogue")
+	check(g.ui.panel_kind == "epilogue", "Lorecasting Caldrin's shield shows his memory")
 	await _shot("epilogue")
 	g.ui.close_panel()
 	g.ui.toggle_pause()

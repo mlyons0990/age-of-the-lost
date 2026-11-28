@@ -1,0 +1,78 @@
+{
+ "zone": "chronicle_perimeter",
+ "levels": [
+  28,
+  29
+ ],
+ "packs": 30,
+ "seed": 207,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "chronicle_perimeter_0",
+    "chronicle_perimeter_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "chronicle_perimeter_1",
+    "chronicle_perimeter_1",
+    "chronicle_perimeter_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "chronicle_perimeter_0",
+    "chronicle_perimeter_1",
+    "chronicle_perimeter_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "chronicle_perimeter_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "chronicle_perimeter_2",
+    "chronicle_perimeter_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "chronicle_perimeter_0",
+    "chronicle_perimeter_0",
+    "chronicle_perimeter_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    8620,
+    1942
+   ],
+   "types": [],
+   "boss": "chronicle_perimeter_boss_u",
+   "boss_type": "chronicle_perimeter_boss",
+   "boss_name": "Guardian Captain Ilsar",
+   "needs_quest": "Q_A03_13"
+  }
+ ],
+ "keep_clear": [
+  [
+   8620,
+   1942,
+   700
+  ]
+ ]
+}

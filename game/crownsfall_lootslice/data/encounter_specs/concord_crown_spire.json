@@ -1,0 +1,78 @@
+{
+ "zone": "concord_crown_spire",
+ "levels": [
+  30,
+  30
+ ],
+ "packs": 14,
+ "seed": 566,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "concord_crown_spire_0",
+    "concord_crown_spire_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "concord_crown_spire_1",
+    "concord_crown_spire_1",
+    "concord_crown_spire_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "concord_crown_spire_0",
+    "concord_crown_spire_1",
+    "concord_crown_spire_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "concord_crown_spire_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "concord_crown_spire_2",
+    "concord_crown_spire_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "concord_crown_spire_0",
+    "concord_crown_spire_0",
+    "concord_crown_spire_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6283,
+    2321
+   ],
+   "types": [],
+   "boss": "concord_crown_spire_boss_u",
+   "boss_type": "concord_crown_spire_boss",
+   "boss_name": "The Corrupted Ceremonial Protector",
+   "needs_quest": "Q_A03_15"
+  }
+ ],
+ "keep_clear": [
+  [
+   6283,
+   2321,
+   700
+  ]
+ ]
+}

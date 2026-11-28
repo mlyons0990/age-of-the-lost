@@ -1,0 +1,83 @@
+{
+ "zone": "first_anchor_chamber",
+ "levels": [
+  10,
+  10
+ ],
+ "packs": 14,
+ "seed": 736,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "first_anchor_chamber_0",
+    "first_anchor_chamber_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "first_anchor_chamber_1",
+    "first_anchor_chamber_1",
+    "first_anchor_chamber_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "first_anchor_chamber_0",
+    "first_anchor_chamber_1",
+    "first_anchor_chamber_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "first_anchor_chamber_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "first_anchor_chamber_2",
+    "first_anchor_chamber_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "first_anchor_chamber_0",
+    "first_anchor_chamber_0",
+    "first_anchor_chamber_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6163,
+    3791
+   ],
+   "types": [],
+   "boss": "first_anchor_chamber_boss_u",
+   "boss_type": "first_anchor_chamber_boss",
+   "boss_name": "The Anchor Sentinel",
+   "needs_quest": "Q_A01_14"
+  }
+ ],
+ "keep_clear": [
+  [
+   3748,
+   3166,
+   700
+  ],
+  [
+   6163,
+   3791,
+   700
+  ]
+ ]
+}

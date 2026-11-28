@@ -1,0 +1,659 @@
+{
+ "name": "The Lantern Beyond",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 6137,
+ "paths": [
+  {
+   "pts": [
+    [
+     5032,
+     4774
+    ],
+    [
+     5032,
+     4470
+    ],
+    [
+     4449,
+     4153
+    ],
+    [
+     4685,
+     3494
+    ],
+    [
+     3765,
+     3318
+    ],
+    [
+     3564,
+     2842
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3564,
+     2842
+    ],
+    [
+     3106.0,
+     1871.0
+    ],
+    [
+     2648,
+     900
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     5032,
+     4470
+    ],
+    [
+     5776,
+     3999
+    ],
+    [
+     6442,
+     3865
+    ]
+   ],
+   "width": 181,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3704,
+     3175
+    ],
+    [
+     2752,
+     3267
+    ],
+    [
+     2400,
+     3332
+    ]
+   ],
+   "width": 188,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     2739,
+     1094
+    ],
+    [
+     3318,
+     1098
+    ],
+    [
+     3974,
+     968
+    ]
+   ],
+   "width": 159,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6611,
+    1715
+   ],
+   "r": 707,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4850,
+    2648
+   ],
+   "r": 508,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5294,
+    1349
+   ],
+   "r": 618,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3564,
+    2842
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6442,
+    3865
+   ],
+   "r": 511,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2400,
+    3332
+   ],
+   "r": 304,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3974,
+    968
+   ],
+   "r": 289,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4109,
+    1683
+   ],
+   "r": 305,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2607,
+    4306
+   ],
+   "r": 278,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   5032,
+   4774,
+   380
+  ],
+  [
+   6442,
+   3865,
+   300
+  ],
+  [
+   2400,
+   3332,
+   300
+  ],
+  [
+   3974,
+   968,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "oak_b",
+    4
+   ],
+   [
+    "oak_a",
+    3
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 760,
+  "cut": 0.62,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 20,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "lavender": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    6442,
+    3865,
+    560,
+    0.45
+   ],
+   [
+    2400,
+    3332,
+    560,
+    0.45
+   ],
+   [
+    3974,
+    968,
+    560,
+    0.45
+   ],
+   [
+    3564,
+    2842,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3564,
+    2622,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_lantern_beyond_wp",
+   "name": "The Lantern Beyond",
+   "at": [
+    3564,
+    2842
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Crownsfall Reborn",
+   "to": "crownsfall_reborn",
+   "at": [
+    5032,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    6047,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  5032,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Memorial Garden",
+   "kind": "landmark",
+   "at": [
+    6442,
+    3865
+   ],
+   "blurb": "Memorial garden and distant horizon"
+  },
+  {
+   "name": "Caldrin's Ledger",
+   "kind": "landmark",
+   "at": [
+    2400,
+    3332
+   ],
+   "blurb": "Memorial garden and distant horizon"
+  },
+  {
+   "name": "Distant Horizon",
+   "kind": "landmark",
+   "at": [
+    3974,
+    968
+   ],
+   "blurb": "Memorial garden and distant horizon"
+  },
+  {
+   "name": "Crownsfall Reborn",
+   "kind": "landmark",
+   "at": [
+    5032,
+    4774
+   ],
+   "blurb": "To Crownsfall Reborn."
+  }
+ ],
+ "world_id": "the_lantern_beyond",
+ "grade": {
+  "mul": [
+   1.04,
+   1.0,
+   0.94
+  ],
+  "desat": 0.15,
+  "lift": [
+   0.06,
+   0.05,
+   0.05,
+   1.0
+  ],
+  "mist": [
+   0.94,
+   0.9,
+   0.9
+  ],
+  "water": [
+   0.3,
+   0.45,
+   0.6
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow",
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6442,
+    3865
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2400,
+    3332
+   ],
+   "r": 520,
+   "props": [
+    "oak_b",
+    "oak_a",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    3974,
+    968
+   ],
+   "r": 520,
+   "props": [
+    "oak_b",
+    "oak_a",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 9
+  }
+ ]
+}

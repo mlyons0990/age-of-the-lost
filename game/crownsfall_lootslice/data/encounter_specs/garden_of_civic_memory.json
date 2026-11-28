@@ -1,0 +1,78 @@
+{
+ "zone": "garden_of_civic_memory",
+ "levels": [
+  25,
+  26
+ ],
+ "packs": 30,
+ "seed": 927,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "garden_of_civic_memory_0",
+    "garden_of_civic_memory_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "garden_of_civic_memory_1",
+    "garden_of_civic_memory_1",
+    "garden_of_civic_memory_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "garden_of_civic_memory_0",
+    "garden_of_civic_memory_1",
+    "garden_of_civic_memory_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "garden_of_civic_memory_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "garden_of_civic_memory_2",
+    "garden_of_civic_memory_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "garden_of_civic_memory_0",
+    "garden_of_civic_memory_0",
+    "garden_of_civic_memory_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    4784,
+    781
+   ],
+   "types": [],
+   "boss": "garden_of_civic_memory_boss_u",
+   "boss_type": "garden_of_civic_memory_boss",
+   "boss_name": "The Spectral Assailant",
+   "needs_quest": "Q_A03_08"
+  }
+ ],
+ "keep_clear": [
+  [
+   4784,
+   781,
+   700
+  ]
+ ]
+}

@@ -1,0 +1,122 @@
+{
+ "zone": "the_unwritten_shore",
+ "levels": [
+  66,
+  67
+ ],
+ "packs": 14,
+ "seed": 596,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_unwritten_shore_0",
+    "the_unwritten_shore_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_unwritten_shore_1",
+    "the_unwritten_shore_1",
+    "the_unwritten_shore_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_unwritten_shore_0",
+    "the_unwritten_shore_1",
+    "the_unwritten_shore_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_unwritten_shore_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_unwritten_shore_2",
+    "the_unwritten_shore_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_unwritten_shore_0",
+    "the_unwritten_shore_0",
+    "the_unwritten_shore_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6711,
+    2632
+   ],
+   "types": [
+    "the_unwritten_shore_1",
+    "the_unwritten_shore_1"
+   ],
+   "elite": false,
+   "guardian": "the_unwritten_shore_g1",
+   "elite_type": "the_unwritten_shore_0",
+   "elite_name": "Shore Devourer",
+   "page": "Q_A07_10_1"
+  },
+  {
+   "at": [
+    5473,
+    1116
+   ],
+   "types": [
+    "the_unwritten_shore_1",
+    "the_unwritten_shore_1"
+   ],
+   "elite": false,
+   "guardian": "the_unwritten_shore_g2",
+   "elite_type": "the_unwritten_shore_1",
+   "elite_name": "Light-Eater",
+   "page": "Q_A07_10_2"
+  },
+  {
+   "at": [
+    4343,
+    2171
+   ],
+   "types": [
+    "the_unwritten_shore_1",
+    "the_unwritten_shore_1"
+   ],
+   "elite": false,
+   "guardian": "the_unwritten_shore_g3",
+   "elite_type": "the_unwritten_shore_2",
+   "elite_name": "The Tide of Erasure",
+   "page": "Q_A07_10_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6711,
+   2632,
+   700
+  ],
+  [
+   5473,
+   1116,
+   700
+  ],
+  [
+   4343,
+   2171,
+   700
+  ]
+ ]
+}

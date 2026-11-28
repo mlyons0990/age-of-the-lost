@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/starfall_script.png" id="1_lc"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_lc"]
+
+[resource]
+script = ExtResource("2_lc")
+id = "remembered_volley"
+display_name = "Remembered Volley"
+icon = ExtResource("1_lc")
+description = "Lorecast (Hennick, the Unremembered Hunter): loose the arrows of a hunt no one remembers, through every foe in a line."
+animation = "Cast"
+shape = "line"
+mana_cost = 14.0
+cooldown = 4.0
+numbers = {
+"dmg": 1.9,
+"pierce": 6,
+"range": 11.0,
+"width": 1.0
+}

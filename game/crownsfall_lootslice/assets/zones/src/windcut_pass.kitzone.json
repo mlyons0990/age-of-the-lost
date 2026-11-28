@@ -1,0 +1,716 @@
+{
+ "name": "Windcut Pass",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 6030,
+ "paths": [
+  {
+   "pts": [
+    [
+     6071,
+     190
+    ],
+    [
+     6071,
+     494
+    ],
+    [
+     6249,
+     1309
+    ],
+    [
+     5577,
+     2032
+    ],
+    [
+     5548,
+     2826
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     1946,
+     4774
+    ],
+    [
+     1946,
+     4470
+    ],
+    [
+     3231,
+     4450
+    ],
+    [
+     3644,
+     3544
+    ],
+    [
+     4769,
+     3361
+    ],
+    [
+     5548,
+     2826
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5845,
+     1742
+    ],
+    [
+     5494,
+     1714
+    ],
+    [
+     4628,
+     1373
+    ]
+   ],
+   "width": 165,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4769,
+     3361
+    ],
+    [
+     5527,
+     3688
+    ],
+    [
+     5717,
+     3834
+    ]
+   ],
+   "width": 151,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     1946,
+     4470
+    ],
+    [
+     1800,
+     3840
+    ],
+    [
+     1064,
+     3539
+    ]
+   ],
+   "width": 131,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6249,
+     1309
+    ],
+    [
+     7290,
+     1590
+    ],
+    [
+     8511,
+     1573
+    ]
+   ],
+   "width": 140,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4842,
+    2690
+   ],
+   "r": 724,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    9493,
+    1472
+   ],
+   "r": 582,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4581,
+    2413
+   ],
+   "r": 757,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4637,
+    2236
+   ],
+   "r": 509,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    1069,
+    2643
+   ],
+   "r": 737,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5548,
+    2826
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4628,
+    1373
+   ],
+   "r": 416,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5717,
+    3834
+   ],
+   "r": 410,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8511,
+    1573
+   ],
+   "r": 373,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   6071,
+   190,
+   380
+  ],
+  [
+   1946,
+   4774,
+   380
+  ],
+  [
+   4628,
+   1373,
+   300
+  ],
+  [
+   5717,
+   3834,
+   300
+  ],
+  [
+   1064,
+   3539,
+   300
+  ],
+  [
+   8511,
+   1573,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_b",
+    2
+   ],
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 80,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    4628,
+    1373,
+    560,
+    0.45
+   ],
+   [
+    5717,
+    3834,
+    560,
+    0.45
+   ],
+   [
+    1064,
+    3539,
+    560,
+    0.45
+   ],
+   [
+    8511,
+    1573,
+    560,
+    0.45
+   ],
+   [
+    5548,
+    2826,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    5548,
+    2606,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "windcut_pass_wp",
+   "name": "Windcut Pass",
+   "at": [
+    5548,
+    2826
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Veyr Meridian Outpost",
+   "to": "veyr_meridian_outpost",
+   "at": [
+    6071,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    4684,
+    4438
+   ]
+  },
+  {
+   "name": "Riftglass Quarry",
+   "to": "riftglass_quarry",
+   "at": [
+    1946,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    1622,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  6071,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Avalanche Gallery",
+   "kind": "landmark",
+   "at": [
+    4628,
+    1373
+   ],
+   "blurb": "Snow ridges, avalanche galleries"
+  },
+  {
+   "name": "Snow Ridge Camp",
+   "kind": "landmark",
+   "at": [
+    5717,
+    3834
+   ],
+   "blurb": "Snow ridges, avalanche galleries"
+  },
+  {
+   "name": "Warning Beacon",
+   "kind": "landmark",
+   "at": [
+    1064,
+    3539
+   ],
+   "blurb": "Snow ridges, avalanche galleries"
+  },
+  {
+   "name": "Collapsed Shelter",
+   "kind": "landmark",
+   "at": [
+    8511,
+    1573
+   ],
+   "blurb": "Snow ridges, avalanche galleries"
+  },
+  {
+   "name": "Veyr Meridian Outpost",
+   "kind": "landmark",
+   "at": [
+    6071,
+    190
+   ],
+   "blurb": "To Veyr Meridian Outpost."
+  },
+  {
+   "name": "Riftglass Quarry",
+   "kind": "landmark",
+   "at": [
+    1946,
+    4774
+   ],
+   "blurb": "To Riftglass Quarry."
+  }
+ ],
+ "world_id": "windcut_pass",
+ "grade": {
+  "mul": [
+   0.96,
+   0.98,
+   1.04
+  ],
+  "desat": 0.55,
+  "lift": [
+   0.26,
+   0.28,
+   0.32,
+   1.0
+  ],
+  "mist": [
+   0.92,
+   0.94,
+   1.0
+  ],
+  "water": [
+   0.5,
+   0.6,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4628,
+    1373
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    5717,
+    3834
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    1064,
+    3539
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    8511,
+    1573
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  }
+ ]
+}

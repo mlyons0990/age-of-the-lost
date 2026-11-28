@@ -1,0 +1,122 @@
+{
+ "zone": "the_seven_chambers",
+ "levels": [
+  65,
+  66
+ ],
+ "packs": 14,
+ "seed": 760,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_seven_chambers_0",
+    "the_seven_chambers_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_seven_chambers_1",
+    "the_seven_chambers_1",
+    "the_seven_chambers_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_seven_chambers_0",
+    "the_seven_chambers_1",
+    "the_seven_chambers_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_seven_chambers_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_seven_chambers_2",
+    "the_seven_chambers_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_seven_chambers_0",
+    "the_seven_chambers_0",
+    "the_seven_chambers_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6468,
+    2442
+   ],
+   "types": [
+    "the_seven_chambers_1",
+    "the_seven_chambers_1"
+   ],
+   "elite": false,
+   "guardian": "the_seven_chambers_g1",
+   "elite_type": "the_seven_chambers_0",
+   "elite_name": "Regulator Guardian",
+   "page": "Q_A07_08_1"
+  },
+  {
+   "at": [
+    5132,
+    3727
+   ],
+   "types": [
+    "the_seven_chambers_1",
+    "the_seven_chambers_1"
+   ],
+   "elite": false,
+   "guardian": "the_seven_chambers_g2",
+   "elite_type": "the_seven_chambers_1",
+   "elite_name": "Cell Avatar",
+   "page": "Q_A07_08_2"
+  },
+  {
+   "at": [
+    4810,
+    2685
+   ],
+   "types": [
+    "the_seven_chambers_1",
+    "the_seven_chambers_1"
+   ],
+   "elite": false,
+   "guardian": "the_seven_chambers_g3",
+   "elite_type": "the_seven_chambers_2",
+   "elite_name": "The Seventh Warden",
+   "page": "Q_A07_08_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6468,
+   2442,
+   700
+  ],
+  [
+   5132,
+   3727,
+   700
+  ],
+  [
+   4810,
+   2685,
+   700
+  ]
+ ]
+}

@@ -193,8 +193,8 @@
  ],
  "exits": [
   {
-   "name": "Whisperwood",
-   "to": "whisperwood",
+   "name": "Highward Steps",
+   "to": "highward_steps",
    "poly": [
     [
      622,
@@ -234,10 +234,57 @@
     ]
    },
    "arrive": [
-    720,
-    636
+    3028,
+    4438
    ],
-   "threshold": "Grand stairs up into the arcade (top-left of the plaza)"
+   "threshold": "Grand stairs up to the citadel quarter (top-left of the plaza)"
+  },
+  {
+   "name": "Kingsroad Fields",
+   "to": "kingsroad_fields",
+   "poly": [
+    [
+     1840,
+     1600
+    ],
+    [
+     2600,
+     1600
+    ],
+    [
+     2640,
+     1648
+    ],
+    [
+     1800,
+     1648
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      1840,
+      1560
+     ],
+     [
+      2600,
+      1560
+     ],
+     [
+      2640,
+      1648
+     ],
+     [
+      1800,
+      1648
+     ]
+    ]
+   },
+   "arrive": [
+    560,
+    1315
+   ],
+   "threshold": "South steps down to the lower city and the Kingsroad Gate (bottom of the plaza)"
   }
  ],
  "waypoints": [
@@ -296,13 +343,49 @@
  "overview": "crownsfall/overview.png",
  "map_pois": [
   {
-   "name": "Captain Ralden",
+   "name": "Bluebanner Square",
+   "kind": "landmark",
+   "at": [
+    1924,
+    838
+   ],
+   "blurb": "The civic heart of Crownsfall; the waypoint lies in its compass rose."
+  },
+  {
+   "name": "Royal Market",
+   "kind": "landmark",
+   "at": [
+    1700,
+    300
+   ],
+   "blurb": "Stalls and guild boards under blue-gold awnings."
+  },
+  {
+   "name": "Highward Steps",
+   "kind": "landmark",
+   "at": [
+    840,
+    420
+   ],
+   "blurb": "The grand stairs up to Pilgrim's Rise and the citadel quarter."
+  },
+  {
+   "name": "Gate District",
+   "kind": "landmark",
+   "at": [
+    2220,
+    1620
+   ],
+   "blurb": "Down through the Gate District to the city gates and the Old King's Road."
+  },
+  {
+   "name": "Mira Thorne's Archive Stall",
    "kind": "npc",
    "at": [
-    2500,
-    1150
+    2400,
+    1180
    ],
-   "blurb": "Commander of the city watch."
+   "blurb": "The archivist who keeps the city's records."
   }
  ]
 }

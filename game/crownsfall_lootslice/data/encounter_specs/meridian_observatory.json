@@ -1,0 +1,83 @@
+{
+ "zone": "meridian_observatory",
+ "levels": [
+  20,
+  20
+ ],
+ "packs": 14,
+ "seed": 873,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "meridian_observatory_0",
+    "meridian_observatory_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "meridian_observatory_1",
+    "meridian_observatory_1",
+    "meridian_observatory_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "meridian_observatory_0",
+    "meridian_observatory_1",
+    "meridian_observatory_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "meridian_observatory_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "meridian_observatory_2",
+    "meridian_observatory_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "meridian_observatory_0",
+    "meridian_observatory_0",
+    "meridian_observatory_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6122,
+    2487
+   ],
+   "types": [],
+   "boss": "meridian_observatory_boss_u",
+   "boss_type": "meridian_observatory_boss",
+   "boss_name": "The Observatory Breaker",
+   "needs_quest": "Q_A02_15"
+  }
+ ],
+ "keep_clear": [
+  [
+   3070,
+   2121,
+   700
+  ],
+  [
+   6122,
+   2487,
+   700
+  ]
+ ]
+}

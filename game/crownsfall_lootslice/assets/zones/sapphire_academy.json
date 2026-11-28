@@ -1,0 +1,14629 @@
+{
+ "name": "Sapphire Academy",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "spawn": [
+  560,
+  1103
+ ],
+ "kit": "res://assets/kit/forest_hf",
+ "ground_base": "dirt",
+ "splat": "sapphire_academy/splat.png",
+ "map": "sapphire_academy/map.jpg",
+ "splat_k": 8,
+ "overview": "sapphire_academy/overview.png",
+ "props": [
+  {
+   "prop": "a_grass_tall",
+   "at": [
+    1856,
+    3420
+   ],
+   "scale": 0.182,
+   "flip": true,
+   "tint": 0.598
+  },
+  {
+   "prop": "a_grass_tall",
+   "at": [
+    5501,
+    3093
+   ],
+   "scale": 0.1977,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_small",
+   "at": [
+    4225,
+    3152
+   ],
+   "scale": 0.1313,
+   "flip": false,
+   "tint": 0.627
+  },
+  {
+   "prop": "b_rock_small",
+   "at": [
+    6602,
+    1374
+   ],
+   "scale": 0.1171,
+   "flip": true,
+   "tint": 0.676
+  },
+  {
+   "prop": "b_rock_small",
+   "at": [
+    6143,
+    964
+   ],
+   "scale": 0.1412,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_small",
+   "at": [
+    2861,
+    2451
+   ],
+   "scale": 0.1219,
+   "flip": false,
+   "tint": 0.703
+  },
+  {
+   "prop": "a_rock_small",
+   "at": [
+    3745,
+    2854
+   ],
+   "scale": 0.158,
+   "flip": true,
+   "tint": 0.655
+  },
+  {
+   "prop": "a_rock_small",
+   "at": [
+    6439,
+    2008
+   ],
+   "scale": 0.1236,
+   "flip": true,
+   "tint": 0.724
+  },
+  {
+   "prop": "b_rock_small",
+   "at": [
+    6255,
+    2680
+   ],
+   "scale": 0.1247,
+   "flip": true,
+   "tint": 0.615
+  },
+  {
+   "prop": "a_rock_small",
+   "at": [
+    3589,
+    4037
+   ],
+   "scale": 0.1189,
+   "flip": false,
+   "tint": 0.743
+  },
+  {
+   "prop": "a_rock_small",
+   "at": [
+    2901,
+    4291
+   ],
+   "scale": 0.1617,
+   "flip": true,
+   "tint": 0.643
+  },
+  {
+   "prop": "b_rock_small",
+   "at": [
+    4592,
+    958
+   ],
+   "scale": 0.1324,
+   "flip": true,
+   "tint": 0.643
+  },
+  {
+   "prop": "a_rock_small",
+   "at": [
+    3502,
+    954
+   ],
+   "scale": 0.124,
+   "flip": true,
+   "tint": 0.712
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    1692,
+    3194
+   ],
+   "scale": 0.1373,
+   "flip": true
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    1893,
+    3158
+   ],
+   "scale": 0.2584,
+   "flip": false
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    1705,
+    3015
+   ],
+   "scale": 0.1766,
+   "flip": false
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    1864,
+    3045
+   ],
+   "scale": 0.1214,
+   "flip": true,
+   "tint": 0.733
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    1620,
+    2951
+   ],
+   "scale": 0.2249,
+   "flip": false
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    2052,
+    2907
+   ],
+   "scale": 0.1711,
+   "flip": false
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    2026,
+    3244
+   ],
+   "scale": 0.1307,
+   "flip": true,
+   "tint": 0.771
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    1536,
+    3178
+   ],
+   "scale": 0.2188,
+   "flip": true
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    1655,
+    2973
+   ],
+   "scale": 0.2253,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    1728,
+    3281
+   ],
+   "scale": 0.2255,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    4398,
+    3150
+   ],
+   "scale": 0.1814,
+   "flip": false
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    4892,
+    2914
+   ],
+   "scale": 0.1789,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    4880,
+    3191
+   ],
+   "scale": 0.1809,
+   "flip": false
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    4584,
+    2999
+   ],
+   "scale": 0.2398,
+   "flip": true
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    4493,
+    3201
+   ],
+   "scale": 0.2548,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    4950,
+    2847
+   ],
+   "scale": 0.172,
+   "flip": true
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    4805,
+    3211
+   ],
+   "scale": 0.2553,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    4789,
+    3302
+   ],
+   "scale": 0.1333,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    5174,
+    2864
+   ],
+   "scale": 0.184,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    4548,
+    3223
+   ],
+   "scale": 0.1689,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    5386,
+    1242
+   ],
+   "scale": 0.182,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    5875,
+    1083
+   ],
+   "scale": 0.1149,
+   "flip": false,
+   "tint": 0.662
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    6178,
+    1517
+   ],
+   "scale": 0.1401,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    5993,
+    1358
+   ],
+   "scale": 0.2221,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    6186,
+    1455
+   ],
+   "scale": 0.1779,
+   "flip": true
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    5871,
+    1269
+   ],
+   "scale": 0.201,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    5539,
+    1080
+   ],
+   "scale": 0.164,
+   "flip": false,
+   "tint": 0.578
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    6345,
+    1139
+   ],
+   "scale": 0.1896,
+   "flip": false
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    5706,
+    1145
+   ],
+   "scale": 0.1603,
+   "flip": false
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    5778,
+    1345
+   ],
+   "scale": 0.1679,
+   "flip": false
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3606,
+    2558
+   ],
+   "scale": 0.1755,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3438,
+    2828
+   ],
+   "scale": 0.1634,
+   "flip": false
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3109,
+    2859
+   ],
+   "scale": 0.1529,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    3665,
+    2708
+   ],
+   "scale": 0.2489,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    2974,
+    2531
+   ],
+   "scale": 0.1985,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3238,
+    2766
+   ],
+   "scale": 0.1556,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    3655,
+    2626
+   ],
+   "scale": 0.164,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3091,
+    2561
+   ],
+   "scale": 0.1667,
+   "flip": false
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3125,
+    2710
+   ],
+   "scale": 0.129,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    3037,
+    2611
+   ],
+   "scale": 0.2459,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    6293,
+    2305
+   ],
+   "scale": 0.1643,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    5959,
+    2464
+   ],
+   "scale": 0.1243,
+   "flip": true,
+   "tint": 0.724
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    5974,
+    2260
+   ],
+   "scale": 0.1517,
+   "flip": false,
+   "tint": 0.748
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    6343,
+    2482
+   ],
+   "scale": 0.2266,
+   "flip": true
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    6530,
+    2484
+   ],
+   "scale": 0.205,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    6219,
+    2089
+   ],
+   "scale": 0.1481,
+   "flip": false,
+   "tint": 0.789
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    5893,
+    2400
+   ],
+   "scale": 0.1449,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    6292,
+    2609
+   ],
+   "scale": 0.1548,
+   "flip": true,
+   "tint": 0.69
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    6477,
+    2283
+   ],
+   "scale": 0.1739,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    6490,
+    2484
+   ],
+   "scale": 0.1794,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    1095,
+    1185
+   ],
+   "scale": 0.1708,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    1374,
+    1175
+   ],
+   "scale": 0.1958,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    1154,
+    896
+   ],
+   "scale": 0.2349,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    956,
+    1236
+   ],
+   "scale": 0.1358,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    1375,
+    1204
+   ],
+   "scale": 0.1805,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    1285,
+    1032
+   ],
+   "scale": 0.1379,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    1282,
+    967
+   ],
+   "scale": 0.1915,
+   "flip": false
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    1402,
+    986
+   ],
+   "scale": 0.1172,
+   "flip": false
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    982,
+    1313
+   ],
+   "scale": 0.1194,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    1263,
+    1155
+   ],
+   "scale": 0.244,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3095,
+    3806
+   ],
+   "scale": 0.1729,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    2774,
+    4124
+   ],
+   "scale": 0.1393,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    2628,
+    4079
+   ],
+   "scale": 0.2252,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    2709,
+    4143
+   ],
+   "scale": 0.1451,
+   "flip": true,
+   "tint": 0.76
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    3183,
+    4149
+   ],
+   "scale": 0.1647,
+   "flip": true
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    2581,
+    4019
+   ],
+   "scale": 0.2357,
+   "flip": true
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    4136,
+    1246
+   ],
+   "scale": 0.1232,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    3781,
+    898
+   ],
+   "scale": 0.1691,
+   "flip": false,
+   "tint": 0.794
+  },
+  {
+   "prop": "a_pebbles",
+   "at": [
+    4194,
+    987
+   ],
+   "scale": 0.16,
+   "flip": false
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    4127,
+    1129
+   ],
+   "scale": 0.2198,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    3739,
+    958
+   ],
+   "scale": 0.2199,
+   "flip": false
+  },
+  {
+   "prop": "a_moss",
+   "at": [
+    4119,
+    980
+   ],
+   "scale": 0.2188,
+   "flip": true
+  },
+  {
+   "prop": "a_leaves",
+   "at": [
+    3988,
+    1242
+   ],
+   "scale": 0.1851,
+   "flip": true
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    4445,
+    1088
+   ],
+   "scale": 0.1554,
+   "flip": false,
+   "tint": 0.712
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    3940,
+    1075
+   ],
+   "scale": 0.125,
+   "flip": true,
+   "tint": 0.808
+  },
+  {
+   "prop": "a_mushrooms",
+   "at": [
+    3926,
+    902
+   ],
+   "scale": 0.147,
+   "flip": false,
+   "tint": 0.815
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    6163,
+    1819
+   ],
+   "scale": 0.1423,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    4893,
+    1828
+   ],
+   "scale": 0.1792,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6099,
+    3779
+   ],
+   "scale": 0.1378,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6979,
+    4437
+   ],
+   "scale": 0.1918,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    4428,
+    2349
+   ],
+   "scale": 0.2042,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    3471,
+    3183
+   ],
+   "scale": 0.2037,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    1947,
+    4777
+   ],
+   "scale": 0.1725,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2608,
+    1833
+   ],
+   "scale": 0.1862,
+   "flip": false,
+   "tint": 0.552
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1429,
+    4729
+   ],
+   "scale": 0.1282,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    3666,
+    696
+   ],
+   "scale": 0.1415,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    7283,
+    4474
+   ],
+   "scale": 0.1452,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    2963,
+    1716
+   ],
+   "scale": 0.1672,
+   "flip": false,
+   "tint": 0.57
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    6460,
+    2948
+   ],
+   "scale": 0.1458,
+   "flip": false,
+   "tint": 0.589
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    4967,
+    2004
+   ],
+   "scale": 0.193,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3409,
+    882
+   ],
+   "scale": 0.1754,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    5864,
+    3201
+   ],
+   "scale": 0.1722,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    4014,
+    1391
+   ],
+   "scale": 0.19,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3515,
+    3281
+   ],
+   "scale": 0.1745,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    6325,
+    4348
+   ],
+   "scale": 0.208,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    6531,
+    3106
+   ],
+   "scale": 0.1871,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    1389,
+    2860
+   ],
+   "scale": 0.1394,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2763,
+    4520
+   ],
+   "scale": 0.1606,
+   "flip": true,
+   "tint": 0.633
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6032,
+    3453
+   ],
+   "scale": 0.1352,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    1091,
+    2681
+   ],
+   "scale": 0.1446,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    3680,
+    1977
+   ],
+   "scale": 0.2001,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    1576,
+    1424
+   ],
+   "scale": 0.1924,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2091,
+    4464
+   ],
+   "scale": 0.1545,
+   "flip": true,
+   "tint": 0.637
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3748,
+    439
+   ],
+   "scale": 0.1801,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    462,
+    4012
+   ],
+   "scale": 0.1736,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6748,
+    1495
+   ],
+   "scale": 0.1997,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    6115,
+    4662
+   ],
+   "scale": 0.1446,
+   "flip": true,
+   "tint": 0.615
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    2795,
+    598
+   ],
+   "scale": 0.1972,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    526,
+    235
+   ],
+   "scale": 0.1997,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4469,
+    517
+   ],
+   "scale": 0.1349,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    386,
+    3642
+   ],
+   "scale": 0.1795,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    654,
+    3739
+   ],
+   "scale": 0.1375,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6610,
+    4479
+   ],
+   "scale": 0.2024,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    995,
+    2888
+   ],
+   "scale": 0.1445,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    851,
+    1617
+   ],
+   "scale": 0.1686,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    5452,
+    3871
+   ],
+   "scale": 0.1457,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    3573,
+    4895
+   ],
+   "scale": 0.1686,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    5916,
+    3722
+   ],
+   "scale": 0.1563,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2737,
+    3362
+   ],
+   "scale": 0.1875,
+   "flip": true,
+   "tint": 0.588
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    4959,
+    538
+   ],
+   "scale": 0.1653,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    4655,
+    4464
+   ],
+   "scale": 0.1749,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    889,
+    1735
+   ],
+   "scale": 0.1905,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1327,
+    4520
+   ],
+   "scale": 0.2019,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    977,
+    3756
+   ],
+   "scale": 0.1757,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    6473,
+    163
+   ],
+   "scale": 0.1446,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1083,
+    4508
+   ],
+   "scale": 0.1453,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    2410,
+    2286
+   ],
+   "scale": 0.1815,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    5241,
+    3488
+   ],
+   "scale": 0.1306,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    6266,
+    2952
+   ],
+   "scale": 0.151,
+   "flip": true,
+   "tint": 0.59
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    1748,
+    923
+   ],
+   "scale": 0.1776,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6789,
+    432
+   ],
+   "scale": 0.1595,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    5497,
+    3067
+   ],
+   "scale": 0.1494,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    5600,
+    4868
+   ],
+   "scale": 0.1965,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    1668,
+    4733
+   ],
+   "scale": 0.1506,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    4885,
+    785
+   ],
+   "scale": 0.1459,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4219,
+    1938
+   ],
+   "scale": 0.1451,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    4856,
+    741
+   ],
+   "scale": 0.1634,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    1399,
+    3396
+   ],
+   "scale": 0.168,
+   "flip": true,
+   "tint": 0.597
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    3047,
+    4895
+   ],
+   "scale": 0.1761,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    200,
+    4324
+   ],
+   "scale": 0.1578,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    6927,
+    4814
+   ],
+   "scale": 0.1575,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    5297,
+    4048
+   ],
+   "scale": 0.1504,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    4757,
+    2132
+   ],
+   "scale": 0.1365,
+   "flip": false,
+   "tint": 0.666
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4919,
+    4810
+   ],
+   "scale": 0.1593,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    991,
+    4461
+   ],
+   "scale": 0.1721,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    5297,
+    3888
+   ],
+   "scale": 0.1579,
+   "flip": false,
+   "tint": 0.637
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    7291,
+    1353
+   ],
+   "scale": 0.1354,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    5126,
+    4699
+   ],
+   "scale": 0.1402,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6726,
+    3813
+   ],
+   "scale": 0.1855,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    5670,
+    3470
+   ],
+   "scale": 0.145,
+   "flip": true,
+   "tint": 0.603
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6195,
+    3510
+   ],
+   "scale": 0.1444,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    7380,
+    3519
+   ],
+   "scale": 0.1776,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    3448,
+    4270
+   ],
+   "scale": 0.1428,
+   "flip": true,
+   "tint": 0.686
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    6799,
+    3486
+   ],
+   "scale": 0.1929,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    1398,
+    1767
+   ],
+   "scale": 0.1708,
+   "flip": false,
+   "tint": 0.628
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    7172,
+    311
+   ],
+   "scale": 0.2024,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    4252,
+    2480
+   ],
+   "scale": 0.1429,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    2758,
+    926
+   ],
+   "scale": 0.1377,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    7527,
+    595
+   ],
+   "scale": 0.1948,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    160,
+    3871
+   ],
+   "scale": 0.1796,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    3608,
+    932
+   ],
+   "scale": 0.1549,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    7415,
+    1189
+   ],
+   "scale": 0.135,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    7475,
+    4801
+   ],
+   "scale": 0.149,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    1061,
+    1408
+   ],
+   "scale": 0.203,
+   "flip": true,
+   "tint": 0.563
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    2507,
+    1151
+   ],
+   "scale": 0.1499,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    3019,
+    4599
+   ],
+   "scale": 0.1997,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1682,
+    821
+   ],
+   "scale": 0.1742,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2181,
+    550
+   ],
+   "scale": 0.1558,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    6683,
+    2584
+   ],
+   "scale": 0.1968,
+   "flip": false,
+   "tint": 0.566
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    7268,
+    4470
+   ],
+   "scale": 0.1412,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    6885,
+    4050
+   ],
+   "scale": 0.1399,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    4981,
+    2655
+   ],
+   "scale": 0.1611,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    7311,
+    2783
+   ],
+   "scale": 0.1576,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    3502,
+    4629
+   ],
+   "scale": 0.1752,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    6584,
+    3498
+   ],
+   "scale": 0.1979,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    172,
+    2352
+   ],
+   "scale": 0.2005,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    2612,
+    634
+   ],
+   "scale": 0.2052,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    211,
+    2560
+   ],
+   "scale": 0.1395,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    6636,
+    4273
+   ],
+   "scale": 0.1314,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    3112,
+    3133
+   ],
+   "scale": 0.1376,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    3481,
+    4433
+   ],
+   "scale": 0.1608,
+   "flip": true,
+   "tint": 0.658
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    4425,
+    3787
+   ],
+   "scale": 0.1901,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    5203,
+    405
+   ],
+   "scale": 0.1717,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    725,
+    792
+   ],
+   "scale": 0.1966,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    7013,
+    4320
+   ],
+   "scale": 0.1454,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    7450,
+    356
+   ],
+   "scale": 0.1995,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    2938,
+    4335
+   ],
+   "scale": 0.1587,
+   "flip": true,
+   "tint": 0.651
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    6680,
+    613
+   ],
+   "scale": 0.168,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    477,
+    2628
+   ],
+   "scale": 0.1641,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    639,
+    1690
+   ],
+   "scale": 0.1627,
+   "flip": true,
+   "tint": 0.646
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    159,
+    2521
+   ],
+   "scale": 0.1987,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    7646,
+    2455
+   ],
+   "scale": 0.1887,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1771,
+    4700
+   ],
+   "scale": 0.195,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    3898,
+    3535
+   ],
+   "scale": 0.1859,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6705,
+    4398
+   ],
+   "scale": 0.133,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    7411,
+    4477
+   ],
+   "scale": 0.1587,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1973,
+    895
+   ],
+   "scale": 0.1876,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    5206,
+    3508
+   ],
+   "scale": 0.1702,
+   "flip": false,
+   "tint": 0.57
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    1969,
+    4144
+   ],
+   "scale": 0.1497,
+   "flip": false,
+   "tint": 0.632
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    7338,
+    2538
+   ],
+   "scale": 0.1306,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    6375,
+    4146
+   ],
+   "scale": 0.16,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    4179,
+    3129
+   ],
+   "scale": 0.1728,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    1677,
+    4788
+   ],
+   "scale": 0.1641,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    342,
+    4303
+   ],
+   "scale": 0.1442,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    3285,
+    3383
+   ],
+   "scale": 0.1933,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    3444,
+    178
+   ],
+   "scale": 0.1479,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    6094,
+    3321
+   ],
+   "scale": 0.138,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    2687,
+    3288
+   ],
+   "scale": 0.1848,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    2344,
+    2919
+   ],
+   "scale": 0.1823,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    1357,
+    379
+   ],
+   "scale": 0.1463,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    572,
+    3299
+   ],
+   "scale": 0.1919,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    7352,
+    4751
+   ],
+   "scale": 0.1983,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    6774,
+    3482
+   ],
+   "scale": 0.1904,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    6653,
+    928
+   ],
+   "scale": 0.187,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    1366,
+    2249
+   ],
+   "scale": 0.202,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    860,
+    4919
+   ],
+   "scale": 0.1566,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    2102,
+    1078
+   ],
+   "scale": 0.1755,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    2280,
+    2835
+   ],
+   "scale": 0.1363,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    1200,
+    436
+   ],
+   "scale": 0.1891,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    680,
+    4095
+   ],
+   "scale": 0.1331,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    7086,
+    4893
+   ],
+   "scale": 0.1836,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    7507,
+    3229
+   ],
+   "scale": 0.1625,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    5258,
+    4925
+   ],
+   "scale": 0.2074,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    3114,
+    4393
+   ],
+   "scale": 0.1971,
+   "flip": true,
+   "tint": 0.623
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    3677,
+    3168
+   ],
+   "scale": 0.2018,
+   "flip": true,
+   "tint": 0.554
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    466,
+    4552
+   ],
+   "scale": 0.131,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    6941,
+    1682
+   ],
+   "scale": 0.182,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    1302,
+    4524
+   ],
+   "scale": 0.1359,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6009,
+    4021
+   ],
+   "scale": 0.1703,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    882,
+    1644
+   ],
+   "scale": 0.1909,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    5378,
+    3922
+   ],
+   "scale": 0.1994,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    7039,
+    665
+   ],
+   "scale": 0.1837,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    314,
+    4917
+   ],
+   "scale": 0.1876,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4994,
+    2678
+   ],
+   "scale": 0.1872,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    4249,
+    4238
+   ],
+   "scale": 0.1351,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    5568,
+    651
+   ],
+   "scale": 0.1625,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    7402,
+    2398
+   ],
+   "scale": 0.1415,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    1604,
+    306
+   ],
+   "scale": 0.1677,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2562,
+    501
+   ],
+   "scale": 0.1715,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    7477,
+    456
+   ],
+   "scale": 0.1507,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    7036,
+    3430
+   ],
+   "scale": 0.179,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    5828,
+    4479
+   ],
+   "scale": 0.1814,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    6642,
+    4931
+   ],
+   "scale": 0.1347,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    4363,
+    2566
+   ],
+   "scale": 0.1602,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    3044,
+    3257
+   ],
+   "scale": 0.1507,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    303,
+    3890
+   ],
+   "scale": 0.2002,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    1819,
+    4491
+   ],
+   "scale": 0.132,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    4379,
+    4685
+   ],
+   "scale": 0.1394,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    3032,
+    206
+   ],
+   "scale": 0.1531,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    956,
+    524
+   ],
+   "scale": 0.1468,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    1126,
+    833
+   ],
+   "scale": 0.1742,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    4896,
+    4737
+   ],
+   "scale": 0.1805,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    7386,
+    4357
+   ],
+   "scale": 0.1897,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    1437,
+    1601
+   ],
+   "scale": 0.1575,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    4135,
+    3138
+   ],
+   "scale": 0.1591,
+   "flip": false,
+   "tint": 0.592
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    5470,
+    3794
+   ],
+   "scale": 0.1878,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    6720,
+    270
+   ],
+   "scale": 0.154,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    7335,
+    3314
+   ],
+   "scale": 0.1552,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    261,
+    3187
+   ],
+   "scale": 0.1939,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    1929,
+    1918
+   ],
+   "scale": 0.1462,
+   "flip": true,
+   "tint": 0.707
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6128,
+    811
+   ],
+   "scale": 0.1977,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    7225,
+    294
+   ],
+   "scale": 0.1694,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    5297,
+    4279
+   ],
+   "scale": 0.1752,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    6673,
+    924
+   ],
+   "scale": 0.1399,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    2231,
+    2496
+   ],
+   "scale": 0.1949,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6144,
+    3545
+   ],
+   "scale": 0.1318,
+   "flip": true,
+   "tint": 0.666
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    6827,
+    4527
+   ],
+   "scale": 0.1676,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    7108,
+    2221
+   ],
+   "scale": 0.175,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    4589,
+    4811
+   ],
+   "scale": 0.1592,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    2972,
+    2121
+   ],
+   "scale": 0.1974,
+   "flip": true,
+   "tint": 0.552
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    4661,
+    4292
+   ],
+   "scale": 0.1469,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    5884,
+    400
+   ],
+   "scale": 0.1684,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    390,
+    462
+   ],
+   "scale": 0.1528,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1257,
+    4687
+   ],
+   "scale": 0.1924,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    6018,
+    952
+   ],
+   "scale": 0.1589,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    6318,
+    4192
+   ],
+   "scale": 0.1687,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    6317,
+    4293
+   ],
+   "scale": 0.1357,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    3754,
+    2195
+   ],
+   "scale": 0.151,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    3710,
+    4054
+   ],
+   "scale": 0.1367,
+   "flip": false,
+   "tint": 0.716
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    5054,
+    1170
+   ],
+   "scale": 0.1305,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    4552,
+    1915
+   ],
+   "scale": 0.1767,
+   "flip": false,
+   "tint": 0.599
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    7385,
+    1829
+   ],
+   "scale": 0.1536,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    3831,
+    2968
+   ],
+   "scale": 0.1761,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    3568,
+    2223
+   ],
+   "scale": 0.1861,
+   "flip": false,
+   "tint": 0.576
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    1524,
+    3556
+   ],
+   "scale": 0.1755,
+   "flip": true,
+   "tint": 0.594
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    2800,
+    1721
+   ],
+   "scale": 0.1479,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    2680,
+    3485
+   ],
+   "scale": 0.1312,
+   "flip": true,
+   "tint": 0.561
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    1746,
+    4664
+   ],
+   "scale": 0.1973,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6442,
+    1464
+   ],
+   "scale": 0.1464,
+   "flip": true,
+   "tint": 0.667
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    7180,
+    2292
+   ],
+   "scale": 0.1688,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    5237,
+    340
+   ],
+   "scale": 0.1641,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1708,
+    4777
+   ],
+   "scale": 0.1416,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    5651,
+    4145
+   ],
+   "scale": 0.1562,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3791,
+    161
+   ],
+   "scale": 0.1361,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    6965,
+    341
+   ],
+   "scale": 0.1462,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6975,
+    4499
+   ],
+   "scale": 0.161,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    410,
+    2159
+   ],
+   "scale": 0.1443,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1212,
+    1747
+   ],
+   "scale": 0.1374,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    6737,
+    2539
+   ],
+   "scale": 0.1738,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    3458,
+    1737
+   ],
+   "scale": 0.1667,
+   "flip": true,
+   "tint": 0.57
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    7227,
+    1980
+   ],
+   "scale": 0.1581,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    3087,
+    4313
+   ],
+   "scale": 0.1735,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    2527,
+    1915
+   ],
+   "scale": 0.1434,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3643,
+    1351
+   ],
+   "scale": 0.1968,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    2418,
+    1125
+   ],
+   "scale": 0.1524,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    1827,
+    241
+   ],
+   "scale": 0.1778,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    3867,
+    3756
+   ],
+   "scale": 0.14,
+   "flip": true,
+   "tint": 0.557
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    1429,
+    1812
+   ],
+   "scale": 0.1712,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    7361,
+    681
+   ],
+   "scale": 0.1681,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    7315,
+    2441
+   ],
+   "scale": 0.174,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6047,
+    4702
+   ],
+   "scale": 0.1586,
+   "flip": false,
+   "tint": 0.58
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    1601,
+    3523
+   ],
+   "scale": 0.1831,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    6490,
+    4009
+   ],
+   "scale": 0.1718,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    341,
+    3996
+   ],
+   "scale": 0.1971,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    7157,
+    580
+   ],
+   "scale": 0.2046,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    6910,
+    1022
+   ],
+   "scale": 0.1951,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    777,
+    4094
+   ],
+   "scale": 0.1885,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6251,
+    3610
+   ],
+   "scale": 0.158,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    6090,
+    271
+   ],
+   "scale": 0.1811,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    6879,
+    2605
+   ],
+   "scale": 0.1626,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    5815,
+    780
+   ],
+   "scale": 0.1851,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    361,
+    4319
+   ],
+   "scale": 0.1873,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    2868,
+    4827
+   ],
+   "scale": 0.1283,
+   "flip": true,
+   "tint": 0.553
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    2900,
+    221
+   ],
+   "scale": 0.164,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    7628,
+    2811
+   ],
+   "scale": 0.1893,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    690,
+    3644
+   ],
+   "scale": 0.1345,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1075,
+    2531
+   ],
+   "scale": 0.2018,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    3864,
+    4504
+   ],
+   "scale": 0.1788,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    2056,
+    2639
+   ],
+   "scale": 0.1786,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    3429,
+    223
+   ],
+   "scale": 0.1603,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    1414,
+    4840
+   ],
+   "scale": 0.1625,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    3688,
+    213
+   ],
+   "scale": 0.1854,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    3907,
+    2859
+   ],
+   "scale": 0.1592,
+   "flip": true,
+   "tint": 0.647
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    162,
+    3777
+   ],
+   "scale": 0.1728,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    5761,
+    4268
+   ],
+   "scale": 0.1746,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    3799,
+    2538
+   ],
+   "scale": 0.1663,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    2069,
+    736
+   ],
+   "scale": 0.1508,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    4362,
+    4714
+   ],
+   "scale": 0.1319,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    4997,
+    3588
+   ],
+   "scale": 0.1707,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    6960,
+    4897
+   ],
+   "scale": 0.1547,
+   "flip": false,
+   "tint": 0.569
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    476,
+    4295
+   ],
+   "scale": 0.197,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    1332,
+    2280
+   ],
+   "scale": 0.1825,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    2491,
+    1960
+   ],
+   "scale": 0.1777,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    6052,
+    4121
+   ],
+   "scale": 0.1329,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    1051,
+    4268
+   ],
+   "scale": 0.1374,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    5788,
+    3152
+   ],
+   "scale": 0.1848,
+   "flip": false,
+   "tint": 0.553
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    307,
+    4866
+   ],
+   "scale": 0.1907,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    2192,
+    4592
+   ],
+   "scale": 0.1458,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    1125,
+    3519
+   ],
+   "scale": 0.1506,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    3408,
+    4757
+   ],
+   "scale": 0.1833,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    7604,
+    651
+   ],
+   "scale": 0.1629,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    4975,
+    2351
+   ],
+   "scale": 0.1924,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    1397,
+    1503
+   ],
+   "scale": 0.1334,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4275,
+    2370
+   ],
+   "scale": 0.1883,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    65,
+    263
+   ],
+   "scale": 0.1725,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    699,
+    1942
+   ],
+   "scale": 0.1728,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    4213,
+    2571
+   ],
+   "scale": 0.1858,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3890,
+    3060
+   ],
+   "scale": 0.1682,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    6772,
+    2713
+   ],
+   "scale": 0.1893,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    2682,
+    4503
+   ],
+   "scale": 0.1625,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    144,
+    4178
+   ],
+   "scale": 0.1411,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1119,
+    4172
+   ],
+   "scale": 0.1288,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    4650,
+    4444
+   ],
+   "scale": 0.1936,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    494,
+    4604
+   ],
+   "scale": 0.1822,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    6313,
+    577
+   ],
+   "scale": 0.1632,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    3502,
+    407
+   ],
+   "scale": 0.1374,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    6942,
+    193
+   ],
+   "scale": 0.165,
+   "flip": false,
+   "tint": 0.625
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1053,
+    1947
+   ],
+   "scale": 0.1403,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    512,
+    1759
+   ],
+   "scale": 0.1469,
+   "flip": false,
+   "tint": 0.693
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    5937,
+    768
+   ],
+   "scale": 0.1731,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    7420,
+    1050
+   ],
+   "scale": 0.162,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    5349,
+    4266
+   ],
+   "scale": 0.1942,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    5155,
+    4340
+   ],
+   "scale": 0.172,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    5450,
+    3635
+   ],
+   "scale": 0.201,
+   "flip": false,
+   "tint": 0.557
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    3593,
+    1950
+   ],
+   "scale": 0.1353,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2897,
+    2046
+   ],
+   "scale": 0.149,
+   "flip": true,
+   "tint": 0.593
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    7390,
+    3280
+   ],
+   "scale": 0.1746,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    1306,
+    3978
+   ],
+   "scale": 0.1383,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3602,
+    908
+   ],
+   "scale": 0.1302,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    1769,
+    4059
+   ],
+   "scale": 0.1456,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    5491,
+    1005
+   ],
+   "scale": 0.1352,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_whiteflowers",
+   "at": [
+    6796,
+    3584
+   ],
+   "scale": 0.1938,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    4987,
+    3677
+   ],
+   "scale": 0.1389,
+   "flip": true,
+   "tint": 0.615
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    1903,
+    2753
+   ],
+   "scale": 0.1725,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    592,
+    4492
+   ],
+   "scale": 0.1641,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    1680,
+    2422
+   ],
+   "scale": 0.1948,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3142,
+    636
+   ],
+   "scale": 0.1983,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6467,
+    626
+   ],
+   "scale": 0.1737,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6307,
+    300
+   ],
+   "scale": 0.1805,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3483,
+    3381
+   ],
+   "scale": 0.1633,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    927,
+    3275
+   ],
+   "scale": 0.1818,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1221,
+    4498
+   ],
+   "scale": 0.1423,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    1181,
+    2732
+   ],
+   "scale": 0.1898,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    5610,
+    2123
+   ],
+   "scale": 0.1924,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1399,
+    4623
+   ],
+   "scale": 0.155,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2366,
+    4679
+   ],
+   "scale": 0.1506,
+   "flip": false,
+   "tint": 0.605
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4529,
+    2389
+   ],
+   "scale": 0.2071,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    5104,
+    1000
+   ],
+   "scale": 0.1422,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    2706,
+    2103
+   ],
+   "scale": 0.1815,
+   "flip": true,
+   "tint": 0.579
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    7477,
+    1305
+   ],
+   "scale": 0.1377,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    6307,
+    4419
+   ],
+   "scale": 0.1521,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    6844,
+    2836
+   ],
+   "scale": 0.1339,
+   "flip": true,
+   "tint": 0.603
+  },
+  {
+   "prop": "gb_clover",
+   "at": [
+    3020,
+    3410
+   ],
+   "scale": 0.1708,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    7282,
+    3235
+   ],
+   "scale": 0.1553,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    6951,
+    1683
+   ],
+   "scale": 0.1439,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    1577,
+    371
+   ],
+   "scale": 0.1325,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    4266,
+    761
+   ],
+   "scale": 0.1398,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    4481,
+    2287
+   ],
+   "scale": 0.1913,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    3086,
+    4662
+   ],
+   "scale": 0.16,
+   "flip": true,
+   "tint": 0.552
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    6117,
+    3169
+   ],
+   "scale": 0.1907,
+   "flip": true,
+   "tint": 0.555
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    329,
+    3153
+   ],
+   "scale": 0.1392,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_lavenderpatch",
+   "at": [
+    4480,
+    506
+   ],
+   "scale": 0.1668,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    700,
+    724
+   ],
+   "scale": 0.1546,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    1729,
+    4317
+   ],
+   "scale": 0.2025,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    4757,
+    2248
+   ],
+   "scale": 0.1371,
+   "flip": true,
+   "tint": 0.656
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    6387,
+    652
+   ],
+   "scale": 0.1872,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    1046,
+    1684
+   ],
+   "scale": 0.186,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    284,
+    4493
+   ],
+   "scale": 0.1986,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6970,
+    2459
+   ],
+   "scale": 0.1738,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    2356,
+    709
+   ],
+   "scale": 0.1837,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    6915,
+    2561
+   ],
+   "scale": 0.1893,
+   "flip": false,
+   "tint": 0.563
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    6362,
+    495
+   ],
+   "scale": 0.1349,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    6923,
+    2859
+   ],
+   "scale": 0.1899,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    7023,
+    3769
+   ],
+   "scale": 0.1806,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    4472,
+    4423
+   ],
+   "scale": 0.1717,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    6766,
+    4544
+   ],
+   "scale": 0.1957,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    2652,
+    1815
+   ],
+   "scale": 0.1713,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_whiteflowers",
+   "at": [
+    4083,
+    1948
+   ],
+   "scale": 0.1414,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    1616,
+    4064
+   ],
+   "scale": 0.1505,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    3276,
+    3326
+   ],
+   "scale": 0.1475,
+   "flip": true,
+   "tint": 0.639
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    7659,
+    1319
+   ],
+   "scale": 0.144,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    6913,
+    4901
+   ],
+   "scale": 0.1664,
+   "flip": true,
+   "tint": 0.596
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    6919,
+    3172
+   ],
+   "scale": 0.1344,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    727,
+    4511
+   ],
+   "scale": 0.1681,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4819,
+    2491
+   ],
+   "scale": 0.1556,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    5002,
+    1853
+   ],
+   "scale": 0.1377,
+   "flip": true,
+   "tint": 0.676
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    4645,
+    1928
+   ],
+   "scale": 0.1668,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    387,
+    3482
+   ],
+   "scale": 0.1637,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_clover",
+   "at": [
+    5443,
+    4920
+   ],
+   "scale": 0.1926,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    1589,
+    701
+   ],
+   "scale": 0.1469,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_meadow",
+   "at": [
+    3479,
+    3019
+   ],
+   "scale": 0.1947,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    2513,
+    1108
+   ],
+   "scale": 0.1418,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_lavenderpatch",
+   "at": [
+    3273,
+    3092
+   ],
+   "scale": 0.1983,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    5462,
+    615
+   ],
+   "scale": 0.1803,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    4739,
+    2468
+   ],
+   "scale": 0.1724,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_tallgrass",
+   "at": [
+    1409,
+    4730
+   ],
+   "scale": 0.1872,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    6115,
+    1848
+   ],
+   "scale": 0.1665,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    5529,
+    168
+   ],
+   "scale": 0.1501,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_longgrass",
+   "at": [
+    1018,
+    4550
+   ],
+   "scale": 0.1981,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    5652,
+    661
+   ],
+   "scale": 0.1805,
+   "flip": false,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_moss",
+   "at": [
+    6800,
+    2437
+   ],
+   "scale": 0.1852,
+   "flip": false,
+   "tint": 0.602
+  },
+  {
+   "prop": "gb_tallgrass",
+   "at": [
+    919,
+    3492
+   ],
+   "scale": 0.1498,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "ga_meadow",
+   "at": [
+    2689,
+    1818
+   ],
+   "scale": 0.1565,
+   "flip": true,
+   "tint": 0.558
+  },
+  {
+   "prop": "gb_longgrass",
+   "at": [
+    5418,
+    4757
+   ],
+   "scale": 0.1981,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "gb_moss",
+   "at": [
+    725,
+    4648
+   ],
+   "scale": 0.1662,
+   "flip": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    480,
+    0
+   ],
+   "scale": 1.3174,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    1440,
+    0
+   ],
+   "scale": 1.1931,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1680,
+    0
+   ],
+   "scale": 1.1557,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    2640,
+    0
+   ],
+   "scale": 1.3188,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    2880,
+    0
+   ],
+   "scale": 1.0889,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    3120,
+    0
+   ],
+   "scale": 1.4316,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3840,
+    0
+   ],
+   "scale": 1.2576,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    4080,
+    0
+   ],
+   "scale": 1.3238,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    4320,
+    0
+   ],
+   "scale": 1.0533,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    4800,
+    0
+   ],
+   "scale": 1.236,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5040,
+    0
+   ],
+   "scale": 1.2143,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5280,
+    0
+   ],
+   "scale": 1.4373,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6000,
+    0
+   ],
+   "scale": 1.124,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6480,
+    0
+   ],
+   "scale": 1.0325,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6720,
+    0
+   ],
+   "scale": 1.2106,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6960,
+    0
+   ],
+   "scale": 1.0752,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7200,
+    0
+   ],
+   "scale": 1.1545,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7440,
+    0
+   ],
+   "scale": 1.2559,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7680,
+    0
+   ],
+   "scale": 1.2288,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    360,
+    132
+   ],
+   "scale": 1.1713,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    600,
+    132
+   ],
+   "scale": 1.3097,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    840,
+    132
+   ],
+   "scale": 1.0625,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1560,
+    132
+   ],
+   "scale": 1.2759,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    2760,
+    132
+   ],
+   "scale": 1.198,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3240,
+    132
+   ],
+   "scale": 1.3142,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    3960,
+    132
+   ],
+   "scale": 1.3541,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    4200,
+    132
+   ],
+   "scale": 1.3697,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    5400,
+    132
+   ],
+   "scale": 1.2538,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5640,
+    132
+   ],
+   "scale": 1.489,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    5880,
+    132
+   ],
+   "scale": 1.3254,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7320,
+    132
+   ],
+   "scale": 1.354,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7560,
+    132
+   ],
+   "scale": 1.4821,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7800,
+    132
+   ],
+   "scale": 1.3744,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    480,
+    264
+   ],
+   "scale": 1.3705,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    720,
+    264
+   ],
+   "scale": 1.2976,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    960,
+    264
+   ],
+   "scale": 1.487,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    3840,
+    264
+   ],
+   "scale": 1.4575,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4320,
+    264
+   ],
+   "scale": 1.0627,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    4560,
+    264
+   ],
+   "scale": 1.0907,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4800,
+    264
+   ],
+   "scale": 1.3855,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5520,
+    264
+   ],
+   "scale": 1.2972,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6240,
+    264
+   ],
+   "scale": 1.0024,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    120,
+    396
+   ],
+   "scale": 1.2348,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    360,
+    396
+   ],
+   "scale": 1.2467,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    600,
+    396
+   ],
+   "scale": 1.2424,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    1320,
+    396
+   ],
+   "scale": 1.2722,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1560,
+    396
+   ],
+   "scale": 1.3411,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1800,
+    396
+   ],
+   "scale": 1.3932,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    2040,
+    396
+   ],
+   "scale": 1.4778,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2280,
+    396
+   ],
+   "scale": 1.1238,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2520,
+    396
+   ],
+   "scale": 1.3576,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    3000,
+    396
+   ],
+   "scale": 1.45,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3240,
+    396
+   ],
+   "scale": 1.3721,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3480,
+    396
+   ],
+   "scale": 1.4235,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    3720,
+    396
+   ],
+   "scale": 1.0411,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3960,
+    396
+   ],
+   "scale": 1.1596,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    4200,
+    396
+   ],
+   "scale": 1.1328,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    4440,
+    396
+   ],
+   "scale": 1.0935,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4680,
+    396
+   ],
+   "scale": 1.4616,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    5400,
+    396
+   ],
+   "scale": 1.0533,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    5880,
+    396
+   ],
+   "scale": 1.3807,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6360,
+    396
+   ],
+   "scale": 1.0851,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6840,
+    396
+   ],
+   "scale": 1.3919,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7080,
+    396
+   ],
+   "scale": 1.1385,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7800,
+    396
+   ],
+   "scale": 1.0892,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    0,
+    528
+   ],
+   "scale": 1.2929,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    240,
+    528
+   ],
+   "scale": 1.3998,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    480,
+    528
+   ],
+   "scale": 1.1034,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    720,
+    528
+   ],
+   "scale": 1.2141,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    960,
+    528
+   ],
+   "scale": 1.2606,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1200,
+    528
+   ],
+   "scale": 1.109,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1440,
+    528
+   ],
+   "scale": 1.1811,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1680,
+    528
+   ],
+   "scale": 1.2095,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1920,
+    528
+   ],
+   "scale": 1.3794,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    2160,
+    528
+   ],
+   "scale": 1.4651,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    2880,
+    528
+   ],
+   "scale": 1.2299,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    3120,
+    528
+   ],
+   "scale": 1.4359,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    3360,
+    528
+   ],
+   "scale": 1.3141,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    3600,
+    528
+   ],
+   "scale": 1.1504,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    3840,
+    528
+   ],
+   "scale": 1.1227,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    4080,
+    528
+   ],
+   "scale": 1.3137,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    4320,
+    528
+   ],
+   "scale": 1.2213,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    4560,
+    528
+   ],
+   "scale": 1.0782,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    4800,
+    528
+   ],
+   "scale": 1.0413,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    5040,
+    528
+   ],
+   "scale": 1.1533,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5280,
+    528
+   ],
+   "scale": 1.144,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5520,
+    528
+   ],
+   "scale": 1.4041,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6000,
+    528
+   ],
+   "scale": 1.3247,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    6480,
+    528
+   ],
+   "scale": 1.265,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6720,
+    528
+   ],
+   "scale": 1.1955,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6960,
+    528
+   ],
+   "scale": 1.4201,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7200,
+    528
+   ],
+   "scale": 1.0538,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7440,
+    528
+   ],
+   "scale": 1.4435,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7680,
+    528
+   ],
+   "scale": 1.3701,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    120,
+    660
+   ],
+   "scale": 1.4182,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    360,
+    660
+   ],
+   "scale": 1.3827,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    600,
+    660
+   ],
+   "scale": 1.377,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    840,
+    660
+   ],
+   "scale": 1.2084,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1080,
+    660
+   ],
+   "scale": 1.2879,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    1320,
+    660
+   ],
+   "scale": 1.3527,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1560,
+    660
+   ],
+   "scale": 1.2109,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1800,
+    660
+   ],
+   "scale": 1.3106,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    2040,
+    660
+   ],
+   "scale": 1.0978,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    2280,
+    660
+   ],
+   "scale": 1.474,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2520,
+    660
+   ],
+   "scale": 1.1274,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2760,
+    660
+   ],
+   "scale": 1.0721,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    3000,
+    660
+   ],
+   "scale": 1.2628,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    3240,
+    660
+   ],
+   "scale": 1.4099,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3480,
+    660
+   ],
+   "scale": 1.3722,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    3720,
+    660
+   ],
+   "scale": 1.3646,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    3960,
+    660
+   ],
+   "scale": 1.1892,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4200,
+    660
+   ],
+   "scale": 1.1828,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4440,
+    660
+   ],
+   "scale": 1.4464,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4680,
+    660
+   ],
+   "scale": 1.2632,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    4920,
+    660
+   ],
+   "scale": 1.2591,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5160,
+    660
+   ],
+   "scale": 1.4539,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    5400,
+    660
+   ],
+   "scale": 1.1377,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5640,
+    660
+   ],
+   "scale": 1.2971,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    5880,
+    660
+   ],
+   "scale": 1.0097,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6120,
+    660
+   ],
+   "scale": 1.3192,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6360,
+    660
+   ],
+   "scale": 1.3557,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6600,
+    660
+   ],
+   "scale": 1.4886,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6840,
+    660
+   ],
+   "scale": 1.4092,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7080,
+    660
+   ],
+   "scale": 1.1271,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7560,
+    660
+   ],
+   "scale": 1.1153,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    0,
+    792
+   ],
+   "scale": 1.181,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    240,
+    792
+   ],
+   "scale": 1.2296,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    480,
+    792
+   ],
+   "scale": 1.0601,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    720,
+    792
+   ],
+   "scale": 1.4838,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    960,
+    792
+   ],
+   "scale": 1.2582,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    1200,
+    792
+   ],
+   "scale": 1.0364,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    1440,
+    792
+   ],
+   "scale": 1.2734,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1680,
+    792
+   ],
+   "scale": 1.1388,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1920,
+    792
+   ],
+   "scale": 1.2998,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    2160,
+    792
+   ],
+   "scale": 1.0955,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2400,
+    792
+   ],
+   "scale": 1.425,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    2640,
+    792
+   ],
+   "scale": 1.1116,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    2880,
+    792
+   ],
+   "scale": 1.118,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3120,
+    792
+   ],
+   "scale": 1.4628,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    3360,
+    792
+   ],
+   "scale": 1.24,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4800,
+    792
+   ],
+   "scale": 1.3323,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5040,
+    792
+   ],
+   "scale": 1.3608,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5280,
+    792
+   ],
+   "scale": 1.1658,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    5520,
+    792
+   ],
+   "scale": 1.0199,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    5760,
+    792
+   ],
+   "scale": 1.0266,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6000,
+    792
+   ],
+   "scale": 1.0192,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6240,
+    792
+   ],
+   "scale": 1.2048,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6480,
+    792
+   ],
+   "scale": 1.1826,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6720,
+    792
+   ],
+   "scale": 1.1868,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6960,
+    792
+   ],
+   "scale": 1.3554,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7200,
+    792
+   ],
+   "scale": 1.0128,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7440,
+    792
+   ],
+   "scale": 1.1052,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2040,
+    924
+   ],
+   "scale": 1.3103,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    2280,
+    924
+   ],
+   "scale": 1.0632,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2520,
+    924
+   ],
+   "scale": 1.4629,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    2760,
+    924
+   ],
+   "scale": 1.1238,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    3000,
+    924
+   ],
+   "scale": 1.1447,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5160,
+    924
+   ],
+   "scale": 1.1505,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    5400,
+    924
+   ],
+   "scale": 1.4012,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5640,
+    924
+   ],
+   "scale": 1.1893,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    5880,
+    924
+   ],
+   "scale": 1.011,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6120,
+    924
+   ],
+   "scale": 1.3669,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6360,
+    924
+   ],
+   "scale": 1.0368,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6600,
+    924
+   ],
+   "scale": 1.2775,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6840,
+    924
+   ],
+   "scale": 1.4357,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7080,
+    924
+   ],
+   "scale": 1.2446,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7320,
+    924
+   ],
+   "scale": 1.0953,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7560,
+    924
+   ],
+   "scale": 1.0972,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    2400,
+    1056
+   ],
+   "scale": 1.091,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    2640,
+    1056
+   ],
+   "scale": 1.147,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2880,
+    1056
+   ],
+   "scale": 1.3985,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5040,
+    1056
+   ],
+   "scale": 1.0325,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    6720,
+    1056
+   ],
+   "scale": 1.0619,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6960,
+    1056
+   ],
+   "scale": 1.2262,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7200,
+    1056
+   ],
+   "scale": 1.3297,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7440,
+    1056
+   ],
+   "scale": 1.2537,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7680,
+    1056
+   ],
+   "scale": 1.3859,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7080,
+    1188
+   ],
+   "scale": 1.2835,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7320,
+    1188
+   ],
+   "scale": 1.377,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7680,
+    1320
+   ],
+   "scale": 1.2003,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7560,
+    1452
+   ],
+   "scale": 1.2556,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7800,
+    1452
+   ],
+   "scale": 1.4386,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    7200,
+    1584
+   ],
+   "scale": 1.0229,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7680,
+    1584
+   ],
+   "scale": 1.3538,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7080,
+    1716
+   ],
+   "scale": 1.313,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7560,
+    1716
+   ],
+   "scale": 1.4751,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6960,
+    1848
+   ],
+   "scale": 1.2461,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7440,
+    1848
+   ],
+   "scale": 1.3298,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7320,
+    1980
+   ],
+   "scale": 1.0917,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7560,
+    1980
+   ],
+   "scale": 1.0215,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    0,
+    2112
+   ],
+   "scale": 1.2695,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    120,
+    2244
+   ],
+   "scale": 1.4599,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    360,
+    2244
+   ],
+   "scale": 1.1246,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1320,
+    2244
+   ],
+   "scale": 1.0991,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7800,
+    2244
+   ],
+   "scale": 1.4749,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    240,
+    2376
+   ],
+   "scale": 1.468,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    480,
+    2376
+   ],
+   "scale": 1.2257,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    720,
+    2376
+   ],
+   "scale": 1.1979,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    960,
+    2376
+   ],
+   "scale": 1.4288,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    4320,
+    2376
+   ],
+   "scale": 1.0901,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    4560,
+    2376
+   ],
+   "scale": 1.1455,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7200,
+    2376
+   ],
+   "scale": 1.3047,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    840,
+    2508
+   ],
+   "scale": 1.2171,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1080,
+    2508
+   ],
+   "scale": 1.3415,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    1320,
+    2508
+   ],
+   "scale": 1.2253,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1560,
+    2508
+   ],
+   "scale": 1.2307,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1800,
+    2508
+   ],
+   "scale": 1.3335,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    2280,
+    2508
+   ],
+   "scale": 1.2671,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    4440,
+    2508
+   ],
+   "scale": 1.0406,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    4680,
+    2508
+   ],
+   "scale": 1.0599,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7320,
+    2508
+   ],
+   "scale": 1.0248,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7800,
+    2508
+   ],
+   "scale": 1.0636,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    0,
+    2640
+   ],
+   "scale": 1.2965,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    240,
+    2640
+   ],
+   "scale": 1.2862,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    480,
+    2640
+   ],
+   "scale": 1.1373,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    720,
+    2640
+   ],
+   "scale": 1.4871,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    960,
+    2640
+   ],
+   "scale": 1.4526,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1200,
+    2640
+   ],
+   "scale": 1.0221,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1440,
+    2640
+   ],
+   "scale": 1.2516,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1680,
+    2640
+   ],
+   "scale": 1.1382,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1920,
+    2640
+   ],
+   "scale": 1.2575,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7680,
+    2640
+   ],
+   "scale": 1.2879,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    360,
+    2772
+   ],
+   "scale": 1.3852,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    600,
+    2772
+   ],
+   "scale": 1.3678,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    840,
+    2772
+   ],
+   "scale": 1.3957,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1080,
+    2772
+   ],
+   "scale": 1.3514,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1320,
+    2772
+   ],
+   "scale": 1.284,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    1560,
+    2772
+   ],
+   "scale": 1.2843,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1800,
+    2772
+   ],
+   "scale": 1.2709,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    2040,
+    2772
+   ],
+   "scale": 1.3886,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7800,
+    2772
+   ],
+   "scale": 1.203,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    240,
+    2904
+   ],
+   "scale": 1.4151,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    480,
+    2904
+   ],
+   "scale": 1.1156,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    720,
+    2904
+   ],
+   "scale": 1.4964,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    960,
+    2904
+   ],
+   "scale": 1.4831,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    1200,
+    2904
+   ],
+   "scale": 1.3182,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    1440,
+    2904
+   ],
+   "scale": 1.0043,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1680,
+    2904
+   ],
+   "scale": 1.1085,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    2160,
+    2904
+   ],
+   "scale": 1.1055,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7440,
+    2904
+   ],
+   "scale": 1.3171,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7800,
+    3036
+   ],
+   "scale": 1.3399,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    480,
+    3168
+   ],
+   "scale": 1.1507,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7320,
+    3300
+   ],
+   "scale": 1.3499,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7560,
+    3300
+   ],
+   "scale": 1.238,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    0,
+    3432
+   ],
+   "scale": 1.1987,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    480,
+    3432
+   ],
+   "scale": 1.1353,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6960,
+    3432
+   ],
+   "scale": 1.0268,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7200,
+    3432
+   ],
+   "scale": 1.3953,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    120,
+    3564
+   ],
+   "scale": 1.2329,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    360,
+    3564
+   ],
+   "scale": 1.1911,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6840,
+    3564
+   ],
+   "scale": 1.2889,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7080,
+    3564
+   ],
+   "scale": 1.3193,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7320,
+    3564
+   ],
+   "scale": 1.2875,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7800,
+    3564
+   ],
+   "scale": 1.0651,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    0,
+    3696
+   ],
+   "scale": 1.4044,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3360,
+    3696
+   ],
+   "scale": 1.0458,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6960,
+    3696
+   ],
+   "scale": 1.23,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7440,
+    3696
+   ],
+   "scale": 1.3299,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7680,
+    3696
+   ],
+   "scale": 1.219,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    360,
+    3828
+   ],
+   "scale": 1.4696,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    840,
+    3828
+   ],
+   "scale": 1.2318,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    5880,
+    3828
+   ],
+   "scale": 1.1409,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6120,
+    3828
+   ],
+   "scale": 1.2511,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    6840,
+    3828
+   ],
+   "scale": 1.2415,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7560,
+    3828
+   ],
+   "scale": 1.0508,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7800,
+    3828
+   ],
+   "scale": 1.349,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    0,
+    3960
+   ],
+   "scale": 1.2133,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    240,
+    3960
+   ],
+   "scale": 1.1718,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    720,
+    3960
+   ],
+   "scale": 1.0671,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    6480,
+    3960
+   ],
+   "scale": 1.2366,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6960,
+    3960
+   ],
+   "scale": 1.3013,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7200,
+    3960
+   ],
+   "scale": 1.4439,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7440,
+    3960
+   ],
+   "scale": 1.2971,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    120,
+    4092
+   ],
+   "scale": 1.3152,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    360,
+    4092
+   ],
+   "scale": 1.2613,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    600,
+    4092
+   ],
+   "scale": 1.2557,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    3960,
+    4092
+   ],
+   "scale": 1.0101,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6120,
+    4092
+   ],
+   "scale": 1.1055,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6360,
+    4092
+   ],
+   "scale": 1.1842,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6600,
+    4092
+   ],
+   "scale": 1.2512,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7080,
+    4092
+   ],
+   "scale": 1.3237,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7320,
+    4092
+   ],
+   "scale": 1.1488,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7560,
+    4092
+   ],
+   "scale": 1.4084,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    0,
+    4224
+   ],
+   "scale": 1.249,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    480,
+    4224
+   ],
+   "scale": 1.0175,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1200,
+    4224
+   ],
+   "scale": 1.0131,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    4320,
+    4224
+   ],
+   "scale": 1.11,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    5520,
+    4224
+   ],
+   "scale": 1.2363,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5760,
+    4224
+   ],
+   "scale": 1.0018,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6000,
+    4224
+   ],
+   "scale": 1.2199,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6240,
+    4224
+   ],
+   "scale": 1.2845,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    6720,
+    4224
+   ],
+   "scale": 1.1945,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6960,
+    4224
+   ],
+   "scale": 1.1111,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7680,
+    4224
+   ],
+   "scale": 1.2148,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    120,
+    4356
+   ],
+   "scale": 1.3475,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    360,
+    4356
+   ],
+   "scale": 1.1605,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1560,
+    4356
+   ],
+   "scale": 1.1148,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3960,
+    4356
+   ],
+   "scale": 1.1486,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5880,
+    4356
+   ],
+   "scale": 1.4513,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6120,
+    4356
+   ],
+   "scale": 1.2893,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6600,
+    4356
+   ],
+   "scale": 1.4252,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    6840,
+    4356
+   ],
+   "scale": 1.4211,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7080,
+    4356
+   ],
+   "scale": 1.0792,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7320,
+    4356
+   ],
+   "scale": 1.4433,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7560,
+    4356
+   ],
+   "scale": 1.3499,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7800,
+    4356
+   ],
+   "scale": 1.4462,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    480,
+    4488
+   ],
+   "scale": 1.0823,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    960,
+    4488
+   ],
+   "scale": 1.1418,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1200,
+    4488
+   ],
+   "scale": 1.4261,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    1440,
+    4488
+   ],
+   "scale": 1.0391,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    4320,
+    4488
+   ],
+   "scale": 1.1297,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7200,
+    4488
+   ],
+   "scale": 1.1906,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7440,
+    4488
+   ],
+   "scale": 1.2449,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    120,
+    4620
+   ],
+   "scale": 1.2327,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    360,
+    4620
+   ],
+   "scale": 1.4193,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    600,
+    4620
+   ],
+   "scale": 1.3319,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    1320,
+    4620
+   ],
+   "scale": 1.1454,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    1800,
+    4620
+   ],
+   "scale": 1.1042,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    4200,
+    4620
+   ],
+   "scale": 1.4073,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    4680,
+    4620
+   ],
+   "scale": 1.1485,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5160,
+    4620
+   ],
+   "scale": 1.3807,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6600,
+    4620
+   ],
+   "scale": 1.3904,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6840,
+    4620
+   ],
+   "scale": 1.198,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7320,
+    4620
+   ],
+   "scale": 1.3372,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    7800,
+    4620
+   ],
+   "scale": 1.0518,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    240,
+    4752
+   ],
+   "scale": 1.2925,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    480,
+    4752
+   ],
+   "scale": 1.1676,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    720,
+    4752
+   ],
+   "scale": 1.1716,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    960,
+    4752
+   ],
+   "scale": 1.2499,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1920,
+    4752
+   ],
+   "scale": 1.0415,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4560,
+    4752
+   ],
+   "scale": 1.3621,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    5040,
+    4752
+   ],
+   "scale": 1.1414,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    5760,
+    4752
+   ],
+   "scale": 1.2838,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6480,
+    4752
+   ],
+   "scale": 1.0607,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6960,
+    4752
+   ],
+   "scale": 1.2641,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7200,
+    4752
+   ],
+   "scale": 1.0606,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7440,
+    4752
+   ],
+   "scale": 1.4821,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7680,
+    4752
+   ],
+   "scale": 1.453,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    360,
+    4884
+   ],
+   "scale": 1.148,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    840,
+    4884
+   ],
+   "scale": 1.2353,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    1800,
+    4884
+   ],
+   "scale": 1.1446,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    3960,
+    4884
+   ],
+   "scale": 1.3144,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    4200,
+    4884
+   ],
+   "scale": 1.0202,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    4440,
+    4884
+   ],
+   "scale": 1.0307,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    4920,
+    4884
+   ],
+   "scale": 1.2314,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    5160,
+    4884
+   ],
+   "scale": 1.1567,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    5400,
+    4884
+   ],
+   "scale": 1.0649,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5880,
+    4884
+   ],
+   "scale": 1.4123,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    6120,
+    4884
+   ],
+   "scale": 1.344,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    6360,
+    4884
+   ],
+   "scale": 1.0124,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    7320,
+    4884
+   ],
+   "scale": 1.3734,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    7560,
+    4884
+   ],
+   "scale": 1.2682,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7800,
+    4884
+   ],
+   "scale": 1.2202,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    0,
+    5016
+   ],
+   "scale": 1.0946,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    480,
+    5016
+   ],
+   "scale": 1.4526,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    960,
+    5016
+   ],
+   "scale": 1.2823,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    1680,
+    5016
+   ],
+   "scale": 1.4415,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    2400,
+    5016
+   ],
+   "scale": 1.0195,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3120,
+    5016
+   ],
+   "scale": 1.1066,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3360,
+    5016
+   ],
+   "scale": 1.102,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    3840,
+    5016
+   ],
+   "scale": 1.3432,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    4560,
+    5016
+   ],
+   "scale": 1.4512,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    4800,
+    5016
+   ],
+   "scale": 1.2815,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5040,
+    5016
+   ],
+   "scale": 1.0074,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    5280,
+    5016
+   ],
+   "scale": 1.4127,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    5760,
+    5016
+   ],
+   "scale": 1.2193,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7200,
+    5016
+   ],
+   "scale": 1.0839,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_pair",
+   "at": [
+    7440,
+    5016
+   ],
+   "scale": 1.1879,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    7680,
+    5016
+   ],
+   "scale": 1.4205,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    360,
+    5148
+   ],
+   "scale": 1.4075,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    600,
+    5148
+   ],
+   "scale": 1.2131,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    2280,
+    5148
+   ],
+   "scale": 1.1012,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_tall",
+   "at": [
+    2520,
+    5148
+   ],
+   "scale": 1.0275,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "a_rock_flat",
+   "at": [
+    4920,
+    5148
+   ],
+   "scale": 1.0163,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_flat",
+   "at": [
+    5640,
+    5148
+   ],
+   "scale": 1.2734,
+   "flip": false,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_pair",
+   "at": [
+    6600,
+    5148
+   ],
+   "scale": 1.0102,
+   "flip": true,
+   "wall": true,
+   "tint": 0.55
+  },
+  {
+   "prop": "b_rock_tall",
+   "at": [
+    6840,
+    5148
+   ],
+   "scale": 1.1364,
+   "flip": true,
+   "wall": true,
+   "tint": 0.746
+  }
+ ],
+ "solids": [
+  [
+   4225,
+   3152,
+   24
+  ],
+  [
+   6602,
+   1374,
+   21
+  ],
+  [
+   6143,
+   964,
+   25
+  ],
+  [
+   2861,
+   2451,
+   21
+  ],
+  [
+   3745,
+   2854,
+   27
+  ],
+  [
+   6439,
+   2008,
+   21
+  ],
+  [
+   6255,
+   2680,
+   22
+  ],
+  [
+   3589,
+   4037,
+   20
+  ],
+  [
+   2901,
+   4291,
+   27
+  ],
+  [
+   4592,
+   958,
+   24
+  ],
+  [
+   3502,
+   954,
+   21
+  ],
+  [
+   0,
+   0,
+   148
+  ],
+  [
+   240,
+   0,
+   148
+  ],
+  [
+   480,
+   0,
+   148
+  ],
+  [
+   720,
+   0,
+   148
+  ],
+  [
+   960,
+   0,
+   148
+  ],
+  [
+   1200,
+   0,
+   148
+  ],
+  [
+   1440,
+   0,
+   148
+  ],
+  [
+   1680,
+   0,
+   148
+  ],
+  [
+   1920,
+   0,
+   148
+  ],
+  [
+   2160,
+   0,
+   148
+  ],
+  [
+   2400,
+   0,
+   148
+  ],
+  [
+   2640,
+   0,
+   148
+  ],
+  [
+   2880,
+   0,
+   148
+  ],
+  [
+   3120,
+   0,
+   148
+  ],
+  [
+   3360,
+   0,
+   148
+  ],
+  [
+   3600,
+   0,
+   148
+  ],
+  [
+   3840,
+   0,
+   148
+  ],
+  [
+   4080,
+   0,
+   148
+  ],
+  [
+   4320,
+   0,
+   148
+  ],
+  [
+   4560,
+   0,
+   148
+  ],
+  [
+   4800,
+   0,
+   148
+  ],
+  [
+   5040,
+   0,
+   148
+  ],
+  [
+   5280,
+   0,
+   148
+  ],
+  [
+   5520,
+   0,
+   148
+  ],
+  [
+   5760,
+   0,
+   148
+  ],
+  [
+   6000,
+   0,
+   148
+  ],
+  [
+   6240,
+   0,
+   148
+  ],
+  [
+   6480,
+   0,
+   148
+  ],
+  [
+   6720,
+   0,
+   148
+  ],
+  [
+   6960,
+   0,
+   148
+  ],
+  [
+   7200,
+   0,
+   148
+  ],
+  [
+   7440,
+   0,
+   148
+  ],
+  [
+   7680,
+   0,
+   148
+  ],
+  [
+   120,
+   132,
+   148
+  ],
+  [
+   360,
+   132,
+   148
+  ],
+  [
+   600,
+   132,
+   148
+  ],
+  [
+   840,
+   132,
+   148
+  ],
+  [
+   1080,
+   132,
+   148
+  ],
+  [
+   1320,
+   132,
+   148
+  ],
+  [
+   1560,
+   132,
+   148
+  ],
+  [
+   1800,
+   132,
+   148
+  ],
+  [
+   2040,
+   132,
+   148
+  ],
+  [
+   2280,
+   132,
+   148
+  ],
+  [
+   2520,
+   132,
+   148
+  ],
+  [
+   2760,
+   132,
+   148
+  ],
+  [
+   3000,
+   132,
+   148
+  ],
+  [
+   3240,
+   132,
+   148
+  ],
+  [
+   3480,
+   132,
+   148
+  ],
+  [
+   3720,
+   132,
+   148
+  ],
+  [
+   3960,
+   132,
+   148
+  ],
+  [
+   4200,
+   132,
+   148
+  ],
+  [
+   4440,
+   132,
+   148
+  ],
+  [
+   4680,
+   132,
+   148
+  ],
+  [
+   4920,
+   132,
+   148
+  ],
+  [
+   5160,
+   132,
+   148
+  ],
+  [
+   5400,
+   132,
+   148
+  ],
+  [
+   5640,
+   132,
+   148
+  ],
+  [
+   5880,
+   132,
+   148
+  ],
+  [
+   6120,
+   132,
+   148
+  ],
+  [
+   6360,
+   132,
+   148
+  ],
+  [
+   6600,
+   132,
+   148
+  ],
+  [
+   6840,
+   132,
+   148
+  ],
+  [
+   7080,
+   132,
+   148
+  ],
+  [
+   7320,
+   132,
+   148
+  ],
+  [
+   7560,
+   132,
+   148
+  ],
+  [
+   7800,
+   132,
+   148
+  ],
+  [
+   0,
+   264,
+   148
+  ],
+  [
+   240,
+   264,
+   148
+  ],
+  [
+   480,
+   264,
+   148
+  ],
+  [
+   720,
+   264,
+   148
+  ],
+  [
+   960,
+   264,
+   148
+  ],
+  [
+   1200,
+   264,
+   148
+  ],
+  [
+   1440,
+   264,
+   148
+  ],
+  [
+   1680,
+   264,
+   148
+  ],
+  [
+   1920,
+   264,
+   148
+  ],
+  [
+   2160,
+   264,
+   148
+  ],
+  [
+   2400,
+   264,
+   148
+  ],
+  [
+   2640,
+   264,
+   148
+  ],
+  [
+   2880,
+   264,
+   148
+  ],
+  [
+   3120,
+   264,
+   148
+  ],
+  [
+   3360,
+   264,
+   148
+  ],
+  [
+   3600,
+   264,
+   148
+  ],
+  [
+   3840,
+   264,
+   148
+  ],
+  [
+   4080,
+   264,
+   148
+  ],
+  [
+   4320,
+   264,
+   148
+  ],
+  [
+   4560,
+   264,
+   148
+  ],
+  [
+   4800,
+   264,
+   148
+  ],
+  [
+   5040,
+   264,
+   148
+  ],
+  [
+   5280,
+   264,
+   148
+  ],
+  [
+   5520,
+   264,
+   148
+  ],
+  [
+   5760,
+   264,
+   148
+  ],
+  [
+   6000,
+   264,
+   148
+  ],
+  [
+   6240,
+   264,
+   148
+  ],
+  [
+   6480,
+   264,
+   148
+  ],
+  [
+   6720,
+   264,
+   148
+  ],
+  [
+   6960,
+   264,
+   148
+  ],
+  [
+   7200,
+   264,
+   148
+  ],
+  [
+   7440,
+   264,
+   148
+  ],
+  [
+   7680,
+   264,
+   148
+  ],
+  [
+   120,
+   396,
+   148
+  ],
+  [
+   360,
+   396,
+   148
+  ],
+  [
+   600,
+   396,
+   148
+  ],
+  [
+   840,
+   396,
+   148
+  ],
+  [
+   1080,
+   396,
+   148
+  ],
+  [
+   1320,
+   396,
+   148
+  ],
+  [
+   1560,
+   396,
+   148
+  ],
+  [
+   1800,
+   396,
+   148
+  ],
+  [
+   2040,
+   396,
+   148
+  ],
+  [
+   2280,
+   396,
+   148
+  ],
+  [
+   2520,
+   396,
+   148
+  ],
+  [
+   2760,
+   396,
+   148
+  ],
+  [
+   3000,
+   396,
+   148
+  ],
+  [
+   3240,
+   396,
+   148
+  ],
+  [
+   3480,
+   396,
+   148
+  ],
+  [
+   3720,
+   396,
+   148
+  ],
+  [
+   3960,
+   396,
+   148
+  ],
+  [
+   4200,
+   396,
+   148
+  ],
+  [
+   4440,
+   396,
+   148
+  ],
+  [
+   4680,
+   396,
+   148
+  ],
+  [
+   4920,
+   396,
+   148
+  ],
+  [
+   5160,
+   396,
+   148
+  ],
+  [
+   5400,
+   396,
+   148
+  ],
+  [
+   5640,
+   396,
+   148
+  ],
+  [
+   5880,
+   396,
+   148
+  ],
+  [
+   6120,
+   396,
+   148
+  ],
+  [
+   6360,
+   396,
+   148
+  ],
+  [
+   6600,
+   396,
+   148
+  ],
+  [
+   6840,
+   396,
+   148
+  ],
+  [
+   7080,
+   396,
+   148
+  ],
+  [
+   7320,
+   396,
+   148
+  ],
+  [
+   7560,
+   396,
+   148
+  ],
+  [
+   7800,
+   396,
+   148
+  ],
+  [
+   0,
+   528,
+   148
+  ],
+  [
+   240,
+   528,
+   148
+  ],
+  [
+   480,
+   528,
+   148
+  ],
+  [
+   720,
+   528,
+   148
+  ],
+  [
+   960,
+   528,
+   148
+  ],
+  [
+   1200,
+   528,
+   148
+  ],
+  [
+   1440,
+   528,
+   148
+  ],
+  [
+   1680,
+   528,
+   148
+  ],
+  [
+   1920,
+   528,
+   148
+  ],
+  [
+   2160,
+   528,
+   148
+  ],
+  [
+   2400,
+   528,
+   148
+  ],
+  [
+   2640,
+   528,
+   148
+  ],
+  [
+   2880,
+   528,
+   148
+  ],
+  [
+   3120,
+   528,
+   148
+  ],
+  [
+   3360,
+   528,
+   148
+  ],
+  [
+   3600,
+   528,
+   148
+  ],
+  [
+   3840,
+   528,
+   148
+  ],
+  [
+   4080,
+   528,
+   148
+  ],
+  [
+   4320,
+   528,
+   148
+  ],
+  [
+   4560,
+   528,
+   148
+  ],
+  [
+   4800,
+   528,
+   148
+  ],
+  [
+   5040,
+   528,
+   148
+  ],
+  [
+   5280,
+   528,
+   148
+  ],
+  [
+   5520,
+   528,
+   148
+  ],
+  [
+   5760,
+   528,
+   148
+  ],
+  [
+   6000,
+   528,
+   148
+  ],
+  [
+   6240,
+   528,
+   148
+  ],
+  [
+   6480,
+   528,
+   148
+  ],
+  [
+   6720,
+   528,
+   148
+  ],
+  [
+   6960,
+   528,
+   148
+  ],
+  [
+   7200,
+   528,
+   148
+  ],
+  [
+   7440,
+   528,
+   148
+  ],
+  [
+   7680,
+   528,
+   148
+  ],
+  [
+   120,
+   660,
+   148
+  ],
+  [
+   360,
+   660,
+   148
+  ],
+  [
+   600,
+   660,
+   148
+  ],
+  [
+   840,
+   660,
+   148
+  ],
+  [
+   1080,
+   660,
+   148
+  ],
+  [
+   1320,
+   660,
+   148
+  ],
+  [
+   1560,
+   660,
+   148
+  ],
+  [
+   1800,
+   660,
+   148
+  ],
+  [
+   2040,
+   660,
+   148
+  ],
+  [
+   2280,
+   660,
+   148
+  ],
+  [
+   2520,
+   660,
+   148
+  ],
+  [
+   2760,
+   660,
+   148
+  ],
+  [
+   3000,
+   660,
+   148
+  ],
+  [
+   3240,
+   660,
+   148
+  ],
+  [
+   3480,
+   660,
+   148
+  ],
+  [
+   3720,
+   660,
+   148
+  ],
+  [
+   3960,
+   660,
+   148
+  ],
+  [
+   4200,
+   660,
+   148
+  ],
+  [
+   4440,
+   660,
+   148
+  ],
+  [
+   4680,
+   660,
+   148
+  ],
+  [
+   4920,
+   660,
+   148
+  ],
+  [
+   5160,
+   660,
+   148
+  ],
+  [
+   5400,
+   660,
+   148
+  ],
+  [
+   5640,
+   660,
+   148
+  ],
+  [
+   5880,
+   660,
+   148
+  ],
+  [
+   6120,
+   660,
+   148
+  ],
+  [
+   6360,
+   660,
+   148
+  ],
+  [
+   6600,
+   660,
+   148
+  ],
+  [
+   6840,
+   660,
+   148
+  ],
+  [
+   7080,
+   660,
+   148
+  ],
+  [
+   7320,
+   660,
+   148
+  ],
+  [
+   7560,
+   660,
+   148
+  ],
+  [
+   7800,
+   660,
+   148
+  ],
+  [
+   0,
+   792,
+   148
+  ],
+  [
+   240,
+   792,
+   148
+  ],
+  [
+   480,
+   792,
+   148
+  ],
+  [
+   720,
+   792,
+   148
+  ],
+  [
+   960,
+   792,
+   148
+  ],
+  [
+   1200,
+   792,
+   148
+  ],
+  [
+   1440,
+   792,
+   148
+  ],
+  [
+   1680,
+   792,
+   148
+  ],
+  [
+   1920,
+   792,
+   148
+  ],
+  [
+   2160,
+   792,
+   148
+  ],
+  [
+   2400,
+   792,
+   148
+  ],
+  [
+   2640,
+   792,
+   148
+  ],
+  [
+   2880,
+   792,
+   148
+  ],
+  [
+   3120,
+   792,
+   148
+  ],
+  [
+   3360,
+   792,
+   148
+  ],
+  [
+   3600,
+   792,
+   148
+  ],
+  [
+   3840,
+   792,
+   148
+  ],
+  [
+   4320,
+   792,
+   148
+  ],
+  [
+   4560,
+   792,
+   148
+  ],
+  [
+   4800,
+   792,
+   148
+  ],
+  [
+   5040,
+   792,
+   148
+  ],
+  [
+   5280,
+   792,
+   148
+  ],
+  [
+   5520,
+   792,
+   148
+  ],
+  [
+   5760,
+   792,
+   148
+  ],
+  [
+   6000,
+   792,
+   148
+  ],
+  [
+   6240,
+   792,
+   148
+  ],
+  [
+   6480,
+   792,
+   148
+  ],
+  [
+   6720,
+   792,
+   148
+  ],
+  [
+   6960,
+   792,
+   148
+  ],
+  [
+   7200,
+   792,
+   148
+  ],
+  [
+   7440,
+   792,
+   148
+  ],
+  [
+   7680,
+   792,
+   148
+  ],
+  [
+   360,
+   924,
+   148
+  ],
+  [
+   600,
+   924,
+   148
+  ],
+  [
+   1560,
+   924,
+   148
+  ],
+  [
+   1800,
+   924,
+   148
+  ],
+  [
+   2040,
+   924,
+   148
+  ],
+  [
+   2280,
+   924,
+   148
+  ],
+  [
+   2520,
+   924,
+   148
+  ],
+  [
+   2760,
+   924,
+   148
+  ],
+  [
+   3000,
+   924,
+   148
+  ],
+  [
+   3240,
+   924,
+   148
+  ],
+  [
+   3480,
+   924,
+   148
+  ],
+  [
+   3720,
+   924,
+   148
+  ],
+  [
+   4440,
+   924,
+   148
+  ],
+  [
+   4680,
+   924,
+   148
+  ],
+  [
+   4920,
+   924,
+   148
+  ],
+  [
+   5160,
+   924,
+   148
+  ],
+  [
+   5400,
+   924,
+   148
+  ],
+  [
+   5640,
+   924,
+   148
+  ],
+  [
+   5880,
+   924,
+   148
+  ],
+  [
+   6120,
+   924,
+   148
+  ],
+  [
+   6360,
+   924,
+   148
+  ],
+  [
+   6600,
+   924,
+   148
+  ],
+  [
+   6840,
+   924,
+   148
+  ],
+  [
+   7080,
+   924,
+   148
+  ],
+  [
+   7320,
+   924,
+   148
+  ],
+  [
+   7560,
+   924,
+   148
+  ],
+  [
+   7800,
+   924,
+   148
+  ],
+  [
+   1680,
+   1056,
+   148
+  ],
+  [
+   1920,
+   1056,
+   148
+  ],
+  [
+   2160,
+   1056,
+   148
+  ],
+  [
+   2400,
+   1056,
+   148
+  ],
+  [
+   2640,
+   1056,
+   148
+  ],
+  [
+   2880,
+   1056,
+   148
+  ],
+  [
+   3120,
+   1056,
+   148
+  ],
+  [
+   3360,
+   1056,
+   148
+  ],
+  [
+   4800,
+   1056,
+   148
+  ],
+  [
+   5040,
+   1056,
+   148
+  ],
+  [
+   5280,
+   1056,
+   148
+  ],
+  [
+   5520,
+   1056,
+   148
+  ],
+  [
+   6240,
+   1056,
+   148
+  ],
+  [
+   6480,
+   1056,
+   148
+  ],
+  [
+   6720,
+   1056,
+   148
+  ],
+  [
+   6960,
+   1056,
+   148
+  ],
+  [
+   7200,
+   1056,
+   148
+  ],
+  [
+   7440,
+   1056,
+   148
+  ],
+  [
+   7680,
+   1056,
+   148
+  ],
+  [
+   2280,
+   1188,
+   148
+  ],
+  [
+   2520,
+   1188,
+   148
+  ],
+  [
+   2760,
+   1188,
+   148
+  ],
+  [
+   3000,
+   1188,
+   148
+  ],
+  [
+   4920,
+   1188,
+   148
+  ],
+  [
+   5160,
+   1188,
+   148
+  ],
+  [
+   5400,
+   1188,
+   148
+  ],
+  [
+   6600,
+   1188,
+   148
+  ],
+  [
+   6840,
+   1188,
+   148
+  ],
+  [
+   7080,
+   1188,
+   148
+  ],
+  [
+   7320,
+   1188,
+   148
+  ],
+  [
+   7560,
+   1188,
+   148
+  ],
+  [
+   7800,
+   1188,
+   148
+  ],
+  [
+   0,
+   1320,
+   148
+  ],
+  [
+   240,
+   1320,
+   148
+  ],
+  [
+   480,
+   1320,
+   148
+  ],
+  [
+   720,
+   1320,
+   148
+  ],
+  [
+   1440,
+   1320,
+   148
+  ],
+  [
+   3600,
+   1320,
+   148
+  ],
+  [
+   3840,
+   1320,
+   148
+  ],
+  [
+   6480,
+   1320,
+   148
+  ],
+  [
+   6720,
+   1320,
+   148
+  ],
+  [
+   6960,
+   1320,
+   148
+  ],
+  [
+   7200,
+   1320,
+   148
+  ],
+  [
+   7440,
+   1320,
+   148
+  ],
+  [
+   7680,
+   1320,
+   148
+  ],
+  [
+   120,
+   1452,
+   148
+  ],
+  [
+   360,
+   1452,
+   148
+  ],
+  [
+   600,
+   1452,
+   148
+  ],
+  [
+   840,
+   1452,
+   148
+  ],
+  [
+   1080,
+   1452,
+   148
+  ],
+  [
+   1320,
+   1452,
+   148
+  ],
+  [
+   1560,
+   1452,
+   148
+  ],
+  [
+   1800,
+   1452,
+   148
+  ],
+  [
+   3240,
+   1452,
+   148
+  ],
+  [
+   6600,
+   1452,
+   148
+  ],
+  [
+   6840,
+   1452,
+   148
+  ],
+  [
+   7080,
+   1452,
+   148
+  ],
+  [
+   7320,
+   1452,
+   148
+  ],
+  [
+   7560,
+   1452,
+   148
+  ],
+  [
+   7800,
+   1452,
+   148
+  ],
+  [
+   0,
+   1584,
+   148
+  ],
+  [
+   240,
+   1584,
+   148
+  ],
+  [
+   480,
+   1584,
+   148
+  ],
+  [
+   720,
+   1584,
+   148
+  ],
+  [
+   960,
+   1584,
+   148
+  ],
+  [
+   1200,
+   1584,
+   148
+  ],
+  [
+   1440,
+   1584,
+   148
+  ],
+  [
+   1680,
+   1584,
+   148
+  ],
+  [
+   1920,
+   1584,
+   148
+  ],
+  [
+   2160,
+   1584,
+   148
+  ],
+  [
+   2400,
+   1584,
+   148
+  ],
+  [
+   2640,
+   1584,
+   148
+  ],
+  [
+   4800,
+   1584,
+   148
+  ],
+  [
+   6240,
+   1584,
+   148
+  ],
+  [
+   6480,
+   1584,
+   148
+  ],
+  [
+   6720,
+   1584,
+   148
+  ],
+  [
+   6960,
+   1584,
+   148
+  ],
+  [
+   7200,
+   1584,
+   148
+  ],
+  [
+   7440,
+   1584,
+   148
+  ],
+  [
+   7680,
+   1584,
+   148
+  ],
+  [
+   120,
+   1716,
+   148
+  ],
+  [
+   360,
+   1716,
+   148
+  ],
+  [
+   600,
+   1716,
+   148
+  ],
+  [
+   840,
+   1716,
+   148
+  ],
+  [
+   1080,
+   1716,
+   148
+  ],
+  [
+   1320,
+   1716,
+   148
+  ],
+  [
+   1560,
+   1716,
+   148
+  ],
+  [
+   1800,
+   1716,
+   148
+  ],
+  [
+   2040,
+   1716,
+   148
+  ],
+  [
+   2280,
+   1716,
+   148
+  ],
+  [
+   2520,
+   1716,
+   148
+  ],
+  [
+   2760,
+   1716,
+   148
+  ],
+  [
+   3000,
+   1716,
+   148
+  ],
+  [
+   3240,
+   1716,
+   148
+  ],
+  [
+   3480,
+   1716,
+   148
+  ],
+  [
+   3720,
+   1716,
+   148
+  ],
+  [
+   3960,
+   1716,
+   148
+  ],
+  [
+   4200,
+   1716,
+   148
+  ],
+  [
+   4440,
+   1716,
+   148
+  ],
+  [
+   4680,
+   1716,
+   148
+  ],
+  [
+   4920,
+   1716,
+   148
+  ],
+  [
+   5160,
+   1716,
+   148
+  ],
+  [
+   6120,
+   1716,
+   148
+  ],
+  [
+   6360,
+   1716,
+   148
+  ],
+  [
+   6600,
+   1716,
+   148
+  ],
+  [
+   6840,
+   1716,
+   148
+  ],
+  [
+   7080,
+   1716,
+   148
+  ],
+  [
+   7320,
+   1716,
+   148
+  ],
+  [
+   7560,
+   1716,
+   148
+  ],
+  [
+   7800,
+   1716,
+   148
+  ],
+  [
+   0,
+   1848,
+   148
+  ],
+  [
+   240,
+   1848,
+   148
+  ],
+  [
+   480,
+   1848,
+   148
+  ],
+  [
+   720,
+   1848,
+   148
+  ],
+  [
+   960,
+   1848,
+   148
+  ],
+  [
+   1200,
+   1848,
+   148
+  ],
+  [
+   1440,
+   1848,
+   148
+  ],
+  [
+   1680,
+   1848,
+   148
+  ],
+  [
+   1920,
+   1848,
+   148
+  ],
+  [
+   2160,
+   1848,
+   148
+  ],
+  [
+   2400,
+   1848,
+   148
+  ],
+  [
+   2640,
+   1848,
+   148
+  ],
+  [
+   2880,
+   1848,
+   148
+  ],
+  [
+   3120,
+   1848,
+   148
+  ],
+  [
+   3360,
+   1848,
+   148
+  ],
+  [
+   3600,
+   1848,
+   148
+  ],
+  [
+   3840,
+   1848,
+   148
+  ],
+  [
+   4080,
+   1848,
+   148
+  ],
+  [
+   4320,
+   1848,
+   148
+  ],
+  [
+   4560,
+   1848,
+   148
+  ],
+  [
+   4800,
+   1848,
+   148
+  ],
+  [
+   5040,
+   1848,
+   148
+  ],
+  [
+   5280,
+   1848,
+   148
+  ],
+  [
+   6240,
+   1848,
+   148
+  ],
+  [
+   6480,
+   1848,
+   148
+  ],
+  [
+   6720,
+   1848,
+   148
+  ],
+  [
+   6960,
+   1848,
+   148
+  ],
+  [
+   7200,
+   1848,
+   148
+  ],
+  [
+   7440,
+   1848,
+   148
+  ],
+  [
+   7680,
+   1848,
+   148
+  ],
+  [
+   120,
+   1980,
+   148
+  ],
+  [
+   360,
+   1980,
+   148
+  ],
+  [
+   600,
+   1980,
+   148
+  ],
+  [
+   840,
+   1980,
+   148
+  ],
+  [
+   1080,
+   1980,
+   148
+  ],
+  [
+   1320,
+   1980,
+   148
+  ],
+  [
+   1560,
+   1980,
+   148
+  ],
+  [
+   1800,
+   1980,
+   148
+  ],
+  [
+   2040,
+   1980,
+   148
+  ],
+  [
+   2280,
+   1980,
+   148
+  ],
+  [
+   2520,
+   1980,
+   148
+  ],
+  [
+   2760,
+   1980,
+   148
+  ],
+  [
+   3000,
+   1980,
+   148
+  ],
+  [
+   3240,
+   1980,
+   148
+  ],
+  [
+   3480,
+   1980,
+   148
+  ],
+  [
+   3720,
+   1980,
+   148
+  ],
+  [
+   3960,
+   1980,
+   148
+  ],
+  [
+   4200,
+   1980,
+   148
+  ],
+  [
+   4440,
+   1980,
+   148
+  ],
+  [
+   4680,
+   1980,
+   148
+  ],
+  [
+   4920,
+   1980,
+   148
+  ],
+  [
+   5160,
+   1980,
+   148
+  ],
+  [
+   5400,
+   1980,
+   148
+  ],
+  [
+   6120,
+   1980,
+   148
+  ],
+  [
+   6360,
+   1980,
+   148
+  ],
+  [
+   6600,
+   1980,
+   148
+  ],
+  [
+   6840,
+   1980,
+   148
+  ],
+  [
+   7080,
+   1980,
+   148
+  ],
+  [
+   7320,
+   1980,
+   148
+  ],
+  [
+   7560,
+   1980,
+   148
+  ],
+  [
+   7800,
+   1980,
+   148
+  ],
+  [
+   0,
+   2112,
+   148
+  ],
+  [
+   240,
+   2112,
+   148
+  ],
+  [
+   480,
+   2112,
+   148
+  ],
+  [
+   720,
+   2112,
+   148
+  ],
+  [
+   960,
+   2112,
+   148
+  ],
+  [
+   1200,
+   2112,
+   148
+  ],
+  [
+   1440,
+   2112,
+   148
+  ],
+  [
+   1680,
+   2112,
+   148
+  ],
+  [
+   1920,
+   2112,
+   148
+  ],
+  [
+   2160,
+   2112,
+   148
+  ],
+  [
+   2400,
+   2112,
+   148
+  ],
+  [
+   2640,
+   2112,
+   148
+  ],
+  [
+   2880,
+   2112,
+   148
+  ],
+  [
+   3120,
+   2112,
+   148
+  ],
+  [
+   3360,
+   2112,
+   148
+  ],
+  [
+   3600,
+   2112,
+   148
+  ],
+  [
+   3840,
+   2112,
+   148
+  ],
+  [
+   4080,
+   2112,
+   148
+  ],
+  [
+   4320,
+   2112,
+   148
+  ],
+  [
+   4560,
+   2112,
+   148
+  ],
+  [
+   4800,
+   2112,
+   148
+  ],
+  [
+   5040,
+   2112,
+   148
+  ],
+  [
+   5280,
+   2112,
+   148
+  ],
+  [
+   5520,
+   2112,
+   148
+  ],
+  [
+   6720,
+   2112,
+   148
+  ],
+  [
+   6960,
+   2112,
+   148
+  ],
+  [
+   7200,
+   2112,
+   148
+  ],
+  [
+   7440,
+   2112,
+   148
+  ],
+  [
+   7680,
+   2112,
+   148
+  ],
+  [
+   120,
+   2244,
+   148
+  ],
+  [
+   360,
+   2244,
+   148
+  ],
+  [
+   600,
+   2244,
+   148
+  ],
+  [
+   840,
+   2244,
+   148
+  ],
+  [
+   1080,
+   2244,
+   148
+  ],
+  [
+   1320,
+   2244,
+   148
+  ],
+  [
+   1560,
+   2244,
+   148
+  ],
+  [
+   1800,
+   2244,
+   148
+  ],
+  [
+   2040,
+   2244,
+   148
+  ],
+  [
+   2280,
+   2244,
+   148
+  ],
+  [
+   2520,
+   2244,
+   148
+  ],
+  [
+   2760,
+   2244,
+   148
+  ],
+  [
+   3000,
+   2244,
+   148
+  ],
+  [
+   3240,
+   2244,
+   148
+  ],
+  [
+   3480,
+   2244,
+   148
+  ],
+  [
+   3720,
+   2244,
+   148
+  ],
+  [
+   3960,
+   2244,
+   148
+  ],
+  [
+   4200,
+   2244,
+   148
+  ],
+  [
+   4440,
+   2244,
+   148
+  ],
+  [
+   4680,
+   2244,
+   148
+  ],
+  [
+   4920,
+   2244,
+   148
+  ],
+  [
+   5160,
+   2244,
+   148
+  ],
+  [
+   5400,
+   2244,
+   148
+  ],
+  [
+   6840,
+   2244,
+   148
+  ],
+  [
+   7080,
+   2244,
+   148
+  ],
+  [
+   7320,
+   2244,
+   148
+  ],
+  [
+   7560,
+   2244,
+   148
+  ],
+  [
+   7800,
+   2244,
+   148
+  ],
+  [
+   0,
+   2376,
+   148
+  ],
+  [
+   240,
+   2376,
+   148
+  ],
+  [
+   480,
+   2376,
+   148
+  ],
+  [
+   720,
+   2376,
+   148
+  ],
+  [
+   960,
+   2376,
+   148
+  ],
+  [
+   1200,
+   2376,
+   148
+  ],
+  [
+   1440,
+   2376,
+   148
+  ],
+  [
+   1680,
+   2376,
+   148
+  ],
+  [
+   1920,
+   2376,
+   148
+  ],
+  [
+   2160,
+   2376,
+   148
+  ],
+  [
+   2400,
+   2376,
+   148
+  ],
+  [
+   2640,
+   2376,
+   148
+  ],
+  [
+   2880,
+   2376,
+   148
+  ],
+  [
+   3120,
+   2376,
+   148
+  ],
+  [
+   3360,
+   2376,
+   148
+  ],
+  [
+   3600,
+   2376,
+   148
+  ],
+  [
+   3840,
+   2376,
+   148
+  ],
+  [
+   4080,
+   2376,
+   148
+  ],
+  [
+   4320,
+   2376,
+   148
+  ],
+  [
+   4560,
+   2376,
+   148
+  ],
+  [
+   4800,
+   2376,
+   148
+  ],
+  [
+   5040,
+   2376,
+   148
+  ],
+  [
+   5280,
+   2376,
+   148
+  ],
+  [
+   6720,
+   2376,
+   148
+  ],
+  [
+   6960,
+   2376,
+   148
+  ],
+  [
+   7200,
+   2376,
+   148
+  ],
+  [
+   7440,
+   2376,
+   148
+  ],
+  [
+   7680,
+   2376,
+   148
+  ],
+  [
+   120,
+   2508,
+   148
+  ],
+  [
+   360,
+   2508,
+   148
+  ],
+  [
+   600,
+   2508,
+   148
+  ],
+  [
+   840,
+   2508,
+   148
+  ],
+  [
+   1080,
+   2508,
+   148
+  ],
+  [
+   1320,
+   2508,
+   148
+  ],
+  [
+   1560,
+   2508,
+   148
+  ],
+  [
+   1800,
+   2508,
+   148
+  ],
+  [
+   2040,
+   2508,
+   148
+  ],
+  [
+   2280,
+   2508,
+   148
+  ],
+  [
+   2520,
+   2508,
+   148
+  ],
+  [
+   2760,
+   2508,
+   148
+  ],
+  [
+   3720,
+   2508,
+   148
+  ],
+  [
+   3960,
+   2508,
+   148
+  ],
+  [
+   4200,
+   2508,
+   148
+  ],
+  [
+   4440,
+   2508,
+   148
+  ],
+  [
+   4680,
+   2508,
+   148
+  ],
+  [
+   4920,
+   2508,
+   148
+  ],
+  [
+   5160,
+   2508,
+   148
+  ],
+  [
+   5400,
+   2508,
+   148
+  ],
+  [
+   6600,
+   2508,
+   148
+  ],
+  [
+   6840,
+   2508,
+   148
+  ],
+  [
+   7080,
+   2508,
+   148
+  ],
+  [
+   7320,
+   2508,
+   148
+  ],
+  [
+   7560,
+   2508,
+   148
+  ],
+  [
+   7800,
+   2508,
+   148
+  ],
+  [
+   0,
+   2640,
+   148
+  ],
+  [
+   240,
+   2640,
+   148
+  ],
+  [
+   480,
+   2640,
+   148
+  ],
+  [
+   720,
+   2640,
+   148
+  ],
+  [
+   960,
+   2640,
+   148
+  ],
+  [
+   1200,
+   2640,
+   148
+  ],
+  [
+   1440,
+   2640,
+   148
+  ],
+  [
+   1680,
+   2640,
+   148
+  ],
+  [
+   1920,
+   2640,
+   148
+  ],
+  [
+   2160,
+   2640,
+   148
+  ],
+  [
+   2400,
+   2640,
+   148
+  ],
+  [
+   2640,
+   2640,
+   148
+  ],
+  [
+   2880,
+   2640,
+   148
+  ],
+  [
+   4560,
+   2640,
+   148
+  ],
+  [
+   4800,
+   2640,
+   148
+  ],
+  [
+   5040,
+   2640,
+   148
+  ],
+  [
+   5280,
+   2640,
+   148
+  ],
+  [
+   6000,
+   2640,
+   148
+  ],
+  [
+   6240,
+   2640,
+   148
+  ],
+  [
+   6480,
+   2640,
+   148
+  ],
+  [
+   6720,
+   2640,
+   148
+  ],
+  [
+   6960,
+   2640,
+   148
+  ],
+  [
+   7200,
+   2640,
+   148
+  ],
+  [
+   7440,
+   2640,
+   148
+  ],
+  [
+   7680,
+   2640,
+   148
+  ],
+  [
+   120,
+   2772,
+   148
+  ],
+  [
+   360,
+   2772,
+   148
+  ],
+  [
+   600,
+   2772,
+   148
+  ],
+  [
+   840,
+   2772,
+   148
+  ],
+  [
+   1080,
+   2772,
+   148
+  ],
+  [
+   1320,
+   2772,
+   148
+  ],
+  [
+   1560,
+   2772,
+   148
+  ],
+  [
+   1800,
+   2772,
+   148
+  ],
+  [
+   2040,
+   2772,
+   148
+  ],
+  [
+   2280,
+   2772,
+   148
+  ],
+  [
+   2520,
+   2772,
+   148
+  ],
+  [
+   2760,
+   2772,
+   148
+  ],
+  [
+   3720,
+   2772,
+   148
+  ],
+  [
+   5880,
+   2772,
+   148
+  ],
+  [
+   6120,
+   2772,
+   148
+  ],
+  [
+   6360,
+   2772,
+   148
+  ],
+  [
+   6600,
+   2772,
+   148
+  ],
+  [
+   6840,
+   2772,
+   148
+  ],
+  [
+   7080,
+   2772,
+   148
+  ],
+  [
+   7320,
+   2772,
+   148
+  ],
+  [
+   7560,
+   2772,
+   148
+  ],
+  [
+   7800,
+   2772,
+   148
+  ],
+  [
+   0,
+   2904,
+   148
+  ],
+  [
+   240,
+   2904,
+   148
+  ],
+  [
+   480,
+   2904,
+   148
+  ],
+  [
+   720,
+   2904,
+   148
+  ],
+  [
+   960,
+   2904,
+   148
+  ],
+  [
+   1200,
+   2904,
+   148
+  ],
+  [
+   1440,
+   2904,
+   148
+  ],
+  [
+   1680,
+   2904,
+   148
+  ],
+  [
+   1920,
+   2904,
+   148
+  ],
+  [
+   2160,
+   2904,
+   148
+  ],
+  [
+   2400,
+   2904,
+   148
+  ],
+  [
+   3360,
+   2904,
+   148
+  ],
+  [
+   3600,
+   2904,
+   148
+  ],
+  [
+   3840,
+   2904,
+   148
+  ],
+  [
+   4080,
+   2904,
+   148
+  ],
+  [
+   5760,
+   2904,
+   148
+  ],
+  [
+   6000,
+   2904,
+   148
+  ],
+  [
+   6240,
+   2904,
+   148
+  ],
+  [
+   6480,
+   2904,
+   148
+  ],
+  [
+   6720,
+   2904,
+   148
+  ],
+  [
+   6960,
+   2904,
+   148
+  ],
+  [
+   7200,
+   2904,
+   148
+  ],
+  [
+   7440,
+   2904,
+   148
+  ],
+  [
+   7680,
+   2904,
+   148
+  ],
+  [
+   120,
+   3036,
+   148
+  ],
+  [
+   360,
+   3036,
+   148
+  ],
+  [
+   600,
+   3036,
+   148
+  ],
+  [
+   840,
+   3036,
+   148
+  ],
+  [
+   1080,
+   3036,
+   148
+  ],
+  [
+   1320,
+   3036,
+   148
+  ],
+  [
+   3000,
+   3036,
+   148
+  ],
+  [
+   3240,
+   3036,
+   148
+  ],
+  [
+   3480,
+   3036,
+   148
+  ],
+  [
+   3720,
+   3036,
+   148
+  ],
+  [
+   3960,
+   3036,
+   148
+  ],
+  [
+   4200,
+   3036,
+   148
+  ],
+  [
+   5400,
+   3036,
+   148
+  ],
+  [
+   5640,
+   3036,
+   148
+  ],
+  [
+   5880,
+   3036,
+   148
+  ],
+  [
+   6120,
+   3036,
+   148
+  ],
+  [
+   6360,
+   3036,
+   148
+  ],
+  [
+   6600,
+   3036,
+   148
+  ],
+  [
+   6840,
+   3036,
+   148
+  ],
+  [
+   7080,
+   3036,
+   148
+  ],
+  [
+   7320,
+   3036,
+   148
+  ],
+  [
+   7560,
+   3036,
+   148
+  ],
+  [
+   7800,
+   3036,
+   148
+  ],
+  [
+   0,
+   3168,
+   148
+  ],
+  [
+   240,
+   3168,
+   148
+  ],
+  [
+   480,
+   3168,
+   148
+  ],
+  [
+   720,
+   3168,
+   148
+  ],
+  [
+   960,
+   3168,
+   148
+  ],
+  [
+   1200,
+   3168,
+   148
+  ],
+  [
+   2640,
+   3168,
+   148
+  ],
+  [
+   2880,
+   3168,
+   148
+  ],
+  [
+   3120,
+   3168,
+   148
+  ],
+  [
+   3360,
+   3168,
+   148
+  ],
+  [
+   3600,
+   3168,
+   148
+  ],
+  [
+   3840,
+   3168,
+   148
+  ],
+  [
+   4080,
+   3168,
+   148
+  ],
+  [
+   4320,
+   3168,
+   148
+  ],
+  [
+   5280,
+   3168,
+   148
+  ],
+  [
+   5520,
+   3168,
+   148
+  ],
+  [
+   5760,
+   3168,
+   148
+  ],
+  [
+   6000,
+   3168,
+   148
+  ],
+  [
+   6240,
+   3168,
+   148
+  ],
+  [
+   6480,
+   3168,
+   148
+  ],
+  [
+   6720,
+   3168,
+   148
+  ],
+  [
+   6960,
+   3168,
+   148
+  ],
+  [
+   7200,
+   3168,
+   148
+  ],
+  [
+   7440,
+   3168,
+   148
+  ],
+  [
+   7680,
+   3168,
+   148
+  ],
+  [
+   120,
+   3300,
+   148
+  ],
+  [
+   360,
+   3300,
+   148
+  ],
+  [
+   600,
+   3300,
+   148
+  ],
+  [
+   840,
+   3300,
+   148
+  ],
+  [
+   1080,
+   3300,
+   148
+  ],
+  [
+   1320,
+   3300,
+   148
+  ],
+  [
+   2520,
+   3300,
+   148
+  ],
+  [
+   2760,
+   3300,
+   148
+  ],
+  [
+   3000,
+   3300,
+   148
+  ],
+  [
+   3240,
+   3300,
+   148
+  ],
+  [
+   3480,
+   3300,
+   148
+  ],
+  [
+   3720,
+   3300,
+   148
+  ],
+  [
+   3960,
+   3300,
+   148
+  ],
+  [
+   4200,
+   3300,
+   148
+  ],
+  [
+   4440,
+   3300,
+   148
+  ],
+  [
+   5160,
+   3300,
+   148
+  ],
+  [
+   5400,
+   3300,
+   148
+  ],
+  [
+   5640,
+   3300,
+   148
+  ],
+  [
+   5880,
+   3300,
+   148
+  ],
+  [
+   6120,
+   3300,
+   148
+  ],
+  [
+   6360,
+   3300,
+   148
+  ],
+  [
+   6600,
+   3300,
+   148
+  ],
+  [
+   6840,
+   3300,
+   148
+  ],
+  [
+   7080,
+   3300,
+   148
+  ],
+  [
+   7320,
+   3300,
+   148
+  ],
+  [
+   7560,
+   3300,
+   148
+  ],
+  [
+   7800,
+   3300,
+   148
+  ],
+  [
+   0,
+   3432,
+   148
+  ],
+  [
+   240,
+   3432,
+   148
+  ],
+  [
+   480,
+   3432,
+   148
+  ],
+  [
+   720,
+   3432,
+   148
+  ],
+  [
+   960,
+   3432,
+   148
+  ],
+  [
+   1200,
+   3432,
+   148
+  ],
+  [
+   1440,
+   3432,
+   148
+  ],
+  [
+   1680,
+   3432,
+   148
+  ],
+  [
+   1920,
+   3432,
+   148
+  ],
+  [
+   2640,
+   3432,
+   148
+  ],
+  [
+   2880,
+   3432,
+   148
+  ],
+  [
+   3120,
+   3432,
+   148
+  ],
+  [
+   3360,
+   3432,
+   148
+  ],
+  [
+   3600,
+   3432,
+   148
+  ],
+  [
+   3840,
+   3432,
+   148
+  ],
+  [
+   4080,
+   3432,
+   148
+  ],
+  [
+   4320,
+   3432,
+   148
+  ],
+  [
+   4560,
+   3432,
+   148
+  ],
+  [
+   5040,
+   3432,
+   148
+  ],
+  [
+   5280,
+   3432,
+   148
+  ],
+  [
+   5520,
+   3432,
+   148
+  ],
+  [
+   5760,
+   3432,
+   148
+  ],
+  [
+   6000,
+   3432,
+   148
+  ],
+  [
+   6240,
+   3432,
+   148
+  ],
+  [
+   6480,
+   3432,
+   148
+  ],
+  [
+   6720,
+   3432,
+   148
+  ],
+  [
+   6960,
+   3432,
+   148
+  ],
+  [
+   7200,
+   3432,
+   148
+  ],
+  [
+   7440,
+   3432,
+   148
+  ],
+  [
+   7680,
+   3432,
+   148
+  ],
+  [
+   120,
+   3564,
+   148
+  ],
+  [
+   360,
+   3564,
+   148
+  ],
+  [
+   600,
+   3564,
+   148
+  ],
+  [
+   840,
+   3564,
+   148
+  ],
+  [
+   1080,
+   3564,
+   148
+  ],
+  [
+   1320,
+   3564,
+   148
+  ],
+  [
+   1560,
+   3564,
+   148
+  ],
+  [
+   1800,
+   3564,
+   148
+  ],
+  [
+   2040,
+   3564,
+   148
+  ],
+  [
+   2760,
+   3564,
+   148
+  ],
+  [
+   3000,
+   3564,
+   148
+  ],
+  [
+   3240,
+   3564,
+   148
+  ],
+  [
+   3480,
+   3564,
+   148
+  ],
+  [
+   3720,
+   3564,
+   148
+  ],
+  [
+   3960,
+   3564,
+   148
+  ],
+  [
+   4200,
+   3564,
+   148
+  ],
+  [
+   4440,
+   3564,
+   148
+  ],
+  [
+   4680,
+   3564,
+   148
+  ],
+  [
+   4920,
+   3564,
+   148
+  ],
+  [
+   5160,
+   3564,
+   148
+  ],
+  [
+   5400,
+   3564,
+   148
+  ],
+  [
+   5640,
+   3564,
+   148
+  ],
+  [
+   5880,
+   3564,
+   148
+  ],
+  [
+   6120,
+   3564,
+   148
+  ],
+  [
+   6360,
+   3564,
+   148
+  ],
+  [
+   6600,
+   3564,
+   148
+  ],
+  [
+   6840,
+   3564,
+   148
+  ],
+  [
+   7080,
+   3564,
+   148
+  ],
+  [
+   7320,
+   3564,
+   148
+  ],
+  [
+   7560,
+   3564,
+   148
+  ],
+  [
+   7800,
+   3564,
+   148
+  ],
+  [
+   0,
+   3696,
+   148
+  ],
+  [
+   240,
+   3696,
+   148
+  ],
+  [
+   480,
+   3696,
+   148
+  ],
+  [
+   720,
+   3696,
+   148
+  ],
+  [
+   960,
+   3696,
+   148
+  ],
+  [
+   1200,
+   3696,
+   148
+  ],
+  [
+   1440,
+   3696,
+   148
+  ],
+  [
+   1680,
+   3696,
+   148
+  ],
+  [
+   1920,
+   3696,
+   148
+  ],
+  [
+   2160,
+   3696,
+   148
+  ],
+  [
+   2880,
+   3696,
+   148
+  ],
+  [
+   3120,
+   3696,
+   148
+  ],
+  [
+   3360,
+   3696,
+   148
+  ],
+  [
+   3600,
+   3696,
+   148
+  ],
+  [
+   3840,
+   3696,
+   148
+  ],
+  [
+   4080,
+   3696,
+   148
+  ],
+  [
+   4320,
+   3696,
+   148
+  ],
+  [
+   4560,
+   3696,
+   148
+  ],
+  [
+   4800,
+   3696,
+   148
+  ],
+  [
+   5040,
+   3696,
+   148
+  ],
+  [
+   5280,
+   3696,
+   148
+  ],
+  [
+   5520,
+   3696,
+   148
+  ],
+  [
+   5760,
+   3696,
+   148
+  ],
+  [
+   6000,
+   3696,
+   148
+  ],
+  [
+   6240,
+   3696,
+   148
+  ],
+  [
+   6480,
+   3696,
+   148
+  ],
+  [
+   6720,
+   3696,
+   148
+  ],
+  [
+   6960,
+   3696,
+   148
+  ],
+  [
+   7200,
+   3696,
+   148
+  ],
+  [
+   7440,
+   3696,
+   148
+  ],
+  [
+   7680,
+   3696,
+   148
+  ],
+  [
+   120,
+   3828,
+   148
+  ],
+  [
+   360,
+   3828,
+   148
+  ],
+  [
+   600,
+   3828,
+   148
+  ],
+  [
+   840,
+   3828,
+   148
+  ],
+  [
+   1080,
+   3828,
+   148
+  ],
+  [
+   1320,
+   3828,
+   148
+  ],
+  [
+   1560,
+   3828,
+   148
+  ],
+  [
+   1800,
+   3828,
+   148
+  ],
+  [
+   2040,
+   3828,
+   148
+  ],
+  [
+   2280,
+   3828,
+   148
+  ],
+  [
+   3480,
+   3828,
+   148
+  ],
+  [
+   3720,
+   3828,
+   148
+  ],
+  [
+   3960,
+   3828,
+   148
+  ],
+  [
+   4200,
+   3828,
+   148
+  ],
+  [
+   4440,
+   3828,
+   148
+  ],
+  [
+   4680,
+   3828,
+   148
+  ],
+  [
+   4920,
+   3828,
+   148
+  ],
+  [
+   5160,
+   3828,
+   148
+  ],
+  [
+   5400,
+   3828,
+   148
+  ],
+  [
+   5640,
+   3828,
+   148
+  ],
+  [
+   5880,
+   3828,
+   148
+  ],
+  [
+   6120,
+   3828,
+   148
+  ],
+  [
+   6360,
+   3828,
+   148
+  ],
+  [
+   6600,
+   3828,
+   148
+  ],
+  [
+   6840,
+   3828,
+   148
+  ],
+  [
+   7080,
+   3828,
+   148
+  ],
+  [
+   7320,
+   3828,
+   148
+  ],
+  [
+   7560,
+   3828,
+   148
+  ],
+  [
+   7800,
+   3828,
+   148
+  ],
+  [
+   0,
+   3960,
+   148
+  ],
+  [
+   240,
+   3960,
+   148
+  ],
+  [
+   480,
+   3960,
+   148
+  ],
+  [
+   720,
+   3960,
+   148
+  ],
+  [
+   960,
+   3960,
+   148
+  ],
+  [
+   1200,
+   3960,
+   148
+  ],
+  [
+   1440,
+   3960,
+   148
+  ],
+  [
+   1680,
+   3960,
+   148
+  ],
+  [
+   1920,
+   3960,
+   148
+  ],
+  [
+   2160,
+   3960,
+   148
+  ],
+  [
+   2400,
+   3960,
+   148
+  ],
+  [
+   3600,
+   3960,
+   148
+  ],
+  [
+   3840,
+   3960,
+   148
+  ],
+  [
+   4080,
+   3960,
+   148
+  ],
+  [
+   4320,
+   3960,
+   148
+  ],
+  [
+   4560,
+   3960,
+   148
+  ],
+  [
+   4800,
+   3960,
+   148
+  ],
+  [
+   5040,
+   3960,
+   148
+  ],
+  [
+   5280,
+   3960,
+   148
+  ],
+  [
+   5520,
+   3960,
+   148
+  ],
+  [
+   5760,
+   3960,
+   148
+  ],
+  [
+   6000,
+   3960,
+   148
+  ],
+  [
+   6240,
+   3960,
+   148
+  ],
+  [
+   6480,
+   3960,
+   148
+  ],
+  [
+   6720,
+   3960,
+   148
+  ],
+  [
+   6960,
+   3960,
+   148
+  ],
+  [
+   7200,
+   3960,
+   148
+  ],
+  [
+   7440,
+   3960,
+   148
+  ],
+  [
+   7680,
+   3960,
+   148
+  ],
+  [
+   120,
+   4092,
+   148
+  ],
+  [
+   360,
+   4092,
+   148
+  ],
+  [
+   600,
+   4092,
+   148
+  ],
+  [
+   840,
+   4092,
+   148
+  ],
+  [
+   1080,
+   4092,
+   148
+  ],
+  [
+   1320,
+   4092,
+   148
+  ],
+  [
+   1560,
+   4092,
+   148
+  ],
+  [
+   1800,
+   4092,
+   148
+  ],
+  [
+   2040,
+   4092,
+   148
+  ],
+  [
+   2280,
+   4092,
+   148
+  ],
+  [
+   2520,
+   4092,
+   148
+  ],
+  [
+   3480,
+   4092,
+   148
+  ],
+  [
+   3720,
+   4092,
+   148
+  ],
+  [
+   3960,
+   4092,
+   148
+  ],
+  [
+   4200,
+   4092,
+   148
+  ],
+  [
+   4440,
+   4092,
+   148
+  ],
+  [
+   4680,
+   4092,
+   148
+  ],
+  [
+   4920,
+   4092,
+   148
+  ],
+  [
+   5160,
+   4092,
+   148
+  ],
+  [
+   5400,
+   4092,
+   148
+  ],
+  [
+   5640,
+   4092,
+   148
+  ],
+  [
+   5880,
+   4092,
+   148
+  ],
+  [
+   6120,
+   4092,
+   148
+  ],
+  [
+   6360,
+   4092,
+   148
+  ],
+  [
+   6600,
+   4092,
+   148
+  ],
+  [
+   6840,
+   4092,
+   148
+  ],
+  [
+   7080,
+   4092,
+   148
+  ],
+  [
+   7320,
+   4092,
+   148
+  ],
+  [
+   7560,
+   4092,
+   148
+  ],
+  [
+   7800,
+   4092,
+   148
+  ],
+  [
+   0,
+   4224,
+   148
+  ],
+  [
+   240,
+   4224,
+   148
+  ],
+  [
+   480,
+   4224,
+   148
+  ],
+  [
+   720,
+   4224,
+   148
+  ],
+  [
+   960,
+   4224,
+   148
+  ],
+  [
+   1200,
+   4224,
+   148
+  ],
+  [
+   1440,
+   4224,
+   148
+  ],
+  [
+   1680,
+   4224,
+   148
+  ],
+  [
+   1920,
+   4224,
+   148
+  ],
+  [
+   2160,
+   4224,
+   148
+  ],
+  [
+   2400,
+   4224,
+   148
+  ],
+  [
+   2640,
+   4224,
+   148
+  ],
+  [
+   3360,
+   4224,
+   148
+  ],
+  [
+   3600,
+   4224,
+   148
+  ],
+  [
+   3840,
+   4224,
+   148
+  ],
+  [
+   4080,
+   4224,
+   148
+  ],
+  [
+   4320,
+   4224,
+   148
+  ],
+  [
+   4560,
+   4224,
+   148
+  ],
+  [
+   4800,
+   4224,
+   148
+  ],
+  [
+   5040,
+   4224,
+   148
+  ],
+  [
+   5280,
+   4224,
+   148
+  ],
+  [
+   5520,
+   4224,
+   148
+  ],
+  [
+   5760,
+   4224,
+   148
+  ],
+  [
+   6000,
+   4224,
+   148
+  ],
+  [
+   6240,
+   4224,
+   148
+  ],
+  [
+   6480,
+   4224,
+   148
+  ],
+  [
+   6720,
+   4224,
+   148
+  ],
+  [
+   6960,
+   4224,
+   148
+  ],
+  [
+   7200,
+   4224,
+   148
+  ],
+  [
+   7440,
+   4224,
+   148
+  ],
+  [
+   7680,
+   4224,
+   148
+  ],
+  [
+   120,
+   4356,
+   148
+  ],
+  [
+   360,
+   4356,
+   148
+  ],
+  [
+   600,
+   4356,
+   148
+  ],
+  [
+   840,
+   4356,
+   148
+  ],
+  [
+   1080,
+   4356,
+   148
+  ],
+  [
+   1320,
+   4356,
+   148
+  ],
+  [
+   1560,
+   4356,
+   148
+  ],
+  [
+   1800,
+   4356,
+   148
+  ],
+  [
+   2040,
+   4356,
+   148
+  ],
+  [
+   2280,
+   4356,
+   148
+  ],
+  [
+   2520,
+   4356,
+   148
+  ],
+  [
+   2760,
+   4356,
+   148
+  ],
+  [
+   3000,
+   4356,
+   148
+  ],
+  [
+   3240,
+   4356,
+   148
+  ],
+  [
+   3480,
+   4356,
+   148
+  ],
+  [
+   3720,
+   4356,
+   148
+  ],
+  [
+   3960,
+   4356,
+   148
+  ],
+  [
+   4200,
+   4356,
+   148
+  ],
+  [
+   4440,
+   4356,
+   148
+  ],
+  [
+   4680,
+   4356,
+   148
+  ],
+  [
+   4920,
+   4356,
+   148
+  ],
+  [
+   5160,
+   4356,
+   148
+  ],
+  [
+   5400,
+   4356,
+   148
+  ],
+  [
+   5640,
+   4356,
+   148
+  ],
+  [
+   5880,
+   4356,
+   148
+  ],
+  [
+   6120,
+   4356,
+   148
+  ],
+  [
+   6360,
+   4356,
+   148
+  ],
+  [
+   6600,
+   4356,
+   148
+  ],
+  [
+   6840,
+   4356,
+   148
+  ],
+  [
+   7080,
+   4356,
+   148
+  ],
+  [
+   7320,
+   4356,
+   148
+  ],
+  [
+   7560,
+   4356,
+   148
+  ],
+  [
+   7800,
+   4356,
+   148
+  ],
+  [
+   0,
+   4488,
+   148
+  ],
+  [
+   240,
+   4488,
+   148
+  ],
+  [
+   480,
+   4488,
+   148
+  ],
+  [
+   720,
+   4488,
+   148
+  ],
+  [
+   960,
+   4488,
+   148
+  ],
+  [
+   1200,
+   4488,
+   148
+  ],
+  [
+   1440,
+   4488,
+   148
+  ],
+  [
+   1680,
+   4488,
+   148
+  ],
+  [
+   1920,
+   4488,
+   148
+  ],
+  [
+   2160,
+   4488,
+   148
+  ],
+  [
+   2400,
+   4488,
+   148
+  ],
+  [
+   2640,
+   4488,
+   148
+  ],
+  [
+   2880,
+   4488,
+   148
+  ],
+  [
+   3120,
+   4488,
+   148
+  ],
+  [
+   3360,
+   4488,
+   148
+  ],
+  [
+   3600,
+   4488,
+   148
+  ],
+  [
+   3840,
+   4488,
+   148
+  ],
+  [
+   4080,
+   4488,
+   148
+  ],
+  [
+   4320,
+   4488,
+   148
+  ],
+  [
+   4560,
+   4488,
+   148
+  ],
+  [
+   4800,
+   4488,
+   148
+  ],
+  [
+   5040,
+   4488,
+   148
+  ],
+  [
+   5280,
+   4488,
+   148
+  ],
+  [
+   5520,
+   4488,
+   148
+  ],
+  [
+   5760,
+   4488,
+   148
+  ],
+  [
+   6000,
+   4488,
+   148
+  ],
+  [
+   6240,
+   4488,
+   148
+  ],
+  [
+   6480,
+   4488,
+   148
+  ],
+  [
+   6720,
+   4488,
+   148
+  ],
+  [
+   6960,
+   4488,
+   148
+  ],
+  [
+   7200,
+   4488,
+   148
+  ],
+  [
+   7440,
+   4488,
+   148
+  ],
+  [
+   7680,
+   4488,
+   148
+  ],
+  [
+   120,
+   4620,
+   148
+  ],
+  [
+   360,
+   4620,
+   148
+  ],
+  [
+   600,
+   4620,
+   148
+  ],
+  [
+   840,
+   4620,
+   148
+  ],
+  [
+   1080,
+   4620,
+   148
+  ],
+  [
+   1320,
+   4620,
+   148
+  ],
+  [
+   1560,
+   4620,
+   148
+  ],
+  [
+   1800,
+   4620,
+   148
+  ],
+  [
+   2040,
+   4620,
+   148
+  ],
+  [
+   2280,
+   4620,
+   148
+  ],
+  [
+   2520,
+   4620,
+   148
+  ],
+  [
+   2760,
+   4620,
+   148
+  ],
+  [
+   3000,
+   4620,
+   148
+  ],
+  [
+   3240,
+   4620,
+   148
+  ],
+  [
+   3480,
+   4620,
+   148
+  ],
+  [
+   3720,
+   4620,
+   148
+  ],
+  [
+   3960,
+   4620,
+   148
+  ],
+  [
+   4200,
+   4620,
+   148
+  ],
+  [
+   4440,
+   4620,
+   148
+  ],
+  [
+   4680,
+   4620,
+   148
+  ],
+  [
+   4920,
+   4620,
+   148
+  ],
+  [
+   5160,
+   4620,
+   148
+  ],
+  [
+   5400,
+   4620,
+   148
+  ],
+  [
+   5640,
+   4620,
+   148
+  ],
+  [
+   5880,
+   4620,
+   148
+  ],
+  [
+   6120,
+   4620,
+   148
+  ],
+  [
+   6360,
+   4620,
+   148
+  ],
+  [
+   6600,
+   4620,
+   148
+  ],
+  [
+   6840,
+   4620,
+   148
+  ],
+  [
+   7080,
+   4620,
+   148
+  ],
+  [
+   7320,
+   4620,
+   148
+  ],
+  [
+   7560,
+   4620,
+   148
+  ],
+  [
+   7800,
+   4620,
+   148
+  ],
+  [
+   0,
+   4752,
+   148
+  ],
+  [
+   240,
+   4752,
+   148
+  ],
+  [
+   480,
+   4752,
+   148
+  ],
+  [
+   720,
+   4752,
+   148
+  ],
+  [
+   960,
+   4752,
+   148
+  ],
+  [
+   1200,
+   4752,
+   148
+  ],
+  [
+   1440,
+   4752,
+   148
+  ],
+  [
+   1680,
+   4752,
+   148
+  ],
+  [
+   1920,
+   4752,
+   148
+  ],
+  [
+   2160,
+   4752,
+   148
+  ],
+  [
+   2400,
+   4752,
+   148
+  ],
+  [
+   2640,
+   4752,
+   148
+  ],
+  [
+   2880,
+   4752,
+   148
+  ],
+  [
+   3120,
+   4752,
+   148
+  ],
+  [
+   3360,
+   4752,
+   148
+  ],
+  [
+   3600,
+   4752,
+   148
+  ],
+  [
+   3840,
+   4752,
+   148
+  ],
+  [
+   4080,
+   4752,
+   148
+  ],
+  [
+   4320,
+   4752,
+   148
+  ],
+  [
+   4560,
+   4752,
+   148
+  ],
+  [
+   4800,
+   4752,
+   148
+  ],
+  [
+   5040,
+   4752,
+   148
+  ],
+  [
+   5280,
+   4752,
+   148
+  ],
+  [
+   5520,
+   4752,
+   148
+  ],
+  [
+   5760,
+   4752,
+   148
+  ],
+  [
+   6000,
+   4752,
+   148
+  ],
+  [
+   6240,
+   4752,
+   148
+  ],
+  [
+   6480,
+   4752,
+   148
+  ],
+  [
+   6720,
+   4752,
+   148
+  ],
+  [
+   6960,
+   4752,
+   148
+  ],
+  [
+   7200,
+   4752,
+   148
+  ],
+  [
+   7440,
+   4752,
+   148
+  ],
+  [
+   7680,
+   4752,
+   148
+  ],
+  [
+   120,
+   4884,
+   148
+  ],
+  [
+   360,
+   4884,
+   148
+  ],
+  [
+   600,
+   4884,
+   148
+  ],
+  [
+   840,
+   4884,
+   148
+  ],
+  [
+   1080,
+   4884,
+   148
+  ],
+  [
+   1320,
+   4884,
+   148
+  ],
+  [
+   1560,
+   4884,
+   148
+  ],
+  [
+   1800,
+   4884,
+   148
+  ],
+  [
+   2040,
+   4884,
+   148
+  ],
+  [
+   2280,
+   4884,
+   148
+  ],
+  [
+   2520,
+   4884,
+   148
+  ],
+  [
+   2760,
+   4884,
+   148
+  ],
+  [
+   3000,
+   4884,
+   148
+  ],
+  [
+   3240,
+   4884,
+   148
+  ],
+  [
+   3480,
+   4884,
+   148
+  ],
+  [
+   3720,
+   4884,
+   148
+  ],
+  [
+   3960,
+   4884,
+   148
+  ],
+  [
+   4200,
+   4884,
+   148
+  ],
+  [
+   4440,
+   4884,
+   148
+  ],
+  [
+   4680,
+   4884,
+   148
+  ],
+  [
+   4920,
+   4884,
+   148
+  ],
+  [
+   5160,
+   4884,
+   148
+  ],
+  [
+   5400,
+   4884,
+   148
+  ],
+  [
+   5640,
+   4884,
+   148
+  ],
+  [
+   5880,
+   4884,
+   148
+  ],
+  [
+   6120,
+   4884,
+   148
+  ],
+  [
+   6360,
+   4884,
+   148
+  ],
+  [
+   6600,
+   4884,
+   148
+  ],
+  [
+   6840,
+   4884,
+   148
+  ],
+  [
+   7080,
+   4884,
+   148
+  ],
+  [
+   7320,
+   4884,
+   148
+  ],
+  [
+   7560,
+   4884,
+   148
+  ],
+  [
+   7800,
+   4884,
+   148
+  ],
+  [
+   0,
+   5016,
+   148
+  ],
+  [
+   240,
+   5016,
+   148
+  ],
+  [
+   480,
+   5016,
+   148
+  ],
+  [
+   720,
+   5016,
+   148
+  ],
+  [
+   960,
+   5016,
+   148
+  ],
+  [
+   1200,
+   5016,
+   148
+  ],
+  [
+   1440,
+   5016,
+   148
+  ],
+  [
+   1680,
+   5016,
+   148
+  ],
+  [
+   1920,
+   5016,
+   148
+  ],
+  [
+   2160,
+   5016,
+   148
+  ],
+  [
+   2400,
+   5016,
+   148
+  ],
+  [
+   2640,
+   5016,
+   148
+  ],
+  [
+   2880,
+   5016,
+   148
+  ],
+  [
+   3120,
+   5016,
+   148
+  ],
+  [
+   3360,
+   5016,
+   148
+  ],
+  [
+   3600,
+   5016,
+   148
+  ],
+  [
+   3840,
+   5016,
+   148
+  ],
+  [
+   4080,
+   5016,
+   148
+  ],
+  [
+   4320,
+   5016,
+   148
+  ],
+  [
+   4560,
+   5016,
+   148
+  ],
+  [
+   4800,
+   5016,
+   148
+  ],
+  [
+   5040,
+   5016,
+   148
+  ],
+  [
+   5280,
+   5016,
+   148
+  ],
+  [
+   5520,
+   5016,
+   148
+  ],
+  [
+   5760,
+   5016,
+   148
+  ],
+  [
+   6000,
+   5016,
+   148
+  ],
+  [
+   6240,
+   5016,
+   148
+  ],
+  [
+   6480,
+   5016,
+   148
+  ],
+  [
+   6720,
+   5016,
+   148
+  ],
+  [
+   6960,
+   5016,
+   148
+  ],
+  [
+   7200,
+   5016,
+   148
+  ],
+  [
+   7440,
+   5016,
+   148
+  ],
+  [
+   7680,
+   5016,
+   148
+  ],
+  [
+   120,
+   5148,
+   148
+  ],
+  [
+   360,
+   5148,
+   148
+  ],
+  [
+   600,
+   5148,
+   148
+  ],
+  [
+   840,
+   5148,
+   148
+  ],
+  [
+   1080,
+   5148,
+   148
+  ],
+  [
+   1320,
+   5148,
+   148
+  ],
+  [
+   1560,
+   5148,
+   148
+  ],
+  [
+   1800,
+   5148,
+   148
+  ],
+  [
+   2040,
+   5148,
+   148
+  ],
+  [
+   2280,
+   5148,
+   148
+  ],
+  [
+   2520,
+   5148,
+   148
+  ],
+  [
+   2760,
+   5148,
+   148
+  ],
+  [
+   3000,
+   5148,
+   148
+  ],
+  [
+   3240,
+   5148,
+   148
+  ],
+  [
+   3480,
+   5148,
+   148
+  ],
+  [
+   3720,
+   5148,
+   148
+  ],
+  [
+   3960,
+   5148,
+   148
+  ],
+  [
+   4200,
+   5148,
+   148
+  ],
+  [
+   4440,
+   5148,
+   148
+  ],
+  [
+   4680,
+   5148,
+   148
+  ],
+  [
+   4920,
+   5148,
+   148
+  ],
+  [
+   5160,
+   5148,
+   148
+  ],
+  [
+   5400,
+   5148,
+   148
+  ],
+  [
+   5640,
+   5148,
+   148
+  ],
+  [
+   5880,
+   5148,
+   148
+  ],
+  [
+   6120,
+   5148,
+   148
+  ],
+  [
+   6360,
+   5148,
+   148
+  ],
+  [
+   6600,
+   5148,
+   148
+  ],
+  [
+   6840,
+   5148,
+   148
+  ],
+  [
+   7080,
+   5148,
+   148
+  ],
+  [
+   7320,
+   5148,
+   148
+  ],
+  [
+   7560,
+   5148,
+   148
+  ],
+  [
+   7800,
+   5148,
+   148
+  ]
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "exits": [
+  {
+   "name": "Artificers' Ward",
+   "to": "artificers_ward",
+   "arrive": [
+    2714,
+    526
+   ],
+   "poly": [
+    [
+     -30,
+     1009.5
+    ],
+    [
+     310,
+     1009.5
+    ],
+    [
+     310,
+     1196.5
+    ],
+    [
+     -30,
+     1196.5
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      -30,
+      1009.5
+     ],
+     [
+      310,
+      1009.5
+     ],
+     [
+      310,
+      1196.5
+     ],
+     [
+      -30,
+      1196.5
+     ]
+    ]
+   }
+  }
+ ],
+ "waypoints": [
+  {
+   "id": "sapphire_academy_wp",
+   "name": "Sapphire Academy",
+   "at": [
+    3001,
+    3994
+   ],
+   "centre_of": [
+    3001,
+    3994
+   ],
+   "radius_px": 200,
+   "rot_deg": 22.9
+  }
+ ],
+ "targets": [],
+ "ground_ratio": 0.51,
+ "light": "sapphire_academy/light.png",
+ "fx": "sapphire_academy/fx.png",
+ "map_pois": [
+  {
+   "name": "Observatory Library",
+   "kind": "landmark",
+   "at": [
+    6074,
+    2359
+   ],
+   "blurb": "Observatory libraries, blue glass domes"
+  },
+  {
+   "name": "Blue Glass Dome",
+   "kind": "landmark",
+   "at": [
+    5880,
+    1287
+   ],
+   "blurb": "Observatory libraries, blue glass domes"
+  },
+  {
+   "name": "Archive Trial Hall",
+   "kind": "landmark",
+   "at": [
+    4806,
+    3059
+   ],
+   "blurb": "Observatory libraries, blue glass domes"
+  },
+  {
+   "name": "Artificers' Ward",
+   "kind": "landmark",
+   "at": [
+    140,
+    1103
+   ],
+   "blurb": "To Artificers' Ward."
+  }
+ ],
+ "world_id": "sapphire_academy",
+ "grade": {
+  "mul": [
+   0.86,
+   0.94,
+   1.14
+  ],
+  "desat": 0.15,
+  "lift": [
+   0.04,
+   0.06,
+   0.12,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.88,
+   1.0
+  ],
+  "water": [
+   0.2,
+   0.4,
+   0.8
+  ]
+ }
+}

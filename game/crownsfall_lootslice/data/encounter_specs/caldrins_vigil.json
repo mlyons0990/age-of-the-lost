@@ -1,0 +1,127 @@
+{
+ "zone": "caldrins_vigil",
+ "levels": [
+  64,
+  65
+ ],
+ "packs": 14,
+ "seed": 562,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "caldrins_vigil_0",
+    "caldrins_vigil_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "caldrins_vigil_1",
+    "caldrins_vigil_1",
+    "caldrins_vigil_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "caldrins_vigil_0",
+    "caldrins_vigil_1",
+    "caldrins_vigil_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "caldrins_vigil_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "caldrins_vigil_2",
+    "caldrins_vigil_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "caldrins_vigil_0",
+    "caldrins_vigil_0",
+    "caldrins_vigil_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5954,
+    1355
+   ],
+   "types": [
+    "caldrins_vigil_1",
+    "caldrins_vigil_1"
+   ],
+   "elite": false,
+   "guardian": "caldrins_vigil_g1",
+   "elite_type": "caldrins_vigil_0",
+   "elite_name": "Erasure Tide",
+   "page": "Q_A07_07_1"
+  },
+  {
+   "at": [
+    4678,
+    2441
+   ],
+   "types": [
+    "caldrins_vigil_1",
+    "caldrins_vigil_1"
+   ],
+   "elite": false,
+   "guardian": "caldrins_vigil_g2",
+   "elite_type": "caldrins_vigil_1",
+   "elite_name": "Door-Breaker Avatar",
+   "page": "Q_A07_07_2"
+  },
+  {
+   "at": [
+    5876,
+    3484
+   ],
+   "types": [
+    "caldrins_vigil_1",
+    "caldrins_vigil_1"
+   ],
+   "elite": false,
+   "guardian": "caldrins_vigil_g3",
+   "elite_type": "caldrins_vigil_2",
+   "elite_name": "The Last Assault",
+   "page": "Q_A07_07_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   5876,
+   3484,
+   700
+  ],
+  [
+   5954,
+   1355,
+   700
+  ],
+  [
+   4678,
+   2441,
+   700
+  ],
+  [
+   5876,
+   3484,
+   700
+  ]
+ ]
+}

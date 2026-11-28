@@ -1,0 +1,696 @@
+{
+ "name": "Orchard of Hours",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 4827,
+ "paths": [
+  {
+   "pts": [
+    [
+     5015,
+     190
+    ],
+    [
+     5015,
+     494
+    ],
+    [
+     4823,
+     1282
+    ],
+    [
+     5364,
+     2012
+    ],
+    [
+     5391,
+     2784
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     5391,
+     2784
+    ],
+    [
+     5948.0,
+     3414.0
+    ],
+    [
+     6505,
+     4044
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     6059,
+     3540
+    ],
+    [
+     6702,
+     3340
+    ],
+    [
+     7150,
+     3285
+    ]
+   ],
+   "width": 165,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     5388,
+     2706
+    ],
+    [
+     4105,
+     2613
+    ],
+    [
+     3030,
+     2733
+    ]
+   ],
+   "width": 130,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5015,
+     494
+    ],
+    [
+     5953,
+     611
+    ],
+    [
+     7047,
+     667
+    ]
+   ],
+   "width": 159,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4919,
+     888
+    ],
+    [
+     3958,
+     654
+    ],
+    [
+     3163,
+     722
+    ]
+   ],
+   "width": 171,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4990,
+    4189
+   ],
+   "r": 552,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4768,
+    3573
+   ],
+   "r": 717,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2291,
+    3523
+   ],
+   "r": 698,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5391,
+    2784
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3030,
+    2733
+   ],
+   "r": 493,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7047,
+    667
+   ],
+   "r": 439,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3163,
+    722
+   ],
+   "r": 696,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7861,
+    2183
+   ],
+   "r": 551,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   5015,
+   190,
+   380
+  ],
+  [
+   7150,
+   3285,
+   300
+  ],
+  [
+   3030,
+   2733,
+   300
+  ],
+  [
+   7047,
+   667,
+   300
+  ],
+  [
+   3163,
+   722,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "oak_b",
+    4
+   ],
+   [
+    "oak_a",
+    3
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 760,
+  "cut": 0.62,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 20,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "lavender": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    7150,
+    3285,
+    560,
+    0.45
+   ],
+   [
+    3030,
+    2733,
+    560,
+    0.45
+   ],
+   [
+    7047,
+    667,
+    560,
+    0.45
+   ],
+   [
+    3163,
+    722,
+    560,
+    0.45
+   ],
+   [
+    5391,
+    2784,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    5391,
+    2564,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "orchard_of_hours_wp",
+   "name": "Orchard of Hours",
+   "at": [
+    5391,
+    2784
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Lumen Canal",
+   "to": "lumen_canal",
+   "at": [
+    5015,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    8727,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  5015,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Weather Machine",
+   "kind": "landmark",
+   "at": [
+    7150,
+    3285
+   ],
+   "blurb": "Terraced fruit groves, weather machines"
+  },
+  {
+   "name": "Terraced Groves",
+   "kind": "landmark",
+   "at": [
+    3030,
+    2733
+   ],
+   "blurb": "Terraced fruit groves, weather machines"
+  },
+  {
+   "name": "Harvest Hall",
+   "kind": "landmark",
+   "at": [
+    7047,
+    667
+   ],
+   "blurb": "Terraced fruit groves, weather machines"
+  },
+  {
+   "name": "Season Arena",
+   "kind": "landmark",
+   "at": [
+    3163,
+    722
+   ],
+   "blurb": "Terraced fruit groves, weather machines"
+  },
+  {
+   "name": "Lumen Canal",
+   "kind": "landmark",
+   "at": [
+    5015,
+    190
+   ],
+   "blurb": "To Lumen Canal."
+  }
+ ],
+ "world_id": "orchard_of_hours",
+ "grade": {
+  "mul": [
+   1.12,
+   1.06,
+   0.8
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.07,
+   0.06,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.94,
+   0.8
+  ],
+  "water": [
+   0.3,
+   0.52,
+   0.68
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow",
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    7150,
+    3285
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    3030,
+    2733
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    7047,
+    667
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    3163,
+    722
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  }
+ ]
+}

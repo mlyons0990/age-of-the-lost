@@ -1,0 +1,78 @@
+{
+ "zone": "west_meridian_vault",
+ "levels": [
+  19,
+  20
+ ],
+ "packs": 14,
+ "seed": 19,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "west_meridian_vault_0",
+    "west_meridian_vault_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "west_meridian_vault_1",
+    "west_meridian_vault_1",
+    "west_meridian_vault_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "west_meridian_vault_0",
+    "west_meridian_vault_1",
+    "west_meridian_vault_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "west_meridian_vault_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "west_meridian_vault_2",
+    "west_meridian_vault_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "west_meridian_vault_0",
+    "west_meridian_vault_0",
+    "west_meridian_vault_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6351,
+    3485
+   ],
+   "types": [],
+   "boss": "west_meridian_vault_boss_u",
+   "boss_type": "west_meridian_vault_boss",
+   "boss_name": "Neral's Lieutenant, Voice of the Choir",
+   "needs_quest": "Q_A02_14"
+  }
+ ],
+ "keep_clear": [
+  [
+   6351,
+   3485,
+   700
+  ]
+ ]
+}

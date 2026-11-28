@@ -1,0 +1,849 @@
+{
+ "name": "Unbound Causeway",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 9495,
+ "paths": [
+  {
+   "pts": [
+    [
+     5313,
+     3108
+    ],
+    [
+     5092,
+     3563
+    ],
+    [
+     5155,
+     4045
+    ]
+   ],
+   "width": 329,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5155,
+     4045
+    ],
+    [
+     4111,
+     4039
+    ],
+    [
+     3222,
+     3635
+    ]
+   ],
+   "width": 277,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3222,
+     3635
+    ],
+    [
+     2323,
+     3544
+    ],
+    [
+     1512,
+     3246
+    ]
+   ],
+   "width": 273,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5313,
+     3108
+    ],
+    [
+     6121,
+     2662
+    ],
+    [
+     6462,
+     1960
+    ]
+   ],
+   "width": 301,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6462,
+     1960
+    ],
+    [
+     5367,
+     2036
+    ],
+    [
+     4442,
+     1596
+    ]
+   ],
+   "width": 316,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1512,
+     3246
+    ],
+    [
+     1686,
+     2537
+    ],
+    [
+     1737,
+     1818
+    ]
+   ],
+   "width": 298,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5313,
+     3108
+    ],
+    [
+     4348,
+     3547
+    ],
+    [
+     3222,
+     3635
+    ]
+   ],
+   "width": 311,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1383
+    ],
+    [
+     840,
+     1383
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1383
+    ],
+    [
+     1737,
+     1818
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     5746,
+     190
+    ],
+    [
+     5746,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     5746,
+     710.0
+    ],
+    [
+     4442,
+     1596
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     3178,
+     190
+    ],
+    [
+     3178,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     3178,
+     710.0
+    ],
+    [
+     4442,
+     1596
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5313,
+    3108
+   ],
+   "r": 586,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1737,
+    1818
+   ],
+   "r": 579,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4442,
+    1596
+   ],
+   "r": 561,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1512,
+    3246
+   ],
+   "r": 589,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3222,
+    3635
+   ],
+   "r": 532,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6462,
+    1960
+   ],
+   "r": 613,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5155,
+    4045
+   ],
+   "r": 443,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1383,
+   380
+  ],
+  [
+   5746,
+   190,
+   380
+  ],
+  [
+   3178,
+   190,
+   380
+  ],
+  [
+   6462,
+   1960,
+   300
+  ],
+  [
+   5155,
+   4045,
+   300
+  ],
+  [
+   5313,
+   3108,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    5313,
+    3108,
+    498.09999999999997,
+    0.6
+   ],
+   [
+    1737,
+    1818,
+    492.15,
+    0.6
+   ],
+   [
+    4442,
+    1596,
+    476.84999999999997,
+    0.6
+   ],
+   [
+    1512,
+    3246,
+    500.65,
+    0.6
+   ],
+   [
+    3222,
+    3635,
+    452.2,
+    0.6
+   ],
+   [
+    6462,
+    1960,
+    521.05,
+    0.6
+   ],
+   [
+    5155,
+    4045,
+    376.55,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6462,
+    1740,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "unbound_causeway_wp",
+   "name": "Unbound Causeway",
+   "at": [
+    4442,
+    1596
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "The Choir's Deep",
+   "to": "the_choirs_deep",
+   "at": [
+    140,
+    1383
+   ],
+   "r": 170,
+   "arrive": [
+    5328,
+    4438
+   ]
+  },
+  {
+   "name": "Crownsfall of Three Ages",
+   "to": "crownsfall_of_three_ages",
+   "at": [
+    5746,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    2730,
+    4438
+   ]
+  },
+  {
+   "name": "Hearth of Names",
+   "to": "hearth_of_names",
+   "at": [
+    3178,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3167
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1383
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Bridge Fragments",
+   "kind": "landmark",
+   "at": [
+    6462,
+    1960
+   ],
+   "blurb": "Floating bridge fragments from many cultures"
+  },
+  {
+   "name": "Anchor Node",
+   "kind": "landmark",
+   "at": [
+    5155,
+    4045
+   ],
+   "blurb": "Floating bridge fragments from many cultures"
+  },
+  {
+   "name": "Many-Culture Span",
+   "kind": "landmark",
+   "at": [
+    5313,
+    3108
+   ],
+   "blurb": "Floating bridge fragments from many cultures"
+  },
+  {
+   "name": "The Choir's Deep",
+   "kind": "landmark",
+   "at": [
+    140,
+    1383
+   ],
+   "blurb": "To The Choir's Deep."
+  },
+  {
+   "name": "Crownsfall of Three Ages",
+   "kind": "landmark",
+   "at": [
+    5746,
+    190
+   ],
+   "blurb": "To Crownsfall of Three Ages."
+  },
+  {
+   "name": "Hearth of Names",
+   "kind": "landmark",
+   "at": [
+    3178,
+    190
+   ],
+   "blurb": "To Hearth of Names."
+  }
+ ],
+ "world_id": "unbound_causeway",
+ "grade": {
+  "mul": [
+   0.9,
+   0.84,
+   0.96
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.05,
+   0.03,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.75,
+   0.65,
+   0.9
+  ],
+  "water": [
+   0.3,
+   0.18,
+   0.5
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5313,
+    3108
+   ],
+   "r": 556.6999999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1737,
+    1818
+   ],
+   "r": 550.05,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4442,
+    1596
+   ],
+   "r": 532.9499999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1512,
+    3246
+   ],
+   "r": 559.55,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3222,
+    3635
+   ],
+   "r": 505.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6462,
+    1960
+   ],
+   "r": 582.35,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5155,
+    4045
+   ],
+   "r": 420.84999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

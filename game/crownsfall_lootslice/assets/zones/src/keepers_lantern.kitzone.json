@@ -1,0 +1,792 @@
+{
+ "name": "Keepers' Lantern",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 8440,
+ "paths": [
+  {
+   "pts": [
+    [
+     3957,
+     1316
+    ],
+    [
+     4782,
+     1435
+    ],
+    [
+     5579,
+     1233
+    ]
+   ],
+   "width": 275,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5579,
+     1233
+    ],
+    [
+     5762,
+     1762
+    ],
+    [
+     6130,
+     2237
+    ]
+   ],
+   "width": 277,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3957,
+     1316
+    ],
+    [
+     2921,
+     1669
+    ],
+    [
+     1783,
+     1644
+    ]
+   ],
+   "width": 330,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1783,
+     1644
+    ],
+    [
+     1464,
+     2166
+    ],
+    [
+     1374,
+     2736
+    ]
+   ],
+   "width": 339,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1374,
+     2736
+    ],
+    [
+     2449,
+     3374
+    ],
+    [
+     3826,
+     3390
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3826,
+     3390
+    ],
+    [
+     4848,
+     3677
+    ],
+    [
+     5896,
+     3912
+    ]
+   ],
+   "width": 283,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3826,
+     3390
+    ],
+    [
+     3476,
+     2338
+    ],
+    [
+     3957,
+     1316
+    ]
+   ],
+   "width": 304,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     2022
+    ],
+    [
+     840,
+     2022
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     2022
+    ],
+    [
+     1783,
+     1644
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     4223,
+     190
+    ],
+    [
+     4223,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     4223,
+     710.0
+    ],
+    [
+     3957,
+     1316
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    3957,
+    1316
+   ],
+   "r": 438,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3826,
+    3390
+   ],
+   "r": 514,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6130,
+    2237
+   ],
+   "r": 443,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1783,
+    1644
+   ],
+   "r": 595,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5896,
+    3912
+   ],
+   "r": 568,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1374,
+    2736
+   ],
+   "r": 499,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5579,
+    1233
+   ],
+   "r": 516,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   2022,
+   380
+  ],
+  [
+   4223,
+   190,
+   380
+  ],
+  [
+   5896,
+   3912,
+   300
+  ],
+  [
+   6130,
+   2237,
+   300
+  ],
+  [
+   5579,
+   1233,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    3957,
+    1316,
+    372.3,
+    0.6
+   ],
+   [
+    3826,
+    3390,
+    436.9,
+    0.6
+   ],
+   [
+    6130,
+    2237,
+    376.55,
+    0.6
+   ],
+   [
+    1783,
+    1644,
+    505.75,
+    0.6
+   ],
+   [
+    5896,
+    3912,
+    482.8,
+    0.6
+   ],
+   [
+    1374,
+    2736,
+    424.15,
+    0.6
+   ],
+   [
+    5579,
+    1233,
+    438.59999999999997,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    5896,
+    3692,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "keepers_lantern_wp",
+   "name": "Keepers' Lantern",
+   "at": [
+    3826,
+    3390
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "The Empty Morning",
+   "to": "the_empty_morning",
+   "at": [
+    140,
+    2022
+   ],
+   "r": 170,
+   "arrive": [
+    7120,
+    2002
+   ]
+  },
+  {
+   "name": "Engine of First Night",
+   "to": "engine_of_first_night",
+   "at": [
+    4223,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    2305
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  2022
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Archive Camp",
+   "kind": "landmark",
+   "at": [
+    5896,
+    3912
+   ],
+   "blurb": "Archive camp of warm lanterns and paper tags"
+  },
+  {
+   "name": "Warm Lanterns",
+   "kind": "landmark",
+   "at": [
+    6130,
+    2237
+   ],
+   "blurb": "Archive camp of warm lanterns and paper tags"
+  },
+  {
+   "name": "Paper Tags",
+   "kind": "landmark",
+   "at": [
+    5579,
+    1233
+   ],
+   "blurb": "Archive camp of warm lanterns and paper tags"
+  },
+  {
+   "name": "The Empty Morning",
+   "kind": "landmark",
+   "at": [
+    140,
+    2022
+   ],
+   "blurb": "To The Empty Morning."
+  },
+  {
+   "name": "Engine of First Night",
+   "kind": "landmark",
+   "at": [
+    4223,
+    190
+   ],
+   "blurb": "To Engine of First Night."
+  }
+ ],
+ "world_id": "keepers_lantern",
+ "grade": {
+  "mul": [
+   1.08,
+   0.92,
+   0.72
+  ],
+  "desat": 0.2,
+  "lift": [
+   0.08,
+   0.05,
+   0.0,
+   1.0
+  ],
+  "mist": [
+   0.9,
+   0.75,
+   0.5
+  ],
+  "water": [
+   0.3,
+   0.2,
+   0.35
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3957,
+    1316
+   ],
+   "r": 416.09999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3826,
+    3390
+   ],
+   "r": 488.29999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6130,
+    2237
+   ],
+   "r": 420.84999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1783,
+    1644
+   ],
+   "r": 565.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5896,
+    3912
+   ],
+   "r": 539.6,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1374,
+    2736
+   ],
+   "r": 474.04999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5579,
+    1233
+   ],
+   "r": 490.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

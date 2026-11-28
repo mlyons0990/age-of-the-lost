@@ -1,0 +1,83 @@
+{
+ "zone": "bellwater_mills",
+ "levels": [
+  4,
+  5
+ ],
+ "packs": 30,
+ "seed": 576,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "bellwater_mills_0",
+    "bellwater_mills_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "bellwater_mills_1",
+    "bellwater_mills_1",
+    "bellwater_mills_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "bellwater_mills_0",
+    "bellwater_mills_1",
+    "bellwater_mills_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "bellwater_mills_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "bellwater_mills_2",
+    "bellwater_mills_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "bellwater_mills_0",
+    "bellwater_mills_0",
+    "bellwater_mills_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    2861,
+    1292
+   ],
+   "types": [],
+   "boss": "bellwater_mills_boss_u",
+   "boss_type": "bellwater_mills_boss",
+   "boss_name": "The Sluice Guardian",
+   "needs_quest": "Q_A01_08"
+  }
+ ],
+ "keep_clear": [
+  [
+   9800,
+   1914,
+   700
+  ],
+  [
+   2861,
+   1292,
+   700
+  ]
+ ]
+}

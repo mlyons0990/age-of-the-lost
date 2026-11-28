@@ -1,0 +1,644 @@
+{
+ "name": "Crownsfall Citadel",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 1742,
+ "paths": [
+  {
+   "pts": [
+    [
+     3701,
+     4774
+    ],
+    [
+     3701,
+     4470
+    ],
+    [
+     4033,
+     3922
+    ],
+    [
+     3766,
+     3342
+    ],
+    [
+     3902,
+     2784
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3902,
+     2784
+    ],
+    [
+     3940.5,
+     1842.0
+    ],
+    [
+     3979,
+     900
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3905,
+     2689
+    ],
+    [
+     4705,
+     2619
+    ],
+    [
+     6105,
+     2698
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3792,
+     3400
+    ],
+    [
+     3068,
+     3590
+    ],
+    [
+     2370,
+     3591
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3959,
+     1371
+    ],
+    [
+     3123,
+     1370
+    ],
+    [
+     1991,
+     1300
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5191,
+    969
+   ],
+   "r": 343,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1917,
+    1698
+   ],
+   "r": 346,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6612,
+    1594
+   ],
+   "r": 261,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4527,
+    3374
+   ],
+   "r": 416,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1816,
+    4078
+   ],
+   "r": 287,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6567,
+    2099
+   ],
+   "r": 302,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4821,
+    4174
+   ],
+   "r": 422,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2379,
+    4426
+   ],
+   "r": 396,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3902,
+    2784
+   ],
+   "r": 1200,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6105,
+    2698
+   ],
+   "r": 609,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2370,
+    3591
+   ],
+   "r": 406,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1991,
+    1300
+   ],
+   "r": 447,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1179,
+    1873
+   ],
+   "r": 178,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   3701,
+   4774,
+   380
+  ],
+  [
+   6105,
+   2698,
+   300
+  ],
+  [
+   2370,
+   3591,
+   300
+  ],
+  [
+   1991,
+   1300,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 1900,
+  "cut": 0.9,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    6105,
+    2698,
+    560,
+    0.45
+   ],
+   [
+    2370,
+    3591,
+    560,
+    0.45
+   ],
+   [
+    1991,
+    1300,
+    560,
+    0.45
+   ],
+   [
+    3902,
+    2784,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3902,
+    2564,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "crownsfall_citadel_wp",
+   "name": "Crownsfall Citadel",
+   "at": [
+    3902,
+    2784
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Highward Steps",
+   "to": "highward_steps",
+   "at": [
+    3701,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    2133,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  3701,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Royal Court",
+   "kind": "landmark",
+   "at": [
+    6105,
+    2698
+   ],
+   "blurb": "Royal court, gathering refugees, dusk over city"
+  },
+  {
+   "name": "Refugee Hall",
+   "kind": "landmark",
+   "at": [
+    2370,
+    3591
+   ],
+   "blurb": "Royal court, gathering refugees, dusk over city"
+  },
+  {
+   "name": "Upper Citadel Approach",
+   "kind": "landmark",
+   "at": [
+    1991,
+    1300
+   ],
+   "blurb": "Royal court, gathering refugees, dusk over city"
+  },
+  {
+   "name": "Highward Steps",
+   "kind": "landmark",
+   "at": [
+    3701,
+    4774
+   ],
+   "blurb": "To Highward Steps."
+  }
+ ],
+ "world_id": "crownsfall_citadel",
+ "grade": {
+  "mul": [
+   1.02,
+   0.9,
+   0.88
+  ],
+  "desat": 0.16,
+  "lift": [
+   0.08,
+   0.04,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.86,
+   0.72,
+   0.86
+  ],
+  "water": [
+   0.3,
+   0.4,
+   0.55
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6105,
+    2698
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2370,
+    3591
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1991,
+    1300
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

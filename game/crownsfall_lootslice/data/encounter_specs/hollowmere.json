@@ -1,0 +1,78 @@
+{
+ "zone": "hollowmere",
+ "levels": [
+  3,
+  4
+ ],
+ "packs": 30,
+ "seed": 43,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "hollowmere_0",
+    "hollowmere_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "hollowmere_1",
+    "hollowmere_1",
+    "hollowmere_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "hollowmere_0",
+    "hollowmere_1",
+    "hollowmere_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "hollowmere_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "hollowmere_2",
+    "hollowmere_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "hollowmere_0",
+    "hollowmere_0",
+    "hollowmere_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5333,
+    4289
+   ],
+   "types": [],
+   "boss": "hollowmere_boss_u",
+   "boss_type": "hollowmere_boss",
+   "boss_name": "The Drowned Matron",
+   "needs_quest": "Q_A01_R06"
+  }
+ ],
+ "keep_clear": [
+  [
+   5333,
+   4289,
+   700
+  ]
+ ]
+}

@@ -1,56 +1,56 @@
 {
  "zone": "riftscar_moor",
  "levels": [
-  11,
-  12
+  7,
+  8
  ],
  "packs": 30,
- "seed": 73,
+ "seed": 710,
  "spacing": 1050,
  "groups": [
   [
    5,
    [
-    "clockwork_soldier",
-    "clockwork_soldier"
+    "riftscar_moor_0",
+    "riftscar_moor_0"
    ]
   ],
   [
    3,
    [
-    "rift_mite",
-    "rift_mite",
-    "rift_mite"
+    "riftscar_moor_1",
+    "riftscar_moor_1",
+    "riftscar_moor_1"
    ]
   ],
   [
    3,
    [
-    "clockwork_soldier",
-    "rift_mite",
-    "rift_mite"
+    "riftscar_moor_0",
+    "riftscar_moor_1",
+    "riftscar_moor_1"
    ]
   ],
   [
    2,
    [
-    "rift_beast"
+    "riftscar_moor_2"
    ],
    true
   ],
   [
    2,
    [
-    "rift_beast",
-    "clockwork_soldier"
+    "riftscar_moor_2",
+    "riftscar_moor_0"
    ]
   ],
   [
    1,
    [
-    "clockwork_soldier",
-    "clockwork_soldier",
-    "clockwork_soldier"
+    "riftscar_moor_0",
+    "riftscar_moor_0",
+    "riftscar_moor_0"
    ],
    true
   ]
@@ -58,15 +58,21 @@
  "fixed": [
   {
    "at": [
-    8000,
-    1450
+    2609,
+    776
    ],
    "types": [],
-   "boss": "clockwork_centurion",
-   "boss_type": "clockwork_centurion",
+   "boss": "riftscar_moor_boss_u",
+   "boss_type": "riftscar_moor_boss",
    "boss_name": "The Clockwork Centurion",
-   "needs_quest": "clockwork_on_the_moor"
+   "needs_quest": "Q_A01_R14"
   }
  ],
- "keep_clear": []
+ "keep_clear": [
+  [
+   2609,
+   776,
+   700
+  ]
+ ]
 }

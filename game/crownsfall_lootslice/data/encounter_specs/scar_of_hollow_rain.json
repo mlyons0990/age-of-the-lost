@@ -1,0 +1,78 @@
+{
+ "zone": "scar_of_hollow_rain",
+ "levels": [
+  18,
+  19
+ ],
+ "packs": 14,
+ "seed": 793,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "scar_of_hollow_rain_0",
+    "scar_of_hollow_rain_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "scar_of_hollow_rain_1",
+    "scar_of_hollow_rain_1",
+    "scar_of_hollow_rain_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "scar_of_hollow_rain_0",
+    "scar_of_hollow_rain_1",
+    "scar_of_hollow_rain_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "scar_of_hollow_rain_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "scar_of_hollow_rain_2",
+    "scar_of_hollow_rain_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "scar_of_hollow_rain_0",
+    "scar_of_hollow_rain_0",
+    "scar_of_hollow_rain_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6700,
+    4123
+   ],
+   "types": [],
+   "boss": "scar_of_hollow_rain_boss_u",
+   "boss_type": "scar_of_hollow_rain_boss",
+   "boss_name": "Choir Ambush Leader",
+   "needs_quest": "Q_A02_13"
+  }
+ ],
+ "keep_clear": [
+  [
+   6700,
+   4123,
+   700
+  ]
+ ]
+}

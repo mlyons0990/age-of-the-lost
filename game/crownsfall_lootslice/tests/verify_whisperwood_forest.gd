@@ -58,7 +58,8 @@ func _run() -> void:
 	var miss := Vector2(a.global_position.x - to.x, a.global_position.z - to.z).length()
 	check(miss < 0.8, "Hero walks from the Crownsfall exit to the waypoint glade (%.2f m off, %.0f s)" % [miss, t])
 	var exits: Array = lab.zone["exits"]
-	check(exits.size() == 3 and exits[0]["to"] == "crownsfall" and exits[1]["to"] == "hollowmere" and exits[2]["to"] == "mossbarrow_crypts", "Exits to Crownsfall (west path end), Hollowmere (mossy arch), Mossbarrow (Barrow Stair)")
+	var tos := exits.map(func(e): return String(e["to"]))
+	check(exits.size() == 4 and "kingsroad_fields" in tos and "hollowmere" in tos and "mossbarrow_crypts" in tos and "silverroot_grove" in tos, "Exits: Kingsroad Fields (west path end), Hollowmere (mossy arch), Mossbarrow (Barrow Stair), Silverroot (Fae Ring) %s" % [tos])
 	var trees := 0
 	var catp: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/kit/forest_hf/catalog.json"))["props"]
 	for p in lab.zone["props"]:

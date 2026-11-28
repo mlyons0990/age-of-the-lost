@@ -1,0 +1,83 @@
+{
+ "zone": "bramblewatch",
+ "levels": [
+  2,
+  3
+ ],
+ "packs": 30,
+ "seed": 111,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "bramblewatch_0",
+    "bramblewatch_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "bramblewatch_1",
+    "bramblewatch_1",
+    "bramblewatch_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "bramblewatch_0",
+    "bramblewatch_1",
+    "bramblewatch_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "bramblewatch_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "bramblewatch_2",
+    "bramblewatch_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "bramblewatch_0",
+    "bramblewatch_0",
+    "bramblewatch_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    2490,
+    3910
+   ],
+   "types": [],
+   "boss": "bramblewatch_boss_u",
+   "boss_type": "bramblewatch_boss",
+   "boss_name": "Scavenger Chief Kettle",
+   "needs_quest": "Q_A01_03"
+  }
+ ],
+ "keep_clear": [
+  [
+   7319,
+   1936,
+   700
+  ],
+  [
+   2490,
+   3910,
+   700
+  ]
+ ]
+}

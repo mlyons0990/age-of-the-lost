@@ -52,10 +52,13 @@ func _run() -> void:
 	var kinds := {}
 	for m in ms: kinds[m["kind"]] = int(kinds.get(m["kind"], 0)) + 1
 	print("markers ", kinds)
-	check(kinds.get("hero", 0) == 1 and kinds.get("exit", 0) == 3, "Zone map shows the hero and the exits (Crownsfall, Hollowmere, Barrow Stair)")
-	check(kinds.get("quest", 0) == 3, "Zone map shows the 3 Lost Tomes objectives")
+	check(kinds.get("hero", 0) == 1 and kinds.get("exit", 0) == 4, "Zone map shows the hero and the four exits (Kingsroad Fields, Hollowmere, Mossbarrow Crypts, Silverroot Grove)")
+	var road_q := 0
+	for m in wm.zone_markers("kingsroad_fields"): if m["kind"] == "quest": road_q += 1
+	check(road_q == 3, "The Kingsroad Fields map shows the 3 Courier's Waymark objectives (%d)" % road_q)
 	check(kinds.get("landmark", 0) >= 1, "Zone map shows the points of interest already explored")
-	check(not kinds.has("secret") and kinds.get("landmark", 0) < 5, "Unexplored places (incl. the secret Fae Ring) stay hidden")
+	var all_pois: int = lab.zone.get("map_pois", []).size()
+	check(kinds.get("landmark", 0) < all_pois, "Unexplored places stay hidden (%d of %d shown)" % [kinds.get("landmark", 0), all_pois])
 	var unlocked: bool = lab.waypoint_net.is_unlocked("whisperwood_glade")
 	check(unlocked and kinds.get("waypoint", 0) == 1, "Waypoint appears on the map once discovered")
 	await _shot("zone")

@@ -9,208 +9,303 @@
  "pitch": 31.0,
  "hero_px_1080": 125.0,
  "ground_base": "dirt",
- "seed": 31,
+ "seed": 8744,
  "paths": [
   {
    "pts": [
     [
-     -80,
-     2470
+     5901,
+     2786
     ],
     [
-     900,
-     2470
+     4965,
+     2684
     ],
     [
-     1800,
-     2470
+     4178,
+     2297
     ]
    ],
    "width": 330,
-   "layer": "flagstone"
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     1800,
-     2470
+     4178,
+     2297
     ],
     [
-     2300,
-     1900
+     3993,
+     1742
     ],
     [
-     2600,
-     1500
+     3774,
+     1195
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 296,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     1800,
-     2470
+     3774,
+     1195
     ],
     [
-     2300,
-     3100
+     2831,
+     930
     ],
     [
-     2600,
-     3600
+     1828,
+     995
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 316,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2600,
-     1500
+     5901,
+     2786
     ],
     [
-     3400,
-     1700
+     5597,
+     3339
     ],
     [
-     4000,
-     2470
+     5291,
+     3892
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 262,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2600,
-     3600
+     1828,
+     995
     ],
     [
-     3400,
-     3300
+     1964,
+     1580
     ],
     [
-     4000,
-     2470
+     1876,
+     2171
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 335,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     4000,
-     2470
+     3774,
+     1195
     ],
     [
-     4900,
-     2000
+     4930,
+     1186
     ],
     [
-     5760,
-     1500
+     6048,
+     1408
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 280,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     4000,
-     2470
+     1876,
+     2171
     ],
     [
-     5000,
-     2900
+     2206,
+     2871
     ],
     [
-     6000,
-     3300
+     2499,
+     3582
+    ]
+   ],
+   "width": 314,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6048,
+     1408
     ],
     [
-     6600,
-     3400
+     4012,
+     1941
+    ],
+    [
+     1876,
+     2171
+    ]
+   ],
+   "width": 331,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1828,
+     995
+    ],
+    [
+     2273,
+     2272
+    ],
+    [
+     2499,
+     3582
+    ]
+   ],
+   "width": 328,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1370
+    ],
+    [
+     840,
+     1370
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1370
+    ],
+    [
+     1828,
+     995
     ]
    ],
    "width": 300,
-   "layer": "flagstone"
+   "layer": "flagstone",
+   "wander": 0.6
   }
  ],
  "patches": [
   {
    "at": [
-    700,
-    2470
+    5901,
+    2786
    ],
-   "r": 520,
+   "r": 462,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    1800,
-    2470
+    3774,
+    1195
    ],
-   "r": 420,
+   "r": 527,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    2600,
-    1500
+    1876,
+    2171
    ],
-   "r": 620,
+   "r": 623,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    2600,
-    3600
+    2499,
+    3582
    ],
-   "r": 620,
+   "r": 614,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    4000,
-    2470
+    5291,
+    3892
    ],
-   "r": 700,
+   "r": 527,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    5760,
-    1500
+    4178,
+    2297
    ],
-   "r": 640,
+   "r": 431,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    6600,
-    3400
+    6048,
+    1408
    ],
-   "r": 760,
+   "r": 592,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1828,
+    995
+   ],
+   "r": 576,
    "layer": "flagstone",
    "squash": 0.515
   }
  ],
  "clear": [
   [
-   160,
-   2470,
+   140,
+   1370,
+   380
+  ],
+  [
+   5901,
+   2786,
+   300
+  ],
+  [
+   6048,
+   1408,
+   300
+  ],
+  [
+   5291,
+   3892,
    300
   ]
  ],
@@ -223,7 +318,7 @@
    ]
   ],
   "spacing": 99999,
-  "cut": 0.72,
+  "cut": 0.82,
   "grove_px": 1500,
   "frame": 0.45,
   "frame_px": 900,
@@ -247,10 +342,26 @@
   ],
   "clumps_per_mpx": 0,
   "clumps": {
-   "ferns": {
-    "w": 4,
+   "mixed": {
+    "w": 2,
     "n": [
-     3,
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
      6
     ],
     "r": 170,
@@ -259,58 +370,18 @@
      "b_fern"
     ]
    },
-   "lavender": {
-    "w": 2,
-    "n": [
-     3,
-     7
-    ],
-    "r": 160,
-    "props": [
-     "a_lavender",
-     "b_lavender"
-    ]
-   },
-   "white": {
-    "w": 2,
-    "n": [
-     2,
-     5
-    ],
-    "r": 140,
-    "props": [
-     "a_shrub_white",
-     "b_shrub_white"
-    ]
-   },
    "bushes": {
-    "w": 3,
+    "w": 1,
     "n": [
      2,
-     4
+     6
     ],
-    "r": 150,
+    "r": 170,
     "props": [
      "a_bush_round",
      "b_bush_round",
      "a_bush_yellow",
      "b_bush_yellow"
-    ]
-   },
-   "mixed": {
-    "w": 3,
-    "n": [
-     3,
-     6
-    ],
-    "r": 180,
-    "props": [
-     "a_fern",
-     "a_grass_tall",
-     "b_grass_tall",
-     "a_lavender",
-     "b_shrub_white",
-     "b_bush_round"
     ]
    }
   },
@@ -335,7 +406,7 @@
   "litter_ground": 0.65,
   "max_canopy_cover": 0.06,
   "cover": {
-   "per_mpx": 55,
+   "per_mpx": 10,
    "props": [
     "ga_tallgrass",
     "ga_longgrass",
@@ -376,7 +447,7 @@
  },
  "edges": [],
  "light": {
-  "canopy": 0.55,
+  "canopy": 0.5,
   "contact": 0.4,
   "pools": 0.3,
   "dapple_px": 40,
@@ -384,59 +455,65 @@
    0.3,
    0.16
   ],
-  "exposure": 0.75,
+  "exposure": 0.78,
   "overhead": 0.0,
   "over_density": 0,
   "tree_mist": 0.0,
   "open": [
    [
-    700,
-    2470,
-    416.0,
+    5901,
+    2786,
+    392.7,
     0.6
    ],
    [
-    1800,
-    2470,
-    336.0,
+    3774,
+    1195,
+    447.95,
     0.6
    ],
    [
-    2600,
-    1500,
-    496.0,
+    1876,
+    2171,
+    529.55,
     0.6
    ],
    [
-    2600,
-    3600,
-    496.0,
+    2499,
+    3582,
+    521.9,
     0.6
    ],
    [
-    4000,
-    2470,
-    560.0,
+    5291,
+    3892,
+    447.95,
     0.6
    ],
    [
-    5760,
-    1500,
-    512.0,
+    4178,
+    2297,
+    366.34999999999997,
     0.6
    ],
    [
-    6600,
-    3400,
-    608.0,
+    6048,
+    1408,
+    503.2,
+    0.6
+   ],
+   [
+    1828,
+    995,
+    489.59999999999997,
     0.6
    ]
   ],
   "shafts": [
    [
-    5760,
-    1300,
-    380
+    5901,
+    2566,
+    420
    ]
   ],
   "prop_mist": false,
@@ -444,11 +521,11 @@
  },
  "waypoints": [
   {
-   "id": "mossbarrow_hall",
-   "name": "Barrow Hall",
+   "id": "mossbarrow_crypts_wp",
+   "name": "Mossbarrow Crypts",
    "at": [
-    4000,
-    2470
+    4178,
+    2297
    ],
    "radius_px": 200
   }
@@ -459,12 +536,12 @@
    "to": "whisperwood_forest",
    "at": [
     140,
-    2470
+    1370
    ],
    "r": 170,
    "arrive": [
     9250,
-    900
+    1000
    ]
   }
  ],
@@ -489,99 +566,252 @@
   ]
  ],
  "spawn": [
-  620,
-  2470
+  560,
+  1370
  ],
  "targets": [],
  "map_pois": [
   {
-   "name": "Barrow Stair",
+   "name": "The Paladin's Tomb",
    "kind": "landmark",
    "at": [
-    160,
-    2470
+    5901,
+    2786
    ],
-   "blurb": "Up to the Standing Stones in the Whisperwood."
+   "blurb": "Burial crypt under the Whisperwood's standing stones"
   },
   {
    "name": "Hall of Shades",
    "kind": "landmark",
    "at": [
-    2600,
-    1500
+    6048,
+    1408
    ],
-   "blurb": "Burial niches; the dead here do not rest."
-  },
-  {
-   "name": "Ossuary",
-   "kind": "cache",
-   "at": [
-    2600,
-    3600
-   ],
-   "blurb": "Bones stacked to the ceiling, and something under them."
-  },
-  {
-   "name": "Barrow Hall",
-   "kind": "landmark",
-   "at": [
-    4000,
-    2470
-   ],
-   "blurb": "The crypt's crossing; a waypoint stone still glows."
-  },
-  {
-   "name": "The Paladin's Tomb",
-   "kind": "secret",
-   "at": [
-    5760,
-    1500
-   ],
-   "blurb": "A Concord paladin lies here in armour no rust has touched."
+   "blurb": "Burial crypt under the Whisperwood's standing stones"
   },
   {
    "name": "Barrow-Lord's Vault",
    "kind": "landmark",
    "at": [
-    6600,
-    3400
+    5291,
+    3892
    ],
-   "blurb": "The deepest vault. Its lord does not sleep."
+   "blurb": "Burial crypt under the Whisperwood's standing stones"
+  },
+  {
+   "name": "Whisperwood",
+   "kind": "landmark",
+   "at": [
+    140,
+    1370
+   ],
+   "blurb": "To Whisperwood."
   }
  ],
- "world_id": "mossbarrow",
+ "world_id": "mossbarrow_crypts",
  "grade": {
   "mul": [
-   0.62,
-   0.62,
-   0.68
+   0.6,
+   0.58,
+   0.7
   ],
   "desat": 0.45,
   "lift": [
    0.03,
-   0.03,
-   0.05,
+   0.02,
+   0.06,
    1.0
   ],
   "mist": [
+   0.56,
    0.5,
-   0.52,
-   0.6
+   0.7
   ],
   "water": [
-   0.15,
-   0.2,
+   0.18,
+   0.16,
    0.24
   ]
  },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5901,
+    2786
+   ],
+   "r": 438.9,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3774,
+    1195
+   ],
+   "r": 500.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1876,
+    2171
+   ],
+   "r": 591.85,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2499,
+    3582
+   ],
+   "r": 583.3,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5291,
+    3892
+   ],
+   "r": 500.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4178,
+    2297
+   ],
+   "r": 409.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6048,
+    1408
+   ],
+   "r": 562.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1828,
+    995
+   ],
+   "r": 547.1999999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
  "enclose": {
   "props": [
-   "a_rock_tall",
-   "b_rock_tall",
+   "a_rock_flat",
+   "b_rock_flat",
    "a_rock_pair",
    "b_rock_pair",
-   "a_rock_flat",
-   "b_rock_flat"
+   "a_rock_tall",
+   "b_rock_tall"
   ],
   "spacing": 240,
   "fill": 0.5,

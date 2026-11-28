@@ -1,56 +1,56 @@
 {
  "zone": "shattered_observatory",
  "levels": [
-  13,
-  14
+  8,
+  9
  ],
- "packs": 16,
- "seed": 59,
+ "packs": 14,
+ "seed": 480,
  "spacing": 700,
  "groups": [
   [
    5,
    [
-    "star_wraith",
-    "star_wraith"
+    "shattered_observatory_0",
+    "shattered_observatory_0"
    ]
   ],
   [
    3,
    [
-    "astral_mote",
-    "astral_mote",
-    "astral_mote"
+    "shattered_observatory_1",
+    "shattered_observatory_1",
+    "shattered_observatory_1"
    ]
   ],
   [
    3,
    [
-    "star_wraith",
-    "astral_mote",
-    "astral_mote"
+    "shattered_observatory_0",
+    "shattered_observatory_1",
+    "shattered_observatory_1"
    ]
   ],
   [
    2,
    [
-    "ruin_golem"
+    "shattered_observatory_2"
    ],
    true
   ],
   [
    2,
    [
-    "ruin_golem",
-    "star_wraith"
+    "shattered_observatory_2",
+    "shattered_observatory_0"
    ]
   ],
   [
    1,
    [
-    "star_wraith",
-    "star_wraith",
-    "star_wraith"
+    "shattered_observatory_0",
+    "shattered_observatory_0",
+    "shattered_observatory_0"
    ],
    true
   ]
@@ -58,15 +58,21 @@
  "fixed": [
   {
    "at": [
-    6700,
-    2470
+    6580,
+    1411
    ],
    "types": [],
-   "boss": "orrery_golem",
-   "boss_type": "orrery_golem",
+   "boss": "shattered_observatory_boss_u",
+   "boss_type": "shattered_observatory_boss",
    "boss_name": "The Orrery Golem",
-   "needs_quest": "the_star_chart"
+   "needs_quest": "Q_A01_R17"
   }
  ],
- "keep_clear": []
+ "keep_clear": [
+  [
+   6580,
+   1411,
+   700
+  ]
+ ]
 }

@@ -1,0 +1,127 @@
+{
+ "zone": "highward_steps",
+ "levels": [
+  3,
+  4
+ ],
+ "packs": 18,
+ "seed": 383,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "highward_steps_0",
+    "highward_steps_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "highward_steps_1",
+    "highward_steps_1",
+    "highward_steps_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "highward_steps_0",
+    "highward_steps_1",
+    "highward_steps_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "highward_steps_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "highward_steps_2",
+    "highward_steps_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "highward_steps_0",
+    "highward_steps_0",
+    "highward_steps_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    4331,
+    2583
+   ],
+   "types": [
+    "highward_steps_1",
+    "highward_steps_1"
+   ],
+   "elite": false,
+   "guardian": "highward_steps_g1",
+   "elite_type": "highward_steps_0",
+   "elite_name": "Relic Thief Sallow",
+   "page": "Q_A01_09_1"
+  },
+  {
+   "at": [
+    1039,
+    1006
+   ],
+   "types": [
+    "highward_steps_1",
+    "highward_steps_1"
+   ],
+   "elite": false,
+   "guardian": "highward_steps_g2",
+   "elite_type": "highward_steps_1",
+   "elite_name": "The Gatebreaker",
+   "page": "Q_A01_09_2"
+  },
+  {
+   "at": [
+    946,
+    4236
+   ],
+   "types": [
+    "highward_steps_1",
+    "highward_steps_1"
+   ],
+   "elite": false,
+   "guardian": "highward_steps_g3",
+   "elite_type": "highward_steps_2",
+   "elite_name": "Rift-Touched Smuggler",
+   "page": "Q_A01_09_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   4331,
+   2583,
+   700
+  ],
+  [
+   4331,
+   2583,
+   700
+  ],
+  [
+   1039,
+   1006,
+   700
+  ],
+  [
+   946,
+   4236,
+   700
+  ]
+ ]
+}

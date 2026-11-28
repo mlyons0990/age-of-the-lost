@@ -1,0 +1,78 @@
+{
+ "zone": "orchard_of_hours",
+ "levels": [
+  22,
+  23
+ ],
+ "packs": 30,
+ "seed": 499,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "orchard_of_hours_0",
+    "orchard_of_hours_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "orchard_of_hours_1",
+    "orchard_of_hours_1",
+    "orchard_of_hours_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "orchard_of_hours_0",
+    "orchard_of_hours_1",
+    "orchard_of_hours_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "orchard_of_hours_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "orchard_of_hours_2",
+    "orchard_of_hours_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "orchard_of_hours_0",
+    "orchard_of_hours_0",
+    "orchard_of_hours_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3163,
+    722
+   ],
+   "types": [],
+   "boss": "orchard_of_hours_boss_u",
+   "boss_type": "orchard_of_hours_boss",
+   "boss_name": "The Season Engine",
+   "needs_quest": "Q_A03_04"
+  }
+ ],
+ "keep_clear": [
+  [
+   3163,
+   722,
+   700
+  ]
+ ]
+}

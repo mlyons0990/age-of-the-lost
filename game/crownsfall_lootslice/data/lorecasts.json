@@ -5,19 +5,19 @@
    "id": "exalted_paladin",
    "zone": "mossbarrow_crypts",
    "at": [
-    5760,
-    1500
+    5901,
+    2786
    ],
    "figure": "Aurelian Dace, Exalted Paladin",
    "remains": "The Exalted Paladin's Remains",
    "skill": "res://data/skills/lore/radiant_spear.tres",
    "echo": {
-    "type": "exalted_echo",
+    "type": "mossbarrow_crypts_echo",
     "name": "Echo of Aurelian Dace"
    },
    "lore": [
     "The armour is Concord-forged, untouched by rust after an age in the dark.",
-    "As you kneel, light gathers into a man in that armour: Aurelian Dace, Exalted of the Radiant Order. He does not know the Concord has fallen. He knows only that you are not one of his.",
+    "As you kneel, light gathers into a man in that armour: Aurelian Dace, Exalted of the Concord's guard. He does not know the Concord has fallen. He knows only that you are not one of his.",
     "He has fallen to you, and in falling he understands. The last of his light is yours: the Radiant Spear."
    ]
   },
@@ -25,19 +25,19 @@
    "id": "drowned_oracle",
    "zone": "sunken_chapel",
    "at": [
-    5600,
-    3500
+    5212,
+    4158
    ],
    "figure": "Merrow Ashe, Oracle of the Tides",
    "remains": "The Drowned Oracle's Pool",
    "skill": "res://data/skills/lore/tidecall.tres",
    "echo": {
-    "type": "oracle_echo",
+    "type": "sunken_chapel_echo",
     "name": "Echo of Merrow Ashe"
    },
    "lore": [
     "The pool is perfectly still. Under it lies a woman in a Concord oracle's robes, eyes open, watching a sky that is not there.",
-    "Her echo rises dripping. 'The tide of hours is turning,' she says. 'Who let you into the Chapel? The Archon forbade it.'",
+    "Her echo rises dripping. 'The tide of hours is turning. Who let you into the Chapel? The Chancellor forbade it.'",
     "She sinks back into the pool, and the stillness of it stays with you: Tidecall."
    ]
   },
@@ -45,14 +45,14 @@
    "id": "corsair_duelist",
    "zone": "smugglers_grotto",
    "at": [
-    2100,
-    1500
+    6485,
+    1322
    ],
    "figure": "Serrin Vale, Corsair Duelist",
    "remains": "The Duelist's Alcove",
    "skill": "res://data/skills/lore/riposte_flurry.tres",
    "echo": {
-    "type": "duelist_echo",
+    "type": "smugglers_grotto_echo",
     "name": "Echo of Serrin Vale"
    },
    "lore": [
@@ -65,21 +65,42 @@
    "id": "rift_sentinel",
    "zone": "brackwater_ruins",
    "at": [
-    9400,
-    2250
+    2480,
+    2425
    ],
    "figure": "Sentinel Oris, of the Brackwater Watch",
    "remains": "The Sentinel's Post",
    "skill": "res://data/skills/lore/phase_step.tres",
    "echo": {
-    "type": "sentinel_echo",
+    "type": "brackwater_ruins_echo",
     "name": "Echo of Sentinel Oris"
    },
    "lore": [
     "A sentinel stands at his post, flickering. For a heartbeat the forum behind him is whole and full of people.",
-    "'Halt. Brackwater is closed by order of the Archon. The hours are unsafe.' He raises his spear at you, and at something behind you.",
+    "'Halt. Brackwater is closed by order of the Chancellor. The hours are unsafe.' He raises his spear at you, and at something behind you.",
     "As he fades he steps sideways out of time and back again, and you learn how: Phase Step."
    ]
+  },
+  {
+   "id": "unremembered_hunter",
+   "zone": "silverroot_grove",
+   "at": [
+    3056,
+    1699
+   ],
+   "figure": "Hennick, the Unremembered Hunter",
+   "remains": "The Old Hunter's Bow",
+   "skill": "res://data/skills/lore/remembered_volley.tres",
+   "echo": {
+    "type": "silverroot_grove_echo",
+    "name": "Echo of Hennick"
+   },
+   "lore": [
+    "A bow hangs in a tree that is two trees at once. The amber leaves around it do not fall.",
+    "Hennick's echo nocks an arrow at you. 'This is my hunt. Whose record are you?'",
+    "He lowers the bow and fades into the amber. His last hunt stays with you: Remembered Volley."
+   ]
   }
- ]
+ ],
+ "requires_quest": "Q_A01_06"
 }

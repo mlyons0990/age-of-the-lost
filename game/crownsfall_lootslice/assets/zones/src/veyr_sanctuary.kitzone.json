@@ -1,0 +1,832 @@
+{
+ "name": "Veyr Sanctuary",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 9209,
+ "paths": [
+  {
+   "pts": [
+    [
+     2134,
+     4774
+    ],
+    [
+     2134,
+     4470
+    ],
+    [
+     2472,
+     3928
+    ],
+    [
+     2888,
+     3406
+    ],
+    [
+     3280,
+     2877
+    ],
+    [
+     3290,
+     2253
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     1966,
+     190
+    ],
+    [
+     1966,
+     494
+    ],
+    [
+     2352,
+     914
+    ],
+    [
+     2302,
+     1488
+    ],
+    [
+     2568,
+     1950
+    ],
+    [
+     3290,
+     2253
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5692,
+     4774
+    ],
+    [
+     5692,
+     4470
+    ],
+    [
+     5166,
+     3586
+    ],
+    [
+     3756,
+     3166
+    ],
+    [
+     3290,
+     2253
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     1875,
+     4774
+    ],
+    [
+     1875,
+     4470
+    ],
+    [
+     2891,
+     3899
+    ],
+    [
+     2902,
+     3018
+    ],
+    [
+     3290,
+     2253
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2472,
+     3928
+    ],
+    [
+     1980,
+     3940
+    ],
+    [
+     1648,
+     3791
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2408,
+     1672
+    ],
+    [
+     2770,
+     1699
+    ],
+    [
+     3629,
+     1436
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5639,
+     4381
+    ],
+    [
+     6386,
+     4349
+    ],
+    [
+     6939,
+     4154
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6204,
+    2153
+   ],
+   "r": 319,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5646,
+    3414
+   ],
+   "r": 343,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4169,
+    2857
+   ],
+   "r": 316,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5488,
+    1891
+   ],
+   "r": 278,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5295,
+    1268
+   ],
+   "r": 395,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1495,
+    1607
+   ],
+   "r": 464,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5079,
+    4399
+   ],
+   "r": 477,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6772,
+    1821
+   ],
+   "r": 409,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4151,
+    1567
+   ],
+   "r": 340,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6680,
+    2265
+   ],
+   "r": 396,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3290,
+    2253
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1648,
+    3791
+   ],
+   "r": 473,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3629,
+    1436
+   ],
+   "r": 451,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6939,
+    4154
+   ],
+   "r": 402,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4956,
+    3180
+   ],
+   "r": 237,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6767,
+    2073
+   ],
+   "r": 233,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   2134,
+   4774,
+   380
+  ],
+  [
+   1966,
+   190,
+   380
+  ],
+  [
+   5692,
+   4774,
+   380
+  ],
+  [
+   1875,
+   4774,
+   380
+  ],
+  [
+   1648,
+   3791,
+   300
+  ],
+  [
+   3629,
+   1436,
+   300
+  ],
+  [
+   6939,
+   4154,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    1648,
+    3791,
+    560,
+    0.45
+   ],
+   [
+    3629,
+    1436,
+    560,
+    0.45
+   ],
+   [
+    6939,
+    4154,
+    560,
+    0.45
+   ],
+   [
+    3290,
+    2253,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3290,
+    2033,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "veyr_sanctuary_wp",
+   "name": "Veyr Sanctuary",
+   "at": [
+    3290,
+    2253
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Riftglass Caldera",
+   "to": "riftglass_caldera",
+   "at": [
+    2134,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5894,
+    526
+   ]
+  },
+  {
+   "name": "Archive of Forbidden Futures",
+   "to": "archive_of_forbidden_futures",
+   "at": [
+    1966,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    2156
+   ]
+  },
+  {
+   "name": "The Sentinel's Wall",
+   "to": "the_sentinels_wall",
+   "at": [
+    5692,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    9623,
+    526
+   ]
+  },
+  {
+   "name": "Meridian's Descent",
+   "to": "meridians_descent",
+   "at": [
+    1875,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3150
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2134,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Phase Shelters",
+   "kind": "landmark",
+   "at": [
+    1648,
+    3791
+   ],
+   "blurb": "Phase shelters under shifting stars"
+  },
+  {
+   "name": "Shifting Stars",
+   "kind": "landmark",
+   "at": [
+    3629,
+    1436
+   ],
+   "blurb": "Phase shelters under shifting stars"
+  },
+  {
+   "name": "Observatory Steps",
+   "kind": "landmark",
+   "at": [
+    6939,
+    4154
+   ],
+   "blurb": "Phase shelters under shifting stars"
+  },
+  {
+   "name": "Riftglass Caldera",
+   "kind": "landmark",
+   "at": [
+    2134,
+    4774
+   ],
+   "blurb": "To Riftglass Caldera."
+  },
+  {
+   "name": "Archive of Forbidden Futures",
+   "kind": "landmark",
+   "at": [
+    1966,
+    190
+   ],
+   "blurb": "To Archive of Forbidden Futures."
+  },
+  {
+   "name": "The Sentinel's Wall",
+   "kind": "landmark",
+   "at": [
+    5692,
+    4774
+   ],
+   "blurb": "To The Sentinel's Wall."
+  },
+  {
+   "name": "Meridian's Descent",
+   "kind": "landmark",
+   "at": [
+    1875,
+    4774
+   ],
+   "blurb": "To Meridian's Descent."
+  }
+ ],
+ "world_id": "veyr_sanctuary",
+ "grade": {
+  "mul": [
+   0.88,
+   0.9,
+   1.08
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.04,
+   0.05,
+   0.1,
+   1.0
+  ],
+  "mist": [
+   0.72,
+   0.76,
+   0.95
+  ],
+  "water": [
+   0.28,
+   0.36,
+   0.6
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    1648,
+    3791
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    3629,
+    1436
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6939,
+    4154
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

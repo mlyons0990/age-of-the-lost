@@ -1,0 +1,83 @@
+{
+ "zone": "mossbell_hamlet",
+ "levels": [
+  4,
+  5
+ ],
+ "packs": 20,
+ "seed": 812,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "mossbell_hamlet_0",
+    "mossbell_hamlet_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "mossbell_hamlet_1",
+    "mossbell_hamlet_1",
+    "mossbell_hamlet_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "mossbell_hamlet_0",
+    "mossbell_hamlet_1",
+    "mossbell_hamlet_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "mossbell_hamlet_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "mossbell_hamlet_2",
+    "mossbell_hamlet_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "mossbell_hamlet_0",
+    "mossbell_hamlet_0",
+    "mossbell_hamlet_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    4929,
+    1909
+   ],
+   "types": [],
+   "boss": "mossbell_hamlet_boss_u",
+   "boss_type": "mossbell_hamlet_boss",
+   "boss_name": "The Millhaunt",
+   "needs_quest": "Q_A01_05"
+  }
+ ],
+ "keep_clear": [
+  [
+   739,
+   1675,
+   700
+  ],
+  [
+   4929,
+   1909,
+   700
+  ]
+ ]
+}

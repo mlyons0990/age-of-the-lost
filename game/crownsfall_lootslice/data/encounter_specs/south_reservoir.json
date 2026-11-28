@@ -1,0 +1,78 @@
+{
+ "zone": "south_reservoir",
+ "levels": [
+  32,
+  33
+ ],
+ "packs": 30,
+ "seed": 576,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "south_reservoir_0",
+    "south_reservoir_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "south_reservoir_1",
+    "south_reservoir_1",
+    "south_reservoir_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "south_reservoir_0",
+    "south_reservoir_1",
+    "south_reservoir_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "south_reservoir_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "south_reservoir_2",
+    "south_reservoir_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "south_reservoir_0",
+    "south_reservoir_0",
+    "south_reservoir_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    4608,
+    2040
+   ],
+   "types": [],
+   "boss": "south_reservoir_boss_u",
+   "boss_type": "south_reservoir_boss",
+   "boss_name": "The Reservoir Breaker",
+   "needs_quest": "Q_A04_03"
+  }
+ ],
+ "keep_clear": [
+  [
+   4608,
+   2040,
+   700
+  ]
+ ]
+}

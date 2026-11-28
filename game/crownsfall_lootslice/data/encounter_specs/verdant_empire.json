@@ -1,0 +1,78 @@
+{
+ "zone": "verdant_empire",
+ "levels": [
+  42,
+  43
+ ],
+ "packs": 30,
+ "seed": 343,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "verdant_empire_0",
+    "verdant_empire_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "verdant_empire_1",
+    "verdant_empire_1",
+    "verdant_empire_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "verdant_empire_0",
+    "verdant_empire_1",
+    "verdant_empire_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "verdant_empire_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "verdant_empire_2",
+    "verdant_empire_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "verdant_empire_0",
+    "verdant_empire_0",
+    "verdant_empire_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    7258,
+    1669
+   ],
+   "types": [],
+   "boss": "verdant_empire_boss_u",
+   "boss_type": "verdant_empire_boss",
+   "boss_name": "The Root That Remembers",
+   "needs_quest": "Q_A05_04"
+  }
+ ],
+ "keep_clear": [
+  [
+   7258,
+   1669,
+   700
+  ]
+ ]
+}

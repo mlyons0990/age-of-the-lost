@@ -1,0 +1,132 @@
+{
+ "zone": "preservation_laboratory",
+ "levels": [
+  29,
+  30
+ ],
+ "packs": 14,
+ "seed": 952,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "preservation_laboratory_0",
+    "preservation_laboratory_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "preservation_laboratory_1",
+    "preservation_laboratory_1",
+    "preservation_laboratory_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "preservation_laboratory_0",
+    "preservation_laboratory_1",
+    "preservation_laboratory_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "preservation_laboratory_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "preservation_laboratory_2",
+    "preservation_laboratory_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "preservation_laboratory_0",
+    "preservation_laboratory_0",
+    "preservation_laboratory_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6143,
+    1903
+   ],
+   "types": [
+    "preservation_laboratory_1",
+    "preservation_laboratory_1"
+   ],
+   "elite": false,
+   "guardian": "preservation_laboratory_g1",
+   "elite_type": "preservation_laboratory_0",
+   "elite_name": "Unstable Echo Subject",
+   "page": "Q_A03_14_1"
+  },
+  {
+   "at": [
+    5493,
+    3434
+   ],
+   "types": [
+    "preservation_laboratory_1",
+    "preservation_laboratory_1"
+   ],
+   "elite": false,
+   "guardian": "preservation_laboratory_g2",
+   "elite_type": "preservation_laboratory_1",
+   "elite_name": "Containment Breach",
+   "page": "Q_A03_14_2"
+  },
+  {
+   "at": [
+    4172,
+    1417
+   ],
+   "types": [
+    "preservation_laboratory_1",
+    "preservation_laboratory_1"
+   ],
+   "elite": false,
+   "guardian": "preservation_laboratory_g3",
+   "elite_type": "preservation_laboratory_2",
+   "elite_name": "The Mercy Construct",
+   "page": "Q_A03_14_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   3226,
+   3371,
+   700
+  ],
+  [
+   3386,
+   3371,
+   700
+  ],
+  [
+   6143,
+   1903,
+   700
+  ],
+  [
+   5493,
+   3434,
+   700
+  ],
+  [
+   4172,
+   1417,
+   700
+  ]
+ ]
+}

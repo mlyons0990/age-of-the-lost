@@ -1,5 +1,5 @@
 {
- "name": "The Sunken Chapel",
+ "name": "Sunken Chapel",
  "kit": "assets/kit/forest_hf",
  "size": [
   7680,
@@ -9,254 +9,365 @@
  "pitch": 31.0,
  "hero_px_1080": 125.0,
  "ground_base": "dirt",
- "seed": 37,
+ "seed": 8880,
  "paths": [
   {
    "pts": [
     [
-     -80,
-     2470
+     5196,
+     1429
     ],
     [
-     700,
-     2470
+     4473,
+     1213
+    ],
+    [
+     3818,
+     901
     ]
    ],
-   "width": 330,
-   "layer": "flagstone"
+   "width": 295,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     700,
-     2470
+     3818,
+     901
     ],
     [
-     2000,
-     2470
+     2968,
+     1144
+    ],
+    [
+     2067,
+     1244
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 312,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2000,
-     2470
+     5196,
+     1429
     ],
     [
-     3000,
-     1300
+     5008,
+     2124
+    ],
+    [
+     4511,
+     2731
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 336,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2000,
-     2470
+     4511,
+     2731
     ],
     [
-     3000,
-     3700
+     5354,
+     2816
+    ],
+    [
+     6205,
+     2833
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 313,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     3000,
-     1300
+     4511,
+     2731
     ],
     [
-     4300,
-     2470
+     3642,
+     2939
+    ],
+    [
+     2757,
+     2774
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 329,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     3000,
-     3700
+     2757,
+     2774
     ],
     [
-     4300,
-     2470
+     2740,
+     3314
+    ],
+    [
+     2493,
+     3824
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 316,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     4300,
-     2470
+     6205,
+     2833
     ],
     [
-     5600,
-     1300
+     5628,
+     3462
+    ],
+    [
+     5212,
+     4158
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 287,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     4300,
-     2470
+     2757,
+     2774
     ],
     [
-     5600,
-     3700
+     4266,
+     2390
+    ],
+    [
+     5196,
+     1429
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 273,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     5600,
-     1300
+     3818,
+     901
     ],
     [
-     6800,
-     2470
+     4462,
+     1753
+    ],
+    [
+     4511,
+     2731
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 326,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     5600,
-     3700
+     140,
+     1779
     ],
     [
-     6800,
-     2470
+     840,
+     1779
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1779
+    ],
+    [
+     2067,
+     1244
     ]
    ],
    "width": 300,
-   "layer": "flagstone"
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     3284,
+     4774
+    ],
+    [
+     3284,
+     4214.0
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     3284,
+     4254.0
+    ],
+    [
+     2493,
+     3824
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
   }
  ],
  "patches": [
   {
    "at": [
-    700,
-    2470
+    5196,
+    1429
    ],
-   "r": 520,
+   "r": 531,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    2000,
-    2470
+    2493,
+    3824
    ],
-   "r": 460,
+   "r": 527,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    3000,
-    1300
+    2757,
+    2774
    ],
-   "r": 560,
+   "r": 528,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    3000,
-    3700
+    4511,
+    2731
    ],
-   "r": 560,
+   "r": 496,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    4300,
-    2470
+    5212,
+    4158
    ],
-   "r": 680,
+   "r": 475,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    5600,
-    1300
+    2067,
+    1244
    ],
-   "r": 560,
+   "r": 637,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    5600,
-    3700
+    6205,
+    2833
    ],
-   "r": 600,
+   "r": 533,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    6800,
-    2470
+    3818,
+    901
    ],
-   "r": 700,
+   "r": 430,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    3000,
-    3800
+    2375,
+    3955
    ],
-   "r": 240,
+   "r": 168,
    "layer": "water",
    "squash": 0.52
   },
   {
    "at": [
-    5600,
-    3800
+    5321,
+    4276
    ],
-   "r": 260,
+   "r": 152,
    "layer": "water",
    "squash": 0.52
   },
   {
    "at": [
-    2000,
-    2560
+    1912,
+    1403
    ],
-   "r": 160,
+   "r": 203,
    "layer": "water",
    "squash": 0.52
   }
  ],
  "clear": [
   [
-   160,
-   2470,
+   140,
+   1779,
+   380
+  ],
+  [
+   3284,
+   4774,
+   380
+  ],
+  [
+   6205,
+   2833,
+   300
+  ],
+  [
+   5212,
+   4158,
+   300
+  ],
+  [
+   5196,
+   1429,
    300
   ]
  ],
@@ -269,7 +380,7 @@
    ]
   ],
   "spacing": 99999,
-  "cut": 0.72,
+  "cut": 0.82,
   "grove_px": 1500,
   "frame": 0.45,
   "frame_px": 900,
@@ -293,10 +404,26 @@
   ],
   "clumps_per_mpx": 0,
   "clumps": {
-   "ferns": {
-    "w": 4,
+   "mixed": {
+    "w": 2,
     "n": [
-     3,
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
      6
     ],
     "r": 170,
@@ -305,58 +432,18 @@
      "b_fern"
     ]
    },
-   "lavender": {
-    "w": 2,
-    "n": [
-     3,
-     7
-    ],
-    "r": 160,
-    "props": [
-     "a_lavender",
-     "b_lavender"
-    ]
-   },
-   "white": {
-    "w": 2,
-    "n": [
-     2,
-     5
-    ],
-    "r": 140,
-    "props": [
-     "a_shrub_white",
-     "b_shrub_white"
-    ]
-   },
    "bushes": {
-    "w": 3,
+    "w": 1,
     "n": [
      2,
-     4
+     6
     ],
-    "r": 150,
+    "r": 170,
     "props": [
      "a_bush_round",
      "b_bush_round",
      "a_bush_yellow",
      "b_bush_yellow"
-    ]
-   },
-   "mixed": {
-    "w": 3,
-    "n": [
-     3,
-     6
-    ],
-    "r": 180,
-    "props": [
-     "a_fern",
-     "a_grass_tall",
-     "b_grass_tall",
-     "a_lavender",
-     "b_shrub_white",
-     "b_bush_round"
     ]
    }
   },
@@ -381,7 +468,7 @@
   "litter_ground": 0.65,
   "max_canopy_cover": 0.06,
   "cover": {
-   "per_mpx": 55,
+   "per_mpx": 10,
    "props": [
     "ga_tallgrass",
     "ga_longgrass",
@@ -422,7 +509,7 @@
  },
  "edges": [],
  "light": {
-  "canopy": 0.55,
+  "canopy": 0.5,
   "contact": 0.4,
   "pools": 0.3,
   "dapple_px": 40,
@@ -430,75 +517,65 @@
    0.3,
    0.16
   ],
-  "exposure": 0.75,
+  "exposure": 0.78,
   "overhead": 0.0,
   "over_density": 0,
   "tree_mist": 0.0,
   "open": [
    [
-    700,
-    2470,
-    416.0,
+    5196,
+    1429,
+    451.34999999999997,
     0.6
    ],
    [
-    2000,
-    2470,
-    368.0,
+    2493,
+    3824,
+    447.95,
     0.6
    ],
    [
-    3000,
-    1300,
-    448.0,
+    2757,
+    2774,
+    448.8,
     0.6
    ],
    [
-    3000,
-    3700,
-    448.0,
+    4511,
+    2731,
+    421.59999999999997,
     0.6
    ],
    [
-    4300,
-    2470,
-    544.0,
+    5212,
+    4158,
+    403.75,
     0.6
    ],
    [
-    5600,
-    1300,
-    448.0,
+    2067,
+    1244,
+    541.4499999999999,
     0.6
    ],
    [
-    5600,
-    3700,
-    480.0,
+    6205,
+    2833,
+    453.05,
     0.6
    ],
    [
-    6800,
-    2470,
-    560.0,
+    3818,
+    901,
+    365.5,
     0.6
    ]
   ],
   "shafts": [
    [
-    4300,
-    2270,
-    380
-   ],
-   [
-    5600,
-    3500,
-    380
-   ],
-   [
-    6800,
-    2270,
-    380
+    6205,
+    2613,
+    420
    ]
   ],
   "prop_mist": false,
@@ -506,11 +583,11 @@
  },
  "waypoints": [
   {
-   "id": "chapel_nave",
-   "name": "Flooded Nave",
+   "id": "sunken_chapel_wp",
+   "name": "Sunken Chapel",
    "at": [
-    4300,
-    2470
+    4511,
+    2731
    ],
    "radius_px": 200
   }
@@ -521,12 +598,25 @@
    "to": "hollowmere",
    "at": [
     140,
-    2470
+    1779
    ],
    "r": 170,
    "arrive": [
-    10300,
-    3200
+    8245,
+    4438
+   ]
+  },
+  {
+   "name": "Cathedral of the Nameless",
+   "to": "cathedral_of_the_nameless",
+   "at": [
+    3284,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1509
    ]
   }
  ],
@@ -551,90 +641,261 @@
   ]
  ],
  "spawn": [
-  620,
-  2470
+  560,
+  1779
  ],
  "targets": [],
  "map_pois": [
   {
-   "name": "Chapel Steps",
-   "kind": "landmark",
-   "at": [
-    160,
-    2470
-   ],
-   "blurb": "Up into Hollowmere, under the chapel's broken floor."
-  },
-  {
    "name": "Flooded Nave",
    "kind": "landmark",
    "at": [
-    4300,
-    2470
+    6205,
+    2833
    ],
-   "blurb": "The nave, knee-deep. A waypoint stone glows under the water."
+   "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless"
   },
   {
    "name": "Oracle's Pool",
-   "kind": "secret",
+   "kind": "landmark",
    "at": [
-    5600,
-    3700
+    5212,
+    4158
    ],
-   "blurb": "A still pool where a Concord oracle drowned watching the sky."
-  },
-  {
-   "name": "Reliquary",
-   "kind": "cache",
-   "at": [
-    3000,
-    1300
-   ],
-   "blurb": "Old offerings, some of them very old."
+   "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless"
   },
   {
    "name": "The Scorched Altar",
    "kind": "landmark",
    "at": [
-    6800,
-    2470
+    5196,
+    1429
    ],
-   "blurb": "The altar is burnt in rings, as if by a fire that came from inside time."
+   "blurb": "Flooded chapel crypt; subsite of the Cathedral of the Nameless"
+  },
+  {
+   "name": "Hollowmere",
+   "kind": "landmark",
+   "at": [
+    140,
+    1779
+   ],
+   "blurb": "To Hollowmere."
+  },
+  {
+   "name": "Cathedral of the Nameless",
+   "kind": "landmark",
+   "at": [
+    3284,
+    4774
+   ],
+   "blurb": "To Cathedral of the Nameless."
   }
  ],
  "world_id": "sunken_chapel",
  "grade": {
   "mul": [
-   0.55,
+   0.56,
    0.66,
-   0.66
+   0.72
   ],
   "desat": 0.4,
   "lift": [
    0.02,
-   0.05,
-   0.05,
+   0.04,
+   0.06,
    1.0
   ],
   "mist": [
-   0.45,
+   0.5,
    0.6,
-   0.58
+   0.66
   ],
   "water": [
    0.12,
    0.24,
-   0.24
+   0.3
   ]
  },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5196,
+    1429
+   ],
+   "r": 504.45,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2493,
+    3824
+   ],
+   "r": 500.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2757,
+    2774
+   ],
+   "r": 501.59999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4511,
+    2731
+   ],
+   "r": 471.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5212,
+    4158
+   ],
+   "r": 451.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2067,
+    1244
+   ],
+   "r": 605.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6205,
+    2833
+   ],
+   "r": 506.34999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3818,
+    901
+   ],
+   "r": 408.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
  "enclose": {
   "props": [
-   "a_rock_tall",
-   "b_rock_tall",
+   "a_rock_flat",
+   "b_rock_flat",
    "a_rock_pair",
    "b_rock_pair",
-   "a_rock_flat",
-   "b_rock_flat"
+   "a_rock_tall",
+   "b_rock_tall"
   ],
   "spacing": 240,
   "fill": 0.5,

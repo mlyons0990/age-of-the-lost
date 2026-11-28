@@ -1,0 +1,763 @@
+{
+ "name": "Hearthstone Crossing",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 4331,
+ "paths": [
+  {
+   "pts": [
+    [
+     2338,
+     4774
+    ],
+    [
+     2338,
+     4470
+    ],
+    [
+     3746,
+     4297
+    ],
+    [
+     4102,
+     3120
+    ],
+    [
+     5424,
+     2865
+    ],
+    [
+     6498,
+     2373
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     1774,
+     190
+    ],
+    [
+     1774,
+     494
+    ],
+    [
+     3660,
+     749
+    ],
+    [
+     4891,
+     1784
+    ],
+    [
+     6498,
+     2373
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     8211,
+     190
+    ],
+    [
+     8211,
+     494
+    ],
+    [
+     8073,
+     1089
+    ],
+    [
+     7327,
+     1421
+    ],
+    [
+     7137,
+     1994
+    ],
+    [
+     6498,
+     2373
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     8169,
+     672
+    ],
+    [
+     9106,
+     851
+    ],
+    [
+     9608,
+     794
+    ]
+   ],
+   "width": 173,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5638,
+     2766
+    ],
+    [
+     5765,
+     2839
+    ],
+    [
+     6139,
+     3131
+    ]
+   ],
+   "width": 177,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4029,
+     1059
+    ],
+    [
+     3419,
+     1123
+    ],
+    [
+     3212,
+     1350
+    ]
+   ],
+   "width": 143,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2338,
+     4470
+    ],
+    [
+     2180,
+     4371
+    ],
+    [
+     1728,
+     3931
+    ]
+   ],
+   "width": 154,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    1867,
+    1160
+   ],
+   "r": 676,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    8788,
+    1418
+   ],
+   "r": 635,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    8543,
+    2567
+   ],
+   "r": 395,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6498,
+    2373
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    9608,
+    794
+   ],
+   "r": 397,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6139,
+    3131
+   ],
+   "r": 300,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3212,
+    1350
+   ],
+   "r": 507,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1728,
+    3931
+   ],
+   "r": 501,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   2338,
+   4774,
+   380
+  ],
+  [
+   1774,
+   190,
+   380
+  ],
+  [
+   8211,
+   190,
+   380
+  ],
+  [
+   9608,
+   794,
+   300
+  ],
+  [
+   6139,
+   3131,
+   300
+  ],
+  [
+   3212,
+   1350,
+   300
+  ],
+  [
+   1728,
+   3931,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    1
+   ],
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 95,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    9608,
+    794,
+    560,
+    0.45
+   ],
+   [
+    6139,
+    3131,
+    560,
+    0.45
+   ],
+   [
+    3212,
+    1350,
+    560,
+    0.45
+   ],
+   [
+    1728,
+    3931,
+    560,
+    0.45
+   ],
+   [
+    6498,
+    2373,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6498,
+    2153,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "hearthstone_crossing_wp",
+   "name": "Hearthstone Crossing",
+   "at": [
+    6498,
+    2373
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Blackpine Reach",
+   "to": "blackpine_reach",
+   "at": [
+    2338,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    2043,
+    526
+   ]
+  },
+  {
+   "name": "Veyr Meridian Outpost",
+   "to": "veyr_meridian_outpost",
+   "at": [
+    1774,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    1869,
+    4438
+   ]
+  },
+  {
+   "name": "Greywake Coast",
+   "to": "greywake_coast",
+   "at": [
+    8211,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3158
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2338,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Trade Bridge",
+   "kind": "landmark",
+   "at": [
+    9608,
+    794
+   ],
+   "blurb": "Mountain trade bridge, stone inns"
+  },
+  {
+   "name": "Stone Inn",
+   "kind": "landmark",
+   "at": [
+    6139,
+    3131
+   ],
+   "blurb": "Mountain trade bridge, stone inns"
+  },
+  {
+   "name": "Toll House of Two Kings",
+   "kind": "landmark",
+   "at": [
+    3212,
+    1350
+   ],
+   "blurb": "Mountain trade bridge, stone inns"
+  },
+  {
+   "name": "Widow's Span Lookout",
+   "kind": "landmark",
+   "at": [
+    1728,
+    3931
+   ],
+   "blurb": "Mountain trade bridge, stone inns"
+  },
+  {
+   "name": "Blackpine Reach",
+   "kind": "landmark",
+   "at": [
+    2338,
+    4774
+   ],
+   "blurb": "To Blackpine Reach."
+  },
+  {
+   "name": "Veyr Meridian Outpost",
+   "kind": "landmark",
+   "at": [
+    1774,
+    190
+   ],
+   "blurb": "To Veyr Meridian Outpost."
+  },
+  {
+   "name": "Greywake Coast",
+   "kind": "landmark",
+   "at": [
+    8211,
+    190
+   ],
+   "blurb": "To Greywake Coast."
+  }
+ ],
+ "world_id": "hearthstone_crossing",
+ "grade": {
+  "mul": [
+   0.92,
+   0.94,
+   0.98
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.06,
+   0.06,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.82,
+   0.84,
+   0.9
+  ],
+  "water": [
+   0.3,
+   0.4,
+   0.5
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    9608,
+    794
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6139,
+    3131
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "silver",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    3212,
+    1350
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    1728,
+    3931
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "zone": "artificers_ward",
+ "levels": [
+  23,
+  24
+ ],
+ "packs": 18,
+ "seed": 374,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "artificers_ward_0",
+    "artificers_ward_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "artificers_ward_1",
+    "artificers_ward_1",
+    "artificers_ward_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "artificers_ward_0",
+    "artificers_ward_1",
+    "artificers_ward_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "artificers_ward_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "artificers_ward_2",
+    "artificers_ward_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "artificers_ward_0",
+    "artificers_ward_0",
+    "artificers_ward_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    1136,
+    2828
+   ],
+   "types": [],
+   "boss": "artificers_ward_boss_u",
+   "boss_type": "artificers_ward_boss",
+   "boss_name": "Rogue Construct Prime",
+   "needs_quest": "Q_A03_05"
+  }
+ ],
+ "keep_clear": [
+  [
+   1136,
+   2828,
+   700
+  ]
+ ]
+}

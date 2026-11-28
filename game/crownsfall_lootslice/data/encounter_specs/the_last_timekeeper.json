@@ -1,0 +1,78 @@
+{
+ "zone": "the_last_timekeeper",
+ "levels": [
+  57,
+  58
+ ],
+ "packs": 14,
+ "seed": 708,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_last_timekeeper_0",
+    "the_last_timekeeper_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_last_timekeeper_1",
+    "the_last_timekeeper_1",
+    "the_last_timekeeper_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_last_timekeeper_0",
+    "the_last_timekeeper_1",
+    "the_last_timekeeper_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_last_timekeeper_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_last_timekeeper_2",
+    "the_last_timekeeper_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_last_timekeeper_0",
+    "the_last_timekeeper_0",
+    "the_last_timekeeper_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6394,
+    2095
+   ],
+   "types": [],
+   "boss": "the_last_timekeeper_boss_u",
+   "boss_type": "the_last_timekeeper_boss",
+   "boss_name": "The Last Timekeeper",
+   "needs_quest": "Q_A06_11"
+  }
+ ],
+ "keep_clear": [
+  [
+   6394,
+   2095,
+   700
+  ]
+ ]
+}

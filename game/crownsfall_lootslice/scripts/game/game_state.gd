@@ -7,7 +7,7 @@ const SAVE := preload("res://scripts/three_d/aotl_save.gd")
 const SYS := preload("res://scripts/systems.gd")
 const GD := preload("res://scripts/game_data.gd")
 const VERSION := 1
-const MAX_LEVEL := 60
+const MAX_LEVEL := 70
 const SKILLS := preload("res://scripts/game/skills.gd")
 
 var class_id := "warrior"        # "warrior" (Knight) | "rogue" | "mage" | "cleric" (skills.gd CLASS_PATHS)

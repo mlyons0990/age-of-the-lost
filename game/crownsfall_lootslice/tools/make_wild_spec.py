@@ -43,6 +43,11 @@ z["waypoints"] = [{"id": wid, "name": wname, "at": [wx, wy], "radius_px": 200}]
 z["spawn"] = L.get("spawn", [620, 2470])
 z["map_pois"] = L.get("pois", [])
 z["grade"] = L.get("grade", {})
+# organic dressing and per-zone character (build_kit_zone: rim, dress, forest overrides, canals)
+for k in ("rim", "dress", "light_extra"):
+    if k in L: z[k] = L[k]
+for k, v in L.get("forest", {}).items(): z["forest"][k] = v
+for c in L.get("canals", []): z["paths"].append({"pts": c[0], "width": c[1], "layer": "water", "wander": 0.5})
 out = os.path.join(root, "assets/zones/src", L["id"] + ".kitzone.json")
 json.dump(z, open(out, "w"), indent=1)
 print("wrote", out)

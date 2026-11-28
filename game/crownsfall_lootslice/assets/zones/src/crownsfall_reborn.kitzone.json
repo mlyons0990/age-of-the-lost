@@ -1,0 +1,784 @@
+{
+ "name": "Crownsfall Reborn",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 5642,
+ "paths": [
+  {
+   "pts": [
+    [
+     4189,
+     190
+    ],
+    [
+     4189,
+     494
+    ],
+    [
+     4008,
+     1016
+    ],
+    [
+     4441,
+     1481
+    ],
+    [
+     4237,
+     2006
+    ],
+    [
+     4575,
+     2481
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2085,
+     190
+    ],
+    [
+     2085,
+     494
+    ],
+    [
+     3121,
+     1033
+    ],
+    [
+     3963,
+     1687
+    ],
+    [
+     4575,
+     2481
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6047,
+     190
+    ],
+    [
+     6047,
+     494
+    ],
+    [
+     5286,
+     1060
+    ],
+    [
+     4566,
+     1642
+    ],
+    [
+     4575,
+     2481
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3878,
+     1621
+    ],
+    [
+     3886,
+     1635
+    ],
+    [
+     3388,
+     1851
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4575,
+     2481
+    ],
+    [
+     5675,
+     2878
+    ],
+    [
+     6548,
+     3393
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6047,
+     494
+    ],
+    [
+     6411,
+     719
+    ],
+    [
+     6952,
+     844
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5993,
+    1386
+   ],
+   "r": 353,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6219,
+    3204
+   ],
+   "r": 348,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3736,
+    3957
+   ],
+   "r": 474,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1574,
+    2392
+   ],
+   "r": 434,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5358,
+    2679
+   ],
+   "r": 382,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3364,
+    1592
+   ],
+   "r": 362,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6973,
+    3954
+   ],
+   "r": 373,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6083,
+    3913
+   ],
+   "r": 413,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2184,
+    2016
+   ],
+   "r": 267,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5934,
+    4411
+   ],
+   "r": 385,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6556,
+    1410
+   ],
+   "r": 268,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4575,
+    2481
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3388,
+    1851
+   ],
+   "r": 441,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6548,
+    3393
+   ],
+   "r": 481,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6952,
+    844
+   ],
+   "r": 484,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4043,
+    3918
+   ],
+   "r": 191,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6233,
+    1895
+   ],
+   "r": 169,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   4189,
+   190,
+   380
+  ],
+  [
+   2085,
+   190,
+   380
+  ],
+  [
+   6047,
+   190,
+   380
+  ],
+  [
+   3388,
+   1851,
+   300
+  ],
+  [
+   6548,
+   3393,
+   300
+  ],
+  [
+   6952,
+   844,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3388,
+    1851,
+    560,
+    0.45
+   ],
+   [
+    6548,
+    3393,
+    560,
+    0.45
+   ],
+   [
+    6952,
+    844,
+    560,
+    0.45
+   ],
+   [
+    4575,
+    2481,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4575,
+    2261,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "crownsfall_reborn_wp",
+   "name": "Crownsfall Reborn",
+   "at": [
+    4575,
+    2481
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "The Last Decision",
+   "to": "the_last_decision",
+   "at": [
+    4189,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    4936,
+    4438
+   ]
+  },
+  {
+   "name": "The Open Meridian",
+   "to": "the_open_meridian",
+   "at": [
+    2085,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    9643,
+    4438
+   ]
+  },
+  {
+   "name": "The Lantern Beyond",
+   "to": "the_lantern_beyond",
+   "at": [
+    6047,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    5032,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4189,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Bluebanner Square Reborn",
+   "kind": "landmark",
+   "at": [
+    3388,
+    1851
+   ],
+   "blurb": "City altered by chosen outcome"
+  },
+  {
+   "name": "New Banners",
+   "kind": "landmark",
+   "at": [
+    6548,
+    3393
+   ],
+   "blurb": "City altered by chosen outcome"
+  },
+  {
+   "name": "Bell Tower",
+   "kind": "landmark",
+   "at": [
+    6952,
+    844
+   ],
+   "blurb": "City altered by chosen outcome"
+  },
+  {
+   "name": "The Last Decision",
+   "kind": "landmark",
+   "at": [
+    4189,
+    190
+   ],
+   "blurb": "To The Last Decision."
+  },
+  {
+   "name": "The Open Meridian",
+   "kind": "landmark",
+   "at": [
+    2085,
+    190
+   ],
+   "blurb": "To The Open Meridian."
+  },
+  {
+   "name": "The Lantern Beyond",
+   "kind": "landmark",
+   "at": [
+    6047,
+    190
+   ],
+   "blurb": "To The Lantern Beyond."
+  }
+ ],
+ "world_id": "crownsfall_reborn",
+ "grade": {
+  "mul": [
+   1.08,
+   1.04,
+   0.98
+  ],
+  "desat": 0.08,
+  "lift": [
+   0.07,
+   0.06,
+   0.05,
+   1.0
+  ],
+  "mist": [
+   0.92,
+   0.9,
+   0.9
+  ],
+  "water": [
+   0.3,
+   0.5,
+   0.65
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    3388,
+    1851
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6548,
+    3393
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6952,
+    844
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "zone": "undercroft",
+ "levels": [
+  7,
+  8
+ ],
+ "packs": 14,
+ "seed": 163,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "undercroft_0",
+    "undercroft_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "undercroft_1",
+    "undercroft_1",
+    "undercroft_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "undercroft_0",
+    "undercroft_1",
+    "undercroft_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "undercroft_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "undercroft_2",
+    "undercroft_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "undercroft_0",
+    "undercroft_0",
+    "undercroft_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6093,
+    1418
+   ],
+   "types": [],
+   "boss": "undercroft_boss_u",
+   "boss_type": "undercroft_boss",
+   "boss_name": "The Crypt Warden",
+   "needs_quest": "Q_A01_12"
+  }
+ ],
+ "keep_clear": [
+  [
+   6093,
+   1418,
+   700
+  ]
+ ]
+}

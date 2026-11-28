@@ -1,0 +1,78 @@
+{
+ "zone": "the_crown_of_empty_histories",
+ "levels": [
+  66,
+  67
+ ],
+ "packs": 14,
+ "seed": 60,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_crown_of_empty_histories_0",
+    "the_crown_of_empty_histories_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_crown_of_empty_histories_1",
+    "the_crown_of_empty_histories_1",
+    "the_crown_of_empty_histories_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_crown_of_empty_histories_0",
+    "the_crown_of_empty_histories_1",
+    "the_crown_of_empty_histories_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_crown_of_empty_histories_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_crown_of_empty_histories_2",
+    "the_crown_of_empty_histories_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_crown_of_empty_histories_0",
+    "the_crown_of_empty_histories_0",
+    "the_crown_of_empty_histories_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6483,
+    1772
+   ],
+   "types": [],
+   "boss": "the_crown_of_empty_histories_boss_u",
+   "boss_type": "the_crown_of_empty_histories_boss",
+   "boss_name": "The Mirrored Champion",
+   "needs_quest": "Q_A07_09"
+  }
+ ],
+ "keep_clear": [
+  [
+   6483,
+   1772,
+   700
+  ]
+ ]
+}

@@ -1,56 +1,56 @@
 {
  "zone": "wreckers_strand",
  "levels": [
-  8,
-  9
+  5,
+  6
  ],
  "packs": 30,
- "seed": 71,
+ "seed": 118,
  "spacing": 1050,
  "groups": [
   [
    5,
    [
-    "drowned_sailor",
-    "drowned_sailor"
+    "wreckers_strand_0",
+    "wreckers_strand_0"
    ]
   ],
   [
    3,
    [
-    "tide_crawler",
-    "tide_crawler",
-    "tide_crawler"
+    "wreckers_strand_1",
+    "wreckers_strand_1",
+    "wreckers_strand_1"
    ]
   ],
   [
    3,
    [
-    "drowned_sailor",
-    "tide_crawler",
-    "tide_crawler"
+    "wreckers_strand_0",
+    "wreckers_strand_1",
+    "wreckers_strand_1"
    ]
   ],
   [
    2,
    [
-    "wreck_hulk"
+    "wreckers_strand_2"
    ],
    true
   ],
   [
    2,
    [
-    "wreck_hulk",
-    "drowned_sailor"
+    "wreckers_strand_2",
+    "wreckers_strand_0"
    ]
   ],
   [
    1,
    [
-    "drowned_sailor",
-    "drowned_sailor",
-    "drowned_sailor"
+    "wreckers_strand_0",
+    "wreckers_strand_0",
+    "wreckers_strand_0"
    ],
    true
   ]
@@ -58,59 +58,70 @@
  "fixed": [
   {
    "at": [
-    3000,
-    3250
+    3046,
+    2724
    ],
    "types": [
-    "tide_crawler",
-    "tide_crawler"
+    "wreckers_strand_1",
+    "wreckers_strand_1"
    ],
    "elite": false,
-   "guardian": "strand_pools",
-   "elite_type": "tide_crawler",
+   "guardian": "wreckers_strand_g1",
+   "elite_type": "wreckers_strand_0",
    "elite_name": "The Pool-Queen",
-   "page": "lens_1"
+   "page": "Q_A01_R11_1"
   },
   {
    "at": [
-    5250,
-    3240
+    9972,
+    3350
    ],
    "types": [
-    "drowned_sailor",
-    "drowned_sailor"
+    "wreckers_strand_1",
+    "wreckers_strand_1"
    ],
    "elite": false,
-   "guardian": "strand_oath",
-   "elite_type": "wreck_hulk",
+   "guardian": "wreckers_strand_g2",
+   "elite_type": "wreckers_strand_1",
    "elite_name": "Captain of the Gilded Oath",
-   "page": "lens_2"
+   "page": "Q_A01_R11_2"
   },
   {
    "at": [
-    9100,
-    1210
+    6100,
+    798
    ],
    "types": [
-    "drowned_sailor",
-    "tide_crawler"
+    "wreckers_strand_1",
+    "wreckers_strand_1"
    ],
    "elite": false,
-   "guardian": "strand_cave",
-   "elite_type": "drowned_sailor",
-   "elite_name": "The Smuggler-King",
-   "page": "lens_3"
-  },
-  {
-   "at": [
-    10200,
-    2300
-   ],
-   "types": [],
-   "boss": "tidewrought_warden",
-   "boss_type": "tidewrought_warden",
-   "boss_name": "The Tidewrought Warden",
-   "needs_quest": "the_tidewrought_warden"
+   "guardian": "wreckers_strand_g3",
+   "elite_type": "wreckers_strand_2",
+   "elite_name": "The Strand-Breaker",
+   "page": "Q_A01_R11_3"
   }
+ ],
+ "keep_clear": [
+  [
+   6100,
+   798,
+   700
+  ],
+  [
+   3046,
+   2724,
+   700
+  ],
+  [
+   9972,
+   3350,
+   700
+  ],
+  [
+   6100,
+   798,
+   700
+  ]
  ]
 }

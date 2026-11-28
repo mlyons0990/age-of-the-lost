@@ -1,0 +1,78 @@
+{
+ "zone": "hall_of_seven_measures",
+ "levels": [
+  33,
+  34
+ ],
+ "packs": 14,
+ "seed": 318,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "hall_of_seven_measures_0",
+    "hall_of_seven_measures_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "hall_of_seven_measures_1",
+    "hall_of_seven_measures_1",
+    "hall_of_seven_measures_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "hall_of_seven_measures_0",
+    "hall_of_seven_measures_1",
+    "hall_of_seven_measures_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "hall_of_seven_measures_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "hall_of_seven_measures_2",
+    "hall_of_seven_measures_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "hall_of_seven_measures_0",
+    "hall_of_seven_measures_0",
+    "hall_of_seven_measures_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6201,
+    4004
+   ],
+   "types": [],
+   "boss": "hall_of_seven_measures_boss_u",
+   "boss_type": "hall_of_seven_measures_boss",
+   "boss_name": "The Control Guardian",
+   "needs_quest": "Q_A04_05"
+  }
+ ],
+ "keep_clear": [
+  [
+   6201,
+   4004,
+   700
+  ]
+ ]
+}

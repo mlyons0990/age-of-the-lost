@@ -1,0 +1,78 @@
+{
+ "zone": "blackpine_reach",
+ "levels": [
+  12,
+  13
+ ],
+ "packs": 30,
+ "seed": 801,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "blackpine_reach_0",
+    "blackpine_reach_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "blackpine_reach_1",
+    "blackpine_reach_1",
+    "blackpine_reach_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "blackpine_reach_0",
+    "blackpine_reach_1",
+    "blackpine_reach_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "blackpine_reach_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "blackpine_reach_2",
+    "blackpine_reach_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "blackpine_reach_0",
+    "blackpine_reach_0",
+    "blackpine_reach_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    2631,
+    1935
+   ],
+   "types": [],
+   "boss": "blackpine_reach_boss_u",
+   "boss_type": "blackpine_reach_boss",
+   "boss_name": "The Charcoal Beast",
+   "needs_quest": "Q_A02_04"
+  }
+ ],
+ "keep_clear": [
+  [
+   2631,
+   1935,
+   700
+  ]
+ ]
+}

@@ -1,0 +1,731 @@
+{
+ "name": "Vael Estate",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 9714,
+ "paths": [
+  {
+   "pts": [
+    [
+     140,
+     3174
+    ],
+    [
+     520,
+     3174
+    ],
+    [
+     1037,
+     2763
+    ],
+    [
+     1565,
+     2371
+    ],
+    [
+     2406,
+     2479
+    ],
+    [
+     3000,
+     2191
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3000,
+     2191
+    ],
+    [
+     4890.0,
+     1980.5
+    ],
+    [
+     6780,
+     1770
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     1565,
+     2371
+    ],
+    [
+     1352,
+     1745
+    ],
+    [
+     909,
+     1405
+    ]
+   ],
+   "width": 183,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6024,
+     1854
+    ],
+    [
+     5801,
+     1493
+    ],
+    [
+     5755,
+     944
+    ]
+   ],
+   "width": 130,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5835,
+     1875
+    ],
+    [
+     6286,
+     2594
+    ],
+    [
+     6322,
+     3137
+    ]
+   ],
+   "width": 146,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     520,
+     3174
+    ],
+    [
+     1442,
+     3540
+    ],
+    [
+     1822,
+     3916
+    ]
+   ],
+   "width": 179,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    1441,
+    3840
+   ],
+   "r": 656,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6452,
+    3015
+   ],
+   "r": 623,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    7039,
+    2895
+   ],
+   "r": 458,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3000,
+    2191
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    909,
+    1405
+   ],
+   "r": 399,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5755,
+    944
+   ],
+   "r": 503,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6322,
+    3137
+   ],
+   "r": 442,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1822,
+    3916
+   ],
+   "r": 591,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6928,
+    995
+   ],
+   "r": 261,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6644,
+    1262
+   ],
+   "r": 286,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4484,
+    3413
+   ],
+   "r": 300,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   140,
+   3174,
+   380
+  ],
+  [
+   909,
+   1405,
+   300
+  ],
+  [
+   5755,
+   944,
+   300
+  ],
+  [
+   6322,
+   3137,
+   300
+  ],
+  [
+   1822,
+   3916,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "oak_b",
+    4
+   ],
+   [
+    "oak_a",
+    3
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 760,
+  "cut": 0.62,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 20,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "lavender": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    909,
+    1405,
+    560,
+    0.45
+   ],
+   [
+    5755,
+    944,
+    560,
+    0.45
+   ],
+   [
+    6322,
+    3137,
+    560,
+    0.45
+   ],
+   [
+    1822,
+    3916,
+    560,
+    0.45
+   ],
+   [
+    3000,
+    2191,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3000,
+    1971,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "vael_estate_wp",
+   "name": "Vael Estate",
+   "at": [
+    3000,
+    2191
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Garden of Civic Memory",
+   "to": "garden_of_civic_memory",
+   "at": [
+    140,
+    3174
+   ],
+   "r": 170,
+   "arrive": [
+    10960,
+    3123
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  3174
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Garden House",
+   "kind": "landmark",
+   "at": [
+    909,
+    1405
+   ],
+   "blurb": "Modest garden house, children's toys, sunroom"
+  },
+  {
+   "name": "Sunroom",
+   "kind": "landmark",
+   "at": [
+    5755,
+    944
+   ],
+   "blurb": "Modest garden house, children's toys, sunroom"
+  },
+  {
+   "name": "Children's Toys",
+   "kind": "landmark",
+   "at": [
+    6322,
+    3137
+   ],
+   "blurb": "Modest garden house, children's toys, sunroom"
+  },
+  {
+   "name": "Duel Lawn",
+   "kind": "landmark",
+   "at": [
+    1822,
+    3916
+   ],
+   "blurb": "Modest garden house, children's toys, sunroom"
+  },
+  {
+   "name": "Garden of Civic Memory",
+   "kind": "landmark",
+   "at": [
+    140,
+    3174
+   ],
+   "blurb": "To Garden of Civic Memory."
+  }
+ ],
+ "world_id": "vael_estate",
+ "grade": {
+  "mul": [
+   1.06,
+   1.08,
+   0.94
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.06,
+   0.06,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   0.96,
+   0.96,
+   0.86
+  ],
+  "water": [
+   0.3,
+   0.55,
+   0.68
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow",
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    909,
+    1405
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    5755,
+    944
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6322,
+    3137
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1822,
+    3916
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,812 @@
+{
+ "name": "Last Dawn Station",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 8118,
+ "paths": [
+  {
+   "pts": [
+    [
+     7540,
+     3886
+    ],
+    [
+     7160,
+     3886
+    ],
+    [
+     6073,
+     3556
+    ],
+    [
+     5144,
+     2994
+    ],
+    [
+     4102,
+     2601
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5946,
+     4774
+    ],
+    [
+     5946,
+     4470
+    ],
+    [
+     5780,
+     3637
+    ],
+    [
+     4767,
+     3200
+    ],
+    [
+     4102,
+     2601
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5515,
+     3218
+    ],
+    [
+     5959,
+     3025
+    ],
+    [
+     6776,
+     2614
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4767,
+     3200
+    ],
+    [
+     3689,
+     3447
+    ],
+    [
+     2771,
+     3876
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4102,
+     2601
+    ],
+    [
+     3441,
+     2051
+    ],
+    [
+     3152,
+     1521
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4102,
+     2601
+    ],
+    [
+     2871,
+     2765
+    ],
+    [
+     2070,
+     2683
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    3675,
+    3356
+   ],
+   "r": 479,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6082,
+    993
+   ],
+   "r": 372,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2341,
+    3019
+   ],
+   "r": 369,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6946,
+    4303
+   ],
+   "r": 299,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3693,
+    3607
+   ],
+   "r": 348,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    987,
+    1214
+   ],
+   "r": 340,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4352,
+    648
+   ],
+   "r": 262,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5613,
+    960
+   ],
+   "r": 376,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6342,
+    2665
+   ],
+   "r": 334,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2182,
+    3090
+   ],
+   "r": 330,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2762,
+    3689
+   ],
+   "r": 441,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3554,
+    2308
+   ],
+   "r": 425,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1147,
+    3816
+   ],
+   "r": 420,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4102,
+    2601
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6776,
+    2614
+   ],
+   "r": 384,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2771,
+    3876
+   ],
+   "r": 395,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3152,
+    1521
+   ],
+   "r": 369,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2070,
+    2683
+   ],
+   "r": 481,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4003,
+    1695
+   ],
+   "r": 181,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2032,
+    3496
+   ],
+   "r": 197,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   7540,
+   3886,
+   380
+  ],
+  [
+   5946,
+   4774,
+   380
+  ],
+  [
+   6776,
+   2614,
+   300
+  ],
+  [
+   2771,
+   3876,
+   300
+  ],
+  [
+   3152,
+   1521,
+   300
+  ],
+  [
+   2070,
+   2683,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    6776,
+    2614,
+    560,
+    0.45
+   ],
+   [
+    2771,
+    3876,
+    560,
+    0.45
+   ],
+   [
+    3152,
+    1521,
+    560,
+    0.45
+   ],
+   [
+    2070,
+    2683,
+    560,
+    0.45
+   ],
+   [
+    4102,
+    2601,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4102,
+    2381,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "last_dawn_station_wp",
+   "name": "Last Dawn Station",
+   "at": [
+    4102,
+    2601
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Concord Crown Spire",
+   "to": "concord_crown_spire",
+   "at": [
+    7540,
+    3886
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3355
+   ]
+  },
+  {
+   "name": "Cinder Orchard",
+   "to": "cinder_orchard",
+   "at": [
+    5946,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    8252,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  7120,
+  3886
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Sunrise Rail Terminal",
+   "kind": "landmark",
+   "at": [
+    6776,
+    2614
+   ],
+   "blurb": "Sunrise rail terminal, evacuation posters"
+  },
+  {
+   "name": "Evacuation Posters",
+   "kind": "landmark",
+   "at": [
+    2771,
+    3876
+   ],
+   "blurb": "Sunrise rail terminal, evacuation posters"
+  },
+  {
+   "name": "Platform Seven",
+   "kind": "landmark",
+   "at": [
+    3152,
+    1521
+   ],
+   "blurb": "Sunrise rail terminal, evacuation posters"
+  },
+  {
+   "name": "Alarm Tower",
+   "kind": "landmark",
+   "at": [
+    2070,
+    2683
+   ],
+   "blurb": "Sunrise rail terminal, evacuation posters"
+  },
+  {
+   "name": "Concord Crown Spire",
+   "kind": "landmark",
+   "at": [
+    7540,
+    3886
+   ],
+   "blurb": "To Concord Crown Spire."
+  },
+  {
+   "name": "Cinder Orchard",
+   "kind": "landmark",
+   "at": [
+    5946,
+    4774
+   ],
+   "blurb": "To Cinder Orchard."
+  }
+ ],
+ "world_id": "last_dawn_station",
+ "grade": {
+  "mul": [
+   1.14,
+   0.98,
+   0.84
+  ],
+  "desat": 0.1,
+  "lift": [
+   0.1,
+   0.05,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.85,
+   0.7
+  ],
+  "water": [
+   0.32,
+   0.45,
+   0.6
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6776,
+    2614
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2771,
+    3876
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    3152,
+    1521
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2070,
+    2683
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,876 @@
+{
+ "name": "Saltmirror Harbor",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 2858,
+ "paths": [
+  {
+   "pts": [
+    [
+     4156,
+     190
+    ],
+    [
+     4156,
+     494
+    ],
+    [
+     3920,
+     1229
+    ],
+    [
+     4699,
+     1910
+    ],
+    [
+     4397,
+     2649
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4397,
+     2649
+    ],
+    [
+     3960.5,
+     3346.5
+    ],
+    [
+     3524,
+     4044
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4353,
+     2718
+    ],
+    [
+     5457,
+     2799
+    ],
+    [
+     6567,
+     3133
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3943,
+     1155
+    ],
+    [
+     3097,
+     934
+    ],
+    [
+     2732,
+     1048
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3654,
+     3834
+    ],
+    [
+     2325,
+     3712
+    ],
+    [
+     1399,
+     3419
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4132,
+     567
+    ],
+    [
+     4943,
+     661
+    ],
+    [
+     6327,
+     757
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    792,
+    2932
+   ],
+   "r": 375,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5465,
+    1523
+   ],
+   "r": 304,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2169,
+    1524
+   ],
+   "r": 358,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5762,
+    852
+   ],
+   "r": 446,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6354,
+    4441
+   ],
+   "r": 473,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2933,
+    2995
+   ],
+   "r": 418,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3033,
+    1606
+   ],
+   "r": 446,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1380,
+    2511
+   ],
+   "r": 411,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4819,
+    1373
+   ],
+   "r": 296,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3079,
+    4148
+   ],
+   "r": 319,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6994,
+    855
+   ],
+   "r": 373,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3922,
+    2187
+   ],
+   "r": 301,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5526,
+    2516
+   ],
+   "r": 451,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6077,
+    3669
+   ],
+   "r": 466,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4397,
+    2649
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6567,
+    3133
+   ],
+   "r": 480,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2732,
+    1048
+   ],
+   "r": 404,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1399,
+    3419
+   ],
+   "r": 489,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6327,
+    757
+   ],
+   "r": 648,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5349,
+    3788
+   ],
+   "r": 171,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3581,
+    1550
+   ],
+   "r": 197,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    0,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    900,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1800,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2700,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3600,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4500,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5400,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6300,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7200,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    8100,
+    5004
+   ],
+   "r": 1000,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   4156,
+   190,
+   380
+  ],
+  [
+   6567,
+   3133,
+   300
+  ],
+  [
+   2732,
+   1048,
+   300
+  ],
+  [
+   1399,
+   3419,
+   300
+  ],
+  [
+   6327,
+   757,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    6567,
+    3133,
+    560,
+    0.45
+   ],
+   [
+    2732,
+    1048,
+    560,
+    0.45
+   ],
+   [
+    1399,
+    3419,
+    560,
+    0.45
+   ],
+   [
+    6327,
+    757,
+    560,
+    0.45
+   ],
+   [
+    4397,
+    2649,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4397,
+    2429,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "saltmirror_harbor_wp",
+   "name": "Saltmirror Harbor",
+   "at": [
+    4397,
+    2649
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Greywake Coast",
+   "to": "greywake_coast",
+   "at": [
+    4156,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    10960,
+    1795
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4156,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Golden Docks",
+   "kind": "landmark",
+   "at": [
+    6567,
+    3133
+   ],
+   "blurb": "Golden Age docks over modern fishing port"
+  },
+  {
+   "name": "Cargo Crane",
+   "kind": "landmark",
+   "at": [
+    2732,
+    1048
+   ],
+   "blurb": "Golden Age docks over modern fishing port"
+  },
+  {
+   "name": "Modern Fishing Pier",
+   "kind": "landmark",
+   "at": [
+    1399,
+    3419
+   ],
+   "blurb": "Golden Age docks over modern fishing port"
+  },
+  {
+   "name": "Smugglers' Berth",
+   "kind": "landmark",
+   "at": [
+    6327,
+    757
+   ],
+   "blurb": "Golden Age docks over modern fishing port"
+  },
+  {
+   "name": "Greywake Coast",
+   "kind": "landmark",
+   "at": [
+    4156,
+    190
+   ],
+   "blurb": "To Greywake Coast."
+  }
+ ],
+ "world_id": "saltmirror_harbor",
+ "grade": {
+  "mul": [
+   1.12,
+   1.06,
+   0.9
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.08,
+   0.07,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.94,
+   0.8
+  ],
+  "water": [
+   0.32,
+   0.55,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6567,
+    3133
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2732,
+    1048
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1399,
+    3419
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6327,
+    757
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

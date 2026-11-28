@@ -1,0 +1,880 @@
+{
+ "name": "Chronicle Access Ring",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 9188,
+ "paths": [
+  {
+   "pts": [
+    [
+     6401,
+     3562
+    ],
+    [
+     6565,
+     2686
+    ],
+    [
+     6625,
+     1803
+    ]
+   ],
+   "width": 290,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6625,
+     1803
+    ],
+    [
+     5969,
+     1448
+    ],
+    [
+     5243,
+     1180
+    ]
+   ],
+   "width": 271,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5243,
+     1180
+    ],
+    [
+     4507,
+     1546
+    ],
+    [
+     4212,
+     2167
+    ]
+   ],
+   "width": 270,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4212,
+     2167
+    ],
+    [
+     3463,
+     2750
+    ],
+    [
+     3128,
+     3516
+    ]
+   ],
+   "width": 310,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3128,
+     3516
+    ],
+    [
+     2247,
+     3970
+    ],
+    [
+     1178,
+     3901
+    ]
+   ],
+   "width": 294,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1178,
+     3901
+    ],
+    [
+     1475,
+     3356
+    ],
+    [
+     1314,
+     2782
+    ]
+   ],
+   "width": 289,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1314,
+     2782
+    ],
+    [
+     1090,
+     2038
+    ],
+    [
+     963,
+     1282
+    ]
+   ],
+   "width": 298,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     963,
+     1282
+    ],
+    [
+     3826,
+     2232
+    ],
+    [
+     6401,
+     3562
+    ]
+   ],
+   "width": 276,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1314,
+     2782
+    ],
+    [
+     4214,
+     3022
+    ],
+    [
+     6625,
+     1803
+    ]
+   ],
+   "width": 327,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     3438
+    ],
+    [
+     840,
+     3438
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     3438
+    ],
+    [
+     1178,
+     3901
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     4548,
+     4774
+    ],
+    [
+     4548,
+     4214.0
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     4548,
+     4254.0
+    ],
+    [
+     3128,
+     3516
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6401,
+    3562
+   ],
+   "r": 529,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    963,
+    1282
+   ],
+   "r": 447,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4212,
+    2167
+   ],
+   "r": 500,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3128,
+    3516
+   ],
+   "r": 539,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1314,
+    2782
+   ],
+   "r": 604,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5243,
+    1180
+   ],
+   "r": 538,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6625,
+    1803
+   ],
+   "r": 514,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1178,
+    3901
+   ],
+   "r": 519,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   3438,
+   380
+  ],
+  [
+   4548,
+   4774,
+   380
+  ],
+  [
+   6625,
+   1803,
+   300
+  ],
+  [
+   6401,
+   3562,
+   300
+  ],
+  [
+   5243,
+   1180,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    6401,
+    3562,
+    449.65,
+    0.6
+   ],
+   [
+    963,
+    1282,
+    379.95,
+    0.6
+   ],
+   [
+    4212,
+    2167,
+    425.0,
+    0.6
+   ],
+   [
+    3128,
+    3516,
+    458.15,
+    0.6
+   ],
+   [
+    1314,
+    2782,
+    513.4,
+    0.6
+   ],
+   [
+    5243,
+    1180,
+    457.3,
+    0.6
+   ],
+   [
+    6625,
+    1803,
+    436.9,
+    0.6
+   ],
+   [
+    1178,
+    3901,
+    441.15,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6625,
+    1583,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "chronicle_access_ring_wp",
+   "name": "Chronicle Access Ring",
+   "at": [
+    4212,
+    2167
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Senate of Ash",
+   "to": "senate_of_ash",
+   "at": [
+    140,
+    3438
+   ],
+   "r": 170,
+   "arrive": [
+    5837,
+    526
+   ]
+  },
+  {
+   "name": "The First Sundering",
+   "to": "the_first_sundering",
+   "at": [
+    4548,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    4076,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  3438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Industrial Corridors",
+   "kind": "landmark",
+   "at": [
+    6625,
+    1803
+   ],
+   "blurb": "Industrial corridors, overloaded coils"
+  },
+  {
+   "name": "Overloaded Coils",
+   "kind": "landmark",
+   "at": [
+    6401,
+    3562
+   ],
+   "blurb": "Industrial corridors, overloaded coils"
+  },
+  {
+   "name": "The Door That Should Stay Shut",
+   "kind": "landmark",
+   "at": [
+    5243,
+    1180
+   ],
+   "blurb": "Industrial corridors, overloaded coils"
+  },
+  {
+   "name": "Senate of Ash",
+   "kind": "landmark",
+   "at": [
+    140,
+    3438
+   ],
+   "blurb": "To Senate of Ash."
+  },
+  {
+   "name": "The First Sundering",
+   "kind": "landmark",
+   "at": [
+    4548,
+    4774
+   ],
+   "blurb": "To The First Sundering."
+  }
+ ],
+ "world_id": "chronicle_access_ring",
+ "grade": {
+  "mul": [
+   0.82,
+   0.78,
+   0.78
+  ],
+  "desat": 0.45,
+  "lift": [
+   0.04,
+   0.02,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.7,
+   0.5,
+   0.8
+  ],
+  "water": [
+   0.3,
+   0.15,
+   0.45
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6401,
+    3562
+   ],
+   "r": 502.54999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    963,
+    1282
+   ],
+   "r": 424.65,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4212,
+    2167
+   ],
+   "r": 475.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3128,
+    3516
+   ],
+   "r": 512.05,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1314,
+    2782
+   ],
+   "r": 573.8,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5243,
+    1180
+   ],
+   "r": 511.09999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6625,
+    1803
+   ],
+   "r": 488.29999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1178,
+    3901
+   ],
+   "r": 493.04999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

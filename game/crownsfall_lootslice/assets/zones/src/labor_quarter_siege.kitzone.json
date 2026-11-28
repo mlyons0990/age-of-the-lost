@@ -1,0 +1,856 @@
+{
+ "name": "Labor Quarter Siege",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 2066,
+ "paths": [
+  {
+   "pts": [
+    [
+     4826,
+     4774
+    ],
+    [
+     4826,
+     4470
+    ],
+    [
+     4695,
+     3636
+    ],
+    [
+     3893,
+     3046
+    ],
+    [
+     3257,
+     2396
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2862,
+     190
+    ],
+    [
+     2862,
+     494
+    ],
+    [
+     2992,
+     1128
+    ],
+    [
+     3300,
+     1744
+    ],
+    [
+     3257,
+     2396
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5008,
+     190
+    ],
+    [
+     5008,
+     494
+    ],
+    [
+     4774,
+     1280
+    ],
+    [
+     4026,
+     1843
+    ],
+    [
+     3257,
+     2396
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2940,
+     874
+    ],
+    [
+     2591,
+     980
+    ],
+    [
+     2376,
+     915
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3893,
+     3046
+    ],
+    [
+     3142,
+     3387
+    ],
+    [
+     2187,
+     3771
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4774,
+     1280
+    ],
+    [
+     5893,
+     1789
+    ],
+    [
+     6629,
+     2020
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4799,
+     4303
+    ],
+    [
+     5657,
+     4343
+    ],
+    [
+     6864,
+     4192
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5971,
+    688
+   ],
+   "r": 282,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2876,
+    4209
+   ],
+   "r": 401,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2278,
+    878
+   ],
+   "r": 407,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1903,
+    3875
+   ],
+   "r": 457,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6498,
+    1262
+   ],
+   "r": 471,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1633,
+    1332
+   ],
+   "r": 270,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4276,
+    2572
+   ],
+   "r": 446,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1175,
+    943
+   ],
+   "r": 425,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1709,
+    2397
+   ],
+   "r": 450,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2015,
+    2297
+   ],
+   "r": 478,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2077,
+    704
+   ],
+   "r": 291,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3736,
+    1082
+   ],
+   "r": 454,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3257,
+    2396
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2376,
+    915
+   ],
+   "r": 518,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2187,
+    3771
+   ],
+   "r": 387,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6629,
+    2020
+   ],
+   "r": 561,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6864,
+    4192
+   ],
+   "r": 470,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3638,
+    1237
+   ],
+   "r": 230,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1546,
+    1629
+   ],
+   "r": 167,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   4826,
+   4774,
+   380
+  ],
+  [
+   2862,
+   190,
+   380
+  ],
+  [
+   5008,
+   190,
+   380
+  ],
+  [
+   2376,
+   915,
+   300
+  ],
+  [
+   2187,
+   3771,
+   300
+  ],
+  [
+   6629,
+   2020,
+   300
+  ],
+  [
+   6864,
+   4192,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    2376,
+    915,
+    560,
+    0.45
+   ],
+   [
+    2187,
+    3771,
+    560,
+    0.45
+   ],
+   [
+    6629,
+    2020,
+    560,
+    0.45
+   ],
+   [
+    6864,
+    4192,
+    560,
+    0.45
+   ],
+   [
+    3257,
+    2396,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3257,
+    2176,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "labor_quarter_siege_wp",
+   "name": "Labor Quarter Siege",
+   "at": [
+    3257,
+    2396
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "South Reservoir",
+   "to": "south_reservoir",
+   "at": [
+    4826,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    3220,
+    526
+   ]
+  },
+  {
+   "name": "Hall of Seven Measures",
+   "to": "hall_of_seven_measures",
+   "at": [
+    2862,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    2189
+   ]
+  },
+  {
+   "name": "Vael's Last Road",
+   "to": "vaels_last_road",
+   "at": [
+    5008,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    3736,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4826,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Barricades",
+   "kind": "landmark",
+   "at": [
+    2376,
+    915
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "Civilian Shelter",
+   "kind": "landmark",
+   "at": [
+    2187,
+    3771
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "Military Patrol Gate",
+   "kind": "landmark",
+   "at": [
+    6629,
+    2020
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "Union Hall",
+   "kind": "landmark",
+   "at": [
+    6864,
+    4192
+   ],
+   "blurb": "Barricades, frightened civilians, military patrols"
+  },
+  {
+   "name": "South Reservoir",
+   "kind": "landmark",
+   "at": [
+    4826,
+    4774
+   ],
+   "blurb": "To South Reservoir."
+  },
+  {
+   "name": "Hall of Seven Measures",
+   "kind": "landmark",
+   "at": [
+    2862,
+    190
+   ],
+   "blurb": "To Hall of Seven Measures."
+  },
+  {
+   "name": "Vael's Last Road",
+   "kind": "landmark",
+   "at": [
+    5008,
+    190
+   ],
+   "blurb": "To Vael's Last Road."
+  }
+ ],
+ "world_id": "labor_quarter_siege",
+ "grade": {
+  "mul": [
+   0.86,
+   0.78,
+   0.74
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.04,
+   0.02,
+   0.02,
+   1.0
+  ],
+  "mist": [
+   0.6,
+   0.52,
+   0.5
+  ],
+  "water": [
+   0.2,
+   0.24,
+   0.28
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    2376,
+    915
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2187,
+    3771
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6629,
+    2020
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6864,
+    4192
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -1,0 +1,78 @@
+{
+ "zone": "hollow_choir_reliquary",
+ "levels": [
+  38,
+  39
+ ],
+ "packs": 14,
+ "seed": 240,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "hollow_choir_reliquary_0",
+    "hollow_choir_reliquary_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "hollow_choir_reliquary_1",
+    "hollow_choir_reliquary_1",
+    "hollow_choir_reliquary_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "hollow_choir_reliquary_0",
+    "hollow_choir_reliquary_1",
+    "hollow_choir_reliquary_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "hollow_choir_reliquary_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "hollow_choir_reliquary_2",
+    "hollow_choir_reliquary_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "hollow_choir_reliquary_0",
+    "hollow_choir_reliquary_0",
+    "hollow_choir_reliquary_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6564,
+    3957
+   ],
+   "types": [],
+   "boss": "hollow_choir_reliquary_boss_u",
+   "boss_type": "hollow_choir_reliquary_boss",
+   "boss_name": "Cantor Neral",
+   "needs_quest": "Q_A04_13"
+  }
+ ],
+ "keep_clear": [
+  [
+   6564,
+   3957,
+   700
+  ]
+ ]
+}

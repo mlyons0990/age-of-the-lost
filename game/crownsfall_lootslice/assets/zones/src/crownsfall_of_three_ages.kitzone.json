@@ -1,0 +1,740 @@
+{
+ "name": "Crownsfall of Three Ages",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 8345,
+ "paths": [
+  {
+   "pts": [
+    [
+     2730,
+     4774
+    ],
+    [
+     2730,
+     4470
+    ],
+    [
+     2694,
+     3762
+    ],
+    [
+     3047,
+     3196
+    ],
+    [
+     3638,
+     2716
+    ],
+    [
+     4370,
+     2288
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2450,
+     190
+    ],
+    [
+     2450,
+     494
+    ],
+    [
+     3226,
+     1023
+    ],
+    [
+     3386,
+     1863
+    ],
+    [
+     4370,
+     2288
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2941,
+     3365
+    ],
+    [
+     1670,
+     3349
+    ],
+    [
+     764,
+     2982
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2905,
+     3422
+    ],
+    [
+     4085,
+     3467
+    ],
+    [
+     4675,
+     3763
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4370,
+     2288
+    ],
+    [
+     5043,
+     1920
+    ],
+    [
+     6165,
+     1413
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    1691,
+    2998
+   ],
+   "r": 410,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2136,
+    4181
+   ],
+   "r": 311,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4395,
+    4258
+   ],
+   "r": 479,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3139,
+    2763
+   ],
+   "r": 463,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4701,
+    1395
+   ],
+   "r": 314,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5810,
+    2840
+   ],
+   "r": 472,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1401,
+    4096
+   ],
+   "r": 462,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4665,
+    1811
+   ],
+   "r": 295,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6756,
+    1168
+   ],
+   "r": 426,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2554,
+    1422
+   ],
+   "r": 388,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4078,
+    2794
+   ],
+   "r": 404,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1735,
+    1058
+   ],
+   "r": 428,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4370,
+    2288
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    764,
+    2982
+   ],
+   "r": 467,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4675,
+    3763
+   ],
+   "r": 448,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6165,
+    1413
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3750,
+    4338
+   ],
+   "r": 165,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4221,
+    2852
+   ],
+   "r": 183,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   2730,
+   4774,
+   380
+  ],
+  [
+   2450,
+   190,
+   380
+  ],
+  [
+   764,
+   2982,
+   300
+  ],
+  [
+   4675,
+   3763,
+   300
+  ],
+  [
+   6165,
+   1413,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    764,
+    2982,
+    560,
+    0.45
+   ],
+   [
+    4675,
+    3763,
+    560,
+    0.45
+   ],
+   [
+    6165,
+    1413,
+    560,
+    0.45
+   ],
+   [
+    4370,
+    2288,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4370,
+    2068,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "crownsfall_of_three_ages_wp",
+   "name": "Crownsfall of Three Ages",
+   "at": [
+    4370,
+    2288
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Unbound Causeway",
+   "to": "unbound_causeway",
+   "at": [
+    2730,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5746,
+    526
+   ]
+  },
+  {
+   "name": "The Regent's Archive",
+   "to": "the_regents_archive",
+   "at": [
+    2450,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1435
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2730,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Plaza of Three Versions",
+   "kind": "landmark",
+   "at": [
+    764,
+    2982
+   ],
+   "blurb": "Same plaza in three architectural versions"
+  },
+  {
+   "name": "Bell Tower",
+   "kind": "landmark",
+   "at": [
+    4675,
+    3763
+   ],
+   "blurb": "Same plaza in three architectural versions"
+  },
+  {
+   "name": "Founding Stone",
+   "kind": "landmark",
+   "at": [
+    6165,
+    1413
+   ],
+   "blurb": "Same plaza in three architectural versions"
+  },
+  {
+   "name": "Unbound Causeway",
+   "kind": "landmark",
+   "at": [
+    2730,
+    4774
+   ],
+   "blurb": "To Unbound Causeway."
+  },
+  {
+   "name": "The Regent's Archive",
+   "kind": "landmark",
+   "at": [
+    2450,
+    190
+   ],
+   "blurb": "To The Regent's Archive."
+  }
+ ],
+ "world_id": "crownsfall_of_three_ages",
+ "grade": {
+  "mul": [
+   1.06,
+   1.0,
+   0.94
+  ],
+  "desat": 0.2,
+  "lift": [
+   0.06,
+   0.05,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.9,
+   0.86,
+   0.92
+  ],
+  "water": [
+   0.3,
+   0.45,
+   0.62
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    764,
+    2982
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    4675,
+    3763
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6165,
+    1413
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

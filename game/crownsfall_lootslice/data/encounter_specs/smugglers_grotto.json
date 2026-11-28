@@ -1,56 +1,56 @@
 {
  "zone": "smugglers_grotto",
  "levels": [
-  9,
-  10
+  6,
+  7
  ],
- "packs": 16,
- "seed": 43,
+ "packs": 14,
+ "seed": 555,
  "spacing": 700,
  "groups": [
   [
    5,
    [
-    "smuggler",
-    "smuggler"
+    "smugglers_grotto_0",
+    "smugglers_grotto_0"
    ]
   ],
   [
    3,
    [
-    "cave_crab",
-    "cave_crab",
-    "cave_crab"
+    "smugglers_grotto_1",
+    "smugglers_grotto_1",
+    "smugglers_grotto_1"
    ]
   ],
   [
    3,
    [
-    "smuggler",
-    "cave_crab",
-    "cave_crab"
+    "smugglers_grotto_0",
+    "smugglers_grotto_1",
+    "smugglers_grotto_1"
    ]
   ],
   [
    2,
    [
-    "grotto_brute"
+    "smugglers_grotto_2"
    ],
    true
   ],
   [
    2,
    [
-    "grotto_brute",
-    "smuggler"
+    "smugglers_grotto_2",
+    "smugglers_grotto_0"
    ]
   ],
   [
    1,
    [
-    "smuggler",
-    "smuggler",
-    "smuggler"
+    "smugglers_grotto_0",
+    "smugglers_grotto_0",
+    "smugglers_grotto_0"
    ],
    true
   ]
@@ -58,35 +58,31 @@
  "fixed": [
   {
    "at": [
-    5000,
-    1300
-   ],
-   "types": [
-    "smuggler",
-    "smuggler"
-   ],
-   "elite": false,
-   "guardian": "grotto_quartermaster",
-   "elite_type": "grotto_brute",
-   "elite_name": "Bilge the Quartermaster"
-  },
-  {
-   "at": [
-    6700,
-    2470
+    6485,
+    1322
    ],
    "types": [],
-   "boss": "corsair_velka",
-   "boss_type": "corsair_velka",
+   "boss": "smugglers_grotto_boss_u",
+   "boss_type": "smugglers_grotto_boss",
    "boss_name": "Corsair Queen Velka",
-   "needs_quest": "the_wrong_tide"
+   "needs_quest": "Q_A01_R12"
   }
  ],
  "keep_clear": [
   [
-   2100,
-   1500,
+   3491,
+   3635,
    700
+  ],
+  [
+   6485,
+   1322,
+   700
+  ],
+  [
+   6485,
+   1322,
+   800
   ]
  ]
 }

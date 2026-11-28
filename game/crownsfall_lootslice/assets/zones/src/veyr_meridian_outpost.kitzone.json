@@ -1,0 +1,846 @@
+{
+ "name": "Veyr Meridian Outpost",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 8296,
+ "paths": [
+  {
+   "pts": [
+    [
+     1869,
+     4774
+    ],
+    [
+     1869,
+     4470
+    ],
+    [
+     2618,
+     4239
+    ],
+    [
+     2966,
+     3815
+    ],
+    [
+     2704,
+     3099
+    ],
+    [
+     3510,
+     2896
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4684,
+     4774
+    ],
+    [
+     4684,
+     4470
+    ],
+    [
+     4654,
+     3985
+    ],
+    [
+     4089,
+     3685
+    ],
+    [
+     3980,
+     3228
+    ],
+    [
+     3510,
+     2896
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5902,
+     4774
+    ],
+    [
+     5902,
+     4470
+    ],
+    [
+     4792,
+     4164
+    ],
+    [
+     4315,
+     3415
+    ],
+    [
+     3510,
+     2896
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2704,
+     3099
+    ],
+    [
+     2151,
+     2631
+    ],
+    [
+     1413,
+     2089
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4089,
+     3685
+    ],
+    [
+     3813,
+     3934
+    ],
+    [
+     3684,
+     3934
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3510,
+     2896
+    ],
+    [
+     4324,
+     2383
+    ],
+    [
+     5365,
+     1898
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5902,
+     4470
+    ],
+    [
+     6649,
+     4012
+    ],
+    [
+     6965,
+     3897
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5139,
+    2095
+   ],
+   "r": 363,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1740,
+    4051
+   ],
+   "r": 396,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    877,
+    3446
+   ],
+   "r": 282,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5032,
+    1210
+   ],
+   "r": 264,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4850,
+    2596
+   ],
+   "r": 473,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6257,
+    2591
+   ],
+   "r": 397,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3189,
+    2532
+   ],
+   "r": 394,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5401,
+    3753
+   ],
+   "r": 305,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4199,
+    2570
+   ],
+   "r": 352,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1677,
+    1130
+   ],
+   "r": 460,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3510,
+    2896
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1413,
+    2089
+   ],
+   "r": 496,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3684,
+    3934
+   ],
+   "r": 370,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5365,
+    1898
+   ],
+   "r": 438,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6965,
+    3897
+   ],
+   "r": 361,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2248,
+    3335
+   ],
+   "r": 226,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1752,
+    759
+   ],
+   "r": 239,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   1869,
+   4774,
+   380
+  ],
+  [
+   4684,
+   4774,
+   380
+  ],
+  [
+   5902,
+   4774,
+   380
+  ],
+  [
+   1413,
+   2089,
+   300
+  ],
+  [
+   3684,
+   3934,
+   300
+  ],
+  [
+   5365,
+   1898,
+   300
+  ],
+  [
+   6965,
+   3897,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    1413,
+    2089,
+    560,
+    0.45
+   ],
+   [
+    3684,
+    3934,
+    560,
+    0.45
+   ],
+   [
+    5365,
+    1898,
+    560,
+    0.45
+   ],
+   [
+    6965,
+    3897,
+    560,
+    0.45
+   ],
+   [
+    3510,
+    2896,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3510,
+    2676,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "veyr_meridian_outpost_wp",
+   "name": "Veyr Meridian Outpost",
+   "at": [
+    3510,
+    2896
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Hearthstone Crossing",
+   "to": "hearthstone_crossing",
+   "at": [
+    1869,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    1774,
+    526
+   ]
+  },
+  {
+   "name": "Windcut Pass",
+   "to": "windcut_pass",
+   "at": [
+    4684,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    6071,
+    526
+   ]
+  },
+  {
+   "name": "Meridian Observatory",
+   "to": "meridian_observatory",
+   "at": [
+    5902,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    4774,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  1869,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Suspended Instruments",
+   "kind": "landmark",
+   "at": [
+    1413,
+    2089
+   ],
+   "blurb": "Angular silver observatory, suspended instruments"
+  },
+  {
+   "name": "Phase-Safety Trial Ring",
+   "kind": "landmark",
+   "at": [
+    3684,
+    3934
+   ],
+   "blurb": "Angular silver observatory, suspended instruments"
+  },
+  {
+   "name": "Timekeepers' Hall",
+   "kind": "landmark",
+   "at": [
+    5365,
+    1898
+   ],
+   "blurb": "Angular silver observatory, suspended instruments"
+  },
+  {
+   "name": "Archivists' Gallery",
+   "kind": "landmark",
+   "at": [
+    6965,
+    3897
+   ],
+   "blurb": "Angular silver observatory, suspended instruments"
+  },
+  {
+   "name": "Hearthstone Crossing",
+   "kind": "landmark",
+   "at": [
+    1869,
+    4774
+   ],
+   "blurb": "To Hearthstone Crossing."
+  },
+  {
+   "name": "Windcut Pass",
+   "kind": "landmark",
+   "at": [
+    4684,
+    4774
+   ],
+   "blurb": "To Windcut Pass."
+  },
+  {
+   "name": "Meridian Observatory",
+   "kind": "landmark",
+   "at": [
+    5902,
+    4774
+   ],
+   "blurb": "To Meridian Observatory."
+  }
+ ],
+ "world_id": "veyr_meridian_outpost",
+ "grade": {
+  "mul": [
+   0.88,
+   0.9,
+   1.08
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.04,
+   0.05,
+   0.1,
+   1.0
+  ],
+  "mist": [
+   0.72,
+   0.76,
+   0.95
+  ],
+  "water": [
+   0.28,
+   0.36,
+   0.6
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    1413,
+    2089
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    3684,
+    3934
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    5365,
+    1898
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6965,
+    3897
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

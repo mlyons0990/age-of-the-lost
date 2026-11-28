@@ -121,13 +121,28 @@ const MORE_TYPES := {
 		"art": "brute", "tint": Color(0.78, 0.78, 0.82), "height": 2.4, "speed_m": 2.5},
 }
 
-## A monster type's stats: the original table, or MORE_TYPES.
+## Campaign monster types (data/monster_types.json, written by tools/campaign_build.py from the act enemy families):
+## same fields as MORE_TYPES; "tint" as [r, g, b].
+static var _data_types := {}
+static func data_types() -> Dictionary:
+	if _data_types.is_empty() and FileAccess.file_exists("res://data/monster_types.json"):
+		var raw: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/monster_types.json"))
+		for k in raw:
+			var d: Dictionary = raw[k].duplicate()
+			var t: Array = d.get("tint", [1, 1, 1])
+			d["tint"] = Color(float(t[0]), float(t[1]), float(t[2]))
+			_data_types[k] = d
+	return _data_types
+
+## A monster type's stats: the original table, MORE_TYPES, or the campaign data.
 static func type_def(key: String) -> Dictionary:
-	return GD.ETYPES[key] if GD.ETYPES.has(key) else MORE_TYPES[key]
+	if GD.ETYPES.has(key): return GD.ETYPES[key]
+	if MORE_TYPES.has(key): return MORE_TYPES[key]
+	return data_types().get(key, MORE_TYPES["bog_ghoul"])
 
 ## The painting a type is drawn with (its own key once its art exists).
 static func art_key(key: String) -> String:
-	return key if TEX.has(key) else String(MORE_TYPES[key].get("art", "slime"))
+	return key if TEX.has(key) else String(type_def(key).get("art", "slime"))
 
 var type_tint := Color.WHITE
 const HEIGHT_M := {"slime": 1.15, "revenant": 2.05, "brute": 2.45}

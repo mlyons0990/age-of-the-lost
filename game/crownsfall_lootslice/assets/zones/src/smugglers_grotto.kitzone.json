@@ -1,5 +1,5 @@
 {
- "name": "Smugglers' Grotto",
+ "name": "Smuggler's Grotto",
  "kit": "assets/kit/forest_hf",
  "size": [
   7680,
@@ -9,185 +9,259 @@
  "pitch": 31.0,
  "hero_px_1080": 125.0,
  "ground_base": "dirt",
- "seed": 43,
+ "seed": 9431,
  "paths": [
   {
    "pts": [
     [
-     -80,
-     2470
+     6302,
+     3597
     ],
     [
-     700,
-     2470
+     6216,
+     2874
+    ],
+    [
+     5841,
+     2205
     ]
    ],
-   "width": 330,
-   "layer": "flagstone"
+   "width": 315,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     700,
-     2470
+     5841,
+     2205
     ],
     [
-     2100,
-     1500
+     6196,
+     1776
+    ],
+    [
+     6485,
+     1322
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 314,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     700,
-     2470
+     5841,
+     2205
     ],
     [
-     2100,
-     3500
+     4593,
+     2439
+    ],
+    [
+     3311,
+     2521
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 312,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2100,
-     1500
+     3311,
+     2521
     ],
     [
-     3600,
-     2470
+     2927,
+     2094
+    ],
+    [
+     2902,
+     1583
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 333,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2100,
-     3500
+     2902,
+     1583
     ],
     [
-     3600,
-     2470
+     2211,
+     1301
+    ],
+    [
+     1583,
+     950
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 320,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     3600,
-     2470
+     3311,
+     2521
     ],
     [
-     5000,
-     1300
+     3560,
+     3032
+    ],
+    [
+     3491,
+     3575
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 321,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     3600,
-     2470
+     3491,
+     3575
     ],
     [
-     5000,
-     3700
+     2574,
+     3434
+    ],
+    [
+     1658,
+     3292
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 263,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     5000,
-     1300
+     1583,
+     950
     ],
     [
-     6700,
-     2470
+     3983,
+     1499
+    ],
+    [
+     6485,
+     1322
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 293,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     5000,
-     3700
+     140,
+     2941
     ],
     [
-     6700,
-     2470
+     840,
+     2941
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     2941
+    ],
+    [
+     1658,
+     3292
     ]
    ],
    "width": 300,
-   "layer": "flagstone"
+   "layer": "flagstone",
+   "wander": 0.6
   }
  ],
  "patches": [
   {
    "at": [
-    700,
-    2470
+    6302,
+    3597
    ],
-   "r": 520,
+   "r": 448,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    2100,
-    1500
+    1658,
+    3292
    ],
-   "r": 520,
+   "r": 558,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    2100,
-    3500
+    2902,
+    1583
    ],
-   "r": 560,
+   "r": 459,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    3600,
-    2470
+    3311,
+    2521
    ],
-   "r": 640,
+   "r": 620,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    5000,
-    1300
+    6485,
+    1322
    ],
-   "r": 560,
+   "r": 474,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    5000,
-    3700
+    1583,
+    950
+   ],
+   "r": 455,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3491,
+    3575
+   ],
+   "r": 532,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5841,
+    2205
    ],
    "r": 600,
    "layer": "flagstone",
@@ -195,54 +269,51 @@
   },
   {
    "at": [
-    6700,
-    2470
+    3471,
+    2676
    ],
-   "r": 760,
-   "layer": "flagstone",
-   "squash": 0.515
-  },
-  {
-   "at": [
-    2100,
-    3650
-   ],
-   "r": 300,
+   "r": 198,
    "layer": "water",
    "squash": 0.52
   },
   {
    "at": [
-    5000,
-    3850
+    3550,
+    3708
    ],
-   "r": 320,
+   "r": 170,
    "layer": "water",
    "squash": 0.52
   },
   {
    "at": [
-    3600,
-    2620
+    5973,
+    2355
    ],
-   "r": 200,
-   "layer": "water",
-   "squash": 0.52
-  },
-  {
-   "at": [
-    6700,
-    2700
-   ],
-   "r": 260,
+   "r": 192,
    "layer": "water",
    "squash": 0.52
   }
  ],
  "clear": [
   [
-   160,
-   2470,
+   140,
+   2941,
+   380
+  ],
+  [
+   6485,
+   1322,
+   300
+  ],
+  [
+   6302,
+   3597,
+   300
+  ],
+  [
+   5841,
+   2205,
    300
   ]
  ],
@@ -255,7 +326,7 @@
    ]
   ],
   "spacing": 99999,
-  "cut": 0.72,
+  "cut": 0.82,
   "grove_px": 1500,
   "frame": 0.45,
   "frame_px": 900,
@@ -279,10 +350,26 @@
   ],
   "clumps_per_mpx": 0,
   "clumps": {
-   "ferns": {
-    "w": 4,
+   "mixed": {
+    "w": 2,
     "n": [
-     3,
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
      6
     ],
     "r": 170,
@@ -291,58 +378,18 @@
      "b_fern"
     ]
    },
-   "lavender": {
-    "w": 2,
-    "n": [
-     3,
-     7
-    ],
-    "r": 160,
-    "props": [
-     "a_lavender",
-     "b_lavender"
-    ]
-   },
-   "white": {
-    "w": 2,
-    "n": [
-     2,
-     5
-    ],
-    "r": 140,
-    "props": [
-     "a_shrub_white",
-     "b_shrub_white"
-    ]
-   },
    "bushes": {
-    "w": 3,
+    "w": 1,
     "n": [
      2,
-     4
+     6
     ],
-    "r": 150,
+    "r": 170,
     "props": [
      "a_bush_round",
      "b_bush_round",
      "a_bush_yellow",
      "b_bush_yellow"
-    ]
-   },
-   "mixed": {
-    "w": 3,
-    "n": [
-     3,
-     6
-    ],
-    "r": 180,
-    "props": [
-     "a_fern",
-     "a_grass_tall",
-     "b_grass_tall",
-     "a_lavender",
-     "b_shrub_white",
-     "b_bush_round"
     ]
    }
   },
@@ -367,7 +414,7 @@
   "litter_ground": 0.65,
   "max_canopy_cover": 0.06,
   "cover": {
-   "per_mpx": 55,
+   "per_mpx": 10,
    "props": [
     "ga_tallgrass",
     "ga_longgrass",
@@ -408,7 +455,7 @@
  },
  "edges": [],
  "light": {
-  "canopy": 0.55,
+  "canopy": 0.5,
   "contact": 0.4,
   "pools": 0.3,
   "dapple_px": 40,
@@ -416,64 +463,65 @@
    0.3,
    0.16
   ],
-  "exposure": 0.75,
+  "exposure": 0.78,
   "overhead": 0.0,
   "over_density": 0,
   "tree_mist": 0.0,
   "open": [
    [
-    700,
-    2470,
-    416.0,
+    6302,
+    3597,
+    380.8,
     0.6
    ],
    [
-    2100,
-    1500,
-    416.0,
+    1658,
+    3292,
+    474.3,
     0.6
    ],
    [
-    2100,
-    3500,
-    448.0,
+    2902,
+    1583,
+    390.15,
     0.6
    ],
    [
-    3600,
-    2470,
-    512.0,
+    3311,
+    2521,
+    527.0,
     0.6
    ],
    [
-    5000,
-    1300,
-    448.0,
+    6485,
+    1322,
+    402.9,
     0.6
    ],
    [
-    5000,
-    3700,
-    480.0,
+    1583,
+    950,
+    386.75,
     0.6
    ],
    [
-    6700,
-    2470,
-    608.0,
+    3491,
+    3575,
+    452.2,
+    0.6
+   ],
+   [
+    5841,
+    2205,
+    510.0,
     0.6
    ]
   ],
   "shafts": [
    [
-    3600,
-    2270,
-    380
-   ],
-   [
-    6700,
-    2270,
-    380
+    6485,
+    1102,
+    420
    ]
   ],
   "prop_mist": false,
@@ -481,27 +529,27 @@
  },
  "waypoints": [
   {
-   "id": "grotto_cache",
-   "name": "Smugglers' Cache",
+   "id": "smugglers_grotto_wp",
+   "name": "Smuggler's Grotto",
    "at": [
-    3600,
-    2470
+    3491,
+    3575
    ],
    "radius_px": 200
   }
  ],
  "exits": [
   {
-   "name": "Wreckers' Strand",
+   "name": "Wrecker's Strand",
    "to": "wreckers_strand",
    "at": [
     140,
-    2470
+    2941
    ],
    "r": 170,
    "arrive": [
-    9100,
-    1350
+    10960,
+    2417
    ]
   }
  ],
@@ -526,53 +574,53 @@
   ]
  ],
  "spawn": [
-  620,
-  2470
+  560,
+  2941
  ],
  "targets": [],
  "map_pois": [
   {
-   "name": "Sea Door",
+   "name": "Duelist's Alcove",
    "kind": "landmark",
    "at": [
-    160,
-    2470
+    6485,
+    1322
    ],
-   "blurb": "Out to the Wreckers' Strand."
+   "blurb": "Hidden sea cavern of relic smugglers"
   },
   {
    "name": "Smugglers' Cache",
    "kind": "landmark",
    "at": [
-    3600,
-    2470
+    6302,
+    3597
    ],
-   "blurb": "Crates of rift-relics, priced to sell."
-  },
-  {
-   "name": "Duelist's Alcove",
-   "kind": "secret",
-   "at": [
-    2100,
-    1500
-   ],
-   "blurb": "A Concord duelist's blade, still in the hand that held it."
+   "blurb": "Hidden sea cavern of relic smugglers"
   },
   {
    "name": "The Wrong Tide",
    "kind": "landmark",
    "at": [
-    6700,
-    2470
+    5841,
+    2205
    ],
-   "blurb": "Here the sea runs backwards into a crack in the air."
+   "blurb": "Hidden sea cavern of relic smugglers"
+  },
+  {
+   "name": "Wrecker's Strand",
+   "kind": "landmark",
+   "at": [
+    140,
+    2941
+   ],
+   "blurb": "To Wrecker's Strand."
   }
  ],
- "world_id": "grotto",
+ "world_id": "smugglers_grotto",
  "grade": {
   "mul": [
-   0.58,
-   0.64,
+   0.56,
+   0.66,
    0.72
   ],
   "desat": 0.4,
@@ -583,24 +631,195 @@
    1.0
   ],
   "mist": [
-   0.45,
-   0.55,
-   0.62
+   0.5,
+   0.6,
+   0.66
   ],
   "water": [
-   0.1,
-   0.22,
+   0.12,
+   0.24,
    0.3
   ]
  },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6302,
+    3597
+   ],
+   "r": 425.59999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1658,
+    3292
+   ],
+   "r": 530.1,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2902,
+    1583
+   ],
+   "r": 436.04999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3311,
+    2521
+   ],
+   "r": 589.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6485,
+    1322
+   ],
+   "r": 450.29999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1583,
+    950
+   ],
+   "r": 432.25,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3491,
+    3575
+   ],
+   "r": 505.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5841,
+    2205
+   ],
+   "r": 570.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
  "enclose": {
   "props": [
-   "a_rock_tall",
-   "b_rock_tall",
+   "a_rock_flat",
+   "b_rock_flat",
    "a_rock_pair",
    "b_rock_pair",
-   "a_rock_flat",
-   "b_rock_flat"
+   "a_rock_tall",
+   "b_rock_tall"
   ],
   "spacing": 240,
   "fill": 0.5,

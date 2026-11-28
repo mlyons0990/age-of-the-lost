@@ -1,0 +1,816 @@
+{
+ "name": "Workers' Terrace",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 3234,
+ "paths": [
+  {
+   "pts": [
+    [
+     3628,
+     190
+    ],
+    [
+     3628,
+     494
+    ],
+    [
+     4175,
+     1270
+    ],
+    [
+     3956,
+     2174
+    ],
+    [
+     4465,
+     2958
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2127,
+     4774
+    ],
+    [
+     2127,
+     4470
+    ],
+    [
+     3069,
+     4345
+    ],
+    [
+     3090,
+     3568
+    ],
+    [
+     4145,
+     3523
+    ],
+    [
+     4465,
+     2958
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4241,
+     3353
+    ],
+    [
+     4449,
+     3569
+    ],
+    [
+     5120,
+     3502
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4065,
+     1114
+    ],
+    [
+     4613,
+     1052
+    ],
+    [
+     5336,
+     886
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2127,
+     4470
+    ],
+    [
+     1740,
+     4039
+    ],
+    [
+     997,
+     3907
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3628,
+     494
+    ],
+    [
+     2567,
+     588
+    ],
+    [
+     1160,
+     775
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4504,
+    4393
+   ],
+   "r": 398,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4845,
+    2481
+   ],
+   "r": 297,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1143,
+    2261
+   ],
+   "r": 329,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2762,
+    2418
+   ],
+   "r": 452,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4378,
+    4146
+   ],
+   "r": 367,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4921,
+    711
+   ],
+   "r": 270,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2552,
+    2133
+   ],
+   "r": 389,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6448,
+    2797
+   ],
+   "r": 412,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2822,
+    3341
+   ],
+   "r": 286,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    951,
+    3406
+   ],
+   "r": 399,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2920,
+    2392
+   ],
+   "r": 395,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5780,
+    718
+   ],
+   "r": 344,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1646,
+    2750
+   ],
+   "r": 411,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4465,
+    2958
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5120,
+    3502
+   ],
+   "r": 399,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5336,
+    886
+   ],
+   "r": 383,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    997,
+    3907
+   ],
+   "r": 494,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1160,
+    775
+   ],
+   "r": 515,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6097,
+    2673
+   ],
+   "r": 194,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4545,
+    3957
+   ],
+   "r": 217,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   3628,
+   190,
+   380
+  ],
+  [
+   2127,
+   4774,
+   380
+  ],
+  [
+   5120,
+   3502,
+   300
+  ],
+  [
+   5336,
+   886,
+   300
+  ],
+  [
+   997,
+   3907,
+   300
+  ],
+  [
+   1160,
+   775,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    5120,
+    3502,
+    560,
+    0.45
+   ],
+   [
+    5336,
+    886,
+    560,
+    0.45
+   ],
+   [
+    997,
+    3907,
+    560,
+    0.45
+   ],
+   [
+    1160,
+    775,
+    560,
+    0.45
+   ],
+   [
+    4465,
+    2958,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4465,
+    2738,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "workers_terrace_wp",
+   "name": "Workers' Terrace",
+   "at": [
+    4465,
+    2958
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Aurelian Forum",
+   "to": "aurelian_forum",
+   "at": [
+    3628,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    5242,
+    4438
+   ]
+  },
+  {
+   "name": "Garden of Civic Memory",
+   "to": "garden_of_civic_memory",
+   "at": [
+    2127,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    2101,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  3628,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Public Kitchens",
+   "kind": "landmark",
+   "at": [
+    5120,
+    3502
+   ],
+   "blurb": "Crowded apartments, laundry, public kitchens"
+  },
+  {
+   "name": "Laundry Lines",
+   "kind": "landmark",
+   "at": [
+    5336,
+    886
+   ],
+   "blurb": "Crowded apartments, laundry, public kitchens"
+  },
+  {
+   "name": "Union Hall",
+   "kind": "landmark",
+   "at": [
+    997,
+    3907
+   ],
+   "blurb": "Crowded apartments, laundry, public kitchens"
+  },
+  {
+   "name": "Crowded Apartments",
+   "kind": "landmark",
+   "at": [
+    1160,
+    775
+   ],
+   "blurb": "Crowded apartments, laundry, public kitchens"
+  },
+  {
+   "name": "Aurelian Forum",
+   "kind": "landmark",
+   "at": [
+    3628,
+    190
+   ],
+   "blurb": "To Aurelian Forum."
+  },
+  {
+   "name": "Garden of Civic Memory",
+   "kind": "landmark",
+   "at": [
+    2127,
+    4774
+   ],
+   "blurb": "To Garden of Civic Memory."
+  }
+ ],
+ "world_id": "workers_terrace",
+ "grade": {
+  "mul": [
+   1.12,
+   1.06,
+   0.9
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.08,
+   0.07,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.94,
+   0.8
+  ],
+  "water": [
+   0.32,
+   0.55,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5120,
+    3502
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    5336,
+    886
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    997,
+    3907
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1160,
+    775
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

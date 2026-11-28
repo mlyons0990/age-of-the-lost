@@ -1,0 +1,78 @@
+{
+ "zone": "bellwater_inundation",
+ "levels": [
+  52,
+  53
+ ],
+ "packs": 30,
+ "seed": 533,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "bellwater_inundation_0",
+    "bellwater_inundation_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "bellwater_inundation_1",
+    "bellwater_inundation_1",
+    "bellwater_inundation_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "bellwater_inundation_0",
+    "bellwater_inundation_1",
+    "bellwater_inundation_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "bellwater_inundation_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "bellwater_inundation_2",
+    "bellwater_inundation_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "bellwater_inundation_0",
+    "bellwater_inundation_0",
+    "bellwater_inundation_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    9219,
+    675
+   ],
+   "types": [],
+   "boss": "bellwater_inundation_boss_u",
+   "boss_type": "bellwater_inundation_boss",
+   "boss_name": "The Returning Tide",
+   "needs_quest": "Q_A06_03"
+  }
+ ],
+ "keep_clear": [
+  [
+   9219,
+   675,
+   700
+  ]
+ ]
+}

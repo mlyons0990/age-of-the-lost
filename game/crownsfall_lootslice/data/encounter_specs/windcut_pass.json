@@ -1,0 +1,122 @@
+{
+ "zone": "windcut_pass",
+ "levels": [
+  14,
+  15
+ ],
+ "packs": 30,
+ "seed": 287,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "windcut_pass_0",
+    "windcut_pass_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "windcut_pass_1",
+    "windcut_pass_1",
+    "windcut_pass_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "windcut_pass_0",
+    "windcut_pass_1",
+    "windcut_pass_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "windcut_pass_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "windcut_pass_2",
+    "windcut_pass_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "windcut_pass_0",
+    "windcut_pass_0",
+    "windcut_pass_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    4628,
+    1433
+   ],
+   "types": [
+    "windcut_pass_1",
+    "windcut_pass_1"
+   ],
+   "elite": false,
+   "guardian": "windcut_pass_g1",
+   "elite_type": "windcut_pass_0",
+   "elite_name": "The Rime Courier-Killer",
+   "page": "Q_A02_07_1"
+  },
+  {
+   "at": [
+    5717,
+    3894
+   ],
+   "types": [
+    "windcut_pass_1",
+    "windcut_pass_1"
+   ],
+   "elite": false,
+   "guardian": "windcut_pass_g2",
+   "elite_type": "windcut_pass_1",
+   "elite_name": "Ridge Stalker",
+   "page": "Q_A02_07_2"
+  },
+  {
+   "at": [
+    1064,
+    3599
+   ],
+   "types": [
+    "windcut_pass_1",
+    "windcut_pass_1"
+   ],
+   "elite": false,
+   "guardian": "windcut_pass_g3",
+   "elite_type": "windcut_pass_2",
+   "elite_name": "Gallery Brute",
+   "page": "Q_A02_07_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   4628,
+   1433,
+   700
+  ],
+  [
+   5717,
+   3894,
+   700
+  ],
+  [
+   1064,
+   3599,
+   700
+  ]
+ ]
+}

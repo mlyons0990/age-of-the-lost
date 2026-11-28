@@ -1,0 +1,78 @@
+{
+ "zone": "thornfen",
+ "levels": [
+  11,
+  12
+ ],
+ "packs": 30,
+ "seed": 491,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "thornfen_0",
+    "thornfen_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "thornfen_1",
+    "thornfen_1",
+    "thornfen_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "thornfen_0",
+    "thornfen_1",
+    "thornfen_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "thornfen_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "thornfen_2",
+    "thornfen_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "thornfen_0",
+    "thornfen_0",
+    "thornfen_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    7666,
+    1600
+   ],
+   "types": [],
+   "boss": "thornfen_boss_u",
+   "boss_type": "thornfen_boss",
+   "boss_name": "The Bell-Drowned",
+   "needs_quest": "Q_A02_02"
+  }
+ ],
+ "keep_clear": [
+  [
+   7666,
+   1600,
+   700
+  ]
+ ]
+}

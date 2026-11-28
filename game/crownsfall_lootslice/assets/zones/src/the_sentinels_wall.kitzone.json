@@ -1,0 +1,700 @@
+{
+ "name": "The Sentinel's Wall",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 936,
+ "paths": [
+  {
+   "pts": [
+    [
+     9623,
+     190
+    ],
+    [
+     9623,
+     494
+    ],
+    [
+     8391,
+     688
+    ],
+    [
+     7537,
+     1217
+    ],
+    [
+     6420,
+     1513
+    ],
+    [
+     6012,
+     2436
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6514,
+     190
+    ],
+    [
+     6514,
+     494
+    ],
+    [
+     6742,
+     1189
+    ],
+    [
+     6279,
+     1800
+    ],
+    [
+     6012,
+     2436
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     7793,
+     1058
+    ],
+    [
+     8618,
+     1255
+    ],
+    [
+     9008,
+     1649
+    ]
+   ],
+   "width": 138,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6012,
+     2436
+    ],
+    [
+     5580,
+     2739
+    ],
+    [
+     5696,
+     2885
+    ]
+   ],
+   "width": 168,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6559,
+     633
+    ],
+    [
+     5869,
+     521
+    ],
+    [
+     5016,
+     764
+    ]
+   ],
+   "width": 185,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     9623,
+     494
+    ],
+    [
+     10030,
+     426
+    ],
+    [
+     10711,
+     713
+    ]
+   ],
+   "width": 174,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    1411,
+    3752
+   ],
+   "r": 461,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    9194,
+    1249
+   ],
+   "r": 501,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    7592,
+    2583
+   ],
+   "r": 457,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6012,
+    2436
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    9008,
+    1649
+   ],
+   "r": 450,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5016,
+    764
+   ],
+   "r": 254,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    10711,
+    713
+   ],
+   "r": 569,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   9623,
+   190,
+   380
+  ],
+  [
+   6514,
+   190,
+   380
+  ],
+  [
+   9008,
+   1649,
+   300
+  ],
+  [
+   5696,
+   2885,
+   300
+  ],
+  [
+   5016,
+   764,
+   300
+  ],
+  [
+   10711,
+   713,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    1
+   ],
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 95,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    9008,
+    1649,
+    560,
+    0.45
+   ],
+   [
+    5696,
+    2885,
+    560,
+    0.45
+   ],
+   [
+    5016,
+    764,
+    560,
+    0.45
+   ],
+   [
+    10711,
+    713,
+    560,
+    0.45
+   ],
+   [
+    6012,
+    2436,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6012,
+    2216,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_sentinels_wall_wp",
+   "name": "The Sentinel's Wall",
+   "at": [
+    6012,
+    2436
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Veyr Sanctuary",
+   "to": "veyr_sanctuary",
+   "at": [
+    9623,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    5692,
+    4438
+   ]
+  },
+  {
+   "name": "The Choir's Procession",
+   "to": "the_choirs_procession",
+   "at": [
+    6514,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    7714,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  9623,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Continental Fortification",
+   "kind": "landmark",
+   "at": [
+    9008,
+    1649
+   ],
+   "blurb": "Continental fortification, refugee roads"
+  },
+  {
+   "name": "Refugee Road",
+   "kind": "landmark",
+   "at": [
+    5696,
+    2885
+   ],
+   "blurb": "Continental fortification, refugee roads"
+  },
+  {
+   "name": "Repair Pylon",
+   "kind": "landmark",
+   "at": [
+    5016,
+    764
+   ],
+   "blurb": "Continental fortification, refugee roads"
+  },
+  {
+   "name": "Boundary Regulator",
+   "kind": "landmark",
+   "at": [
+    10711,
+    713
+   ],
+   "blurb": "Continental fortification, refugee roads"
+  },
+  {
+   "name": "Veyr Sanctuary",
+   "kind": "landmark",
+   "at": [
+    9623,
+    190
+   ],
+   "blurb": "To Veyr Sanctuary."
+  },
+  {
+   "name": "The Choir's Procession",
+   "kind": "landmark",
+   "at": [
+    6514,
+    190
+   ],
+   "blurb": "To The Choir's Procession."
+  }
+ ],
+ "world_id": "the_sentinels_wall",
+ "grade": {
+  "mul": [
+   0.9,
+   0.9,
+   0.92
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.05,
+   0.05,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.75,
+   0.75,
+   0.8
+  ],
+  "water": [
+   0.25,
+   0.3,
+   0.38
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    9008,
+    1649
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    5696,
+    2885
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    5016,
+    764
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "silver",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    10711,
+    713
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  }
+ ]
+}

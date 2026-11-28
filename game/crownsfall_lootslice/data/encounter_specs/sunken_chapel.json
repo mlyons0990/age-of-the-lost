@@ -1,56 +1,56 @@
 {
  "zone": "sunken_chapel",
  "levels": [
-  6,
-  7
+  3,
+  4
  ],
- "packs": 16,
- "seed": 37,
+ "packs": 14,
+ "seed": 289,
  "spacing": 700,
  "groups": [
   [
    5,
    [
-    "drowned_acolyte",
-    "drowned_acolyte"
+    "sunken_chapel_0",
+    "sunken_chapel_0"
    ]
   ],
   [
    3,
    [
-    "chapel_eel",
-    "chapel_eel",
-    "chapel_eel"
+    "sunken_chapel_1",
+    "sunken_chapel_1",
+    "sunken_chapel_1"
    ]
   ],
   [
    3,
    [
-    "drowned_acolyte",
-    "chapel_eel",
-    "chapel_eel"
+    "sunken_chapel_0",
+    "sunken_chapel_1",
+    "sunken_chapel_1"
    ]
   ],
   [
    2,
    [
-    "font_horror"
+    "sunken_chapel_2"
    ],
    true
   ],
   [
    2,
    [
-    "font_horror",
-    "drowned_acolyte"
+    "sunken_chapel_2",
+    "sunken_chapel_0"
    ]
   ],
   [
    1,
    [
-    "drowned_acolyte",
-    "drowned_acolyte",
-    "drowned_acolyte"
+    "sunken_chapel_0",
+    "sunken_chapel_0",
+    "sunken_chapel_0"
    ],
    true
   ]
@@ -58,35 +58,26 @@
  "fixed": [
   {
    "at": [
-    3000,
-    1300
-   ],
-   "types": [
-    "chapel_eel",
-    "chapel_eel"
-   ],
-   "elite": false,
-   "guardian": "chapel_reliquary",
-   "elite_type": "font_horror",
-   "elite_name": "The Reliquary Keeper"
-  },
-  {
-   "at": [
-    6800,
-    2470
+    6205,
+    2833
    ],
    "types": [],
-   "boss": "choirmaster",
-   "boss_type": "choirmaster",
+   "boss": "sunken_chapel_boss_u",
+   "boss_type": "sunken_chapel_boss",
    "boss_name": "The Choirmaster",
-   "needs_quest": "the_scorched_altar"
+   "needs_quest": "Q_A01_R07"
   }
  ],
  "keep_clear": [
   [
-   5600,
-   3500,
+   6205,
+   2833,
    700
+  ],
+  [
+   5212,
+   4158,
+   800
   ]
  ]
 }

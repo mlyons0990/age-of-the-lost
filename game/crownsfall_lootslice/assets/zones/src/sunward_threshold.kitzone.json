@@ -1,0 +1,710 @@
+{
+ "name": "Sunward Threshold",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 9706,
+ "paths": [
+  {
+   "pts": [
+    [
+     7540,
+     2563
+    ],
+    [
+     7160,
+     2563
+    ],
+    [
+     6169,
+     2622
+    ],
+    [
+     5187,
+     2806
+    ],
+    [
+     4207,
+     3011
+    ],
+    [
+     3193,
+     2726
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5994,
+     190
+    ],
+    [
+     5994,
+     494
+    ],
+    [
+     5835,
+     1381
+    ],
+    [
+     4688,
+     1667
+    ],
+    [
+     4105,
+     2296
+    ],
+    [
+     3193,
+     2726
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4207,
+     3011
+    ],
+    [
+     4276,
+     3548
+    ],
+    [
+     4090,
+     4168
+    ]
+   ],
+   "width": 140,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3193,
+     2726
+    ],
+    [
+     2351,
+     2484
+    ],
+    [
+     1275,
+     2032
+    ]
+   ],
+   "width": 150,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5930,
+     848
+    ],
+    [
+     5347,
+     929
+    ],
+    [
+     4787,
+     798
+    ]
+   ],
+   "width": 181,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4018,
+    3548
+   ],
+   "r": 453,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2946,
+    3096
+   ],
+   "r": 442,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3137,
+    2279
+   ],
+   "r": 379,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4929,
+    3174
+   ],
+   "r": 270,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2799,
+    2967
+   ],
+   "r": 453,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5859,
+    4023
+   ],
+   "r": 436,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2840,
+    3062
+   ],
+   "r": 277,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6789,
+    1800
+   ],
+   "r": 404,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    801,
+    1296
+   ],
+   "r": 376,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3193,
+    2726
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4090,
+    4168
+   ],
+   "r": 410,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1275,
+    2032
+   ],
+   "r": 561,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5743,
+    3301
+   ],
+   "r": 212,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1964,
+    2788
+   ],
+   "r": 184,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   7540,
+   2563,
+   380
+  ],
+  [
+   5994,
+   190,
+   380
+  ],
+  [
+   4090,
+   4168,
+   300
+  ],
+  [
+   1275,
+   2032,
+   300
+  ],
+  [
+   4787,
+   798,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    4090,
+    4168,
+    560,
+    0.45
+   ],
+   [
+    1275,
+    2032,
+    560,
+    0.45
+   ],
+   [
+    4787,
+    798,
+    560,
+    0.45
+   ],
+   [
+    3193,
+    2726,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3193,
+    2506,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "sunward_threshold_wp",
+   "name": "Sunward Threshold",
+   "at": [
+    3193,
+    2726
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Meridian Observatory",
+   "to": "meridian_observatory",
+   "at": [
+    7540,
+    2563
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1186
+   ]
+  },
+  {
+   "name": "Aurelian Forum",
+   "to": "aurelian_forum",
+   "at": [
+    5994,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    2455,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  7120,
+  2563
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Monumental Transit Gate",
+   "kind": "landmark",
+   "at": [
+    4090,
+    4168
+   ],
+   "blurb": "Golden light, intact monumental transit gate"
+  },
+  {
+   "name": "Anchor Plinth",
+   "kind": "landmark",
+   "at": [
+    1275,
+    2032
+   ],
+   "blurb": "Golden light, intact monumental transit gate"
+  },
+  {
+   "name": "Echo Travellers' Rest",
+   "kind": "landmark",
+   "at": [
+    4787,
+    798
+   ],
+   "blurb": "Golden light, intact monumental transit gate"
+  },
+  {
+   "name": "Meridian Observatory",
+   "kind": "landmark",
+   "at": [
+    7540,
+    2563
+   ],
+   "blurb": "To Meridian Observatory."
+  },
+  {
+   "name": "Aurelian Forum",
+   "kind": "landmark",
+   "at": [
+    5994,
+    190
+   ],
+   "blurb": "To Aurelian Forum."
+  }
+ ],
+ "world_id": "sunward_threshold",
+ "grade": {
+  "mul": [
+   1.1760000000000002,
+   1.1130000000000002,
+   0.9450000000000001
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.08,
+   0.07,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.94,
+   0.8
+  ],
+  "water": [
+   0.32,
+   0.55,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4090,
+    4168
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1275,
+    2032
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    4787,
+    798
+   ],
+   "r": 380,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  }
+ ]
+}

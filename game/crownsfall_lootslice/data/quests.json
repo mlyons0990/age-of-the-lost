@@ -1,172 +1,105 @@
 {
  "quests": [
   {
-   "id": "city_reborn",
-   "name": "A City Reborn",
-   "giver": "ralden",
-   "next": "lost_tomes",
+   "id": "Q_A01_01",
+   "name": "A Bell Without a Ringer",
+   "zone_id": "ACT01_Z01",
+   "giver": "mira",
+   "auto": false,
    "steps": {
     "active": {
-     "objective": "Speak with Captain Ralden",
+     "objective": "Meet archivist Mira Thorne; investigate missing royal courier Joren Pike and a bell heard by only a few citizens.",
      "markers": [
       {
        "zone": "crownsfall",
-       "npc": "ralden"
+       "npc": "mira"
       }
      ]
     }
    },
    "reward": {
-    "xp": 40,
-    "gold": 25
+    "xp": 108,
+    "gold": 80
    },
    "talk": {
     "active": [
-     "Captain Ralden",
-     "Wayfarer. Crownsfall stands, but barely. The Whisperwood east of the gate has turned \u2014 things walk there that remember nothing but hunger.",
-     "The Archive's last pages were carried into that wood when the old wardens fell. Without them, the city forgets itself. Will you bring them back?"
-    ]
-   }
-  },
-  {
-   "id": "lost_tomes",
-   "name": "The Lost Tomes",
-   "giver": "ralden",
-   "next": "thornwarden",
-   "count": 3,
-   "steps": {
-    "active": {
-     "objective": "Recover the Archive Pages",
-     "markers": [
-      {
-       "zone": "whisperwood_forest",
-       "at": [
-        1800,
-        4250
-       ],
-       "r": 430,
-       "label": "Archive page: Flower Dell",
-       "page": "page_1"
-      },
-      {
-       "zone": "whisperwood_forest",
-       "at": [
-        6450,
-        4400
-       ],
-       "r": 430,
-       "label": "Archive page: Fae Ring",
-       "page": "page_2"
-      },
-      {
-       "zone": "whisperwood_forest",
-       "at": [
-        9250,
-        700
-       ],
-       "r": 430,
-       "label": "Archive page: Standing Stones",
-       "page": "page_3"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Return the pages to Captain Ralden",
-     "markers": [
-      {
-       "zone": "crownsfall",
-       "npc": "ralden"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 350,
-    "gold": 150,
-    "item_rarity": 2
-   },
-   "talk": {
-    "ready": [
-     "Captain Ralden",
-     "Three pages, whole and unburnt. You have done what a company of my soldiers could not.",
-     "But these pages name something else \u2014 a warden of the wood who did not fall. The Thornwarden still stands in the meadow at the wood's heart. End it, and the Whisperwood is ours again."
-    ],
-    "active": [
-     "Captain Ralden",
-     "The pages are held by the wood's guardians: in the Flower Dell to the south-west, at the Fae Ring to the south, and among the Standing Stones in the north-east. Check your map (M)."
+     "Mira Thorne",
+     "Meet archivist Mira Thorne; investigate missing royal courier Joren Pike and a bell heard by only a few citizens..",
+     "Mira becomes the field contact."
     ]
    },
-   "item_name": "Archive Page",
+   "talk_complete": true,
    "also": [
-    "the_sealed_barrow"
-   ]
+    "Q_A01_09"
+   ],
+   "next": "Q_A01_02"
   },
   {
-   "id": "the_sealed_barrow",
-   "name": "The Sealed Barrow",
-   "giver": "ralden",
-   "count": 1,
-   "boss": "barrow_lord",
+   "id": "Q_A01_02",
+   "name": "The Missing Mile",
+   "zone_id": "ACT01_Z02",
+   "giver": "",
+   "auto": true,
    "steps": {
     "active": {
-     "objective": "Descend beneath the Standing Stones and end the Barrow-Lord",
+     "objective": "Escort a grain cart and investigate a road marker whose distance changes.",
      "markers": [
       {
-       "zone": "whisperwood_forest",
+       "zone": "kingsroad_fields",
        "at": [
-        9250,
-        700
+        1883,
+        2974
        ],
-       "r": 300,
-       "label": "Barrow Stair"
+       "r": 430,
+       "label": "Hob Marrow, Bandit Chief",
+       "page": "Q_A01_02_1"
       },
       {
-       "zone": "mossbarrow_crypts",
+       "zone": "kingsroad_fields",
        "at": [
-        6600,
-        3400
+        6240,
+        1453
        ],
-       "r": 520,
-       "label": "Barrow-Lord's Vault"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Tell Captain Ralden the barrow is quiet",
-     "markers": [
+       "r": 430,
+       "label": "The Mile-Eater",
+       "page": "Q_A01_02_2"
+      },
       {
-       "zone": "crownsfall",
-       "npc": "ralden"
+       "zone": "kingsroad_fields",
+       "at": [
+        10319,
+        3755
+       ],
+       "r": 430,
+       "label": "Grain-Cart Raider",
+       "page": "Q_A01_02_3"
       }
      ]
     }
    },
    "reward": {
-    "xp": 700,
-    "gold": 160,
+    "xp": 108,
+    "gold": 80,
     "item_rarity": 1
    },
-   "talk": {
-    "active": [
-     "Captain Ralden",
-     "One more thing about those pages: the script on them matches the carvings on the Standing Stones in the Whisperwood's north-east.",
-     "The stones were opened last week. Something climbed out. There is a stair down to an old barrow. Its lord was buried before Crownsfall had a name. Put him back."
-    ],
-    "ready": [
-     "Captain Ralden",
-     "A tomb older than the city, and armour no smith of ours could make.",
-     "The more we dig, the less we seem to know about who came before us. Take this."
-    ]
-   }
+   "talk": {},
+   "count": 3,
+   "item_name": "Courier's Waymark",
+   "also": [
+    "Q_A01_03",
+    "Q_A01_07"
+   ],
+   "next": "Q_A01_04"
   },
   {
-   "id": "thornwarden",
-   "name": "The Thornwarden",
-   "giver": "ralden",
-   "count": 1,
+   "id": "Q_A01_04",
+   "name": "A Forest Out of Season",
+   "zone_id": "ACT01_R03",
+   "giver": "",
+   "auto": true,
    "steps": {
     "active": {
-     "objective": "Slay the Thornwarden in the Mossy Meadow",
+     "objective": "Follow impossible winter tracks into the summer wood and stop the out-of-season Thornwarden",
      "markers": [
       {
        "zone": "whisperwood_forest",
@@ -174,271 +107,265 @@
         5650,
         3000
        ],
-       "r": 500,
+       "r": 560,
        "label": "The Thornwarden"
       }
      ]
-    },
-    "ready": {
-     "objective": "Report to Captain Ralden",
-     "markers": [
-      {
-       "zone": "crownsfall",
-       "npc": "ralden"
-      }
-     ]
     }
    },
    "reward": {
-    "xp": 900,
-    "gold": 400,
-    "item_rarity": 3
-   },
-   "talk": {
-    "active": [
-     "Captain Ralden",
-     "The Thornwarden waits in the Mossy Meadow, at the end of the trail south of the glade. Rest, mend your gear, then go."
-    ],
-    "ready": [
-     "Captain Ralden",
-     "It is done, then. The Whisperwood is quiet for the first time in a generation.",
-     "Hollowmere lies beyond it \u2014 and whatever drowned it. When you are ready, Crownsfall will need you again."
-    ]
-   },
-   "boss": "thornwarden",
-   "next": "into_the_mere",
-   "epilogue": {
-    "title": "THE WHISPERWOOD IS FREE",
-    "chapter": "CHAPTER I COMPLETE",
-    "lines": [
-     "The Thornwarden has fallen and the old wood breathes again.",
-     "But the pages speak of the marsh beyond: the wardens' lanterns in Hollowmere have gone dark, and something below the water is waking.",
-     "Chapter II begins: cross the mossy arch in the Whisperwood's south-east into Hollowmere."
-    ]
-   }
-  },
-  {
-   "id": "into_the_mere",
-   "name": "Into the Mere",
-   "giver": "ralden",
-   "next": "drowned_lanterns",
-   "arrive_zone": "hollowmere",
-   "steps": {
-    "active": {
-     "objective": "Cross the Mossy Arch into Hollowmere",
-     "markers": [
-      {
-       "zone": "whisperwood_forest",
-       "at": [
-        10720,
-        4190
-       ],
-       "r": 300,
-       "label": "Mossy Arch to Hollowmere"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 300,
-    "gold": 80
-   },
-   "talk": {
-    "active": [
-     "Captain Ralden",
-     "The Thornwarden was only a gatekeeper. Beyond the mossy arch in the Whisperwood's south-east lies Hollowmere, where the wardens once kept their lanterns burning against the dark water.",
-     "The lanterns are out. Whatever drowned the wardens is rising. Go through the arch and see what is left."
-    ]
-   }
-  },
-  {
-   "id": "drowned_lanterns",
-   "name": "The Drowned Lanterns",
-   "giver": "ralden",
-   "next": "drowned_matron",
-   "count": 3,
-   "item_name": "Warden's Flame",
-   "steps": {
-    "active": {
-     "objective": "Reclaim the wardens' flames",
-     "markers": [
-      {
-       "zone": "hollowmere",
-       "at": [
-        5000,
-        820
-       ],
-       "r": 430,
-       "label": "Lantern of Reeds",
-       "page": "lantern_1"
-      },
-      {
-       "zone": "hollowmere",
-       "at": [
-        6000,
-        4200
-       ],
-       "r": 430,
-       "label": "Lantern of the Willow",
-       "page": "lantern_2"
-      },
-      {
-       "zone": "hollowmere",
-       "at": [
-        8950,
-        790
-       ],
-       "r": 430,
-       "label": "Lantern of Bones",
-       "page": "lantern_3"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Bring the flames to Captain Ralden",
-     "markers": [
-      {
-       "zone": "crownsfall",
-       "npc": "ralden"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 1200,
-    "gold": 300,
+    "xp": 108,
+    "gold": 80,
     "item_rarity": 2
    },
-   "talk": {
-    "active": [
-     "Captain Ralden",
-     "Each lantern held a warden's flame. Whatever guards them now took them when the lanterns died: the Reed-Mother in the north, the Willow Hag in the south, the Bonekeeper on the isle of bones.",
-     "Take the flames back. The Ferryman's Rest waypoint will bring you home and back again."
-    ],
-    "ready": [
-     "Captain Ralden",
-     "Three flames, still burning. The wardens kept these alive for three hundred years.",
-     "They burn toward the east, toward the Sunken Chapel. Something there drowned the wardens, and it is still down there. End it."
-    ]
-   }
+   "talk": {},
+   "boss": "whisperwood_forest_boss_u",
+   "count": 1,
+   "boss_at": [
+    5650,
+    3000
+   ],
+   "also": [
+    "Q_A01_05"
+   ],
+   "next": "Q_A01_06"
   },
   {
-   "id": "drowned_matron",
-   "name": "The Drowned Matron",
-   "giver": "ralden",
-   "count": 1,
-   "boss": "drowned_matron",
+   "id": "Q_A01_06",
+   "name": "The Unremembered Hunt",
+   "zone_id": "ACT01_Z06",
+   "giver": "",
+   "auto": true,
    "steps": {
     "active": {
-     "objective": "Destroy the Drowned Matron in the Sunken Chapel",
+     "objective": "Lorecast an old hunter's bow to open a brief echo.",
+     "markers": [
+      {
+       "zone": "silverroot_grove",
+       "at": [
+        6868,
+        870
+       ],
+       "r": 560,
+       "label": "The Echo Stag"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 208,
+    "gold": 110,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "silverroot_grove_boss_u",
+   "count": 1,
+   "boss_at": [
+    6868,
+    870
+   ],
+   "next": "Q_A01_R05"
+  },
+  {
+   "id": "Q_A01_R05",
+   "name": "The Sealed Barrow",
+   "zone_id": "ACT01_R05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Descend beneath the Standing Stones and put the Barrow-Lord back in his grave",
+     "markers": [
+      {
+       "zone": "mossbarrow_crypts",
+       "at": [
+        5901,
+        2786
+       ],
+       "r": 560,
+       "label": "Barrow-Lord Ostric"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 208,
+    "gold": 110,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "mossbarrow_crypts_boss_u",
+   "count": 1,
+   "boss_at": [
+    5901,
+    2786
+   ],
+   "next": "Q_A01_R06"
+  },
+  {
+   "id": "Q_A01_R06",
+   "name": "The Drowned Matron",
+   "zone_id": "ACT01_R06",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Cross the drowned marsh, relight the wardens' lanterns and end the Drowned Matron",
      "markers": [
       {
        "zone": "hollowmere",
        "at": [
-        10300,
-        2800
+        5333,
+        4289
        ],
-       "r": 520,
+       "r": 560,
        "label": "The Drowned Matron"
       }
      ]
-    },
-    "ready": {
-     "objective": "Report to Captain Ralden",
-     "markers": [
-      {
-       "zone": "crownsfall",
-       "npc": "ralden"
-      }
-     ]
     }
    },
    "reward": {
-    "xp": 2600,
-    "gold": 800,
-    "item_rarity": 3
+    "xp": 330,
+    "gold": 140,
+    "item_rarity": 2
    },
-   "epilogue": {
-    "title": "THE MERE IS STILL",
-    "chapter": "CHAPTER II COMPLETE",
-    "lines": [
-     "The Drowned Matron sinks for the last time and the wardens' lanterns burn again across Hollowmere.",
-     "But the flames lean east. Beyond the marsh an old causeway runs over the salt heath toward the harbour of Saltmarrow, and brigands hold its toll.",
-     "Chapter III begins: take the Greyfen road out of Hollowmere's north-east."
-    ]
-   },
-   "talk": {
-    "active": [
-     "Captain Ralden",
-     "The Sunken Chapel lies at the far east of the mere, where the boardwalk ends. Mend your gear, then go."
-    ],
-    "ready": [
-     "Captain Ralden",
-     "The mere is quiet? Then the wardens can rest at last.",
-     "But Saltmarrow's ships have stopped coming. The causeway east is held by a brigand who calls himself the Tollkeeper. Take this, and take the road."
-    ]
-   },
-   "next": "the_greyfen_road",
-   "also": [
-    "the_scorched_altar"
-   ]
-  },
-  {
-   "id": "the_greyfen_road",
-   "name": "The Greyfen Road",
-   "giver": "ralden",
-   "next": "the_tollkeeper",
-   "arrive_zone": "greyfen_causeway",
-   "steps": {
-    "active": {
-     "objective": "Take the causeway out of Hollowmere's north-east",
-     "markers": [
-      {
-       "zone": "hollowmere",
-       "at": [
-        11380,
-        1260
-       ],
-       "r": 300,
-       "label": "Greyfen Road"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 600,
-    "gold": 150
-   },
-   "talk": {
-    "active": [
-     "Captain Ralden",
-     "Hollowmere's north-east edge climbs onto the old wardens' causeway. Follow it east over the Greyfen to Saltmarrow."
-    ]
-   }
-  },
-  {
-   "id": "the_tollkeeper",
-   "name": "The Tollkeeper",
-   "giver": "harbourmaster",
+   "talk": {},
+   "boss": "hollowmere_boss_u",
    "count": 1,
-   "boss": "tollkeeper",
+   "boss_at": [
+    5333,
+    4289
+   ],
+   "next": "Q_A01_R07"
+  },
+  {
+   "id": "Q_A01_R07",
+   "name": "The Scorched Altar",
+   "zone_id": "ACT01_R07",
+   "giver": "",
+   "auto": true,
    "steps": {
     "active": {
-     "objective": "Break the Tollkeeper's hold on the Toll Tower",
+     "objective": "Go down beneath the Matron's chapel and silence the Hollow Choir's Choirmaster",
+     "markers": [
+      {
+       "zone": "sunken_chapel",
+       "at": [
+        6205,
+        2833
+       ],
+       "r": 560,
+       "label": "The Choirmaster"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 330,
+    "gold": 140,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "sunken_chapel_boss_u",
+   "count": 1,
+   "boss_at": [
+    6205,
+    2833
+   ],
+   "next": "Q_A01_13"
+  },
+  {
+   "id": "Q_A01_13",
+   "name": "The Man Behind the Monster",
+   "zone_id": "ACT01_Z13",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Defeat Ser Caldrin Vael, then Lorecast his shield.",
+     "markers": [
+      {
+       "zone": "cathedral_of_the_nameless",
+       "at": [
+        6545,
+        897
+       ],
+       "r": 560,
+       "label": "Ser Caldrin Vael"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 472,
+    "gold": 170,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "cathedral_of_the_nameless_boss_u",
+   "count": 1,
+   "boss_at": [
+    6545,
+    897
+   ],
+   "epilogue": {
+    "chapter": "THE MAN BEHIND THE MONSTER",
+    "title": "SER CALDRIN VAEL",
+    "lines": [
+     "You Lorecast the shield. Warm light: the same shield rests beside a kitchen table. Elara repairs its strap while Caldrin prepares for duty.",
+     "Lys sets a folded paper crown on his helmet. 'You promised.' Elara: 'Come home before the bell.'",
+     "Then the cathedral doors, civilians behind him, and the silence after the reset.",
+     "Caldrin: 'I remember the door. I remember the bell. But I cannot remember who was waiting.'  You give him his name: Caldrin Vael.",
+     "Mira, when you return: 'Then he was never the thing we thought he was.'  Captain Ralden says nothing for a long time."
+    ]
+   },
+   "next": "Q_A01_R09"
+  },
+  {
+   "id": "Q_A01_R09",
+   "name": "The Tollkeeper",
+   "zone_id": "ACT01_R09",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Break the road cult's hold on the ruined causeway toll and recover the courier's satchel",
      "markers": [
       {
        "zone": "greyfen_causeway",
        "at": [
-        6250,
-        1550
+        9349,
+        3514
        ],
-       "r": 520,
-       "label": "Toll Tower"
+       "r": 560,
+       "label": "The Tollkeeper"
       }
      ]
-    },
-    "ready": {
-     "objective": "Bring word to Saltmarrow's harbourmaster",
+    }
+   },
+   "reward": {
+    "xp": 472,
+    "gold": 170,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "greyfen_causeway_boss_u",
+   "count": 1,
+   "boss_at": [
+    9349,
+    3514
+   ],
+   "next": "Q_A01_R10"
+  },
+  {
+   "id": "Q_A01_R10",
+   "name": "Safe Harbour",
+   "zone_id": "ACT01_R10",
+   "giver": "harbourmaster",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Bring word of the causeway to Saltmarrow's harbourmaster",
      "markers": [
       {
        "zone": "saltmarrow",
@@ -448,618 +375,4742 @@
     }
    },
    "reward": {
-    "xp": 3400,
-    "gold": 900,
-    "item_rarity": 2
+    "xp": 632,
+    "gold": 200
    },
    "talk": {
     "active": [
      "Harbourmaster Wenna",
-     "You came over the causeway? Then you saw the Toll Tower. The Tollkeeper bleeds every cart that passes. Nothing has reached us in a month."
-    ],
-    "ready": [
-     "Harbourmaster Wenna",
-     "The Tollkeeper is dead? Then the carts will roll again by morning.",
-     "Saltmarrow will not forget it. Take this, and rest by our fire."
+     "Bring word of the causeway to Saltmarrow's harbourmaster.",
+     "Saltmarrow's ships stopped coming the night the lanterns went dark."
     ]
    },
-   "next": "the_dark_lighthouse"
+   "talk_complete": true,
+   "next": "Q_A01_R11"
   },
   {
-   "id": "the_dark_lighthouse",
+   "id": "Q_A01_R11",
    "name": "The Dark Lighthouse",
-   "giver": "harbourmaster",
-   "next": "the_tidewrought_warden",
-   "count": 3,
-   "item_name": "Lighthouse Lens",
+   "zone_id": "ACT01_R11",
+   "giver": "harbourmaster_s",
+   "auto": false,
    "steps": {
     "active": {
-     "objective": "Recover the lighthouse lenses on the Wreckers' Strand",
+     "objective": "Recover the three lighthouse lenses the wreckers took up the Strand",
      "markers": [
       {
-       "zone": "saltmarrow",
+       "zone": "wreckers_strand",
        "at": [
-        7540,
-        1900
+        3046,
+        2664
        ],
-       "r": 300,
-       "label": "Strand Road"
+       "r": 430,
+       "label": "The Pool-Queen",
+       "page": "Q_A01_R11_1"
       },
       {
        "zone": "wreckers_strand",
        "at": [
-        3000,
-        3300
+        9972,
+        3290
        ],
        "r": 430,
-       "label": "Tide Pools",
-       "page": "lens_1"
+       "label": "Captain of the Gilded Oath",
+       "page": "Q_A01_R11_2"
       },
       {
        "zone": "wreckers_strand",
        "at": [
-        5250,
-        3300
+        6100,
+        738
        ],
        "r": 430,
-       "label": "Wreck of the Gilded Oath",
-       "page": "lens_2"
-      },
-      {
-       "zone": "wreckers_strand",
-       "at": [
-        9100,
-        1150
-       ],
-       "r": 430,
-       "label": "Smugglers' Cave",
-       "page": "lens_3"
+       "label": "The Strand-Breaker",
+       "page": "Q_A01_R11_3"
       }
      ]
     },
     "ready": {
-     "objective": "Bring the lenses to Harbourmaster Wenna",
+     "objective": "Speak with Harbourmaster Wenna",
      "markers": [
       {
-       "zone": "saltmarrow",
-       "npc": "harbourmaster"
+       "zone": "wreckers_strand",
+       "npc": "harbourmaster_s"
       }
      ]
     }
    },
    "reward": {
-    "xp": 4200,
-    "gold": 1100,
-    "item_rarity": 2
-   },
-   "talk": {
-    "active": [
-     "Harbourmaster Wenna",
-     "Our lighthouse went dark the night the wardens' lanterns did. The wreckers stripped its three lenses and took them up the Strand: one to the tide pools, one to the wreck of the Gilded Oath, one to the smugglers' cave.",
-     "Bring them back and the ships can find us again."
-    ],
-    "ready": [
-     "Harbourmaster Wenna",
-     "All three lenses, and not a crack in them.",
-     "When we lit the lamp last night, the beam swung east on its own and stopped on Warden's Rock. Something out there wanted the light to go out."
-    ]
-   }
-  },
-  {
-   "id": "the_tidewrought_warden",
-   "name": "The Tidewrought Warden",
-   "giver": "harbourmaster",
-   "count": 1,
-   "boss": "tidewrought_warden",
-   "steps": {
-    "active": {
-     "objective": "Face what waits on Warden's Rock",
-     "markers": [
-      {
-       "zone": "wreckers_strand",
-       "at": [
-        10200,
-        2300
-       ],
-       "r": 520,
-       "label": "Warden's Rock"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Return to Harbourmaster Wenna",
-     "markers": [
-      {
-       "zone": "saltmarrow",
-       "npc": "harbourmaster"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 6000,
-    "gold": 1800,
-    "item_rarity": 3
-   },
-   "epilogue": {
-    "title": "THE WARDEN WHO CAME BACK",
-    "chapter": "CHAPTER III COMPLETE",
-    "lines": [
-     "The Tidewrought Warden wore armour no smith alive could make, and spoke a language only the Archive Pages still hold.",
-     "He did not drown in our time. Something brought him here: a tear in the hours beneath the Strand, in the smugglers' deep grotto, where the sea runs the wrong way.",
-     "The Age of the Lost has forgotten what came before it. The past has not forgotten us."
-    ]
-   },
-   "talk": {
-    "active": [
-     "Harbourmaster Wenna",
-     "Warden's Rock is at the far end of the Strand. The old folk say a warden kept the sea-lantern there once. Go carefully."
-    ],
-    "ready": [
-     "Harbourmaster Wenna",
-     "A warden, in armour like nothing from any forge I know. And you say he talked as if the Concord still stood?",
-     "The smugglers have been selling trinkets like his for months. They come from a grotto under the Strand. Take this, and be careful what you find down there."
-    ]
-   },
-   "next": "the_wrong_tide"
-  },
-  {
-   "id": "the_scorched_altar",
-   "name": "The Scorched Altar",
-   "giver": "ralden",
-   "count": 1,
-   "boss": "choirmaster",
-   "steps": {
-    "active": {
-     "objective": "Go down the Chapel Steps and silence the Choirmaster",
-     "markers": [
-      {
-       "zone": "hollowmere",
-       "at": [
-        10700,
-        2950
-       ],
-       "r": 300,
-       "label": "Chapel Steps"
-      },
-      {
-       "zone": "sunken_chapel",
-       "at": [
-        6800,
-        2470
-       ],
-       "r": 520,
-       "label": "The Scorched Altar"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Tell Captain Ralden what burns beneath the chapel",
-     "markers": [
-      {
-       "zone": "crownsfall",
-       "npc": "ralden"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 1400,
-    "gold": 320,
+    "xp": 632,
+    "gold": 200,
     "item_rarity": 1
    },
    "talk": {
     "active": [
-     "Captain Ralden",
-     "The Matron's chapel has a crypt under it. My scouts heard singing down there, and saw light that burned without heat. Go and see."
+     "Harbourmaster Wenna",
+     "Recover the three lighthouse lenses the wreckers took up the Strand."
     ],
     "ready": [
-     "Captain Ralden",
-     "Burnt in rings, you say, as if the fire came out of the stone itself.",
-     "I have no name for that. Perhaps the pages do."
+     "Harbourmaster Wenna",
+     "When the lamp is lit, the beam swings to a crack in the sea cave where the tide runs the wrong way."
     ]
-   }
+   },
+   "count": 3,
+   "item_name": "Lighthouse Lens",
+   "next": "Q_A01_R12"
   },
   {
-   "id": "the_wrong_tide",
-   "name": "The Wrong Tide",
-   "giver": "harbourmaster",
-   "next": "the_keepers_journal",
-   "count": 1,
-   "boss": "corsair_velka",
+   "id": "Q_A01_R12",
+   "name": "The Price of a Name",
+   "zone_id": "ACT01_R12",
+   "giver": "tamsin",
+   "auto": false,
    "steps": {
     "active": {
-     "objective": "Find where the smugglers' relics come from in the Grotto",
+     "objective": "Find where Corsair Velka gets her relics and free the Keeper she holds",
      "markers": [
-      {
-       "zone": "wreckers_strand",
-       "at": [
-        9100,
-        900
-       ],
-       "r": 300,
-       "label": "Grotto Mouth"
-      },
       {
        "zone": "smugglers_grotto",
        "at": [
-        6700,
-        2470
+        6485,
+        1322
        ],
        "r": 560,
-       "label": "The Wrong Tide"
+       "label": "Corsair Queen Velka"
       }
      ]
     },
     "ready": {
-     "objective": "Return to Harbourmaster Wenna",
+     "objective": "Speak with Tamsin Reed",
      "markers": [
       {
-       "zone": "saltmarrow",
-       "npc": "harbourmaster"
+       "zone": "smugglers_grotto",
+       "npc": "tamsin"
       }
      ]
     }
    },
    "reward": {
-    "xp": 2200,
-    "gold": 600,
+    "xp": 809,
+    "gold": 230,
     "item_rarity": 2
    },
    "talk": {
     "active": [
-     "Harbourmaster Wenna",
-     "Corsair Queen Velka sells those relics out of the Smugglers' Grotto, at the Strand's north end. Find out where she gets them."
+     "Tamsin Reed",
+     "Find where Corsair Velka gets her relics and free the Keeper she holds."
     ],
     "ready": [
-     "Harbourmaster Wenna",
-     "A crack in the air, and the sea running into it backwards? And Velka fishing relics out of it...",
-     "The old lantern-keepers kept journals. If anyone knew about this, they did. Their lanterns stand on the cliffs north of the Strand."
+     "Tamsin Reed",
+     "Velka bought Aurelian records that predate the kingdom; her prisoner is Tamsin Reed, a Keeper of Names."
     ]
-   }
+   },
+   "boss": "smugglers_grotto_boss_u",
+   "count": 1,
+   "boss_at": [
+    6485,
+    1322
+   ],
+   "next": "Q_A01_R13"
   },
   {
-   "id": "the_keepers_journal",
+   "id": "Q_A01_R13",
    "name": "The Keepers' Journal",
-   "giver": "ione",
-   "next": "clockwork_on_the_moor",
+   "zone_id": "ACT01_R13",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover the lantern-keepers' journal pages from the clifftop ruins",
+     "markers": [
+      {
+       "zone": "lanternfall_cliffs",
+       "at": [
+        5020,
+        806
+       ],
+       "r": 430,
+       "label": "The West Keeper",
+       "page": "Q_A01_R13_1"
+      },
+      {
+       "zone": "lanternfall_cliffs",
+       "at": [
+        8971,
+        2191
+       ],
+       "r": 430,
+       "label": "The High Keeper",
+       "page": "Q_A01_R13_2"
+      },
+      {
+       "zone": "lanternfall_cliffs",
+       "at": [
+        926,
+        1969
+       ],
+       "r": 430,
+       "label": "The East Keeper",
+       "page": "Q_A01_R13_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 809,
+    "gold": 230,
+    "item_rarity": 1
+   },
+   "talk": {},
    "count": 3,
    "item_name": "Keeper's Journal Page",
-   "steps": {
-    "active": {
-     "objective": "Recover the lantern-keepers' journal on Lanternfall Cliffs",
-     "markers": [
-      {
-       "zone": "wreckers_strand",
-       "at": [
-        7600,
-        220
-       ],
-       "r": 300,
-       "label": "Cliff Path"
-      },
-      {
-       "zone": "lanternfall_cliffs",
-       "at": [
-        2500,
-        1250
-       ],
-       "r": 430,
-       "label": "West Lantern",
-       "page": "journal_1"
-      },
-      {
-       "zone": "lanternfall_cliffs",
-       "at": [
-        6000,
-        1100
-       ],
-       "r": 430,
-       "label": "High Lantern",
-       "page": "journal_2"
-      },
-      {
-       "zone": "lanternfall_cliffs",
-       "at": [
-        9300,
-        1250
-       ],
-       "r": 430,
-       "label": "East Lantern",
-       "page": "journal_3"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Bring the journal to the scholar at Oldwatch, across Riftscar Moor",
-     "markers": [
-      {
-       "zone": "riftscar_moor",
-       "at": [
-        5600,
-        200
-       ],
-       "r": 300,
-       "label": "Oldwatch Road"
-      },
-      {
-       "zone": "oldwatch",
-       "npc": "ione"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 2800,
-    "gold": 700,
-    "item_rarity": 2
-   },
-   "talk": {
-    "active": [
-     "Ione Thessaly",
-     "You have the keepers' journal? No? Then why are you here? Go and get it."
-    ],
-    "ready": [
-     "Ione Thessaly",
-     "The keepers' journal, and written in Concord script, like the Archive Pages. I can read some of it.",
-     "'The Aeon is waking.' Every keeper wrote the same line on the same night. Then nothing.",
-     "And this moor: the bronze soldiers on it came out of that rift. They are Concord work, older than any kingdom we have records of."
-    ]
-   }
+   "next": "Q_A01_R14"
   },
   {
-   "id": "clockwork_on_the_moor",
+   "id": "Q_A01_R14",
    "name": "Clockwork on the Moor",
-   "giver": "ione",
-   "next": "brackwater_echoes",
-   "count": 1,
-   "boss": "clockwork_centurion",
+   "zone_id": "ACT01_R14",
+   "giver": "",
+   "auto": true,
    "steps": {
     "active": {
-     "objective": "Stop the Clockwork Centurion mustering soldiers on the moor",
+     "objective": "Stop the Clockwork Centurion mustering bronze soldiers out of the Riftscar",
      "markers": [
       {
        "zone": "riftscar_moor",
        "at": [
-        8000,
-        1400
+        2609,
+        776
        ],
        "r": 560,
-       "label": "Clockwork Muster"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Return to Ione Thessaly at Oldwatch",
-     "markers": [
-      {
-       "zone": "oldwatch",
-       "npc": "ione"
+       "label": "The Clockwork Centurion"
       }
      ]
     }
    },
    "reward": {
-    "xp": 3200,
-    "gold": 800,
+    "xp": 1002,
+    "gold": 260,
     "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "riftscar_moor_boss_u",
+   "count": 1,
+   "boss_at": [
+    2609,
+    776
+   ],
+   "next": "Q_A01_R15"
+  },
+  {
+   "id": "Q_A01_R15",
+   "name": "The Last Dispatch",
+   "zone_id": "ACT01_R15",
+   "giver": "rowan_o",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Reach the frontier fort at Oldwatch and report to scout Rowan Hale",
+     "markers": [
+      {
+       "zone": "oldwatch",
+       "npc": "rowan_o"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1002,
+    "gold": 260
    },
    "talk": {
     "active": [
-     "Ione Thessaly",
-     "The bronze soldiers on the moor answer to one of their own: a centurion that came through the Riftscar. Break it before it marches on Oldwatch."
-    ],
-    "ready": [
-     "Ione Thessaly",
-     "Its orders were stamped in its chest: 'Hold the Brackwater line until the Archon's word.' The Archon. The Concord had a ruler, and this thing still waits for her.",
-     "Brackwater Ruins, south of the moor, was a Concord outpost. Their seals would tell us whose orders these were."
+     "Rowan Hale",
+     "Reach the frontier fort at Oldwatch and report to scout Rowan Hale.",
+     "Rowan has tracked the courier's route to the ruins at Brackwater: the road there is older than the kingdom."
     ]
-   }
+   },
+   "talk_complete": true,
+   "next": "Q_A01_R16"
   },
   {
-   "id": "brackwater_echoes",
-   "name": "Brackwater Echoes",
-   "giver": "ione",
-   "next": "the_star_chart",
+   "id": "Q_A01_R16",
+   "name": "Stones Beneath Stones",
+   "zone_id": "ACT01_R16",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover three Concord seals from the flickering Golden Age outpost",
+     "markers": [
+      {
+       "zone": "brackwater_ruins",
+       "at": [
+        6057,
+        1443
+       ],
+       "r": 430,
+       "label": "The Seal-Warden West",
+       "page": "Q_A01_R16_1"
+      },
+      {
+       "zone": "brackwater_ruins",
+       "at": [
+        5052,
+        4346
+       ],
+       "r": 430,
+       "label": "The Signal-Keeper",
+       "page": "Q_A01_R16_2"
+      },
+      {
+       "zone": "brackwater_ruins",
+       "at": [
+        8949,
+        3608
+       ],
+       "r": 430,
+       "label": "The Seal-Warden East",
+       "page": "Q_A01_R16_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1210,
+    "gold": 290,
+    "item_rarity": 1
+   },
+   "talk": {},
    "count": 3,
    "item_name": "Concord Seal",
-   "steps": {
-    "active": {
-     "objective": "Recover three Concord seals in Brackwater Ruins",
-     "markers": [
-      {
-       "zone": "riftscar_moor",
-       "at": [
-        8200,
-        4760
-       ],
-       "r": 300,
-       "label": "Brackwater Path"
-      },
-      {
-       "zone": "brackwater_ruins",
-       "at": [
-        3200,
-        3950
-       ],
-       "r": 430,
-       "label": "Seal-House West",
-       "page": "seal_1"
-      },
-      {
-       "zone": "brackwater_ruins",
-       "at": [
-        6200,
-        950
-       ],
-       "r": 430,
-       "label": "Signal Tower",
-       "page": "seal_2"
-      },
-      {
-       "zone": "brackwater_ruins",
-       "at": [
-        9000,
-        3950
-       ],
-       "r": 430,
-       "label": "Seal-House East",
-       "page": "seal_3"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Bring the seals to Ione Thessaly",
-     "markers": [
-      {
-       "zone": "oldwatch",
-       "npc": "ione"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 3800,
-    "gold": 950,
-    "item_rarity": 2
-   },
-   "talk": {
-    "active": [
-     "Ione Thessaly",
-     "Three seals: two seal-houses and the signal tower. Bring them back, and mind the ruins. They are not always the same ruins twice."
-    ],
-    "ready": [
-     "Ione Thessaly",
-     "'Archon Celestine Vael, Sovereign of the Aurelian Concord.' Her seal. And a date I cannot place, because we have lost our calendars.",
-     "The Concord watched the stars from an observatory on the mountain behind this fort. If they recorded when the Aeon woke, it will be there."
-    ]
-   }
+   "next": "Q_A01_R17"
   },
   {
-   "id": "the_star_chart",
+   "id": "Q_A01_R17",
    "name": "The Star Chart",
-   "giver": "ione",
-   "next": "the_first_rift",
-   "count": 1,
-   "boss": "orrery_golem",
+   "zone_id": "ACT01_R17",
+   "giver": "",
+   "auto": true,
    "steps": {
     "active": {
-     "objective": "Climb to the Shattered Observatory and reach the Grand Orrery",
+     "objective": "Climb to the Concord observatory and reach the Grand Orrery",
      "markers": [
-      {
-       "zone": "oldwatch",
-       "at": [
-        7540,
-        2000
-       ],
-       "r": 300,
-       "label": "Mountain Stair"
-      },
       {
        "zone": "shattered_observatory",
        "at": [
-        6700,
-        2470
+        6580,
+        1411
        ],
        "r": 560,
-       "label": "The Grand Orrery"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Tell Ione Thessaly what you saw",
-     "markers": [
-      {
-       "zone": "oldwatch",
-       "npc": "ione"
+       "label": "The Orrery Golem"
       }
      ]
     }
    },
    "reward": {
-    "xp": 4600,
-    "gold": 1100,
+    "xp": 1210,
+    "gold": 290,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "shattered_observatory_boss_u",
+   "count": 1,
+   "boss_at": [
+    6580,
+    1411
+   ],
+   "next": "Q_A01_R18"
+  },
+  {
+   "id": "Q_A01_R18",
+   "name": "The Riftwarden",
+   "zone_id": "ACT01_R18",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Face the Riftwarden, the Concord sentinel that guards the breach",
+     "markers": [
+      {
+       "zone": "first_rift",
+       "at": [
+        6069,
+        2524
+       ],
+       "r": 560,
+       "label": "The Riftwarden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1432,
+    "gold": 320,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "first_rift_boss_u",
+   "count": 1,
+   "boss_at": [
+    6069,
+    2524
+   ],
+   "next": "Q_A01_14"
+  },
+  {
+   "id": "Q_A01_14",
+   "name": "The First Anchor",
+   "zone_id": "ACT01_Z14",
+   "giver": "joren",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Align Caldrin's name with the courier's seal; resist the Hollow Choir.",
+     "markers": [
+      {
+       "zone": "first_anchor_chamber",
+       "at": [
+        6163,
+        3791
+       ],
+       "r": 560,
+       "label": "The Anchor Sentinel"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Joren Pike",
+     "markers": [
+      {
+       "zone": "first_anchor_chamber",
+       "npc": "joren"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1432,
+    "gold": 320,
     "item_rarity": 3
    },
    "talk": {
     "active": [
-     "Ione Thessaly",
-     "The Observatory is up the mountain stair east of the yard. Go carefully. Things guard it that should have stopped long ago."
+     "Joren Pike",
+     "Align Caldrin's name with the courier's seal; resist the Hollow Choir.."
     ],
     "ready": [
-     "Ione Thessaly",
-     "You saw it? A city of gold under a sky with one more star, sky-ships, a dragon over the towers...",
-     "That was the Gilded Epoch. That was us, or the people we were. Every rift on the moor leads back to one breach east of here, the First Rift. If the past is coming through, it is coming through there."
+     "Joren Pike",
+     "The missing courier returns; Engine is alive and the present has a deadline."
+    ]
+   },
+   "boss": "first_anchor_chamber_boss_u",
+   "count": 1,
+   "boss_at": [
+    6163,
+    3791
+   ],
+   "also": [
+    "Q_A01_15"
+   ],
+   "epilogue": {
+    "chapter": "ACT I COMPLETE",
+    "title": "THE CROWN THAT REMEMBERS",
+    "lines": [
+     "Joren Pike steps out of the bronze rings: the missing courier, displaced only days ago, and still coherent enough to bring back.",
+     "Mira reads a number from the First Anchor: an interval. It matches the scar on the Riftscar Moor, and the one before it. The Engine beneath the world is alive, and it keeps time.",
+     "The First Anchor answered a name, not a royal seal. Captain Ralden carries the proof to the Regent; the outer scars must be investigated.",
+     "Act II, Scars of the World, begins in the west at Westgate Refuge."
+    ]
+   },
+   "next": "Q_A02_01"
+  },
+  {
+   "id": "Q_A02_01",
+   "name": "A Place to Stand",
+   "zone_id": "ACT02_Z01",
+   "giver": "iri",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Organize safe passage and investigate missing refugee records.",
+     "markers": [
+      {
+       "zone": "westgate_refuge",
+       "at": [
+        6548,
+        2022
+       ],
+       "r": 430,
+       "label": "Cache-Raider Brask",
+       "page": "Q_A02_01_1"
+      },
+      {
+       "zone": "westgate_refuge",
+       "at": [
+        4668,
+        4274
+       ],
+       "r": 430,
+       "label": "The Viaduct Prowler",
+       "page": "Q_A02_01_2"
+      },
+      {
+       "zone": "westgate_refuge",
+       "at": [
+        2814,
+        1001
+       ],
+       "r": 430,
+       "label": "Record-Thief Moll",
+       "page": "Q_A02_01_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Iri",
+     "markers": [
+      {
+       "zone": "westgate_refuge",
+       "npc": "iri"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1918,
+    "gold": 380,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Iri",
+     "Organize safe passage and investigate missing refugee records.."
+    ],
+    "ready": [
+     "Iri",
+     "Introduce Veyr envoy Iri."
+    ]
+   },
+   "count": 3,
+   "item_name": "Missing Refugee Record",
+   "next": "Q_A02_02"
+  },
+  {
+   "id": "Q_A02_02",
+   "name": "The Village That Sank Twice",
+   "zone_id": "ACT02_Z02",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Retrieve a bell from beneath the fen.",
+     "markers": [
+      {
+       "zone": "thornfen",
+       "at": [
+        7666,
+        1600
+       ],
+       "r": 560,
+       "label": "The Bell-Drowned"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1918,
+    "gold": 380,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "thornfen_boss_u",
+   "count": 1,
+   "boss_at": [
+    7666,
+    1600
+   ],
+   "next": "Q_A02_03"
+  },
+  {
+   "id": "Q_A02_03",
+   "name": "A Map of Other Waters",
+   "zone_id": "ACT02_Z03",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Trace a drowned surveyor's map.",
+     "markers": [
+      {
+       "zone": "glassreed_marsh",
+       "at": [
+        3581,
+        4318
+       ],
+       "r": 430,
+       "label": "The Glass Heron",
+       "page": "Q_A02_03_1"
+      },
+      {
+       "zone": "glassreed_marsh",
+       "at": [
+        818,
+        1947
+       ],
+       "r": 430,
+       "label": "Reflection of the Surveyor",
+       "page": "Q_A02_03_2"
+      },
+      {
+       "zone": "glassreed_marsh",
+       "at": [
+        6867,
+        662
+       ],
+       "r": 430,
+       "label": "The Still Pike",
+       "page": "Q_A02_03_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2180,
+    "gold": 410,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Surveyor's Map Leaf",
+   "next": "Q_A02_04"
+  },
+  {
+   "id": "Q_A02_04",
+   "name": "The Charcoal Pact",
+   "zone_id": "ACT02_Z04",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Negotiate supplies and clear a corrupted logging camp.",
+     "markers": [
+      {
+       "zone": "blackpine_reach",
+       "at": [
+        2631,
+        1935
+       ],
+       "r": 560,
+       "label": "The Charcoal Beast"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2180,
+    "gold": 410,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "blackpine_reach_boss_u",
+   "count": 1,
+   "boss_at": [
+    2631,
+    1935
+   ],
+   "next": "Q_A02_05"
+  },
+  {
+   "id": "Q_A02_05",
+   "name": "The Bridge of Two Kings",
+   "zone_id": "ACT02_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Reconcile conflicting toll records.",
+     "markers": [
+      {
+       "zone": "hearthstone_crossing",
+       "at": [
+        9608,
+        794
+       ],
+       "r": 430,
+       "label": "Toll-Breaker Hask",
+       "page": "Q_A02_05_1"
+      },
+      {
+       "zone": "hearthstone_crossing",
+       "at": [
+        6139,
+        3131
+       ],
+       "r": 430,
+       "label": "The Span Ravager",
+       "page": "Q_A02_05_2"
+      },
+      {
+       "zone": "hearthstone_crossing",
+       "at": [
+        3212,
+        1350
+       ],
+       "r": 430,
+       "label": "Bridge Saboteur",
+       "page": "Q_A02_05_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2455,
+    "gold": 440,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Contradicting Toll Record",
+   "next": "Q_A02_06"
+  },
+  {
+   "id": "Q_A02_06",
+   "name": "Those Who Count the Hours",
+   "zone_id": "ACT02_Z06",
+   "giver": "meridian",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Meet Meridian and undergo a phase-safety trial.",
+     "markers": [
+      {
+       "zone": "veyr_meridian_outpost",
+       "npc": "meridian"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2741,
+    "gold": 470
+   },
+   "talk": {
+    "active": [
+     "Meridian",
+     "Meet Meridian and undergo a phase-safety trial..",
+     "Veyr know the Engine's cycles."
+    ]
+   },
+   "talk_complete": true,
+   "next": "Q_A02_07"
+  },
+  {
+   "id": "Q_A02_07",
+   "name": "A Frozen Warning",
+   "zone_id": "ACT02_Z07",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Deliver a warning before a scar expands.",
+     "markers": [
+      {
+       "zone": "windcut_pass",
+       "at": [
+        4628,
+        1373
+       ],
+       "r": 430,
+       "label": "The Rime Courier-Killer",
+       "page": "Q_A02_07_1"
+      },
+      {
+       "zone": "windcut_pass",
+       "at": [
+        5717,
+        3834
+       ],
+       "r": 430,
+       "label": "Ridge Stalker",
+       "page": "Q_A02_07_2"
+      },
+      {
+       "zone": "windcut_pass",
+       "at": [
+        1064,
+        3539
+       ],
+       "r": 430,
+       "label": "Gallery Brute",
+       "page": "Q_A02_07_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2741,
+    "gold": 470,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Warning Dispatch",
+   "next": "Q_A02_08"
+  },
+  {
+   "id": "Q_A02_08",
+   "name": "The Price of Extraction",
+   "zone_id": "ACT02_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Free miners from a Riftbinder experiment.",
+     "markers": [
+      {
+       "zone": "riftglass_quarry",
+       "at": [
+        812,
+        939
+       ],
+       "r": 560,
+       "label": "Foreman Draeg"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 3039,
+    "gold": 500,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "riftglass_quarry_boss_u",
+   "count": 1,
+   "boss_at": [
+    812,
+    939
+   ],
+   "next": "Q_A02_09"
+  },
+  {
+   "id": "Q_A02_09",
+   "name": "Orders Never Given",
+   "zone_id": "ACT02_Z09",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Witness a lost siege and recover a military index.",
+     "markers": [
+      {
+       "zone": "forgotten_bastion",
+       "at": [
+        6371,
+        1082
+       ],
+       "r": 560,
+       "label": "The Siege Specter"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 3349,
+    "gold": 530,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "forgotten_bastion_boss_u",
+   "count": 1,
+   "boss_at": [
+    6371,
+    1082
+   ],
+   "next": "Q_A02_10"
+  },
+  {
+   "id": "Q_A02_10",
+   "name": "The Tide of Names",
+   "zone_id": "ACT02_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Retrieve sea logs and rescue lighthouse keepers.",
+     "markers": [
+      {
+       "zone": "greywake_coast",
+       "at": [
+        10644,
+        846
+       ],
+       "r": 560,
+       "label": "The Tide of Names"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 3349,
+    "gold": 530,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "greywake_coast_boss_u",
+   "count": 1,
+   "boss_at": [
+    10644,
+    846
+   ],
+   "next": "Q_A02_11"
+  },
+  {
+   "id": "Q_A02_11",
+   "name": "Cargo from Yesterday",
+   "zone_id": "ACT02_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Examine a manifest of impossible imports.",
+     "markers": [
+      {
+       "zone": "saltmirror_harbor",
+       "at": [
+        6327,
+        757
+       ],
+       "r": 560,
+       "label": "Temporal Smuggler Vane"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 3670,
+    "gold": 560,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "saltmirror_harbor_boss_u",
+   "count": 1,
+   "boss_at": [
+    6327,
+    757
+   ],
+   "next": "Q_A02_12"
+  },
+  {
+   "id": "Q_A02_12",
+   "name": "The Seventh Interval",
+   "zone_id": "ACT02_Z12",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Repair markers as Timekeepers defend the route.",
+     "markers": [
+      {
+       "zone": "timekeepers_causeway",
+       "at": [
+        6387,
+        4108
+       ],
+       "r": 560,
+       "label": "The Interval Guardian"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 4002,
+    "gold": 590,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "timekeepers_causeway_boss_u",
+   "count": 1,
+   "boss_at": [
+    6387,
+    4108
+   ],
+   "next": "Q_A02_13"
+  },
+  {
+   "id": "Q_A02_13",
+   "name": "The Choir's Invitation",
+   "zone_id": "ACT02_Z13",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Enter a tear and speak to a coherent Unwritten envoy.",
+     "markers": [
+      {
+       "zone": "scar_of_hollow_rain",
+       "at": [
+        6700,
+        4123
+       ],
+       "r": 560,
+       "label": "Choir Ambush Leader"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 4002,
+    "gold": 590,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "scar_of_hollow_rain_boss_u",
+   "count": 1,
+   "boss_at": [
+    6700,
+    4123
+   ],
+   "next": "Q_A02_14"
+  },
+  {
+   "id": "Q_A02_14",
+   "name": "A Broken Measure",
+   "zone_id": "ACT02_Z14",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Prevent Choir cantor Neral from destroying an anchor.",
+     "markers": [
+      {
+       "zone": "west_meridian_vault",
+       "at": [
+        6351,
+        3485
+       ],
+       "r": 560,
+       "label": "Neral's Lieutenant, Voice of the Choir"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 4344,
+    "gold": 620,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "west_meridian_vault_boss_u",
+   "count": 1,
+   "boss_at": [
+    6351,
+    3485
+   ],
+   "next": "Q_A02_15"
+  },
+  {
+   "id": "Q_A02_15",
+   "name": "The Clock Beneath History",
+   "zone_id": "ACT02_Z15",
+   "giver": "meridian_obs",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Assemble recovered records with Meridian.",
+     "markers": [
+      {
+       "zone": "meridian_observatory",
+       "at": [
+        6122,
+        2487
+       ],
+       "r": 560,
+       "label": "The Observatory Breaker"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Meridian",
+     "markers": [
+      {
+       "zone": "meridian_observatory",
+       "npc": "meridian_obs"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 4344,
+    "gold": 620,
+    "item_rarity": 3
+   },
+   "talk": {
+    "active": [
+     "Meridian",
+     "Assemble recovered records with Meridian.."
+    ],
+    "ready": [
+     "Meridian",
+     "Discover the Golden Age coordinates."
+    ]
+   },
+   "boss": "meridian_observatory_boss_u",
+   "count": 1,
+   "boss_at": [
+    6122,
+    2487
+   ],
+   "epilogue": {
+    "chapter": "ACT II COMPLETE",
+    "title": "SCARS OF THE WORLD",
+    "lines": [
+     "Meridian lays seven different records on a circular map. The scar points align with a hidden geometric pattern.",
+     "Through the observatory lens a fragment of an old capital becomes visible: the Aurelian Concord, preserved in a stable reconstruction.",
+     "The pattern is periodic, not natural. Act III, The Age of Gold, begins at the Sunward Threshold."
+    ]
+   },
+   "next": "Q_A03_01"
+  },
+  {
+   "id": "Q_A03_01",
+   "name": "The Road Before Roads",
+   "zone_id": "ACT03_Z01",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Stabilize the first extended historical pocket.",
+     "markers": [
+      {
+       "zone": "sunward_threshold",
+       "at": [
+        1275,
+        2032
+       ],
+       "r": 560,
+       "label": "Gate Anchor Warden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 5059,
+    "gold": 680,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "sunward_threshold_boss_u",
+   "count": 1,
+   "boss_at": [
+    1275,
+    2032
+   ],
+   "next": "Q_A03_02"
+  },
+  {
+   "id": "Q_A03_02",
+   "name": "A Day in the Concord",
+   "zone_id": "ACT03_Z02",
+   "giver": "elyndor",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Escort scholar Elyndor through a public debate.",
+     "markers": [
+      {
+       "zone": "aurelian_forum",
+       "npc": "elyndor"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 5059,
+    "gold": 680
+   },
+   "talk": {
+    "active": [
+     "Elyndor",
+     "Escort scholar Elyndor through a public debate..",
+     "Meet Golden Age political factions."
+    ]
+   },
+   "talk_complete": true,
+   "next": "Q_A03_03"
+  },
+  {
+   "id": "Q_A03_03",
+   "name": "The River That Obeys",
+   "zone_id": "ACT03_Z03",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Restore a canal and interview maintenance guilds.",
+     "markers": [
+      {
+       "zone": "lumen_canal",
+       "at": [
+        3484,
+        1262
+       ],
+       "r": 560,
+       "label": "The Lock Automaton"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 5433,
+    "gold": 710,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "lumen_canal_boss_u",
+   "count": 1,
+   "boss_at": [
+    3484,
+    1262
+   ],
+   "next": "Q_A03_04"
+  },
+  {
+   "id": "Q_A03_04",
+   "name": "A Harvest Without Winter",
+   "zone_id": "ACT03_Z04",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Stop a malfunctioning irrigation clock.",
+     "markers": [
+      {
+       "zone": "orchard_of_hours",
+       "at": [
+        3163,
+        722
+       ],
+       "r": 560,
+       "label": "The Season Engine"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 5433,
+    "gold": 710,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "orchard_of_hours_boss_u",
+   "count": 1,
+   "boss_at": [
+    3163,
+    722
+   ],
+   "next": "Q_A03_05"
+  },
+  {
+   "id": "Q_A03_05",
+   "name": "The First Exception",
+   "zone_id": "ACT03_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Help engineer Sera Voss locate missing test records.",
+     "markers": [
+      {
+       "zone": "artificers_ward",
+       "at": [
+        1136,
+        2828
+       ],
+       "r": 560,
+       "label": "Rogue Construct Prime"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 5815,
+    "gold": 740,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "artificers_ward_boss_u",
+   "count": 1,
+   "boss_at": [
+    1136,
+    2828
+   ],
+   "next": "Q_A03_06"
+  },
+  {
+   "id": "Q_A03_06",
+   "name": "Lessons in Continuity",
+   "zone_id": "ACT03_Z06",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Attend a reconstruction of the Engine's founding lecture.",
+     "markers": [
+      {
+       "zone": "sapphire_academy",
+       "at": [
+        6074,
+        2359
+       ],
+       "r": 430,
+       "label": "Proctor of Glass",
+       "page": "Q_A03_06_1"
+      },
+      {
+       "zone": "sapphire_academy",
+       "at": [
+        5880,
+        1287
+       ],
+       "r": 430,
+       "label": "Archive Trial Echo",
+       "page": "Q_A03_06_2"
+      },
+      {
+       "zone": "sapphire_academy",
+       "at": [
+        4806,
+        3059
+       ],
+       "r": 430,
+       "label": "The Index Familiar",
+       "page": "Q_A03_06_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 6208,
+    "gold": 770,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Continuity Lesson",
+   "next": "Q_A03_07"
+  },
+  {
+   "id": "Q_A03_07",
+   "name": "Who Pays for Eternity",
+   "zone_id": "ACT03_Z07",
+   "giver": "daro",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Rescue laborers after an illegal phase test.",
+     "markers": [
+      {
+       "zone": "workers_terrace",
+       "at": [
+        5120,
+        3502
+       ],
+       "r": 430,
+       "label": "Street Agitator",
+       "page": "Q_A03_07_1"
+      },
+      {
+       "zone": "workers_terrace",
+       "at": [
+        5336,
+        886
+       ],
+       "r": 430,
+       "label": "Requisition Officer",
+       "page": "Q_A03_07_2"
+      },
+      {
+       "zone": "workers_terrace",
+       "at": [
+        997,
+        3907
+       ],
+       "r": 430,
+       "label": "Collapsed-Stair Brute",
+       "page": "Q_A03_07_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Daro Fen",
+     "markers": [
+      {
+       "zone": "workers_terrace",
+       "npc": "daro"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 6208,
+    "gold": 770,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Daro Fen",
+     "Rescue laborers after an illegal phase test.."
+    ],
+    "ready": [
+     "Daro Fen",
+     "Costs fell on politically powerless districts."
+    ]
+   },
+   "count": 3,
+   "item_name": "Union Testimony",
+   "next": "Q_A03_08"
+  },
+  {
+   "id": "Q_A03_08",
+   "name": "The Ledger of the Living",
+   "zone_id": "ACT03_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Identify unregistered names.",
+     "markers": [
+      {
+       "zone": "garden_of_civic_memory",
+       "at": [
+        4784,
+        781
+       ],
+       "r": 560,
+       "label": "The Spectral Assailant"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 6610,
+    "gold": 800,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "garden_of_civic_memory_boss_u",
+   "count": 1,
+   "boss_at": [
+    4784,
+    781
+   ],
+   "next": "Q_A03_09"
+  },
+  {
+   "id": "Q_A03_09",
+   "name": "The Foundry's Promise",
+   "zone_id": "ACT03_Z09",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover a component from a production accident.",
+     "markers": [
+      {
+       "zone": "astral_foundry",
+       "at": [
+        6550,
+        3943
+       ],
+       "r": 560,
+       "label": "The Foundry Automaton"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 7021,
+    "gold": 830,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "astral_foundry_boss_u",
+   "count": 1,
+   "boss_at": [
+    6550,
+    3943
+   ],
+   "next": "Q_A03_10"
+  },
+  {
+   "id": "Q_A03_10",
+   "name": "The Vote That Never Ended",
+   "zone_id": "ACT03_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover two versions of a Senate vote.",
+     "markers": [
+      {
+       "zone": "concord_senate",
+       "at": [
+        5063,
+        3200
+       ],
+       "r": 430,
+       "label": "Senate Enforcer",
+       "page": "Q_A03_10_1"
+      },
+      {
+       "zone": "concord_senate",
+       "at": [
+        1226,
+        3821
+       ],
+       "r": 430,
+       "label": "Oris's Clerk",
+       "page": "Q_A03_10_2"
+      },
+      {
+       "zone": "concord_senate",
+       "at": [
+        1598,
+        1022
+       ],
+       "r": 430,
+       "label": "The Rigged Ballot Guard",
+       "page": "Q_A03_10_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 7021,
+    "gold": 830,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Evidence of the Emergency Law",
+   "next": "Q_A03_11"
+  },
+  {
+   "id": "Q_A03_11",
+   "name": "A Father's Promise",
+   "zone_id": "ACT03_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Find Caldrin's family alive within a memory.",
+     "markers": [
+      {
+       "zone": "vael_estate",
+       "at": [
+        1822,
+        3916
+       ],
+       "r": 560,
+       "label": "The Estate Intruder"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 7443,
+    "gold": 860,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "vael_estate_boss_u",
+   "count": 1,
+   "boss_at": [
+    1822,
+    3916
+   ],
+   "next": "Q_A03_12"
+  },
+  {
+   "id": "Q_A03_12",
+   "name": "The Unpublished Warning",
+   "zone_id": "ACT03_Z12",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Protect Elyndor as he hides evidence.",
+     "markers": [
+      {
+       "zone": "elyndors_archive",
+       "at": [
+        6644,
+        4074
+       ],
+       "r": 430,
+       "label": "Archive Saboteur",
+       "page": "Q_A03_12_1"
+      },
+      {
+       "zone": "elyndors_archive",
+       "at": [
+        6064,
+        2161
+       ],
+       "r": 430,
+       "label": "Catalog Wraith",
+       "page": "Q_A03_12_2"
+      },
+      {
+       "zone": "elyndors_archive",
+       "at": [
+        4961,
+        3756
+       ],
+       "r": 430,
+       "label": "The Burned-Page Golem",
+       "page": "Q_A03_12_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 7872,
+    "gold": 890,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Index Fragment",
+   "next": "Q_A03_13"
+  },
+  {
+   "id": "Q_A03_13",
+   "name": "The Gates of Tomorrow",
+   "zone_id": "ACT03_Z13",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Enter an authorized inspection route.",
+     "markers": [
+      {
+       "zone": "chronicle_perimeter",
+       "at": [
+        8620,
+        1942
+       ],
+       "r": 560,
+       "label": "Guardian Captain Ilsar"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 7872,
+    "gold": 890,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "chronicle_perimeter_boss_u",
+   "count": 1,
+   "boss_at": [
+    8620,
+    1942
+   ],
+   "next": "Q_A03_14"
+  },
+  {
+   "id": "Q_A03_14",
+   "name": "The Mercy Experiment",
+   "zone_id": "ACT03_Z14",
+   "giver": "sera",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Reconstruct a failed attempt to save the terminally ill.",
+     "markers": [
+      {
+       "zone": "preservation_laboratory",
+       "at": [
+        6143,
+        1843
+       ],
+       "r": 430,
+       "label": "Unstable Echo Subject",
+       "page": "Q_A03_14_1"
+      },
+      {
+       "zone": "preservation_laboratory",
+       "at": [
+        5493,
+        3374
+       ],
+       "r": 430,
+       "label": "Containment Breach",
+       "page": "Q_A03_14_2"
+      },
+      {
+       "zone": "preservation_laboratory",
+       "at": [
+        4172,
+        1357
+       ],
+       "r": 430,
+       "label": "The Mercy Construct",
+       "page": "Q_A03_14_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Sera Voss",
+     "markers": [
+      {
+       "zone": "preservation_laboratory",
+       "npc": "sera"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 8311,
+    "gold": 920,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Sera Voss",
+     "Reconstruct a failed attempt to save the terminally ill.."
+    ],
+    "ready": [
+     "Sera Voss",
+     "No restoration can simply undo all deaths."
+    ]
+   },
+   "count": 3,
+   "item_name": "Test Record",
+   "next": "Q_A03_15"
+  },
+  {
+   "id": "Q_A03_15",
+   "name": "The Golden Lie",
+   "zone_id": "ACT03_Z15",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Witness Oris announce universal preservation while suppressing dissent.",
+     "markers": [
+      {
+       "zone": "concord_crown_spire",
+       "at": [
+        6283,
+        2321
+       ],
+       "r": 560,
+       "label": "The Corrupted Ceremonial Protector"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 8311,
+    "gold": 920,
+    "item_rarity": 3
+   },
+   "talk": {},
+   "boss": "concord_crown_spire_boss_u",
+   "count": 1,
+   "boss_at": [
+    6283,
+    2321
+   ],
+   "epilogue": {
+    "chapter": "ACT III COMPLETE",
+    "title": "THE AGE OF GOLD",
+    "lines": [
+     "The Concord built the Chronicle Engine to preserve, to cure shortage and keep records whole.",
+     "Chancellor Oris turned a preservation project into an instrument of control, and buried its test casualties.",
+     "The pocket collapses behind you. Act IV, The Day the World Ended, begins at Last Dawn Station."
+    ]
+   },
+   "next": "Q_A04_01"
+  },
+  {
+   "id": "Q_A04_01",
+   "name": "The Morning Before",
+   "zone_id": "ACT04_Z01",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Locate a route into the final day.",
+     "markers": [
+      {
+       "zone": "last_dawn_station",
+       "at": [
+        6776,
+        2614
+       ],
+       "r": 430,
+       "label": "Alarm Anomaly",
+       "page": "Q_A04_01_1"
+      },
+      {
+       "zone": "last_dawn_station",
+       "at": [
+        2771,
+        3876
+       ],
+       "r": 430,
+       "label": "Panicked Guard Captain",
+       "page": "Q_A04_01_2"
+      },
+      {
+       "zone": "last_dawn_station",
+       "at": [
+        3152,
+        1521
+       ],
+       "r": 430,
+       "label": "Rail Construct",
+       "page": "Q_A04_01_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 9216,
+    "gold": 980,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Rescued Passenger",
+   "next": "Q_A04_02"
+  },
+  {
+   "id": "Q_A04_02",
+   "name": "Fruit of the Fault",
+   "zone_id": "ACT04_Z02",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Save witnesses during a weather failure.",
+     "markers": [
+      {
+       "zone": "cinder_orchard",
+       "at": [
+        6511,
+        4125
+       ],
+       "r": 560,
+       "label": "The Fault Fruit"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 9216,
+    "gold": 980,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "cinder_orchard_boss_u",
+   "count": 1,
+   "boss_at": [
+    6511,
+    4125
+   ],
+   "next": "Q_A04_03"
+  },
+  {
+   "id": "Q_A04_03",
+   "name": "A City Thirsts",
+   "zone_id": "ACT04_Z03",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Divert water and recover Sera's diagnostic.",
+     "markers": [
+      {
+       "zone": "south_reservoir",
+       "at": [
+        4608,
+        2040
+       ],
+       "r": 560,
+       "label": "The Reservoir Breaker"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 9681,
+    "gold": 1010,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "south_reservoir_boss_u",
+   "count": 1,
+   "boss_at": [
+    4608,
+    2040
+   ],
+   "next": "Q_A04_04"
+  },
+  {
+   "id": "Q_A04_04",
+   "name": "The Emergency Decree",
+   "zone_id": "ACT04_Z04",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Protect evacuees from hardline soldiers.",
+     "markers": [
+      {
+       "zone": "labor_quarter_siege",
+       "at": [
+        6629,
+        2020
+       ],
+       "r": 560,
+       "label": "Emergency Decree Captain"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 9681,
+    "gold": 1010,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "labor_quarter_siege_boss_u",
+   "count": 1,
+   "boss_at": [
+    6629,
+    2020
+   ],
+   "next": "Q_A04_05"
+  },
+  {
+   "id": "Q_A04_05",
+   "name": "The Missing Limit",
+   "zone_id": "ACT04_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Reconstruct safety interlocks.",
+     "markers": [
+      {
+       "zone": "hall_of_seven_measures",
+       "at": [
+        6201,
+        4004
+       ],
+       "r": 560,
+       "label": "The Control Guardian"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 10154,
+    "gold": 1040,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "hall_of_seven_measures_boss_u",
+   "count": 1,
+   "boss_at": [
+    6201,
+    4004
+   ],
+   "next": "Q_A04_06"
+  },
+  {
+   "id": "Q_A04_06",
+   "name": "A Knight's Last Order",
+   "zone_id": "ACT04_Z06",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Accompany Caldrin toward the evacuation cathedral.",
+     "markers": [
+      {
+       "zone": "vaels_last_road",
+       "at": [
+        5161,
+        2316
+       ],
+       "r": 560,
+       "label": "Seam-Touched Pursuer"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 10636,
+    "gold": 1070,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "vaels_last_road_boss_u",
+   "count": 1,
+   "boss_at": [
+    5161,
+    2316
+   ],
+   "next": "Q_A04_07"
+  },
+  {
+   "id": "Q_A04_07",
+   "name": "The Names We Carry",
+   "zone_id": "ACT04_Z07",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Record refugees and Caldrin's family.",
+     "markers": [
+      {
+       "zone": "cathedral_before_the_fall",
+       "at": [
+        5567,
+        1859
+       ],
+       "r": 430,
+       "label": "Doorbreaker",
+       "page": "Q_A04_07_1"
+      },
+      {
+       "zone": "cathedral_before_the_fall",
+       "at": [
+        2367,
+        3839
+       ],
+       "r": 430,
+       "label": "Seam Wraith",
+       "page": "Q_A04_07_2"
+      },
+      {
+       "zone": "cathedral_before_the_fall",
+       "at": [
+        2279,
+        2766
+       ],
+       "r": 430,
+       "label": "Glass-Fall Horror",
+       "page": "Q_A04_07_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 10636,
+    "gold": 1070,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Name We Carry",
+   "next": "Q_A04_08"
+  },
+  {
+   "id": "Q_A04_08",
+   "name": "The Last Vote",
+   "zone_id": "ACT04_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Witness the final dispute between Elyndor, Sera and Oris.",
+     "markers": [
+      {
+       "zone": "senate_of_ash",
+       "at": [
+        4283,
+        1366
+       ],
+       "r": 430,
+       "label": "Senate Guard",
+       "page": "Q_A04_08_1"
+      },
+      {
+       "zone": "senate_of_ash",
+       "at": [
+        882,
+        2861
+       ],
+       "r": 430,
+       "label": "Oris Loyalist",
+       "page": "Q_A04_08_2"
+      },
+      {
+       "zone": "senate_of_ash",
+       "at": [
+        5181,
+        3492
+       ],
+       "r": 430,
+       "label": "The Ash Usher",
+       "page": "Q_A04_08_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 11127,
+    "gold": 1100,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Sera's Evidence",
+   "next": "Q_A04_09"
+  },
+  {
+   "id": "Q_A04_09",
+   "name": "The Door That Should Stay Shut",
+   "zone_id": "ACT04_Z09",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Follow Sera's failed abort sequence.",
+     "markers": [
+      {
+       "zone": "chronicle_access_ring",
+       "at": [
+        6625,
+        1803
+       ],
+       "r": 560,
+       "label": "The Security Warden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 11625,
+    "gold": 1130,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "chronicle_access_ring_boss_u",
+   "count": 1,
+   "boss_at": [
+    6625,
+    1803
+   ],
+   "next": "Q_A04_10"
+  },
+  {
+   "id": "Q_A04_10",
+   "name": "The Golden Age Falls",
+   "zone_id": "ACT04_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Survive the first activation and protect witness records.",
+     "markers": [
+      {
+       "zone": "the_first_sundering",
+       "at": [
+        3995,
+        3793
+       ],
+       "r": 430,
+       "label": "Seam Collapse",
+       "page": "Q_A04_10_1"
+      },
+      {
+       "zone": "the_first_sundering",
+       "at": [
+        7577,
+        1669
+       ],
+       "r": 430,
+       "label": "Falling-Tower Horror",
+       "page": "Q_A04_10_2"
+      },
+      {
+       "zone": "the_first_sundering",
+       "at": [
+        2645,
+        1474
+       ],
+       "r": 430,
+       "label": "The Unmaking",
+       "page": "Q_A04_10_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 11625,
+    "gold": 1130,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Coherent Witness",
+   "next": "Q_A04_11"
+  },
+  {
+   "id": "Q_A04_11",
+   "name": "Where Did Everyone Go",
+   "zone_id": "ACT04_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Follow the erased population through the void.",
+     "markers": []
+    }
+   },
+   "reward": {
+    "xp": 12132,
+    "gold": 1160
+   },
+   "talk": {},
+   "arrive_zone": "the_empty_morning",
+   "next": "Q_A04_12"
+  },
+  {
+   "id": "Q_A04_12",
+   "name": "A Crown Without a Kingdom",
+   "zone_id": "ACT04_Z12",
+   "giver": "ysara",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Negotiate with Queen Ysara.",
+     "markers": [
+      {
+       "zone": "remnant_court_refuge",
+       "at": [
+        6343,
+        3183
+       ],
+       "r": 560,
+       "label": "Ysara's Champion"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Queen Ysara",
+     "markers": [
+      {
+       "zone": "remnant_court_refuge",
+       "npc": "ysara"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 12647,
+    "gold": 1190,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Queen Ysara",
+     "Negotiate with Queen Ysara.."
+    ],
+    "ready": [
+     "Queen Ysara",
+     "Remnant Court wants restoration at any cost."
+    ]
+   },
+   "boss": "remnant_court_refuge_boss_u",
+   "count": 1,
+   "boss_at": [
+    6343,
+    3183
+   ],
+   "next": "Q_A04_13"
+  },
+  {
+   "id": "Q_A04_13",
+   "name": "A Song Without a Self",
+   "zone_id": "ACT04_Z13",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Rescue a witness from Choir conversion.",
+     "markers": [
+      {
+       "zone": "hollow_choir_reliquary",
+       "at": [
+        6564,
+        3957
+       ],
+       "r": 560,
+       "label": "Cantor Neral"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 12647,
+    "gold": 1190,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "hollow_choir_reliquary_boss_u",
+   "count": 1,
+   "boss_at": [
+    6564,
+    3957
+   ],
+   "next": "Q_A04_14"
+  },
+  {
+   "id": "Q_A04_14",
+   "name": "The Names That Survived",
+   "zone_id": "ACT04_Z14",
+   "giver": "tamsin_b",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Help Tamsin and Lys preserve the record.",
+     "markers": [
+      {
+       "zone": "keepers_lantern",
+       "at": [
+        5896,
+        3912
+       ],
+       "r": 430,
+       "label": "Name-Eater",
+       "page": "Q_A04_14_1"
+      },
+      {
+       "zone": "keepers_lantern",
+       "at": [
+        6130,
+        2237
+       ],
+       "r": 430,
+       "label": "Choir Raider",
+       "page": "Q_A04_14_2"
+      },
+      {
+       "zone": "keepers_lantern",
+       "at": [
+        5579,
+        1233
+       ],
+       "r": 430,
+       "label": "Lantern Thief",
+       "page": "Q_A04_14_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Tamsin Reed",
+     "markers": [
+      {
+       "zone": "keepers_lantern",
+       "npc": "tamsin_b"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 13170,
+    "gold": 1220,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Tamsin Reed",
+     "Help Tamsin and Lys preserve the record.."
+    ],
+    "ready": [
+     "Tamsin Reed",
+     "Individual identities can endure without replacement."
+    ]
+   },
+   "count": 3,
+   "item_name": "Surviving Name",
+   "next": "Q_A04_15"
+  },
+  {
+   "id": "Q_A04_15",
+   "name": "The First Reset",
+   "zone_id": "ACT04_Z15",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Confront the emergency protocol avatar.",
+     "markers": [
+      {
+       "zone": "engine_of_first_night",
+       "at": [
+        6079,
+        2397
+       ],
+       "r": 560,
+       "label": "The First Reset"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 13170,
+    "gold": 1220,
+    "item_rarity": 3
+   },
+   "talk": {},
+   "boss": "engine_of_first_night_boss_u",
+   "count": 1,
+   "boss_at": [
+    6079,
+    2397
+   ],
+   "epilogue": {
+    "chapter": "ACT IV COMPLETE",
+    "title": "THE DAY THE WORLD ENDED",
+    "lines": [
+     "Oris activated the reset over evacuation, despite Sera's abort. The Concord was erased from the world; its people persist in the Between.",
+     "You hold the original ethical failsafe, and the Engine's emergency directive: every later epoch erased in turn.",
+     "The present age is scheduled for the same. Act V, The Unwritten Kingdoms, begins at Broken Meridian."
+    ]
+   },
+   "next": "Q_A05_01"
+  },
+  {
+   "id": "Q_A05_01",
+   "name": "The Deadline Moves",
+   "zone_id": "ACT05_Z01",
+   "giver": "rowan5",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Rescue Meridian and recover Rowan, whose identity is beginning to flicker out of the present.",
+     "markers": [
+      {
+       "zone": "broken_meridian",
+       "at": [
+        10333,
+        4251
+       ],
+       "r": 430,
+       "label": "Scar Breacher",
+       "page": "Q_A05_01_1"
+      },
+      {
+       "zone": "broken_meridian",
+       "at": [
+        9082,
+        788
+       ],
+       "r": 430,
+       "label": "Forecast Thief",
+       "page": "Q_A05_01_2"
+      },
+      {
+       "zone": "broken_meridian",
+       "at": [
+        5108,
+        1355
+       ],
+       "r": 430,
+       "label": "The Torn-Dome Brute",
+       "page": "Q_A05_01_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Rowan Hale",
+     "markers": [
+      {
+       "zone": "broken_meridian",
+       "npc": "rowan5"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 14239,
+    "gold": 1280,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Rowan Hale",
+     "Rescue Meridian and recover Rowan, whose identity is beginning to flicker out of the present.."
+    ],
+    "ready": [
+     "Rowan Hale",
+     "Next reset begins after three more anchor failures."
+    ]
+   },
+   "count": 3,
+   "item_name": "Forecast Cylinder",
+   "next": "Q_A05_02"
+  },
+  {
+   "id": "Q_A05_02",
+   "name": "A Queen's Petition",
+   "zone_id": "ACT05_Z02",
+   "giver": "ysara5",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Hear Ysara's terms and investigate her missing people.",
+     "markers": [
+      {
+       "zone": "throne_of_glass",
+       "at": [
+        4895,
+        3775
+       ],
+       "r": 560,
+       "label": "The Glass Champion"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Queen Ysara",
+     "markers": [
+      {
+       "zone": "throne_of_glass",
+       "npc": "ysara5"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 14239,
+    "gold": 1280,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Queen Ysara",
+     "Hear Ysara's terms and investigate her missing people.."
+    ],
+    "ready": [
+     "Queen Ysara",
+     "Her restoration plan would overwrite present inhabitants."
+    ]
+   },
+   "boss": "throne_of_glass_boss_u",
+   "count": 1,
+   "boss_at": [
+    4895,
+    3775
+   ],
+   "next": "Q_A05_03"
+  },
+  {
+   "id": "Q_A05_03",
+   "name": "The City of a Thousand Floods",
+   "zone_id": "ACT05_Z03",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover an epoch's flood records.",
+     "markers": [
+      {
+       "zone": "rain_kingdom",
+       "at": [
+        1957,
+        3868
+       ],
+       "r": 560,
+       "label": "The Rain King's Leviathan"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 14785,
+    "gold": 1310,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "rain_kingdom_boss_u",
+   "count": 1,
+   "boss_at": [
+    1957,
+    3868
+   ],
+   "next": "Q_A05_04"
+  },
+  {
+   "id": "Q_A05_04",
+   "name": "The Root That Remembers",
+   "zone_id": "ACT05_Z04",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Save a living archive from collapse.",
+     "markers": [
+      {
+       "zone": "verdant_empire",
+       "at": [
+        7258,
+        1669
+       ],
+       "r": 560,
+       "label": "The Root That Remembers"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 14785,
+    "gold": 1310,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "verdant_empire_boss_u",
+   "count": 1,
+   "boss_at": [
+    7258,
+    1669
+   ],
+   "next": "Q_A05_05"
+  },
+  {
+   "id": "Q_A05_05",
+   "name": "The Last Factory",
+   "zone_id": "ACT05_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover a workers' testimony before the pocket closes.",
+     "markers": [
+      {
+       "zone": "iron_sabbath",
+       "at": [
+        2119,
+        961
+       ],
+       "r": 560,
+       "label": "The Last Factory Engine"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 15339,
+    "gold": 1340,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "iron_sabbath_boss_u",
+   "count": 1,
+   "boss_at": [
+    2119,
+    961
+   ],
+   "next": "Q_A05_06"
+  },
+  {
+   "id": "Q_A05_06",
+   "name": "A Republic Erased",
+   "zone_id": "ACT05_Z06",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Discover a vote to dismantle the Engine.",
+     "markers": [
+      {
+       "zone": "moonfall_republic",
+       "at": [
+        3476,
+        3988
+       ],
+       "r": 430,
+       "label": "Assembly Breaker",
+       "page": "Q_A05_06_1"
+      },
+      {
+       "zone": "moonfall_republic",
+       "at": [
+        3186,
+        1397
+       ],
+       "r": 430,
+       "label": "Charter Thief",
+       "page": "Q_A05_06_2"
+      },
+      {
+       "zone": "moonfall_republic",
+       "at": [
+        6649,
+        2494
+       ],
+       "r": 430,
+       "label": "The Moonglass Guardian",
+       "page": "Q_A05_06_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 15901,
+    "gold": 1370,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Republic Charter Page",
+   "next": "Q_A05_07"
+  },
+  {
+   "id": "Q_A05_07",
+   "name": "Lys's Lantern",
+   "zone_id": "ACT05_Z07",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Help Lys locate a family ledger.",
+     "markers": []
+    }
+   },
+   "reward": {
+    "xp": 15901,
+    "gold": 1370
+   },
+   "talk": {},
+   "arrive_zone": "orchard_of_lost_children",
+   "next": "Q_A05_08"
+  },
+  {
+   "id": "Q_A05_08",
+   "name": "The Face of a Stranger",
+   "zone_id": "ACT05_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Expose Court agents replacing living people.",
+     "markers": [
+      {
+       "zone": "court_of_borrowed_faces",
+       "at": [
+        6370,
+        4047
+       ],
+       "r": 560,
+       "label": "The Borrowed Face"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 16470,
+    "gold": 1400,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "court_of_borrowed_faces_boss_u",
+   "count": 1,
+   "boss_at": [
+    6370,
+    4047
+   ],
+   "next": "Q_A05_09"
+  },
+  {
+   "id": "Q_A05_09",
+   "name": "The Silence Beneath Song",
+   "zone_id": "ACT05_Z09",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Retrieve a captive echo from Neral.",
+     "markers": [
+      {
+       "zone": "the_choirs_deep",
+       "at": [
+        6479,
+        3324
+       ],
+       "r": 560,
+       "label": "Choir Lieutenant Aster"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 17047,
+    "gold": 1430,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_choirs_deep_boss_u",
+   "count": 1,
+   "boss_at": [
+    6479,
+    3324
+   ],
+   "next": "Q_A05_10"
+  },
+  {
+   "id": "Q_A05_10",
+   "name": "Roads of the Forgotten",
+   "zone_id": "ACT05_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Stabilize crossings for refugees.",
+     "markers": [
+      {
+       "zone": "unbound_causeway",
+       "at": [
+        6462,
+        1960
+       ],
+       "r": 430,
+       "label": "Bridge Severer",
+       "page": "Q_A05_10_1"
+      },
+      {
+       "zone": "unbound_causeway",
+       "at": [
+        5155,
+        4045
+       ],
+       "r": 430,
+       "label": "Drift Wraith",
+       "page": "Q_A05_10_2"
+      },
+      {
+       "zone": "unbound_causeway",
+       "at": [
+        5313,
+        3108
+       ],
+       "r": 430,
+       "label": "Span Colossus",
+       "page": "Q_A05_10_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 17047,
+    "gold": 1430,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Anchor Key",
+   "next": "Q_A05_11"
+  },
+  {
+   "id": "Q_A05_11",
+   "name": "The City That Was Never Built",
+   "zone_id": "ACT05_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Overlay inscriptions with Mira.",
+     "markers": [
+      {
+       "zone": "crownsfall_of_three_ages",
+       "at": [
+        764,
+        2982
+       ],
+       "r": 430,
+       "label": "Echo of the First Founder",
+       "page": "Q_A05_11_1"
+      },
+      {
+       "zone": "crownsfall_of_three_ages",
+       "at": [
+        4675,
+        3763
+       ],
+       "r": 430,
+       "label": "Plaza Overlap",
+       "page": "Q_A05_11_2"
+      },
+      {
+       "zone": "crownsfall_of_three_ages",
+       "at": [
+        6165,
+        1413
+       ],
+       "r": 430,
+       "label": "The Bell-Shade",
+       "page": "Q_A05_11_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 17631,
+    "gold": 1460,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Layer Record",
+   "next": "Q_A05_12"
+  },
+  {
+   "id": "Q_A05_12",
+   "name": "A Crown of Borrowed Stone",
+   "zone_id": "ACT05_Z12",
+   "giver": "maera5",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Confront Maera with the truth.",
+     "markers": [
+      {
+       "zone": "the_regents_archive",
+       "at": [
+        6503,
+        3705
+       ],
+       "r": 560,
+       "label": "Coup Captain Hollis"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Regent Maera Ashford",
+     "markers": [
+      {
+       "zone": "the_regents_archive",
+       "npc": "maera5"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 18222,
+    "gold": 1490,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Regent Maera Ashford",
+     "Confront Maera with the truth.."
+    ],
+    "ready": [
+     "Regent Maera Ashford",
+     "The current kingdom knowingly buried evidence, not the whole truth."
+    ]
+   },
+   "boss": "the_regents_archive_boss_u",
+   "count": 1,
+   "boss_at": [
+    6503,
+    3705
+   ],
+   "next": "Q_A05_13"
+  },
+  {
+   "id": "Q_A05_13",
+   "name": "The Covenant of Names",
+   "zone_id": "ACT05_Z13",
+   "giver": "tamsin5",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Recruit witnesses from every erased epoch.",
+     "markers": [
+      {
+       "zone": "hearth_of_names",
+       "at": [
+        5132,
+        1186
+       ],
+       "r": 430,
+       "label": "Choir Raider",
+       "page": "Q_A05_13_1"
+      },
+      {
+       "zone": "hearth_of_names",
+       "at": [
+        4272,
+        2592
+       ],
+       "r": 430,
+       "label": "Name-Eater",
+       "page": "Q_A05_13_2"
+      },
+      {
+       "zone": "hearth_of_names",
+       "at": [
+        4117,
+        4090
+       ],
+       "r": 430,
+       "label": "Court Seizer",
+       "page": "Q_A05_13_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Tamsin Reed",
+     "markers": [
+      {
+       "zone": "hearth_of_names",
+       "npc": "tamsin5"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 18222,
+    "gold": 1490,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Tamsin Reed",
+     "Recruit witnesses from every erased epoch.."
+    ],
+    "ready": [
+     "Tamsin Reed",
+     "The reconciliation path becomes actionable."
+    ]
+   },
+   "count": 3,
+   "item_name": "Covenant Seal",
+   "next": "Q_A05_14"
+  },
+  {
+   "id": "Q_A05_14",
+   "name": "The Right to Return",
+   "zone_id": "ACT05_Z14",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Confront Ysara's restoration assault.",
+     "markers": [
+      {
+       "zone": "riven_royal_court",
+       "at": [
+        6392,
+        1781
+       ],
+       "r": 560,
+       "label": "Queen Ysara"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 18821,
+    "gold": 1520,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "riven_royal_court_boss_u",
+   "count": 1,
+   "boss_at": [
+    6392,
+    1781
+   ],
+   "next": "Q_A05_15"
+  },
+  {
+   "id": "Q_A05_15",
+   "name": "A Place for Both",
+   "zone_id": "ACT05_Z15",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Stabilize a small coexistence experiment with Rowan and a consenting displaced family.",
+     "markers": [
+      {
+       "zone": "the_anchor_of_kinship",
+       "at": [
+        6107,
+        2755
+       ],
+       "r": 560,
+       "label": "The Overwrite Surge"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 18821,
+    "gold": 1520,
+    "item_rarity": 3
+   },
+   "talk": {},
+   "boss": "the_anchor_of_kinship_boss_u",
+   "count": 1,
+   "boss_at": [
+    6107,
+    2755
+   ],
+   "epilogue": {
+    "chapter": "ACT V COMPLETE",
+    "title": "THE UNWRITTEN KINGDOMS",
+    "lines": [
+     "History was sacrificed again and again: the Rain Kingdom, the Verdant Empire, the Iron Sabbath, the Moonfall Republic. Crownsfall was assembled from the discards.",
+     "Rowan keeps his name. An independently anchored refuge holds a displaced family without erasing anyone already living.",
+     "Coexistence can be built. Act VI, War Against the Hour, begins in Crownsfall Under Siege."
+    ]
+   },
+   "next": "Q_A06_01"
+  },
+  {
+   "id": "Q_A06_01",
+   "name": "A City Worth Keeping",
+   "zone_id": "ACT06_Z01",
+   "giver": "garran6",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Defend the market and evacuate civilians.",
+     "markers": [
+      {
+       "zone": "crownsfall_under_siege",
+       "at": [
+        3442,
+        1933
+       ],
+       "r": 430,
+       "label": "Siege Breacher",
+       "page": "Q_A06_01_1"
+      },
+      {
+       "zone": "crownsfall_under_siege",
+       "at": [
+        2942,
+        4192
+       ],
+       "r": 430,
+       "label": "Tear Raider",
+       "page": "Q_A06_01_2"
+      },
+      {
+       "zone": "crownsfall_under_siege",
+       "at": [
+        6788,
+        3160
+       ],
+       "r": 430,
+       "label": "The Fountain Horror",
+       "page": "Q_A06_01_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Marshal Garran Holt",
+     "markers": [
+      {
+       "zone": "crownsfall_under_siege",
+       "npc": "garran6"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 20040,
+    "gold": 1580,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Marshal Garran Holt",
+     "Defend the market and evacuate civilians.."
+    ],
+    "ready": [
+     "Marshal Garran Holt",
+     "Present-day people are the stakes, not scenery."
+    ]
+   },
+   "count": 3,
+   "item_name": "Rescued Family",
+   "next": "Q_A06_02"
+  },
+  {
+   "id": "Q_A06_02",
+   "name": "The Roots of Tomorrow",
+   "zone_id": "ACT06_Z02",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Restore the western regulator.",
+     "markers": [
+      {
+       "zone": "greenwood_fracture",
+       "at": [
+        7025,
+        650
+       ],
+       "r": 560,
+       "label": "The Root Guardian"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 20040,
+    "gold": 1580,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "greenwood_fracture_boss_u",
+   "count": 1,
+   "boss_at": [
+    7025,
+    650
+   ],
+   "next": "Q_A06_03"
+  },
+  {
+   "id": "Q_A06_03",
+   "name": "Against the Returning Tide",
+   "zone_id": "ACT06_Z03",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Rescue millworkers and tune water conduit.",
+     "markers": [
+      {
+       "zone": "bellwater_inundation",
+       "at": [
+        9219,
+        675
+       ],
+       "r": 560,
+       "label": "The Returning Tide"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 20660,
+    "gold": 1610,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "bellwater_inundation_boss_u",
+   "count": 1,
+   "boss_at": [
+    9219,
+    675
+   ],
+   "next": "Q_A06_04"
+  },
+  {
+   "id": "Q_A06_04",
+   "name": "The Fleet of No Flag",
+   "zone_id": "ACT06_Z04",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Unite sailors and Court refugees.",
+     "markers": [
+      {
+       "zone": "greywake_armada",
+       "at": [
+        943,
+        3126
+       ],
+       "r": 560,
+       "label": "Admiral of No Flag"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 20660,
+    "gold": 1610,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "greywake_armada_boss_u",
+   "count": 1,
+   "boss_at": [
+    943,
+    3126
+   ],
+   "next": "Q_A06_05"
+  },
+  {
+   "id": "Q_A06_05",
+   "name": "The Weight of Winter",
+   "zone_id": "ACT06_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover displaced villagers and repair a thermal node.",
+     "markers": [
+      {
+       "zone": "blackpine_winter",
+       "at": [
+        1014,
+        4040
+       ],
+       "r": 560,
+       "label": "The Winter Elemental"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 21287,
+    "gold": 1640,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "blackpine_winter_boss_u",
+   "count": 1,
+   "boss_at": [
+    1014,
+    4040
+   ],
+   "next": "Q_A06_06"
+  },
+  {
+   "id": "Q_A06_06",
+   "name": "The Fire Below Time",
+   "zone_id": "ACT06_Z06",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Stop an overload before it spreads.",
+     "markers": [
+      {
+       "zone": "riftglass_caldera",
+       "at": [
+        8785,
+        2786
+       ],
+       "r": 560,
+       "label": "The Caldera Construct"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 21921,
+    "gold": 1670,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "riftglass_caldera_boss_u",
+   "count": 1,
+   "boss_at": [
+    8785,
+    2786
+   ],
+   "next": "Q_A06_07"
+  },
+  {
+   "id": "Q_A06_07",
+   "name": "The Keepers of the Clock",
+   "zone_id": "ACT06_Z07",
+   "giver": "meridian6",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Reconcile Veyr factions over emergency action.",
+     "markers": [
+      {
+       "zone": "veyr_sanctuary",
+       "npc": "meridian6"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 21921,
+    "gold": 1670
+   },
+   "talk": {
+    "active": [
+     "Meridian",
+     "Reconcile Veyr factions over emergency action..",
+     "Veyr agree to release suppressed records."
+    ]
+   },
+   "talk_complete": true,
+   "next": "Q_A06_08"
+  },
+  {
+   "id": "Q_A06_08",
+   "name": "A Future Never Born",
+   "zone_id": "ACT06_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover testimony about failed resets.",
+     "markers": [
+      {
+       "zone": "archive_of_forbidden_futures",
+       "at": [
+        6315,
+        2100
+       ],
+       "r": 430,
+       "label": "Variant Horror",
+       "page": "Q_A06_08_1"
+      },
+      {
+       "zone": "archive_of_forbidden_futures",
+       "at": [
+        6142,
+        947
+       ],
+       "r": 430,
+       "label": "Unborn Sentinel",
+       "page": "Q_A06_08_2"
+      },
+      {
+       "zone": "archive_of_forbidden_futures",
+       "at": [
+        5688,
+        3301
+       ],
+       "r": 430,
+       "label": "Possibility Eater",
+       "page": "Q_A06_08_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 22563,
+    "gold": 1700,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Forbidden Future Record",
+   "next": "Q_A06_09"
+  },
+  {
+   "id": "Q_A06_09",
+   "name": "Hold the Line",
+   "zone_id": "ACT06_Z09",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Defend Epoch Sentinels during evacuation.",
+     "markers": [
+      {
+       "zone": "the_sentinels_wall",
+       "at": [
+        10711,
+        713
+       ],
+       "r": 560,
+       "label": "The Wall-Breaker"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 23211,
+    "gold": 1730,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_sentinels_wall_boss_u",
+   "count": 1,
+   "boss_at": [
+    10711,
+    713
+   ],
+   "next": "Q_A06_10"
+  },
+  {
+   "id": "Q_A06_10",
+   "name": "The Cost of Knowing",
+   "zone_id": "ACT06_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Learn Meridian helped conceal an earlier warning.",
+     "markers": [
+      {
+       "zone": "meridians_descent",
+       "at": [
+        6465,
+        4003
+       ],
+       "r": 560,
+       "label": "The Descent Warden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 23211,
+    "gold": 1730,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "meridians_descent_boss_u",
+   "count": 1,
+   "boss_at": [
+    6465,
+    4003
+   ],
+   "next": "Q_A06_11"
+  },
+  {
+   "id": "Q_A06_11",
+   "name": "A Measure of Mercy",
+   "zone_id": "ACT06_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Retrieve the final regulator index.",
+     "markers": [
+      {
+       "zone": "the_last_timekeeper",
+       "at": [
+        6394,
+        2095
+       ],
+       "r": 560,
+       "label": "The Last Timekeeper"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 23866,
+    "gold": 1760,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_last_timekeeper_boss_u",
+   "count": 1,
+   "boss_at": [
+    6394,
+    2095
+   ],
+   "next": "Q_A06_12"
+  },
+  {
+   "id": "Q_A06_12",
+   "name": "No More Separate Names",
+   "zone_id": "ACT06_Z12",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Break the Choir's forced conversions.",
+     "markers": [
+      {
+       "zone": "the_choirs_procession",
+       "at": [
+        8125,
+        1704
+       ],
+       "r": 560,
+       "label": "Cantor Neral, Ascendant"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 24528,
+    "gold": 1790,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_choirs_procession_boss_u",
+   "count": 1,
+   "boss_at": [
+    8125,
+    1704
+   ],
+   "next": "Q_A06_13"
+  },
+  {
+   "id": "Q_A06_13",
+   "name": "The Council of Tomorrow",
+   "zone_id": "ACT06_Z13",
+   "giver": "mira6",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Choose coalition priorities and audit witness evidence.",
+     "markers": [
+      {
+       "zone": "confluence_camp",
+       "npc": "mira6"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 24528,
+    "gold": 1790
+   },
+   "talk": {
+    "active": [
+     "Mira Thorne",
+     "Choose coalition priorities and audit witness evidence..",
+     "Final paths explained before commitment."
+    ]
+   },
+   "talk_complete": true,
+   "next": "Q_A06_14"
+  },
+  {
+   "id": "Q_A06_14",
+   "name": "The Seven Measures",
+   "zone_id": "ACT06_Z14",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Deploy regulators to open the route to the Engine.",
+     "markers": [
+      {
+       "zone": "sevenfold_gate",
+       "at": [
+        6487,
+        2625
+       ],
+       "r": 430,
+       "label": "Growth Warden",
+       "page": "Q_A06_14_1"
+      },
+      {
+       "zone": "sevenfold_gate",
+       "at": [
+        6042,
+        1320
+       ],
+       "r": 430,
+       "label": "Flow Warden",
+       "page": "Q_A06_14_2"
+      },
+      {
+       "zone": "sevenfold_gate",
+       "at": [
+        4034,
+        1649
+       ],
+       "r": 430,
+       "label": "Boundary Warden",
+       "page": "Q_A06_14_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 25196,
+    "gold": 1820,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Regulator Seal",
+   "next": "Q_A06_15"
+  },
+  {
+   "id": "Q_A06_15",
+   "name": "The Voice That Cannot Stop",
+   "zone_id": "ACT06_Z15",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Face the Continuance's outer avatar.",
+     "markers": [
+      {
+       "zone": "the_threshold_of_continuance",
+       "at": [
+        6597,
+        3289
+       ],
+       "r": 560,
+       "label": "The Continuance's Herald"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 25196,
+    "gold": 1820,
+    "item_rarity": 3
+   },
+   "talk": {},
+   "boss": "the_threshold_of_continuance_boss_u",
+   "count": 1,
+   "boss_at": [
+    6597,
+    3289
+   ],
+   "epilogue": {
+    "chapter": "ACT VI COMPLETE",
+    "title": "WAR AGAINST THE HOUR",
+    "lines": [
+     "The coalition holds. All seven regulator functions answer: Growth, Flow, Passage, Balance, Form, Boundary, Continuity.",
+     "Beyond the bronze horizon, the Continuance speaks: it offers to save the world by ending its history.",
+     "Act VII, Age of the Lost, begins in the First Index."
+    ]
+   },
+   "next": "Q_A07_01"
+  },
+  {
+   "id": "Q_A07_01",
+   "name": "The Record of All Things",
+   "zone_id": "ACT07_Z01",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Enter the Engine and verify the witness ledger.",
+     "markers": [
+      {
+       "zone": "the_first_index",
+       "at": [
+        5532,
+        4090
+       ],
+       "r": 430,
+       "label": "Index Devourer",
+       "page": "Q_A07_01_1"
+      },
+      {
+       "zone": "the_first_index",
+       "at": [
+        5060,
+        2198
+       ],
+       "r": 430,
+       "label": "Shelf Warden",
+       "page": "Q_A07_01_2"
+      },
+      {
+       "zone": "the_first_index",
+       "at": [
+        4938,
+        3219
+       ],
+       "r": 430,
+       "label": "The Name-Collector",
+       "page": "Q_A07_01_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 26553,
+    "gold": 1880,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Recovered Index Entry",
+   "next": "Q_A07_02"
+  },
+  {
+   "id": "Q_A07_02",
+   "name": "The Choice of the First Makers",
+   "zone_id": "ACT07_Z02",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Reconstruct the original safety architecture.",
+     "markers": [
+      {
+       "zone": "vault_of_continuity",
+       "at": [
+        6433,
+        1629
+       ],
+       "r": 560,
+       "label": "The Continuity Sentinel"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 26553,
+    "gold": 1880,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "vault_of_continuity_boss_u",
+   "count": 1,
+   "boss_at": [
+    6433,
+    1629
+   ],
+   "next": "Q_A07_03"
+  },
+  {
+   "id": "Q_A07_03",
+   "name": "What Preservation Cannot Do",
+   "zone_id": "ACT07_Z03",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Witness Sera's final sacrifice.",
+     "markers": [
+      {
+       "zone": "the_mercy_chamber",
+       "at": [
+        6530,
+        2919
+       ],
+       "r": 430,
+       "label": "Repeating Orderly",
+       "page": "Q_A07_03_1"
+      },
+      {
+       "zone": "the_mercy_chamber",
+       "at": [
+        5853,
+        4119
+       ],
+       "r": 430,
+       "label": "Mercy Echo",
+       "page": "Q_A07_03_2"
+      },
+      {
+       "zone": "the_mercy_chamber",
+       "at": [
+        5821,
+        1743
+       ],
+       "r": 430,
+       "label": "The Last Patient's Warden",
+       "page": "Q_A07_03_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 27242,
+    "gold": 1910,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Memory of Mercy",
+   "next": "Q_A07_04"
+  },
+  {
+   "id": "Q_A07_04",
+   "name": "A Promise to the People",
+   "zone_id": "ACT07_Z04",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Confront the origin of Oris's directive.",
+     "markers": [
+      {
+       "zone": "the_kings_unmaking",
+       "at": [
+        3182,
+        2263
+       ],
+       "r": 560,
+       "label": "The Memory of Oris"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 27242,
+    "gold": 1910,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_kings_unmaking_boss_u",
+   "count": 1,
+   "boss_at": [
+    3182,
+    2263
+   ],
+   "next": "Q_A07_05"
+  },
+  {
+   "id": "Q_A07_05",
+   "name": "A Kingdom Returned",
+   "zone_id": "ACT07_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Settle Ysara's final claim.",
+     "markers": [
+      {
+       "zone": "the_remnant_siege",
+       "at": [
+        6523,
+        1543
+       ],
+       "r": 560,
+       "label": "The Remnant Vanguard"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 27937,
+    "gold": 1940,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_remnant_siege_boss_u",
+   "count": 1,
+   "boss_at": [
+    6523,
+    1543
+   ],
+   "next": "Q_A07_06"
+  },
+  {
+   "id": "Q_A07_06",
+   "name": "The Last Voice",
+   "zone_id": "ACT07_Z06",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Defeat Neral's fusion ritual.",
+     "markers": [
+      {
+       "zone": "the_choirs_last_hymn",
+       "at": [
+        6240,
+        992
+       ],
+       "r": 560,
+       "label": "The Last Voice"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 28639,
+    "gold": 1970,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_choirs_last_hymn_boss_u",
+   "count": 1,
+   "boss_at": [
+    6240,
+    992
+   ],
+   "next": "Q_A07_07"
+  },
+  {
+   "id": "Q_A07_07",
+   "name": "One More Watch",
+   "zone_id": "ACT07_Z07",
+   "giver": "caldrin7",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Reunite Caldrin's record with Lys and his family's testimony.",
+     "markers": [
+      {
+       "zone": "caldrins_vigil",
+       "at": [
+        5954,
+        1295
+       ],
+       "r": 430,
+       "label": "Erasure Tide",
+       "page": "Q_A07_07_1"
+      },
+      {
+       "zone": "caldrins_vigil",
+       "at": [
+        4678,
+        2381
+       ],
+       "r": 430,
+       "label": "Door-Breaker Avatar",
+       "page": "Q_A07_07_2"
+      },
+      {
+       "zone": "caldrins_vigil",
+       "at": [
+        5876,
+        3424
+       ],
+       "r": 430,
+       "label": "The Last Assault",
+       "page": "Q_A07_07_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Ser Caldrin Vael",
+     "markers": [
+      {
+       "zone": "caldrins_vigil",
+       "npc": "caldrin7"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 28639,
+    "gold": 1970,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Ser Caldrin Vael",
+     "Reunite Caldrin's record with Lys and his family's testimony.."
+    ],
+    "ready": [
+     "Ser Caldrin Vael",
+     "Caldrin voluntarily becomes a witness, not fuel."
+    ]
+   },
+   "count": 3,
+   "item_name": "Vigil Watch",
+   "next": "Q_A07_08"
+  },
+  {
+   "id": "Q_A07_08",
+   "name": "The Work of Many Ages",
+   "zone_id": "ACT07_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Align the recovered regulators.",
+     "markers": [
+      {
+       "zone": "the_seven_chambers",
+       "at": [
+        6468,
+        2382
+       ],
+       "r": 430,
+       "label": "Regulator Guardian",
+       "page": "Q_A07_08_1"
+      },
+      {
+       "zone": "the_seven_chambers",
+       "at": [
+        5132,
+        3667
+       ],
+       "r": 430,
+       "label": "Cell Avatar",
+       "page": "Q_A07_08_2"
+      },
+      {
+       "zone": "the_seven_chambers",
+       "at": [
+        4810,
+        2625
+       ],
+       "r": 430,
+       "label": "The Seventh Warden",
+       "page": "Q_A07_08_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 29347,
+    "gold": 2000,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Chamber Key",
+   "next": "Q_A07_09"
+  },
+  {
+   "id": "Q_A07_09",
+   "name": "No World Above Another",
+   "zone_id": "ACT07_Z09",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Prevent the Engine ranking epochs by value.",
+     "markers": [
+      {
+       "zone": "the_crown_of_empty_histories",
+       "at": [
+        6483,
+        1772
+       ],
+       "r": 560,
+       "label": "The Mirrored Champion"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 30061,
+    "gold": 2030,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "the_crown_of_empty_histories_boss_u",
+   "count": 1,
+   "boss_at": [
+    6483,
+    1772
+   ],
+   "next": "Q_A07_10"
+  },
+  {
+   "id": "Q_A07_10",
+   "name": "A Shore for the Lost",
+   "zone_id": "ACT07_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Protect the first independent refuge anchors.",
+     "markers": [
+      {
+       "zone": "the_unwritten_shore",
+       "at": [
+        6711,
+        2572
+       ],
+       "r": 430,
+       "label": "Shore Devourer",
+       "page": "Q_A07_10_1"
+      },
+      {
+       "zone": "the_unwritten_shore",
+       "at": [
+        5473,
+        1056
+       ],
+       "r": 430,
+       "label": "Light-Eater",
+       "page": "Q_A07_10_2"
+      },
+      {
+       "zone": "the_unwritten_shore",
+       "at": [
+        4343,
+        2111
+       ],
+       "r": 430,
+       "label": "The Tide of Erasure",
+       "page": "Q_A07_10_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 30061,
+    "gold": 2030,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Refugee Escort",
+   "next": "Q_A07_11"
+  },
+  {
+   "id": "Q_A07_11",
+   "name": "The End of the Cycle",
+   "zone_id": "ACT07_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Confront the Continuance.",
+     "markers": [
+      {
+       "zone": "chronicle_heart",
+       "at": [
+        6385,
+        3419
+       ],
+       "r": 560,
+       "label": "The Continuance"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 30783,
+    "gold": 2060,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "chronicle_heart_boss_u",
+   "count": 1,
+   "boss_at": [
+    6385,
+    3419
+   ],
+   "next": "Q_A07_12"
+  },
+  {
+   "id": "Q_A07_12",
+   "name": "Choose Tomorrow",
+   "zone_id": "ACT07_Z12",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Choose reset, severance, or distributed reconciliation.",
+     "markers": []
+    }
+   },
+   "reward": {
+    "xp": 31510,
+    "gold": 2090
+   },
+   "talk": {},
+   "arrive_zone": "the_last_decision",
+   "next": "Q_A07_13"
+  },
+  {
+   "id": "Q_A07_13",
+   "name": "After the Bell",
+   "zone_id": "ACT07_Z13",
+   "giver": "mira_r",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Return to Mira, Maera, and surviving allies.",
+     "markers": [
+      {
+       "zone": "crownsfall_reborn",
+       "npc": "mira_r"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 31510,
+    "gold": 2090
+   },
+   "talk": {
+    "active": [
+     "Mira Thorne",
+     "Return to Mira, Maera, and surviving allies..",
+     "Consequences shown in human terms."
+    ]
+   },
+   "talk_complete": true,
+   "next": "Q_A07_14"
+  },
+  {
+   "id": "Q_A07_14",
+   "name": "The Roads Ahead",
+   "zone_id": "ACT07_Z14",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Survey the new state of the world.",
+     "markers": []
+    }
+   },
+   "reward": {
+    "xp": 32244,
+    "gold": 2120
+   },
+   "talk": {},
+   "arrive_zone": "the_open_meridian",
+   "next": "Q_A07_15"
+  },
+  {
+   "id": "Q_A07_15",
+   "name": "Age of the Lost",
+   "zone_id": "ACT07_Z15",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Place Caldrin's ledger in a public memorial.",
+     "markers": []
+    }
+   },
+   "reward": {
+    "xp": 32244,
+    "gold": 2120
+   },
+   "talk": {},
+   "arrive_zone": "the_lantern_beyond",
+   "epilogue": {
+    "chapter": "AGE OF THE LOST",
+    "title": "A REMEMBERED NAME",
+    "lines": [
+     "Caldrin's ledger rests in a public memorial. The bell rings in Crownsfall.",
+     "The final image is a remembered name, not a reset."
     ]
    }
   },
   {
-   "id": "the_first_rift",
-   "name": "The First Rift",
-   "giver": "ione",
-   "count": 1,
-   "boss": "riftwarden",
+   "id": "Q_A01_03",
+   "name": "The Last Dispatch",
+   "zone_id": "ACT01_Z03",
+   "giver": "rowan",
+   "auto": false,
    "steps": {
     "active": {
-     "objective": "Reach the First Rift at the moor's eastern end and face what guards it",
+     "objective": "Rescue scout Rowan from scavengers at a collapsed bridge.",
      "markers": [
       {
-       "zone": "riftscar_moor",
+       "zone": "bramblewatch",
        "at": [
-        11380,
-        2470
+        2490,
+        3910
        ],
-       "r": 300,
-       "label": "The Breach"
-      },
-      {
-       "zone": "first_rift",
-       "at": [
-        5900,
-        2470
-       ],
-       "r": 600,
-       "label": "The First Rift"
+       "r": 560,
+       "label": "Scavenger Chief Kettle"
       }
      ]
     },
     "ready": {
-     "objective": "Tell Ione Thessaly the way is open",
+     "objective": "Speak with Rowan Hale",
      "markers": [
       {
-       "zone": "oldwatch",
-       "npc": "ione"
+       "zone": "bramblewatch",
+       "npc": "rowan"
       }
      ]
     }
    },
    "reward": {
-    "xp": 6500,
-    "gold": 1800,
-    "item_rarity": 3
-   },
-   "epilogue": {
-    "title": "THE HOURS ARE OPEN",
-    "chapter": "ACT I COMPLETE",
-    "lines": [
-     "The Riftwarden was a Concord sentinel, set to guard the breach in an age no one remembers. It fell, and the rift did not close. It opened wider for you.",
-     "Anyone else who touched it was unmade. You walked into the light and came back whole. Ione says that should be impossible. She has started writing down everything you say.",
-     "On the other side lies the Hourless Deep, where every lost moment of Aethryn drifts. Somewhere in it is the road back to the Gilded Epoch.",
-     "Act II, The Hourless Deep, is to come."
-    ]
+    "xp": 208,
+    "gold": 110,
+    "item_rarity": 2
    },
    "talk": {
     "active": [
-     "Ione Thessaly",
-     "The First Rift. Whatever guards it was set there by the Concord. Whatever is on the other side, the Concord wanted it kept there.",
-     "Or wanted us kept here."
+     "Rowan Hale",
+     "Rescue scout Rowan from scavengers at a collapsed bridge.."
     ],
     "ready": [
-     "Ione Thessaly",
-     "You touched it and lived. Then the rifts are not only tearing the past loose. They are a road.",
-     "Rest first. Then we find out where that road goes."
+     "Rowan Hale",
+     "Courier carried a black glass seal."
     ]
-   }
+   },
+   "boss": "bramblewatch_boss_u",
+   "count": 1,
+   "boss_at": [
+    2490,
+    3910
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_05",
+   "name": "Names on the Door",
+   "zone_id": "ACT01_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Investigate three households with conflicting memories of a missing child.",
+     "markers": [
+      {
+       "zone": "mossbell_hamlet",
+       "at": [
+        4929,
+        1909
+       ],
+       "r": 560,
+       "label": "The Millhaunt"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 472,
+    "gold": 170,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "mossbell_hamlet_boss_u",
+   "count": 1,
+   "boss_at": [
+    4929,
+    1909
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_07",
+   "name": "A Toll Paid Twice",
+   "zone_id": "ACT01_Z07",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover the courier's satchel from a road cult.",
+     "markers": [
+      {
+       "zone": "ashen_tollway",
+       "at": [
+        3254,
+        3478
+       ],
+       "r": 560,
+       "label": "Cult Captain Varro"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 330,
+    "gold": 140,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "ashen_tollway_boss_u",
+   "count": 1,
+   "boss_at": [
+    3254,
+    3478
+   ],
+   "also": [
+    "Q_A01_08"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_08",
+   "name": "Water Runs Backward",
+   "zone_id": "ACT01_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Rescue workers and stop a reversed flood.",
+     "markers": [
+      {
+       "zone": "bellwater_mills",
+       "at": [
+        2861,
+        1292
+       ],
+       "r": 560,
+       "label": "The Sluice Guardian"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 472,
+    "gold": 170,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "bellwater_mills_boss_u",
+   "count": 1,
+   "boss_at": [
+    2861,
+    1292
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_09",
+   "name": "A Warrant for the Dead",
+   "zone_id": "ACT01_Z09",
+   "giver": "garran",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Confront Marshal Garran over quarantined relics.",
+     "markers": [
+      {
+       "zone": "highward_steps",
+       "at": [
+        4331,
+        2523
+       ],
+       "r": 430,
+       "label": "Relic Thief Sallow",
+       "page": "Q_A01_09_1"
+      },
+      {
+       "zone": "highward_steps",
+       "at": [
+        1039,
+        946
+       ],
+       "r": 430,
+       "label": "The Gatebreaker",
+       "page": "Q_A01_09_2"
+      },
+      {
+       "zone": "highward_steps",
+       "at": [
+        946,
+        4176
+       ],
+       "r": 430,
+       "label": "Rift-Touched Smuggler",
+       "page": "Q_A01_09_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Marshal Garran Holt",
+     "markers": [
+      {
+       "zone": "highward_steps",
+       "npc": "garran"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 330,
+    "gold": 140,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Marshal Garran Holt",
+     "Confront Marshal Garran over quarantined relics.."
+    ],
+    "ready": [
+     "Marshal Garran Holt",
+     "Gain authorized access to the lower city."
+    ]
+   },
+   "count": 3,
+   "item_name": "Quarantined Relic",
+   "also": [
+    "Q_A01_10"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_10",
+   "name": "The Price of a Name",
+   "zone_id": "ACT01_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Free a captured Keeper named Tamsin.",
+     "markers": [
+      {
+       "zone": "sablemarket_vaults",
+       "at": [
+        6699,
+        2516
+       ],
+       "r": 560,
+       "label": "Relic Broker Quell"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 632,
+    "gold": 200,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "sablemarket_vaults_boss_u",
+   "count": 1,
+   "boss_at": [
+    6699,
+    2516
+   ],
+   "also": [
+    "Q_A01_11"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_11",
+   "name": "Stones Beneath Stones",
+   "zone_id": "ACT01_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Drain a chamber and follow an echo of a procession.",
+     "markers": [
+      {
+       "zone": "old_crown_cistern",
+       "at": [
+        6399,
+        2598
+       ],
+       "r": 430,
+       "label": "The Drowned Herald",
+       "page": "Q_A01_11_1"
+      },
+      {
+       "zone": "old_crown_cistern",
+       "at": [
+        6025,
+        1433
+       ],
+       "r": 430,
+       "label": "The Lamp-Bearer",
+       "page": "Q_A01_11_2"
+      },
+      {
+       "zone": "old_crown_cistern",
+       "at": [
+        4585,
+        2921
+       ],
+       "r": 430,
+       "label": "The Standard-Bearer",
+       "page": "Q_A01_11_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 809,
+    "gold": 230,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Procession Echo",
+   "also": [
+    "Q_A01_12"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_12",
+   "name": "The Sealed Procession",
+   "zone_id": "ACT01_Z12",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Descend past the Regent's guards.",
+     "markers": [
+      {
+       "zone": "undercroft",
+       "at": [
+        6093,
+        1418
+       ],
+       "r": 560,
+       "label": "The Crypt Warden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1002,
+    "gold": 260,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "undercroft_boss_u",
+   "count": 1,
+   "boss_at": [
+    6093,
+    1418
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_15",
+   "name": "The King's Silence",
+   "zone_id": "ACT01_Z15",
+   "giver": "maera",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Present proof to Regent Maera; defend the court from a small reality tear.",
+     "markers": [
+      {
+       "zone": "crownsfall_citadel",
+       "at": [
+        6105,
+        2698
+       ],
+       "r": 560,
+       "label": "The Court Tear"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Regent Maera Ashford",
+     "markers": [
+      {
+       "zone": "crownsfall_citadel",
+       "npc": "maera"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1432,
+    "gold": 320,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Regent Maera Ashford",
+     "Present proof to Regent Maera; defend the court from a small reality tear.."
+    ],
+    "ready": [
+     "Regent Maera Ashford",
+     "Receive warrant to investigate the outer scars."
+    ]
+   },
+   "boss": "crownsfall_citadel_boss_u",
+   "count": 1,
+   "boss_at": [
+    6105,
+    2698
+   ],
+   "side": true
   }
- ]
+ ],
+ "first": "Q_A01_01"
 }

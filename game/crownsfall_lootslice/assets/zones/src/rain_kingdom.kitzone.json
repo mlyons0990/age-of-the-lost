@@ -1,0 +1,827 @@
+{
+ "name": "Rain Kingdom",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass",
+ "seed": 1932,
+ "paths": [
+  {
+   "pts": [
+    [
+     7110,
+     190
+    ],
+    [
+     7110,
+     494
+    ],
+    [
+     6787,
+     1224
+    ],
+    [
+     6774,
+     2039
+    ],
+    [
+     5896,
+     2617
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5896,
+     2617
+    ],
+    [
+     5153.0,
+     3330.5
+    ],
+    [
+     4410,
+     4044
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6783,
+     1468
+    ],
+    [
+     7313,
+     1336
+    ],
+    [
+     8147,
+     1456
+    ]
+   ],
+   "width": 143,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4484,
+     3972
+    ],
+    [
+     4885,
+     4146
+    ],
+    [
+     5688,
+     4379
+    ]
+   ],
+   "width": 189,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5896,
+     2617
+    ],
+    [
+     4596,
+     2220
+    ],
+    [
+     3749,
+     1868
+    ]
+   ],
+   "width": 163,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4410,
+     4044
+    ],
+    [
+     3276,
+     3813
+    ],
+    [
+     1957,
+     3868
+    ]
+   ],
+   "width": 180,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4934,
+     40
+    ],
+    [
+     5263,
+     883
+    ],
+    [
+     5408,
+     1726
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  },
+  {
+   "pts": [
+    [
+     10042,
+     40
+    ],
+    [
+     10125,
+     539
+    ],
+    [
+     10082,
+     1039
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  },
+  {
+   "pts": [
+    [
+     7695,
+     4904
+    ],
+    [
+     7680,
+     3714
+    ],
+    [
+     7697,
+     2525
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4968,
+    2363
+   ],
+   "r": 409,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    7058,
+    2471
+   ],
+   "r": 676,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5896,
+    2617
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8147,
+    1456
+   ],
+   "r": 308,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5688,
+    4379
+   ],
+   "r": 492,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3749,
+    1868
+   ],
+   "r": 243,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1957,
+    3868
+   ],
+   "r": 653,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7697,
+    2525
+   ],
+   "r": 432,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3165,
+    2571
+   ],
+   "r": 524,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5103,
+    1177
+   ],
+   "r": 499,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    8245,
+    2839
+   ],
+   "r": 661,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    10082,
+    1039
+   ],
+   "r": 670,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5408,
+    1726
+   ],
+   "r": 734,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   7110,
+   190,
+   380
+  ],
+  [
+   8147,
+   1456,
+   300
+  ],
+  [
+   5688,
+   4379,
+   300
+  ],
+  [
+   3749,
+   1868,
+   300
+  ],
+  [
+   1957,
+   3868,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    2
+   ],
+   [
+    "oak_b",
+    2
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 1050,
+  "cut": 0.76,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 22,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    8147,
+    1456,
+    560,
+    0.45
+   ],
+   [
+    5688,
+    4379,
+    560,
+    0.45
+   ],
+   [
+    3749,
+    1868,
+    560,
+    0.45
+   ],
+   [
+    1957,
+    3868,
+    560,
+    0.45
+   ],
+   [
+    5896,
+    2617,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    5896,
+    2397,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    7697,
+    2525,
+    691.2
+   ],
+   [
+    3165,
+    2571,
+    838.4000000000001
+   ],
+   [
+    5103,
+    1177,
+    798.4000000000001
+   ],
+   [
+    8245,
+    2839,
+    1057.6000000000001
+   ],
+   [
+    10082,
+    1039,
+    1072.0
+   ],
+   [
+    5408,
+    1726,
+    1174.4
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "rain_kingdom_wp",
+   "name": "Rain Kingdom",
+   "at": [
+    5896,
+    2617
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Throne of Glass",
+   "to": "throne_of_glass",
+   "at": [
+    7110,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    3971,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  7110,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Slate Towers",
+   "kind": "landmark",
+   "at": [
+    8147,
+    1456
+   ],
+   "blurb": "Perpetual rain, canals, dark slate towers"
+  },
+  {
+   "name": "Thousand Canals",
+   "kind": "landmark",
+   "at": [
+    5688,
+    4379
+   ],
+   "blurb": "Perpetual rain, canals, dark slate towers"
+  },
+  {
+   "name": "Submerged Route",
+   "kind": "landmark",
+   "at": [
+    3749,
+    1868
+   ],
+   "blurb": "Perpetual rain, canals, dark slate towers"
+  },
+  {
+   "name": "Flood Gate",
+   "kind": "landmark",
+   "at": [
+    1957,
+    3868
+   ],
+   "blurb": "Perpetual rain, canals, dark slate towers"
+  },
+  {
+   "name": "Throne of Glass",
+   "kind": "landmark",
+   "at": [
+    7110,
+    190
+   ],
+   "blurb": "To Throne of Glass."
+  }
+ ],
+ "world_id": "rain_kingdom",
+ "grade": {
+  "mul": [
+   0.72,
+   0.8,
+   0.9
+  ],
+  "desat": 0.45,
+  "lift": [
+   0.02,
+   0.04,
+   0.07,
+   1.0
+  ],
+  "mist": [
+   0.6,
+   0.66,
+   0.78
+  ],
+  "water": [
+   0.16,
+   0.26,
+   0.36
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    8147,
+    1456
+   ],
+   "r": 520,
+   "props": [
+    "silver",
+    "oak_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    5688,
+    4379
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    3749,
+    1868
+   ],
+   "r": 520,
+   "props": [
+    "silver",
+    "oak_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    1957,
+    3868
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  }
+ ]
+}

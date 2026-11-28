@@ -1,0 +1,823 @@
+{
+ "name": "Forgotten Bastion",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 8980,
+ "paths": [
+  {
+   "pts": [
+    [
+     4592,
+     1155
+    ],
+    [
+     5492,
+     1263
+    ],
+    [
+     6371,
+     1082
+    ]
+   ],
+   "width": 315,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6371,
+     1082
+    ],
+    [
+     6371,
+     1556
+    ],
+    [
+     6397,
+     2031
+    ]
+   ],
+   "width": 292,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4592,
+     1155
+    ],
+    [
+     4224,
+     1679
+    ],
+    [
+     3582,
+     2029
+    ]
+   ],
+   "width": 326,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3582,
+     2029
+    ],
+    [
+     4134,
+     2457
+    ],
+    [
+     4659,
+     2906
+    ]
+   ],
+   "width": 326,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3582,
+     2029
+    ],
+    [
+     3109,
+     1477
+    ],
+    [
+     2351,
+     1145
+    ]
+   ],
+   "width": 317,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3582,
+     2029
+    ],
+    [
+     2666,
+     2624
+    ],
+    [
+     1463,
+     2763
+    ]
+   ],
+   "width": 293,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4659,
+     2906
+    ],
+    [
+     3759,
+     3406
+    ],
+    [
+     2919,
+     3960
+    ]
+   ],
+   "width": 338,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3582,
+     2029
+    ],
+    [
+     2944,
+     2936
+    ],
+    [
+     2919,
+     3960
+    ]
+   ],
+   "width": 283,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1463,
+     2763
+    ],
+    [
+     2160,
+     2030
+    ],
+    [
+     2351,
+     1145
+    ]
+   ],
+   "width": 297,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     3613
+    ],
+    [
+     840,
+     3613
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     3613
+    ],
+    [
+     1463,
+     2763
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4592,
+    1155
+   ],
+   "r": 482,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2351,
+    1145
+   ],
+   "r": 496,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2919,
+    3960
+   ],
+   "r": 454,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4659,
+    2906
+   ],
+   "r": 485,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1463,
+    2763
+   ],
+   "r": 530,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6371,
+    1082
+   ],
+   "r": 436,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6397,
+    2031
+   ],
+   "r": 478,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3582,
+    2029
+   ],
+   "r": 501,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   3613,
+   380
+  ],
+  [
+   6371,
+   1082,
+   300
+  ],
+  [
+   6397,
+   2031,
+   300
+  ],
+  [
+   4592,
+   1155,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    4592,
+    1155,
+    409.7,
+    0.6
+   ],
+   [
+    2351,
+    1145,
+    421.59999999999997,
+    0.6
+   ],
+   [
+    2919,
+    3960,
+    385.9,
+    0.6
+   ],
+   [
+    4659,
+    2906,
+    412.25,
+    0.6
+   ],
+   [
+    1463,
+    2763,
+    450.5,
+    0.6
+   ],
+   [
+    6371,
+    1082,
+    370.59999999999997,
+    0.6
+   ],
+   [
+    6397,
+    2031,
+    406.3,
+    0.6
+   ],
+   [
+    3582,
+    2029,
+    425.84999999999997,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6371,
+    862,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "forgotten_bastion_wp",
+   "name": "Forgotten Bastion",
+   "at": [
+    4659,
+    2906
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Riftglass Quarry",
+   "to": "riftglass_quarry",
+   "at": [
+    140,
+    3613
+   ],
+   "r": 170,
+   "arrive": [
+    5625,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  3613
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Stitched Gate",
+   "kind": "landmark",
+   "at": [
+    6371,
+    1082
+   ],
+   "blurb": "Two fortress layouts stitched together"
+  },
+  {
+   "name": "Two Keeps",
+   "kind": "landmark",
+   "at": [
+    6397,
+    2031
+   ],
+   "blurb": "Two fortress layouts stitched together"
+  },
+  {
+   "name": "Military Index Vault",
+   "kind": "landmark",
+   "at": [
+    4592,
+    1155
+   ],
+   "blurb": "Two fortress layouts stitched together"
+  },
+  {
+   "name": "Riftglass Quarry",
+   "kind": "landmark",
+   "at": [
+    140,
+    3613
+   ],
+   "blurb": "To Riftglass Quarry."
+  }
+ ],
+ "world_id": "forgotten_bastion",
+ "grade": {
+  "mul": [
+   0.74,
+   0.8,
+   0.9
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.03,
+   0.04,
+   0.07,
+   1.0
+  ],
+  "mist": [
+   0.6,
+   0.68,
+   0.82
+  ],
+  "water": [
+   0.2,
+   0.26,
+   0.36
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4592,
+    1155
+   ],
+   "r": 457.9,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2351,
+    1145
+   ],
+   "r": 471.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2919,
+    3960
+   ],
+   "r": 431.29999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4659,
+    2906
+   ],
+   "r": 460.75,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1463,
+    2763
+   ],
+   "r": 503.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6371,
+    1082
+   ],
+   "r": 414.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6397,
+    2031
+   ],
+   "r": 454.09999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3582,
+    2029
+   ],
+   "r": 475.95,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

@@ -1,0 +1,779 @@
+{
+ "name": "Concord Senate",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 3485,
+ "paths": [
+  {
+   "pts": [
+    [
+     140,
+     1415
+    ],
+    [
+     520,
+     1415
+    ],
+    [
+     1293,
+     1771
+    ],
+    [
+     1695,
+     2582
+    ],
+    [
+     2666,
+     2696
+    ],
+    [
+     3532,
+     2940
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3137,
+     4774
+    ],
+    [
+     3137,
+     4470
+    ],
+    [
+     3069,
+     4067
+    ],
+    [
+     3213,
+     3690
+    ],
+    [
+     3468,
+     3326
+    ],
+    [
+     3532,
+     2940
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4943,
+     190
+    ],
+    [
+     4943,
+     494
+    ],
+    [
+     4731,
+     1382
+    ],
+    [
+     3449,
+     1968
+    ],
+    [
+     3532,
+     2940
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3500,
+     3133
+    ],
+    [
+     4135,
+     3166
+    ],
+    [
+     5063,
+     3200
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3083,
+     4029
+    ],
+    [
+     1913,
+     4049
+    ],
+    [
+     1226,
+     3821
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     829,
+     1557
+    ],
+    [
+     951,
+     1341
+    ],
+    [
+     1598,
+     1022
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6281,
+    3827
+   ],
+   "r": 275,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6641,
+    2031
+   ],
+   "r": 348,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5724,
+    3399
+   ],
+   "r": 438,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2044,
+    3499
+   ],
+   "r": 304,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5015,
+    3535
+   ],
+   "r": 301,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4387,
+    4138
+   ],
+   "r": 394,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6220,
+    3736
+   ],
+   "r": 308,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3995,
+    982
+   ],
+   "r": 402,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    946,
+    964
+   ],
+   "r": 344,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2488,
+    1244
+   ],
+   "r": 366,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3532,
+    2940
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5063,
+    3200
+   ],
+   "r": 404,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1226,
+    3821
+   ],
+   "r": 373,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1598,
+    1022
+   ],
+   "r": 383,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6503,
+    2849
+   ],
+   "r": 204,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4901,
+    2418
+   ],
+   "r": 218,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1415,
+   380
+  ],
+  [
+   3137,
+   4774,
+   380
+  ],
+  [
+   4943,
+   190,
+   380
+  ],
+  [
+   5063,
+   3200,
+   300
+  ],
+  [
+   1226,
+   3821,
+   300
+  ],
+  [
+   1598,
+   1022,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    5063,
+    3200,
+    560,
+    0.45
+   ],
+   [
+    1226,
+    3821,
+    560,
+    0.45
+   ],
+   [
+    1598,
+    1022,
+    560,
+    0.45
+   ],
+   [
+    3532,
+    2940,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3532,
+    2720,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "concord_senate_wp",
+   "name": "Concord Senate",
+   "at": [
+    3532,
+    2940
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Aurelian Forum",
+   "to": "aurelian_forum",
+   "at": [
+    140,
+    1415
+   ],
+   "r": 170,
+   "arrive": [
+    7120,
+    1582
+   ]
+  },
+  {
+   "name": "Elyndor's Archive",
+   "to": "elyndors_archive",
+   "at": [
+    3137,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3290
+   ]
+  },
+  {
+   "name": "Chronicle Perimeter",
+   "to": "chronicle_perimeter",
+   "at": [
+    4943,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    9135,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1415
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Gold Mosaics",
+   "kind": "landmark",
+   "at": [
+    5063,
+    3200
+   ],
+   "blurb": "Gold mosaics, rival delegations"
+  },
+  {
+   "name": "Rival Delegations",
+   "kind": "landmark",
+   "at": [
+    1226,
+    3821
+   ],
+   "blurb": "Gold mosaics, rival delegations"
+  },
+  {
+   "name": "Senate Floor",
+   "kind": "landmark",
+   "at": [
+    1598,
+    1022
+   ],
+   "blurb": "Gold mosaics, rival delegations"
+  },
+  {
+   "name": "Aurelian Forum",
+   "kind": "landmark",
+   "at": [
+    140,
+    1415
+   ],
+   "blurb": "To Aurelian Forum."
+  },
+  {
+   "name": "Elyndor's Archive",
+   "kind": "landmark",
+   "at": [
+    3137,
+    4774
+   ],
+   "blurb": "To Elyndor's Archive."
+  },
+  {
+   "name": "Chronicle Perimeter",
+   "kind": "landmark",
+   "at": [
+    4943,
+    190
+   ],
+   "blurb": "To Chronicle Perimeter."
+  }
+ ],
+ "world_id": "concord_senate",
+ "grade": {
+  "mul": [
+   1.12,
+   1.06,
+   0.9
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.08,
+   0.07,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.94,
+   0.8
+  ],
+  "water": [
+   0.32,
+   0.55,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5063,
+    3200
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1226,
+    3821
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1598,
+    1022
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -58,15 +58,19 @@ def catmull(pts, n=12):
 trail_rs = np.random.RandomState(spec.get("seed", 1) + 3)
 for p in spec.get("paths", []):
     m = np.zeros((sh, sw), np.float32)
-    if p.get("style") == "trail":
+    if p.get("style") == "trail" or not p.get("straight", False):
         # worn trail: smooth meandering curve, width that swells and narrows, tapering out where it ends
         c_ = catmull(p["pts"], 24)
         seg = np.linalg.norm(np.diff(c_, axis=0), axis=1); L = np.concatenate([[0], np.cumsum(seg)]); tot = L[-1]
-        k = max(4, int(tot / 350)); wob = np.interp(L, np.linspace(0, tot, k), trail_rs.uniform(-1, 1, k))
-        wid = np.interp(L, np.linspace(0, tot, k), trail_rs.uniform(0.7, 1.2, k)) * p["width"]
+        trail = p.get("style") == "trail"
+        k = max(4, int(tot / (350 if trail else 520))); wob = np.interp(L, np.linspace(0, tot, k), trail_rs.uniform(-1, 1, k))
+        wid = np.interp(L, np.linspace(0, tot, k), trail_rs.uniform(0.7, 1.2, k) if trail else trail_rs.uniform(0.8, 1.25, k)) * p["width"]
+        # a second, finer wobble so roads do not read as smooth splines
+        k2 = max(8, int(tot / 160)); wob = wob + 0.35 * np.interp(L, np.linspace(0, tot, k2), trail_rs.uniform(-1, 1, k2))
+        wob *= p.get("wander", 1.0 if trail else 1.6)
         taper = np.ones_like(L)
         if p.get("taper_start", False): taper *= np.clip(L / (0.18 * tot), 0.15, 1)
-        if p.get("taper_end", True): taper *= np.clip((tot - L) / (0.22 * tot), 0.1, 1)
+        if p.get("taper_end", trail): taper *= np.clip((tot - L) / (0.22 * tot), 0.1, 1)
         d_ = np.gradient(c_, axis=0); d_ /= np.maximum(np.linalg.norm(d_, axis=1, keepdims=True), 1e-6)
         nrm = np.stack([-d_[:, 1], d_[:, 0]], 1)
         cen = c_ + nrm * (wob * p["width"] * 0.35)[:, None] * np.array([1.0, 0.55])
@@ -79,14 +83,33 @@ for p in spec.get("paths", []):
         cv2.polylines(m, [pts], False, 1.0, thickness=max(1, int(p["width"] / SPLAT_K)), lineType=cv2.LINE_AA)
     stamp(m, CH[p.get("layer", "flagstone")]); path_mask = np.maximum(path_mask, m)
 water = []
+blob_rs = np.random.RandomState(spec.get("seed", 1) + 11)
+def blob(m, cx, cy, rx, ry, round_=False):
+    """An irregular clearing / pool: a lobed outline (three harmonics + jitter), stretched and turned at random."""
+    if round_:
+        cv2.ellipse(m, (int(cx), int(cy)), (int(rx), int(ry)), 0, 0, 360, 1.0, -1, cv2.LINE_AA); return
+    th = np.linspace(0, 2 * np.pi, 56, endpoint=False)
+    amp = [blob_rs.uniform(0.10, 0.22), blob_rs.uniform(0.06, 0.14), blob_rs.uniform(0.03, 0.09)]
+    ph = blob_rs.uniform(0, 2 * np.pi, 3)
+    rr = 1 + sum(a * np.sin((i + 1) * th + p_) for i, (a, p_) in enumerate(zip(amp, ph))) + blob_rs.uniform(-0.04, 0.04, th.size)
+    stretch = blob_rs.uniform(0.8, 1.25); rot = blob_rs.uniform(-0.6, 0.6)
+    x = np.cos(th) * rr * rx * stretch; y = np.sin(th) * rr * ry / stretch
+    xr = x * np.cos(rot) - y * np.sin(rot) * (rx / max(ry, 1)) * 0.35; yr = y + x * np.sin(rot) * (ry / max(rx, 1)) * 0.35
+    cv2.fillPoly(m, [np.stack([cx + xr, cy + yr], 1).astype(np.int32)], 1.0, cv2.LINE_AA)
 for pt in spec.get("patches", []):
     m = np.zeros((sh, sw), np.float32)
     rx = pt["r"] / SPLAT_K; ry = rx * pt.get("squash", 0.5)
-    cv2.ellipse(m, (int(pt["at"][0] / SPLAT_K), int(pt["at"][1] / SPLAT_K)), (int(rx), int(ry)), 0, 0, 360, 1.0, -1, cv2.LINE_AA)
+    blob(m, pt["at"][0] / SPLAT_K, pt["at"][1] / SPLAT_K, rx, ry, pt.get("round", False))
     stamp(m, CH[pt["layer"]])
     if pt["layer"] != "water": path_mask = np.maximum(path_mask, m)       # paved/dirt clearings stay clear of planting
     if pt["layer"] == "water": water.append([pt["at"][0], pt["at"][1], pt["r"], pt["r"] * pt.get("squash", 0.5)])
 os.makedirs(f"assets/zones/{name}", exist_ok=True)
+# the Between ("void"): only the islands and bridges (paths + clearings) are ground; everything else is the violet
+# void (drawn as the zone's water colour, solid like water), with a ragged lip so islands do not read as stamps
+if spec.get("void"):
+    edge = cv2.GaussianBlur(np.clip(path_mask * 1.8, 0, 1), (0, 0), 2.0)
+    vm = np.clip((0.5 - edge + 0.45 * (noise - 0.5)) * 3.0 + 0.5, 0, 1)
+    splat[..., 2] = np.maximum(splat[..., 2], vm)
 
 dist_path = cv2.distanceTransform((path_mask < 0.5).astype(np.uint8), cv2.DIST_L2, 5) * SPLAT_K
 def dist_path_lk(lw, lh): return cv2.resize(dist_path, (lw, lh), interpolation=cv2.INTER_LINEAR)
@@ -110,6 +133,33 @@ for p in spec.get("pois", []):
     add(p["prop"], p["at"], p.get("scale", 1.0))
 for w in water: occupied.append((w[0], w[1], w[2] * 1.1))
 def pick(names): return names[rnd.randrange(len(names))] if isinstance(names, list) else names
+# organic set dressing: props hugging the edge of each clearing ("rim") and themed clusters at points of interest
+# ("dress": [{"at", "r", "props", "n", "scale"}]): the eye reads landmarks, not stamped circles
+dress_rs = random.Random(spec.get("seed", 1) + 23)
+def _free_spot(u, v, rad, on_path=False):
+    if not (40 < u < W - 40 and 40 < v < H - 40): return False
+    x, y = min(sw - 1, int(u / SPLAT_K)), min(sh - 1, int(v / SPLAT_K))
+    if splat[y, x, 2] > 0.3 or (path_mask[y, x] > 0.35 and not on_path): return False
+    return not any((u - a_) ** 2 + (v - b_) ** 2 < (r_ * 0.6 + rad) ** 2 for a_, b_, r_ in occupied)
+rim = spec.get("rim")
+if rim:
+    for pt in spec.get("patches", []):
+        if pt["layer"] == "water" or pt.get("no_rim"): continue
+        n = int(pt["r"] / 90 * rim.get("density", 1.0))
+        for i in range(n):
+            if dress_rs.random() > rim.get("chance", 0.55): continue
+            a_ = dress_rs.uniform(0, 2 * math.pi)
+            rr = pt["r"] * dress_rs.uniform(1.05, 1.35)
+            u, v = pt["at"][0] + math.cos(a_) * rr, pt["at"][1] + math.sin(a_) * rr * pt.get("squash", 0.5)
+            pr = dress_rs.choice(rim["props"])
+            if _free_spot(u, v, 40): add(pr, (u, v), dress_rs.uniform(*rim.get("scale", [0.8, 1.2])), dress_rs.random() < 0.5)
+for d in spec.get("dress", []):
+    for i in range(d.get("n", 8)):
+        for _try in range(12):
+            a_ = dress_rs.uniform(0, 2 * math.pi); rr = d["r"] * math.sqrt(dress_rs.random())
+            u, v = d["at"][0] + math.cos(a_) * rr, d["at"][1] + math.sin(a_) * rr * 0.55
+            if _free_spot(u, v, 30, d.get("on_path", False)):
+                add(dress_rs.choice(d["props"]), (u, v), dress_rs.uniform(*d.get("scale", [0.8, 1.25])), dress_rs.random() < 0.5); break
 for q in spec.get("place", []):                      # deliberate composition: [prop, u, v, scale?, flip?]
     add(q[0], (q[1], q[2]), q[3] if len(q) > 3 else 1.0, bool(q[4]) if len(q) > 4 else False, keep=0)
 def paving_overlap(prop, at, scale, flip):
@@ -370,7 +420,7 @@ if "enclose" in spec:
             if path_mask[y0:y + 1, x0:x1].max() > 0.05: continue
             below = path_mask[y:min(sh, y + int(hh * 0.6 / SPLAT_K) + 2), x0:x1].max() > 0.05
             if below or erng.random() < E.get("fill", 0.35):
-                placed.append({"prop": pr, "at": [uu, v], "scale": round(sc, 4), "flip": erng.random() < 0.5})
+                placed.append({"prop": pr, "at": [uu, v], "scale": round(sc, 4), "flip": erng.random() < 0.5, "wall": True})
 # nothing grows out of open water (the scatter's keep-out discs miss the squashed edges of pools and seas)
 def _wet(u, v):
     x, y = min(sw - 1, max(0, int(u / SPLAT_K))), min(sh - 1, max(0, int(v / SPLAT_K)))   # frame trees stand past the edge
@@ -381,10 +431,15 @@ solids = []
 for i, p in enumerate(placed):
     c = cat["props"][p["prop"]]
     if c["kind"] == "decal": continue
+    if p.get("wall"): continue          # dungeon wall dressing: the enclosure cells are the collision, not the art
     if c.get("footprint_px", 0) > 0: solids.append([p["at"][0], p["at"][1], round(c["footprint_px"] * p["scale"])])
     for b in c.get("blockers", []):
         q = local_to_zone(i, b[:2]); solids.append([q[0], q[1], round(b[2] * p["scale"])])
-for w in water: solids.append([w[0], w[1], round(w[2] * 0.9), round(w[3] * 0.9)])
+# water is solid where it is painted (organic pools / seas): a disc every ~110 px inside the water mask
+_ws = 14
+for y_ in range(0, sh, _ws):
+    for x_ in range(0, sw, _ws):
+        if splat[y_, x_, 2] > 0.55: solids.append([x_ * SPLAT_K, y_ * SPLAT_K, int(_ws * SPLAT_K * 0.62)])
 solids += enclose_solids
 # light map (R: light/2, 0.5 = neutral) and fx map (R mist, G shafts), LK painting px per texel
 light_name = fx_name = None

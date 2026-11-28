@@ -1,0 +1,791 @@
+{
+ "name": "Vael's Last Road",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 2394,
+ "paths": [
+  {
+   "pts": [
+    [
+     3736,
+     4774
+    ],
+    [
+     3736,
+     4470
+    ],
+    [
+     4366,
+     3683
+    ],
+    [
+     5447,
+     3185
+    ],
+    [
+     6317,
+     2551
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6127,
+     4774
+    ],
+    [
+     6127,
+     4470
+    ],
+    [
+     5956,
+     3979
+    ],
+    [
+     5917,
+     3496
+    ],
+    [
+     5800,
+     3008
+    ],
+    [
+     6317,
+     2551
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     11380,
+     1122
+    ],
+    [
+     11000,
+     1122
+    ],
+    [
+     9721,
+     2148
+    ],
+    [
+     7675,
+     1680
+    ],
+    [
+     6317,
+     2551
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     7675,
+     1680
+    ],
+    [
+     7772,
+     1307
+    ],
+    [
+     7433,
+     720
+    ]
+   ],
+   "width": 171,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     9721,
+     2148
+    ],
+    [
+     10184,
+     2785
+    ],
+    [
+     10266,
+     3445
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4114,
+     3997
+    ],
+    [
+     3105,
+     3666
+    ],
+    [
+     1995,
+     3460
+    ]
+   ],
+   "width": 166,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6317,
+     2551
+    ],
+    [
+     5661,
+     2429
+    ],
+    [
+     5161,
+     2316
+    ]
+   ],
+   "width": 152,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    709,
+    3368
+   ],
+   "r": 403,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    7336,
+    4022
+   ],
+   "r": 755,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    7230,
+    3068
+   ],
+   "r": 587,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4144,
+    1731
+   ],
+   "r": 570,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6889,
+    2714
+   ],
+   "r": 594,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2903,
+    4143
+   ],
+   "r": 493,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6317,
+    2551
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7433,
+    720
+   ],
+   "r": 431,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    10266,
+    3445
+   ],
+   "r": 262,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1995,
+    3460
+   ],
+   "r": 257,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5161,
+    2316
+   ],
+   "r": 563,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   3736,
+   4774,
+   380
+  ],
+  [
+   6127,
+   4774,
+   380
+  ],
+  [
+   11380,
+   1122,
+   380
+  ],
+  [
+   7433,
+   720,
+   300
+  ],
+  [
+   10266,
+   3445,
+   300
+  ],
+  [
+   1995,
+   3460,
+   300
+  ],
+  [
+   5161,
+   2316,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_b",
+    3
+   ],
+   [
+    "gnarled_a",
+    2
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 55,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    7433,
+    720,
+    560,
+    0.45
+   ],
+   [
+    10266,
+    3445,
+    560,
+    0.45
+   ],
+   [
+    1995,
+    3460,
+    560,
+    0.45
+   ],
+   [
+    5161,
+    2316,
+    560,
+    0.45
+   ],
+   [
+    6317,
+    2551,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6317,
+    2331,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "vaels_last_road_wp",
+   "name": "Vael's Last Road",
+   "at": [
+    6317,
+    2551
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Labor Quarter Siege",
+   "to": "labor_quarter_siege",
+   "at": [
+    3736,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5008,
+    526
+   ]
+  },
+  {
+   "name": "Cathedral Before the Fall",
+   "to": "cathedral_before_the_fall",
+   "at": [
+    6127,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3679
+   ]
+  },
+  {
+   "name": "Senate of Ash",
+   "to": "senate_of_ash",
+   "at": [
+    11380,
+    1122
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1336
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  3736,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Burning Avenue",
+   "kind": "landmark",
+   "at": [
+    7433,
+    720
+   ],
+   "blurb": "Burning avenues, violet rain"
+  },
+  {
+   "name": "Violet Rain",
+   "kind": "landmark",
+   "at": [
+    10266,
+    3445
+   ],
+   "blurb": "Burning avenues, violet rain"
+  },
+  {
+   "name": "Evacuation Column",
+   "kind": "landmark",
+   "at": [
+    1995,
+    3460
+   ],
+   "blurb": "Burning avenues, violet rain"
+  },
+  {
+   "name": "The Parting",
+   "kind": "landmark",
+   "at": [
+    5161,
+    2316
+   ],
+   "blurb": "Burning avenues, violet rain"
+  },
+  {
+   "name": "Labor Quarter Siege",
+   "kind": "landmark",
+   "at": [
+    3736,
+    4774
+   ],
+   "blurb": "To Labor Quarter Siege."
+  },
+  {
+   "name": "Cathedral Before the Fall",
+   "kind": "landmark",
+   "at": [
+    6127,
+    4774
+   ],
+   "blurb": "To Cathedral Before the Fall."
+  },
+  {
+   "name": "Senate of Ash",
+   "kind": "landmark",
+   "at": [
+    11380,
+    1122
+   ],
+   "blurb": "To Senate of Ash."
+  }
+ ],
+ "world_id": "vaels_last_road",
+ "grade": {
+  "mul": [
+   0.95,
+   0.62,
+   0.56
+  ],
+  "desat": 0.35,
+  "lift": [
+   0.1,
+   0.02,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.7,
+   0.45,
+   0.7
+  ],
+  "water": [
+   0.4,
+   0.2,
+   0.5
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    7433,
+    720
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    10266,
+    3445
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    1995,
+    3460
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    5161,
+    2316
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  }
+ ]
+}

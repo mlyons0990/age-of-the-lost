@@ -1,0 +1,132 @@
+{
+ "zone": "keepers_lantern",
+ "levels": [
+  39,
+  40
+ ],
+ "packs": 14,
+ "seed": 405,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "keepers_lantern_0",
+    "keepers_lantern_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "keepers_lantern_1",
+    "keepers_lantern_1",
+    "keepers_lantern_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "keepers_lantern_0",
+    "keepers_lantern_1",
+    "keepers_lantern_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "keepers_lantern_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "keepers_lantern_2",
+    "keepers_lantern_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "keepers_lantern_0",
+    "keepers_lantern_0",
+    "keepers_lantern_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5896,
+    3972
+   ],
+   "types": [
+    "keepers_lantern_1",
+    "keepers_lantern_1"
+   ],
+   "elite": false,
+   "guardian": "keepers_lantern_g1",
+   "elite_type": "keepers_lantern_0",
+   "elite_name": "Name-Eater",
+   "page": "Q_A04_14_1"
+  },
+  {
+   "at": [
+    6130,
+    2297
+   ],
+   "types": [
+    "keepers_lantern_1",
+    "keepers_lantern_1"
+   ],
+   "elite": false,
+   "guardian": "keepers_lantern_g2",
+   "elite_type": "keepers_lantern_1",
+   "elite_name": "Choir Raider",
+   "page": "Q_A04_14_2"
+  },
+  {
+   "at": [
+    5579,
+    1293
+   ],
+   "types": [
+    "keepers_lantern_1",
+    "keepers_lantern_1"
+   ],
+   "elite": false,
+   "guardian": "keepers_lantern_g3",
+   "elite_type": "keepers_lantern_2",
+   "elite_name": "Lantern Thief",
+   "page": "Q_A04_14_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   3826,
+   3450,
+   700
+  ],
+  [
+   3986,
+   3450,
+   700
+  ],
+  [
+   5896,
+   3972,
+   700
+  ],
+  [
+   6130,
+   2297,
+   700
+  ],
+  [
+   5579,
+   1293,
+   700
+  ]
+ ]
+}

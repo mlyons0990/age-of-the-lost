@@ -1,0 +1,122 @@
+{
+ "zone": "old_crown_cistern",
+ "levels": [
+  6,
+  7
+ ],
+ "packs": 14,
+ "seed": 900,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "old_crown_cistern_0",
+    "old_crown_cistern_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "old_crown_cistern_1",
+    "old_crown_cistern_1",
+    "old_crown_cistern_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "old_crown_cistern_0",
+    "old_crown_cistern_1",
+    "old_crown_cistern_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "old_crown_cistern_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "old_crown_cistern_2",
+    "old_crown_cistern_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "old_crown_cistern_0",
+    "old_crown_cistern_0",
+    "old_crown_cistern_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6399,
+    2658
+   ],
+   "types": [
+    "old_crown_cistern_1",
+    "old_crown_cistern_1"
+   ],
+   "elite": false,
+   "guardian": "old_crown_cistern_g1",
+   "elite_type": "old_crown_cistern_0",
+   "elite_name": "The Drowned Herald",
+   "page": "Q_A01_11_1"
+  },
+  {
+   "at": [
+    6025,
+    1493
+   ],
+   "types": [
+    "old_crown_cistern_1",
+    "old_crown_cistern_1"
+   ],
+   "elite": false,
+   "guardian": "old_crown_cistern_g2",
+   "elite_type": "old_crown_cistern_1",
+   "elite_name": "The Lamp-Bearer",
+   "page": "Q_A01_11_2"
+  },
+  {
+   "at": [
+    4585,
+    2981
+   ],
+   "types": [
+    "old_crown_cistern_1",
+    "old_crown_cistern_1"
+   ],
+   "elite": false,
+   "guardian": "old_crown_cistern_g3",
+   "elite_type": "old_crown_cistern_2",
+   "elite_name": "The Standard-Bearer",
+   "page": "Q_A01_11_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6399,
+   2658,
+   700
+  ],
+  [
+   6025,
+   1493,
+   700
+  ],
+  [
+   4585,
+   2981,
+   700
+  ]
+ ]
+}

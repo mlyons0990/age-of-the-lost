@@ -1,0 +1,122 @@
+{
+ "zone": "sevenfold_gate",
+ "levels": [
+  59,
+  60
+ ],
+ "packs": 14,
+ "seed": 654,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "sevenfold_gate_0",
+    "sevenfold_gate_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "sevenfold_gate_1",
+    "sevenfold_gate_1",
+    "sevenfold_gate_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "sevenfold_gate_0",
+    "sevenfold_gate_1",
+    "sevenfold_gate_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "sevenfold_gate_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "sevenfold_gate_2",
+    "sevenfold_gate_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "sevenfold_gate_0",
+    "sevenfold_gate_0",
+    "sevenfold_gate_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6487,
+    2685
+   ],
+   "types": [
+    "sevenfold_gate_1",
+    "sevenfold_gate_1"
+   ],
+   "elite": false,
+   "guardian": "sevenfold_gate_g1",
+   "elite_type": "sevenfold_gate_0",
+   "elite_name": "Growth Warden",
+   "page": "Q_A06_14_1"
+  },
+  {
+   "at": [
+    6042,
+    1380
+   ],
+   "types": [
+    "sevenfold_gate_1",
+    "sevenfold_gate_1"
+   ],
+   "elite": false,
+   "guardian": "sevenfold_gate_g2",
+   "elite_type": "sevenfold_gate_1",
+   "elite_name": "Flow Warden",
+   "page": "Q_A06_14_2"
+  },
+  {
+   "at": [
+    4034,
+    1709
+   ],
+   "types": [
+    "sevenfold_gate_1",
+    "sevenfold_gate_1"
+   ],
+   "elite": false,
+   "guardian": "sevenfold_gate_g3",
+   "elite_type": "sevenfold_gate_2",
+   "elite_name": "Boundary Warden",
+   "page": "Q_A06_14_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6487,
+   2685,
+   700
+  ],
+  [
+   6042,
+   1380,
+   700
+  ],
+  [
+   4034,
+   1709,
+   700
+  ]
+ ]
+}

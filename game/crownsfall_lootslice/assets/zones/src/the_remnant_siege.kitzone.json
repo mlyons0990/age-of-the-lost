@@ -1,0 +1,811 @@
+{
+ "name": "The Remnant Siege",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 496,
+ "paths": [
+  {
+   "pts": [
+    [
+     5767,
+     3817
+    ],
+    [
+     6054,
+     3191
+    ],
+    [
+     6122,
+     2533
+    ]
+   ],
+   "width": 298,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6122,
+     2533
+    ],
+    [
+     6468,
+     2070
+    ],
+    [
+     6523,
+     1543
+    ]
+   ],
+   "width": 261,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6523,
+     1543
+    ],
+    [
+     5153,
+     1301
+    ],
+    [
+     3749,
+     1369
+    ]
+   ],
+   "width": 291,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3749,
+     1369
+    ],
+    [
+     2472,
+     1314
+    ],
+    [
+     1206,
+     1188
+    ]
+   ],
+   "width": 313,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     5767,
+     3817
+    ],
+    [
+     4575,
+     3132
+    ],
+    [
+     3072,
+     3051
+    ]
+   ],
+   "width": 314,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     3072,
+     3051
+    ],
+    [
+     2116,
+     3044
+    ],
+    [
+     1168,
+     2956
+    ]
+   ],
+   "width": 277,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     6523,
+     1543
+    ],
+    [
+     5087,
+     2662
+    ],
+    [
+     3072,
+     3051
+    ]
+   ],
+   "width": 282,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     1206,
+     1188
+    ],
+    [
+     1354,
+     2073
+    ],
+    [
+     1168,
+     2956
+    ]
+   ],
+   "width": 293,
+   "layer": "dirt",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1917
+    ],
+    [
+     840,
+     1917
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1917
+    ],
+    [
+     1206,
+     1188
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     5257,
+     190
+    ],
+    [
+     5257,
+     750.0
+    ]
+   ],
+   "width": 320,
+   "layer": "dirt",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     5257,
+     710.0
+    ],
+    [
+     3749,
+     1369
+    ]
+   ],
+   "width": 300,
+   "layer": "dirt",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5767,
+    3817
+   ],
+   "r": 529,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3749,
+    1369
+   ],
+   "r": 571,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3072,
+    3051
+   ],
+   "r": 620,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6122,
+    2533
+   ],
+   "r": 556,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1168,
+    2956
+   ],
+   "r": 452,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6523,
+    1543
+   ],
+   "r": 631,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1206,
+    1188
+   ],
+   "r": 637,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1917,
+   380
+  ],
+  [
+   5257,
+   190,
+   380
+  ],
+  [
+   6523,
+   1543,
+   300
+  ],
+  [
+   6122,
+   2533,
+   300
+  ],
+  [
+   5767,
+   3817,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 0,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    5767,
+    3817,
+    449.65,
+    0.6
+   ],
+   [
+    3749,
+    1369,
+    485.34999999999997,
+    0.6
+   ],
+   [
+    3072,
+    3051,
+    527.0,
+    0.6
+   ],
+   [
+    6122,
+    2533,
+    472.59999999999997,
+    0.6
+   ],
+   [
+    1168,
+    2956,
+    384.2,
+    0.6
+   ],
+   [
+    6523,
+    1543,
+    536.35,
+    0.6
+   ],
+   [
+    1206,
+    1188,
+    541.4499999999999,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6523,
+    1323,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_remnant_siege_wp",
+   "name": "The Remnant Siege",
+   "at": [
+    3749,
+    1369
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Vault of Continuity",
+   "to": "vault_of_continuity",
+   "at": [
+    140,
+    1917
+   ],
+   "r": 170,
+   "arrive": [
+    7120,
+    1559
+   ]
+  },
+  {
+   "name": "The Choir's Last Hymn",
+   "to": "the_choirs_last_hymn",
+   "at": [
+    5257,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3436
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1917
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Central Gate",
+   "kind": "landmark",
+   "at": [
+    6523,
+    1543
+   ],
+   "blurb": "Royal forces at the central gate"
+  },
+  {
+   "name": "Royal Forces",
+   "kind": "landmark",
+   "at": [
+    6122,
+    2533
+   ],
+   "blurb": "Royal forces at the central gate"
+  },
+  {
+   "name": "Ceasefire Line",
+   "kind": "landmark",
+   "at": [
+    5767,
+    3817
+   ],
+   "blurb": "Royal forces at the central gate"
+  },
+  {
+   "name": "Vault of Continuity",
+   "kind": "landmark",
+   "at": [
+    140,
+    1917
+   ],
+   "blurb": "To Vault of Continuity."
+  },
+  {
+   "name": "The Choir's Last Hymn",
+   "kind": "landmark",
+   "at": [
+    5257,
+    190
+   ],
+   "blurb": "To The Choir's Last Hymn."
+  }
+ ],
+ "world_id": "the_remnant_siege",
+ "grade": {
+  "mul": [
+   0.86,
+   0.9,
+   1.0
+  ],
+  "desat": 0.45,
+  "lift": [
+   0.05,
+   0.06,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.75,
+   0.8,
+   0.95
+  ],
+  "water": [
+   0.25,
+   0.3,
+   0.45
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5767,
+    3817
+   ],
+   "r": 502.54999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3749,
+    1369
+   ],
+   "r": 542.4499999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3072,
+    3051
+   ],
+   "r": 589.0,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6122,
+    2533
+   ],
+   "r": 528.1999999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1168,
+    2956
+   ],
+   "r": 429.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6523,
+    1543
+   ],
+   "r": 599.4499999999999,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1206,
+    1188
+   ],
+   "r": 605.15,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_edgestones"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "void": true
+}

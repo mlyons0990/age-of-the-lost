@@ -1,0 +1,78 @@
+{
+ "zone": "astral_foundry",
+ "levels": [
+  26,
+  27
+ ],
+ "packs": 14,
+ "seed": 224,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "astral_foundry_0",
+    "astral_foundry_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "astral_foundry_1",
+    "astral_foundry_1",
+    "astral_foundry_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "astral_foundry_0",
+    "astral_foundry_1",
+    "astral_foundry_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "astral_foundry_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "astral_foundry_2",
+    "astral_foundry_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "astral_foundry_0",
+    "astral_foundry_0",
+    "astral_foundry_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6550,
+    3943
+   ],
+   "types": [],
+   "boss": "astral_foundry_boss_u",
+   "boss_type": "astral_foundry_boss",
+   "boss_name": "The Foundry Automaton",
+   "needs_quest": "Q_A03_09"
+  }
+ ],
+ "keep_clear": [
+  [
+   6550,
+   3943,
+   700
+  ]
+ ]
+}

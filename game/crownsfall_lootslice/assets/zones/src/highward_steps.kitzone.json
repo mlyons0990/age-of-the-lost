@@ -1,0 +1,837 @@
+{
+ "name": "Highward Steps",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 1652,
+ "paths": [
+  {
+   "pts": [
+    [
+     3028,
+     4774
+    ],
+    [
+     3028,
+     4470
+    ],
+    [
+     2854,
+     3832
+    ],
+    [
+     2705,
+     3196
+    ],
+    [
+     3651,
+     2653
+    ],
+    [
+     3451,
+     2013
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5518,
+     4774
+    ],
+    [
+     5518,
+     4470
+    ],
+    [
+     5492,
+     3653
+    ],
+    [
+     5020,
+     3020
+    ],
+    [
+     3747,
+     2718
+    ],
+    [
+     3451,
+     2013
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2133,
+     190
+    ],
+    [
+     2133,
+     494
+    ],
+    [
+     2486,
+     1034
+    ],
+    [
+     3068,
+     1483
+    ],
+    [
+     3451,
+     2013
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4128,
+     2808
+    ],
+    [
+     4394,
+     2686
+    ],
+    [
+     4331,
+     2523
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2274,
+     710
+    ],
+    [
+     1864,
+     893
+    ],
+    [
+     1039,
+     946
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2906,
+     4023
+    ],
+    [
+     1794,
+     4070
+    ],
+    [
+     946,
+     4176
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5515,
+     4388
+    ],
+    [
+     6232,
+     4267
+    ],
+    [
+     6794,
+     4348
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4710,
+    3674
+   ],
+   "r": 273,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6693,
+    1986
+   ],
+   "r": 274,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6223,
+    2184
+   ],
+   "r": 464,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1911,
+    1870
+   ],
+   "r": 445,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1045,
+    1198
+   ],
+   "r": 391,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4977,
+    3495
+   ],
+   "r": 461,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4462,
+    1167
+   ],
+   "r": 471,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6718,
+    3112
+   ],
+   "r": 368,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2397,
+    1756
+   ],
+   "r": 450,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    3451,
+    2013
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4331,
+    2523
+   ],
+   "r": 430,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1039,
+    946
+   ],
+   "r": 387,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    946,
+    4176
+   ],
+   "r": 437,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6794,
+    4348
+   ],
+   "r": 380,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2836,
+    2635
+   ],
+   "r": 163,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4551,
+    1305
+   ],
+   "r": 237,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   3028,
+   4774,
+   380
+  ],
+  [
+   5518,
+   4774,
+   380
+  ],
+  [
+   2133,
+   190,
+   380
+  ],
+  [
+   4331,
+   2523,
+   300
+  ],
+  [
+   1039,
+   946,
+   300
+  ],
+  [
+   946,
+   4176,
+   300
+  ],
+  [
+   6794,
+   4348,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    4331,
+    2523,
+    560,
+    0.45
+   ],
+   [
+    1039,
+    946,
+    560,
+    0.45
+   ],
+   [
+    946,
+    4176,
+    560,
+    0.45
+   ],
+   [
+    6794,
+    4348,
+    560,
+    0.45
+   ],
+   [
+    3451,
+    2013,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3451,
+    1793,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "highward_steps_wp",
+   "name": "Highward Steps",
+   "at": [
+    3451,
+    2013
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Crownsfall",
+   "to": "crownsfall",
+   "at": [
+    3028,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    1000,
+    700
+   ]
+  },
+  {
+   "name": "Sablemarket Vaults",
+   "to": "sablemarket_vaults",
+   "at": [
+    5518,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    2246
+   ]
+  },
+  {
+   "name": "Crownsfall Citadel",
+   "to": "crownsfall_citadel",
+   "at": [
+    2133,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    3701,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  3028,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Heraldic Gate",
+   "kind": "landmark",
+   "at": [
+    4331,
+    2523
+   ],
+   "blurb": "Citadel stairs, fountains, heraldic gates"
+  },
+  {
+   "name": "Pilgrim's Rise",
+   "kind": "landmark",
+   "at": [
+    1039,
+    946
+   ],
+   "blurb": "Citadel stairs, fountains, heraldic gates"
+  },
+  {
+   "name": "Westgarden Terraces",
+   "kind": "landmark",
+   "at": [
+    946,
+    4176
+   ],
+   "blurb": "Citadel stairs, fountains, heraldic gates"
+  },
+  {
+   "name": "Quarantine Post",
+   "kind": "landmark",
+   "at": [
+    6794,
+    4348
+   ],
+   "blurb": "Citadel stairs, fountains, heraldic gates"
+  },
+  {
+   "name": "Crownsfall",
+   "kind": "landmark",
+   "at": [
+    3028,
+    4774
+   ],
+   "blurb": "To Crownsfall."
+  },
+  {
+   "name": "Sablemarket Vaults",
+   "kind": "landmark",
+   "at": [
+    5518,
+    4774
+   ],
+   "blurb": "To Sablemarket Vaults."
+  },
+  {
+   "name": "Crownsfall Citadel",
+   "kind": "landmark",
+   "at": [
+    2133,
+    190
+   ],
+   "blurb": "To Crownsfall Citadel."
+  }
+ ],
+ "world_id": "highward_steps",
+ "grade": {
+  "mul": [
+   1.08,
+   1.04,
+   0.96
+  ],
+  "desat": 0.1,
+  "lift": [
+   0.06,
+   0.05,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   0.9,
+   0.88,
+   0.84
+  ],
+  "water": [
+   0.3,
+   0.5,
+   0.62
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4331,
+    2523
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1039,
+    946
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    946,
+    4176
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6794,
+    4348
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

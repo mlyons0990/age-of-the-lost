@@ -1,0 +1,78 @@
+{
+ "zone": "riftglass_quarry",
+ "levels": [
+  15,
+  16
+ ],
+ "packs": 30,
+ "seed": 590,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "riftglass_quarry_0",
+    "riftglass_quarry_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "riftglass_quarry_1",
+    "riftglass_quarry_1",
+    "riftglass_quarry_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "riftglass_quarry_0",
+    "riftglass_quarry_1",
+    "riftglass_quarry_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "riftglass_quarry_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "riftglass_quarry_2",
+    "riftglass_quarry_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "riftglass_quarry_0",
+    "riftglass_quarry_0",
+    "riftglass_quarry_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    812,
+    939
+   ],
+   "types": [],
+   "boss": "riftglass_quarry_boss_u",
+   "boss_type": "riftglass_quarry_boss",
+   "boss_name": "Foreman Draeg",
+   "needs_quest": "Q_A02_08"
+  }
+ ],
+ "keep_clear": [
+  [
+   812,
+   939,
+   700
+  ]
+ ]
+}

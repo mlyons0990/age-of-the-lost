@@ -1,0 +1,83 @@
+{
+ "zone": "throne_of_glass",
+ "levels": [
+  41,
+  42
+ ],
+ "packs": 14,
+ "seed": 145,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "throne_of_glass_0",
+    "throne_of_glass_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "throne_of_glass_1",
+    "throne_of_glass_1",
+    "throne_of_glass_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "throne_of_glass_0",
+    "throne_of_glass_1",
+    "throne_of_glass_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "throne_of_glass_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "throne_of_glass_2",
+    "throne_of_glass_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "throne_of_glass_0",
+    "throne_of_glass_0",
+    "throne_of_glass_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    4895,
+    3775
+   ],
+   "types": [],
+   "boss": "throne_of_glass_boss_u",
+   "boss_type": "throne_of_glass_boss",
+   "boss_name": "The Glass Champion",
+   "needs_quest": "Q_A05_02"
+  }
+ ],
+ "keep_clear": [
+  [
+   3110,
+   3965,
+   700
+  ],
+  [
+   4895,
+   3775,
+   700
+  ]
+ ]
+}

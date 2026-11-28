@@ -1,0 +1,127 @@
+{
+ "zone": "crownsfall_under_siege",
+ "levels": [
+  51,
+  52
+ ],
+ "packs": 18,
+ "seed": 335,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "crownsfall_under_siege_0",
+    "crownsfall_under_siege_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "crownsfall_under_siege_1",
+    "crownsfall_under_siege_1",
+    "crownsfall_under_siege_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "crownsfall_under_siege_0",
+    "crownsfall_under_siege_1",
+    "crownsfall_under_siege_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "crownsfall_under_siege_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "crownsfall_under_siege_2",
+    "crownsfall_under_siege_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "crownsfall_under_siege_0",
+    "crownsfall_under_siege_0",
+    "crownsfall_under_siege_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3442,
+    1993
+   ],
+   "types": [
+    "crownsfall_under_siege_1",
+    "crownsfall_under_siege_1"
+   ],
+   "elite": false,
+   "guardian": "crownsfall_under_siege_g1",
+   "elite_type": "crownsfall_under_siege_0",
+   "elite_name": "Siege Breacher",
+   "page": "Q_A06_01_1"
+  },
+  {
+   "at": [
+    2942,
+    4252
+   ],
+   "types": [
+    "crownsfall_under_siege_1",
+    "crownsfall_under_siege_1"
+   ],
+   "elite": false,
+   "guardian": "crownsfall_under_siege_g2",
+   "elite_type": "crownsfall_under_siege_1",
+   "elite_name": "Tear Raider",
+   "page": "Q_A06_01_2"
+  },
+  {
+   "at": [
+    6788,
+    3220
+   ],
+   "types": [
+    "crownsfall_under_siege_1",
+    "crownsfall_under_siege_1"
+   ],
+   "elite": false,
+   "guardian": "crownsfall_under_siege_g3",
+   "elite_type": "crownsfall_under_siege_2",
+   "elite_name": "The Fountain Horror",
+   "page": "Q_A06_01_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   6931,
+   795,
+   700
+  ],
+  [
+   3442,
+   1993,
+   700
+  ],
+  [
+   2942,
+   4252,
+   700
+  ],
+  [
+   6788,
+   3220,
+   700
+  ]
+ ]
+}

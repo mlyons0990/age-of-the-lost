@@ -1,0 +1,833 @@
+{
+ "name": "South Reservoir",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass",
+ "seed": 1779,
+ "paths": [
+  {
+   "pts": [
+    [
+     8004,
+     190
+    ],
+    [
+     8004,
+     494
+    ],
+    [
+     7548,
+     1105
+    ],
+    [
+     7210,
+     1761
+    ],
+    [
+     6535,
+     2290
+    ],
+    [
+     6129,
+     2921
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3220,
+     190
+    ],
+    [
+     3220,
+     494
+    ],
+    [
+     4097,
+     1012
+    ],
+    [
+     5106,
+     1454
+    ],
+    [
+     5962,
+     1985
+    ],
+    [
+     6129,
+     2921
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3220,
+     494
+    ],
+    [
+     2335,
+     816
+    ],
+    [
+     1119,
+     876
+    ]
+   ],
+   "width": 184,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     7277,
+     1629
+    ],
+    [
+     8068,
+     1672
+    ],
+    [
+     8393,
+     1817
+    ]
+   ],
+   "width": 166,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     6129,
+     2921
+    ],
+    [
+     5703,
+     3430
+    ],
+    [
+     4989,
+     4083
+    ]
+   ],
+   "width": 160,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     5448,
+     1666
+    ],
+    [
+     4967,
+     1978
+    ],
+    [
+     4608,
+     2040
+    ]
+   ],
+   "width": 161,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2972,
+     4904
+    ],
+    [
+     2534,
+     4550
+    ],
+    [
+     2531,
+     4197
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  },
+  {
+   "pts": [
+    [
+     2319,
+     4904
+    ],
+    [
+     2651,
+     4550
+    ],
+    [
+     2531,
+     4197
+    ]
+   ],
+   "width": 150,
+   "layer": "water",
+   "wander": 0.4
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6418,
+    3342
+   ],
+   "r": 747,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5456,
+    2581
+   ],
+   "r": 432,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6129,
+    2921
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1119,
+    876
+   ],
+   "r": 293,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4989,
+    4083
+   ],
+   "r": 260,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4608,
+    2040
+   ],
+   "r": 667,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3285,
+    3778
+   ],
+   "r": 716,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3331,
+    2599
+   ],
+   "r": 458,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6613,
+    891
+   ],
+   "r": 511,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7872,
+    2474
+   ],
+   "r": 448,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2531,
+    4197
+   ],
+   "r": 483,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   8004,
+   190,
+   380
+  ],
+  [
+   3220,
+   190,
+   380
+  ],
+  [
+   1119,
+   876,
+   300
+  ],
+  [
+   8393,
+   1817,
+   300
+  ],
+  [
+   4989,
+   4083,
+   300
+  ],
+  [
+   4608,
+   2040,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    2
+   ],
+   [
+    "oak_b",
+    2
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 1050,
+  "cut": 0.76,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 22,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    1119,
+    876,
+    560,
+    0.45
+   ],
+   [
+    8393,
+    1817,
+    560,
+    0.45
+   ],
+   [
+    4989,
+    4083,
+    560,
+    0.45
+   ],
+   [
+    4608,
+    2040,
+    560,
+    0.45
+   ],
+   [
+    6129,
+    2921,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6129,
+    2701,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    3285,
+    3778,
+    1145.6000000000001
+   ],
+   [
+    3331,
+    2599,
+    732.8000000000001
+   ],
+   [
+    6613,
+    891,
+    817.6
+   ],
+   [
+    7872,
+    2474,
+    716.8000000000001
+   ],
+   [
+    2531,
+    4197,
+    772.8000000000001
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "south_reservoir_wp",
+   "name": "South Reservoir",
+   "at": [
+    6129,
+    2921
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Cinder Orchard",
+   "to": "cinder_orchard",
+   "at": [
+    8004,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    3379,
+    4438
+   ]
+  },
+  {
+   "name": "Labor Quarter Siege",
+   "to": "labor_quarter_siege",
+   "at": [
+    3220,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    4826,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  8004,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Water Towers",
+   "kind": "landmark",
+   "at": [
+    1119,
+    876
+   ],
+   "blurb": "Water towers, collapsed canals"
+  },
+  {
+   "name": "Collapsed Canals",
+   "kind": "landmark",
+   "at": [
+    8393,
+    1817
+   ],
+   "blurb": "Water towers, collapsed canals"
+  },
+  {
+   "name": "Technicians' Post",
+   "kind": "landmark",
+   "at": [
+    4989,
+    4083
+   ],
+   "blurb": "Water towers, collapsed canals"
+  },
+  {
+   "name": "Sluice Hall",
+   "kind": "landmark",
+   "at": [
+    4608,
+    2040
+   ],
+   "blurb": "Water towers, collapsed canals"
+  },
+  {
+   "name": "Cinder Orchard",
+   "kind": "landmark",
+   "at": [
+    8004,
+    190
+   ],
+   "blurb": "To Cinder Orchard."
+  },
+  {
+   "name": "Labor Quarter Siege",
+   "kind": "landmark",
+   "at": [
+    3220,
+    190
+   ],
+   "blurb": "To Labor Quarter Siege."
+  }
+ ],
+ "world_id": "south_reservoir",
+ "grade": {
+  "mul": [
+   0.98,
+   0.94,
+   0.86
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.05,
+   0.04,
+   0.03,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.78,
+   0.7
+  ],
+  "water": [
+   0.3,
+   0.4,
+   0.48
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    1119,
+    876
+   ],
+   "r": 520,
+   "props": [
+    "silver",
+    "oak_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    8393,
+    1817
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    4989,
+    4083
+   ],
+   "r": 520,
+   "props": [
+    "silver",
+    "oak_b",
+    "gnarled_a",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    4608,
+    2040
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  }
+ ]
+}

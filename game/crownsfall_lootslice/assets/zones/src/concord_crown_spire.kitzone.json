@@ -1,0 +1,558 @@
+{
+ "name": "Concord Crown Spire",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 6430,
+ "paths": [
+  {
+   "pts": [
+    [
+     6283,
+     2321
+    ],
+    [
+     5517,
+     2011
+    ],
+    [
+     4663,
+     1881
+    ]
+   ],
+   "width": 322,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     4663,
+     1881
+    ],
+    [
+     3020,
+     1862
+    ],
+    [
+     1532,
+     1346
+    ]
+   ],
+   "width": 270,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     1832
+    ],
+    [
+     840,
+     1832
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     1832
+    ],
+    [
+     1532,
+     1346
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  },
+  {
+   "pts": [
+    [
+     140,
+     3355
+    ],
+    [
+     840,
+     3355
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     3355
+    ],
+    [
+     1532,
+     1346
+    ]
+   ],
+   "width": 300,
+   "layer": "flagstone",
+   "wander": 0.6
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6283,
+    2321
+   ],
+   "r": 603,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4663,
+    1881
+   ],
+   "r": 446,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1532,
+    1346
+   ],
+   "r": 548,
+   "layer": "flagstone",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   140,
+   1832,
+   380
+  ],
+  [
+   140,
+   3355,
+   380
+  ],
+  [
+   6283,
+   2321,
+   300
+  ],
+  [
+   1532,
+   1346,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 99999,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 0,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 0,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 0,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 10,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 0,
+  "tufts": 0,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall"
+  ]
+ },
+ "edges": [],
+ "light": {
+  "canopy": 0.5,
+  "contact": 0.4,
+  "pools": 0.3,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.78,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
+  "open": [
+   [
+    6283,
+    2321,
+    512.55,
+    0.6
+   ],
+   [
+    4663,
+    1881,
+    379.09999999999997,
+    0.6
+   ],
+   [
+    1532,
+    1346,
+    465.8,
+    0.6
+   ]
+  ],
+  "shafts": [
+   [
+    6283,
+    2101,
+    420
+   ]
+  ],
+  "prop_mist": false,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "concord_crown_spire_wp",
+   "name": "Concord Crown Spire",
+   "at": [
+    4663,
+    1881
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Chronicle Perimeter",
+   "to": "chronicle_perimeter",
+   "at": [
+    140,
+    1832
+   ],
+   "r": 170,
+   "arrive": [
+    4229,
+    4438
+   ]
+  },
+  {
+   "name": "Last Dawn Station",
+   "to": "last_dawn_station",
+   "at": [
+    140,
+    3355
+   ],
+   "r": 170,
+   "arrive": [
+    7120,
+    3886
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  560,
+  1832
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Ceremonial Overlook",
+   "kind": "landmark",
+   "at": [
+    6283,
+    2321
+   ],
+   "blurb": "Capital skyline and ceremonial engine overlook"
+  },
+  {
+   "name": "Engine Balcony",
+   "kind": "landmark",
+   "at": [
+    1532,
+    1346
+   ],
+   "blurb": "Capital skyline and ceremonial engine overlook"
+  },
+  {
+   "name": "Chronicle Perimeter",
+   "kind": "landmark",
+   "at": [
+    140,
+    1832
+   ],
+   "blurb": "To Chronicle Perimeter."
+  },
+  {
+   "name": "Last Dawn Station",
+   "kind": "landmark",
+   "at": [
+    140,
+    3355
+   ],
+   "blurb": "To Last Dawn Station."
+  }
+ ],
+ "world_id": "concord_crown_spire",
+ "grade": {
+  "mul": [
+   1.2096000000000002,
+   1.1448,
+   0.9720000000000001
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.08,
+   0.07,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.94,
+   0.8
+  ],
+  "water": [
+   0.32,
+   0.55,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6283,
+    2321
+   ],
+   "r": 572.85,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    4663,
+    1881
+   ],
+   "r": 423.7,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1532,
+    1346
+   ],
+   "r": 520.6,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
+ "enclose": {
+  "props": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "spacing": 240,
+  "fill": 0.5,
+  "scale": [
+   1.0,
+   1.5
+  ]
+ }
+}

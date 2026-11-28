@@ -1,0 +1,719 @@
+{
+ "name": "The Choir's Procession",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 8999,
+ "paths": [
+  {
+   "pts": [
+    [
+     7714,
+     4774
+    ],
+    [
+     7714,
+     4470
+    ],
+    [
+     7614,
+     3912
+    ],
+    [
+     6969,
+     3436
+    ],
+    [
+     7088,
+     2845
+    ],
+    [
+     7029,
+     2282
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5803,
+     4774
+    ],
+    [
+     5803,
+     4470
+    ],
+    [
+     6317,
+     3769
+    ],
+    [
+     6473,
+     2971
+    ],
+    [
+     7029,
+     2282
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6111,
+     4049
+    ],
+    [
+     5657,
+     3838
+    ],
+    [
+     5473,
+     3930
+    ]
+   ],
+   "width": 177,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     7634,
+     4023
+    ],
+    [
+     8765,
+     3874
+    ],
+    [
+     9930,
+     3872
+    ]
+   ],
+   "width": 169,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     7029,
+     2282
+    ],
+    [
+     7572,
+     1990
+    ],
+    [
+     8125,
+     1704
+    ]
+   ],
+   "width": 163,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     7029,
+     2282
+    ],
+    [
+     6232,
+     1960
+    ],
+    [
+     4920,
+     1530
+    ]
+   ],
+   "width": 157,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    8224,
+    1053
+   ],
+   "r": 502,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3708,
+    2746
+   ],
+   "r": 674,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    9612,
+    2869
+   ],
+   "r": 388,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2837,
+    4071
+   ],
+   "r": 626,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    7029,
+    2282
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5473,
+    3930
+   ],
+   "r": 299,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    9930,
+    3872
+   ],
+   "r": 430,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8125,
+    1704
+   ],
+   "r": 676,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4920,
+    1530
+   ],
+   "r": 310,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   7714,
+   4774,
+   380
+  ],
+  [
+   5803,
+   4774,
+   380
+  ],
+  [
+   5473,
+   3930,
+   300
+  ],
+  [
+   9930,
+   3872,
+   300
+  ],
+  [
+   8125,
+   1704,
+   300
+  ],
+  [
+   4920,
+   1530,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    2
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 55,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    5473,
+    3930,
+    560,
+    0.45
+   ],
+   [
+    9930,
+    3872,
+    560,
+    0.45
+   ],
+   [
+    8125,
+    1704,
+    560,
+    0.45
+   ],
+   [
+    4920,
+    1530,
+    560,
+    0.45
+   ],
+   [
+    7029,
+    2282,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    7029,
+    2062,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "the_choirs_procession_wp",
+   "name": "The Choir's Procession",
+   "at": [
+    7029,
+    2282
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "The Sentinel's Wall",
+   "to": "the_sentinels_wall",
+   "at": [
+    7714,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    6514,
+    526
+   ]
+  },
+  {
+   "name": "Confluence Camp",
+   "to": "confluence_camp",
+   "at": [
+    5803,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    2970,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  7714,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Violet March",
+   "kind": "landmark",
+   "at": [
+    5473,
+    3930
+   ],
+   "blurb": "Violet march across fields and ruined towns"
+  },
+  {
+   "name": "Ruined Town",
+   "kind": "landmark",
+   "at": [
+    9930,
+    3872
+   ],
+   "blurb": "Violet march across fields and ruined towns"
+  },
+  {
+   "name": "Conversion Ring",
+   "kind": "landmark",
+   "at": [
+    8125,
+    1704
+   ],
+   "blurb": "Violet march across fields and ruined towns"
+  },
+  {
+   "name": "Captives' Pen",
+   "kind": "landmark",
+   "at": [
+    4920,
+    1530
+   ],
+   "blurb": "Violet march across fields and ruined towns"
+  },
+  {
+   "name": "The Sentinel's Wall",
+   "kind": "landmark",
+   "at": [
+    7714,
+    4774
+   ],
+   "blurb": "To The Sentinel's Wall."
+  },
+  {
+   "name": "Confluence Camp",
+   "kind": "landmark",
+   "at": [
+    5803,
+    4774
+   ],
+   "blurb": "To Confluence Camp."
+  }
+ ],
+ "world_id": "the_choirs_procession",
+ "grade": {
+  "mul": [
+   0.8,
+   0.7,
+   0.92
+  ],
+  "desat": 0.45,
+  "lift": [
+   0.04,
+   0.02,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.55,
+   0.45,
+   0.75
+  ],
+  "water": [
+   0.35,
+   0.2,
+   0.55
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5473,
+    3930
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "oak_b",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    9930,
+    3872
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    8125,
+    1704
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    4920,
+    1530
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "oak_b",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 9
+  }
+ ]
+}

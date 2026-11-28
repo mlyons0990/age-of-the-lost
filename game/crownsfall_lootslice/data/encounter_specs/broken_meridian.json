@@ -1,0 +1,127 @@
+{
+ "zone": "broken_meridian",
+ "levels": [
+  41,
+  42
+ ],
+ "packs": 30,
+ "seed": 940,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "broken_meridian_0",
+    "broken_meridian_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "broken_meridian_1",
+    "broken_meridian_1",
+    "broken_meridian_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "broken_meridian_0",
+    "broken_meridian_1",
+    "broken_meridian_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "broken_meridian_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "broken_meridian_2",
+    "broken_meridian_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "broken_meridian_0",
+    "broken_meridian_0",
+    "broken_meridian_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    10333,
+    4311
+   ],
+   "types": [
+    "broken_meridian_1",
+    "broken_meridian_1"
+   ],
+   "elite": false,
+   "guardian": "broken_meridian_g1",
+   "elite_type": "broken_meridian_0",
+   "elite_name": "Scar Breacher",
+   "page": "Q_A05_01_1"
+  },
+  {
+   "at": [
+    9082,
+    848
+   ],
+   "types": [
+    "broken_meridian_1",
+    "broken_meridian_1"
+   ],
+   "elite": false,
+   "guardian": "broken_meridian_g2",
+   "elite_type": "broken_meridian_1",
+   "elite_name": "Forecast Thief",
+   "page": "Q_A05_01_2"
+  },
+  {
+   "at": [
+    5108,
+    1415
+   ],
+   "types": [
+    "broken_meridian_1",
+    "broken_meridian_1"
+   ],
+   "elite": false,
+   "guardian": "broken_meridian_g3",
+   "elite_type": "broken_meridian_2",
+   "elite_name": "The Torn-Dome Brute",
+   "page": "Q_A05_01_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   5667,
+   3908,
+   700
+  ],
+  [
+   10333,
+   4311,
+   700
+  ],
+  [
+   9082,
+   848,
+   700
+  ],
+  [
+   5108,
+   1415,
+   700
+  ]
+ ]
+}

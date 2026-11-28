@@ -1,0 +1,740 @@
+{
+ "name": "Riftglass Caldera",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "dirt",
+ "seed": 9419,
+ "paths": [
+  {
+   "pts": [
+    [
+     2835,
+     190
+    ],
+    [
+     2835,
+     494
+    ],
+    [
+     3784,
+     1369
+    ],
+    [
+     5595,
+     1348
+    ],
+    [
+     6592,
+     2176
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5894,
+     190
+    ],
+    [
+     5894,
+     494
+    ],
+    [
+     6156,
+     1048
+    ],
+    [
+     6251,
+     1636
+    ],
+    [
+     6592,
+     2176
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6093,
+     1762
+    ],
+    [
+     5801,
+     1964
+    ],
+    [
+     5294,
+     2092
+    ]
+   ],
+   "width": 133,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2835,
+     494
+    ],
+    [
+     1838,
+     660
+    ],
+    [
+     1120,
+     1095
+    ]
+   ],
+   "width": 142,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6156,
+     1048
+    ],
+    [
+     7287,
+     1034
+    ],
+    [
+     8588,
+     796
+    ]
+   ],
+   "width": 186,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6592,
+     2176
+    ],
+    [
+     7564,
+     2455
+    ],
+    [
+     8785,
+     2786
+    ]
+   ],
+   "width": 177,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    2550,
+    3148
+   ],
+   "r": 497,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    1929,
+    968
+   ],
+   "r": 457,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3747,
+    1552
+   ],
+   "r": 542,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4488,
+    3100
+   ],
+   "r": 647,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    9176,
+    762
+   ],
+   "r": 381,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5612,
+    1571
+   ],
+   "r": 617,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2745,
+    1055
+   ],
+   "r": 581,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    6592,
+    2176
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5294,
+    2092
+   ],
+   "r": 398,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1120,
+    1095
+   ],
+   "r": 464,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8588,
+    796
+   ],
+   "r": 392,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8785,
+    2786
+   ],
+   "r": 699,
+   "layer": "dirt",
+   "squash": 0.515
+  }
+ ],
+ "clear": [
+  [
+   2835,
+   190,
+   380
+  ],
+  [
+   5894,
+   190,
+   380
+  ],
+  [
+   5294,
+   2092,
+   300
+  ],
+  [
+   1120,
+   1095,
+   300
+  ],
+  [
+   8588,
+   796,
+   300
+  ],
+  [
+   8785,
+   2786,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_b",
+    3
+   ],
+   [
+    "gnarled_a",
+    2
+   ]
+  ],
+  "spacing": 1250,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 120,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "mixed": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "bushes": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_rock_small",
+    "b_rock_small",
+    "a_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    5294,
+    2092,
+    560,
+    0.45
+   ],
+   [
+    1120,
+    1095,
+    560,
+    0.45
+   ],
+   [
+    8588,
+    796,
+    560,
+    0.45
+   ],
+   [
+    8785,
+    2786,
+    560,
+    0.45
+   ],
+   [
+    6592,
+    2176,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    6592,
+    1956,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "riftglass_caldera_wp",
+   "name": "Riftglass Caldera",
+   "at": [
+    6592,
+    2176
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Blackpine Winter",
+   "to": "blackpine_winter",
+   "at": [
+    2835,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    3424,
+    4438
+   ]
+  },
+  {
+   "name": "Veyr Sanctuary",
+   "to": "veyr_sanctuary",
+   "at": [
+    5894,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    2134,
+    4438
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2835,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Fractured Quarry",
+   "kind": "landmark",
+   "at": [
+    5294,
+    2092
+   ],
+   "blurb": "Fractured quarry, molten violet crystals"
+  },
+  {
+   "name": "Molten Violet Crystals",
+   "kind": "landmark",
+   "at": [
+    1120,
+    1095
+   ],
+   "blurb": "Fractured quarry, molten violet crystals"
+  },
+  {
+   "name": "Conduit Array",
+   "kind": "landmark",
+   "at": [
+    8588,
+    796
+   ],
+   "blurb": "Fractured quarry, molten violet crystals"
+  },
+  {
+   "name": "Form Regulator",
+   "kind": "landmark",
+   "at": [
+    8785,
+    2786
+   ],
+   "blurb": "Fractured quarry, molten violet crystals"
+  },
+  {
+   "name": "Blackpine Winter",
+   "kind": "landmark",
+   "at": [
+    2835,
+    190
+   ],
+   "blurb": "To Blackpine Winter."
+  },
+  {
+   "name": "Veyr Sanctuary",
+   "kind": "landmark",
+   "at": [
+    5894,
+    190
+   ],
+   "blurb": "To Veyr Sanctuary."
+  }
+ ],
+ "world_id": "riftglass_caldera",
+ "grade": {
+  "mul": [
+   1.0,
+   0.72,
+   0.92
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.1,
+   0.02,
+   0.1,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.5,
+   0.85
+  ],
+  "water": [
+   0.75,
+   0.3,
+   0.8
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    5294,
+    2092
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1120,
+    1095
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    8588,
+    796
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    8785,
+    2786
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_small",
+    "b_rock_small"
+   ],
+   "n": 6
+  }
+ ]
+}

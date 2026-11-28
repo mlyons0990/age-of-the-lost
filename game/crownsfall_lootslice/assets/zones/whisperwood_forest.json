@@ -124445,47 +124445,47 @@
  ],
  "exits": [
   {
-   "name": "Crownsfall",
-   "to": "crownsfall",
+   "name": "Kingsroad Fields",
+   "to": "kingsroad_fields",
    "arrive": [
-    1000,
-    700
+    10960,
+    2546
    ],
    "poly": [
     [
-     -30,
-     2536.5
+     -10,
+     2547.5
     ],
     [
-     310,
-     2536.5
+     290,
+     2547.5
     ],
     [
-     310,
-     2723.5
+     290,
+     2712.5
     ],
     [
-     -30,
-     2723.5
+     -10,
+     2712.5
     ]
    ],
    "aura": {
     "poly": [
      [
-      -30,
-      2536.5
+      -10,
+      2547.5
      ],
      [
-      310,
-      2536.5
+      290,
+      2547.5
      ],
      [
-      310,
-      2723.5
+      290,
+      2712.5
      ],
      [
-      -30,
-      2723.5
+      -10,
+      2712.5
      ]
     ]
    }
@@ -124494,44 +124494,44 @@
    "name": "Hollowmere",
    "to": "hollowmere",
    "arrive": [
-    620,
-    2460
+    8999,
+    526
    ],
    "poly": [
     [
-     10550,
-     4096.5
+     10570,
+     4107.5
     ],
     [
-     10890,
-     4096.5
+     10870,
+     4107.5
     ],
     [
-     10890,
-     4283.5
+     10870,
+     4272.5
     ],
     [
-     10550,
-     4283.5
+     10570,
+     4272.5
     ]
    ],
    "aura": {
     "poly": [
      [
-      10550,
-      4096.5
+      10570,
+      4107.5
      ],
      [
-      10890,
-      4096.5
+      10870,
+      4107.5
      ],
      [
-      10890,
-      4283.5
+      10870,
+      4272.5
      ],
      [
-      10550,
-      4283.5
+      10570,
+      4272.5
      ]
     ]
    }
@@ -124540,8 +124540,8 @@
    "name": "Mossbarrow Crypts",
    "to": "mossbarrow_crypts",
    "arrive": [
-    620,
-    2470
+    560,
+    1370
    ],
    "poly": [
     [
@@ -124578,6 +124578,52 @@
      [
       9100,
       782.5
+     ]
+    ]
+   }
+  },
+  {
+   "name": "Silverroot Grove",
+   "to": "silverroot_grove",
+   "arrive": [
+    2462,
+    4438
+   ],
+   "poly": [
+    [
+     6300,
+     4337.5
+    ],
+    [
+     6600,
+     4337.5
+    ],
+    [
+     6600,
+     4502.5
+    ],
+    [
+     6300,
+     4502.5
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      6300,
+      4337.5
+     ],
+     [
+      6600,
+      4337.5
+     ],
+     [
+      6600,
+      4502.5
+     ],
+     [
+      6300,
+      4502.5
      ]
     ]
    }
@@ -124612,15 +124658,6 @@
     640
    ],
    "blurb": "A ring of old mossy stones."
-  },
-  {
-   "name": "Fae Ring",
-   "kind": "secret",
-   "at": [
-    6450,
-    4400
-   ],
-   "blurb": "A circle of mushrooms deep in the wood."
   },
   {
    "name": "Flower Dell",
@@ -124659,22 +124696,112 @@
    "blurb": "Something glints under the rock."
   },
   {
-   "name": "Mossy Arch",
+   "name": "Bramblewatch",
+   "kind": "landmark",
+   "at": [
+    140,
+    2630
+   ],
+   "blurb": "To Bramblewatch."
+  },
+  {
+   "name": "Mossbell Hamlet",
    "kind": "landmark",
    "at": [
     10720,
     4190
    ],
-   "blurb": "The old stone arch south-east, toward the Hollowmere marsh."
+   "blurb": "To Mossbell Hamlet."
   },
   {
-   "name": "Barrow Stair",
+   "name": "Bramblewatch",
+   "kind": "landmark",
+   "at": [
+    140,
+    2630
+   ],
+   "blurb": "To Bramblewatch."
+  },
+  {
+   "name": "Mossbell Hamlet",
+   "kind": "landmark",
+   "at": [
+    10720,
+    4190
+   ],
+   "blurb": "To Mossbell Hamlet."
+  },
+  {
+   "name": "Bramblewatch",
+   "kind": "landmark",
+   "at": [
+    140,
+    2630
+   ],
+   "blurb": "To Bramblewatch."
+  },
+  {
+   "name": "Mossbell Hamlet",
+   "kind": "landmark",
+   "at": [
+    10720,
+    4190
+   ],
+   "blurb": "To Mossbell Hamlet."
+  },
+  {
+   "name": "Bramblewatch",
+   "kind": "landmark",
+   "at": [
+    140,
+    2630
+   ],
+   "blurb": "To Bramblewatch."
+  },
+  {
+   "name": "Mossbell Hamlet",
+   "kind": "landmark",
+   "at": [
+    10720,
+    4190
+   ],
+   "blurb": "To Mossbell Hamlet."
+  },
+  {
+   "name": "Kingsroad Fields",
+   "kind": "landmark",
+   "at": [
+    140,
+    2630
+   ],
+   "blurb": "To Kingsroad Fields."
+  },
+  {
+   "name": "Hollowmere",
+   "kind": "landmark",
+   "at": [
+    10720,
+    4190
+   ],
+   "blurb": "To Hollowmere."
+  },
+  {
+   "name": "Mossbarrow Crypts",
    "kind": "landmark",
    "at": [
     9250,
     700
    ],
-   "blurb": "Steps down beneath the Standing Stones."
+   "blurb": "To Mossbarrow Crypts."
+  },
+  {
+   "name": "Silverroot Grove",
+   "kind": "landmark",
+   "at": [
+    6450,
+    4420
+   ],
+   "blurb": "To Silverroot Grove."
   }
  ],
  "world_id": "whisperwood"

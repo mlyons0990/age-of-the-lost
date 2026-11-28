@@ -1,0 +1,690 @@
+{
+ "name": "Mossbell Hamlet",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 5677,
+ "paths": [
+  {
+   "pts": [
+    [
+     4544,
+     4774
+    ],
+    [
+     4544,
+     4470
+    ],
+    [
+     3975,
+     3844
+    ],
+    [
+     4079,
+     3021
+    ],
+    [
+     3303,
+     2457
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3303,
+     2457
+    ],
+    [
+     3219.5,
+     1678.5
+    ],
+    [
+     3136,
+     900
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3252,
+     1989
+    ],
+    [
+     4101,
+     1893
+    ],
+    [
+     4929,
+     1909
+    ]
+   ],
+   "width": 175,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3975,
+     3844
+    ],
+    [
+     2773,
+     3907
+    ],
+    [
+     1759,
+     4294
+    ]
+   ],
+   "width": 181,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4544,
+     4470
+    ],
+    [
+     5203,
+     4234
+    ],
+    [
+     6041,
+     4212
+    ]
+   ],
+   "width": 150,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     3202,
+     1522
+    ],
+    [
+     1939,
+     1531
+    ],
+    [
+     739,
+     1615
+    ]
+   ],
+   "width": 155,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    4401,
+    1604
+   ],
+   "r": 713,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2495,
+    2634
+   ],
+   "r": 678,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5548,
+    729
+   ],
+   "r": 508,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3303,
+    2457
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4929,
+    1909
+   ],
+   "r": 760,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1759,
+    4294
+   ],
+   "r": 515,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    739,
+    1615
+   ],
+   "r": 490,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6366,
+    2587
+   ],
+   "r": 736,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   4544,
+   4774,
+   380
+  ],
+  [
+   4929,
+   1909,
+   300
+  ],
+  [
+   1759,
+   4294,
+   300
+  ],
+  [
+   6041,
+   4212,
+   300
+  ],
+  [
+   739,
+   1615,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    2
+   ],
+   [
+    "oak_b",
+    2
+   ],
+   [
+    "silver",
+    1
+   ]
+  ],
+  "spacing": 900,
+  "cut": 0.7,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 18,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall",
+    "a_moss"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    4929,
+    1909,
+    560,
+    0.45
+   ],
+   [
+    1759,
+    4294,
+    560,
+    0.45
+   ],
+   [
+    6041,
+    4212,
+    560,
+    0.45
+   ],
+   [
+    739,
+    1615,
+    560,
+    0.45
+   ],
+   [
+    3303,
+    2457,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    3303,
+    2237,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    6366,
+    2587,
+    1177.6000000000001
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "mossbell_hamlet_wp",
+   "name": "Mossbell Hamlet",
+   "at": [
+    3303,
+    2457
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Bramblewatch",
+   "to": "bramblewatch",
+   "at": [
+    4544,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    4245,
+    526
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  4544,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Haunted Mill",
+   "kind": "landmark",
+   "at": [
+    4929,
+    1909
+   ],
+   "blurb": "Moss roofs, millpond, lanterns"
+  },
+  {
+   "name": "Hollowbrook Millpond",
+   "kind": "landmark",
+   "at": [
+    1759,
+    4294
+   ],
+   "blurb": "Moss roofs, millpond, lanterns"
+  },
+  {
+   "name": "Lantern Row",
+   "kind": "landmark",
+   "at": [
+    6041,
+    4212
+   ],
+   "blurb": "Moss roofs, millpond, lanterns"
+  },
+  {
+   "name": "The Three Doors",
+   "kind": "landmark",
+   "at": [
+    739,
+    1615
+   ],
+   "blurb": "Moss roofs, millpond, lanterns"
+  },
+  {
+   "name": "Bramblewatch",
+   "kind": "landmark",
+   "at": [
+    4544,
+    4774
+   ],
+   "blurb": "To Bramblewatch."
+  }
+ ],
+ "world_id": "mossbell_hamlet",
+ "grade": {
+  "mul": [
+   0.9,
+   1.02,
+   0.9
+  ],
+  "desat": 0.18,
+  "lift": [
+   0.03,
+   0.06,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   0.7,
+   0.82,
+   0.74
+  ],
+  "water": [
+   0.24,
+   0.4,
+   0.4
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4929,
+    1909
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1759,
+    4294
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6041,
+    4212
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    739,
+    1615
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  }
+ ]
+}

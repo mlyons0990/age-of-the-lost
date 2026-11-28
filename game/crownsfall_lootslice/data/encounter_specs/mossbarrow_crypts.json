@@ -1,82 +1,83 @@
 {
  "zone": "mossbarrow_crypts",
  "levels": [
-  3,
-  4
+  2,
+  3
  ],
- "packs": 16,
- "seed": 31,
+ "packs": 14,
+ "seed": 282,
  "spacing": 700,
  "groups": [
   [
    5,
    [
-    "barrow_shade",
-    "barrow_shade"
-   ]
-  ],
-  [
-   4,
-   [
-    "crypt_ooze",
-    "crypt_ooze",
-    "crypt_ooze"
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_0"
    ]
   ],
   [
    3,
    [
-    "barrow_shade",
-    "crypt_ooze"
+    "mossbarrow_crypts_1",
+    "mossbarrow_crypts_1",
+    "mossbarrow_crypts_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_1",
+    "mossbarrow_crypts_1"
    ]
   ],
   [
    2,
    [
-    "tomb_warden"
+    "mossbarrow_crypts_2"
    ],
    true
   ],
   [
+   2,
+   [
+    "mossbarrow_crypts_2",
+    "mossbarrow_crypts_0"
+   ]
+  ],
+  [
    1,
    [
-    "tomb_warden",
-    "barrow_shade"
-   ]
-  ]
- ],
- "keep_clear": [
-  [
-   5760,
-   1500,
-   700
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_0",
+    "mossbarrow_crypts_0"
+   ],
+   true
   ]
  ],
  "fixed": [
   {
    "at": [
-    2600,
-    3600
-   ],
-   "types": [
-    "crypt_ooze",
-    "crypt_ooze"
-   ],
-   "elite": false,
-   "guardian": "mossbarrow_ossuary",
-   "elite_type": "tomb_warden",
-   "elite_name": "The Bone-Stacker"
-  },
-  {
-   "at": [
-    6600,
-    3400
+    5901,
+    2786
    ],
    "types": [],
-   "boss": "barrow_lord",
-   "boss_type": "barrow_lord",
+   "boss": "mossbarrow_crypts_boss_u",
+   "boss_type": "mossbarrow_crypts_boss",
    "boss_name": "Barrow-Lord Ostric",
-   "needs_quest": "the_sealed_barrow"
+   "needs_quest": "Q_A01_R05"
   }
+ ],
+ "keep_clear": [
+  [
+   5901,
+   2786,
+   700
+  ],
+  [
+   5901,
+   2786,
+   800
+  ]
  ]
 }

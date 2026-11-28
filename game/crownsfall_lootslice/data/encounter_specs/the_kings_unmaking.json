@@ -1,0 +1,78 @@
+{
+ "zone": "the_kings_unmaking",
+ "levels": [
+  62,
+  63
+ ],
+ "packs": 20,
+ "seed": 770,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "the_kings_unmaking_0",
+    "the_kings_unmaking_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_kings_unmaking_1",
+    "the_kings_unmaking_1",
+    "the_kings_unmaking_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_kings_unmaking_0",
+    "the_kings_unmaking_1",
+    "the_kings_unmaking_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_kings_unmaking_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_kings_unmaking_2",
+    "the_kings_unmaking_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_kings_unmaking_0",
+    "the_kings_unmaking_0",
+    "the_kings_unmaking_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3182,
+    2263
+   ],
+   "types": [],
+   "boss": "the_kings_unmaking_boss_u",
+   "boss_type": "the_kings_unmaking_boss",
+   "boss_name": "The Memory of Oris",
+   "needs_quest": "Q_A07_04"
+  }
+ ],
+ "keep_clear": [
+  [
+   3182,
+   2263,
+   700
+  ]
+ ]
+}

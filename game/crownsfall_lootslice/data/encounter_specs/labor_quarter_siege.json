@@ -1,0 +1,78 @@
+{
+ "zone": "labor_quarter_siege",
+ "levels": [
+  32,
+  33
+ ],
+ "packs": 18,
+ "seed": 733,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "labor_quarter_siege_0",
+    "labor_quarter_siege_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "labor_quarter_siege_1",
+    "labor_quarter_siege_1",
+    "labor_quarter_siege_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "labor_quarter_siege_0",
+    "labor_quarter_siege_1",
+    "labor_quarter_siege_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "labor_quarter_siege_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "labor_quarter_siege_2",
+    "labor_quarter_siege_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "labor_quarter_siege_0",
+    "labor_quarter_siege_0",
+    "labor_quarter_siege_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6629,
+    2020
+   ],
+   "types": [],
+   "boss": "labor_quarter_siege_boss_u",
+   "boss_type": "labor_quarter_siege_boss",
+   "boss_name": "Emergency Decree Captain",
+   "needs_quest": "Q_A04_04"
+  }
+ ],
+ "keep_clear": [
+  [
+   6629,
+   2020,
+   700
+  ]
+ ]
+}

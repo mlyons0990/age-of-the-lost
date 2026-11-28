@@ -1,0 +1,78 @@
+{
+ "zone": "court_of_borrowed_faces",
+ "levels": [
+  45,
+  46
+ ],
+ "packs": 14,
+ "seed": 440,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "court_of_borrowed_faces_0",
+    "court_of_borrowed_faces_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "court_of_borrowed_faces_1",
+    "court_of_borrowed_faces_1",
+    "court_of_borrowed_faces_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "court_of_borrowed_faces_0",
+    "court_of_borrowed_faces_1",
+    "court_of_borrowed_faces_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "court_of_borrowed_faces_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "court_of_borrowed_faces_2",
+    "court_of_borrowed_faces_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "court_of_borrowed_faces_0",
+    "court_of_borrowed_faces_0",
+    "court_of_borrowed_faces_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6370,
+    4047
+   ],
+   "types": [],
+   "boss": "court_of_borrowed_faces_boss_u",
+   "boss_type": "court_of_borrowed_faces_boss",
+   "boss_name": "The Borrowed Face",
+   "needs_quest": "Q_A05_08"
+  }
+ ],
+ "keep_clear": [
+  [
+   6370,
+   4047,
+   700
+  ]
+ ]
+}

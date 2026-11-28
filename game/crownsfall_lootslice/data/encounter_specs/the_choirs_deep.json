@@ -1,0 +1,78 @@
+{
+ "zone": "the_choirs_deep",
+ "levels": [
+  46,
+  47
+ ],
+ "packs": 14,
+ "seed": 22,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_choirs_deep_0",
+    "the_choirs_deep_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_choirs_deep_1",
+    "the_choirs_deep_1",
+    "the_choirs_deep_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_choirs_deep_0",
+    "the_choirs_deep_1",
+    "the_choirs_deep_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_choirs_deep_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_choirs_deep_2",
+    "the_choirs_deep_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_choirs_deep_0",
+    "the_choirs_deep_0",
+    "the_choirs_deep_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6479,
+    3324
+   ],
+   "types": [],
+   "boss": "the_choirs_deep_boss_u",
+   "boss_type": "the_choirs_deep_boss",
+   "boss_name": "Choir Lieutenant Aster",
+   "needs_quest": "Q_A05_09"
+  }
+ ],
+ "keep_clear": [
+  [
+   6479,
+   3324,
+   700
+  ]
+ ]
+}

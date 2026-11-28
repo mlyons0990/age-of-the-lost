@@ -9,110 +9,132 @@
  "pitch": 31.0,
  "hero_px_1080": 125.0,
  "ground_base": "grass_old",
- "seed": 79,
+ "seed": 7397,
  "paths": [
   {
    "pts": [
     [
-     -80,
-     2470
+     6618,
+     4774
     ],
     [
-     1000,
-     2470
+     6618,
+     4470
     ],
     [
-     2000,
-     2300
+     6420,
+     3908
     ],
     [
-     3000,
-     2450
+     6245,
+     3336
     ],
     [
-     4000,
-     2400
+     5260,
+     3088
     ],
     [
-     5000,
-     2250
-    ],
-    [
-     6000,
-     2400
-    ],
-    [
-     7200,
-     2300
-    ],
-    [
-     8400,
-     2500
-    ],
-    [
-     9400,
-     2400
+     5007,
+     2549
     ]
    ],
-   "width": 240,
-   "layer": "flagstone"
+   "width": 210,
+   "layer": "dirt"
   },
   {
    "pts": [
     [
-     3000,
-     2450
+     5007,
+     2549
     ],
     [
-     3100,
-     3300
+     4954.5,
+     1724.5
     ],
     [
-     3200,
-     3900
+     4902,
+     900
     ]
    ],
-   "width": 170,
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     4938,
+     1477
+    ],
+    [
+     5255,
+     1580
+    ],
+    [
+     6057,
+     1443
+    ]
+   ],
+   "width": 139,
    "layer": "dirt",
    "style": "trail",
-   "taper_end": false
+   "taper_end": true
   },
   {
    "pts": [
     [
-     6000,
-     2400
+     6519,
+     4189
     ],
     [
-     6100,
-     1600
+     5773,
+     4193
     ],
     [
-     6200,
-     1000
+     5052,
+     4346
     ]
    ],
-   "width": 170,
+   "width": 143,
    "layer": "dirt",
    "style": "trail",
-   "taper_end": false
+   "taper_end": true
   },
   {
    "pts": [
     [
-     8400,
-     2500
+     6402,
+     3850
     ],
     [
-     8700,
-     3300
+     7471,
+     3604
     ],
     [
-     9000,
-     3900
+     8949,
+     3608
     ]
    ],
-   "width": 170,
+   "width": 181,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4996,
+     2384
+    ],
+    [
+     3572,
+     2537
+    ],
+    [
+     2480,
+     2425
+    ]
+   ],
+   "width": 140,
    "layer": "dirt",
    "style": "trail",
    "taper_end": false
@@ -121,197 +143,171 @@
  "patches": [
   {
    "at": [
-    4000,
-    2400
+    2076,
+    3934
    ],
-   "r": 420,
+   "r": 700,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4544,
+    2861
+   ],
+   "r": 634,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    1835,
+    821
+   ],
+   "r": 544,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    2707,
+    3052
+   ],
+   "r": 534,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5007,
+    2549
+   ],
+   "r": 440,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    3200,
-    3950
+    6057,
+    1443
    ],
-   "r": 420,
+   "r": 279,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8949,
+    3608
+   ],
+   "r": 222,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2480,
+    2425
+   ],
+   "r": 433,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    6200,
-    950
+    7376,
+    1186
    ],
-   "r": 460,
-   "layer": "flagstone",
-   "squash": 0.515
+   "r": 371,
+   "layer": "water",
+   "squash": 0.52
   },
   {
    "at": [
-    9000,
-    3950
+    9859,
+    2181
    ],
-   "r": 420,
-   "layer": "flagstone",
-   "squash": 0.515
+   "r": 494,
+   "layer": "water",
+   "squash": 0.52
   },
   {
    "at": [
-    9400,
-    2400
-   ],
-   "r": 620,
-   "layer": "flagstone",
-   "squash": 0.515
-  },
-  {
-   "at": [
-    1800,
-    1200
-   ],
-   "r": 380,
-   "layer": "flagstone",
-   "squash": 0.515
-  },
-  {
-   "at": [
-    7200,
+    9884,
     1300
    ],
-   "r": 380,
-   "layer": "flagstone",
-   "squash": 0.515
-  },
-  {
-   "at": [
-    5200,
-    3800
-   ],
-   "r": 380,
-   "layer": "flagstone",
-   "squash": 0.515
-  },
-  {
-   "at": [
-    10500,
-    1500
-   ],
-   "r": 420,
-   "layer": "flagstone",
-   "squash": 0.515
-  },
-  {
-   "at": [
-    1400,
-    3600
-   ],
-   "r": 520,
+   "r": 508,
    "layer": "water",
    "squash": 0.52
   },
   {
    "at": [
-    5000,
-    1100
+    5340,
+    3698
    ],
-   "r": 420,
+   "r": 405,
    "layer": "water",
    "squash": 0.52
   },
   {
    "at": [
-    7600,
-    3700
+    1195,
+    2881
    ],
-   "r": 480,
-   "layer": "water",
-   "squash": 0.52
-  },
-  {
-   "at": [
-    10600,
-    3500
-   ],
-   "r": 460,
-   "layer": "water",
-   "squash": 0.52
-  },
-  {
-   "at": [
-    2600,
-    800
-   ],
-   "r": 360,
+   "r": 505,
    "layer": "water",
    "squash": 0.52
   }
  ],
  "clear": [
   [
-   140,
-   2470,
-   400
+   6618,
+   4774,
+   380
   ],
   [
-   4000,
-   2400,
-   570
+   6057,
+   1443,
+   300
   ],
   [
-   3200,
-   3950,
-   570
+   5052,
+   4346,
+   300
   ],
   [
-   6200,
-   950,
-   610
+   8949,
+   3608,
+   300
   ],
   [
-   9000,
-   3950,
-   570
-  ],
-  [
-   9400,
-   2400,
-   770
-  ],
-  [
-   1800,
-   1200,
-   530
-  ],
-  [
-   7200,
-   1300,
-   530
-  ],
-  [
-   5200,
-   3800,
-   530
-  ],
-  [
-   10500,
-   1500,
-   570
+   2480,
+   2425,
+   300
   ]
  ],
  "place": [],
  "forest": {
   "trees": [
    [
-    "silver",
+    "gnarled_a",
     2
    ],
    [
-    "gnarled_a",
+    "oak_b",
     2
+   ],
+   [
+    "silver",
+    1
    ]
   ],
-  "spacing": 1100,
-  "cut": 0.78,
+  "spacing": 900,
+  "cut": 0.7,
   "grove_px": 1500,
   "frame": 0.45,
   "frame_px": 900,
@@ -336,9 +332,9 @@
   "clumps_per_mpx": 18,
   "clumps": {
    "ferns": {
-    "w": 4,
+    "w": 3,
     "n": [
-     3,
+     2,
      6
     ],
     "r": 170,
@@ -347,51 +343,13 @@
      "b_fern"
     ]
    },
-   "lavender": {
-    "w": 2,
-    "n": [
-     3,
-     7
-    ],
-    "r": 160,
-    "props": [
-     "a_lavender",
-     "b_lavender"
-    ]
-   },
-   "white": {
-    "w": 2,
-    "n": [
-     2,
-     5
-    ],
-    "r": 140,
-    "props": [
-     "a_shrub_white",
-     "b_shrub_white"
-    ]
-   },
-   "bushes": {
-    "w": 3,
-    "n": [
-     2,
-     4
-    ],
-    "r": 150,
-    "props": [
-     "a_bush_round",
-     "b_bush_round",
-     "a_bush_yellow",
-     "b_bush_yellow"
-    ]
-   },
    "mixed": {
     "w": 3,
     "n": [
-     3,
+     2,
      6
     ],
-    "r": 180,
+    "r": 170,
     "props": [
      "a_fern",
      "a_grass_tall",
@@ -399,6 +357,32 @@
      "a_lavender",
      "b_shrub_white",
      "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
     ]
    }
   },
@@ -468,36 +452,17 @@
  "edges": [
   {
    "path": 0,
-   "spacing": 130,
-   "offset": -20,
-   "jitter": 70,
-   "density": 0.75,
-   "props": [
-    "a_moss",
-    "a_clover",
-    "a_pebbles",
-    "a_leaves"
-   ],
-   "scale": [
-    0.9,
-    1.3
-   ]
-  },
-  {
-   "path": 0,
    "spacing": 170,
-   "offset": 110,
+   "offset": 120,
    "jitter": 120,
-   "density": 0.9,
+   "density": 0.7,
    "min_gap": 40,
    "props": [
     "a_fern",
     "b_fern",
     "a_grass_tall",
-    "a_shrub_white",
-    "b_shrub_white",
-    "a_lavender",
-    "b_bush_yellow"
+    "b_grass_tall",
+    "a_moss"
    ],
    "scale": [
     0.85,
@@ -506,7 +471,7 @@
   }
  ],
  "light": {
-  "canopy": 0.3,
+  "canopy": 0.34,
   "contact": 0.38,
   "pools": 0.28,
   "dapple_px": 40,
@@ -520,108 +485,79 @@
   "tree_mist": 0.55,
   "open": [
    [
-    4000,
-    2400,
-    462.00000000000006,
+    6057,
+    1443,
+    560,
     0.45
    ],
    [
-    3200,
-    3950,
-    462.00000000000006,
+    5052,
+    4346,
+    560,
     0.45
    ],
    [
-    6200,
-    950,
-    506.00000000000006,
+    8949,
+    3608,
+    560,
     0.45
    ],
    [
-    9000,
-    3950,
-    462.00000000000006,
+    2480,
+    2425,
+    560,
     0.45
    ],
    [
-    9400,
-    2400,
-    682.0,
-    0.45
-   ],
-   [
-    1800,
-    1200,
-    418.00000000000006,
-    0.45
-   ],
-   [
-    7200,
-    1300,
-    418.00000000000006,
-    0.45
-   ],
-   [
-    5200,
-    3800,
-    418.00000000000006,
-    0.45
-   ],
-   [
-    10500,
-    1500,
-    462.00000000000006,
-    0.45
+    5007,
+    2549,
+    600,
+    0.5
    ]
   ],
   "shafts": [
    [
-    4000,
-    2180,
-    420
-   ],
-   [
-    3200,
-    3730,
+    5007,
+    2329,
     420
    ]
   ],
   "prop_mist": true,
   "mist": [
    [
-    1400,
-    3600,
-    780.0
+    7376,
+    1186,
+    593.6
    ],
    [
-    5000,
-    1100,
-    630.0
+    9859,
+    2181,
+    790.4000000000001
    ],
    [
-    7600,
-    3700,
-    720.0
+    9884,
+    1300,
+    812.8000000000001
    ],
    [
-    10600,
-    3500,
-    690.0
+    5340,
+    3698,
+    648.0
    ],
    [
-    2600,
-    800,
-    540.0
+    1195,
+    2881,
+    808.0
    ]
   ]
  },
  "waypoints": [
   {
-   "id": "brackwater_forum",
-   "name": "Drowned Forum",
+   "id": "brackwater_ruins_wp",
+   "name": "Brackwater Ruins",
    "at": [
-    4000,
-    2400
+    5007,
+    2549
    ],
    "radius_px": 200
   }
@@ -631,13 +567,13 @@
    "name": "Riftscar Moor",
    "to": "riftscar_moor",
    "at": [
-    140,
-    2470
+    6618,
+    4774
    ],
    "r": 170,
    "arrive": [
-    8200,
-    4400
+    7342,
+    526
    ]
   }
  ],
@@ -662,67 +598,58 @@
   ]
  ],
  "spawn": [
-  620,
-  2470
+  6618,
+  4438
  ],
  "targets": [],
  "map_pois": [
   {
-   "name": "Moor Path",
-   "kind": "landmark",
-   "at": [
-    160,
-    2470
-   ],
-   "blurb": "North to Riftscar Moor."
-  },
-  {
-   "name": "Drowned Forum",
-   "kind": "landmark",
-   "at": [
-    4000,
-    2400
-   ],
-   "blurb": "A Concord forum. Its columns flicker between whole and broken."
-  },
-  {
    "name": "Seal-House West",
    "kind": "landmark",
    "at": [
-    3200,
-    3950
+    6057,
+    1443
    ],
-   "blurb": "Where the outpost kept its seals."
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
   },
   {
    "name": "Signal Tower",
    "kind": "landmark",
    "at": [
-    6200,
-    950
+    5052,
+    4346
    ],
-   "blurb": "A tower that is sometimes there."
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
   },
   {
    "name": "Seal-House East",
    "kind": "landmark",
    "at": [
-    9000,
-    3950
+    8949,
+    3608
    ],
-   "blurb": "A second seal-house, half underwater."
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
   },
   {
    "name": "Sentinel's Post",
-   "kind": "secret",
+   "kind": "landmark",
    "at": [
-    9400,
-    2400
+    2480,
+    2425
    ],
-   "blurb": "A Concord sentinel, stepping in and out of time."
+   "blurb": "Golden Age relics flickering between eras; major Lorecasting site"
+  },
+  {
+   "name": "Riftscar Moor",
+   "kind": "landmark",
+   "at": [
+    6618,
+    4774
+   ],
+   "blurb": "To Riftscar Moor."
   }
  ],
- "world_id": "brackwater",
+ "world_id": "brackwater_ruins",
  "grade": {
   "mul": [
    0.86,
@@ -746,5 +673,94 @@
    0.34,
    0.36
   ]
- }
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6057,
+    1443
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "oak_b",
+    "silver",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    5052,
+    4346
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    8949,
+    3608
+   ],
+   "r": 520,
+   "props": [
+    "gnarled_a",
+    "oak_b",
+    "silver",
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 9
+  },
+  {
+   "at": [
+    2480,
+    2425
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  }
+ ]
 }

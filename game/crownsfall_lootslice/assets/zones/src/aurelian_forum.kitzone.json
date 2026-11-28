@@ -1,0 +1,960 @@
+{
+ "name": "Aurelian Forum",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  7680,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "flagstone",
+ "seed": 9612,
+ "paths": [
+  {
+   "pts": [
+    [
+     2455,
+     4774
+    ],
+    [
+     2455,
+     4470
+    ],
+    [
+     3103,
+     3932
+    ],
+    [
+     3041,
+     3169
+    ],
+    [
+     3766,
+     2656
+    ],
+    [
+     4053,
+     2004
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     4574,
+     4774
+    ],
+    [
+     4574,
+     4470
+    ],
+    [
+     4594,
+     3837
+    ],
+    [
+     4000,
+     3269
+    ],
+    [
+     4186,
+     2620
+    ],
+    [
+     4053,
+     2004
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     3005,
+     4774
+    ],
+    [
+     3005,
+     4470
+    ],
+    [
+     3373,
+     3651
+    ],
+    [
+     3924,
+     2871
+    ],
+    [
+     4053,
+     2004
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5242,
+     4774
+    ],
+    [
+     5242,
+     4470
+    ],
+    [
+     4582,
+     3939
+    ],
+    [
+     5175,
+     3112
+    ],
+    [
+     4937,
+     2481
+    ],
+    [
+     4053,
+     2004
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     7540,
+     1582
+    ],
+    [
+     7160,
+     1582
+    ],
+    [
+     6354,
+     1557
+    ],
+    [
+     5663,
+     2051
+    ],
+    [
+     4882,
+     2138
+    ],
+    [
+     4053,
+     2004
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5801,
+     1952
+    ],
+    [
+     6364,
+     2295
+    ],
+    [
+     6876,
+     2415
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4053,
+     2004
+    ],
+    [
+     2929,
+     1994
+    ],
+    [
+     2251,
+     1749
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     2455,
+     4470
+    ],
+    [
+     2163,
+     4400
+    ],
+    [
+     1322,
+     4249
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5242,
+     4470
+    ],
+    [
+     5702,
+     4541
+    ],
+    [
+     6592,
+     4392
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    6440,
+    2426
+   ],
+   "r": 275,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1114,
+    619
+   ],
+   "r": 455,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    649,
+    1509
+   ],
+   "r": 468,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2588,
+    928
+   ],
+   "r": 312,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2310,
+    4062
+   ],
+   "r": 477,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5410,
+    1600
+   ],
+   "r": 394,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5343,
+    1673
+   ],
+   "r": 299,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5318,
+    3595
+   ],
+   "r": 466,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6644,
+    2235
+   ],
+   "r": 450,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    5626,
+    3412
+   ],
+   "r": 385,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    4053,
+    2004
+   ],
+   "r": 1100,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6876,
+    2415
+   ],
+   "r": 435,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2251,
+    1749
+   ],
+   "r": 470,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1322,
+    4249
+   ],
+   "r": 495,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6592,
+    4392
+   ],
+   "r": 453,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1853,
+    3475
+   ],
+   "r": 162,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6200,
+    939
+   ],
+   "r": 163,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   2455,
+   4774,
+   380
+  ],
+  [
+   4574,
+   4774,
+   380
+  ],
+  [
+   3005,
+   4774,
+   380
+  ],
+  [
+   5242,
+   4774,
+   380
+  ],
+  [
+   7540,
+   1582,
+   380
+  ],
+  [
+   6876,
+   2415,
+   300
+  ],
+  [
+   2251,
+   1749,
+   300
+  ],
+  [
+   1322,
+   4249,
+   300
+  ],
+  [
+   6592,
+   4392,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    1
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 1700,
+  "cut": 0.88,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 4,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 3,
+  "clumps": {
+   "white": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "lavender": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   }
+  },
+  "tufts_per_mpx": 0,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 4,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 4,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.22,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    6876,
+    2415,
+    560,
+    0.45
+   ],
+   [
+    2251,
+    1749,
+    560,
+    0.45
+   ],
+   [
+    1322,
+    4249,
+    560,
+    0.45
+   ],
+   [
+    6592,
+    4392,
+    560,
+    0.45
+   ],
+   [
+    4053,
+    2004,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4053,
+    1784,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "aurelian_forum_wp",
+   "name": "Aurelian Forum",
+   "at": [
+    4053,
+    2004
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Sunward Threshold",
+   "to": "sunward_threshold",
+   "at": [
+    2455,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5994,
+    526
+   ]
+  },
+  {
+   "name": "Lumen Canal",
+   "to": "lumen_canal",
+   "at": [
+    4574,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5457,
+    526
+   ]
+  },
+  {
+   "name": "Artificers' Ward",
+   "to": "artificers_ward",
+   "at": [
+    3005,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    5624,
+    526
+   ]
+  },
+  {
+   "name": "Workers' Terrace",
+   "to": "workers_terrace",
+   "at": [
+    5242,
+    4774
+   ],
+   "r": 170,
+   "arrive": [
+    3628,
+    526
+   ]
+  },
+  {
+   "name": "Concord Senate",
+   "to": "concord_senate",
+   "at": [
+    7540,
+    1582
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    1415
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2455,
+  4438
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Marble Arcades",
+   "kind": "landmark",
+   "at": [
+    6876,
+    2415
+   ],
+   "blurb": "Marble arcades, gardens, civic amphitheater"
+  },
+  {
+   "name": "Civic Amphitheater",
+   "kind": "landmark",
+   "at": [
+    2251,
+    1749
+   ],
+   "blurb": "Marble arcades, gardens, civic amphitheater"
+  },
+  {
+   "name": "Festival Gardens",
+   "kind": "landmark",
+   "at": [
+    1322,
+    4249
+   ],
+   "blurb": "Marble arcades, gardens, civic amphitheater"
+  },
+  {
+   "name": "Elyndor's Lectern",
+   "kind": "landmark",
+   "at": [
+    6592,
+    4392
+   ],
+   "blurb": "Marble arcades, gardens, civic amphitheater"
+  },
+  {
+   "name": "Sunward Threshold",
+   "kind": "landmark",
+   "at": [
+    2455,
+    4774
+   ],
+   "blurb": "To Sunward Threshold."
+  },
+  {
+   "name": "Lumen Canal",
+   "kind": "landmark",
+   "at": [
+    4574,
+    4774
+   ],
+   "blurb": "To Lumen Canal."
+  },
+  {
+   "name": "Artificers' Ward",
+   "kind": "landmark",
+   "at": [
+    3005,
+    4774
+   ],
+   "blurb": "To Artificers' Ward."
+  },
+  {
+   "name": "Workers' Terrace",
+   "kind": "landmark",
+   "at": [
+    5242,
+    4774
+   ],
+   "blurb": "To Workers' Terrace."
+  },
+  {
+   "name": "Concord Senate",
+   "kind": "landmark",
+   "at": [
+    7540,
+    1582
+   ],
+   "blurb": "To Concord Senate."
+  }
+ ],
+ "world_id": "aurelian_forum",
+ "grade": {
+  "mul": [
+   1.12,
+   1.06,
+   0.9
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.08,
+   0.07,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   1.0,
+   0.94,
+   0.8
+  ],
+  "water": [
+   0.32,
+   0.55,
+   0.7
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_lavender",
+   "b_lavender",
+   "a_shrub_white",
+   "b_shrub_white",
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    6876,
+    2415
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    2251,
+    1749
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    1322,
+    4249
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6592,
+    4392
+   ],
+   "r": 420,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_lavender",
+    "b_lavender",
+    "a_shrub_white",
+    "b_shrub_white"
+   ],
+   "n": 6
+  }
+ ]
+}

@@ -9,71 +9,125 @@
  "pitch": 31.0,
  "hero_px_1080": 125.0,
  "ground_base": "grass_old",
- "seed": 83,
+ "seed": 2684,
  "paths": [
   {
    "pts": [
     [
-     3840,
-     5000
+     2928,
+     4774
     ],
     [
-     3840,
-     4200
+     2928,
+     4470
     ],
     [
-     3840,
-     3200
+     3307,
+     3894
     ],
     [
-     3840,
-     2400
+     3956,
+     3369
+    ],
+    [
+     4130,
+     2755
+    ],
+    [
+     3863,
+     2057
     ]
    ],
-   "width": 240,
-   "layer": "flagstone"
+   "width": 210,
+   "layer": "dirt"
   },
   {
    "pts": [
     [
-     3840,
-     2400
+     3967,
+     190
     ],
     [
-     5000,
-     2200
+     3967,
+     494
     ],
     [
-     6200,
-     2050
+     3959,
+     885
     ],
     [
-     7700,
-     2000
+     3655,
+     1267
+    ],
+    [
+     3541,
+     1655
+    ],
+    [
+     3863,
+     2057
     ]
    ],
-   "width": 170,
-   "layer": "dirt",
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     3541,
+     1655
+    ],
+    [
+     2720,
+     1799
+    ],
+    [
+     1930,
+     1930
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
    "style": "trail",
    "taper_end": false
   },
   {
    "pts": [
     [
-     3840,
-     2400
+     3959,
+     845
     ],
     [
-     2600,
-     2300
+     4863,
+     947
     ],
     [
-     1500,
-     2100
+     6260,
+     863
     ]
    ],
-   "width": 170,
-   "layer": "dirt",
+   "width": 220,
+   "layer": "flagstone",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4077,
+     2939
+    ],
+    [
+     5507,
+     3038
+    ],
+    [
+     6338,
+     3150
+    ]
+   ],
+   "width": 220,
+   "layer": "flagstone",
    "style": "trail",
    "taper_end": false
   }
@@ -81,71 +135,126 @@
  "patches": [
   {
    "at": [
-    3840,
-    2400
+    4250,
+    3075
    ],
-   "r": 950,
+   "r": 581,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4996,
+    3523
+   ],
+   "r": 435,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    675,
+    1371
+   ],
+   "r": 615,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5703,
+    2575
+   ],
+   "r": 609,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5445,
+    2215
+   ],
+   "r": 598,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    1031,
+    4440
+   ],
+   "r": 576,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    3863,
+    2057
+   ],
+   "r": 440,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    1500,
-    2050
+    1930,
+    1930
    ],
-   "r": 460,
-   "layer": "flagstone",
+   "r": 494,
+   "layer": "dirt",
    "squash": 0.515
   },
   {
    "at": [
-    5400,
-    1300
+    6260,
+    863
    ],
-   "r": 420,
-   "layer": "flagstone",
+   "r": 436,
+   "layer": "dirt",
    "squash": 0.515
   },
   {
    "at": [
-    2300,
-    3500
+    6338,
+    3150
    ],
-   "r": 380,
-   "layer": "flagstone",
+   "r": 474,
+   "layer": "dirt",
    "squash": 0.515
   }
  ],
  "clear": [
   [
-   3840,
-   4780,
-   400
+   2928,
+   4774,
+   380
   ],
   [
-   7540,
-   2000,
-   400
+   3967,
+   190,
+   380
   ],
   [
-   3840,
-   2400,
-   1100
+   1930,
+   1930,
+   300
   ],
   [
-   1500,
-   2050,
-   610
+   6260,
+   863,
+   300
   ],
   [
-   5400,
-   1300,
-   570
-  ],
-  [
-   2300,
-   3500,
-   530
+   6338,
+   3150,
+   300
   ]
  ],
  "place": [],
@@ -153,15 +262,19 @@
   "trees": [
    [
     "gnarled_a",
-    1
+    2
+   ],
+   [
+    "oak_b",
+    2
    ],
    [
     "silver",
     1
    ]
   ],
-  "spacing": 1300,
-  "cut": 0.85,
+  "spacing": 900,
+  "cut": 0.7,
   "grove_px": 1500,
   "frame": 0.45,
   "frame_px": 900,
@@ -170,7 +283,7 @@
    0.85,
    1.15
   ],
-  "rock_clusters": 30,
+  "rock_clusters": 18,
   "rocks_big": [
    "a_rock_flat",
    "b_rock_flat",
@@ -186,9 +299,9 @@
   "clumps_per_mpx": 18,
   "clumps": {
    "ferns": {
-    "w": 4,
+    "w": 3,
     "n": [
-     3,
+     2,
      6
     ],
     "r": 170,
@@ -197,51 +310,13 @@
      "b_fern"
     ]
    },
-   "lavender": {
-    "w": 2,
-    "n": [
-     3,
-     7
-    ],
-    "r": 160,
-    "props": [
-     "a_lavender",
-     "b_lavender"
-    ]
-   },
-   "white": {
-    "w": 2,
-    "n": [
-     2,
-     5
-    ],
-    "r": 140,
-    "props": [
-     "a_shrub_white",
-     "b_shrub_white"
-    ]
-   },
-   "bushes": {
-    "w": 3,
-    "n": [
-     2,
-     4
-    ],
-    "r": 150,
-    "props": [
-     "a_bush_round",
-     "b_bush_round",
-     "a_bush_yellow",
-     "b_bush_yellow"
-    ]
-   },
    "mixed": {
     "w": 3,
     "n": [
-     3,
+     2,
      6
     ],
-    "r": 180,
+    "r": 170,
     "props": [
      "a_fern",
      "a_grass_tall",
@@ -249,6 +324,32 @@
      "a_lavender",
      "b_shrub_white",
      "b_bush_round"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
     ]
    }
   },
@@ -318,36 +419,17 @@
  "edges": [
   {
    "path": 0,
-   "spacing": 130,
-   "offset": -20,
-   "jitter": 70,
-   "density": 0.75,
-   "props": [
-    "a_moss",
-    "a_clover",
-    "a_pebbles",
-    "a_leaves"
-   ],
-   "scale": [
-    0.9,
-    1.3
-   ]
-  },
-  {
-   "path": 0,
    "spacing": 170,
-   "offset": 110,
+   "offset": 120,
    "jitter": 120,
-   "density": 0.9,
+   "density": 0.7,
    "min_gap": 40,
    "props": [
     "a_fern",
     "b_fern",
     "a_grass_tall",
-    "a_shrub_white",
-    "b_shrub_white",
-    "a_lavender",
-    "b_bush_yellow"
+    "b_grass_tall",
+    "a_moss"
    ],
    "scale": [
     0.85,
@@ -356,7 +438,7 @@
   }
  ],
  "light": {
-  "canopy": 0.3,
+  "canopy": 0.34,
   "contact": 0.38,
   "pools": 0.28,
   "dapple_px": 40,
@@ -370,39 +452,34 @@
   "tree_mist": 0.55,
   "open": [
    [
-    3840,
-    2400,
-    1045.0,
+    1930,
+    1930,
+    560,
     0.45
    ],
    [
-    1500,
-    2050,
-    506.00000000000006,
+    6260,
+    863,
+    560,
     0.45
    ],
    [
-    5400,
-    1300,
-    462.00000000000006,
+    6338,
+    3150,
+    560,
     0.45
    ],
    [
-    2300,
-    3500,
-    418.00000000000006,
-    0.45
+    3863,
+    2057,
+    600,
+    0.5
    ]
   ],
   "shafts": [
    [
-    3840,
-    2180,
-    420
-   ],
-   [
-    1500,
-    1830,
+    3863,
+    1837,
     420
    ]
   ],
@@ -411,11 +488,11 @@
  },
  "waypoints": [
   {
-   "id": "oldwatch_yard",
+   "id": "oldwatch_wp",
    "name": "Oldwatch",
    "at": [
-    3840,
-    2400
+    3863,
+    2057
    ],
    "radius_px": 200
   }
@@ -425,26 +502,26 @@
    "name": "Riftscar Moor",
    "to": "riftscar_moor",
    "at": [
-    3840,
-    4780
+    2928,
+    4774
    ],
    "r": 170,
    "arrive": [
-    5600,
-    600
+    5127,
+    526
    ]
   },
   {
-   "name": "The Shattered Observatory",
+   "name": "Shattered Observatory",
    "to": "shattered_observatory",
    "at": [
-    7540,
-    2000
+    3967,
+    190
    ],
    "r": 170,
    "arrive": [
-    620,
-    2470
+    560,
+    4010
    ]
   }
  ],
@@ -469,80 +546,144 @@
   ]
  ],
  "spawn": [
-  3840,
-  2900
+  2928,
+  4438
  ],
  "targets": [],
  "map_pois": [
   {
-   "name": "South Gate",
-   "kind": "landmark",
-   "at": [
-    3840,
-    4780
-   ],
-   "blurb": "Down to Riftscar Moor."
-  },
-  {
    "name": "Watch Yard",
    "kind": "landmark",
    "at": [
-    3840,
-    2400
+    1930,
+    1930
    ],
-   "blurb": "The fort's yard, full of refugees from the moor."
-  },
-  {
-   "name": "Scholar's Tent",
-   "kind": "landmark",
-   "at": [
-    1500,
-    2050
-   ],
-   "blurb": "Ione Thessaly's tent, buried in paper."
+   "blurb": "Frontier fort, resupply and allies"
   },
   {
    "name": "Old Tower",
    "kind": "landmark",
    "at": [
-    5400,
-    1300
+    6260,
+    863
    ],
-   "blurb": "The watchtower that gave the fort its name."
+   "blurb": "Frontier fort, resupply and allies"
   },
   {
-   "name": "Mountain Stair",
+   "name": "Scout's Post",
    "kind": "landmark",
    "at": [
-    7540,
-    2000
+    6338,
+    3150
    ],
-   "blurb": "Up to the Shattered Observatory."
+   "blurb": "Frontier fort, resupply and allies"
+  },
+  {
+   "name": "Riftscar Moor",
+   "kind": "landmark",
+   "at": [
+    2928,
+    4774
+   ],
+   "blurb": "To Riftscar Moor."
+  },
+  {
+   "name": "Shattered Observatory",
+   "kind": "landmark",
+   "at": [
+    3967,
+    190
+   ],
+   "blurb": "To Shattered Observatory."
   }
  ],
  "world_id": "oldwatch",
  "grade": {
   "mul": [
-   0.94,
+   0.96,
    0.92,
-   0.92
+   0.86
   ],
-  "desat": 0.3,
+  "desat": 0.25,
   "lift": [
    0.05,
-   0.05,
-   0.06,
+   0.04,
+   0.03,
    1.0
   ],
   "mist": [
+   0.8,
    0.78,
-   0.76,
-   0.82
+   0.74
   ],
   "water": [
-   0.2,
-   0.3,
-   0.36
+   0.25,
+   0.35,
+   0.4
   ]
- }
+ },
+ "rim": {
+  "props": [
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_moss"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    1930,
+    1930
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6260,
+    863
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    6338,
+    3150
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_mushrooms"
+   ],
+   "n": 6
+  }
+ ]
 }

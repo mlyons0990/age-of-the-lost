@@ -1,0 +1,78 @@
+{
+ "zone": "the_choirs_last_hymn",
+ "levels": [
+  64,
+  65
+ ],
+ "packs": 14,
+ "seed": 730,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "the_choirs_last_hymn_0",
+    "the_choirs_last_hymn_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_choirs_last_hymn_1",
+    "the_choirs_last_hymn_1",
+    "the_choirs_last_hymn_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "the_choirs_last_hymn_0",
+    "the_choirs_last_hymn_1",
+    "the_choirs_last_hymn_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "the_choirs_last_hymn_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "the_choirs_last_hymn_2",
+    "the_choirs_last_hymn_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "the_choirs_last_hymn_0",
+    "the_choirs_last_hymn_0",
+    "the_choirs_last_hymn_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6240,
+    992
+   ],
+   "types": [],
+   "boss": "the_choirs_last_hymn_boss_u",
+   "boss_type": "the_choirs_last_hymn_boss",
+   "boss_name": "The Last Voice",
+   "needs_quest": "Q_A07_06"
+  }
+ ],
+ "keep_clear": [
+  [
+   6240,
+   992,
+   700
+  ]
+ ]
+}

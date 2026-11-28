@@ -1,5 +1,5 @@
 {
- "name": "The Shattered Observatory",
+ "name": "Shattered Observatory",
  "kit": "assets/kit/forest_hf",
  "size": [
   7680,
@@ -8,205 +8,304 @@
  "ppm": 71.8,
  "pitch": 31.0,
  "hero_px_1080": 125.0,
- "ground_base": "grass_old",
- "seed": 59,
+ "ground_base": "dirt",
+ "seed": 3915,
  "paths": [
   {
    "pts": [
     [
-     -80,
-     2470
+     4623,
+     1120
     ],
     [
-     700,
-     2470
+     3681,
+     1277
+    ],
+    [
+     2729,
+     1397
     ]
    ],
-   "width": 330,
-   "layer": "flagstone"
+   "width": 282,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     700,
-     2470
+     2729,
+     1397
     ],
     [
-     2000,
-     1400
+     1902,
+     1659
+    ],
+    [
+     1010,
+     1745
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 290,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     700,
-     2470
+     4623,
+     1120
     ],
     [
-     2000,
-     3500
+     5559,
+     1422
+    ],
+    [
+     6580,
+     1411
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 320,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2000,
-     1400
+     2729,
+     1397
     ],
     [
-     3500,
-     2470
+     2897,
+     2152
+    ],
+    [
+     3399,
+     2821
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 323,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     2000,
-     3500
+     3399,
+     2821
     ],
     [
-     3500,
-     2470
+     4339,
+     2738
+    ],
+    [
+     5149,
+     3103
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 260,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     3500,
-     2470
+     5149,
+     3103
     ],
     [
-     5000,
-     1500
+     5784,
+     3519
+    ],
+    [
+     6207,
+     4066
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 265,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     3500,
-     2470
+     3399,
+     2821
     ],
     [
-     5000,
-     3500
+     2395,
+     3194
+    ],
+    [
+     1418,
+     3605
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 260,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     5000,
-     1500
+     4623,
+     1120
     ],
     [
-     6700,
-     2470
+     3905,
+     1928
+    ],
+    [
+     3399,
+     2821
     ]
    ],
-   "width": 300,
-   "layer": "flagstone"
+   "width": 293,
+   "layer": "flagstone",
+   "wander": 0.8
   },
   {
    "pts": [
     [
-     5000,
-     3500
+     1418,
+     3605
     ],
     [
-     6700,
-     2470
+     4071,
+     2601
+    ],
+    [
+     6580,
+     1411
+    ]
+   ],
+   "width": 280,
+   "layer": "flagstone",
+   "wander": 0.8
+  },
+  {
+   "pts": [
+    [
+     140,
+     4010
+    ],
+    [
+     840,
+     4010
+    ]
+   ],
+   "width": 320,
+   "layer": "flagstone",
+   "straight": true
+  },
+  {
+   "pts": [
+    [
+     790,
+     4010
+    ],
+    [
+     1418,
+     3605
     ]
    ],
    "width": 300,
-   "layer": "flagstone"
+   "layer": "flagstone",
+   "wander": 0.6
   }
  ],
  "patches": [
   {
    "at": [
-    700,
-    2470
+    4623,
+    1120
    ],
-   "r": 520,
+   "r": 632,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    2000,
-    1400
+    5149,
+    3103
    ],
-   "r": 560,
+   "r": 470,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    2000,
-    3500
+    1418,
+    3605
    ],
-   "r": 560,
+   "r": 598,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    3500,
-    2470
+    3399,
+    2821
    ],
-   "r": 700,
+   "r": 548,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    5000,
-    1500
+    6207,
+    4066
    ],
-   "r": 600,
+   "r": 438,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    5000,
-    3500
+    1010,
+    1745
    ],
-   "r": 600,
+   "r": 501,
    "layer": "flagstone",
    "squash": 0.515
   },
   {
    "at": [
-    6700,
-    2470
+    2729,
+    1397
    ],
-   "r": 820,
+   "r": 439,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6580,
+    1411
+   ],
+   "r": 496,
    "layer": "flagstone",
    "squash": 0.515
   }
  ],
  "clear": [
   [
-   160,
-   2470,
+   140,
+   4010,
+   380
+  ],
+  [
+   6580,
+   1411,
+   300
+  ],
+  [
+   6207,
+   4066,
+   300
+  ],
+  [
+   4623,
+   1120,
    300
   ]
  ],
@@ -219,7 +318,7 @@
    ]
   ],
   "spacing": 99999,
-  "cut": 0.72,
+  "cut": 0.82,
   "grove_px": 1500,
   "frame": 0.45,
   "frame_px": 900,
@@ -243,10 +342,26 @@
   ],
   "clumps_per_mpx": 0,
   "clumps": {
-   "ferns": {
-    "w": 4,
+   "mixed": {
+    "w": 2,
     "n": [
-     3,
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "ferns": {
+    "w": 1,
+    "n": [
+     2,
      6
     ],
     "r": 170,
@@ -255,58 +370,18 @@
      "b_fern"
     ]
    },
-   "lavender": {
-    "w": 2,
-    "n": [
-     3,
-     7
-    ],
-    "r": 160,
-    "props": [
-     "a_lavender",
-     "b_lavender"
-    ]
-   },
-   "white": {
-    "w": 2,
-    "n": [
-     2,
-     5
-    ],
-    "r": 140,
-    "props": [
-     "a_shrub_white",
-     "b_shrub_white"
-    ]
-   },
    "bushes": {
-    "w": 3,
+    "w": 1,
     "n": [
      2,
-     4
+     6
     ],
-    "r": 150,
+    "r": 170,
     "props": [
      "a_bush_round",
      "b_bush_round",
      "a_bush_yellow",
      "b_bush_yellow"
-    ]
-   },
-   "mixed": {
-    "w": 3,
-    "n": [
-     3,
-     6
-    ],
-    "r": 180,
-    "props": [
-     "a_fern",
-     "a_grass_tall",
-     "b_grass_tall",
-     "a_lavender",
-     "b_shrub_white",
-     "b_bush_round"
     ]
    }
   },
@@ -331,7 +406,7 @@
   "litter_ground": 0.65,
   "max_canopy_cover": 0.06,
   "cover": {
-   "per_mpx": 55,
+   "per_mpx": 10,
    "props": [
     "ga_tallgrass",
     "ga_longgrass",
@@ -372,7 +447,7 @@
  },
  "edges": [],
  "light": {
-  "canopy": 0.55,
+  "canopy": 0.5,
   "contact": 0.4,
   "pools": 0.3,
   "dapple_px": 40,
@@ -380,64 +455,65 @@
    0.3,
    0.16
   ],
-  "exposure": 0.75,
+  "exposure": 0.78,
   "overhead": 0.0,
   "over_density": 0,
   "tree_mist": 0.0,
   "open": [
    [
-    700,
-    2470,
-    416.0,
+    4623,
+    1120,
+    537.1999999999999,
     0.6
    ],
    [
-    2000,
-    1400,
-    448.0,
+    5149,
+    3103,
+    399.5,
     0.6
    ],
    [
-    2000,
-    3500,
-    448.0,
+    1418,
+    3605,
+    508.3,
     0.6
    ],
    [
-    3500,
-    2470,
-    560.0,
+    3399,
+    2821,
+    465.8,
     0.6
    ],
    [
-    5000,
-    1500,
-    480.0,
+    6207,
+    4066,
+    372.3,
     0.6
    ],
    [
-    5000,
-    3500,
-    480.0,
+    1010,
+    1745,
+    425.84999999999997,
     0.6
    ],
    [
-    6700,
-    2470,
-    656.0,
+    2729,
+    1397,
+    373.15,
+    0.6
+   ],
+   [
+    6580,
+    1411,
+    421.59999999999997,
     0.6
    ]
   ],
   "shafts": [
    [
-    3500,
-    2270,
-    380
-   ],
-   [
-    6700,
-    2270,
-    380
+    6580,
+    1191,
+    420
    ]
   ],
   "prop_mist": false,
@@ -445,11 +521,11 @@
  },
  "waypoints": [
   {
-   "id": "observatory_dome",
-   "name": "Broken Dome",
+   "id": "shattered_observatory_wp",
+   "name": "Shattered Observatory",
    "at": [
-    3500,
-    2470
+    5149,
+    3103
    ],
    "radius_px": 200
   }
@@ -460,12 +536,12 @@
    "to": "oldwatch",
    "at": [
     140,
-    2470
+    4010
    ],
    "r": 170,
    "arrive": [
-    7200,
-    2000
+    3967,
+    526
    ]
   }
  ],
@@ -490,81 +566,252 @@
   ]
  ],
  "spawn": [
-  620,
-  2470
+  560,
+  4010
  ],
  "targets": [],
  "map_pois": [
   {
-   "name": "Mountain Stair",
-   "kind": "landmark",
-   "at": [
-    160,
-    2470
-   ],
-   "blurb": "Down to Oldwatch."
-  },
-  {
    "name": "Broken Dome",
    "kind": "landmark",
    "at": [
-    3500,
-    2470
+    6580,
+    1411
    ],
-   "blurb": "The dome is open to the sky; a waypoint lies under the star-chart floor."
+   "blurb": "Observatory ruins on the mountain behind Oldwatch"
   },
   {
    "name": "Lens Gallery",
-   "kind": "cache",
+   "kind": "landmark",
    "at": [
-    5000,
-    1500
+    6207,
+    4066
    ],
-   "blurb": "Great lenses, some of them still turning."
+   "blurb": "Observatory ruins on the mountain behind Oldwatch"
   },
   {
    "name": "The Grand Orrery",
    "kind": "landmark",
    "at": [
-    6700,
-    2470
+    4623,
+    1120
    ],
-   "blurb": "A model of the heavens. One star on it is missing from our sky."
+   "blurb": "Observatory ruins on the mountain behind Oldwatch"
+  },
+  {
+   "name": "Oldwatch",
+   "kind": "landmark",
+   "at": [
+    140,
+    4010
+   ],
+   "blurb": "To Oldwatch."
   }
  ],
- "world_id": "observatory",
+ "world_id": "shattered_observatory",
  "grade": {
   "mul": [
    0.8,
    0.82,
-   0.98
+   1.02
   ],
   "desat": 0.35,
   "lift": [
-   0.04,
-   0.04,
-   0.08,
+   0.05,
+   0.05,
+   0.1,
    1.0
   ],
   "mist": [
-   0.6,
-   0.62,
-   0.8
+   0.7,
+   0.72,
+   0.95
   ],
   "water": [
-   0.2,
+   0.24,
    0.26,
-   0.4
+   0.5
   ]
  },
+ "rim": {
+  "props": [
+   "a_rock_small",
+   "b_rock_small",
+   "a_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    4623,
+    1120
+   ],
+   "r": 600.4,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5149,
+    3103
+   ],
+   "r": 446.5,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1418,
+    3605
+   ],
+   "r": 568.1,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    3399,
+    2821
+   ],
+   "r": 520.6,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6207,
+    4066
+   ],
+   "r": 416.09999999999997,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    1010,
+    1745
+   ],
+   "r": 475.95,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    2729,
+    1397
+   ],
+   "r": 417.04999999999995,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6580,
+    1411
+   ],
+   "r": 471.2,
+   "props": [
+    "a_pebbles",
+    "a_moss",
+    "a_leaves",
+    "a_pebbles",
+    "a_mushrooms"
+   ],
+   "n": 10,
+   "on_path": true,
+   "scale": [
+    0.7,
+    1.1
+   ]
+  }
+ ],
  "enclose": {
   "props": [
-   "a_rock_tall",
-   "b_rock_tall",
+   "a_rock_flat",
+   "b_rock_flat",
    "a_rock_pair",
    "b_rock_pair",
-   "a_rock_flat",
-   "b_rock_flat"
+   "a_rock_tall",
+   "b_rock_tall"
   ],
   "spacing": 240,
   "fill": 0.5,

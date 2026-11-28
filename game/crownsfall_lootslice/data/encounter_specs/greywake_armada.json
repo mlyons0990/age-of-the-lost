@@ -1,0 +1,78 @@
+{
+ "zone": "greywake_armada",
+ "levels": [
+  52,
+  53
+ ],
+ "packs": 30,
+ "seed": 328,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "greywake_armada_0",
+    "greywake_armada_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "greywake_armada_1",
+    "greywake_armada_1",
+    "greywake_armada_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "greywake_armada_0",
+    "greywake_armada_1",
+    "greywake_armada_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "greywake_armada_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "greywake_armada_2",
+    "greywake_armada_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "greywake_armada_0",
+    "greywake_armada_0",
+    "greywake_armada_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    943,
+    3126
+   ],
+   "types": [],
+   "boss": "greywake_armada_boss_u",
+   "boss_type": "greywake_armada_boss",
+   "boss_name": "Admiral of No Flag",
+   "needs_quest": "Q_A06_04"
+  }
+ ],
+ "keep_clear": [
+  [
+   943,
+   3126,
+   700
+  ]
+ ]
+}

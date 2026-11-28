@@ -1,0 +1,83 @@
+{
+ "zone": "greywake_coast",
+ "levels": [
+  16,
+  17
+ ],
+ "packs": 30,
+ "seed": 195,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "greywake_coast_0",
+    "greywake_coast_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "greywake_coast_1",
+    "greywake_coast_1",
+    "greywake_coast_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "greywake_coast_0",
+    "greywake_coast_1",
+    "greywake_coast_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "greywake_coast_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "greywake_coast_2",
+    "greywake_coast_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "greywake_coast_0",
+    "greywake_coast_0",
+    "greywake_coast_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    10644,
+    846
+   ],
+   "types": [],
+   "boss": "greywake_coast_boss_u",
+   "boss_type": "greywake_coast_boss",
+   "boss_name": "The Tide of Names",
+   "needs_quest": "Q_A02_10"
+  }
+ ],
+ "keep_clear": [
+  [
+   8650,
+   2611,
+   700
+  ],
+  [
+   10644,
+   846,
+   700
+  ]
+ ]
+}

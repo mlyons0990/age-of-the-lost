@@ -17,21 +17,22 @@ var gear_visuals
 const GD := preload("res://scripts/game_data.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const NPC_MODELS := {"knight": "res://models/higgsfield_pilot/knight_pilot_armed.glb", "mage": "res://models/higgsfield_mage/mage_pilot_armed.glb"}
-const NPCS := {"crownsfall": [
-	{"id": "ralden", "name": "Captain Ralden", "model": "knight", "at": [2330, 1060], "tint": Color(0.82, 0.86, 1.0), "height": 1.86,
-		"idle": "Crownsfall owes you a debt, Wayfarer. The road east will call for you soon."},
-	{"id": "quartermaster", "name": "Quartermaster Ysolde", "model": "mage", "at": [1500, 1060], "tint": Color(1.0, 0.92, 0.85), "height": 1.7, "vendor": true}],
-	# Saltmarrow (greybox): stand-in 3D models until their paintings exist
-	"saltmarrow": [
-	{"id": "harbourmaster", "name": "Harbourmaster Wenna", "model": "mage", "at": [3560, 2120], "tint": Color(0.8, 0.9, 1.0), "height": 1.72,
-		"idle": "The tide still comes in, Wayfarer, even if the ships don't."},
-	{"id": "chandler", "name": "Chandler Brisk", "model": "knight", "at": [4080, 2140], "tint": Color(1.0, 0.88, 0.72), "height": 1.8, "vendor": true}],
-	"oldwatch": [
-	{"id": "ione", "name": "Ione Thessaly", "model": "mage", "at": [1560, 2120], "tint": Color(0.92, 0.86, 1.0), "height": 1.68,
-		"idle": "Every rift on the moor writes a little more of the Concord back into the world. I intend to read all of it."},
-	{"id": "hode", "name": "Sergeant Hode", "model": "knight", "at": [4300, 2300], "tint": Color(0.86, 0.9, 0.86), "height": 1.84, "vendor": true}]}
-## Towns: no monsters, the hero is healed on arrival
-const SAFE_ZONES := ["crownsfall", "saltmarrow", "oldwatch"]
+## NPCs per zone (data/npcs.json, written by tools/campaign_build.py from the bible's cast): id, name, model
+## (3D stand-in until painted), at, tint [r,g,b], height, idle line, vendor, art (painted art key, default id).
+var NPCS: Dictionary = {}
+## Towns and hubs: no monsters, the hero is healed on arrival (data/npcs.json "safe_zones").
+var SAFE_ZONES: Array = ["crownsfall"]
+func _load_npcs() -> void:
+	var raw: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/npcs.json"))
+	SAFE_ZONES = raw.get("safe_zones", ["crownsfall"])
+	NPCS = {}
+	for zid in raw.get("zones", {}):
+		var list := []
+		for d0 in raw["zones"][zid]:
+			var d: Dictionary = d0.duplicate()
+			var t: Array = d.get("tint", [1, 1, 1]); d["tint"] = Color(float(t[0]), float(t[1]), float(t[2]))
+			list.append(d)
+		NPCS[zid] = list
 const SOUNDS := {"hit": "slash", "pickup": "pickup", "potion": "potion", "equip": "equip", "click": "ui_click", "level": "winter_crown", "quest": "ashen_ward", "boss": "starfall_script"}
 
 var lab
@@ -65,6 +66,7 @@ func setup(owner_lab, st) -> void:
 	auto_gold = bool(preload("res://scripts/three_d/aotl_save.gd").open().get_value("settings", "auto_gold", true))
 	lab = owner_lab
 	state = st
+	_load_npcs()
 	quests_def = JSON.parse_string(FileAccess.get_file_as_string("res://data/quests.json"))["quests"]
 	encounters = JSON.parse_string(FileAccess.get_file_as_string("res://data/encounters.json"))
 	for i in 6:
@@ -73,8 +75,9 @@ func setup(owner_lab, st) -> void:
 	ui.name = "GameUI"
 	lab.add_child(ui)
 	ui.setup(self)
-	if state.quest_state("city_reborn") == "":
-		state.set_quest("city_reborn", "active", 0)
+	var first := String(JSON.parse_string(FileAccess.get_file_as_string("res://data/quests.json")).get("first", "Q_A01_01"))
+	if state.quest_state(first) == "":
+		state.set_quest(first, "active", 0)
 	gear_visuals = GEAR_VISUALS.new()
 	gear_visuals.name = "GearVisuals"
 	lab.player.add_child(gear_visuals)
@@ -213,6 +216,13 @@ func _spawn_encounters(zid: String, only_quest := "") -> void:
 			if p.has("needs_quest") and state.quest_state(String(p["needs_quest"])) != "active": continue
 		var lvl := _zone_level(zid, float(p["at"][0]))
 		var centre: Vector3 = lab.zone_px_to_world(float(p["at"][0]), float(p["at"][1]))
+		if not lab.zone_walkable(centre):     # a prop or wall on the exact spot: take the nearest open ground
+			for rr in [0.8, 1.6, 2.4, 3.2, 4.0]:
+				var found := false
+				for k in 12:
+					var c2: Vector3 = centre + Vector3(cos(TAU * k / 12.0), 0, sin(TAU * k / 12.0)) * rr
+					if lab.zone_walkable(c2): centre = c2; found = true; break
+				if found: break
 		var pack := []
 		var specs: Array = []
 		for ty in p.get("types", []): specs.append({"type": ty})
@@ -264,7 +274,7 @@ func _spawn_npcs(zid: String) -> void:
 		lab.add_child(node)
 		var at: Vector3 = lab.zone_px_to_world(float(d["at"][0]), float(d["at"][1]))
 		node.global_position = at
-		var art := _npc_art(String(d["id"]))
+		var art := _npc_art(String(d.get("art", d["id"])))
 		var sprite: Sprite3D = null
 		if not art.is_empty():
 			# painted 2D NPC (owner: static NPCs are 2D), like the enemies: upright, standing on its feet
@@ -346,7 +356,7 @@ func _upright_scale() -> float:
 	return clampf(cos(asin(clampf(-fwd.y, -1.0, 1.0))), 0.3, 1.0)
 
 func npc_portrait(id: String) -> Texture2D:
-	var a := _npc_art(id)
+	var a := _npc_art(String(npc_def(id).get("art", id)))
 	return a.get("portrait")
 
 var talking_npc := ""
@@ -413,7 +423,11 @@ func _on_monster_died(m: Node3D) -> void:
 		for q in quests_def:
 			if String(q.get("boss", "")) == m.unique_id and state.quest_state(String(q["id"])) == "active":
 				state.set_quest(String(q["id"]), "ready", 1)
-				ui.toast("%s is slain! %s." % [m.ename, turn_in_text(String(q["id"]))], Color("f2c14e"), 4.0)
+				if q.get("auto", false):
+					ui.toast("%s is slain!" % m.ename, Color("f2c14e"), 3.0)
+					complete_quest.call_deferred(String(q["id"]))
+				else:
+					ui.toast("%s is slain! %s." % [m.ename, turn_in_text(String(q["id"]))], Color("f2c14e"), 4.0)
 				play("quest")
 		autosave()
 	elif m.unique_id != "":
@@ -476,10 +490,11 @@ func _pickup(l: Node3D) -> bool:
 			state.potions[l.potion] = mini(99, int(state.potions[l.potion]) + 1)
 			ui.toast("+1 %s" % l.text(), l.colour(), 1.2, 18)
 		"quest":
-			var qid := String(l.item.get("quest", "lost_tomes"))
+			var qid := String(l.item.get("quest", ""))
 			var need: int = int(quest_def(qid).get("count", 3))
 			var n: int = int(state.quest(qid).get("progress", 0)) + 1
 			state.set_quest(qid, "ready" if n >= need else "active", n)
+			if n >= need and quest_def(qid).get("auto", false): complete_quest.call_deferred(qid)
 			ui.toast("%s recovered (%d/%d)" % [String(l.item.get("name", "Archive Page")), n, need] + (("  —  " + turn_in_text(qid)) if n >= need else ""), Color("ff9a2e"), 3.5)
 			play("quest")
 			quest_dirty = true
@@ -547,8 +562,9 @@ func talk(npc_id: String) -> void:
 		return
 	var st: String = state.quest_state(String(q["id"]))
 	var lines: Array = q.get("talk", {}).get(st, [String(npc_def(npc_id).get("name", "Captain Ralden")), "..."])
-	if q["id"] == "city_reborn":
-		ui.dialogue(lines[0], lines.slice(1), [["I will bring them back.", func(): complete_quest("city_reborn")]], npc_portrait(npc_id))
+	if q.get("talk_complete", false) and st == "active":
+		var qid := String(q["id"])
+		ui.dialogue(lines[0], lines.slice(1), [["I'll find out.", func(): complete_quest(qid)]], npc_portrait(npc_id))
 	elif st == "ready":
 		ui.dialogue(lines[0], lines.slice(1), [["Claim your reward", func(): complete_quest(String(q["id"]))]], npc_portrait(npc_id))
 	else:
@@ -946,8 +962,13 @@ func _spawn_lorecasts(zid: String) -> void:
 		node.add_child(lbl)
 		lore_sites.append({"site": site, "node": node, "pos": at, "woken": learned, "glow": gm})
 
+## Lorecasting is learned before it can be used (bible: unlocked at Silverroot Grove, Q_A01_06).
+func lorecasting_unlocked() -> bool:
+	var need := String(SKILLS.lorecast_requires())
+	return need == "" or state.quest_state(need) == "done"
+
 func _tick_lorecasts() -> void:
-	if lab == null or lab.player == null: return
+	if lab == null or lab.player == null or not lorecasting_unlocked(): return
 	for ls in lore_sites:
 		if ls["woken"]: continue
 		var p: Vector3 = lab.player.global_position

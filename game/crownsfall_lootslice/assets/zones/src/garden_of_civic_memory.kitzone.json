@@ -1,0 +1,760 @@
+{
+ "name": "Garden of Civic Memory",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 7378,
+ "paths": [
+  {
+   "pts": [
+    [
+     2101,
+     190
+    ],
+    [
+     2101,
+     494
+    ],
+    [
+     2687,
+     1025
+    ],
+    [
+     3455,
+     1427
+    ],
+    [
+     4125,
+     1899
+    ],
+    [
+     4853,
+     2331
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     11380,
+     3123
+    ],
+    [
+     11000,
+     3123
+    ],
+    [
+     9312,
+     3606
+    ],
+    [
+     7982,
+     2471
+    ],
+    [
+     6510,
+     1979
+    ],
+    [
+     4853,
+     2331
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt"
+  },
+  {
+   "pts": [
+    [
+     7687,
+     2372
+    ],
+    [
+     7928,
+     2051
+    ],
+    [
+     8328,
+     1779
+    ]
+   ],
+   "width": 161,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     9312,
+     3606
+    ],
+    [
+     8964,
+     3851
+    ],
+    [
+     8732,
+     4060
+    ]
+   ],
+   "width": 185,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": true
+  },
+  {
+   "pts": [
+    [
+     4058,
+     1851
+    ],
+    [
+     3421,
+     1999
+    ],
+    [
+     2632,
+     2456
+    ]
+   ],
+   "width": 181,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3455,
+     1427
+    ],
+    [
+     4198,
+     962
+    ],
+    [
+     4784,
+     781
+    ]
+   ],
+   "width": 155,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    8305,
+    4297
+   ],
+   "r": 732,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4210,
+    2171
+   ],
+   "r": 568,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    5474,
+    2931
+   ],
+   "r": 712,
+   "layer": "dirt",
+   "squash": 0.5,
+   "no_rim": true
+  },
+  {
+   "at": [
+    4853,
+    2331
+   ],
+   "r": 440,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8328,
+    1779
+   ],
+   "r": 434,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2632,
+    2456
+   ],
+   "r": 430,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4784,
+    781
+   ],
+   "r": 778,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    7276,
+    3399
+   ],
+   "r": 233,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9719,
+    2844
+   ],
+   "r": 269,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4424,
+    3104
+   ],
+   "r": 291,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   2101,
+   190,
+   380
+  ],
+  [
+   11380,
+   3123,
+   380
+  ],
+  [
+   8328,
+   1779,
+   300
+  ],
+  [
+   8732,
+   4060,
+   300
+  ],
+  [
+   2632,
+   2456,
+   300
+  ],
+  [
+   4784,
+   781,
+   300
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "oak_b",
+    4
+   ],
+   [
+    "oak_a",
+    3
+   ],
+   [
+    "gnarled_a",
+    1
+   ]
+  ],
+  "spacing": 760,
+  "cut": 0.62,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 20,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   },
+   "lavender": {
+    "w": 1,
+    "n": [
+     2,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 120,
+   "jitter": 120,
+   "density": 0.7,
+   "min_gap": 40,
+   "props": [
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "b_grass_tall"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.34,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    8328,
+    1779,
+    560,
+    0.45
+   ],
+   [
+    8732,
+    4060,
+    560,
+    0.45
+   ],
+   [
+    2632,
+    2456,
+    560,
+    0.45
+   ],
+   [
+    4784,
+    781,
+    560,
+    0.45
+   ],
+   [
+    4853,
+    2331,
+    600,
+    0.5
+   ]
+  ],
+  "shafts": [
+   [
+    4853,
+    2111,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": []
+ },
+ "waypoints": [
+  {
+   "id": "garden_of_civic_memory_wp",
+   "name": "Garden of Civic Memory",
+   "at": [
+    4853,
+    2331
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Workers' Terrace",
+   "to": "workers_terrace",
+   "at": [
+    2101,
+    190
+   ],
+   "r": 170,
+   "arrive": [
+    2127,
+    4438
+   ]
+  },
+  {
+   "name": "Vael Estate",
+   "to": "vael_estate",
+   "at": [
+    11380,
+    3123
+   ],
+   "r": 170,
+   "arrive": [
+    560,
+    3174
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  2101,
+  526
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Memorial Trees",
+   "kind": "landmark",
+   "at": [
+    8328,
+    1779
+   ],
+   "blurb": "Memorial trees, inscribed bronze, fountains"
+  },
+  {
+   "name": "Inscribed Bronze",
+   "kind": "landmark",
+   "at": [
+    8732,
+    4060
+   ],
+   "blurb": "Memorial trees, inscribed bronze, fountains"
+  },
+  {
+   "name": "Fountain Court",
+   "kind": "landmark",
+   "at": [
+    2632,
+    2456
+   ],
+   "blurb": "Memorial trees, inscribed bronze, fountains"
+  },
+  {
+   "name": "Ledger of the Living",
+   "kind": "landmark",
+   "at": [
+    4784,
+    781
+   ],
+   "blurb": "Memorial trees, inscribed bronze, fountains"
+  },
+  {
+   "name": "Workers' Terrace",
+   "kind": "landmark",
+   "at": [
+    2101,
+    190
+   ],
+   "blurb": "To Workers' Terrace."
+  },
+  {
+   "name": "Vael Estate",
+   "kind": "landmark",
+   "at": [
+    11380,
+    3123
+   ],
+   "blurb": "To Vael Estate."
+  }
+ ],
+ "world_id": "garden_of_civic_memory",
+ "grade": {
+  "mul": [
+   1.06,
+   1.08,
+   0.94
+  ],
+  "desat": 0.05,
+  "lift": [
+   0.06,
+   0.06,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   0.96,
+   0.96,
+   0.86
+  ],
+  "water": [
+   0.3,
+   0.55,
+   0.68
+  ]
+ },
+ "rim": {
+  "props": [
+   "a_bush_round",
+   "b_bush_round",
+   "a_bush_yellow",
+   "b_bush_yellow",
+   "a_fern",
+   "b_fern",
+   "a_grass_tall",
+   "b_grass_tall"
+  ],
+  "density": 1.0,
+  "chance": 0.5
+ },
+ "dress": [
+  {
+   "at": [
+    8328,
+    1779
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  },
+  {
+   "at": [
+    8732,
+    4060
+   ],
+   "r": 380,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow",
+    "a_moss",
+    "a_pebbles"
+   ],
+   "n": 10
+  },
+  {
+   "at": [
+    2632,
+    2456
+   ],
+   "r": 470,
+   "props": [
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_rock_pair"
+   ],
+   "n": 8,
+   "scale": [
+    0.7,
+    1.0
+   ]
+  },
+  {
+   "at": [
+    4784,
+    781
+   ],
+   "r": 420,
+   "props": [
+    "a_rock_flat",
+    "b_rock_flat",
+    "a_rock_pair",
+    "b_rock_pair",
+    "a_rock_tall",
+    "b_rock_tall",
+    "a_bush_round",
+    "b_bush_round",
+    "a_bush_yellow",
+    "b_bush_yellow"
+   ],
+   "n": 6
+  }
+ ]
+}

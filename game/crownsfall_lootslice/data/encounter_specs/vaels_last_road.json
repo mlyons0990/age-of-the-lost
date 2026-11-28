@@ -1,0 +1,78 @@
+{
+ "zone": "vaels_last_road",
+ "levels": [
+  34,
+  35
+ ],
+ "packs": 30,
+ "seed": 233,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "vaels_last_road_0",
+    "vaels_last_road_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "vaels_last_road_1",
+    "vaels_last_road_1",
+    "vaels_last_road_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "vaels_last_road_0",
+    "vaels_last_road_1",
+    "vaels_last_road_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "vaels_last_road_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "vaels_last_road_2",
+    "vaels_last_road_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "vaels_last_road_0",
+    "vaels_last_road_0",
+    "vaels_last_road_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5161,
+    2316
+   ],
+   "types": [],
+   "boss": "vaels_last_road_boss_u",
+   "boss_type": "vaels_last_road_boss",
+   "boss_name": "Seam-Touched Pursuer",
+   "needs_quest": "Q_A04_06"
+  }
+ ],
+ "keep_clear": [
+  [
+   5161,
+   2316,
+   700
+  ]
+ ]
+}

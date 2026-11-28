@@ -51,6 +51,12 @@ static func lorecast_sites() -> Array:
 		_cache["lore_sites"] = JSON.parse_string(FileAccess.get_file_as_string("res://data/lorecasts.json")).get("sites", [])
 	return _cache["lore_sites"]
 
+## The quest that teaches Lorecasting ("" = always available).
+static func lorecast_requires() -> String:
+	if not _cache.has("lore_req"):
+		_cache["lore_req"] = String(JSON.parse_string(FileAccess.get_file_as_string("res://data/lorecasts.json")).get("requires_quest", ""))
+	return _cache["lore_req"]
+
 static func lore_def(id: String) -> Dictionary:
 	if not _cache.has("lore_" + id):
 		var d := {}

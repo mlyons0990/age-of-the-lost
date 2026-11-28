@@ -1,0 +1,78 @@
+{
+ "zone": "whisperwood_forest",
+ "levels": [
+  1,
+  2
+ ],
+ "packs": 30,
+ "seed": 551,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "whisperwood_forest_0",
+    "whisperwood_forest_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "whisperwood_forest_1",
+    "whisperwood_forest_1",
+    "whisperwood_forest_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "whisperwood_forest_0",
+    "whisperwood_forest_1",
+    "whisperwood_forest_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "whisperwood_forest_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "whisperwood_forest_2",
+    "whisperwood_forest_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "whisperwood_forest_0",
+    "whisperwood_forest_0",
+    "whisperwood_forest_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    5650,
+    3000
+   ],
+   "types": [],
+   "boss": "whisperwood_forest_boss_u",
+   "boss_type": "whisperwood_forest_boss",
+   "boss_name": "The Thornwarden",
+   "needs_quest": "Q_A01_04"
+  }
+ ],
+ "keep_clear": [
+  [
+   5650,
+   3000,
+   700
+  ]
+ ]
+}

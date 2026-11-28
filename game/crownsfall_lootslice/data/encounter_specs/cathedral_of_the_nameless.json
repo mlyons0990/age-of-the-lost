@@ -1,0 +1,78 @@
+{
+ "zone": "cathedral_of_the_nameless",
+ "levels": [
+  4,
+  5
+ ],
+ "packs": 14,
+ "seed": 790,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "cathedral_of_the_nameless_0",
+    "cathedral_of_the_nameless_0"
+   ]
+  ],
+  [
+   3,
+   [
+    "cathedral_of_the_nameless_1",
+    "cathedral_of_the_nameless_1",
+    "cathedral_of_the_nameless_1"
+   ]
+  ],
+  [
+   3,
+   [
+    "cathedral_of_the_nameless_0",
+    "cathedral_of_the_nameless_1",
+    "cathedral_of_the_nameless_1"
+   ]
+  ],
+  [
+   2,
+   [
+    "cathedral_of_the_nameless_2"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "cathedral_of_the_nameless_2",
+    "cathedral_of_the_nameless_0"
+   ]
+  ],
+  [
+   1,
+   [
+    "cathedral_of_the_nameless_0",
+    "cathedral_of_the_nameless_0",
+    "cathedral_of_the_nameless_0"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6545,
+    897
+   ],
+   "types": [],
+   "boss": "cathedral_of_the_nameless_boss_u",
+   "boss_type": "cathedral_of_the_nameless_boss",
+   "boss_name": "Ser Caldrin Vael",
+   "needs_quest": "Q_A01_13"
+  }
+ ],
+ "keep_clear": [
+  [
+   6545,
+   897,
+   700
+  ]
+ ]
+}

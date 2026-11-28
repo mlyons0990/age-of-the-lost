@@ -1,0 +1,347 @@
+{
+ "size": [
+  13533,
+  5808
+ ],
+ "name": "Saltmarrow",
+ "world_id": "saltmarrow",
+ "ppm": 120.0,
+ "hero_px_1080": 110.0,
+ "pitch": 31.0,
+ "ground_ratio": 0.43,
+ "scale_note": "Painted district (Higgsfield master + 9-section upscale, 11-28), same scale as the Crownsfall Grand City.",
+ "sources": [
+  {
+   "image": "../../art/higgsfield_2026-11/act1_towns/salt/stitched.png",
+   "at": [
+    0,
+    0
+   ],
+   "feather": 0
+  }
+ ],
+ "walkable": [
+  [
+   [
+    4850,
+    0
+   ],
+   [
+    5450,
+    0
+   ],
+   [
+    6250,
+    1450
+   ],
+   [
+    5050,
+    1450
+   ]
+  ],
+  [
+   [
+    4500,
+    1450
+   ],
+   [
+    7800,
+    1450
+   ],
+   [
+    7800,
+    2650
+   ],
+   [
+    5400,
+    2750
+   ],
+   [
+    4500,
+    2550
+   ]
+  ],
+  [
+   [
+    7600,
+    2000
+   ],
+   [
+    13533,
+    1880
+   ],
+   [
+    13533,
+    2340
+   ],
+   [
+    7600,
+    2450
+   ]
+  ],
+  [
+   [
+    5900,
+    2600
+   ],
+   [
+    6450,
+    2600
+   ],
+   [
+    6450,
+    3400
+   ],
+   [
+    5900,
+    3400
+   ]
+  ],
+  [
+   [
+    200,
+    3200
+   ],
+   [
+    11200,
+    3300
+   ],
+   [
+    11200,
+    3680
+   ],
+   [
+    200,
+    3620
+   ]
+  ],
+  [
+   [
+    5750,
+    3450
+   ],
+   [
+    6800,
+    3450
+   ],
+   [
+    6850,
+    5550
+   ],
+   [
+    5800,
+    5550
+   ]
+  ],
+  [
+   [
+    10200,
+    3350
+   ],
+   [
+    11400,
+    3450
+   ],
+   [
+    12050,
+    4000
+   ],
+   [
+    11700,
+    4300
+   ],
+   [
+    10200,
+    3700
+   ]
+  ]
+ ],
+ "spawn": [
+  5350,
+  900
+ ],
+ "targets": [
+  [
+   7000,
+   2200
+  ],
+  [
+   6300,
+   5000
+  ],
+  [
+   1800,
+   3400
+  ],
+  [
+   11500,
+   3800
+  ]
+ ],
+ "occluders": [],
+ "exits": [
+  {
+   "name": "Greyfen Causeway",
+   "to": "greyfen_causeway",
+   "poly": [
+    [
+     4850,
+     20
+    ],
+    [
+     5450,
+     20
+    ],
+    [
+     5500,
+     220
+    ],
+    [
+     4880,
+     220
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      4850,
+      20
+     ],
+     [
+      5450,
+      20
+     ],
+     [
+      5500,
+      220
+     ],
+     [
+      4880,
+      220
+     ]
+    ]
+   },
+   "arrive": [
+    8687,
+    4438
+   ]
+  },
+  {
+   "name": "Wrecker's Strand",
+   "to": "wreckers_strand",
+   "poly": [
+    [
+     13250,
+     1800
+    ],
+    [
+     13533,
+     1800
+    ],
+    [
+     13533,
+     2320
+    ],
+    [
+     13250,
+     2320
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      13250,
+      1800
+     ],
+     [
+      13533,
+      1800
+     ],
+     [
+      13533,
+      2320
+     ],
+     [
+      13250,
+      2320
+     ]
+    ]
+   },
+   "arrive": [
+    8344,
+    526
+   ]
+  }
+ ],
+ "waypoints": [
+  {
+   "id": "saltmarrow_wp",
+   "name": "Saltmarrow",
+   "at": [
+    5000,
+    2250
+   ],
+   "centre_of": [
+    5000,
+    2250
+   ],
+   "radius_px": 200
+  }
+ ],
+ "map_pois": [
+  {
+   "name": "Harbour Square",
+   "kind": "landmark",
+   "at": [
+    7000,
+    2200
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Long Pier",
+   "kind": "landmark",
+   "at": [
+    6300,
+    5000
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Net Lofts",
+   "kind": "landmark",
+   "at": [
+    1800,
+    3400
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Old Lighthouse",
+   "kind": "landmark",
+   "at": [
+    11500,
+    3800
+   ],
+   "blurb": "Coastal sanctuary, trade and respite"
+  },
+  {
+   "name": "Greyfen Causeway",
+   "kind": "landmark",
+   "at": [
+    5170,
+    120
+   ],
+   "blurb": "To Greyfen Causeway."
+  },
+  {
+   "name": "Wrecker's Strand",
+   "kind": "landmark",
+   "at": [
+    13391,
+    2060
+   ],
+   "blurb": "To Wrecker's Strand."
+  }
+ ]
+}

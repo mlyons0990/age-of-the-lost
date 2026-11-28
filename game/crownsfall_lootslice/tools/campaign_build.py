@@ -560,7 +560,9 @@ for zid in DESIGN:
 # painted districts (owner 11-28: unique, packed cityscapes): a stitched Higgsfield painting + hand-traced walkable
 # streets (walk.json: walkable polygons, exit polygons, arrival points, hub, points of interest) replace the kit layout
 PAINTED = {"highward_steps": "../../art/higgsfield_2026-11/crownsfall_districts/hw",
-           "crownsfall_citadel": "../../art/higgsfield_2026-11/crownsfall_districts/cit"}
+           "crownsfall_citadel": "../../art/higgsfield_2026-11/crownsfall_districts/cit",
+           "saltmarrow": "../../art/higgsfield_2026-11/act1_towns/salt",
+           "oldwatch": "../../art/higgsfield_2026-11/act1_towns/old"}
 PAINTED = {k: v for k, v in PAINTED.items() if os.path.exists(v + "/walk.json")}
 PW = {k: json.load(open(v + "/walk.json")) for k, v in PAINTED.items()}
 def _centre(poly): return [int(sum(q[0] for q in poly) / len(poly)), int(sum(q[1] for q in poly) / len(poly))]

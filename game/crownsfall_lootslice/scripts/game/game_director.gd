@@ -18,8 +18,8 @@ const GD := preload("res://scripts/game_data.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const NPC_MODELS := {"knight": "res://models/higgsfield_pilot/knight_pilot_armed.glb", "mage": "res://models/higgsfield_mage/mage_pilot_armed.glb"}
 const NPCS := {"crownsfall": [
-	{"id": "ralden", "name": "Captain Ralden", "model": "knight", "at": [2330, 1060], "tint": Color(0.82, 0.86, 1.0)},
-	{"id": "quartermaster", "name": "Quartermaster Ysolde", "model": "mage", "at": [1500, 1060], "tint": Color(1.0, 0.92, 0.85)}]}
+	{"id": "ralden", "name": "Captain Ralden", "model": "knight", "at": [2330, 1060], "tint": Color(0.82, 0.86, 1.0), "height": 1.86},
+	{"id": "quartermaster", "name": "Quartermaster Ysolde", "model": "mage", "at": [1500, 1060], "tint": Color(1.0, 0.92, 0.85), "height": 1.7}]}
 const SAFE_ZONES := ["crownsfall"]
 const SOUNDS := {"hit": "slash", "pickup": "pickup", "potion": "potion", "equip": "equip", "click": "ui_click", "level": "winter_crown", "quest": "ashen_ward", "boss": "starfall_script"}
 
@@ -247,11 +247,15 @@ func _spawn_npcs(zid: String) -> void:
 			# painted 2D NPC (owner: static NPCs are 2D), like the enemies: upright, standing on its feet
 			sprite = Sprite3D.new()
 			sprite.texture = art["idle"]
-			sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+			# Faces the camera head-on (pivoting on the feet), so the painting keeps its drawn proportions: an upright
+			# sprite seen by the pitched-down camera was squashed to cos(pitch) of its height (owner 11-28: "looks really
+			# short"). Sized to the on-screen height an upright NPC_HEIGHT_M figure has, i.e. the 3D hero's scale.
+			sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 			sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 			sprite.shaded = false
 			sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
-			sprite.pixel_size = NPC_HEIGHT_M / float((art["idle"] as Texture2D).get_height())
+			sprite.set_meta("height_m", float(d.get("height", NPC_HEIGHT_M)))
+			_size_npc_sprite(sprite)
 			sprite.offset = Vector2(0, (art["idle"] as Texture2D).get_height() * 0.5)
 			sprite.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			node.add_child(sprite)
@@ -292,6 +296,21 @@ func _npc_art(id: String) -> Dictionary:
 		out[k] = load(path)
 	return out
 
+## Painted art already shows the camera's view from above, so it is drawn face-on (no second foreshortening) at the
+## on-screen height an upright figure of its real height has (hero = 1.75 m). Re-applied each frame: the camera is
+## only placed after the zone loads.
+func _size_npc_sprite(sp: Sprite3D) -> void:
+	sp.pixel_size = float(sp.get_meta("height_m", NPC_HEIGHT_M)) * _upright_scale() / float(sp.texture.get_height())
+	sp.offset = Vector2(0, sp.texture.get_height() * 0.5)
+
+## On-screen height of an upright object relative to a camera-facing one of the same size: cos(camera pitch) for the
+## orthographic zone camera (pitch is per zone: 52 deg legacy paintings, 31 deg painted zones).
+func _upright_scale() -> float:
+	var cam: Camera3D = lab.camera
+	if cam == null: return 1.0
+	var fwd: Vector3 = -cam.global_transform.basis.z
+	return clampf(cos(asin(clampf(-fwd.y, -1.0, 1.0))), 0.3, 1.0)
+
 func npc_portrait(id: String) -> Texture2D:
 	var a := _npc_art(id)
 	return a.get("portrait")
@@ -306,9 +325,8 @@ func _update_npc_poses() -> void:
 		if sp == null or not is_instance_valid(sp): continue
 		var art: Dictionary = n["art"]
 		var want: Texture2D = art["talk"] if String(n["id"]) == talking_npc else art["idle"]
-		if sp.texture != want:
-			sp.texture = want
-			sp.offset = Vector2(0, want.get_height() * 0.5)
+		if sp.texture != want: sp.texture = want
+		_size_npc_sprite(sp)
 		var dx: float = hp.x - (n["node"] as Node3D).global_position.x
 		if absf(dx) > 0.3: sp.flip_h = dx < 0.0
 

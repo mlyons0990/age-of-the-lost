@@ -7,7 +7,13 @@
   "confluence_camp",
   "crownsfall_reborn",
   "saltmarrow",
-  "oldwatch"
+  "oldwatch",
+  "highward_steps",
+  "crownsfall_citadel",
+  "westgate_refuge",
+  "workers_terrace",
+  "concord_senate",
+  "crownsfall_of_three_ages"
  ],
  "zones": {
   "crownsfall": [
@@ -131,6 +137,23 @@
     ],
     "height": 1.8,
     "idle": "'The Regent wants order. I want my people alive. Today those are the same thing.'"
+   },
+   {
+    "id": "highward_steps_trader",
+    "name": "Highward Trader",
+    "model": "mage",
+    "at": [
+     7460,
+     2910
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
    }
   ],
   "sablemarket_vaults": [
@@ -185,6 +208,23 @@
     ],
     "height": 1.7,
     "idle": "'I kept this city fed by keeping it calm. I may have kept it ignorant too.'"
+   },
+   {
+    "id": "crownsfall_citadel_trader",
+    "name": "Crownsfall Trader",
+    "model": "mage",
+    "at": [
+     2960,
+     3360
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
    }
   ],
   "westgate_refuge": [
@@ -193,8 +233,8 @@
     "name": "Iri",
     "model": "mage",
     "at": [
-     2117,
-     3089
+     6880,
+     2428
     ],
     "tint": [
      0.78,
@@ -203,6 +243,23 @@
     ],
     "height": 1.7,
     "idle": "Veyr Phasewalker. 'The people the scars take are people. Say it with me.'"
+   },
+   {
+    "id": "westgate_refuge_trader",
+    "name": "Westgate Trader",
+    "model": "mage",
+    "at": [
+     7040,
+     2428
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
    }
   ],
   "veyr_meridian_outpost": [
@@ -292,6 +349,23 @@
     ],
     "height": 1.7,
     "idle": "Aurelian historian. 'Deletion displaces records. It does not destroy them.'"
+   },
+   {
+    "id": "aurelian_forum_trader",
+    "name": "Aurelian Trader",
+    "model": "mage",
+    "at": [
+     6752,
+     4452
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
    }
   ],
   "workers_terrace": [
@@ -310,6 +384,23 @@
     ],
     "height": 1.8,
     "idle": "Guild worker of the labour district. 'Who pays for eternity? Us. Always us.'"
+   },
+   {
+    "id": "workers_terrace_trader",
+    "name": "Workers' Trader",
+    "model": "mage",
+    "at": [
+     1157,
+     3967
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
    }
   ],
   "concord_senate": [
@@ -328,6 +419,23 @@
     ],
     "height": 1.8,
     "idle": "'A civilization cannot survive as a collection of exceptions.'"
+   },
+   {
+    "id": "concord_senate_trader",
+    "name": "Concord Trader",
+    "model": "mage",
+    "at": [
+     1758,
+     1082
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
+    "vendor": true
    }
   ],
   "vael_estate": [
@@ -835,6 +943,41 @@
     ],
     "height": 1.8,
     "idle": "Quartermaster of the watch.",
+    "vendor": true
+   }
+  ],
+  "crownsfall_of_three_ages": [
+   {
+    "id": "mira_3a",
+    "name": "Mira Thorne",
+    "model": "mage",
+    "at": [
+     4370,
+     2348
+    ],
+    "tint": [
+     0.82,
+     0.84,
+     1.0
+    ],
+    "height": 1.7,
+    "idle": "'Three versions of one plaza. Read the stones with me.'"
+   },
+   {
+    "id": "crownsfall_of_three_ages_trader",
+    "name": "Crownsfall Trader",
+    "model": "mage",
+    "at": [
+     4530,
+     2348
+    ],
+    "tint": [
+     1.0,
+     0.92,
+     0.85
+    ],
+    "height": 1.7,
+    "idle": "Coin for steel, steel for coin.",
     "vendor": true
    }
   ]

@@ -34,6 +34,23 @@ for act in range(1, 8):
     d = getattr(CD, f"ACT{act}", None)
     if d is None: continue
     DESIGN.update(d); EDGES += getattr(CD, f"ACT{act}_EDGES", []); POS.update(getattr(CD, f"ACT{act}_POS", {}))
+# Safe hubs (owner 11-28): cities, towns, refuges and camps are sanctuaries, as in other ARPGs: no monsters. They hold
+# quest givers, traders and lore. Their campaign quest is delivered by talking to the hub's NPC. Combat stays in the
+# wilds, dungeons, undercrofts and the bible's temporal "echo" or disaster set pieces (COMBAT_TOWNS below).
+COMBAT_TOWNS = {"saltmirror_harbor", "artificers_ward", "moonfall_republic",           # bible: echo zones with temporal fights
+                "last_dawn_station", "labor_quarter_siege", "senate_of_ash", "iron_sabbath", "crownsfall_under_siege"}  # disaster / war set pieces
+HUB_EXTRA_NPCS = {"crownsfall_of_three_ages": [("mira_3a", "Mira Thorne", "mage", (0.82, 0.84, 1.0), "'Three versions of one plaza. Read the stones with me.'", False)]}
+HUB_TRADER = {"town": ("Trader", "mage", (1.0, 0.92, 0.85), "Coin for steel, steel for coin.")}
+for _zid, _d in DESIGN.items():
+    if _d["kind"] != "town" or _d["key"] in COMBAT_TOWNS: continue
+    _d["npcs"] = list(_d.get("npcs") or []) + HUB_EXTRA_NPCS.get(_d["key"], [])
+    if not _d["npcs"]: continue
+    giver = _d.get("turnin") or _d["npcs"][0][0]
+    if _d["mech"][0] not in ("talk", "arrive"):
+        _d["mech"] = ("talk", giver); _d.pop("turnin", None); _d.pop("boss_poi", None)
+    _d["combat"] = False
+    if not any(len(n) > 5 and n[5] for n in _d["npcs"]):          # every hub sells and buys gear
+        _d["npcs"].append((_d["key"] + "_trader", RG(_zid)["name"].split(" ")[0] + " Trader", "mage", (1.0, 0.92, 0.85), "Coin for steel, steel for coin.", True))
 LEVELS = {1: (1, 10), 2: (11, 20), 3: (21, 30), 4: (31, 40), 5: (41, 50), 6: (51, 60), 7: (61, 70)}
 ACT_NAMES = {1: "The Crown That Remembers", 2: "Scars of the World", 3: "The Age of Gold", 4: "The Day the World Ended",
              5: "The Unwritten Kingdoms", 6: "War Against the Hour", 7: "Age of the Lost"}

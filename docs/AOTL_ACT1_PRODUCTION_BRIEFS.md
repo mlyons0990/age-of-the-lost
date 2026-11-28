@@ -16,6 +16,23 @@ The game is seen from a fixed camera **31 degrees down**, three-quarter view. Ev
 
 
 
+
+## Standing design rule: towns are sanctuaries (owner, 11-28)
+
+Cities, towns, refuges and camps are safe hubs, as in other ARPGs. They have no monsters. They hold quest givers,
+traders who buy and sell gear, collectibles and lore. A hub's campaign quest is delivered by talking to its NPC.
+
+Combat stays in:
+- the wilds;
+- dungeons, vaults and undercrofts (exploration and lore under the city, e.g. Sablemarket Vaults, Old Crown Cistern,
+  the Undercroft);
+- the bible's temporal echo zones and disaster set pieces (Saltmirror Harbor, Artificers' Ward, Moonfall Republic,
+  Last Dawn Station, Labor Quarter siege, Senate of Ash, Iron Sabbath, Crownsfall Under Siege).
+
+Safe hubs (14): Crownsfall, Highward Steps, Crownsfall Citadel, Saltmarrow, Oldwatch, Westgate Refuge, Veyr Meridian
+Outpost, Aurelian Forum, Workers' Terrace, Concord Senate, Crownsfall of Three Ages, Veyr Sanctuary, Confluence Camp,
+Crownsfall Reborn. The rule lives in `tools/campaign_build.py` (`COMBAT_TOWNS`). Every hub has a trader.
+
 ## Crownsfall Grand City (built 11-28)
 
 Crownsfall is one painted map, 13,533 x 5,808 px at ppm 120. It comes from Higgsfield master B: plan v3, upscaled in 9

@@ -1,6 +1,6 @@
 {
  "name": "Chronicle Perimeter",
- "kit": "assets/kit/forest_hf",
+ "kit": "assets/kit/city",
  "size": [
   11520,
   4944
@@ -8,7 +8,7 @@
  "ppm": 71.8,
  "pitch": 31.0,
  "hero_px_1080": 125.0,
- "ground_base": "flagstone",
+ "ground_base": "cobble_worn",
  "seed": 8073,
  "paths": [
   {
@@ -177,11 +177,21 @@
  "patches": [
   {
    "at": [
+    8620,
+    1942
+   ],
+   "r": 760,
+   "layer": "dirt",
+   "squash": 0.55,
+   "no_rim": true
+  },
+  {
+   "at": [
     3912,
     1010
    ],
    "r": 336,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -190,7 +200,7 @@
     4070
    ],
    "r": 285,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -199,7 +209,7 @@
     2463
    ],
    "r": 399,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -208,7 +218,7 @@
     2129
    ],
    "r": 306,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -217,7 +227,7 @@
     1890
    ],
    "r": 295,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -226,7 +236,7 @@
     2810
    ],
    "r": 359,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -235,7 +245,7 @@
     3056
    ],
    "r": 458,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -244,7 +254,7 @@
     1842
    ],
    "r": 388,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -253,7 +263,7 @@
     785
    ],
    "r": 260,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -262,7 +272,7 @@
     2094
    ],
    "r": 326,
-   "layer": "dirt",
+   "layer": "flagstone",
    "squash": 0.5
   },
   {
@@ -270,7 +280,7 @@
     5054,
     2245
    ],
-   "r": 1100,
+   "r": 720,
    "layer": "flagstone",
    "squash": 0.515
   },
@@ -289,35 +299,8 @@
     3809
    ],
    "r": 450,
-   "layer": "dirt",
-   "squash": 0.515
-  },
-  {
-   "at": [
-    8620,
-    1942
-   ],
-   "r": 573,
    "layer": "flagstone",
    "squash": 0.515
-  },
-  {
-   "at": [
-    7614,
-    1030
-   ],
-   "r": 192,
-   "layer": "water",
-   "squash": 0.52
-  },
-  {
-   "at": [
-    7350,
-    1944
-   ],
-   "r": 174,
-   "layer": "water",
-   "squash": 0.52
   }
  ],
  "clear": [
@@ -357,29 +340,69 @@
    300
   ]
  ],
- "place": [],
+ "place": [
+  [
+   "c_lm_fountain_a",
+   5023,
+   1725,
+   1.0,
+   false
+  ],
+  [
+   "c_lm_fountain_a",
+   4765,
+   1304,
+   1.0,
+   true
+  ],
+  [
+   "c_lm_statue_a",
+   10154,
+   3379,
+   1.0,
+   true
+  ],
+  [
+   "c_lm_statue_a",
+   2332,
+   3149,
+   1.0,
+   true
+  ],
+  [
+   "c_lm_gazebo_b",
+   8713,
+   1512,
+   1.0,
+   true
+  ]
+ ],
  "forest": {
   "trees": [
    [
-    "silver",
-    1
+    "c_tree_green",
+    2
    ],
    [
-    "oak_b",
+    "c_tree_blossom",
+    2
+   ],
+   [
+    "c_tree_amber",
     1
    ]
   ],
-  "spacing": 1700,
-  "cut": 0.88,
+  "spacing": 2600,
+  "cut": 0.92,
   "grove_px": 1500,
-  "frame": 0.45,
+  "frame": 0.08,
   "frame_px": 900,
   "path_gap": 170,
   "tree_scale": [
    0.85,
    1.15
   ],
-  "rock_clusters": 4,
+  "rock_clusters": 0,
   "rocks_big": [
    "a_rock_flat",
    "b_rock_flat",
@@ -392,7 +415,7 @@
    "a_rock_small",
    "b_rock_small"
   ],
-  "clumps_per_mpx": 3,
+  "clumps_per_mpx": 2,
   "clumps": {
    "white": {
     "w": 3,
@@ -402,8 +425,11 @@
     ],
     "r": 170,
     "props": [
-     "a_shrub_white",
-     "b_shrub_white"
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
     ]
    },
    "lavender": {
@@ -414,8 +440,11 @@
     ],
     "r": 170,
     "props": [
-     "a_lavender",
-     "b_lavender"
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
     ]
    },
    "bushes": {
@@ -426,10 +455,11 @@
     ],
     "r": 170,
     "props": [
-     "a_bush_round",
-     "b_bush_round",
-     "a_bush_yellow",
-     "b_bush_yellow"
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
     ]
    }
   },
@@ -440,7 +470,7 @@
    "a_grass_tall",
    "a_fern"
   ],
-  "litter_per_mpx": 4,
+  "litter_per_mpx": 0,
   "litter": [
    "a_leaves",
    "a_pebbles"
@@ -454,7 +484,7 @@
   "litter_ground": 0.65,
   "max_canopy_cover": 0.06,
   "cover": {
-   "per_mpx": 4,
+   "per_mpx": 0,
    "props": [
     "ga_tallgrass",
     "ga_longgrass",
@@ -484,44 +514,376 @@
   }
  },
  "root_dressing": {
-  "decals": 3,
-  "tufts": 5,
+  "decals": 0,
+  "tufts": 0,
   "decal_props": [
    "a_leaves"
   ],
   "tuft_props": [
-   "a_grass_tall",
-   "b_grass_tall",
-   "a_fern",
-   "b_fern"
+   "a_grass_tall"
   ]
  },
  "edges": [
   {
    "path": 0,
-   "spacing": 170,
-   "offset": 120,
-   "jitter": 120,
-   "density": 0.7,
-   "min_gap": 40,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
    "props": [
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white",
-    "a_bush_round",
-    "b_bush_round",
-    "a_bush_yellow",
-    "b_bush_yellow"
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
-    0.85,
-    1.2
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 1,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 2,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 3,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 4,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 5,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 5,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
+   ]
+  },
+  {
+   "path": 6,
+   "spacing": 230,
+   "offset": 40,
+   "jitter": 25,
+   "density": 0.8,
+   "min_gap": 20,
+   "props": [
+    "c_lamppost_double",
+    "c_lamppost_single",
+    "c_banner_pole",
+    "c_banner_standard",
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
+   ],
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "path": 6,
+   "spacing": 190,
+   "offset": 150,
+   "jitter": 70,
+   "density": 0.75,
+   "min_gap": 90,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bench",
+    "c_stone_urn"
+   ],
+   "scale": [
+    0.9,
+    1.05
    ]
   }
  ],
  "light": {
-  "canopy": 0.22,
+  "canopy": 0.18,
   "contact": 0.38,
   "pools": 0.28,
   "dapple_px": 40,
@@ -530,9 +892,9 @@
    0.16
   ],
   "exposure": 0.9,
-  "overhead": 0.8,
-  "over_density": 7,
-  "tree_mist": 0.55,
+  "overhead": 0.0,
+  "over_density": 0,
+  "tree_mist": 0.0,
   "open": [
    [
     4754,
@@ -744,17 +1106,30 @@
  },
  "rim": {
   "props": [
-   "a_lavender",
-   "b_lavender",
-   "a_shrub_white",
-   "b_shrub_white",
-   "a_bush_round",
-   "b_bush_round",
-   "a_bush_yellow",
-   "b_bush_yellow"
+   "c_stone_urn",
+   "c_flower_pedestal",
+   "c_topiary_urn",
+   "c_bench",
+   "c_bed_straight_long",
+   "c_bed_corner",
+   "c_bed_square",
+   "c_bed_round_large",
+   "c_bed_oval",
+   "c_bed_round_small",
+   "c_bed_crescent",
+   "c_hedge_straight",
+   "c_hedge_topiary_square",
+   "c_wisteria_trellis",
+   "c_wisteria_arch_bed",
+   "c_bed_tree_ring",
+   "c_drift_lavender",
+   "c_drift_white",
+   "c_drift_mixed",
+   "c_drift_wildflower",
+   "c_drift_ivy"
   ],
-  "density": 1.0,
-  "chance": 0.5
+  "density": 0.8,
+  "chance": 0.45
  },
  "dress": [
   {
@@ -762,36 +1137,56 @@
     4754,
     1734
    ],
-   "r": 520,
+   "r": 560,
    "props": [
-    "silver",
-    "oak_b",
-    "a_bush_round",
-    "b_bush_round",
-    "a_bush_yellow",
-    "b_bush_yellow",
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white"
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
    ],
-   "n": 9
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
   },
   {
    "at": [
     10040,
     3809
    ],
-   "r": 470,
+   "r": 560,
    "props": [
-    "a_rock_tall",
-    "b_rock_tall",
-    "a_rock_pair"
+    "c_stone_urn",
+    "c_flower_pedestal",
+    "c_topiary_urn",
+    "c_bench",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring",
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
    ],
-   "n": 8,
+   "n": 9,
    "scale": [
-    0.7,
-    1.0
+    0.9,
+    1.1
    ]
   },
   {
@@ -799,38 +1194,323 @@
     2391,
     3579
    ],
-   "r": 380,
+   "r": 560,
    "props": [
-    "a_bush_round",
-    "b_bush_round",
-    "a_bush_yellow",
-    "b_bush_yellow",
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white",
-    "a_moss",
-    "a_pebbles"
+    "c_arcane_brazier",
+    "c_crystal_float",
+    "c_orb_levitating",
+    "c_sigil_stone",
+    "c_magic_spring",
+    "c_wisteria_wisp",
+    "c_lantern_float_large",
+    "c_light_motes",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring"
    ],
-   "n": 10
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
   },
   {
    "at": [
     8620,
     1942
    ],
-   "r": 420,
+   "r": 560,
    "props": [
-    "a_bush_round",
-    "b_bush_round",
-    "a_bush_yellow",
-    "b_bush_yellow",
-    "a_lavender",
-    "b_lavender",
-    "a_shrub_white",
-    "b_shrub_white"
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel"
    ],
-   "n": 6
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5054,
+    2245
+   ],
+   "r": 700,
+   "props": [
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
+   ],
+   "n": 10,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    5054,
+    2245
+   ],
+   "r": 760,
+   "props": [
+    "c_market_stall_fruit",
+    "c_market_stall_cloth",
+    "c_covered_wagon",
+    "c_crate_stack",
+    "c_barrels_sacks",
+    "c_crates_wisteria",
+    "c_apple_basket",
+    "c_flower_barrel",
+    "c_lamppost_double",
+    "c_banner_standard",
+    "c_crystal_lamp",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large"
+   ],
+   "n": 22,
+   "scale": [
+    0.95,
+    1.05
+   ]
+  },
+  {
+   "at": [
+    8620,
+    1942
+   ],
+   "r": 760,
+   "props": [
+    "c_tree_green",
+    "c_tree_blossom",
+    "c_tree_amber",
+    "c_tree_green",
+    "c_tree_blossom",
+    "c_tree_amber",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring",
+    "c_lm_gazebo_a",
+    "c_bench"
+   ],
+   "n": 14,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "on_path": true
+  }
+ ],
+ "max_paving_overlap": 1.0,
+ "place_keep": true,
+ "scatter": [
+  {
+   "prop": "c_bld_temple_sanctum",
+   "count": 2,
+   "min_dist": 1300,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_royal_manor",
+   "count": 5,
+   "min_dist": 1000,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_merchant_guild",
+   "count": 8,
+   "min_dist": 930,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_archive_hall",
+   "count": 6,
+   "min_dist": 880,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_guard_barracks",
+   "count": 5,
+   "min_dist": 900,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_bld_citizen_home",
+   "count": 110,
+   "min_dist": 520,
+   "scale": [
+    0.95,
+    1.08
+   ],
+   "keep_off_paths": 190
+  },
+  {
+   "prop": "c_crate_stack",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_barrels_sacks",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_crates_wisteria",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_flower_barrel",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bench",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bed_square",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_bed_round_small",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_hedge_topiary_square",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_lamppost_single",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_stone_urn",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_drift_mixed",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
+  },
+  {
+   "prop": "c_drift_lavender",
+   "count": 14,
+   "min_dist": 170,
+   "scale": [
+    0.9,
+    1.1
+   ],
+   "keep_off_paths": 70
   }
  ]
 }

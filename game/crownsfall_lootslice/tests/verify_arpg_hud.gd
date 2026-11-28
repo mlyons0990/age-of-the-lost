@@ -112,7 +112,7 @@ func _run() -> void:
 	kb.reset_defaults()
 	check(kb.binds["skill_1"][0] == "key:Q" and kb.binds["skill_2"][0] == "key:W" and hud.key_labels["skill_2"].text == "W", "Reset to defaults restores Q W E R T")
 	check(hud.minimap_vp.world_3d == lab.get_world_3d(), "Minimap renders the lab world")
-	check(hud.quest_progress == 0 and hud.find_child("Quest_ALostTomes", true, false) == null and hud.find_child("Quest_TheLostTomes", true, false) != null, "Quest tracker shows both quests")
+	check(hud.find_child("Quest_ABellWithoutaRinger", true, false) != null and hud.find_child("Quest_TheMissingMile", true, false) != null, "Quest tracker shows the first two campaign quests")
 	var hidden := true
 	for t in lab.targets: hidden = hidden and not t.title.visible
 	check(hidden, "Dummy 3D titles replaced by HUD enemy bars")

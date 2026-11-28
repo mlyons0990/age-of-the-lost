@@ -37,7 +37,7 @@ func _run() -> void:
 	var net = lab.waypoint_net
 	check(net.is_unlocked("crownsfall_town") and not net.is_unlocked("whisperwood_shrine"), "Town waypoint open from the start; Whisperwood locked")
 	var portals := get_nodes_in_group("zone_portal")
-	check(portals.size() == 1 and portals[0].find_children("*", "CPUParticles3D", true, false).size() == 1 and portals[0].find_children("*", "OmniLight3D", true, false).size() == 1, "Plaza exit has a glowing portal aura (curtain, sparks, light)")
+	check(portals.size() == 2 and portals.all(func(p): return p.find_children("*", "CPUParticles3D", true, false).size() == 1 and p.find_children("*", "OmniLight3D", true, false).size() == 1), "Both plaza exits have a glowing portal aura (curtain, sparks, light)")
 	await create_timer(0.4).timeout
 	_click_waypoint(lab)
 	await _wait(func(): return lab.waypoint_panel != null and is_instance_valid(lab.waypoint_panel), 6.0)
@@ -52,9 +52,12 @@ func _run() -> void:
 	await create_timer(2.5).timeout
 	await _shot("portal_plaza")
 	lab.zone_move_to(lab.zone_px_to_world(840, 318))
-	await _wait(func(): return lab.painted_zone == "whisperwood", 12.0)
+	await _wait(func(): return lab.painted_zone == "highward_steps", 12.0)
 	while lab.zone_traveling: await process_frame
-	check(lab.painted_zone == "whisperwood", "Portal at the top of the grand stairs leads to Whisperwood")
+	check(lab.painted_zone == "highward_steps", "Portal at the top of the grand stairs leads to Highward Steps")
+	# the shrine-waypoint checks use the legacy painted Whisperwood, reached directly
+	lab.travel_to("whisperwood", [720, 636])
+	await _wait(func(): return lab.painted_zone == "whisperwood" and not lab.zone_traveling, 12.0)
 	var wnode: Node3D = lab.zone_waypoints[0]["node"]
 	check((wnode.get_node("Platform") as MeshInstance3D).material_override.albedo_texture.resource_path.ends_with("waypoint_wp3.png") and not (wnode.get_node("Beam") as MeshInstance3D).visible and not (wnode.get_node("Label") as Label3D).visible, "Undiscovered waypoint is dormant: no light, no label, no \"locked\" text")
 	check(lab.zone_walkable(lab.zone_waypoints[0]["pos"]), "Shrine ruins are walkable (waypoint area open)")

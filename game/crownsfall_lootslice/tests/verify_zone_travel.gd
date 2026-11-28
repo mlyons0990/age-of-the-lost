@@ -22,14 +22,19 @@ func _run() -> void:
 	root.add_child(lab)
 	for i in 10: await physics_frame
 	var a = lab.player
-	check(lab.zone_exits.size() == 1 and lab.zone_exit_at(a.global_position).is_empty(), "Plaza has one exit and the hero does not spawn on it")
-	check(get_nodes_in_group("zone_exit_label").size() == 1, "Exit is marked in the world")
+	check(lab.zone_exits.size() == 2 and lab.zone_exit_at(a.global_position).is_empty(), "Plaza has two exits (stairs, Kingsroad Gate) and the hero does not spawn on one")
+	check(get_nodes_in_group("zone_exit_label").size() == 2, "Both exits are marked in the world")
 	lab.zone_move_to(lab.zone_px_to_world(840, 318))
 	var t := 0.0
-	while lab.painted_zone != "whisperwood" and t < 12.0:
+	while lab.painted_zone != "highward_steps" and t < 12.0:
 		await physics_frame; t += 1.0 / 60.0
-	check(lab.painted_zone == "whisperwood", "Climbing the grand stairs travels to Whisperwood (%.1fs)" % t)
+	check(lab.painted_zone == "highward_steps", "Climbing the grand stairs travels to Highward Steps (%.1fs)" % t)
 	while lab.zone_traveling: await process_frame
+	await create_timer(1.0).timeout
+	check(lab.zone_walkable(a.global_position), "Hero arrives on Highward Steps' walkable ground")
+	# the painted-zone checks below use the legacy painted Whisperwood (reached directly; no longer on the Crownsfall stairs)
+	lab.travel_to("whisperwood", [720, 636])
+	while lab.painted_zone != "whisperwood" or lab.zone_traveling: await process_frame
 	await create_timer(1.5).timeout
 	check(lab.zone_walkable(a.global_position), "Hero arrives on Whisperwood's walkable ground")
 	check(lab.zone_exit_at(a.global_position).is_empty(), "Arrival point is off the return exit (no bounce)")

@@ -253,7 +253,7 @@ def side_toward(a, b):
 
 # ---------------------------------------------------------------- fixed (hand-built) zones: their exits
 FIXED_EXITS = {
- "crownsfall": {"highward_steps": {"at": [4820, 2040], "arrive": [5450, 2380]}, "kingsroad_fields": {"at": [6800, 3680], "arrive": [6800, 3460]}},   # Grand City (11-28)
+ "crownsfall": {"highward_steps": {"at": [6250, 135], "arrive": [6250, 700]}, "kingsroad_fields": {"at": [6820, 5720], "arrive": [6800, 5250]}},   # Grand City (11-28)
  "whisperwood_forest": {"kingsroad_fields": {"at": [140, 2630], "arrive": [700, 2630]}, "hollowmere": {"at": [10720, 4190], "arrive": [10300, 3950]},
                         "mossbarrow_crypts": {"at": [9250, 700], "arrive": [9250, 1000]}, "silverroot_grove": {"at": [6450, 4420], "arrive": [6450, 4050]}},
 }

@@ -986,6 +986,19 @@ func _build_zone_nav() -> void:
 				if _walk_xz(c, NAV_CLEARANCE * 0.8):
 					zone_nav_nodes.append(c)
 					break
+	# where two walkable polygons overlap, the corners of their union are edge crossings, not polygon vertices: add a
+	# node beside each crossing so routes can turn there (painted cities are many overlapping street polygons)
+	var off := NAV_CLEARANCE * 1.6 * 0.7
+	for a in zone_walk.size():
+		for b in range(a + 1, zone_walk.size()):
+			var pa: PackedVector2Array = zone_walk[a]; var pb: PackedVector2Array = zone_walk[b]
+			for i in pa.size():
+				for j in pb.size():
+					var hit = Geometry2D.segment_intersects_segment(pa[i], pa[(i + 1) % pa.size()], pb[j], pb[(j + 1) % pb.size()])
+					if hit == null: continue
+					for d in [Vector2(1, 1), Vector2(1, -1), Vector2(-1, 1), Vector2(-1, -1)]:
+						var c: Vector2 = hit + d * off
+						if _walk_xz(c, NAV_CLEARANCE * 0.8): zone_nav_nodes.append(c)
 	for i in zone_nav_nodes.size():
 		var links: Array = []
 		for j in zone_nav_nodes.size():

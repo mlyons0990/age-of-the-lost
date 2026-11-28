@@ -51,8 +51,8 @@ func _run() -> void:
 	lab.zone_move_to(lab.zone_px_to_world(900, 560))
 	await create_timer(2.5).timeout
 	await _shot("portal_plaza")
-	lab.zone_move_to(lab.zone_px_to_world(840, 318))
-	await _wait(func(): return lab.painted_zone == "highward_steps", 12.0)
+	lab.zone_move_to(lab.zone_px_to_world(6250, 135))
+	await _wait(func(): return lab.painted_zone == "highward_steps", 25.0)
 	while lab.zone_traveling: await process_frame
 	check(lab.painted_zone == "highward_steps", "Portal at the top of the grand stairs leads to Highward Steps")
 	# the shrine-waypoint checks use the legacy painted Whisperwood, reached directly

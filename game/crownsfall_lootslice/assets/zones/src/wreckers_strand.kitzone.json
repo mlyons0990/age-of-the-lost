@@ -126,6 +126,26 @@
    "layer": "dirt",
    "style": "trail",
    "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     7600,
+     2150
+    ],
+    [
+     7650,
+     1300
+    ],
+    [
+     7600,
+     250
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
   }
  ],
  "patches": [
@@ -592,6 +612,11 @@
    9100,
    1150,
    480
+  ],
+  [
+   7600,
+   300,
+   400
   ]
  ],
  "place": [],
@@ -923,6 +948,32 @@
     7300,
     1900
    ]
+  },
+  {
+   "name": "Smugglers' Grotto",
+   "to": "smugglers_grotto",
+   "at": [
+    9100,
+    900
+   ],
+   "r": 150,
+   "arrive": [
+    620,
+    2470
+   ]
+  },
+  {
+   "name": "Lanternfall Cliffs",
+   "to": "lanternfall_cliffs",
+   "at": [
+    7600,
+    220
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2600
+   ]
   }
  ],
  "walkable": [
@@ -1004,6 +1055,24 @@
     2300
    ],
    "blurb": "A headland with a drowned warden's shrine."
+  },
+  {
+   "name": "Grotto Mouth",
+   "kind": "landmark",
+   "at": [
+    9100,
+    900
+   ],
+   "blurb": "Down into the smugglers' grotto."
+  },
+  {
+   "name": "Cliff Path",
+   "kind": "landmark",
+   "at": [
+    7600,
+    220
+   ],
+   "blurb": "Up onto Lanternfall Cliffs."
   }
  ],
  "world_id": "wreckers",

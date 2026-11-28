@@ -487,7 +487,9 @@ ov = ground_layer(spec.get("ground_base", "grass"))
 for k, ch in (("dirt", 1), ("flagstone", 0)):
     ov = ov * (1 - splat[..., ch:ch + 1]) + ground_layer(k) * splat[..., ch:ch + 1]
 gcol = {}
-ov = ov * (1 - splat[..., 2:3]) + np.array([70, 110, 130], np.float32) * splat[..., 2:3]
+_wc = spec.get("grade", {}).get("water")      # the zone's own water colour (rift pools are violet)
+_wrgb = np.array([c * 255 * 0.9 for c in _wc], np.float32) if _wc else np.array([70, 110, 130], np.float32)
+ov = ov * (1 - splat[..., 2:3]) + _wrgb * splat[..., 2:3]
 if light_name:                                          # same canopy shade and sun pools as in game
     ov = ov * cv2.resize(light, (sw, sh), interpolation=cv2.INTER_AREA)[..., None]
 ovi = Image.fromarray(ov.clip(0, 255).astype(np.uint8)).convert("RGBA")

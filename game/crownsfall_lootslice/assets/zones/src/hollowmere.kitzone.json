@@ -875,6 +875,19 @@
     620,
     2500
    ]
+  },
+  {
+   "name": "The Sunken Chapel",
+   "to": "sunken_chapel",
+   "at": [
+    10700,
+    2950
+   ],
+   "r": 150,
+   "arrive": [
+    620,
+    2470
+   ]
   }
  ],
  "walkable": [
@@ -974,6 +987,15 @@
     1260
    ],
    "blurb": "A causeway east out of the marsh, toward the salt heath."
+  },
+  {
+   "name": "Chapel Steps",
+   "kind": "landmark",
+   "at": [
+    10700,
+    2950
+   ],
+   "blurb": "Steps down through the chapel's broken floor."
   }
  ],
  "world_id": "hollowmere",

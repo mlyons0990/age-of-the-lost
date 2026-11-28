@@ -1,0 +1,687 @@
+{
+ "name": "Riftscar Moor",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 73,
+ "paths": [
+  {
+   "pts": [
+    [
+     -80,
+     2470
+    ],
+    [
+     1000,
+     2400
+    ],
+    [
+     2000,
+     2550
+    ],
+    [
+     3000,
+     2500
+    ],
+    [
+     4000,
+     2300
+    ],
+    [
+     5000,
+     2150
+    ],
+    [
+     5600,
+     1900
+    ],
+    [
+     6400,
+     1800
+    ],
+    [
+     7200,
+     2000
+    ],
+    [
+     8200,
+     2300
+    ],
+    [
+     9200,
+     2450
+    ],
+    [
+     10300,
+     2400
+    ],
+    [
+     11600,
+     2470
+    ]
+   ],
+   "width": 210,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     5600,
+     1900
+    ],
+    [
+     5600,
+     1100
+    ],
+    [
+     5600,
+     250
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     8200,
+     2300
+    ],
+    [
+     8200,
+     3300
+    ],
+    [
+     8200,
+     4700
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     7200,
+     2000
+    ],
+    [
+     7600,
+     1600
+    ],
+    [
+     8000,
+     1450
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    3000,
+    2500
+   ],
+   "r": 380,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    8000,
+    1400
+   ],
+   "r": 560,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5800,
+    3200
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4600,
+    3700
+   ],
+   "r": 520,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7000,
+    3500
+   ],
+   "r": 600,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2300,
+    1200
+   ],
+   "r": 380,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9800,
+    3600
+   ],
+   "r": 420,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   140,
+   2470,
+   400
+  ],
+  [
+   5600,
+   200,
+   400
+  ],
+  [
+   8200,
+   4760,
+   400
+  ],
+  [
+   11380,
+   2470,
+   400
+  ],
+  [
+   3000,
+   2500,
+   530
+  ],
+  [
+   8000,
+   1400,
+   710
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    2
+   ],
+   [
+    "gnarled_b",
+    3
+   ]
+  ],
+  "spacing": 1200,
+  "cut": 0.82,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 60,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 4,
+    "n": [
+     3,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "lavender": {
+    "w": 2,
+    "n": [
+     3,
+     7
+    ],
+    "r": 160,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     5
+    ],
+    "r": 140,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     4
+    ],
+    "r": 150,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     3,
+     6
+    ],
+    "r": 180,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 130,
+   "offset": -20,
+   "jitter": 70,
+   "density": 0.75,
+   "props": [
+    "a_moss",
+    "a_clover",
+    "a_pebbles",
+    "a_leaves"
+   ],
+   "scale": [
+    0.9,
+    1.3
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 110,
+   "jitter": 120,
+   "density": 0.9,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_lavender",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.3,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3000,
+    2500,
+    418.00000000000006,
+    0.45
+   ],
+   [
+    8000,
+    1400,
+    616.0,
+    0.45
+   ]
+  ],
+  "shafts": [
+   [
+    3000,
+    2280,
+    420
+   ],
+   [
+    8000,
+    1180,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    5800,
+    3200,
+    1350.0
+   ],
+   [
+    4600,
+    3700,
+    780.0
+   ],
+   [
+    7000,
+    3500,
+    900.0
+   ],
+   [
+    2300,
+    1200,
+    570.0
+   ],
+   [
+    9800,
+    3600,
+    630.0
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "riftscar_cairn",
+   "name": "Moor Cairn",
+   "at": [
+    3000,
+    2500
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Lanternfall Cliffs",
+   "to": "lanternfall_cliffs",
+   "at": [
+    140,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    11050,
+    2470
+   ]
+  },
+  {
+   "name": "Oldwatch",
+   "to": "oldwatch",
+   "at": [
+    5600,
+    200
+   ],
+   "r": 170,
+   "arrive": [
+    3840,
+    4400
+   ]
+  },
+  {
+   "name": "Brackwater Ruins",
+   "to": "brackwater_ruins",
+   "at": [
+    8200,
+    4760
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2470
+   ]
+  },
+  {
+   "name": "The First Rift",
+   "to": "first_rift",
+   "at": [
+    11380,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2470
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  620,
+  2470
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Cliff Road",
+   "kind": "landmark",
+   "at": [
+    160,
+    2470
+   ],
+   "blurb": "West to Lanternfall Cliffs."
+  },
+  {
+   "name": "Moor Cairn",
+   "kind": "landmark",
+   "at": [
+    3000,
+    2500
+   ],
+   "blurb": "A shepherds' cairn; the waypoint is older than the cairn."
+  },
+  {
+   "name": "The Riftscar",
+   "kind": "landmark",
+   "at": [
+    5800,
+    3200
+   ],
+   "blurb": "A wound in the air over the moor. Light bends into it."
+  },
+  {
+   "name": "Clockwork Muster",
+   "kind": "landmark",
+   "at": [
+    8000,
+    1400
+   ],
+   "blurb": "Bronze soldiers stand in ranks as if waiting for orders."
+  },
+  {
+   "name": "Oldwatch Road",
+   "kind": "landmark",
+   "at": [
+    5600,
+    200
+   ],
+   "blurb": "North to the watch-fort."
+  },
+  {
+   "name": "Brackwater Path",
+   "kind": "landmark",
+   "at": [
+    8200,
+    4760
+   ],
+   "blurb": "South to the flickering ruins."
+  },
+  {
+   "name": "The Breach",
+   "kind": "landmark",
+   "at": [
+    11380,
+    2470
+   ],
+   "blurb": "East, where the rifts converge."
+  }
+ ],
+ "world_id": "riftscar",
+ "grade": {
+  "mul": [
+   0.9,
+   0.86,
+   0.96
+  ],
+  "desat": 0.38,
+  "lift": [
+   0.06,
+   0.04,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.7,
+   0.6,
+   0.86
+  ],
+  "water": [
+   0.5,
+   0.26,
+   0.72
+  ]
+ }
+}

@@ -1,0 +1,315 @@
+{
+ "id": "riftscar_moor",
+ "name": "Riftscar Moor",
+ "world_id": "riftscar",
+ "size": [
+  11520,
+  4944
+ ],
+ "seed": 73,
+ "road": "dirt",
+ "main": [
+  [
+   -80,
+   2470
+  ],
+  [
+   1000,
+   2400
+  ],
+  [
+   2000,
+   2550
+  ],
+  [
+   3000,
+   2500
+  ],
+  [
+   4000,
+   2300
+  ],
+  [
+   5000,
+   2150
+  ],
+  [
+   5600,
+   1900
+  ],
+  [
+   6400,
+   1800
+  ],
+  [
+   7200,
+   2000
+  ],
+  [
+   8200,
+   2300
+  ],
+  [
+   9200,
+   2450
+  ],
+  [
+   10300,
+   2400
+  ],
+  [
+   11600,
+   2470
+  ]
+ ],
+ "branches": [
+  [
+   [
+    5600,
+    1900
+   ],
+   [
+    5600,
+    1100
+   ],
+   [
+    5600,
+    250
+   ]
+  ],
+  [
+   [
+    8200,
+    2300
+   ],
+   [
+    8200,
+    3300
+   ],
+   [
+    8200,
+    4700
+   ]
+  ],
+  [
+   [
+    7200,
+    2000
+   ],
+   [
+    7600,
+    1600
+   ],
+   [
+    8000,
+    1450
+   ]
+  ]
+ ],
+ "rooms": [
+  [
+   3000,
+   2500,
+   380
+  ],
+  [
+   8000,
+   1400,
+   560,
+   "dirt"
+  ]
+ ],
+ "pools": [
+  [
+   5800,
+   3200,
+   900
+  ],
+  [
+   4600,
+   3700,
+   520
+  ],
+  [
+   7000,
+   3500,
+   600
+  ],
+  [
+   2300,
+   1200,
+   380
+  ],
+  [
+   9800,
+   3600,
+   420
+  ]
+ ],
+ "trees": [
+  [
+   "gnarled_a",
+   2
+  ],
+  [
+   "gnarled_b",
+   3
+  ]
+ ],
+ "tree_spacing": 1200,
+ "tree_cut": 0.82,
+ "rocks": 60,
+ "exits": [
+  {
+   "name": "Lanternfall Cliffs",
+   "to": "lanternfall_cliffs",
+   "at": [
+    140,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    11050,
+    2470
+   ]
+  },
+  {
+   "name": "Oldwatch",
+   "to": "oldwatch",
+   "at": [
+    5600,
+    200
+   ],
+   "r": 170,
+   "arrive": [
+    3840,
+    4400
+   ]
+  },
+  {
+   "name": "Brackwater Ruins",
+   "to": "brackwater_ruins",
+   "at": [
+    8200,
+    4760
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2470
+   ]
+  },
+  {
+   "name": "The First Rift",
+   "to": "first_rift",
+   "at": [
+    11380,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2470
+   ]
+  }
+ ],
+ "waypoint": [
+  3000,
+  2500,
+  "riftscar_cairn",
+  "Moor Cairn"
+ ],
+ "spawn": [
+  620,
+  2470
+ ],
+ "pois": [
+  {
+   "name": "Cliff Road",
+   "kind": "landmark",
+   "at": [
+    160,
+    2470
+   ],
+   "blurb": "West to Lanternfall Cliffs."
+  },
+  {
+   "name": "Moor Cairn",
+   "kind": "landmark",
+   "at": [
+    3000,
+    2500
+   ],
+   "blurb": "A shepherds' cairn; the waypoint is older than the cairn."
+  },
+  {
+   "name": "The Riftscar",
+   "kind": "landmark",
+   "at": [
+    5800,
+    3200
+   ],
+   "blurb": "A wound in the air over the moor. Light bends into it."
+  },
+  {
+   "name": "Clockwork Muster",
+   "kind": "landmark",
+   "at": [
+    8000,
+    1400
+   ],
+   "blurb": "Bronze soldiers stand in ranks as if waiting for orders."
+  },
+  {
+   "name": "Oldwatch Road",
+   "kind": "landmark",
+   "at": [
+    5600,
+    200
+   ],
+   "blurb": "North to the watch-fort."
+  },
+  {
+   "name": "Brackwater Path",
+   "kind": "landmark",
+   "at": [
+    8200,
+    4760
+   ],
+   "blurb": "South to the flickering ruins."
+  },
+  {
+   "name": "The Breach",
+   "kind": "landmark",
+   "at": [
+    11380,
+    2470
+   ],
+   "blurb": "East, where the rifts converge."
+  }
+ ],
+ "grade": {
+  "mul": [
+   0.9,
+   0.86,
+   0.96
+  ],
+  "desat": 0.38,
+  "lift": [
+   0.06,
+   0.04,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.7,
+   0.6,
+   0.86
+  ],
+  "water": [
+   0.5,
+   0.26,
+   0.72
+  ]
+ }
+}

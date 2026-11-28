@@ -25,9 +25,13 @@ const NPCS := {"crownsfall": [
 	"saltmarrow": [
 	{"id": "harbourmaster", "name": "Harbourmaster Wenna", "model": "mage", "at": [3560, 2120], "tint": Color(0.8, 0.9, 1.0), "height": 1.72,
 		"idle": "The tide still comes in, Wayfarer, even if the ships don't."},
-	{"id": "chandler", "name": "Chandler Brisk", "model": "knight", "at": [4080, 2140], "tint": Color(1.0, 0.88, 0.72), "height": 1.8, "vendor": true}]}
+	{"id": "chandler", "name": "Chandler Brisk", "model": "knight", "at": [4080, 2140], "tint": Color(1.0, 0.88, 0.72), "height": 1.8, "vendor": true}],
+	"oldwatch": [
+	{"id": "ione", "name": "Ione Thessaly", "model": "mage", "at": [1560, 2120], "tint": Color(0.92, 0.86, 1.0), "height": 1.68,
+		"idle": "Every rift on the moor writes a little more of the Concord back into the world. I intend to read all of it."},
+	{"id": "hode", "name": "Sergeant Hode", "model": "knight", "at": [4300, 2300], "tint": Color(0.86, 0.9, 0.86), "height": 1.84, "vendor": true}]}
 ## Towns: no monsters, the hero is healed on arrival
-const SAFE_ZONES := ["crownsfall", "saltmarrow"]
+const SAFE_ZONES := ["crownsfall", "saltmarrow", "oldwatch"]
 const SOUNDS := {"hit": "slash", "pickup": "pickup", "potion": "potion", "equip": "equip", "click": "ui_click", "level": "winter_crown", "quest": "ashen_ward", "boss": "starfall_script"}
 
 var lab

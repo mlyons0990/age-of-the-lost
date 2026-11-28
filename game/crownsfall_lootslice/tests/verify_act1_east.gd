@@ -113,7 +113,7 @@ func _run() -> void:
 	check("harbourmaster" in ids and "chandler" in ids, "Harbourmaster and chandler are in the square")
 	g.talk("chandler")
 	check(g.ui.panel_kind == "shop", "The chandler runs a shop")
-	g.ui.close_panel()
+	g.ui.close_panel(); g.ui.inv.visible = false
 	g.talk("harbourmaster")
 	check(g.ui.panel_kind == "dialogue", "The harbourmaster takes the news")
 	await _shot("saltmarrow")

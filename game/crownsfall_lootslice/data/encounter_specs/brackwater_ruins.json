@@ -1,0 +1,112 @@
+{
+ "zone": "brackwater_ruins",
+ "levels": [
+  12,
+  13
+ ],
+ "packs": 30,
+ "seed": 79,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "concord_phantom",
+    "concord_phantom"
+   ]
+  ],
+  [
+   3,
+   [
+    "flicker_ooze",
+    "flicker_ooze",
+    "flicker_ooze"
+   ]
+  ],
+  [
+   3,
+   [
+    "concord_phantom",
+    "flicker_ooze",
+    "flicker_ooze"
+   ]
+  ],
+  [
+   2,
+   [
+    "ruin_golem"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "ruin_golem",
+    "concord_phantom"
+   ]
+  ],
+  [
+   1,
+   [
+    "concord_phantom",
+    "concord_phantom",
+    "concord_phantom"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3200,
+    3850
+   ],
+   "types": [
+    "flicker_ooze",
+    "flicker_ooze"
+   ],
+   "elite": false,
+   "guardian": "brackwater_seal_w",
+   "elite_type": "ruin_golem",
+   "elite_name": "The Seal-Warden West",
+   "page": "seal_1"
+  },
+  {
+   "at": [
+    6200,
+    1050
+   ],
+   "types": [
+    "concord_phantom",
+    "concord_phantom"
+   ],
+   "elite": false,
+   "guardian": "brackwater_signal",
+   "elite_type": "concord_phantom",
+   "elite_name": "The Signal-Keeper",
+   "page": "seal_2"
+  },
+  {
+   "at": [
+    9000,
+    3850
+   ],
+   "types": [
+    "flicker_ooze",
+    "concord_phantom"
+   ],
+   "elite": false,
+   "guardian": "brackwater_seal_e",
+   "elite_type": "ruin_golem",
+   "elite_name": "The Seal-Warden East",
+   "page": "seal_3"
+  }
+ ],
+ "keep_clear": [
+  [
+   9400,
+   2300,
+   700
+  ]
+ ]
+}

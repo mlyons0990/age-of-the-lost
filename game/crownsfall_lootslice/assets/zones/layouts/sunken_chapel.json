@@ -1,0 +1,193 @@
+{
+ "id": "sunken_chapel",
+ "name": "The Sunken Chapel",
+ "world_id": "sunken_chapel",
+ "size": [
+  7680,
+  4944
+ ],
+ "seed": 37,
+ "rooms": [
+  [
+   700,
+   2470,
+   520
+  ],
+  [
+   2000,
+   2470,
+   460
+  ],
+  [
+   3000,
+   1300,
+   560
+  ],
+  [
+   3000,
+   3700,
+   560
+  ],
+  [
+   4300,
+   2470,
+   680,
+   "lit"
+  ],
+  [
+   5600,
+   1300,
+   560
+  ],
+  [
+   5600,
+   3700,
+   600,
+   "lit"
+  ],
+  [
+   6800,
+   2470,
+   700,
+   "lit"
+  ]
+ ],
+ "links": [
+  [
+   0,
+   1
+  ],
+  [
+   1,
+   2
+  ],
+  [
+   1,
+   3
+  ],
+  [
+   2,
+   4
+  ],
+  [
+   3,
+   4
+  ],
+  [
+   4,
+   5
+  ],
+  [
+   4,
+   6
+  ],
+  [
+   5,
+   7
+  ],
+  [
+   6,
+   7
+  ]
+ ],
+ "water": [
+  [
+   3000,
+   3800,
+   240
+  ],
+  [
+   5600,
+   3800,
+   260
+  ],
+  [
+   2000,
+   2560,
+   160
+  ]
+ ],
+ "entry": 0,
+ "exit_name": "Hollowmere",
+ "exit_to": "hollowmere",
+ "exit_arrive": [
+  10300,
+  3200
+ ],
+ "waypoint": [
+  4,
+  "chapel_nave",
+  "Flooded Nave"
+ ],
+ "pois": [
+  {
+   "name": "Chapel Steps",
+   "kind": "landmark",
+   "at": [
+    160,
+    2470
+   ],
+   "blurb": "Up into Hollowmere, under the chapel's broken floor."
+  },
+  {
+   "name": "Flooded Nave",
+   "kind": "landmark",
+   "at": [
+    4300,
+    2470
+   ],
+   "blurb": "The nave, knee-deep. A waypoint stone glows under the water."
+  },
+  {
+   "name": "Oracle's Pool",
+   "kind": "secret",
+   "at": [
+    5600,
+    3700
+   ],
+   "blurb": "A still pool where a Concord oracle drowned watching the sky."
+  },
+  {
+   "name": "Reliquary",
+   "kind": "cache",
+   "at": [
+    3000,
+    1300
+   ],
+   "blurb": "Old offerings, some of them very old."
+  },
+  {
+   "name": "The Scorched Altar",
+   "kind": "landmark",
+   "at": [
+    6800,
+    2470
+   ],
+   "blurb": "The altar is burnt in rings, as if by a fire that came from inside time."
+  }
+ ],
+ "grade": {
+  "mul": [
+   0.55,
+   0.66,
+   0.66
+  ],
+  "desat": 0.4,
+  "lift": [
+   0.02,
+   0.05,
+   0.05,
+   1.0
+  ],
+  "mist": [
+   0.45,
+   0.6,
+   0.58
+  ],
+  "water": [
+   0.12,
+   0.24,
+   0.24
+  ]
+ }
+}

@@ -378,7 +378,10 @@
      "But Saltmarrow's ships have stopped coming. The causeway east is held by a brigand who calls himself the Tollkeeper. Take this, and take the road."
     ]
    },
-   "next": "the_greyfen_road"
+   "next": "the_greyfen_road",
+   "also": [
+    "the_scorched_altar"
+   ]
   },
   {
    "id": "the_greyfen_road",
@@ -486,7 +489,7 @@
        "zone": "wreckers_strand",
        "at": [
         3000,
-        3560
+        3300
        ],
        "r": 430,
        "label": "Tide Pools",
@@ -596,6 +599,465 @@
      "Harbourmaster Wenna",
      "A warden, in armour like nothing from any forge I know. And you say he talked as if the Concord still stood?",
      "The smugglers have been selling trinkets like his for months. They come from a grotto under the Strand. Take this, and be careful what you find down there."
+    ]
+   },
+   "next": "the_wrong_tide"
+  },
+  {
+   "id": "the_scorched_altar",
+   "name": "The Scorched Altar",
+   "giver": "ralden",
+   "count": 1,
+   "boss": "choirmaster",
+   "steps": {
+    "active": {
+     "objective": "Go down the Chapel Steps and silence the Choirmaster",
+     "markers": [
+      {
+       "zone": "hollowmere",
+       "at": [
+        10700,
+        2950
+       ],
+       "r": 300,
+       "label": "Chapel Steps"
+      },
+      {
+       "zone": "sunken_chapel",
+       "at": [
+        6800,
+        2470
+       ],
+       "r": 520,
+       "label": "The Scorched Altar"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Tell Captain Ralden what burns beneath the chapel",
+     "markers": [
+      {
+       "zone": "crownsfall",
+       "npc": "ralden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1400,
+    "gold": 320,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "The Matron's chapel has a crypt under it. My scouts heard singing down there, and saw light that burned without heat. Go and see."
+    ],
+    "ready": [
+     "Captain Ralden",
+     "Burnt in rings, you say, as if the fire came out of the stone itself.",
+     "I have no name for that. Perhaps the pages do."
+    ]
+   }
+  },
+  {
+   "id": "the_wrong_tide",
+   "name": "The Wrong Tide",
+   "giver": "harbourmaster",
+   "next": "the_keepers_journal",
+   "count": 1,
+   "boss": "corsair_velka",
+   "steps": {
+    "active": {
+     "objective": "Find where the smugglers' relics come from in the Grotto",
+     "markers": [
+      {
+       "zone": "wreckers_strand",
+       "at": [
+        9100,
+        900
+       ],
+       "r": 300,
+       "label": "Grotto Mouth"
+      },
+      {
+       "zone": "smugglers_grotto",
+       "at": [
+        6700,
+        2470
+       ],
+       "r": 560,
+       "label": "The Wrong Tide"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Return to Harbourmaster Wenna",
+     "markers": [
+      {
+       "zone": "saltmarrow",
+       "npc": "harbourmaster"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2200,
+    "gold": 600,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Harbourmaster Wenna",
+     "Corsair Queen Velka sells those relics out of the Smugglers' Grotto, at the Strand's north end. Find out where she gets them."
+    ],
+    "ready": [
+     "Harbourmaster Wenna",
+     "A crack in the air, and the sea running into it backwards? And Velka fishing relics out of it...",
+     "The old lantern-keepers kept journals. If anyone knew about this, they did. Their lanterns stand on the cliffs north of the Strand."
+    ]
+   }
+  },
+  {
+   "id": "the_keepers_journal",
+   "name": "The Keepers' Journal",
+   "giver": "ione",
+   "next": "clockwork_on_the_moor",
+   "count": 3,
+   "item_name": "Keeper's Journal Page",
+   "steps": {
+    "active": {
+     "objective": "Recover the lantern-keepers' journal on Lanternfall Cliffs",
+     "markers": [
+      {
+       "zone": "wreckers_strand",
+       "at": [
+        7600,
+        220
+       ],
+       "r": 300,
+       "label": "Cliff Path"
+      },
+      {
+       "zone": "lanternfall_cliffs",
+       "at": [
+        2500,
+        1250
+       ],
+       "r": 430,
+       "label": "West Lantern",
+       "page": "journal_1"
+      },
+      {
+       "zone": "lanternfall_cliffs",
+       "at": [
+        6000,
+        1100
+       ],
+       "r": 430,
+       "label": "High Lantern",
+       "page": "journal_2"
+      },
+      {
+       "zone": "lanternfall_cliffs",
+       "at": [
+        9300,
+        1250
+       ],
+       "r": 430,
+       "label": "East Lantern",
+       "page": "journal_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Bring the journal to the scholar at Oldwatch, across Riftscar Moor",
+     "markers": [
+      {
+       "zone": "riftscar_moor",
+       "at": [
+        5600,
+        200
+       ],
+       "r": 300,
+       "label": "Oldwatch Road"
+      },
+      {
+       "zone": "oldwatch",
+       "npc": "ione"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2800,
+    "gold": 700,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Ione Thessaly",
+     "You have the keepers' journal? No? Then why are you here? Go and get it."
+    ],
+    "ready": [
+     "Ione Thessaly",
+     "The keepers' journal, and written in Concord script, like the Archive Pages. I can read some of it.",
+     "'The Aeon is waking.' Every keeper wrote the same line on the same night. Then nothing.",
+     "And this moor: the bronze soldiers on it came out of that rift. They are Concord work, older than any kingdom we have records of."
+    ]
+   }
+  },
+  {
+   "id": "clockwork_on_the_moor",
+   "name": "Clockwork on the Moor",
+   "giver": "ione",
+   "next": "brackwater_echoes",
+   "count": 1,
+   "boss": "clockwork_centurion",
+   "steps": {
+    "active": {
+     "objective": "Stop the Clockwork Centurion mustering soldiers on the moor",
+     "markers": [
+      {
+       "zone": "riftscar_moor",
+       "at": [
+        8000,
+        1400
+       ],
+       "r": 560,
+       "label": "Clockwork Muster"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Return to Ione Thessaly at Oldwatch",
+     "markers": [
+      {
+       "zone": "oldwatch",
+       "npc": "ione"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 3200,
+    "gold": 800,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Ione Thessaly",
+     "The bronze soldiers on the moor answer to one of their own: a centurion that came through the Riftscar. Break it before it marches on Oldwatch."
+    ],
+    "ready": [
+     "Ione Thessaly",
+     "Its orders were stamped in its chest: 'Hold the Brackwater line until the Archon's word.' The Archon. The Concord had a ruler, and this thing still waits for her.",
+     "Brackwater Ruins, south of the moor, was a Concord outpost. Their seals would tell us whose orders these were."
+    ]
+   }
+  },
+  {
+   "id": "brackwater_echoes",
+   "name": "Brackwater Echoes",
+   "giver": "ione",
+   "next": "the_star_chart",
+   "count": 3,
+   "item_name": "Concord Seal",
+   "steps": {
+    "active": {
+     "objective": "Recover three Concord seals in Brackwater Ruins",
+     "markers": [
+      {
+       "zone": "riftscar_moor",
+       "at": [
+        8200,
+        4760
+       ],
+       "r": 300,
+       "label": "Brackwater Path"
+      },
+      {
+       "zone": "brackwater_ruins",
+       "at": [
+        3200,
+        3950
+       ],
+       "r": 430,
+       "label": "Seal-House West",
+       "page": "seal_1"
+      },
+      {
+       "zone": "brackwater_ruins",
+       "at": [
+        6200,
+        950
+       ],
+       "r": 430,
+       "label": "Signal Tower",
+       "page": "seal_2"
+      },
+      {
+       "zone": "brackwater_ruins",
+       "at": [
+        9000,
+        3950
+       ],
+       "r": 430,
+       "label": "Seal-House East",
+       "page": "seal_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Bring the seals to Ione Thessaly",
+     "markers": [
+      {
+       "zone": "oldwatch",
+       "npc": "ione"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 3800,
+    "gold": 950,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Ione Thessaly",
+     "Three seals: two seal-houses and the signal tower. Bring them back, and mind the ruins. They are not always the same ruins twice."
+    ],
+    "ready": [
+     "Ione Thessaly",
+     "'Archon Celestine Vael, Sovereign of the Aurelian Concord.' Her seal. And a date I cannot place, because we have lost our calendars.",
+     "The Concord watched the stars from an observatory on the mountain behind this fort. If they recorded when the Aeon woke, it will be there."
+    ]
+   }
+  },
+  {
+   "id": "the_star_chart",
+   "name": "The Star Chart",
+   "giver": "ione",
+   "next": "the_first_rift",
+   "count": 1,
+   "boss": "orrery_golem",
+   "steps": {
+    "active": {
+     "objective": "Climb to the Shattered Observatory and reach the Grand Orrery",
+     "markers": [
+      {
+       "zone": "oldwatch",
+       "at": [
+        7540,
+        2000
+       ],
+       "r": 300,
+       "label": "Mountain Stair"
+      },
+      {
+       "zone": "shattered_observatory",
+       "at": [
+        6700,
+        2470
+       ],
+       "r": 560,
+       "label": "The Grand Orrery"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Tell Ione Thessaly what you saw",
+     "markers": [
+      {
+       "zone": "oldwatch",
+       "npc": "ione"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 4600,
+    "gold": 1100,
+    "item_rarity": 3
+   },
+   "talk": {
+    "active": [
+     "Ione Thessaly",
+     "The Observatory is up the mountain stair east of the yard. Go carefully. Things guard it that should have stopped long ago."
+    ],
+    "ready": [
+     "Ione Thessaly",
+     "You saw it? A city of gold under a sky with one more star, sky-ships, a dragon over the towers...",
+     "That was the Gilded Epoch. That was us, or the people we were. Every rift on the moor leads back to one breach east of here, the First Rift. If the past is coming through, it is coming through there."
+    ]
+   }
+  },
+  {
+   "id": "the_first_rift",
+   "name": "The First Rift",
+   "giver": "ione",
+   "count": 1,
+   "boss": "riftwarden",
+   "steps": {
+    "active": {
+     "objective": "Reach the First Rift at the moor's eastern end and face what guards it",
+     "markers": [
+      {
+       "zone": "riftscar_moor",
+       "at": [
+        11380,
+        2470
+       ],
+       "r": 300,
+       "label": "The Breach"
+      },
+      {
+       "zone": "first_rift",
+       "at": [
+        5900,
+        2470
+       ],
+       "r": 600,
+       "label": "The First Rift"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Tell Ione Thessaly the way is open",
+     "markers": [
+      {
+       "zone": "oldwatch",
+       "npc": "ione"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 6500,
+    "gold": 1800,
+    "item_rarity": 3
+   },
+   "epilogue": {
+    "title": "THE HOURS ARE OPEN",
+    "chapter": "ACT I COMPLETE",
+    "lines": [
+     "The Riftwarden was a Concord sentinel, set to guard the breach in an age no one remembers. It fell, and the rift did not close. It opened wider for you.",
+     "Anyone else who touched it was unmade. You walked into the light and came back whole. Ione says that should be impossible. She has started writing down everything you say.",
+     "On the other side lies the Hourless Deep, where every lost moment of Aethryn drifts. Somewhere in it is the road back to the Gilded Epoch.",
+     "Act II, The Hourless Deep, is to come."
+    ]
+   },
+   "talk": {
+    "active": [
+     "Ione Thessaly",
+     "The First Rift. Whatever guards it was set there by the Concord. Whatever is on the other side, the Concord wanted it kept there.",
+     "Or wanted us kept here."
+    ],
+    "ready": [
+     "Ione Thessaly",
+     "You touched it and lived. Then the rifts are not only tearing the past loose. They are a road.",
+     "Rest first. Then we find out where that road goes."
     ]
    }
   }

@@ -52,7 +52,7 @@ func _run() -> void:
 	var kinds := {}
 	for m in ms: kinds[m["kind"]] = int(kinds.get(m["kind"], 0)) + 1
 	print("markers ", kinds)
-	check(kinds.get("hero", 0) == 1 and kinds.get("exit", 0) == 2, "Zone map shows the hero and both exits (Crownsfall, Hollowmere)")
+	check(kinds.get("hero", 0) == 1 and kinds.get("exit", 0) == 3, "Zone map shows the hero and the exits (Crownsfall, Hollowmere, Barrow Stair)")
 	check(kinds.get("quest", 0) == 3, "Zone map shows the 3 Lost Tomes objectives")
 	check(kinds.get("landmark", 0) >= 1, "Zone map shows the points of interest already explored")
 	check(not kinds.has("secret") and kinds.get("landmark", 0) < 5, "Unexplored places (incl. the secret Fae Ring) stay hidden")

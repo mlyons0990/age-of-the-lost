@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/frost_ring.png" id="1_lc"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_lc"]
+
+[resource]
+script = ExtResource("2_lc")
+id = "tidecall"
+display_name = "Tidecall"
+icon = ExtResource("1_lc")
+description = "Lorecast (the Drowned Oracle): a ring of cold tide bursts around you, slowing everything it hits by 45% for 2.5 s."
+animation = "Cast"
+shape = "nova"
+mana_cost = 16.0
+cooldown = 6.0
+numbers = {
+"dmg": 1.6,
+"radius": 3.4,
+"slow": 0.45,
+"slow_t": 2.5
+}

@@ -746,6 +746,8 @@ func _skill_names() -> Array:
 		var out := []
 		for d in GAME_SKILLS.defs(lab.game_state.class_id):
 			if lab.game_state.rank(d["id"]) > 0: out.append(d["id"])
+		for id in lab.game_state.skills:          # lorecasts learned at lorecast sites, usable by every class
+			if not id in out and not GAME_SKILLS.lore_def(String(id)).is_empty(): out.append(String(id))
 		return out
 	return HERO_SKILLS[hero].keys()
 

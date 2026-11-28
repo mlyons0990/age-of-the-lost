@@ -1,9 +1,85 @@
-{"note": "Lorecast sites (docs/AOTL_CAMPAIGN_ZONES.md, Lorecasting): the remains or echo of a figure of the Gilded Epoch. Walking onto the site wakes its echo; defeating the echo teaches its skill to any class.",
+{
+ "note": "Lorecast sites (docs/AOTL_CAMPAIGN_ZONES.md, Lorecasting): the remains or echo of a figure of the Gilded Epoch. Walking onto the site wakes its echo; defeating the echo teaches its skill to any class.",
  "sites": [
-  {"id": "exalted_paladin", "zone": "mossbarrow_crypts", "at": [5760, 1500], "figure": "Aurelian Dace, Exalted Paladin",
-   "remains": "The Exalted Paladin's Remains", "skill": "res://data/skills/lore/radiant_spear.tres",
-   "echo": {"type": "exalted_echo", "name": "Echo of Aurelian Dace"},
-   "lore": ["The armour is Concord-forged, untouched by rust after an age in the dark.",
-            "As you kneel, light gathers into a man in that armour: Aurelian Dace, Exalted of the Radiant Order. He does not know the Concord has fallen. He knows only that you are not one of his.",
-            "He has fallen to you, and in falling he understands. The last of his light is yours: the Radiant Spear."]}
- ]}
+  {
+   "id": "exalted_paladin",
+   "zone": "mossbarrow_crypts",
+   "at": [
+    5760,
+    1500
+   ],
+   "figure": "Aurelian Dace, Exalted Paladin",
+   "remains": "The Exalted Paladin's Remains",
+   "skill": "res://data/skills/lore/radiant_spear.tres",
+   "echo": {
+    "type": "exalted_echo",
+    "name": "Echo of Aurelian Dace"
+   },
+   "lore": [
+    "The armour is Concord-forged, untouched by rust after an age in the dark.",
+    "As you kneel, light gathers into a man in that armour: Aurelian Dace, Exalted of the Radiant Order. He does not know the Concord has fallen. He knows only that you are not one of his.",
+    "He has fallen to you, and in falling he understands. The last of his light is yours: the Radiant Spear."
+   ]
+  },
+  {
+   "id": "drowned_oracle",
+   "zone": "sunken_chapel",
+   "at": [
+    5600,
+    3500
+   ],
+   "figure": "Merrow Ashe, Oracle of the Tides",
+   "remains": "The Drowned Oracle's Pool",
+   "skill": "res://data/skills/lore/tidecall.tres",
+   "echo": {
+    "type": "oracle_echo",
+    "name": "Echo of Merrow Ashe"
+   },
+   "lore": [
+    "The pool is perfectly still. Under it lies a woman in a Concord oracle's robes, eyes open, watching a sky that is not there.",
+    "Her echo rises dripping. 'The tide of hours is turning,' she says. 'Who let you into the Chapel? The Archon forbade it.'",
+    "She sinks back into the pool, and the stillness of it stays with you: Tidecall."
+   ]
+  },
+  {
+   "id": "corsair_duelist",
+   "zone": "smugglers_grotto",
+   "at": [
+    2100,
+    1500
+   ],
+   "figure": "Serrin Vale, Corsair Duelist",
+   "remains": "The Duelist's Alcove",
+   "skill": "res://data/skills/lore/riposte_flurry.tres",
+   "echo": {
+    "type": "duelist_echo",
+    "name": "Echo of Serrin Vale"
+   },
+   "lore": [
+    "A skeleton in a sky-corsair's coat, blade still raised. The smugglers left it alone, which says something.",
+    "The echo salutes with the blade. 'Sky-Captain Vale, of the Concord fleet. Draw, whoever you are.'",
+    "'Good. They'll need hands like yours when the hours run out.' Riposte Flurry is yours."
+   ]
+  },
+  {
+   "id": "rift_sentinel",
+   "zone": "brackwater_ruins",
+   "at": [
+    9400,
+    2250
+   ],
+   "figure": "Sentinel Oris, of the Brackwater Watch",
+   "remains": "The Sentinel's Post",
+   "skill": "res://data/skills/lore/phase_step.tres",
+   "echo": {
+    "type": "sentinel_echo",
+    "name": "Echo of Sentinel Oris"
+   },
+   "lore": [
+    "A sentinel stands at his post, flickering. For a heartbeat the forum behind him is whole and full of people.",
+    "'Halt. Brackwater is closed by order of the Archon. The hours are unsafe.' He raises his spear at you, and at something behind you.",
+    "As he fades he steps sideways out of time and back again, and you learn how: Phase Step."
+   ]
+  }
+ ]
+}

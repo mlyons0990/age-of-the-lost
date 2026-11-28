@@ -1,0 +1,841 @@
+{
+ "name": "Lanternfall Cliffs",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 67,
+ "paths": [
+  {
+   "pts": [
+    [
+     -80,
+     2600
+    ],
+    [
+     900,
+     2550
+    ],
+    [
+     2000,
+     2700
+    ],
+    [
+     3100,
+     2600
+    ],
+    [
+     4100,
+     2450
+    ],
+    [
+     5000,
+     2550
+    ],
+    [
+     6000,
+     2400
+    ],
+    [
+     7000,
+     2550
+    ],
+    [
+     8000,
+     2450
+    ],
+    [
+     9200,
+     2600
+    ],
+    [
+     10300,
+     2500
+    ],
+    [
+     11600,
+     2470
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     2000,
+     2700
+    ],
+    [
+     2300,
+     2000
+    ],
+    [
+     2500,
+     1300
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6000,
+     2400
+    ],
+    [
+     6000,
+     1700
+    ],
+    [
+     6000,
+     1150
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     9200,
+     2600
+    ],
+    [
+     9250,
+     1900
+    ],
+    [
+     9300,
+     1300
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     4100,
+     2450
+    ],
+    [
+     4300,
+     3300
+    ],
+    [
+     4500,
+     3900
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5000,
+    2550
+   ],
+   "r": 380,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    2500,
+    1250
+   ],
+   "r": 320,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6000,
+    1100
+   ],
+   "r": 340,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    9300,
+    1250
+   ],
+   "r": 320,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    4500,
+    3950
+   ],
+   "r": 360,
+   "layer": "dirt",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    1300,
+    3700
+   ],
+   "r": 420,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7600,
+    3800
+   ],
+   "r": 460,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    10200,
+    3900
+   ],
+   "r": 380,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    0,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    800,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1600,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2400,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3200,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4000,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4800,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    5600,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6400,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7200,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    8000,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    8800,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9600,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    10400,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    11200,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    12000,
+    -60
+   ],
+   "r": 900,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   140,
+   2600,
+   400
+  ],
+  [
+   11380,
+   2470,
+   400
+  ],
+  [
+   5000,
+   2550,
+   530
+  ],
+  [
+   2500,
+   1250,
+   470
+  ],
+  [
+   6000,
+   1100,
+   490
+  ],
+  [
+   9300,
+   1250,
+   470
+  ],
+  [
+   4500,
+   3950,
+   510
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "silver",
+    2
+   ],
+   [
+    "gnarled_b",
+    2
+   ]
+  ],
+  "spacing": 1000,
+  "cut": 0.78,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 70,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 4,
+    "n": [
+     3,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "lavender": {
+    "w": 2,
+    "n": [
+     3,
+     7
+    ],
+    "r": 160,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     5
+    ],
+    "r": 140,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     4
+    ],
+    "r": 150,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     3,
+     6
+    ],
+    "r": 180,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 130,
+   "offset": -20,
+   "jitter": 70,
+   "density": 0.75,
+   "props": [
+    "a_moss",
+    "a_clover",
+    "a_pebbles",
+    "a_leaves"
+   ],
+   "scale": [
+    0.9,
+    1.3
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 110,
+   "jitter": 120,
+   "density": 0.9,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_lavender",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.3,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    5000,
+    2550,
+    418.00000000000006,
+    0.45
+   ],
+   [
+    2500,
+    1250,
+    352.0,
+    0.45
+   ],
+   [
+    6000,
+    1100,
+    374.00000000000006,
+    0.45
+   ],
+   [
+    9300,
+    1250,
+    352.0,
+    0.45
+   ],
+   [
+    4500,
+    3950,
+    396.00000000000006,
+    0.45
+   ]
+  ],
+  "shafts": [
+   [
+    5000,
+    2330,
+    420
+   ],
+   [
+    2500,
+    1030,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    1300,
+    3700,
+    630.0
+   ],
+   [
+    7600,
+    3800,
+    690.0
+   ],
+   [
+    10200,
+    3900,
+    570.0
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "lanternfall_stair",
+   "name": "Keeper's Stair",
+   "at": [
+    5000,
+    2550
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Wreckers' Strand",
+   "to": "wreckers_strand",
+   "at": [
+    140,
+    2600
+   ],
+   "r": 170,
+   "arrive": [
+    7600,
+    600
+   ]
+  },
+  {
+   "name": "Riftscar Moor",
+   "to": "riftscar_moor",
+   "at": [
+    11380,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2470
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  620,
+  2600
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Strand Path",
+   "kind": "landmark",
+   "at": [
+    160,
+    2600
+   ],
+   "blurb": "Down to the Wreckers' Strand."
+  },
+  {
+   "name": "Keeper's Stair",
+   "kind": "landmark",
+   "at": [
+    5000,
+    2550
+   ],
+   "blurb": "The lantern-keepers' stair; a waypoint still glows."
+  },
+  {
+   "name": "West Lantern",
+   "kind": "landmark",
+   "at": [
+    2500,
+    1250
+   ],
+   "blurb": "A warden's cliff-lantern, its keeper long dead."
+  },
+  {
+   "name": "High Lantern",
+   "kind": "landmark",
+   "at": [
+    6000,
+    1100
+   ],
+   "blurb": "The tallest of the cliff-lanterns."
+  },
+  {
+   "name": "East Lantern",
+   "kind": "landmark",
+   "at": [
+    9300,
+    1250
+   ],
+   "blurb": "A lantern facing the moor, not the sea."
+  },
+  {
+   "name": "Gull Rocks",
+   "kind": "cache",
+   "at": [
+    4500,
+    3950
+   ],
+   "blurb": "A nest of wreckage and something shiny."
+  },
+  {
+   "name": "Moor Road",
+   "kind": "landmark",
+   "at": [
+    11380,
+    2470
+   ],
+   "blurb": "East onto Riftscar Moor."
+  }
+ ],
+ "world_id": "lanternfall",
+ "grade": {
+  "mul": [
+   0.95,
+   0.98,
+   1.02
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.05,
+   0.06,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.84,
+   0.9
+  ],
+  "water": [
+   0.16,
+   0.32,
+   0.42
+  ]
+ }
+}

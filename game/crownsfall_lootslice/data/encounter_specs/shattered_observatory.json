@@ -1,0 +1,72 @@
+{
+ "zone": "shattered_observatory",
+ "levels": [
+  13,
+  14
+ ],
+ "packs": 16,
+ "seed": 59,
+ "spacing": 700,
+ "groups": [
+  [
+   5,
+   [
+    "star_wraith",
+    "star_wraith"
+   ]
+  ],
+  [
+   3,
+   [
+    "astral_mote",
+    "astral_mote",
+    "astral_mote"
+   ]
+  ],
+  [
+   3,
+   [
+    "star_wraith",
+    "astral_mote",
+    "astral_mote"
+   ]
+  ],
+  [
+   2,
+   [
+    "ruin_golem"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "ruin_golem",
+    "star_wraith"
+   ]
+  ],
+  [
+   1,
+   [
+    "star_wraith",
+    "star_wraith",
+    "star_wraith"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    6700,
+    2470
+   ],
+   "types": [],
+   "boss": "orrery_golem",
+   "boss_type": "orrery_golem",
+   "boss_name": "The Orrery Golem",
+   "needs_quest": "the_star_chart"
+  }
+ ],
+ "keep_clear": []
+}

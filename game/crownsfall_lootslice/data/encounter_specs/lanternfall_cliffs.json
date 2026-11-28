@@ -1,0 +1,106 @@
+{
+ "zone": "lanternfall_cliffs",
+ "levels": [
+  10,
+  11
+ ],
+ "packs": 30,
+ "seed": 67,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "cliff_ghoul",
+    "cliff_ghoul"
+   ]
+  ],
+  [
+   3,
+   [
+    "lantern_wisp",
+    "lantern_wisp",
+    "lantern_wisp"
+   ]
+  ],
+  [
+   3,
+   [
+    "cliff_ghoul",
+    "lantern_wisp",
+    "lantern_wisp"
+   ]
+  ],
+  [
+   2,
+   [
+    "cliff_brute"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "cliff_brute",
+    "cliff_ghoul"
+   ]
+  ],
+  [
+   1,
+   [
+    "cliff_ghoul",
+    "cliff_ghoul",
+    "cliff_ghoul"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    2500,
+    1350
+   ],
+   "types": [
+    "lantern_wisp",
+    "lantern_wisp"
+   ],
+   "elite": false,
+   "guardian": "lanternfall_west",
+   "elite_type": "cliff_ghoul",
+   "elite_name": "The West Keeper",
+   "page": "journal_1"
+  },
+  {
+   "at": [
+    6000,
+    1200
+   ],
+   "types": [
+    "cliff_ghoul",
+    "lantern_wisp"
+   ],
+   "elite": false,
+   "guardian": "lanternfall_high",
+   "elite_type": "cliff_brute",
+   "elite_name": "The High Keeper",
+   "page": "journal_2"
+  },
+  {
+   "at": [
+    9300,
+    1350
+   ],
+   "types": [
+    "cliff_ghoul",
+    "cliff_ghoul"
+   ],
+   "elite": false,
+   "guardian": "lanternfall_east",
+   "elite_type": "cliff_ghoul",
+   "elite_name": "The East Keeper",
+   "page": "journal_3"
+  }
+ ],
+ "keep_clear": []
+}

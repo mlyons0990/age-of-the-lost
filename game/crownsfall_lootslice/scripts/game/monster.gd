@@ -52,6 +52,64 @@ const MORE_TYPES := {
 	# Lorecast echoes: figures of the Gilded Epoch, woken at their remains
 	"exalted_echo": {"name": "Echo of the Exalted", "hp": 120.0, "dmg": 16.0, "speed": 2.2, "range": 1.6, "atk_cd": 1.8, "wind": 0.55, "rad": 0.5, "xp": 3.0,
 		"art": "revenant", "tint": Color(1.0, 0.92, 0.6), "height": 2.25, "speed_m": 3.2},
+	# Lorecast echoes (Act I)
+	"oracle_echo": {"name": "Echo of the Oracle", "hp": 120.0, "dmg": 15.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 3.0,
+		"art": "revenant", "tint": Color(0.62, 0.9, 0.95), "height": 2.1, "speed_m": 3.3},
+	"duelist_echo": {"name": "Echo of the Duelist", "hp": 125.0, "dmg": 17.0, "speed": 2.8, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 3.0,
+		"art": "revenant", "tint": Color(1.0, 0.84, 0.62), "height": 2.0, "speed_m": 3.8},
+	"sentinel_echo": {"name": "Echo of the Sentinel", "hp": 150.0, "dmg": 18.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 3.2,
+		"art": "revenant", "tint": Color(0.7, 0.95, 1.0), "height": 2.3, "speed_m": 3.3},
+	# The Sunken Chapel (6-7)
+	"drowned_acolyte": {"name": "Drowned Acolyte", "hp": 66.0, "dmg": 13.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 1.4,
+		"art": "revenant", "tint": Color(0.6, 0.84, 0.82), "height": 1.95, "speed_m": 3.3},
+	"chapel_eel": {"name": "Chapel Eel", "hp": 30.0, "dmg": 9.0, "speed": 2.5, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(0.62, 0.9, 0.86), "height": 1.05, "speed_m": 3.4},
+	"font_horror": {"name": "Font Horror", "hp": 130.0, "dmg": 20.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.4,
+		"art": "brute", "tint": Color(0.52, 0.74, 0.76), "height": 2.55, "speed_m": 2.5},
+	"choirmaster": {"name": "The Choirmaster", "hp": 160.0, "dmg": 21.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 3.2,
+		"art": "revenant", "tint": Color(0.45, 0.95, 0.9), "height": 2.3, "speed_m": 3.3, "adds": "drowned_acolyte"},
+	# Smugglers' Grotto (9-10)
+	"smuggler": {"name": "Grotto Smuggler", "hp": 66.0, "dmg": 13.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 1.4,
+		"art": "revenant", "tint": Color(1.0, 0.82, 0.66), "height": 1.95, "speed_m": 3.3},
+	"cave_crab": {"name": "Cave Crab", "hp": 30.0, "dmg": 9.0, "speed": 2.5, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(1.0, 0.66, 0.55), "height": 1.05, "speed_m": 3.4},
+	"grotto_brute": {"name": "Grotto Bruiser", "hp": 130.0, "dmg": 20.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.4,
+		"art": "brute", "tint": Color(0.86, 0.72, 0.6), "height": 2.55, "speed_m": 2.5},
+	"corsair_velka": {"name": "Corsair Queen Velka", "hp": 175.0, "dmg": 24.0, "speed": 2.6, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 3.4,
+		"art": "revenant", "tint": Color(1.0, 0.7, 0.5), "height": 2.2, "speed_m": 3.3, "adds": "smuggler"},
+	# Lanternfall Cliffs (10-11)
+	"cliff_ghoul": {"name": "Cliff Ghoul", "hp": 66.0, "dmg": 13.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 1.4,
+		"art": "revenant", "tint": Color(0.86, 0.9, 0.95), "height": 1.95, "speed_m": 3.3},
+	"lantern_wisp": {"name": "Lantern Wisp", "hp": 30.0, "dmg": 9.0, "speed": 2.5, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(1.0, 0.92, 0.6), "height": 1.05, "speed_m": 3.4},
+	"cliff_brute": {"name": "Cliff Brute", "hp": 130.0, "dmg": 20.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.4,
+		"art": "brute", "tint": Color(0.78, 0.8, 0.84), "height": 2.55, "speed_m": 2.5},
+	# Riftscar Moor (11-12): things out of the past
+	"clockwork_soldier": {"name": "Clockwork Soldier", "hp": 66.0, "dmg": 13.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 1.4,
+		"art": "revenant", "tint": Color(1.0, 0.78, 0.45), "height": 1.95, "speed_m": 3.3},
+	"rift_mite": {"name": "Rift Mite", "hp": 30.0, "dmg": 9.0, "speed": 2.5, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(0.78, 0.55, 1.0), "height": 1.05, "speed_m": 3.4},
+	"rift_beast": {"name": "Rift Beast", "hp": 130.0, "dmg": 20.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.4,
+		"art": "brute", "tint": Color(0.75, 0.55, 0.95), "height": 2.55, "speed_m": 2.5},
+	"clockwork_centurion": {"name": "The Clockwork Centurion", "hp": 185.0, "dmg": 26.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 3.6,
+		"art": "brute", "tint": Color(1.0, 0.8, 0.4), "height": 2.9, "speed_m": 2.5, "adds": "clockwork_soldier"},
+	# Brackwater Ruins (12-13)
+	"concord_phantom": {"name": "Concord Phantom", "hp": 66.0, "dmg": 13.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 1.4,
+		"art": "revenant", "tint": Color(0.6, 0.92, 1.0), "height": 1.95, "speed_m": 3.3},
+	"flicker_ooze": {"name": "Flicker Ooze", "hp": 30.0, "dmg": 9.0, "speed": 2.5, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(0.6, 0.95, 1.0), "height": 1.05, "speed_m": 3.4},
+	"ruin_golem": {"name": "Ruin Golem", "hp": 130.0, "dmg": 20.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.4,
+		"art": "brute", "tint": Color(0.82, 0.86, 0.9), "height": 2.55, "speed_m": 2.5},
+	# The Shattered Observatory (13-14)
+	"star_wraith": {"name": "Star Wraith", "hp": 66.0, "dmg": 13.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 1.4,
+		"art": "revenant", "tint": Color(0.66, 0.62, 1.0), "height": 1.95, "speed_m": 3.3},
+	"astral_mote": {"name": "Astral Mote", "hp": 30.0, "dmg": 9.0, "speed": 2.5, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(0.95, 0.95, 1.0), "height": 1.05, "speed_m": 3.4},
+	"orrery_golem": {"name": "The Orrery Golem", "hp": 190.0, "dmg": 27.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 3.8,
+		"art": "brute", "tint": Color(1.0, 0.9, 0.55), "height": 3.0, "speed_m": 2.5, "adds": "astral_mote"},
+	# The First Rift (14-15)
+	"riftwarden": {"name": "The Riftwarden", "hp": 220.0, "dmg": 30.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 4.5,
+		"art": "revenant", "tint": Color(0.95, 0.75, 1.0), "height": 2.6, "speed_m": 3.3, "adds": "rift_mite"},
 	# Mossbarrow Crypts (levels 3-4)
 	"barrow_shade": {"name": "Barrow Shade", "hp": 40.0, "dmg": 9.0, "speed": 2.4, "range": 1.2, "atk_cd": 1.6, "wind": 0.5, "rad": 0.4, "xp": 1.1,
 		"art": "revenant", "tint": Color(0.72, 0.74, 0.86), "height": 1.9, "speed_m": 3.3},
@@ -270,6 +328,11 @@ func hit(amount: float) -> bool:
 	if hp <= 0.0:
 		_die()
 		return true
+	# bosses call their adds when first driven below half life (checked on the hit itself, so a boss mid-swing
+	# or mid-slam still answers)
+	if boss and not summoned and hp < max_hp * 0.5 and director != null:
+		summoned = true
+		director.summon_adds(self, 4)
 	return false
 
 ## Status effects from hero skills: slow (fraction, seconds), stun (seconds, cancels a wind-up; bosses resist half),
@@ -388,9 +451,6 @@ func _physics_process(delta: float) -> void:
 				_begin_wind("strike", hero.global_position); return
 			if dist > reach * 0.8:
 				_chase(hero.global_position, delta)
-			if boss and not summoned and hp < max_hp * 0.5:
-				summoned = true
-				director.summon_adds(self, 4)
 		"wind":
 			wind_left -= delta
 			_update_tele()

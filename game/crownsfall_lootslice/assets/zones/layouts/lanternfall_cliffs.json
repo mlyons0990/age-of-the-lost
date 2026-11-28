@@ -1,0 +1,307 @@
+{
+ "id": "lanternfall_cliffs",
+ "name": "Lanternfall Cliffs",
+ "world_id": "lanternfall",
+ "size": [
+  11520,
+  4944
+ ],
+ "seed": 67,
+ "sea": "north",
+ "main": [
+  [
+   -80,
+   2600
+  ],
+  [
+   900,
+   2550
+  ],
+  [
+   2000,
+   2700
+  ],
+  [
+   3100,
+   2600
+  ],
+  [
+   4100,
+   2450
+  ],
+  [
+   5000,
+   2550
+  ],
+  [
+   6000,
+   2400
+  ],
+  [
+   7000,
+   2550
+  ],
+  [
+   8000,
+   2450
+  ],
+  [
+   9200,
+   2600
+  ],
+  [
+   10300,
+   2500
+  ],
+  [
+   11600,
+   2470
+  ]
+ ],
+ "branches": [
+  [
+   [
+    2000,
+    2700
+   ],
+   [
+    2300,
+    2000
+   ],
+   [
+    2500,
+    1300
+   ]
+  ],
+  [
+   [
+    6000,
+    2400
+   ],
+   [
+    6000,
+    1700
+   ],
+   [
+    6000,
+    1150
+   ]
+  ],
+  [
+   [
+    9200,
+    2600
+   ],
+   [
+    9250,
+    1900
+   ],
+   [
+    9300,
+    1300
+   ]
+  ],
+  [
+   [
+    4100,
+    2450
+   ],
+   [
+    4300,
+    3300
+   ],
+   [
+    4500,
+    3900
+   ]
+  ]
+ ],
+ "rooms": [
+  [
+   5000,
+   2550,
+   380
+  ],
+  [
+   2500,
+   1250,
+   320,
+   "dirt"
+  ],
+  [
+   6000,
+   1100,
+   340,
+   "dirt"
+  ],
+  [
+   9300,
+   1250,
+   320,
+   "dirt"
+  ],
+  [
+   4500,
+   3950,
+   360,
+   "dirt"
+  ]
+ ],
+ "pools": [
+  [
+   1300,
+   3700,
+   420
+  ],
+  [
+   7600,
+   3800,
+   460
+  ],
+  [
+   10200,
+   3900,
+   380
+  ]
+ ],
+ "trees": [
+  [
+   "silver",
+   2
+  ],
+  [
+   "gnarled_b",
+   2
+  ]
+ ],
+ "tree_spacing": 1000,
+ "tree_cut": 0.78,
+ "rocks": 70,
+ "exits": [
+  {
+   "name": "Wreckers' Strand",
+   "to": "wreckers_strand",
+   "at": [
+    140,
+    2600
+   ],
+   "r": 170,
+   "arrive": [
+    7600,
+    600
+   ]
+  },
+  {
+   "name": "Riftscar Moor",
+   "to": "riftscar_moor",
+   "at": [
+    11380,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2470
+   ]
+  }
+ ],
+ "waypoint": [
+  5000,
+  2550,
+  "lanternfall_stair",
+  "Keeper's Stair"
+ ],
+ "spawn": [
+  620,
+  2600
+ ],
+ "pois": [
+  {
+   "name": "Strand Path",
+   "kind": "landmark",
+   "at": [
+    160,
+    2600
+   ],
+   "blurb": "Down to the Wreckers' Strand."
+  },
+  {
+   "name": "Keeper's Stair",
+   "kind": "landmark",
+   "at": [
+    5000,
+    2550
+   ],
+   "blurb": "The lantern-keepers' stair; a waypoint still glows."
+  },
+  {
+   "name": "West Lantern",
+   "kind": "landmark",
+   "at": [
+    2500,
+    1250
+   ],
+   "blurb": "A warden's cliff-lantern, its keeper long dead."
+  },
+  {
+   "name": "High Lantern",
+   "kind": "landmark",
+   "at": [
+    6000,
+    1100
+   ],
+   "blurb": "The tallest of the cliff-lanterns."
+  },
+  {
+   "name": "East Lantern",
+   "kind": "landmark",
+   "at": [
+    9300,
+    1250
+   ],
+   "blurb": "A lantern facing the moor, not the sea."
+  },
+  {
+   "name": "Gull Rocks",
+   "kind": "cache",
+   "at": [
+    4500,
+    3950
+   ],
+   "blurb": "A nest of wreckage and something shiny."
+  },
+  {
+   "name": "Moor Road",
+   "kind": "landmark",
+   "at": [
+    11380,
+    2470
+   ],
+   "blurb": "East onto Riftscar Moor."
+  }
+ ],
+ "grade": {
+  "mul": [
+   0.95,
+   0.98,
+   1.02
+  ],
+  "desat": 0.3,
+  "lift": [
+   0.05,
+   0.06,
+   0.08,
+   1.0
+  ],
+  "mist": [
+   0.8,
+   0.84,
+   0.9
+  ],
+  "water": [
+   0.16,
+   0.32,
+   0.42
+  ]
+ }
+}

@@ -81,7 +81,7 @@ func _run() -> void:
 	for m in g.monsters:
 		if not is_instance_valid(m): continue
 		n += 1; types[m.type_key] = true
-		if m.drops_page == "": lo = mini(lo, m.level); hi = maxi(hi, m.level)
+		if m.drops_page == "" and not m.elite: lo = mini(lo, m.level); hi = maxi(hi, m.level)
 	check(n >= 60, "Hollowmere is populated (%d monsters)" % n)
 	check(types.has("bog_ghoul") and types.has("mire_lurker") and types.has("mire_wisp"), "Marsh monster types present %s" % [types.keys()])
 	check(lo >= 4 and hi <= 6, "Monster levels within 4-6 (%d-%d)" % [lo, hi])

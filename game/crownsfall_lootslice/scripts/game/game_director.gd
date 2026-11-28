@@ -72,6 +72,8 @@ func setup(owner_lab, st) -> void:
 	lab.player.primary_action = func(): use_skill(String(state.bar[5]) if state.bar.size() == 8 else "")
 	lab.player.death_handler = _on_hero_died
 	lab.zone_changed.connect(_on_zone_changed)
+	lab.hud.set_branding(false)
+	lab.hud._on_zone_changed("")
 	lab.hud.reload_bar()
 	_enter_zone(true)
 

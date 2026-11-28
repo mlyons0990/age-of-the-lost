@@ -102,6 +102,11 @@ var minimap_cam: Camera3D
 var minimap_rect: Rect2
 var area_title: Label
 var area_sub: Label
+var branding: Array = []             # top-left logo (lab only; the playable game hides it)
+
+## The playable game has no logo over the play field.
+func set_branding(on: bool) -> void:
+	for n in branding: n.visible = on
 
 ## Minimap header follows the painted zone ("Region — Place" from the zone JSON name).
 func _on_zone_changed(_to: String) -> void:
@@ -113,6 +118,8 @@ func _on_zone_changed(_to: String) -> void:
 	var parts := nm.split(" — ")
 	area_title.text = parts[0]
 	area_sub.text = parts[1] if parts.size() > 1 else ""
+	if lab.get("game") != null:       # playable game: just the zone's name (levels live on the world map)
+		area_sub.text = ""
 var xp_rect: Rect2
 var quest_progress := 0
 
@@ -214,6 +221,7 @@ func _build() -> void:
 	var sub := _label("C R O W N S F A L L", 17, GOLD)
 	sub.position = Vector2(74, 60)
 	root.add_child(sub)
+	branding = [logo, sub]
 	# lab/debug panel (blueprint CAM-06): one container, hidden by default, toggled by the rebindable "lab_panel"
 	# action (F3), and never shown in release builds
 	lab_panel = Control.new()
@@ -453,6 +461,19 @@ func _build() -> void:
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay.draw.connect(_draw_overlay)
 	root.add_child(overlay)
+	# zone name centred on the top of the minimap, black-outlined: children of the overlay draw after the painted
+	# minimap it draws
+	for l in [area_title, area_sub]:
+		l.reparent(overlay, true)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		l.size.x = minimap_rect.size.x
+		l.position.x = minimap_rect.position.x
+		l.add_theme_color_override("font_outline_color", Color.BLACK)
+		l.add_theme_constant_override("outline_size", 7)
+	area_title.add_theme_font_size_override("font_size", 21)
+	area_title.add_theme_color_override("font_color", Color("f3e7c4"))
+	area_title.position.y = minimap_rect.position.y + 4
+	area_sub.position.y = minimap_rect.position.y + 30
 	for t in lab.targets:
 		if t.title != null:
 			t.title.visible = false

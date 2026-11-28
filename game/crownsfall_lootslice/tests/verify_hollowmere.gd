@@ -93,6 +93,12 @@ func _run() -> void:
 	lab.player.global_position = lab.zone_px_to_world(3700, 2150) + Vector3.UP * 0.08; lab.zone_last_ok = lab.player.global_position
 	await _wait(0.8)
 	await _shot("ferry")
+	var wm = lab.hud.world_map
+	wm.open("world")
+	await _wait(0.3)
+	check(wm.visible and wm.mode == "world", "World map opens on the realm view")
+	await _shot("world_map")
+	wm.close()
 	# the three lanterns
 	for i in 3:
 		var page := "lantern_%d" % (i + 1)

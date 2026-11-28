@@ -464,7 +464,9 @@ func _draw_world() -> void:
 		draw_arc(c, 28.0, 0, TAU, 48, Color(col, 0.5), 1.0, true)
 		_node_icon(String(n.get("kind", "")) if known else "unknown", c, col)
 		_text(c + Vector2(0, 56), String(n["name"]) if known else "???", 19, IVORY if known else Color(0.6, 0.58, 0.55))
-		if known and n.has("levels"): _text(c + Vector2(0, 76), String(n["levels"]), 14, Color("a8977a"), false)
+		# every reachable zone shows its level range (an undiscovered one too, so the player can judge the danger)
+		if n.has("levels") and not bool(n.get("locked", false)):
+			_text(c + Vector2(0, 78), String(n["levels"]), 16, Color("d9b46a") if known else Color(0.7, 0.62, 0.48), false)
 		if n["id"] == here:
 			draw_arc(c, 42.0, 0, TAU, 48, Color("f2d27a"), 2.5, true)
 			_draw_marker({"kind": "hero", "angle": -PI * 0.5}, c + Vector2(0, -50), false)
@@ -534,6 +536,7 @@ func _draw_side() -> void:
 		for wid in zs:
 			for n in world.get("map", {}).get("nodes", []):
 				if n["id"] == wid: where.append(String(n["name"]))
+		if where.is_empty(): continue
 		y += 19
 		_text(Vector2(side.position.x + 34, y), "In: " + ", ".join(where), 13, Color("a8977a"), false, HORIZONTAL_ALIGNMENT_LEFT)
 	y += 42

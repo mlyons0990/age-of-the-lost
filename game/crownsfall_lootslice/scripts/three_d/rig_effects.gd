@@ -93,3 +93,18 @@ func cast(at: Vector3, color: Color) -> void:
 	for i in 3:
 		ring(at + Vector3.UP * (0.3 + i * 0.35), 0.24 + i * 0.16, color, 0.4 + i * 0.12)
 	sparks(at + Vector3.UP * 1.3, color, 30)
+
+## A straight beam (lorecast spears, lances): a glowing bar from `at` along `dir`, fading out.
+func beam(at: Vector3, dir: Vector3, length: float, width: float, color: Color, duration := 0.35) -> void:
+	var o := MeshInstance3D.new()
+	var bm := BoxMesh.new(); bm.size = Vector3(width, 0.18, length)
+	o.mesh = bm
+	o.material_override = _glow(color)
+	add_child(o)
+	var d := Vector3(dir.x, 0, dir.z).normalized()
+	o.global_position = at + d * (length * 0.5) + Vector3.UP * 0.9
+	o.look_at(o.global_position + d, Vector3.UP)
+	var tw := create_tween()
+	tw.tween_property(o, "scale", Vector3(0.2, 0.2, 1.0), duration)
+	tw.parallel().tween_property(o, "transparency", 1.0, duration)
+	tw.tween_callback(o.queue_free)

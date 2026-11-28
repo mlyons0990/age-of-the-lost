@@ -727,6 +727,15 @@ func zone_tiles_shown() -> int:
 # ---------- kit zones (owner 11-22: zones are assembled from reusable ground textures and props) ----------
 func _build_kit_zone(holder: Node3D, w: float, d: float) -> void:
 	var kit := String(zone["kit"])
+	# biome grade (zone JSON "grade": {"mul": [r,g,b], "lift": [r,g,b,a], "desat": x}); neutral when absent
+	var gr_: Dictionary = zone.get("grade", {})
+	var mul: Array = gr_.get("mul", [1, 1, 1]); var lift: Array = gr_.get("lift", [0, 0, 0, 0])
+	RenderingServer.global_shader_parameter_set("kit_grade", Color(float(mul[0]), float(mul[1]), float(mul[2])))
+	RenderingServer.global_shader_parameter_set("kit_lift", Color(float(lift[0]), float(lift[1]), float(lift[2]), float(lift[3])))
+	RenderingServer.global_shader_parameter_set("kit_desat", float(gr_.get("desat", 0.0)))
+	var mc: Array = gr_.get("mist", [0.74, 0.64, 0.88]); var wc: Array = gr_.get("water", [0.32, 0.48, 0.55])
+	RenderingServer.global_shader_parameter_set("kit_mist", Color(float(mc[0]), float(mc[1]), float(mc[2])))
+	RenderingServer.global_shader_parameter_set("kit_water", Color(float(wc[0]), float(wc[1]), float(wc[2])))
 	var cat: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(kit + "/catalog.json"))
 	var sz: Array = zone["size"]
 	var sp_: float = sin(deg_to_rad(ZONE_PITCH))

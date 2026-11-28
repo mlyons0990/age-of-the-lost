@@ -176,6 +176,30 @@
    "layer": "dirt",
    "style": "trail",
    "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     9200,
+     2300
+    ],
+    [
+     10100,
+     2000
+    ],
+    [
+     10700,
+     1500
+    ],
+    [
+     11600,
+     1250
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
   }
  ],
  "patches": [
@@ -431,6 +455,11 @@
    2200,
    4150,
    420
+  ],
+  [
+   11380,
+   1260,
+   380
   ]
  ],
  "place": [],
@@ -833,6 +862,19 @@
     10450,
     4060
    ]
+  },
+  {
+   "name": "Greyfen Causeway",
+   "to": "greyfen_causeway",
+   "at": [
+    11380,
+    1260
+   ],
+   "r": 170,
+   "arrive": [
+    620,
+    2500
+   ]
   }
  ],
  "walkable": [
@@ -923,7 +965,40 @@
     4150
    ],
    "blurb": "A forgotten shrine at the end of a reed path."
+  },
+  {
+   "name": "Greyfen Road",
+   "kind": "landmark",
+   "at": [
+    11380,
+    1260
+   ],
+   "blurb": "A causeway east out of the marsh, toward the salt heath."
   }
  ],
- "world_id": "hollowmere"
+ "world_id": "hollowmere",
+ "grade": {
+  "mul": [
+   0.86,
+   0.92,
+   0.84
+  ],
+  "desat": 0.28,
+  "lift": [
+   0.05,
+   0.08,
+   0.06,
+   1.0
+  ],
+  "mist": [
+   0.62,
+   0.72,
+   0.66
+  ],
+  "water": [
+   0.2,
+   0.3,
+   0.27
+  ]
+ }
 }

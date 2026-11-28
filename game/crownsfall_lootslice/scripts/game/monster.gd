@@ -31,6 +31,36 @@ const MORE_TYPES := {
 		"art": "slime", "tint": Color(0.74, 1.0, 0.82), "height": 1.0, "speed_m": 3.8},
 	"drowned_matron": {"name": "The Drowned Matron", "hp": 150.0, "dmg": 22.0, "speed": 2.2, "range": 1.6, "atk_cd": 2.0, "wind": 0.6, "rad": 0.5, "xp": 3.0,
 		"art": "revenant", "tint": Color(0.6, 0.82, 0.98), "height": 2.15, "speed_m": 3.2, "adds": "mire_wisp"},
+	# Greyfen Causeway (levels 9-12): the Tollkeeper's brigands on the salt heath
+	"salt_brigand": {"name": "Salt Brigand", "hp": 64.0, "dmg": 13.0, "speed": 2.5, "range": 1.3, "atk_cd": 1.6, "wind": 0.5, "rad": 0.42, "xp": 1.4,
+		"art": "revenant", "tint": Color(1.0, 0.86, 0.7), "height": 1.9, "speed_m": 3.4},
+	"causeway_brute": {"name": "Causeway Brute", "hp": 130.0, "dmg": 20.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.4,
+		"art": "brute", "tint": Color(0.95, 0.82, 0.62), "height": 2.5, "speed_m": 2.6},
+	"brine_slime": {"name": "Brine Slime", "hp": 30.0, "dmg": 9.0, "speed": 2.4, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(1.0, 1.0, 0.92), "height": 1.1, "speed_m": 3.2},
+	"tollkeeper": {"name": "The Tollkeeper", "hp": 165.0, "dmg": 24.0, "speed": 1.8, "range": 1.8, "atk_cd": 2.2, "wind": 0.7, "rad": 0.7, "xp": 3.2,
+		"art": "brute", "tint": Color(1.0, 0.78, 0.42), "height": 2.8, "speed_m": 2.8, "adds": "salt_brigand"},
+	# Wreckers' Strand (levels 12-15): the drowned crews and what lives in the wrecks
+	"drowned_sailor": {"name": "Drowned Sailor", "hp": 70.0, "dmg": 14.0, "speed": 2.4, "range": 1.3, "atk_cd": 1.7, "wind": 0.5, "rad": 0.42, "xp": 1.5,
+		"art": "revenant", "tint": Color(0.66, 0.8, 0.92), "height": 1.95, "speed_m": 3.3},
+	"tide_crawler": {"name": "Tide Crawler", "hp": 34.0, "dmg": 10.0, "speed": 2.6, "range": 1.0, "atk_cd": 1.1, "wind": 0.35, "rad": 0.36, "xp": 1.0,
+		"art": "slime", "tint": Color(1.0, 0.7, 0.62), "height": 1.05, "speed_m": 3.6},
+	"wreck_hulk": {"name": "Wreck Hulk", "hp": 140.0, "dmg": 21.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.5,
+		"art": "brute", "tint": Color(0.62, 0.84, 0.72), "height": 2.6, "speed_m": 2.5},
+	"tidewrought_warden": {"name": "The Tidewrought Warden", "hp": 185.0, "dmg": 26.0, "speed": 2.2, "range": 1.7, "atk_cd": 2.0, "wind": 0.6, "rad": 0.55, "xp": 3.6,
+		"art": "revenant", "tint": Color(0.5, 0.92, 0.88), "height": 2.4, "speed_m": 3.3, "adds": "tide_crawler"},
+	# Lorecast echoes: figures of the Gilded Epoch, woken at their remains
+	"exalted_echo": {"name": "Echo of the Exalted", "hp": 120.0, "dmg": 16.0, "speed": 2.2, "range": 1.6, "atk_cd": 1.8, "wind": 0.55, "rad": 0.5, "xp": 3.0,
+		"art": "revenant", "tint": Color(1.0, 0.92, 0.6), "height": 2.25, "speed_m": 3.2},
+	# Mossbarrow Crypts (levels 3-4)
+	"barrow_shade": {"name": "Barrow Shade", "hp": 40.0, "dmg": 9.0, "speed": 2.4, "range": 1.2, "atk_cd": 1.6, "wind": 0.5, "rad": 0.4, "xp": 1.1,
+		"art": "revenant", "tint": Color(0.72, 0.74, 0.86), "height": 1.9, "speed_m": 3.3},
+	"crypt_ooze": {"name": "Crypt Ooze", "hp": 22.0, "dmg": 6.0, "speed": 2.4, "range": 1.0, "atk_cd": 1.2, "wind": 0.4, "rad": 0.34, "xp": 0.8,
+		"art": "slime", "tint": Color(0.78, 0.86, 0.7), "height": 1.0, "speed_m": 3.2},
+	"barrow_lord": {"name": "Barrow-Lord Ostric", "hp": 140.0, "dmg": 17.0, "speed": 1.9, "range": 1.7, "atk_cd": 2.1, "wind": 0.65, "rad": 0.6, "xp": 3.0,
+		"art": "brute", "tint": Color(0.7, 0.72, 0.9), "height": 2.7, "speed_m": 2.7, "adds": "barrow_shade"},
+	"tomb_warden": {"name": "Tomb Warden", "hp": 95.0, "dmg": 15.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.62, "xp": 2.0,
+		"art": "brute", "tint": Color(0.78, 0.78, 0.82), "height": 2.4, "speed_m": 2.5},
 }
 
 ## A monster type's stats: the original table, or MORE_TYPES.

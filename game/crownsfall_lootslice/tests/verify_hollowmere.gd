@@ -84,7 +84,7 @@ func _run() -> void:
 		if m.drops_page == "": lo = mini(lo, m.level); hi = maxi(hi, m.level)
 	check(n >= 60, "Hollowmere is populated (%d monsters)" % n)
 	check(types.has("bog_ghoul") and types.has("mire_lurker") and types.has("mire_wisp"), "Marsh monster types present %s" % [types.keys()])
-	check(lo >= 5 and hi <= 9, "Monster levels within 5-9 (%d-%d)" % [lo, hi])
+	check(lo >= 4 and hi <= 6, "Monster levels within 4-6 (%d-%d)" % [lo, hi])
 	check(g.boss == null, "The Drowned Matron is not there before her quest")
 	var wisp = null
 	for m in g.monsters:
@@ -143,7 +143,9 @@ func _run() -> void:
 	await _shot("boss")
 	var b = g.boss
 	while is_instance_valid(b) and b.is_alive() and b.hp > b.max_hp * 0.45: b.hit(lab.attack_damage("Slash"))
-	await _wait(0.3)
+	for i in 40:
+		if b.summoned: break
+		await _wait(0.1)
 	var wisps := 0
 	for m in g.monsters:
 		if is_instance_valid(m) and m.type_key == "mire_wisp" and m.global_position.distance_to(b.global_position) < 8.0: wisps += 1

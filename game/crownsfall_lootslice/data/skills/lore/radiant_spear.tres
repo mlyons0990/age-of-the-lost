@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SkillData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/skill_tiles/epoch_lance.png" id="1_rs"]
+[ext_resource type="Script" path="res://scripts/game/data/skill_data.gd" id="2_rs"]
+
+[resource]
+script = ExtResource("2_rs")
+id = "radiant_spear"
+display_name = "Radiant Spear"
+icon = ExtResource("1_rs")
+description = "Lorecast (Exalted Paladin Aurelian Dace): hurl a spear of Concord sunlight that pierces every foe in a line."
+animation = "Cast"
+shape = "line"
+sound = ""
+mana_cost = 18.0
+cooldown = 4.5
+numbers = {
+"dmg": 2.3,
+"pierce": 8,
+"range": 10.0,
+"width": 1.3
+}

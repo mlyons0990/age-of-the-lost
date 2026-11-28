@@ -1,0 +1,840 @@
+{
+ "name": "Greyfen Causeway",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 53,
+ "paths": [
+  {
+   "pts": [
+    [
+     -80,
+     2520
+    ],
+    [
+     700,
+     2500
+    ],
+    [
+     1500,
+     2380
+    ],
+    [
+     2400,
+     2450
+    ],
+    [
+     3300,
+     2330
+    ],
+    [
+     4200,
+     2200
+    ],
+    [
+     5200,
+     2350
+    ],
+    [
+     6100,
+     2200
+    ],
+    [
+     7000,
+     2050
+    ],
+    [
+     7900,
+     2200
+    ],
+    [
+     8800,
+     2400
+    ],
+    [
+     9700,
+     2380
+    ],
+    [
+     10600,
+     2450
+    ],
+    [
+     11600,
+     2420
+    ]
+   ],
+   "width": 240,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     6100,
+     2200
+    ],
+    [
+     6150,
+     1900
+    ],
+    [
+     6250,
+     1600
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3300,
+     2330
+    ],
+    [
+     3200,
+     2800
+    ],
+    [
+     3050,
+     3300
+    ],
+    [
+     3000,
+     3650
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     7900,
+     2200
+    ],
+    [
+     8150,
+     2800
+    ],
+    [
+     8400,
+     3300
+    ],
+    [
+     8600,
+     3750
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     9700,
+     2380
+    ],
+    [
+     9900,
+     1800
+    ],
+    [
+     10050,
+     1200
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    5200,
+    2350
+   ],
+   "r": 380,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    6250,
+    1550
+   ],
+   "r": 480,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    3000,
+    3700
+   ],
+   "r": 300,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    8600,
+    3800
+   ],
+   "r": 320,
+   "layer": "flagstone",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    10050,
+    1150
+   ],
+   "r": 280,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    900,
+    1300
+   ],
+   "r": 520,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1800,
+    3700
+   ],
+   "r": 560,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2300,
+    900
+   ],
+   "r": 430,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1100,
+    3400
+   ],
+   "r": 420,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3900,
+    3500
+   ],
+   "r": 470,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4300,
+    1100
+   ],
+   "r": 380,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2600,
+    1700
+   ],
+   "r": 300,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4700,
+    3900
+   ],
+   "r": 330,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7000,
+    3400
+   ],
+   "r": 560,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    9300,
+    3500
+   ],
+   "r": 520,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    8000,
+    1100
+   ],
+   "r": 500,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    10500,
+    1000
+   ],
+   "r": 430,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    10200,
+    3900
+   ],
+   "r": 480,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6000,
+    4100
+   ],
+   "r": 400,
+   "layer": "dirt",
+   "squash": 0.5
+  }
+ ],
+ "clear": [
+  [
+   160,
+   2510,
+   380
+  ],
+  [
+   11380,
+   2430,
+   380
+  ],
+  [
+   5200,
+   2350,
+   560
+  ],
+  [
+   6250,
+   1550,
+   700
+  ],
+  [
+   3000,
+   3700,
+   480
+  ],
+  [
+   8600,
+   3800,
+   520
+  ],
+  [
+   10050,
+   1150,
+   460
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    3
+   ],
+   [
+    "gnarled_b",
+    3
+   ],
+   [
+    "silver",
+    4
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 820,
+  "cut": 0.72,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 40,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 4,
+    "n": [
+     3,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "lavender": {
+    "w": 2,
+    "n": [
+     3,
+     7
+    ],
+    "r": 160,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     5
+    ],
+    "r": 140,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     4
+    ],
+    "r": 150,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     3,
+     6
+    ],
+    "r": 180,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 130,
+   "offset": -20,
+   "jitter": 70,
+   "density": 0.75,
+   "props": [
+    "a_moss",
+    "a_clover",
+    "a_pebbles",
+    "a_leaves"
+   ],
+   "scale": [
+    0.9,
+    1.3
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 110,
+   "jitter": 120,
+   "density": 0.9,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_lavender",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.3,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    5200,
+    2350,
+    520,
+    0.5
+   ],
+   [
+    6250,
+    1550,
+    600,
+    0.45
+   ],
+   [
+    3000,
+    3700,
+    420,
+    0.45
+   ],
+   [
+    8600,
+    3800,
+    460,
+    0.45
+   ],
+   [
+    10050,
+    1150,
+    420,
+    0.45
+   ]
+  ],
+  "shafts": [
+   [
+    5200,
+    2100,
+    420
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    900,
+    1300,
+    832.0
+   ],
+   [
+    1800,
+    3700,
+    896.0
+   ],
+   [
+    2300,
+    900,
+    688.0
+   ],
+   [
+    1100,
+    3400,
+    672.0
+   ],
+   [
+    3900,
+    3500,
+    752.0
+   ],
+   [
+    4300,
+    1100,
+    608.0
+   ],
+   [
+    2600,
+    1700,
+    480.0
+   ],
+   [
+    4700,
+    3900,
+    528.0
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "greyfen_toll",
+   "name": "Causeway Toll",
+   "at": [
+    5200,
+    2350
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Hollowmere",
+   "to": "hollowmere",
+   "at": [
+    140,
+    2510
+   ],
+   "r": 170,
+   "arrive": [
+    11050,
+    1330
+   ]
+  },
+  {
+   "name": "Saltmarrow",
+   "to": "saltmarrow",
+   "at": [
+    11380,
+    2430
+   ],
+   "r": 170,
+   "arrive": [
+    600,
+    2470
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  620,
+  2500
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Hollowmere Road",
+   "kind": "landmark",
+   "at": [
+    160,
+    2510
+   ],
+   "blurb": "The causeway west, back into the marsh."
+  },
+  {
+   "name": "Causeway Toll",
+   "kind": "landmark",
+   "at": [
+    5200,
+    2350
+   ],
+   "blurb": "An old toll plaza; the waypoint still glows."
+  },
+  {
+   "name": "Toll Tower",
+   "kind": "landmark",
+   "at": [
+    6250,
+    1550
+   ],
+   "blurb": "A ruined toll tower. The Tollkeeper's brigands hold it."
+  },
+  {
+   "name": "Sunken Wagons",
+   "kind": "cache",
+   "at": [
+    3000,
+    3700
+   ],
+   "blurb": "A caravan the marsh swallowed. Something still guards it."
+  },
+  {
+   "name": "Heron Stones",
+   "kind": "landmark",
+   "at": [
+    8600,
+    3800
+   ],
+   "blurb": "A ring of wardens' stones, carved with herons."
+  },
+  {
+   "name": "Saltpan Shrine",
+   "kind": "landmark",
+   "at": [
+    10050,
+    1150
+   ],
+   "blurb": "A salt-crusted shrine on the edge of the flats."
+  },
+  {
+   "name": "Road to Saltmarrow",
+   "kind": "landmark",
+   "at": [
+    11380,
+    2430
+   ],
+   "blurb": "The causeway east to the harbour."
+  }
+ ],
+ "world_id": "greyfen",
+ "grade": {
+  "mul": [
+   1.04,
+   0.98,
+   0.84
+  ],
+  "desat": 0.32,
+  "lift": [
+   0.07,
+   0.06,
+   0.04,
+   1.0
+  ],
+  "mist": [
+   0.82,
+   0.8,
+   0.74
+  ],
+  "water": [
+   0.3,
+   0.38,
+   0.36
+  ]
+ }
+}

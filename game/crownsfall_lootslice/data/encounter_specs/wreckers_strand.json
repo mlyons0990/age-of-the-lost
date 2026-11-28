@@ -1,0 +1,116 @@
+{
+ "zone": "wreckers_strand",
+ "levels": [
+  8,
+  9
+ ],
+ "packs": 30,
+ "seed": 71,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "drowned_sailor",
+    "drowned_sailor"
+   ]
+  ],
+  [
+   3,
+   [
+    "tide_crawler",
+    "tide_crawler",
+    "tide_crawler"
+   ]
+  ],
+  [
+   3,
+   [
+    "drowned_sailor",
+    "tide_crawler",
+    "tide_crawler"
+   ]
+  ],
+  [
+   2,
+   [
+    "wreck_hulk"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "wreck_hulk",
+    "drowned_sailor"
+   ]
+  ],
+  [
+   1,
+   [
+    "drowned_sailor",
+    "drowned_sailor",
+    "drowned_sailor"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3000,
+    3480
+   ],
+   "types": [
+    "tide_crawler",
+    "tide_crawler"
+   ],
+   "elite": false,
+   "guardian": "strand_pools",
+   "elite_type": "tide_crawler",
+   "elite_name": "The Pool-Queen",
+   "page": "lens_1"
+  },
+  {
+   "at": [
+    5250,
+    3240
+   ],
+   "types": [
+    "drowned_sailor",
+    "drowned_sailor"
+   ],
+   "elite": false,
+   "guardian": "strand_oath",
+   "elite_type": "wreck_hulk",
+   "elite_name": "Captain of the Gilded Oath",
+   "page": "lens_2"
+  },
+  {
+   "at": [
+    9100,
+    1210
+   ],
+   "types": [
+    "drowned_sailor",
+    "tide_crawler"
+   ],
+   "elite": false,
+   "guardian": "strand_cave",
+   "elite_type": "drowned_sailor",
+   "elite_name": "The Smuggler-King",
+   "page": "lens_3"
+  },
+  {
+   "at": [
+    10200,
+    2300
+   ],
+   "types": [],
+   "boss": "tidewrought_warden",
+   "boss_type": "tidewrought_warden",
+   "boss_name": "The Tidewrought Warden",
+   "needs_quest": "the_tidewrought_warden"
+  }
+ ]
+}

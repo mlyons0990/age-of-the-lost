@@ -1,0 +1,114 @@
+{
+ "zone": "greyfen_causeway",
+ "levels": [
+  7,
+  8
+ ],
+ "packs": 30,
+ "seed": 53,
+ "spacing": 1050,
+ "groups": [
+  [
+   5,
+   [
+    "salt_brigand",
+    "salt_brigand"
+   ]
+  ],
+  [
+   3,
+   [
+    "salt_brigand",
+    "salt_brigand",
+    "brine_slime"
+   ]
+  ],
+  [
+   3,
+   [
+    "brine_slime",
+    "brine_slime",
+    "brine_slime"
+   ]
+  ],
+  [
+   2,
+   [
+    "causeway_brute"
+   ],
+   true
+  ],
+  [
+   2,
+   [
+    "causeway_brute",
+    "salt_brigand"
+   ]
+  ],
+  [
+   1,
+   [
+    "salt_brigand",
+    "salt_brigand",
+    "salt_brigand"
+   ],
+   true
+  ]
+ ],
+ "fixed": [
+  {
+   "at": [
+    3000,
+    3640
+   ],
+   "types": [
+    "salt_brigand",
+    "brine_slime"
+   ],
+   "elite": false,
+   "guardian": "greyfen_wagons",
+   "elite_type": "causeway_brute",
+   "elite_name": "The Wagon-Breaker"
+  },
+  {
+   "at": [
+    8600,
+    3740
+   ],
+   "types": [
+    "brine_slime",
+    "brine_slime"
+   ],
+   "elite": false,
+   "guardian": "greyfen_heron",
+   "elite_type": "salt_brigand",
+   "elite_name": "Heron-Eye the Poacher"
+  },
+  {
+   "at": [
+    10050,
+    1200
+   ],
+   "types": [
+    "brine_slime",
+    "brine_slime",
+    "brine_slime"
+   ],
+   "elite": false,
+   "guardian": "greyfen_saltpan",
+   "elite_type": "brine_slime",
+   "elite_name": "The Salt-Crowned"
+  },
+  {
+   "at": [
+    6250,
+    1600
+   ],
+   "types": [],
+   "boss": "tollkeeper",
+   "boss_type": "tollkeeper",
+   "boss_name": "The Tollkeeper",
+   "needs_quest": "the_tollkeeper"
+  }
+ ]
+}

@@ -349,6 +349,33 @@ for wp in spec.get("waypoints", []):
                  or (p_["at"][0] - wp["at"][0]) ** 2 + ((p_["at"][1] - wp["at"][1]) / 0.55) ** 2 > rr ** 2]
 for wp in spec.get("waypoints", []):
     waypoints.append({"id": wp["id"], "name": wp["name"], "at": wp["at"], "centre_of": wp["at"], "radius_px": wp.get("radius_px", 200), "rot_deg": wp.get("rot_deg", 22.9)})
+# dungeons ("enclose"): everything off the corridors and rooms (paths + paved/dirt patches) is rock wall: a rock
+# prop every few cells (looks) and a solid on every cell (seals the gaps)
+enclose_solids = []
+if "enclose" in spec:
+    E = spec["enclose"]; step = E.get("spacing", 230); erng = random.Random(spec.get("seed", 1) + 99)
+    keep_off = [tuple(c) for c in spec.get("clear", [])]
+    for v in range(0, H + step, int(step * 0.55)):
+        for u in range(0, W + step, step):
+            uu = u + (step // 2 if (v // int(step * 0.55)) % 2 else 0)
+            x, y = min(sw - 1, int(uu / SPLAT_K)), min(sh - 1, int(v / SPLAT_K))
+            if path_mask[y, x] > 0.05: continue
+            if any((uu - c[0]) ** 2 + ((v - c[1]) / 0.55) ** 2 < c[2] ** 2 for c in keep_off): continue
+            enclose_solids.append([uu, v, int(step * 0.62)])
+            # a wall rock rises above its foot: only where nothing walkable lies under the image (north walls read as
+            # walls; the south side of a corridor stays open dark ground so the corridor is never hidden)
+            pr = erng.choice(E["props"]); sc = erng.uniform(*E.get("scale", [0.9, 1.4]))
+            c = cat["props"][pr]; hh = c["size"][1] * sc; ww = c["size"][0] * sc * 0.5
+            y0 = max(0, int((v - hh) / SPLAT_K)); x0 = max(0, int((uu - ww) / SPLAT_K)); x1 = min(sw, int((uu + ww) / SPLAT_K) + 1)
+            if path_mask[y0:y + 1, x0:x1].max() > 0.05: continue
+            below = path_mask[y:min(sh, y + int(hh * 0.6 / SPLAT_K) + 2), x0:x1].max() > 0.05
+            if below or erng.random() < E.get("fill", 0.35):
+                placed.append({"prop": pr, "at": [uu, v], "scale": round(sc, 4), "flip": erng.random() < 0.5})
+# nothing grows out of open water (the scatter's keep-out discs miss the squashed edges of pools and seas)
+def _wet(u, v):
+    x, y = min(sw - 1, max(0, int(u / SPLAT_K))), min(sh - 1, max(0, int(v / SPLAT_K)))   # frame trees stand past the edge
+    return splat[y, x, 2] > 0.35
+placed[:] = [p_ for p_ in placed if cat["props"][p_["prop"]]["kind"] == "setpiece" or not _wet(p_["at"][0], p_["at"][1])]
 # collision: per-prop footprints + set-piece blockers + water
 solids = []
 for i, p in enumerate(placed):
@@ -358,6 +385,7 @@ for i, p in enumerate(placed):
     for b in c.get("blockers", []):
         q = local_to_zone(i, b[:2]); solids.append([q[0], q[1], round(b[2] * p["scale"])])
 for w in water: solids.append([w[0], w[1], round(w[2] * 0.9), round(w[3] * 0.9)])
+solids += enclose_solids
 # light map (R: light/2, 0.5 = neutral) and fx map (R mist, G shafts), LK painting px per texel
 light_name = fx_name = None
 if "light" in spec:
@@ -519,7 +547,23 @@ rt.update({"kit": "res://" + kit_dir, "ground_base": spec.get("ground_base", "gr
            "targets": spec.get("targets", []), "ground_ratio": 0.51})
 if light_name: rt["light"] = light_name; rt["fx"] = fx_name
 if "walkable" in spec: rt["walkable"] = spec["walkable"]
-for k in ("map_pois", "world_id"):
+for k in ("map_pois", "world_id", "grade"):
     if k in spec: rt[k] = spec[k]
+# the minimap overview and zone map get the same biome grade the runtime applies to the kit art
+if "grade" in spec:
+    g = spec["grade"]
+    mul = np.array(g.get("mul", [1, 1, 1]), np.float32); lift = np.array(g.get("lift", [0, 0, 0, 0]), np.float32)
+    for fn in (f"assets/zones/{name}/overview.png", f"assets/zones/{name}/map.jpg"):
+        if not os.path.exists(fn): continue
+        im = Image.open(fn); mode = im.mode
+        a_ = np.asarray(im.convert("RGBA")).astype(np.float32) / 255.0
+        c = a_[:, :, :3]
+        lum = (c * np.array([0.299, 0.587, 0.114], np.float32)).sum(2, keepdims=True)
+        c = c + (lum - c) * float(g.get("desat", 0.0))
+        c = c * mul + lift[:3] * lift[3]
+        a_[:, :, :3] = c.clip(0, 1)
+        out = Image.fromarray((a_ * 255).astype(np.uint8), "RGBA")
+        if fn.endswith(".jpg"): out.convert("RGB").save(fn, quality=90)
+        else: out.convert(mode).save(fn)
 json.dump(rt, open(f"assets/zones/{name}.json", "w"), indent=1)
 print(name, W, "x", H, "props", len(placed), "solids", len(solids), "exits", len(exits), "waypoints", len(waypoints))

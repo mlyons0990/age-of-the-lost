@@ -1,0 +1,9 @@
+{"note": "Lorecast sites (docs/AOTL_CAMPAIGN_ZONES.md, Lorecasting): the remains or echo of a figure of the Gilded Epoch. Walking onto the site wakes its echo; defeating the echo teaches its skill to any class.",
+ "sites": [
+  {"id": "exalted_paladin", "zone": "mossbarrow_crypts", "at": [5760, 1500], "figure": "Aurelian Dace, Exalted Paladin",
+   "remains": "The Exalted Paladin's Remains", "skill": "res://data/skills/lore/radiant_spear.tres",
+   "echo": {"type": "exalted_echo", "name": "Echo of Aurelian Dace"},
+   "lore": ["The armour is Concord-forged, untouched by rust after an age in the dark.",
+            "As you kneel, light gathers into a man in that armour: Aurelian Dace, Exalted of the Radiant Order. He does not know the Concord has fallen. He knows only that you are not one of his.",
+            "He has fallen to you, and in falling he understands. The last of his light is yours: the Radiant Spear."]}
+ ]}

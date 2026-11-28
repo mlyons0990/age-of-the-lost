@@ -43,7 +43,23 @@ static func defs(class_id: String) -> Array:
 static func def(class_id: String, id: String) -> Dictionary:
 	for d in defs(class_id):
 		if d["id"] == id: return d
-	return {}
+	return lore_def(id)
+
+## Lorecast skills (data/lorecasts.json): learned at lorecast sites, usable by every class.
+static func lorecast_sites() -> Array:
+	if not _cache.has("lore_sites"):
+		_cache["lore_sites"] = JSON.parse_string(FileAccess.get_file_as_string("res://data/lorecasts.json")).get("sites", [])
+	return _cache["lore_sites"]
+
+static func lore_def(id: String) -> Dictionary:
+	if not _cache.has("lore_" + id):
+		var d := {}
+		for site in lorecast_sites():
+			var sd: Resource = load(String(site["skill"]))
+			if sd != null and sd.id == id:
+				d = sd.to_dict(); d["lorecast"] = true; d["figure"] = site["figure"]; d["unlock"] = 999
+		_cache["lore_" + id] = d
+	return _cache["lore_" + id]
 
 ## The skill's numbers with its chosen upgrade folded in (upgrade values replace the base ones).
 static func resolved(class_id: String, id: String, mod_id: String) -> Dictionary:

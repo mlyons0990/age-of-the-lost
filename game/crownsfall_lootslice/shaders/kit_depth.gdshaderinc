@@ -24,7 +24,7 @@ void vertex() {
 vec2 kit_uv(vec2 uv) { bool f = use_instance ? v_flip > 0.5 : flip; return vec2(f ? 1.0 - uv.x : uv.x, uv.y); }
 vec3 kit_colour(vec3 c, float uvy) {
 	float m = (use_instance ? v_mist : mist) * (1.0 - smoothstep(0.0, mist_rows, foot_v - uvy));
-	return mix(c * (use_instance ? v_tint : tint), mist_col.rgb, clamp(m, 0.0, 0.75));
+	return mix(c * (use_instance ? v_tint : tint), kit_mist.rgb, clamp(m, 0.0, 0.75));
 }
 float kit_depth(vec2 uv_, mat4 inv_view, mat4 view, mat4 proj) {
 	bool up = occludes || soft_upright;

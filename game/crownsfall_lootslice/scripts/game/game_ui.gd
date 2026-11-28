@@ -284,8 +284,10 @@ func open_vendor() -> void:
 	if st.vendor_stock.is_empty() or int(st.vendor_stock[0].get("level", 1)) < st.level - 2:
 		st.vendor_stock.clear()
 		for i in 4: st.vendor_stock.append(SYS.make_item(st.level, 0.25, "", st.class_id))
-	var v := _modal("shop", 560.0, "QUARTERMASTER")
-	var face: Texture2D = dir.npc_portrait("quartermaster")
+	var who: String = dir.talking_npc if dir.talking_npc != "" else "quartermaster"
+	var title := String(dir.npc_def(who).get("name", "Quartermaster")).split(" ")[0].to_upper()
+	var v := _modal("shop", 560.0, title)
+	var face: Texture2D = dir.npc_portrait(who)
 	if face != null: v.add_child(_centered(_medallion(face, 120.0)))
 	var hi := _label("\"Coin for steel, steel for coin. Click your own gear to sell it.\"", 16, Color("cfc7b8"), false)
 	hi.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; hi.custom_minimum_size = Vector2(440, 0)

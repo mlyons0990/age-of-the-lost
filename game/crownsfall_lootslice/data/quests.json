@@ -96,7 +96,68 @@
      "The pages are held by the wood's guardians: in the Flower Dell to the south-west, at the Fae Ring to the south, and among the Standing Stones in the north-east. Check your map (M)."
     ]
    },
-   "item_name": "Archive Page"
+   "item_name": "Archive Page",
+   "also": [
+    "the_sealed_barrow"
+   ]
+  },
+  {
+   "id": "the_sealed_barrow",
+   "name": "The Sealed Barrow",
+   "giver": "ralden",
+   "count": 1,
+   "boss": "barrow_lord",
+   "steps": {
+    "active": {
+     "objective": "Descend beneath the Standing Stones and end the Barrow-Lord",
+     "markers": [
+      {
+       "zone": "whisperwood_forest",
+       "at": [
+        9250,
+        700
+       ],
+       "r": 300,
+       "label": "Barrow Stair"
+      },
+      {
+       "zone": "mossbarrow_crypts",
+       "at": [
+        6600,
+        3400
+       ],
+       "r": 520,
+       "label": "Barrow-Lord's Vault"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Tell Captain Ralden the barrow is quiet",
+     "markers": [
+      {
+       "zone": "crownsfall",
+       "npc": "ralden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 700,
+    "gold": 160,
+    "item_rarity": 1
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "One more thing about those pages: the script on them matches the carvings on the Standing Stones in the Whisperwood's north-east.",
+     "The stones were opened last week. Something climbed out. There is a stair down to an old barrow. Its lord was buried before Crownsfall had a name. Put him back."
+    ],
+    "ready": [
+     "Captain Ralden",
+     "A tomb older than the city, and armour no smith of ours could make.",
+     "The more we dig, the less we seem to know about who came before us. Take this."
+    ]
+   }
   },
   {
    "id": "thornwarden",
@@ -302,8 +363,8 @@
     "chapter": "CHAPTER II COMPLETE",
     "lines": [
      "The Drowned Matron sinks for the last time and the wardens' lanterns burn again across Hollowmere.",
-     "Crownsfall's road east is open. More of the lost realm waits beyond the marsh in chapters to come.",
-     "You may keep exploring, hunting and gathering gear."
+     "But the flames lean east. Beyond the marsh an old causeway runs over the salt heath toward the harbour of Saltmarrow, and brigands hold its toll.",
+     "Chapter III begins: take the Greyfen road out of Hollowmere's north-east."
     ]
    },
    "talk": {
@@ -314,7 +375,227 @@
     "ready": [
      "Captain Ralden",
      "The mere is quiet? Then the wardens can rest at last.",
-     "Crownsfall owes you twice over, Wayfarer. Take this \u2014 you have earned it."
+     "But Saltmarrow's ships have stopped coming. The causeway east is held by a brigand who calls himself the Tollkeeper. Take this, and take the road."
+    ]
+   },
+   "next": "the_greyfen_road"
+  },
+  {
+   "id": "the_greyfen_road",
+   "name": "The Greyfen Road",
+   "giver": "ralden",
+   "next": "the_tollkeeper",
+   "arrive_zone": "greyfen_causeway",
+   "steps": {
+    "active": {
+     "objective": "Take the causeway out of Hollowmere's north-east",
+     "markers": [
+      {
+       "zone": "hollowmere",
+       "at": [
+        11380,
+        1260
+       ],
+       "r": 300,
+       "label": "Greyfen Road"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 600,
+    "gold": 150
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "Hollowmere's north-east edge climbs onto the old wardens' causeway. Follow it east over the Greyfen to Saltmarrow."
+    ]
+   }
+  },
+  {
+   "id": "the_tollkeeper",
+   "name": "The Tollkeeper",
+   "giver": "harbourmaster",
+   "count": 1,
+   "boss": "tollkeeper",
+   "steps": {
+    "active": {
+     "objective": "Break the Tollkeeper's hold on the Toll Tower",
+     "markers": [
+      {
+       "zone": "greyfen_causeway",
+       "at": [
+        6250,
+        1550
+       ],
+       "r": 520,
+       "label": "Toll Tower"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Bring word to Saltmarrow's harbourmaster",
+     "markers": [
+      {
+       "zone": "saltmarrow",
+       "npc": "harbourmaster"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 3400,
+    "gold": 900,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Harbourmaster Wenna",
+     "You came over the causeway? Then you saw the Toll Tower. The Tollkeeper bleeds every cart that passes. Nothing has reached us in a month."
+    ],
+    "ready": [
+     "Harbourmaster Wenna",
+     "The Tollkeeper is dead? Then the carts will roll again by morning.",
+     "Saltmarrow will not forget it. Take this, and rest by our fire."
+    ]
+   },
+   "next": "the_dark_lighthouse"
+  },
+  {
+   "id": "the_dark_lighthouse",
+   "name": "The Dark Lighthouse",
+   "giver": "harbourmaster",
+   "next": "the_tidewrought_warden",
+   "count": 3,
+   "item_name": "Lighthouse Lens",
+   "steps": {
+    "active": {
+     "objective": "Recover the lighthouse lenses on the Wreckers' Strand",
+     "markers": [
+      {
+       "zone": "saltmarrow",
+       "at": [
+        7540,
+        1900
+       ],
+       "r": 300,
+       "label": "Strand Road"
+      },
+      {
+       "zone": "wreckers_strand",
+       "at": [
+        3000,
+        3560
+       ],
+       "r": 430,
+       "label": "Tide Pools",
+       "page": "lens_1"
+      },
+      {
+       "zone": "wreckers_strand",
+       "at": [
+        5250,
+        3300
+       ],
+       "r": 430,
+       "label": "Wreck of the Gilded Oath",
+       "page": "lens_2"
+      },
+      {
+       "zone": "wreckers_strand",
+       "at": [
+        9100,
+        1150
+       ],
+       "r": 430,
+       "label": "Smugglers' Cave",
+       "page": "lens_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Bring the lenses to Harbourmaster Wenna",
+     "markers": [
+      {
+       "zone": "saltmarrow",
+       "npc": "harbourmaster"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 4200,
+    "gold": 1100,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Harbourmaster Wenna",
+     "Our lighthouse went dark the night the wardens' lanterns did. The wreckers stripped its three lenses and took them up the Strand: one to the tide pools, one to the wreck of the Gilded Oath, one to the smugglers' cave.",
+     "Bring them back and the ships can find us again."
+    ],
+    "ready": [
+     "Harbourmaster Wenna",
+     "All three lenses, and not a crack in them.",
+     "When we lit the lamp last night, the beam swung east on its own and stopped on Warden's Rock. Something out there wanted the light to go out."
+    ]
+   }
+  },
+  {
+   "id": "the_tidewrought_warden",
+   "name": "The Tidewrought Warden",
+   "giver": "harbourmaster",
+   "count": 1,
+   "boss": "tidewrought_warden",
+   "steps": {
+    "active": {
+     "objective": "Face what waits on Warden's Rock",
+     "markers": [
+      {
+       "zone": "wreckers_strand",
+       "at": [
+        10200,
+        2300
+       ],
+       "r": 520,
+       "label": "Warden's Rock"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Return to Harbourmaster Wenna",
+     "markers": [
+      {
+       "zone": "saltmarrow",
+       "npc": "harbourmaster"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 6000,
+    "gold": 1800,
+    "item_rarity": 3
+   },
+   "epilogue": {
+    "title": "THE WARDEN WHO CAME BACK",
+    "chapter": "CHAPTER III COMPLETE",
+    "lines": [
+     "The Tidewrought Warden wore armour no smith alive could make, and spoke a language only the Archive Pages still hold.",
+     "He did not drown in our time. Something brought him here: a tear in the hours beneath the Strand, in the smugglers' deep grotto, where the sea runs the wrong way.",
+     "The Age of the Lost has forgotten what came before it. The past has not forgotten us."
+    ]
+   },
+   "talk": {
+    "active": [
+     "Harbourmaster Wenna",
+     "Warden's Rock is at the far end of the Strand. The old folk say a warden kept the sea-lantern there once. Go carefully."
+    ],
+    "ready": [
+     "Harbourmaster Wenna",
+     "A warden, in armour like nothing from any forge I know. And you say he talked as if the Concord still stood?",
+     "The smugglers have been selling trinkets like his for months. They come from a grotto under the Strand. Take this, and be careful what you find down there."
     ]
    }
   }

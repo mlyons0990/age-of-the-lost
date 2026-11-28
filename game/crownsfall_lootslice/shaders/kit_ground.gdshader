@@ -5,6 +5,7 @@ shader_type spatial;
 // samples by noise so repeats don't show; flagstone uses one sample (blending two paving patterns ghosts the stones).
 // light_map (R = light, 0.5 = neutral) carries baked canopy shadow and sun pools. Unshaded: the light is painted.
 render_mode unshaded, cull_disabled;
+#include "res://shaders/kit_grade.gdshaderinc"
 uniform sampler2D base_tex : source_color, repeat_enable, filter_linear_mipmap_anisotropic;
 uniform sampler2D path_tex : source_color, repeat_enable, filter_linear_mipmap_anisotropic;
 uniform sampler2D dirt_tex : source_color, repeat_enable, filter_linear_mipmap_anisotropic;
@@ -41,11 +42,12 @@ void fragment() {
 	c = mix(c, tiled(dirt_tex, p, dirt_tile, true), dg);
 	c = mix(c, tiled(path_tex, p, path_tile, !world_space), s.r);
 	float ripple = 0.92 + 0.08 * n2(px / 60.0 + vec2(TIME * 0.3, 0.0));
-	c = mix(c, water_col.rgb * ripple, s.b * 0.92);
+	c = kit_graded(c);
+	c = mix(c, kit_water.rgb * ripple, s.b * 0.92);
 	if (use_light) {
 		c *= texture(light_map, UV).r * 2.0;
 		float drift = n2(px / 420.0 + vec2(TIME * 0.04, TIME * 0.015));
-		c = mix(c, mist_col.rgb, clamp(texture(fx_map, UV).r * (0.45 + 0.35 * drift), 0.0, 0.75));
+		c = mix(c, kit_mist.rgb, clamp(texture(fx_map, UV).r * (0.45 + 0.35 * drift), 0.0, 0.75));
 	}
 	else c *= 0.93 + 0.12 * n2(px / 900.0);     // v1: broad light/shade variation
 	ALBEDO = c;

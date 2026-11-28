@@ -41,3 +41,26 @@ move_click={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+kit_grade={
+"type": "color",
+"value": Color(1, 1, 1, 1)
+}
+kit_lift={
+"type": "color",
+"value": Color(0, 0, 0, 0)
+}
+kit_desat={
+"type": "float",
+"value": 0.0
+}
+kit_mist={
+"type": "color",
+"value": Color(0.74, 0.64, 0.88, 1)
+}
+kit_water={
+"type": "color",
+"value": Color(0.32, 0.48, 0.55, 1)
+}

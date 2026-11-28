@@ -18,9 +18,16 @@ const GD := preload("res://scripts/game_data.gd")
 const TARGETING := preload("res://scripts/three_d/combat_targeting3d.gd")
 const NPC_MODELS := {"knight": "res://models/higgsfield_pilot/knight_pilot_armed.glb", "mage": "res://models/higgsfield_mage/mage_pilot_armed.glb"}
 const NPCS := {"crownsfall": [
-	{"id": "ralden", "name": "Captain Ralden", "model": "knight", "at": [2330, 1060], "tint": Color(0.82, 0.86, 1.0), "height": 1.86},
-	{"id": "quartermaster", "name": "Quartermaster Ysolde", "model": "mage", "at": [1500, 1060], "tint": Color(1.0, 0.92, 0.85), "height": 1.7}]}
-const SAFE_ZONES := ["crownsfall"]
+	{"id": "ralden", "name": "Captain Ralden", "model": "knight", "at": [2330, 1060], "tint": Color(0.82, 0.86, 1.0), "height": 1.86,
+		"idle": "Crownsfall owes you a debt, Wayfarer. The road east will call for you soon."},
+	{"id": "quartermaster", "name": "Quartermaster Ysolde", "model": "mage", "at": [1500, 1060], "tint": Color(1.0, 0.92, 0.85), "height": 1.7, "vendor": true}],
+	# Saltmarrow (greybox): stand-in 3D models until their paintings exist
+	"saltmarrow": [
+	{"id": "harbourmaster", "name": "Harbourmaster Wenna", "model": "mage", "at": [3560, 2120], "tint": Color(0.8, 0.9, 1.0), "height": 1.72,
+		"idle": "The tide still comes in, Wayfarer, even if the ships don't."},
+	{"id": "chandler", "name": "Chandler Brisk", "model": "knight", "at": [4080, 2140], "tint": Color(1.0, 0.88, 0.72), "height": 1.8, "vendor": true}]}
+## Towns: no monsters, the hero is healed on arrival
+const SAFE_ZONES := ["crownsfall", "saltmarrow"]
 const SOUNDS := {"hit": "slash", "pickup": "pickup", "potion": "potion", "equip": "equip", "click": "ui_click", "level": "winter_crown", "quest": "ashen_ward", "boss": "starfall_script"}
 
 var lab
@@ -37,6 +44,7 @@ var stats: Dictionary = {}
 var auto_gold := true            # Options > Game: walk over gold to pick it up (else click it)
 var save_t := 0.0
 var boss: Node3D = null
+var lore_sites: Array = []          # {site, node, pos, woken}: lorecast sites in this zone
 var sfx: Array = []
 var quest_dirty := true
 var skill_cds := {}              # skill id -> seconds left
@@ -154,6 +162,7 @@ func _enter_zone(first: bool) -> void:
 			lab.zone_last_ok = lab.player.global_position
 	_spawn_npcs(zid)
 	_spawn_encounters(zid)
+	_spawn_lorecasts(zid)
 	if in_town():
 		state.potions["health"] = maxi(state.potions["health"], 3)    # the town healer tops you up
 		lab.player.restore(99999, 99999)
@@ -179,6 +188,9 @@ func _clear_zone() -> void:
 	for n in npcs:
 		if is_instance_valid(n["node"]): n["node"].queue_free()
 	npcs.clear()
+	for ls in lore_sites:
+		if is_instance_valid(ls["node"]): ls["node"].queue_free()
+	lore_sites.clear()
 	boss = null
 	pending = {}
 
@@ -187,8 +199,10 @@ func _zone_level(zid: String, u: float) -> int:
 	var W: float = float(lab.zone["size"][0])
 	return clampi(int(lv[0]) + int(floor((int(lv[1]) - int(lv[0]) + 0.99) * u / W)), int(lv[0]), int(lv[1]))
 
-func _spawn_encounters(zid: String) -> void:
+## All of a zone's packs; with only_quest, just the boss that quest calls up (a quest started inside its zone).
+func _spawn_encounters(zid: String, only_quest := "") -> void:
 	for p in encounters.get(zid, {}).get("packs", []):
+		if only_quest != "" and String(p.get("needs_quest", "")) != only_quest: continue
 		if p.has("guardian") and state.dead_uniques.has(p["guardian"]): continue
 		if p.has("boss"):
 			if state.dead_uniques.has(p["boss"]): continue
@@ -199,7 +213,7 @@ func _spawn_encounters(zid: String) -> void:
 		var specs: Array = []
 		for ty in p.get("types", []): specs.append({"type": ty})
 		if p.get("elite", false) and not specs.is_empty(): specs[0]["elite"] = true
-		if p.has("guardian"): specs.push_front({"type": p["elite_type"], "elite": true, "unique": p["guardian"], "name": p["elite_name"], "page": p["page"]})
+		if p.has("guardian"): specs.push_front({"type": p["elite_type"], "elite": true, "unique": p["guardian"], "name": p["elite_name"], "page": String(p.get("page", ""))})
 		if p.has("boss"): specs.push_front({"type": p["boss_type"], "boss": true, "unique": p["boss"], "name": p["boss_name"]})
 		for i in specs.size():
 			var s: Dictionary = specs[i]
@@ -361,11 +375,22 @@ func _update_npc_marks() -> void:
 			m.modulate = Color("f2c14e")
 
 ## The quest this NPC has something to say about right now ({} = none).
+## An NPC's definition (any zone), or {}.
+func npc_def(npc_id: String) -> Dictionary:
+	for zid in NPCS:
+		for d in NPCS[zid]:
+			if d["id"] == npc_id: return d
+	return {}
+
+## What the tracker says once a quest is ready to hand in ("Bring the flames to Captain Ralden").
+func turn_in_text(qid: String) -> String:
+	return String(quest_def(qid).get("steps", {}).get("ready", {}).get("objective", "Report to Captain Ralden"))
+
+## The quest an NPC talks about: one ready to hand in first, else an active one.
 func npc_quest(npc_id: String) -> Dictionary:
-	for q in quests_def:
-		if String(q.get("giver", "")) != npc_id: continue
-		var st: String = state.quest_state(String(q["id"]))
-		if st in ["active", "ready"]: return q
+	for want in ["ready", "active"]:
+		for q in quests_def:
+			if String(q.get("giver", "")) == npc_id and state.quest_state(String(q["id"])) == want: return q
 	return {}
 
 # ---------------- kills, XP, loot ----------------
@@ -384,10 +409,13 @@ func _on_monster_died(m: Node3D) -> void:
 		for q in quests_def:
 			if String(q.get("boss", "")) == m.unique_id and state.quest_state(String(q["id"])) == "active":
 				state.set_quest(String(q["id"]), "ready", 1)
-				ui.toast("%s is slain! Report to Captain Ralden." % m.ename, Color("f2c14e"), 4.0)
+				ui.toast("%s is slain! %s." % [m.ename, turn_in_text(String(q["id"]))], Color("f2c14e"), 4.0)
 				play("quest")
 		autosave()
 	elif m.unique_id != "":
+		if m.unique_id.begins_with("lore_"):
+			for ls in lore_sites:
+				if "lore_" + String(ls["site"]["id"]) == m.unique_id: _learn_lorecast(ls)
 		autosave()
 	quest_dirty = true
 
@@ -448,7 +476,7 @@ func _pickup(l: Node3D) -> bool:
 			var need: int = int(quest_def(qid).get("count", 3))
 			var n: int = int(state.quest(qid).get("progress", 0)) + 1
 			state.set_quest(qid, "ready" if n >= need else "active", n)
-			ui.toast("%s recovered (%d/%d)" % [String(l.item.get("name", "Archive Page")), n, need] + ("  —  return to Captain Ralden" if n >= need else ""), Color("ff9a2e"), 3.5)
+			ui.toast("%s recovered (%d/%d)" % [String(l.item.get("name", "Archive Page")), n, need] + (("  —  " + turn_in_text(qid)) if n >= need else ""), Color("ff9a2e"), 3.5)
 			play("quest")
 			quest_dirty = true
 		"item":
@@ -505,15 +533,16 @@ func quest_def(id: String) -> Dictionary:
 func talk(npc_id: String) -> void:
 	play("click", -8.0)
 	talking_npc = npc_id
-	if npc_id == "quartermaster":
+	if bool(npc_def(npc_id).get("vendor", false)):
 		ui.open_vendor()
 		return
 	var q := npc_quest(npc_id)
 	if q.is_empty():
-		ui.dialogue("Captain Ralden", ["Crownsfall owes you a debt, Wayfarer. Hollowmere will call for you soon."], [["Farewell", Callable()]], npc_portrait(npc_id))
+		var who := npc_def(npc_id)
+		ui.dialogue(String(who.get("name", "Captain Ralden")), [String(who.get("idle", "Crownsfall owes you a debt, Wayfarer."))], [["Farewell", Callable()]], npc_portrait(npc_id))
 		return
 	var st: String = state.quest_state(String(q["id"]))
-	var lines: Array = q.get("talk", {}).get(st, ["Captain Ralden", "..."])
+	var lines: Array = q.get("talk", {}).get(st, [String(npc_def(npc_id).get("name", "Captain Ralden")), "..."])
 	if q["id"] == "city_reborn":
 		ui.dialogue(lines[0], lines.slice(1), [["I will bring them back.", func(): complete_quest("city_reborn")]], npc_portrait(npc_id))
 	elif st == "ready":
@@ -541,7 +570,13 @@ func complete_quest(id: String) -> void:
 	if gained > 0: _level_up(gained)
 	if q.has("next"):
 		state.set_quest(String(q["next"]), "active", 0)
+		if boss == null and not in_town(): _spawn_encounters(zone_id(), String(q["next"]))
 		ui.toast("New quest: " + String(quest_def(String(q["next"]))["name"]), Color("e8b85c"), 4.0, 22)
+	for side in q.get("also", []):          # side quests opened alongside the main chain
+		if state.quest_state(String(side)) == "":
+			state.set_quest(String(side), "active", 0)
+			ui.toast("New quest: " + String(quest_def(String(side))["name"]), Color("e8b85c"), 4.0, 22)
+			if boss == null and not in_town(): _spawn_encounters(zone_id(), String(side))
 	if q.has("epilogue"):
 		ui.show_epilogue(q["epilogue"])
 	quest_dirty = true
@@ -622,6 +657,7 @@ func use_skill(id: String) -> bool:
 	else:
 		var before: int = p.attack_serial
 		var anim: String = d["anim"]
+		if d.get("lorecast", false): anim = String(SKILLS.defs(state.class_id)[0]["anim"])   # every class casts it with its own basic move
 		if state.class_id == "mage" and p.MAGE_SPELLS.has(anim): p.use_skill(anim)
 		else:
 			if p.click_to_move: p._face_aim(); p.move_target = Vector3.INF
@@ -678,6 +714,7 @@ func skill_impact(kind: String, direction: Vector3) -> void:
 			var hits := []
 			for k in mini(int(d.get("pierce", 1)), cands.size()): hits.append(cands[k][1])
 			_apply_hits(hits, d, c["id"], dir)
+			if d.get("lorecast", false): lab.effects.beam(origin, dir, float(d["range"]), float(d.get("width", 1.0)), Color("ffe08a"))
 		"nova":
 			_circle_hit(origin, float(d["radius"]), d, c["id"])
 			lab.effects.ring(origin, float(d["radius"]), Color("bfe8ff") if state.class_id == "mage" else Color("ffe5a4"), 0.45)
@@ -849,6 +886,7 @@ func autosave() -> void:
 
 func _process(delta: float) -> void:
 	state.play_time += delta
+	_tick_lorecasts()
 	save_t += delta
 	_tick_skills(delta)
 	if save_t > 30.0: autosave()
@@ -871,3 +909,77 @@ func _process(delta: float) -> void:
 		_update_npc_marks()
 		lab.hud.refresh_quests()
 	ui.update_boss(boss)
+
+
+# ---------------- lorecasting ----------------
+# A lorecast site holds the remains of a figure of the Gilded Epoch (data/lorecasts.json). Walking onto it wakes the
+# figure's echo; defeating the echo teaches its skill, usable by any class (docs/AOTL_CAMPAIGN_ZONES.md).
+
+func lorecast_learned(site: Dictionary) -> bool:
+	return state.skills.has(String(load(String(site["skill"])).id))
+
+func _spawn_lorecasts(zid: String) -> void:
+	for site in SKILLS.lorecast_sites():
+		if String(site["zone"]) != zid: continue
+		var at: Vector3 = lab.zone_px_to_world(float(site["at"][0]), float(site["at"][1]))
+		var node := Node3D.new(); node.name = "Lorecast_" + String(site["id"])
+		lab.add_child(node); node.global_position = at
+		var learned := lorecast_learned(site)
+		var glow := MeshInstance3D.new()
+		var cm := CylinderMesh.new(); cm.top_radius = 1.1; cm.bottom_radius = 1.1; cm.height = 0.02
+		glow.mesh = cm
+		var gm := StandardMaterial3D.new(); gm.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		gm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		gm.albedo_color = Color(1.0, 0.86, 0.45, 0.18 if learned else 0.45)
+		glow.material_override = gm; glow.position.y = 0.03
+		node.add_child(glow)
+		var lbl := Label3D.new()
+		lbl.text = String(site["remains"]) + ("" if learned else "\n(lorecast)")
+		lbl.font = load("res://assets/fonts/LiberationSerif-Bold.ttf")
+		lbl.font_size = 36; lbl.pixel_size = 0.005; lbl.modulate = Color("ffe7a8") if not learned else Color("a8977a")
+		lbl.outline_size = 10; lbl.outline_modulate = Color(0, 0, 0, 0.9)
+		lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED; lbl.no_depth_test = true; lbl.position.y = 1.6
+		node.add_child(lbl)
+		lore_sites.append({"site": site, "node": node, "pos": at, "woken": learned, "glow": gm})
+
+func _tick_lorecasts() -> void:
+	if lab == null or lab.player == null: return
+	for ls in lore_sites:
+		if ls["woken"]: continue
+		var p: Vector3 = lab.player.global_position
+		if Vector2(p.x - ls["pos"].x, p.z - ls["pos"].z).length() < 2.0:
+			wake_lorecast(ls)
+
+## The hero stands at the remains: the echo rises (or, with no echo, the lore is learned at once).
+func wake_lorecast(ls: Dictionary) -> void:
+	ls["woken"] = true
+	var site: Dictionary = ls["site"]
+	var lore: Array = site.get("lore", [])
+	ui.toast("Lorecast: " + String(site["figure"]), Color("ffe08a"), 3.0, 22)
+	if not site.has("echo") or state.dead_uniques.has("lore_" + String(site["id"])):
+		_learn_lorecast(ls)
+		return
+	ui.dialogue(String(site["figure"]), lore.slice(0, 2), [["Face the echo", Callable()]], null)
+	var e: Dictionary = site["echo"]
+	var at: Vector3 = ls["pos"] + Vector3(0, 0, -2.2)
+	if not lab.zone_walkable(at): at = ls["pos"]
+	var m := _spawn_monster(String(e["type"]), _zone_level(zone_id(), float(site["at"][0])) + 2, true, false, at)
+	m.unique_id = "lore_" + String(site["id"]); m.ename = String(e["name"])
+	m.pack = [m]
+
+func _learn_lorecast(ls: Dictionary) -> void:
+	var site: Dictionary = ls["site"]
+	var d := SKILLS.lore_def(String(load(String(site["skill"])).id))
+	if d.is_empty() or state.skills.has(d["id"]): return
+	state.skills[d["id"]] = {"rank": 1, "mod": ""}
+	if state.bar.size() == 8 and not d["id"] in state.bar:
+		for i in [0, 1, 2, 3, 4, 7, 6]:
+			if String(state.bar[i]) == "": state.bar[i] = d["id"]; break
+	ls["woken"] = true
+	ls["glow"].albedo_color.a = 0.18
+	lab.hud.reload_bar()
+	var lore: Array = site.get("lore", [])
+	ui.dialogue(String(site["figure"]), [String(lore[-1]) if not lore.is_empty() else "", "Lorecast learned: %s. %s" % [d["name"], d["desc"]]], [["Carry it on", Callable()]], null)
+	ui.toast("Lorecast learned: " + String(d["name"]), Color("ffe08a"), 4.0, 24)
+	play("quest")
+	autosave()

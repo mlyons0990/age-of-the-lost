@@ -906,6 +906,19 @@
     620,
     2460
    ]
+  },
+  {
+   "name": "Mossbarrow Crypts",
+   "to": "mossbarrow_crypts",
+   "arrive": [
+    620,
+    2470
+   ],
+   "at": [
+    9250,
+    700
+   ],
+   "r": 150
   }
  ],
  "walkable": [
@@ -996,6 +1009,15 @@
     4190
    ],
    "blurb": "The old stone arch south-east, toward the Hollowmere marsh."
+  },
+  {
+   "name": "Barrow Stair",
+   "kind": "landmark",
+   "at": [
+    9250,
+    700
+   ],
+   "blurb": "Steps down beneath the Standing Stones."
   }
  ],
  "world_id": "whisperwood"

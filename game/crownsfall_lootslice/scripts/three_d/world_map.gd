@@ -433,7 +433,11 @@ func _draw_marker(m: Dictionary, p: Vector2, label: bool, scale_ := 1.0, canvas:
 
 func _draw_world() -> void:
 	var wm: Dictionary = world.get("map", {})
-	_text(Vector2(area.get_center().x, area.position.y - 18), String(wm.get("title", "World")).to_upper(), 26, GOLD)
+	var act := current_act()
+	var title := String(wm.get("title", "World")).to_upper()
+	for a in wm.get("acts", []):
+		if int(a["act"]) == act: title += "  ·  ACT %s: %s" % [["I", "II", "III", "IV", "V", "VI", "VII"][act - 1], String(a["name"]).to_upper()]
+	_text(Vector2(area.get_center().x, area.position.y - 18), title, 26, GOLD)
 	draw_rect(area, Color(0.07, 0.06, 0.045))
 	# faint parchment grid
 	for i in range(1, 12):
@@ -443,7 +447,7 @@ func _draw_world() -> void:
 		var y := area.position.y + area.size.y * i / 8.0
 		draw_line(Vector2(area.position.x, y), Vector2(area.end.x, y), Color(1, 0.9, 0.7, 0.035), 1.0)
 	var pos := {}
-	for n in wm.get("nodes", []):
+	for n in act_nodes(act):
 		pos[n["id"]] = area.position + Vector2(float(n["at"][0]), float(n["at"][1])) * area.size
 	for l in wm.get("links", []):
 		if not (pos.has(l[0]) and pos.has(l[1])): continue
@@ -455,7 +459,7 @@ func _draw_world() -> void:
 	for q in active_quests():
 		if quest_done(q): continue
 		for m in q.get("markers", []): quest_nodes[world_id_of(String(m["zone"]))] = true
-	for n in wm.get("nodes", []):
+	for n in act_nodes(act):
 		var c: Vector2 = pos[n["id"]]
 		var known: bool = is_discovered(String(n["id"])) and not bool(n.get("locked", false))
 		var col := GOLD if known else Color(0.45, 0.42, 0.38)
@@ -482,6 +486,16 @@ func _draw_world() -> void:
 		world_nodes.append(entry)
 	draw_rect(area, GOLD_DIM, false, 1.5)
 	_text(area.end - Vector2(12, 12), "Click a discovered zone to open its map", 14, Color("a8977a"), false, HORIZONTAL_ALIGNMENT_RIGHT)
+
+## The act the hero is in (from the world-map node of the current zone); the world map shows one act at a time.
+func current_act() -> int:
+	var here := world_id_of(current_zone_id())
+	for n in world.get("map", {}).get("nodes", []):
+		if n["id"] == here: return int(n.get("act", 1))
+	return 1
+
+func act_nodes(act: int) -> Array:
+	return world.get("map", {}).get("nodes", []).filter(func(n): return int(n.get("act", 1)) == act)
 
 func _zone_for_world(wid: String) -> String:
 	if world_id_of(current_zone_id()) == wid: return current_zone_id()
@@ -510,6 +524,26 @@ func _node_icon(kind: String, c: Vector2, col: Color) -> void:
 		"marsh":  # reeds over water
 			for i in 3: draw_line(c + Vector2(-8 + i * 8, 8), c + Vector2(-10 + i * 9, -12), col, 2.5)
 			draw_line(c + Vector2(-14, 10), c + Vector2(14, 10), col, 2.0)
+		"heath":  # causeway over the flats
+			draw_line(c + Vector2(-15, 8), c + Vector2(15, 8), col, 2.0)
+			for i in 3: draw_rect(Rect2(c + Vector2(-12 + i * 9, -6), Vector2(6, 10)), col)
+		"coast":  # waves
+			for k in 2:
+				var pts := PackedVector2Array()
+				for i in 13: pts.append(c + Vector2(-15 + i * 2.5, -4 + k * 9 + sin(i * 0.9) * 3.0))
+				draw_polyline(pts, col, 2.5, true)
+		"mountain", "snow":  # peaks (snow: white caps)
+			draw_colored_polygon(PackedVector2Array([c + Vector2(-16, 10), c + Vector2(-5, -10), c + Vector2(4, 4), c + Vector2(9, -4), c + Vector2(17, 10)]), col)
+			if kind == "snow": draw_colored_polygon(PackedVector2Array([c + Vector2(-8, -4), c + Vector2(-5, -10), c + Vector2(-2, -4)]), Color(1, 1, 1, 0.9))
+		"dungeon":  # arch
+			draw_arc(c + Vector2(0, 4), 11.0, PI, TAU, 16, col, 3.0, true)
+			draw_line(c + Vector2(-11, 4), c + Vector2(-11, 11), col, 3.0); draw_line(c + Vector2(11, 4), c + Vector2(11, 11), col, 3.0)
+		"desert":  # dune and sun
+			draw_circle(c + Vector2(6, -6), 5.0, col)
+			draw_arc(c + Vector2(-2, 18), 17.0, PI * 1.15, PI * 1.85, 16, col, 3.0, true)
+		"archive":  # open book
+			draw_colored_polygon(PackedVector2Array([c + Vector2(-15, -6), c + Vector2(-1, -2), c + Vector2(-1, 10), c + Vector2(-15, 6)]), col)
+			draw_colored_polygon(PackedVector2Array([c + Vector2(15, -6), c + Vector2(1, -2), c + Vector2(1, 10), c + Vector2(15, 6)]), col)
 		_:
 			_text(c + Vector2(0, 10), "?", 30, col)
 

@@ -1105,14 +1105,17 @@ func _save_settings() -> void:
 func _hms(t: float) -> String:
 	return "%dh %02dm" % [int(t) / 3600, (int(t) / 60) % 60]
 
-func show_epilogue() -> void:
-	var v := _modal("epilogue", 700.0, "CHAPTER COMPLETE")
-	var t := _label("THE WHISPERWOOD IS FREE", 34, GOLD)
+## Chapter complete: title, the chapter's own lines (quests.json "epilogue"), the hero's totals.
+func show_epilogue(ep: Dictionary = {}) -> void:
+	var v := _modal("epilogue", 700.0, String(ep.get("chapter", "CHAPTER COMPLETE")))
+	var t := _label(String(ep.get("title", "THE WHISPERWOOD IS FREE")), 34, GOLD)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(t)
 	var st = dir.state
-	for line in ["You have completed this chapter of Age of the Lost.", "Level %d · %d foes slain · %d deaths · %s" % [st.level, st.kills, st.deaths, _hms(st.play_time)], "Hollowmere awaits in the next chapter. You may keep exploring, hunting and gathering gear."]:
-		var l := _label(line, 18, IVORY, false)
+	var lines: Array = ep.get("lines", ["You have completed this chapter of Age of the Lost."]).duplicate()
+	lines.insert(1 if lines.size() > 1 else lines.size(), "Level %d · %d foes slain · %d deaths · %s" % [st.level, st.kills, st.deaths, _hms(st.play_time)])
+	for line in lines:
+		var l := _label(String(line), 18, IVORY, false)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART; l.custom_minimum_size = Vector2(600, 0)
 		v.add_child(l)

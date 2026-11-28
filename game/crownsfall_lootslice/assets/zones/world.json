@@ -39,8 +39,8 @@
      0.6
     ],
     "levels": "Level 5-9",
-    "locked": true,
-    "blurb": "Beyond Whisperwood. Not yet reached."
+    "locked": false,
+    "blurb": "A drowned marsh beyond the Whisperwood's mossy arch. The wardens' lanterns have gone dark."
    },
    {
     "id": "unknown_n",
@@ -86,6 +86,7 @@
   "note": "Map layout in 0..1 of the map area. A zone JSON may set world_id to show as one of these nodes (e.g. the kit build of Whisperwood)."
  },
  "lab_zones": [
-  "whisperwood_forest"
+  "whisperwood_forest",
+  "hollowmere"
  ]
 }

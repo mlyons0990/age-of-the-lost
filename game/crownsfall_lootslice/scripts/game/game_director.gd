@@ -157,6 +157,9 @@ func _enter_zone(first: bool) -> void:
 		lab.player.restore(99999, 99999)
 	quest_dirty = true
 	ui.area_banner(String(lab.zone.get("name", zid)).split(" — ")[0], "Sanctuary" if in_town() else _level_text(zid))
+	for q in quests_def:
+		if String(q.get("arrive_zone", "")) == zid and state.quest_state(String(q["id"])) == "active":
+			complete_quest.call_deferred(String(q["id"]))
 	autosave()
 
 func _level_text(zid: String) -> String:
@@ -229,10 +232,10 @@ func summon_adds(src: Node3D, n: int) -> void:
 		var a := TAU * i / n
 		var at: Vector3 = src.global_position + Vector3(cos(a), 0, sin(a)) * 2.2
 		if not lab.zone_walkable(at): continue
-		var m := _spawn_monster("slime", src.level, false, false, at)
+		var m := _spawn_monster(String(MONSTER.type_def(src.type_key).get("adds", "slime")), src.level, false, false, at)
 		m.pack = pack; pack.append(m); m.state = "chase"
 	lab.effects.ring(src.global_position, 3.5, Color("9c6bff"), 0.7)
-	ui.toast("The Thornwarden calls the wood to its aid!", Color("c9a8ff"))
+	ui.toast("%s calls the %s to its aid!" % [src.ename, "mere" if zone_id() == "hollowmere" else "wood"], Color("c9a8ff"))
 
 func _spawn_npcs(zid: String) -> void:
 	for d in NPCS.get(zid, []):
@@ -376,10 +379,11 @@ func _on_monster_died(m: Node3D) -> void:
 	_drop_loot(m)
 	if m.boss:
 		boss = null
-		if state.quest_state("thornwarden") == "active":
-			state.set_quest("thornwarden", "ready", 1)
-			ui.toast("The Thornwarden is slain! Report to Captain Ralden.", Color("f2c14e"), 4.0)
-			play("quest")
+		for q in quests_def:
+			if String(q.get("boss", "")) == m.unique_id and state.quest_state(String(q["id"])) == "active":
+				state.set_quest(String(q["id"]), "ready", 1)
+				ui.toast("%s is slain! Report to Captain Ralden." % m.ename, Color("f2c14e"), 4.0)
+				play("quest")
 		autosave()
 	elif m.unique_id != "":
 		autosave()
@@ -398,8 +402,10 @@ func _level_up(n: int) -> void:
 func _drop_loot(m: Node3D) -> void:
 	var at: Vector3 = m.global_position
 	var drops: Array = []
-	if m.drops_page != "" and state.quest_state("lost_tomes") == "active":
-		drops.append({"kind": "quest", "item": {"name": "Archive Page", "page": m.drops_page}})
+	if m.drops_page != "":
+		var pq := page_quest(m.drops_page)
+		if not pq.is_empty() and state.quest_state(String(pq["id"])) == "active":
+			drops.append({"kind": "quest", "item": {"name": String(pq.get("item_name", "Archive Page")), "page": m.drops_page, "quest": pq["id"]}})
 	var gold_chance := 1.0 if m.elite else 0.45
 	if randf() < gold_chance:
 		drops.append({"kind": "gold", "amount": int(round(randf_range(3, 9) * (1.0 + 0.4 * (m.level - 1)) * (6.0 if m.boss else (2.5 if m.elite else 1.0))))})
@@ -436,10 +442,11 @@ func _pickup(l: Node3D) -> bool:
 			state.potions[l.potion] = mini(99, int(state.potions[l.potion]) + 1)
 			ui.toast("+1 %s" % l.text(), l.colour(), 1.2, 18)
 		"quest":
-			var q: Dictionary = state.quest("lost_tomes")
-			var n: int = int(q.get("progress", 0)) + 1
-			state.set_quest("lost_tomes", "ready" if n >= 3 else "active", n)
-			ui.toast("Archive Page recovered (%d/3)" % n + ("  —  return to Captain Ralden" if n >= 3 else ""), Color("ff9a2e"), 3.5)
+			var qid := String(l.item.get("quest", "lost_tomes"))
+			var need: int = int(quest_def(qid).get("count", 3))
+			var n: int = int(state.quest(qid).get("progress", 0)) + 1
+			state.set_quest(qid, "ready" if n >= need else "active", n)
+			ui.toast("%s recovered (%d/%d)" % [String(l.item.get("name", "Archive Page")), n, need] + ("  —  return to Captain Ralden" if n >= need else ""), Color("ff9a2e"), 3.5)
 			play("quest")
 			quest_dirty = true
 		"item":
@@ -533,10 +540,25 @@ func complete_quest(id: String) -> void:
 	if q.has("next"):
 		state.set_quest(String(q["next"]), "active", 0)
 		ui.toast("New quest: " + String(quest_def(String(q["next"]))["name"]), Color("e8b85c"), 4.0, 22)
-	if id == "thornwarden":
-		ui.show_epilogue()
+	if q.has("epilogue"):
+		ui.show_epilogue(q["epilogue"])
 	quest_dirty = true
 	autosave()
+
+## The quest whose markers list this quest item ("page"), or {}.
+func page_quest(page: String) -> Dictionary:
+	for q in quests_def:
+		for st in q.get("steps", {}).values():
+			for mk in st.get("markers", []):
+				if String(mk.get("page", "")) == page: return q
+	return {}
+
+## The unique guardian that carries a quest item (encounters: "guardian" + "page"), or "".
+func page_guardian(page: String) -> String:
+	for zid in encounters:
+		for p in encounters[zid].get("packs", []):
+			if String(p.get("page", "")) == page: return String(p.get("guardian", ""))
+	return ""
 
 ## Quests as the HUD tracker and the map show them: [{id, name, objective, progress, count, done, markers}]
 func quest_view() -> Array:
@@ -551,7 +573,7 @@ func quest_view() -> Array:
 			if m.has("npc"):
 				for d in NPCS.get(String(m["zone"]), []):
 					if d["id"] == m["npc"]: mm["at"] = d["at"]; mm["label"] = d["name"]
-			if m.has("page") and state.dead_uniques.has({"page_1": "page_dell", "page_2": "page_fae", "page_3": "page_stones"}[m["page"]]): continue
+			if m.has("page") and state.dead_uniques.has(page_guardian(String(m["page"]))): continue
 			markers.append(mm)
 		var prog: int = int(state.quest(String(q["id"])).get("progress", 0))
 		out.append({"id": q["id"], "name": q["name"], "objective": step.get("objective", ""), "progress": prog,

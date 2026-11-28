@@ -95,7 +95,8 @@
      "Captain Ralden",
      "The pages are held by the wood's guardians: in the Flower Dell to the south-west, at the Fae Ring to the south, and among the Standing Stones in the north-east. Check your map (M)."
     ]
-   }
+   },
+   "item_name": "Archive Page"
   },
   {
    "id": "thornwarden",
@@ -141,6 +142,179 @@
      "Captain Ralden",
      "It is done, then. The Whisperwood is quiet for the first time in a generation.",
      "Hollowmere lies beyond it \u2014 and whatever drowned it. When you are ready, Crownsfall will need you again."
+    ]
+   },
+   "boss": "thornwarden",
+   "next": "into_the_mere",
+   "epilogue": {
+    "title": "THE WHISPERWOOD IS FREE",
+    "chapter": "CHAPTER I COMPLETE",
+    "lines": [
+     "The Thornwarden has fallen and the old wood breathes again.",
+     "But the pages speak of the marsh beyond: the wardens' lanterns in Hollowmere have gone dark, and something below the water is waking.",
+     "Chapter II begins: cross the mossy arch in the Whisperwood's south-east into Hollowmere."
+    ]
+   }
+  },
+  {
+   "id": "into_the_mere",
+   "name": "Into the Mere",
+   "giver": "ralden",
+   "next": "drowned_lanterns",
+   "arrive_zone": "hollowmere",
+   "steps": {
+    "active": {
+     "objective": "Cross the Mossy Arch into Hollowmere",
+     "markers": [
+      {
+       "zone": "whisperwood_forest",
+       "at": [
+        10720,
+        4190
+       ],
+       "r": 300,
+       "label": "Mossy Arch to Hollowmere"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 300,
+    "gold": 80
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "The Thornwarden was only a gatekeeper. Beyond the mossy arch in the Whisperwood's south-east lies Hollowmere, where the wardens once kept their lanterns burning against the dark water.",
+     "The lanterns are out. Whatever drowned the wardens is rising. Go through the arch and see what is left."
+    ]
+   }
+  },
+  {
+   "id": "drowned_lanterns",
+   "name": "The Drowned Lanterns",
+   "giver": "ralden",
+   "next": "drowned_matron",
+   "count": 3,
+   "item_name": "Warden's Flame",
+   "steps": {
+    "active": {
+     "objective": "Reclaim the wardens' flames",
+     "markers": [
+      {
+       "zone": "hollowmere",
+       "at": [
+        5000,
+        820
+       ],
+       "r": 430,
+       "label": "Lantern of Reeds",
+       "page": "lantern_1"
+      },
+      {
+       "zone": "hollowmere",
+       "at": [
+        6000,
+        4200
+       ],
+       "r": 430,
+       "label": "Lantern of the Willow",
+       "page": "lantern_2"
+      },
+      {
+       "zone": "hollowmere",
+       "at": [
+        8950,
+        790
+       ],
+       "r": 430,
+       "label": "Lantern of Bones",
+       "page": "lantern_3"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Bring the flames to Captain Ralden",
+     "markers": [
+      {
+       "zone": "crownsfall",
+       "npc": "ralden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1200,
+    "gold": 300,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "Each lantern held a warden's flame. Whatever guards them now took them when the lanterns died: the Reed-Mother in the north, the Willow Hag in the south, the Bonekeeper on the isle of bones.",
+     "Take the flames back. The Ferryman's Rest waypoint will bring you home and back again."
+    ],
+    "ready": [
+     "Captain Ralden",
+     "Three flames, still burning. The wardens kept these alive for three hundred years.",
+     "They burn toward the east, toward the Sunken Chapel. Something there drowned the wardens, and it is still down there. End it."
+    ]
+   }
+  },
+  {
+   "id": "drowned_matron",
+   "name": "The Drowned Matron",
+   "giver": "ralden",
+   "count": 1,
+   "boss": "drowned_matron",
+   "steps": {
+    "active": {
+     "objective": "Destroy the Drowned Matron in the Sunken Chapel",
+     "markers": [
+      {
+       "zone": "hollowmere",
+       "at": [
+        10300,
+        2800
+       ],
+       "r": 520,
+       "label": "The Drowned Matron"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Report to Captain Ralden",
+     "markers": [
+      {
+       "zone": "crownsfall",
+       "npc": "ralden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 2600,
+    "gold": 800,
+    "item_rarity": 3
+   },
+   "epilogue": {
+    "title": "THE MERE IS STILL",
+    "chapter": "CHAPTER II COMPLETE",
+    "lines": [
+     "The Drowned Matron sinks for the last time and the wardens' lanterns burn again across Hollowmere.",
+     "Crownsfall's road east is open. More of the lost realm waits beyond the marsh in chapters to come.",
+     "You may keep exploring, hunting and gathering gear."
+    ]
+   },
+   "talk": {
+    "active": [
+     "Captain Ralden",
+     "The Sunken Chapel lies at the far east of the mere, where the boardwalk ends. Mend your gear, then go."
+    ],
+    "ready": [
+     "Captain Ralden",
+     "The mere is quiet? Then the wardens can rest at last.",
+     "Crownsfall owes you twice over, Wayfarer. Take this \u2014 you have earned it."
     ]
    }
   }

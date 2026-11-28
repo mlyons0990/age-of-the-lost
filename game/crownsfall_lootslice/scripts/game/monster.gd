@@ -19,6 +19,29 @@ var poses := {}
 var pose := ""
 var hit_pose_t := 0.0
 var velocity_hint := 0.0         # ground speed this physics frame (m/s), for the walk cycle
+## Chapter II (Hollowmere, levels 5-9) and later enemy types, kept here so the original 2D game's table stays as it
+## was. "art" names the painting (and poses) a type uses until it has its own; "tint" colours that stand-in art.
+## "adds" is what a boss summons at half life.
+const MORE_TYPES := {
+	"bog_ghoul": {"name": "Bog Ghoul", "hp": 58.0, "dmg": 12.0, "speed": 2.3, "range": 1.3, "atk_cd": 1.8, "wind": 0.55, "rad": 0.42, "xp": 1.3,
+		"art": "revenant", "tint": Color(0.62, 0.86, 0.66), "height": 1.95, "speed_m": 3.0},
+	"mire_lurker": {"name": "Mire Lurker", "hp": 120.0, "dmg": 19.0, "speed": 1.6, "range": 1.7, "atk_cd": 2.4, "wind": 0.75, "rad": 0.65, "xp": 2.3,
+		"art": "brute", "tint": Color(0.55, 0.76, 0.82), "height": 2.6, "speed_m": 2.5},
+	"mire_wisp": {"name": "Mirelight Wisp", "hp": 24.0, "dmg": 8.0, "speed": 2.6, "range": 1.0, "atk_cd": 1.1, "wind": 0.35, "rad": 0.32, "xp": 0.9,
+		"art": "slime", "tint": Color(0.74, 1.0, 0.82), "height": 1.0, "speed_m": 3.8},
+	"drowned_matron": {"name": "The Drowned Matron", "hp": 150.0, "dmg": 22.0, "speed": 2.2, "range": 1.6, "atk_cd": 2.0, "wind": 0.6, "rad": 0.5, "xp": 3.0,
+		"art": "revenant", "tint": Color(0.6, 0.82, 0.98), "height": 2.15, "speed_m": 3.2, "adds": "mire_wisp"},
+}
+
+## A monster type's stats: the original table, or MORE_TYPES.
+static func type_def(key: String) -> Dictionary:
+	return GD.ETYPES[key] if GD.ETYPES.has(key) else MORE_TYPES[key]
+
+## The painting a type is drawn with (its own key once its art exists).
+static func art_key(key: String) -> String:
+	return key if TEX.has(key) else String(MORE_TYPES[key].get("art", "slime"))
+
+var type_tint := Color.WHITE
 const HEIGHT_M := {"slime": 1.15, "revenant": 2.05, "brute": 2.45}
 const SPEED_M := {"slime": 3.2, "revenant": 3.6, "brute": 2.7}
 const AGGRO_M := 9.0
@@ -79,7 +102,8 @@ func setup(key: String, lvl: int, is_elite := false, is_boss := false) -> void:
 	level = maxi(1, lvl)
 	elite = is_elite or is_boss
 	boss = is_boss
-	var e: Dictionary = GD.ETYPES[key]
+	var e: Dictionary = type_def(key)
+	type_tint = e.get("tint", Color.WHITE) if not TEX.has(key) else Color.WHITE
 	var sc: float = pow(1.0 + 0.3 * (level - 1), 1.35)
 	max_hp = round(float(e["hp"]) * sc * (8.0 if boss else (2.8 if elite else 1.0)))
 	hp = max_hp
@@ -87,11 +111,11 @@ func setup(key: String, lvl: int, is_elite := false, is_boss := false) -> void:
 	atk_cd_base = float(e["atk_cd"])
 	wind_time = float(e["wind"]) * (1.25 if boss else 1.0)
 	reach = 1.0 + float(e["range"]) * 0.45 + (0.6 if boss else 0.0)
-	speed = SPEED_M[key] * (0.85 if boss else 1.0)
+	speed = float(e.get("speed_m", SPEED_M.get(key, 3.0))) * (0.85 if boss else 1.0)
 	xp_value = int(round(float(e["xp"]) * 12.0 * (1.0 + 0.25 * (level - 1)) * (25.0 if boss else (3.0 if elite else 1.0))))
 	ename = String(e["name"])
 	if elite and not boss: ename = "%s %s" % [GD.ELITE_PREFIX[randi() % GD.ELITE_PREFIX.size()], ename]
-	height_m = HEIGHT_M[key] * (1.7 if boss else (1.18 if elite else 1.0))
+	height_m = float(e.get("height", HEIGHT_M.get(key, 1.5))) * (1.7 if boss else (1.18 if elite else 1.0))
 	bar_h = height_m + 0.45
 	phase = randf() * 6.0
 	atk_cd = randf_range(0.2, 0.8)
@@ -112,21 +136,23 @@ func _ready() -> void:
 	shadow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(shadow)
 	sprite = Sprite3D.new()
-	poses = _load_poses(type_key)
-	sprite.texture = TEX[type_key]
+	var ak := art_key(type_key)
+	poses = _load_poses(ak)
+	sprite.texture = TEX[ak]
 	sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 	sprite.shaded = false
 	sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
-	sprite.pixel_size = height_m / float(TEX[type_key].get_height())
+	sprite.pixel_size = height_m / float(TEX[ak].get_height())
 	sprite.centered = true
-	sprite.offset = Vector2(0, TEX[type_key].get_height() * 0.5)
+	sprite.offset = Vector2(0, TEX[ak].get_height() * 0.5)
 	sprite.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	if not poses.is_empty():
 		sprite.pixel_size = height_m / IDLE_POSE_PX
 		_set_pose("idle")
-	if boss: sprite.modulate = Color(1.0, 0.86, 0.92)
-	elif elite: sprite.modulate = Color(1.0, 0.95, 0.85)
+	if boss: sprite.modulate = Color(1.0, 0.86, 0.92) * type_tint
+	elif elite: sprite.modulate = Color(1.0, 0.95, 0.85) * type_tint
+	else: sprite.modulate = type_tint
 	add_child(sprite)
 	# telegraph (red ground marker during wind-ups)
 	tele = MeshInstance3D.new()
@@ -281,7 +307,7 @@ func _process(delta: float) -> void:
 		else:
 			# the death pose holds, then sinks and fades
 			_set_pose("death")
-			sprite.modulate = Color(1, 1, 1, clampf(1.0 - (dead_t - 0.8) / 0.7, 0.0, 1.0))
+			sprite.modulate = Color(type_tint.r, type_tint.g, type_tint.b, clampf(1.0 - (dead_t - 0.8) / 0.7, 0.0, 1.0))
 			sprite.position.y = -maxf(0.0, dead_t - 0.8) * 0.3
 			shadow.visible = dead_t < 1.0
 			if dead_t > 1.5: queue_free()
@@ -290,7 +316,7 @@ func _process(delta: float) -> void:
 	_set_pose(_pick_pose())
 	flash = maxf(0.0, flash - delta)
 	lunge = maxf(0.0, lunge - delta * 3.5)
-	var base_col := Color(1.0, 0.86, 0.92) if boss else (Color(1.0, 0.95, 0.85) if elite else Color.WHITE)
+	var base_col := (Color(1.0, 0.86, 0.92) if boss else (Color(1.0, 0.95, 0.85) if elite else Color.WHITE)) * type_tint
 	sprite.modulate = base_col.lerp(Color(2.2, 1.6, 1.4), flash / 0.16) if flash > 0.0 else base_col
 	if state == "wind": sprite.modulate = sprite.modulate.lerp(Color(1.5, 0.7, 0.6), 0.35 + 0.25 * sin(t * 30.0))
 	if stun_t > 0.0: sprite.modulate = sprite.modulate.lerp(Color(0.75, 0.9, 1.6), 0.5)

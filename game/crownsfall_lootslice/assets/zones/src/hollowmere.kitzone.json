@@ -1,0 +1,929 @@
+{
+ "name": "Hollowmere",
+ "kit": "assets/kit/forest_hf",
+ "size": [
+  11520,
+  4944
+ ],
+ "ppm": 71.8,
+ "pitch": 31.0,
+ "hero_px_1080": 125.0,
+ "ground_base": "grass_old",
+ "seed": 41,
+ "paths": [
+  {
+   "pts": [
+    [
+     -80,
+     2480
+    ],
+    [
+     600,
+     2460
+    ],
+    [
+     1400,
+     2300
+    ],
+    [
+     2300,
+     2420
+    ],
+    [
+     3000,
+     2380
+    ],
+    [
+     3700,
+     2150
+    ],
+    [
+     4500,
+     1900
+    ],
+    [
+     5300,
+     1980
+    ],
+    [
+     6100,
+     2150
+    ],
+    [
+     6900,
+     1950
+    ],
+    [
+     7700,
+     1800
+    ],
+    [
+     8500,
+     1950
+    ],
+    [
+     9200,
+     2300
+    ],
+    [
+     9800,
+     2650
+    ],
+    [
+     10300,
+     2800
+    ]
+   ],
+   "width": 230,
+   "layer": "flagstone"
+  },
+  {
+   "pts": [
+    [
+     5300,
+     1980
+    ],
+    [
+     5250,
+     1600
+    ],
+    [
+     5100,
+     1200
+    ],
+    [
+     5000,
+     820
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     6100,
+     2150
+    ],
+    [
+     6250,
+     2700
+    ],
+    [
+     6200,
+     3300
+    ],
+    [
+     6050,
+     3900
+    ],
+    [
+     6000,
+     4200
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     8500,
+     1950
+    ],
+    [
+     8650,
+     1500
+    ],
+    [
+     8800,
+     1050
+    ],
+    [
+     8950,
+     760
+    ]
+   ],
+   "width": 170,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  },
+  {
+   "pts": [
+    [
+     3000,
+     2380
+    ],
+    [
+     2700,
+     3000
+    ],
+    [
+     2400,
+     3600
+    ],
+    [
+     2200,
+     4100
+    ]
+   ],
+   "width": 150,
+   "layer": "dirt",
+   "style": "trail",
+   "taper_end": false
+  }
+ ],
+ "patches": [
+  {
+   "at": [
+    3700,
+    2150
+   ],
+   "r": 380,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    10300,
+    2800
+   ],
+   "r": 520,
+   "layer": "flagstone",
+   "squash": 0.515
+  },
+  {
+   "at": [
+    5000,
+    800
+   ],
+   "r": 260,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    6000,
+    4230
+   ],
+   "r": 260,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    8950,
+    760
+   ],
+   "r": 260,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    2200,
+    4150
+   ],
+   "r": 240,
+   "layer": "dirt",
+   "squash": 0.5
+  },
+  {
+   "at": [
+    1300,
+    1500
+   ],
+   "r": 520,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    2100,
+    900
+   ],
+   "r": 430,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3200,
+    1200
+   ],
+   "r": 470,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4200,
+    3000
+   ],
+   "r": 560,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    3500,
+    3900
+   ],
+   "r": 480,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4800,
+    4300
+   ],
+   "r": 380,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7000,
+    3000
+   ],
+   "r": 600,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7600,
+    4100
+   ],
+   "r": 470,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    8100,
+    2950
+   ],
+   "r": 420,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    7200,
+    850
+   ],
+   "r": 430,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    6100,
+    950
+   ],
+   "r": 360,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9900,
+    1300
+   ],
+   "r": 520,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    10600,
+    4000
+   ],
+   "r": 480,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    9300,
+    3600
+   ],
+   "r": 520,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    1200,
+    3600
+   ],
+   "r": 470,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    600,
+    1100
+   ],
+   "r": 360,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    4300,
+    900
+   ],
+   "r": 320,
+   "layer": "water",
+   "squash": 0.52
+  },
+  {
+   "at": [
+    11000,
+    1900
+   ],
+   "r": 380,
+   "layer": "water",
+   "squash": 0.52
+  }
+ ],
+ "clear": [
+  [
+   160,
+   2470,
+   380
+  ],
+  [
+   3700,
+   2150,
+   560
+  ],
+  [
+   5000,
+   800,
+   480
+  ],
+  [
+   6000,
+   4230,
+   480
+  ],
+  [
+   8950,
+   760,
+   480
+  ],
+  [
+   10300,
+   2800,
+   720
+  ],
+  [
+   2200,
+   4150,
+   420
+  ]
+ ],
+ "place": [],
+ "forest": {
+  "trees": [
+   [
+    "gnarled_a",
+    4
+   ],
+   [
+    "gnarled_b",
+    4
+   ],
+   [
+    "silver",
+    3
+   ],
+   [
+    "oak_b",
+    1
+   ]
+  ],
+  "spacing": 560,
+  "cut": 0.6,
+  "grove_px": 1500,
+  "frame": 0.45,
+  "frame_px": 900,
+  "path_gap": 170,
+  "tree_scale": [
+   0.85,
+   1.15
+  ],
+  "rock_clusters": 26,
+  "rocks_big": [
+   "a_rock_flat",
+   "b_rock_flat",
+   "a_rock_pair",
+   "b_rock_pair",
+   "a_rock_tall",
+   "b_rock_tall"
+  ],
+  "rocks_small": [
+   "a_rock_small",
+   "b_rock_small"
+  ],
+  "clumps_per_mpx": 18,
+  "clumps": {
+   "ferns": {
+    "w": 4,
+    "n": [
+     3,
+     6
+    ],
+    "r": 170,
+    "props": [
+     "a_fern",
+     "b_fern"
+    ]
+   },
+   "lavender": {
+    "w": 2,
+    "n": [
+     3,
+     7
+    ],
+    "r": 160,
+    "props": [
+     "a_lavender",
+     "b_lavender"
+    ]
+   },
+   "white": {
+    "w": 2,
+    "n": [
+     2,
+     5
+    ],
+    "r": 140,
+    "props": [
+     "a_shrub_white",
+     "b_shrub_white"
+    ]
+   },
+   "bushes": {
+    "w": 3,
+    "n": [
+     2,
+     4
+    ],
+    "r": 150,
+    "props": [
+     "a_bush_round",
+     "b_bush_round",
+     "a_bush_yellow",
+     "b_bush_yellow"
+    ]
+   },
+   "mixed": {
+    "w": 3,
+    "n": [
+     3,
+     6
+    ],
+    "r": 180,
+    "props": [
+     "a_fern",
+     "a_grass_tall",
+     "b_grass_tall",
+     "a_lavender",
+     "b_shrub_white",
+     "b_bush_round"
+    ]
+   }
+  },
+  "tufts_per_mpx": 45,
+  "tufts": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_grass_tall",
+   "a_fern"
+  ],
+  "litter_per_mpx": 16,
+  "litter": [
+   "a_leaves",
+   "a_pebbles"
+  ],
+  "litter_near_trees": [
+   "a_leaves",
+   "a_leaves",
+   "a_mushrooms",
+   "a_roots"
+  ],
+  "litter_ground": 0.65,
+  "max_canopy_cover": 0.06,
+  "cover": {
+   "per_mpx": 55,
+   "props": [
+    "ga_tallgrass",
+    "ga_longgrass",
+    "ga_whiteflowers",
+    "ga_lavenderpatch",
+    "ga_moss",
+    "ga_clover",
+    "ga_meadow",
+    "gb_tallgrass",
+    "gb_longgrass",
+    "gb_whiteflowers",
+    "gb_lavenderpatch",
+    "gb_moss",
+    "gb_clover",
+    "gb_meadow",
+    "gb_meadow",
+    "gb_moss",
+    "gb_longgrass",
+    "ga_meadow"
+   ],
+   "drift_px": 900,
+   "path_gap": 35,
+   "scale": [
+    0.8,
+    1.25
+   ]
+  }
+ },
+ "root_dressing": {
+  "decals": 3,
+  "tufts": 5,
+  "decal_props": [
+   "a_leaves"
+  ],
+  "tuft_props": [
+   "a_grass_tall",
+   "b_grass_tall",
+   "a_fern",
+   "b_fern"
+  ]
+ },
+ "edges": [
+  {
+   "path": 0,
+   "spacing": 130,
+   "offset": -20,
+   "jitter": 70,
+   "density": 0.75,
+   "props": [
+    "a_moss",
+    "a_clover",
+    "a_pebbles",
+    "a_leaves"
+   ],
+   "scale": [
+    0.9,
+    1.3
+   ]
+  },
+  {
+   "path": 0,
+   "spacing": 170,
+   "offset": 110,
+   "jitter": 120,
+   "density": 0.9,
+   "min_gap": 40,
+   "props": [
+    "a_fern",
+    "b_fern",
+    "a_grass_tall",
+    "a_shrub_white",
+    "b_shrub_white",
+    "a_lavender",
+    "b_bush_yellow"
+   ],
+   "scale": [
+    0.85,
+    1.2
+   ]
+  }
+ ],
+ "light": {
+  "canopy": 0.42,
+  "contact": 0.38,
+  "pools": 0.28,
+  "dapple_px": 40,
+  "shift": [
+   0.3,
+   0.16
+  ],
+  "exposure": 0.9,
+  "overhead": 0.8,
+  "over_density": 7,
+  "tree_mist": 0.55,
+  "open": [
+   [
+    3700,
+    2150,
+    520,
+    0.5
+   ],
+   [
+    10300,
+    2800,
+    650,
+    0.45
+   ],
+   [
+    5000,
+    800,
+    420,
+    0.45
+   ],
+   [
+    6000,
+    4230,
+    420,
+    0.45
+   ],
+   [
+    8950,
+    760,
+    420,
+    0.45
+   ]
+  ],
+  "shafts": [
+   [
+    3700,
+    1900,
+    420
+   ],
+   [
+    10300,
+    2600,
+    500
+   ]
+  ],
+  "prop_mist": true,
+  "mist": [
+   [
+    1300,
+    1500,
+    832.0
+   ],
+   [
+    2100,
+    900,
+    688.0
+   ],
+   [
+    3200,
+    1200,
+    752.0
+   ],
+   [
+    4200,
+    3000,
+    896.0
+   ],
+   [
+    3500,
+    3900,
+    768.0
+   ],
+   [
+    4800,
+    4300,
+    608.0
+   ],
+   [
+    7000,
+    3000,
+    960.0
+   ],
+   [
+    7600,
+    4100,
+    752.0
+   ],
+   [
+    8100,
+    2950,
+    672.0
+   ],
+   [
+    7200,
+    850,
+    688.0
+   ],
+   [
+    6100,
+    950,
+    576.0
+   ],
+   [
+    9900,
+    1300,
+    832.0
+   ],
+   [
+    10600,
+    4000,
+    768.0
+   ],
+   [
+    9300,
+    3600,
+    832.0
+   ],
+   [
+    1200,
+    3600,
+    752.0
+   ],
+   [
+    600,
+    1100,
+    576.0
+   ],
+   [
+    4300,
+    900,
+    512.0
+   ],
+   [
+    11000,
+    1900,
+    608.0
+   ],
+   [
+    10300,
+    2900,
+    900
+   ],
+   [
+    6500,
+    2400,
+    1200
+   ]
+  ]
+ },
+ "waypoints": [
+  {
+   "id": "hollowmere_ferry",
+   "name": "Ferryman's Rest",
+   "at": [
+    3700,
+    2150
+   ],
+   "radius_px": 200
+  }
+ ],
+ "exits": [
+  {
+   "name": "Whisperwood",
+   "to": "whisperwood_forest",
+   "at": [
+    140,
+    2470
+   ],
+   "r": 170,
+   "arrive": [
+    10450,
+    4060
+   ]
+  }
+ ],
+ "walkable": [
+  [
+   [
+    40,
+    120
+   ],
+   [
+    11480,
+    120
+   ],
+   [
+    11480,
+    4924
+   ],
+   [
+    40,
+    4924
+   ]
+  ]
+ ],
+ "spawn": [
+  620,
+  2460
+ ],
+ "targets": [],
+ "map_pois": [
+  {
+   "name": "Mossy Arch",
+   "kind": "landmark",
+   "at": [
+    160,
+    2470
+   ],
+   "blurb": "The old stone arch back to the Whisperwood."
+  },
+  {
+   "name": "Ferryman's Rest",
+   "kind": "landmark",
+   "at": [
+    3700,
+    2150
+   ],
+   "blurb": "A drowned ferry landing; the waypoint still glows."
+  },
+  {
+   "name": "Lantern of Reeds",
+   "kind": "landmark",
+   "at": [
+    5000,
+    800
+   ],
+   "blurb": "A warden's lantern among the reeds, gone dark."
+  },
+  {
+   "name": "Lantern of the Willow",
+   "kind": "landmark",
+   "at": [
+    6000,
+    4230
+   ],
+   "blurb": "A warden's lantern beneath a drowned willow."
+  },
+  {
+   "name": "Lantern of Bones",
+   "kind": "landmark",
+   "at": [
+    8950,
+    760
+   ],
+   "blurb": "A warden's lantern on an island of old bones."
+  },
+  {
+   "name": "Sunken Chapel",
+   "kind": "landmark",
+   "at": [
+    10300,
+    2800
+   ],
+   "blurb": "A chapel half swallowed by the mere."
+  },
+  {
+   "name": "Drowned Shrine",
+   "kind": "secret",
+   "at": [
+    2200,
+    4150
+   ],
+   "blurb": "A forgotten shrine at the end of a reed path."
+  }
+ ],
+ "world_id": "hollowmere"
+}

@@ -106,7 +106,23 @@ func zone_id() -> String:
 	var z := String(lab.painted_zone)
 	return z.get_file().get_basename() if z.begins_with("res://") else z
 
-func in_town() -> bool: return zone_id() in SAFE_ZONES
+func in_town() -> bool: return zone_id() in SAFE_ZONES and not ambush_active()
+
+## Ambush quests ("ambush": {"npc", "zone"}): a sanctuary event. Talking to the NPC springs it (quest state "ambush"):
+## the quest's boss and its adds spawn and the zone stops being a sanctuary until the boss falls.
+func ambush_active() -> bool:
+	for q in quests_def:
+		if q.has("ambush") and String(q["ambush"].get("zone", "")) == zone_id() and state.quest_state(String(q["id"])) == "ambush": return true
+	return false
+
+func spring_ambush(qid: String) -> void:
+	var q := quest_def(qid)
+	state.set_quest(qid, "ambush", 0)
+	ui.toast(String(q["ambush"].get("cry", "Ambush!")), Color("c58cff"), 4.0, 24)
+	play("quest")
+	if boss == null: _spawn_encounters(zone_id(), qid)
+	quest_dirty = true
+	autosave()
 
 func play(name: String, vol_db := -6.0) -> void:
 	var path := "res://assets/audio/%s.wav" % String(SOUNDS.get(name, name))
@@ -213,7 +229,7 @@ func _spawn_encounters(zid: String, only_quest := "") -> void:
 		if p.has("guardian") and state.dead_uniques.has(p["guardian"]): continue
 		if p.has("boss"):
 			if state.dead_uniques.has(p["boss"]): continue
-			if p.has("needs_quest") and state.quest_state(String(p["needs_quest"])) != "active": continue
+			if p.has("needs_quest") and state.quest_state(String(p["needs_quest"])) != ("ambush" if p.get("ambush", false) else "active"): continue
 		var lvl := _zone_level(zid, float(p["at"][0]))
 		var centre: Vector3 = lab.zone_px_to_world(float(p["at"][0]), float(p["at"][1]))
 		if not lab.zone_walkable(centre):     # a prop or wall on the exact spot: take the nearest open ground
@@ -421,7 +437,7 @@ func _on_monster_died(m: Node3D) -> void:
 	if m.boss:
 		boss = null
 		for q in quests_def:
-			if String(q.get("boss", "")) == m.unique_id and state.quest_state(String(q["id"])) == "active":
+			if String(q.get("boss", "")) == m.unique_id and state.quest_state(String(q["id"])) in ["active", "ambush"]:
 				state.set_quest(String(q["id"]), "ready", 1)
 				if q.get("auto", false):
 					ui.toast("%s is slain!" % m.ename, Color("f2c14e"), 3.0)
@@ -562,7 +578,12 @@ func talk(npc_id: String) -> void:
 		return
 	var st: String = state.quest_state(String(q["id"]))
 	var lines: Array = q.get("talk", {}).get(st, [String(npc_def(npc_id).get("name", "Captain Ralden")), "..."])
-	if q.get("talk_complete", false) and st == "active":
+	if q.has("ambush") and st == "active" and String(q["ambush"].get("npc", "")) == npc_id:
+		var aq := String(q["id"])
+		ui.dialogue(lines[0], lines.slice(1), [["Defend the court!", func(): spring_ambush(aq)]], npc_portrait(npc_id))
+	elif q.has("ambush") and st == "ambush":
+		ui.dialogue(lines[0], lines.slice(1), [["Hold the line!", Callable()]], npc_portrait(npc_id))
+	elif q.get("talk_complete", false) and st == "active":
 		var qid := String(q["id"])
 		ui.dialogue(lines[0], lines.slice(1), [["I'll find out.", func(): complete_quest(qid)]], npc_portrait(npc_id))
 	elif st == "ready":

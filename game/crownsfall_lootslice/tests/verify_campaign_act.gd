@@ -123,6 +123,16 @@ func _run() -> void:
 			seen[zone] = true
 			await _zone_checks(zone)
 			await _shot(zone)
+		if q.has("ambush"):     # a sanctuary event: safe until the NPC is spoken to, then the tear opens at the court
+			check(g.in_town() and g.boss == null, "%s: the court is a sanctuary before the ambush" % qid)
+			g.talk(String(q["ambush"]["npc"]))
+			check(g.ui.panel_kind == "dialogue", "%s: %s speaks before the ambush" % [qid, q["ambush"]["npc"]])
+			g.ui.close_panel(); g.spring_ambush(qid)
+			await _wait(0.4)
+			check(not g.in_town() and g.boss != null and g.monsters.size() > 1, "%s: ambush! the tear and its escort attack the court (%d foes)" % [qid, g.monsters.size()])
+			if g.boss: lab.player.global_position = g.boss.global_position + Vector3(4.5, 0.08, 2.0); lab.zone_last_ok = lab.player.global_position
+			await _wait(2.5)
+			await _shot("ambush_" + qid)
 		if q.has("boss"):
 			var b = g.boss
 			check(b != null and b.unique_id == q["boss"], "%s: the boss %s is here" % [qid, b.ename if b else "?"])
@@ -159,6 +169,7 @@ func _run() -> void:
 			await _shot("epilogue_" + qid)
 		g.ui.close_panel()
 		check(st.quest_state(qid) == "done", "%s %s complete" % [qid, q["name"]])
+		if q.has("ambush"): check(g.in_town(), "%s: the court is a sanctuary again" % qid)
 		await _do_lorecasts(zone)
 	if act == 1: check(g.lorecasting_unlocked(), "Lorecasting is unlocked")
 	var wm = lab.hud.world_map

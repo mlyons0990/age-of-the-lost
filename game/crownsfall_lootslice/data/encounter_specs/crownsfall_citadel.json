@@ -4,7 +4,7 @@
   10,
   10
  ],
- "packs": 18,
+ "packs": 0,
  "seed": 658,
  "spacing": 700,
  "groups": [
@@ -58,25 +58,36 @@
  "fixed": [
   {
    "at": [
-    11300,
-    2800
+    10800,
+    2620
    ],
-   "types": [],
+   "types": [
+    "crownsfall_citadel_0",
+    "crownsfall_citadel_0",
+    "crownsfall_citadel_1",
+    "crownsfall_citadel_1"
+   ],
    "boss": "crownsfall_citadel_boss_u",
    "boss_type": "crownsfall_citadel_boss",
    "boss_name": "The Court Tear",
-   "needs_quest": "Q_A01_15"
+   "needs_quest": "Q_A01_15",
+   "ambush": true
   }
  ],
  "keep_clear": [
   [
-   2800,
-   3360,
+   11300,
+   2860,
    700
   ],
   [
-   11300,
-   2800,
+   6460,
+   2500,
+   700
+  ],
+  [
+   10800,
+   2620,
    700
   ]
  ]

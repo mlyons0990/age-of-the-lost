@@ -826,6 +826,409 @@
    "next": "Q_A02_01"
   },
   {
+   "id": "Q_A01_03",
+   "name": "The Last Dispatch",
+   "zone_id": "ACT01_Z03",
+   "giver": "rowan",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Rescue scout Rowan from scavengers at a collapsed bridge.",
+     "markers": [
+      {
+       "zone": "bramblewatch",
+       "at": [
+        2490,
+        3910
+       ],
+       "r": 560,
+       "label": "Scavenger Chief Kettle"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Rowan Hale",
+     "markers": [
+      {
+       "zone": "bramblewatch",
+       "npc": "rowan"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 208,
+    "gold": 110,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Rowan Hale",
+     "Rescue scout Rowan from scavengers at a collapsed bridge.."
+    ],
+    "ready": [
+     "Rowan Hale",
+     "Courier carried a black glass seal."
+    ]
+   },
+   "boss": "bramblewatch_boss_u",
+   "count": 1,
+   "boss_at": [
+    2490,
+    3910
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_05",
+   "name": "Names on the Door",
+   "zone_id": "ACT01_Z05",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Investigate three households with conflicting memories of a missing child.",
+     "markers": [
+      {
+       "zone": "mossbell_hamlet",
+       "at": [
+        4929,
+        1909
+       ],
+       "r": 560,
+       "label": "The Millhaunt"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 472,
+    "gold": 170,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "mossbell_hamlet_boss_u",
+   "count": 1,
+   "boss_at": [
+    4929,
+    1909
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_07",
+   "name": "A Toll Paid Twice",
+   "zone_id": "ACT01_Z07",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Recover the courier's satchel from a road cult.",
+     "markers": [
+      {
+       "zone": "ashen_tollway",
+       "at": [
+        3254,
+        3478
+       ],
+       "r": 560,
+       "label": "Cult Captain Varro"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 330,
+    "gold": 140,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "ashen_tollway_boss_u",
+   "count": 1,
+   "boss_at": [
+    3254,
+    3478
+   ],
+   "also": [
+    "Q_A01_08"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_08",
+   "name": "Water Runs Backward",
+   "zone_id": "ACT01_Z08",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Rescue workers and stop a reversed flood.",
+     "markers": [
+      {
+       "zone": "bellwater_mills",
+       "at": [
+        2861,
+        1292
+       ],
+       "r": 560,
+       "label": "The Sluice Guardian"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 472,
+    "gold": 170,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "bellwater_mills_boss_u",
+   "count": 1,
+   "boss_at": [
+    2861,
+    1292
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_09",
+   "name": "A Warrant for the Dead",
+   "zone_id": "ACT01_Z09",
+   "giver": "garran",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Confront Marshal Garran over quarantined relics.",
+     "markers": [
+      {
+       "zone": "highward_steps",
+       "npc": "garran"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 330,
+    "gold": 140
+   },
+   "talk": {
+    "active": [
+     "Marshal Garran Holt",
+     "Confront Marshal Garran over quarantined relics..",
+     "Gain authorized access to the lower city."
+    ]
+   },
+   "talk_complete": true,
+   "also": [
+    "Q_A01_10"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_10",
+   "name": "The Price of a Name",
+   "zone_id": "ACT01_Z10",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Free a captured Keeper named Tamsin.",
+     "markers": [
+      {
+       "zone": "sablemarket_vaults",
+       "at": [
+        6699,
+        2516
+       ],
+       "r": 560,
+       "label": "Relic Broker Quell"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 632,
+    "gold": 200,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "sablemarket_vaults_boss_u",
+   "count": 1,
+   "boss_at": [
+    6699,
+    2516
+   ],
+   "also": [
+    "Q_A01_11"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_11",
+   "name": "Stones Beneath Stones",
+   "zone_id": "ACT01_Z11",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Drain a chamber and follow an echo of a procession.",
+     "markers": [
+      {
+       "zone": "old_crown_cistern",
+       "at": [
+        6399,
+        2598
+       ],
+       "r": 430,
+       "label": "The Drowned Herald",
+       "page": "Q_A01_11_1"
+      },
+      {
+       "zone": "old_crown_cistern",
+       "at": [
+        6025,
+        1433
+       ],
+       "r": 430,
+       "label": "The Lamp-Bearer",
+       "page": "Q_A01_11_2"
+      },
+      {
+       "zone": "old_crown_cistern",
+       "at": [
+        4585,
+        2921
+       ],
+       "r": 430,
+       "label": "The Standard-Bearer",
+       "page": "Q_A01_11_3"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 809,
+    "gold": 230,
+    "item_rarity": 1
+   },
+   "talk": {},
+   "count": 3,
+   "item_name": "Procession Echo",
+   "also": [
+    "Q_A01_12"
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_12",
+   "name": "The Sealed Procession",
+   "zone_id": "ACT01_Z12",
+   "giver": "",
+   "auto": true,
+   "steps": {
+    "active": {
+     "objective": "Descend past the Regent's guards.",
+     "markers": [
+      {
+       "zone": "undercroft",
+       "at": [
+        6093,
+        1418
+       ],
+       "r": 560,
+       "label": "The Crypt Warden"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1002,
+    "gold": 260,
+    "item_rarity": 2
+   },
+   "talk": {},
+   "boss": "undercroft_boss_u",
+   "count": 1,
+   "boss_at": [
+    6093,
+    1418
+   ],
+   "side": true
+  },
+  {
+   "id": "Q_A01_15",
+   "name": "The King's Silence",
+   "zone_id": "ACT01_Z15",
+   "giver": "maera",
+   "auto": false,
+   "steps": {
+    "active": {
+     "objective": "Speak with Regent Maera in the Royal Court",
+     "markers": [
+      {
+       "zone": "crownsfall_citadel",
+       "npc": "maera"
+      }
+     ]
+    },
+    "ready": {
+     "objective": "Speak with Regent Maera Ashford",
+     "markers": [
+      {
+       "zone": "crownsfall_citadel",
+       "npc": "maera"
+      }
+     ]
+    },
+    "ambush": {
+     "objective": "Defend the court: destroy the Court Tear",
+     "markers": [
+      {
+       "zone": "crownsfall_citadel",
+       "at": [
+        10800,
+        2620
+       ],
+       "r": 560,
+       "label": "The Court Tear"
+      }
+     ]
+    }
+   },
+   "reward": {
+    "xp": 1432,
+    "gold": 320,
+    "item_rarity": 2
+   },
+   "talk": {
+    "active": [
+     "Regent Maera Ashford",
+     "You carry proof from beneath my city? Then lay it before the whole court. Let them hear it from you.",
+     "Wait... do you feel that? The air is tearing, like it did at the First Rift."
+    ],
+    "ready": [
+     "Regent Maera Ashford",
+     "Receive warrant to investigate the outer scars."
+    ],
+    "ambush": [
+     "Regent Maera Ashford",
+     "It is opening again, here, in my own court! Wayfarer, hold them back!"
+    ]
+   },
+   "boss": "crownsfall_citadel_boss_u",
+   "count": 1,
+   "boss_at": [
+    10800,
+    2620
+   ],
+   "ambush": {
+    "npc": "maera",
+    "zone": "crownsfall_citadel",
+    "cry": "A reality tear splits the Royal Court! Defend the Regent!"
+   },
+   "side": true
+  },
+  {
    "id": "Q_A02_01",
    "name": "A Place to Stand",
    "zone_id": "ACT02_Z01",
@@ -4562,367 +4965,6 @@
      "The final image is a remembered name, not a reset."
     ]
    }
-  },
-  {
-   "id": "Q_A01_03",
-   "name": "The Last Dispatch",
-   "zone_id": "ACT01_Z03",
-   "giver": "rowan",
-   "auto": false,
-   "steps": {
-    "active": {
-     "objective": "Rescue scout Rowan from scavengers at a collapsed bridge.",
-     "markers": [
-      {
-       "zone": "bramblewatch",
-       "at": [
-        2490,
-        3910
-       ],
-       "r": 560,
-       "label": "Scavenger Chief Kettle"
-      }
-     ]
-    },
-    "ready": {
-     "objective": "Speak with Rowan Hale",
-     "markers": [
-      {
-       "zone": "bramblewatch",
-       "npc": "rowan"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 208,
-    "gold": 110,
-    "item_rarity": 2
-   },
-   "talk": {
-    "active": [
-     "Rowan Hale",
-     "Rescue scout Rowan from scavengers at a collapsed bridge.."
-    ],
-    "ready": [
-     "Rowan Hale",
-     "Courier carried a black glass seal."
-    ]
-   },
-   "boss": "bramblewatch_boss_u",
-   "count": 1,
-   "boss_at": [
-    2490,
-    3910
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_05",
-   "name": "Names on the Door",
-   "zone_id": "ACT01_Z05",
-   "giver": "",
-   "auto": true,
-   "steps": {
-    "active": {
-     "objective": "Investigate three households with conflicting memories of a missing child.",
-     "markers": [
-      {
-       "zone": "mossbell_hamlet",
-       "at": [
-        4929,
-        1909
-       ],
-       "r": 560,
-       "label": "The Millhaunt"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 472,
-    "gold": 170,
-    "item_rarity": 2
-   },
-   "talk": {},
-   "boss": "mossbell_hamlet_boss_u",
-   "count": 1,
-   "boss_at": [
-    4929,
-    1909
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_07",
-   "name": "A Toll Paid Twice",
-   "zone_id": "ACT01_Z07",
-   "giver": "",
-   "auto": true,
-   "steps": {
-    "active": {
-     "objective": "Recover the courier's satchel from a road cult.",
-     "markers": [
-      {
-       "zone": "ashen_tollway",
-       "at": [
-        3254,
-        3478
-       ],
-       "r": 560,
-       "label": "Cult Captain Varro"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 330,
-    "gold": 140,
-    "item_rarity": 2
-   },
-   "talk": {},
-   "boss": "ashen_tollway_boss_u",
-   "count": 1,
-   "boss_at": [
-    3254,
-    3478
-   ],
-   "also": [
-    "Q_A01_08"
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_08",
-   "name": "Water Runs Backward",
-   "zone_id": "ACT01_Z08",
-   "giver": "",
-   "auto": true,
-   "steps": {
-    "active": {
-     "objective": "Rescue workers and stop a reversed flood.",
-     "markers": [
-      {
-       "zone": "bellwater_mills",
-       "at": [
-        2861,
-        1292
-       ],
-       "r": 560,
-       "label": "The Sluice Guardian"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 472,
-    "gold": 170,
-    "item_rarity": 2
-   },
-   "talk": {},
-   "boss": "bellwater_mills_boss_u",
-   "count": 1,
-   "boss_at": [
-    2861,
-    1292
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_09",
-   "name": "A Warrant for the Dead",
-   "zone_id": "ACT01_Z09",
-   "giver": "garran",
-   "auto": false,
-   "steps": {
-    "active": {
-     "objective": "Confront Marshal Garran over quarantined relics.",
-     "markers": [
-      {
-       "zone": "highward_steps",
-       "npc": "garran"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 330,
-    "gold": 140
-   },
-   "talk": {
-    "active": [
-     "Marshal Garran Holt",
-     "Confront Marshal Garran over quarantined relics..",
-     "Gain authorized access to the lower city."
-    ]
-   },
-   "talk_complete": true,
-   "also": [
-    "Q_A01_10"
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_10",
-   "name": "The Price of a Name",
-   "zone_id": "ACT01_Z10",
-   "giver": "",
-   "auto": true,
-   "steps": {
-    "active": {
-     "objective": "Free a captured Keeper named Tamsin.",
-     "markers": [
-      {
-       "zone": "sablemarket_vaults",
-       "at": [
-        6699,
-        2516
-       ],
-       "r": 560,
-       "label": "Relic Broker Quell"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 632,
-    "gold": 200,
-    "item_rarity": 2
-   },
-   "talk": {},
-   "boss": "sablemarket_vaults_boss_u",
-   "count": 1,
-   "boss_at": [
-    6699,
-    2516
-   ],
-   "also": [
-    "Q_A01_11"
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_11",
-   "name": "Stones Beneath Stones",
-   "zone_id": "ACT01_Z11",
-   "giver": "",
-   "auto": true,
-   "steps": {
-    "active": {
-     "objective": "Drain a chamber and follow an echo of a procession.",
-     "markers": [
-      {
-       "zone": "old_crown_cistern",
-       "at": [
-        6399,
-        2598
-       ],
-       "r": 430,
-       "label": "The Drowned Herald",
-       "page": "Q_A01_11_1"
-      },
-      {
-       "zone": "old_crown_cistern",
-       "at": [
-        6025,
-        1433
-       ],
-       "r": 430,
-       "label": "The Lamp-Bearer",
-       "page": "Q_A01_11_2"
-      },
-      {
-       "zone": "old_crown_cistern",
-       "at": [
-        4585,
-        2921
-       ],
-       "r": 430,
-       "label": "The Standard-Bearer",
-       "page": "Q_A01_11_3"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 809,
-    "gold": 230,
-    "item_rarity": 1
-   },
-   "talk": {},
-   "count": 3,
-   "item_name": "Procession Echo",
-   "also": [
-    "Q_A01_12"
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_12",
-   "name": "The Sealed Procession",
-   "zone_id": "ACT01_Z12",
-   "giver": "",
-   "auto": true,
-   "steps": {
-    "active": {
-     "objective": "Descend past the Regent's guards.",
-     "markers": [
-      {
-       "zone": "undercroft",
-       "at": [
-        6093,
-        1418
-       ],
-       "r": 560,
-       "label": "The Crypt Warden"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 1002,
-    "gold": 260,
-    "item_rarity": 2
-   },
-   "talk": {},
-   "boss": "undercroft_boss_u",
-   "count": 1,
-   "boss_at": [
-    6093,
-    1418
-   ],
-   "side": true
-  },
-  {
-   "id": "Q_A01_15",
-   "name": "The King's Silence",
-   "zone_id": "ACT01_Z15",
-   "giver": "maera",
-   "auto": false,
-   "steps": {
-    "active": {
-     "objective": "Present proof to Regent Maera; defend the court from a small reality tear.",
-     "markers": [
-      {
-       "zone": "crownsfall_citadel",
-       "npc": "maera"
-      }
-     ]
-    }
-   },
-   "reward": {
-    "xp": 1432,
-    "gold": 320
-   },
-   "talk": {
-    "active": [
-     "Regent Maera Ashford",
-     "Present proof to Regent Maera; defend the court from a small reality tear..",
-     "Receive warrant to investigate the outer scars."
-    ]
-   },
-   "talk_complete": true,
-   "side": true
   }
  ],
  "first": "Q_A01_01"

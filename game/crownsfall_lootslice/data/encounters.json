@@ -25713,5 +25713,30 @@
     "elite": false
    }
   ]
+ },
+ "crownsfall_citadel": {
+  "levels": [
+   10,
+   10
+  ],
+  "packs": [
+   {
+    "at": [
+     10800,
+     2620
+    ],
+    "types": [
+     "crownsfall_citadel_0",
+     "crownsfall_citadel_0",
+     "crownsfall_citadel_1",
+     "crownsfall_citadel_1"
+    ],
+    "boss": "crownsfall_citadel_boss_u",
+    "boss_type": "crownsfall_citadel_boss",
+    "boss_name": "The Court Tear",
+    "needs_quest": "Q_A01_15",
+    "ambush": true
+   }
+  ]
  }
 }

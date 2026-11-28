@@ -41,8 +41,22 @@ COMBAT_TOWNS = {"saltmirror_harbor", "artificers_ward", "moonfall_republic",    
                 "last_dawn_station", "labor_quarter_siege", "senate_of_ash", "iron_sabbath", "crownsfall_under_siege"}  # disaster / war set pieces
 HUB_EXTRA_NPCS = {"crownsfall_of_three_ages": [("mira_3a", "Mira Thorne", "mage", (0.82, 0.84, 1.0), "'Three versions of one plaza. Read the stones with me.'", False)]}
 HUB_TRADER = {"town": ("Trader", "mage", (1.0, 0.92, 0.85), "Coin for steel, steel for coin.")}
+# Sanctuary ambushes (owner 11-28): the hub stays safe until its NPC is spoken to; then a reality tear opens and its boss
+# and adds attack the court; the hub is a sanctuary again once the boss falls.
+AMBUSH_HUBS = {"crownsfall_citadel": dict(npc="maera", boss_at=[10800, 2620], npc_poi=0, trader_at=(6300, 2440),
+               cry="A reality tear splits the Royal Court! Defend the Regent!",
+               intro=["Regent Maera Ashford", "You carry proof from beneath my city? Then lay it before the whole court. Let them hear it from you.",
+                      "Wait... do you feel that? The air is tearing, like it did at the First Rift."],
+               fight=["Regent Maera Ashford", "It is opening again, here, in my own court! Wayfarer, hold them back!"],
+               brief="Speak with Regent Maera in the Royal Court", objective="Defend the court: destroy the Court Tear")}
 for _zid, _d in DESIGN.items():
     if _d["kind"] != "town" or _d["key"] in COMBAT_TOWNS: continue
+    if _d["key"] in AMBUSH_HUBS:
+        A = AMBUSH_HUBS[_d["key"]]
+        _d.update(ambush=A, turnin=A["npc"], fixed_boss=A["boss_at"], npc_poi=A["npc_poi"], combat=False); _d.pop("boss_poi", None)
+        if not any(len(n) > 5 and n[5] for n in _d["npcs"]):
+            _d["npcs"] = list(_d["npcs"]) + [(_d["key"] + "_trader", RG(_zid)["name"].split(" ")[0] + " Trader", "mage", (1.0, 0.92, 0.85), "Coin for steel, steel for coin.", True) + tuple(A.get("trader_at", ()))]
+        continue
     _d["npcs"] = list(_d.get("npcs") or []) + HUB_EXTRA_NPCS.get(_d["key"], [])
     if not _d["npcs"]: continue
     giver = _d.get("turnin") or _d["npcs"][0][0]
@@ -579,6 +593,8 @@ def arrive_in(target, from_key):
     for e in EXITS[target]["list"]:
         if e["to"] == from_key: return e["inside"]
     return [620, 2470]
+def is_safe(d, key):
+    return (d["kind"] == "town" and not d.get("combat") and (d["mech"][0] in ("talk", "arrive") or bool(d.get("ambush")))) or key == "crownsfall"
 def zname(key):
     return RG(ZID_OF[key])["name"] if key in ZID_OF else key
 
@@ -666,7 +682,7 @@ for zid in sorted(DESIGN):
     if int(zid[3:5]) not in ACTS: continue
     d = DESIGN[zid]; key = d["key"]; reg = RG(zid); b = built.get(key, {})
     act = int(zid[3:5]); lv = level_band(zid)
-    safe = (d["kind"] == "town" and not d.get("combat") and d["mech"][0] in ("talk", "arrive")) or key == "crownsfall"
+    safe = is_safe(d, key)
     # monster families
     fam = []
     for i, (nm, art, tint) in enumerate(d.get("foes", [])):
@@ -729,6 +745,15 @@ for zid in sorted(DESIGN):
         q["steps"]["ready"] = {"objective": "Speak with " + tn[1], "markers": [{"zone": key, "npc": d["turnin"]}]}
         q["talk"]["active"] = [tn[1], reg["quest_text"][:1].upper() + reg["quest_text"][1:] + "."]
         q["talk"]["ready"] = [tn[1], reg["reveal"]]
+    if d.get("ambush"):
+        A = d["ambush"]; tn = next(n for n in d["npcs"] if n[0] == A["npc"])
+        q["ambush"] = {"npc": A["npc"], "zone": key, "cry": A["cry"]}
+        q["steps"]["active"] = {"objective": A["brief"], "markers": [{"zone": key, "npc": A["npc"]}]}
+        q["steps"]["ambush"] = {"objective": A["objective"], "markers": [{"zone": key, "at": A["boss_at"], "r": 560, "label": mech[1]}]}
+        q["talk"]["active"] = list(A["intro"])
+        q["talk"]["ambush"] = list(A["fight"])
+        for f_ in fixed:
+            if f_.get("boss"): f_["ambush"] = True; f_["types"] = [fam[0], fam[0], fam[1], fam[1]] if len(fam) > 1 else []    # the tear's escort
     if mech[0] in ("collect", "boss"):
         q["reward"]["item_rarity"] = 1 if mech[0] == "collect" else (2 if d.get("epilogue") is None else 3)
     if d.get("memory"): q["epilogue"] = d["memory"]
@@ -737,7 +762,7 @@ for zid in sorted(DESIGN):
     if d.get("epilogue"): q["epilogue"] = d["epilogue"]
     QUESTS.append(q)
     if d["kind"] != "fixed" or key == "whisperwood_forest":
-        if not safe:
+        if not safe or d.get("ambush"):
             keep = [[n["at"][0], n["at"][1], 700] for n in zl] + [[f_["at"][0], f_["at"][1], 700] for f_ in fixed]
             if d.get("lorecast") and pois: lp = pois[min(d["lorecast"]["poi"], len(pois) - 1)]; keep.append([lp[0], lp[1], 800])
             big = b.get("kind") in ("wild", "fixed") or key == "whisperwood_forest"
@@ -746,6 +771,7 @@ for zid in sorted(DESIGN):
                     "spacing": 1050 if big else 700,
                     "groups": [[5, [fam[0], fam[0]]], [3, [fam[1]] * 3], [3, [fam[0], fam[1], fam[1]]], [2, [fam[2]], True], [2, [fam[2], fam[0]]], [1, [fam[0]] * 3, True]] if len(fam) == 3 else [],
                     "fixed": fixed, "keep_clear": keep}
+            if d.get("ambush"): spec["packs"] = 0
             json.dump(spec, open(f"data/encounter_specs/{key}.json", "w"), indent=1)
         else:
             enc.pop(key, None)
@@ -806,7 +832,7 @@ json.dump(lore, open("data/lorecasts.json", "w"), indent=1)
 json.dump(enc, open("data/encounters.json", "w"), indent=1)
 for zid in todo:
     key = DESIGN[zid]["key"]
-    if os.path.exists(f"data/encounter_specs/{key}.json") and not ((DESIGN[zid]["kind"] == "town" and not DESIGN[zid].get("combat") and DESIGN[zid]["mech"][0] in ("talk", "arrive")) or key == "crownsfall"):
+    if os.path.exists(f"data/encounter_specs/{key}.json") and (not is_safe(DESIGN[zid], key) or DESIGN[zid].get("ambush")):
         r = subprocess.run([sys.executable, "tools/gen_encounters.py", f"data/encounter_specs/{key}.json"], capture_output=True, text=True)
         print(r.stdout.strip() if r.returncode == 0 else "ENCOUNTERS FAILED " + key + r.stderr[-800:])
 
@@ -816,7 +842,7 @@ for zid in sorted(DESIGN):
     act = int(zid[3:5])
     if act not in ACTS: continue
     d = DESIGN[zid]; key = d["key"]; lv = level_band(zid)
-    safe = (d["kind"] == "town" and not d.get("combat") and d["mech"][0] in ("talk", "arrive")) or key == "crownsfall"
+    safe = is_safe(d, key)
     kind = "town" if key == "crownsfall" else KIND_ICON.get(d.get("biome", "forest"), "forest")
     nid = "whisperwood" if key == "whisperwood_forest" else key
     nodes.append({"id": nid, "zone": key, "name": RG(zid)["name"], "kind": kind, "at": list(POS[key]), "act": act, "locked": False,

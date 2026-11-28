@@ -256,9 +256,18 @@ func _spawn_npcs(zid: String) -> void:
 			sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 			sprite.set_meta("height_m", float(d.get("height", NPC_HEIGHT_M)))
 			_size_npc_sprite(sprite)
-			sprite.offset = Vector2(0, (art["idle"] as Texture2D).get_height() * 0.5)
 			sprite.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			sprite.modulate = NPC_LIGHT
 			node.add_child(sprite)
+			# soft contact shadow at the feet (same blob as the monsters): grounds the painting on the floor
+			var shadow := MeshInstance3D.new()
+			var pm := PlaneMesh.new(); pm.size = Vector2(1.05, 0.62)
+			shadow.mesh = pm
+			var smat := ShaderMaterial.new(); smat.shader = MONSTER._blob_shader()
+			shadow.material_override = smat
+			shadow.position = Vector3(0.12, 0.025, 0.08)      # nudged away from the painted light (upper left)
+			shadow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			node.add_child(shadow)
 		else:
 			var packed: PackedScene = load(NPC_MODELS[d["model"]])
 			var body: Node3D = packed.instantiate()
@@ -288,6 +297,8 @@ func _spawn_npcs(zid: String) -> void:
 ## Painted NPC art (assets/npcs/<id>_idle.png, _talk.png, _portrait.png; tools/cut_npc_art.py): {} until it exists,
 ## and the NPC keeps its stand-in 3D model.
 const NPC_HEIGHT_M := 1.9
+## Painted NPCs are unshaded; a slight warm dim brings their flat painted light down to the lit 3D hero beside them.
+const NPC_LIGHT := Color(0.9, 0.88, 0.85)
 func _npc_art(id: String) -> Dictionary:
 	var out := {}
 	for k in ["idle", "talk", "portrait"]:
@@ -327,6 +338,10 @@ func _update_npc_poses() -> void:
 		var want: Texture2D = art["talk"] if String(n["id"]) == talking_npc else art["idle"]
 		if sp.texture != want: sp.texture = want
 		_size_npc_sprite(sp)
+		# idle breathing: a slow rise and fall anchored at the feet (the sprite pivots on its node, at the feet)
+		var t_: float = Time.get_ticks_msec() / 1000.0 + float(String(n["id"]).hash() % 100) * 0.07
+		var b := sin(t_ * 1.7)
+		sp.scale = Vector3(1.0 - 0.006 * b, 1.0 + 0.012 * b, 1.0)
 		var dx: float = hp.x - (n["node"] as Node3D).global_position.x
 		if absf(dx) > 0.3: sp.flip_h = dx < 0.0
 

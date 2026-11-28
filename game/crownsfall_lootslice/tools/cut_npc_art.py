@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cut the painted NPC art (art/higgsfield_2026-11/npcs/<id>_idle.png and <id>_talk.png, transparent backgrounds)
+"""Cut the painted NPC art (art/higgsfield_2026-11/npcs/v2/<id>_idle.png and optional <id>_talk.png, transparent backgrounds)
 into game sprites: both poses trimmed and scaled by one factor (idle = IDLE_PX tall) so the NPC keeps its size, plus
 a square dialogue portrait (head and shoulders) cropped from the idle painting around the top of the figure.
 Writes assets/npcs/<id>_idle.png, <id>_talk.png, <id>_portrait.png.
@@ -11,7 +11,8 @@ import numpy as np
 from PIL import Image
 
 here = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.normpath(os.path.join(here, "../../../art/higgsfield_2026-11/npcs"))
+# v2 (11-28): redone in the AOTL class-art style at the game camera angle (v1 in npcs/ was rejected)
+SRC = os.path.normpath(os.path.join(here, "../../../art/higgsfield_2026-11/npcs/v2"))
 OUT = os.path.normpath(os.path.join(here, "../assets/npcs"))
 IDLE_PX = 900
 os.makedirs(OUT, exist_ok=True)
@@ -26,6 +27,8 @@ def clean(im):
 
 for npc in ["ralden", "quartermaster"]:
     paths = {k: os.path.join(SRC, "%s_%s.png" % (npc, k)) for k in ("idle", "talk")}
+    if not os.path.exists(paths["talk"]):
+        paths["talk"] = paths["idle"]      # no talking pose painted yet: the standing pose doubles for it
     if not all(os.path.exists(p) for p in paths.values()):
         print("skip", npc, "(art missing)")
         continue

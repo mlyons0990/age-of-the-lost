@@ -133,7 +133,10 @@ LMB move / attack / pick up / talk · Shift+LMB attack in place · Q W E R T ski
   More enemy types and a Hollowmere chapter are content work, not system work.
 - NPCs are painted 2D sprites (owner: static NPCs are 2D): Captain Ralden and Quartermaster Ysolde, idle and talking
   poses (`assets/npcs`, cut by `tools/cut_npc_art.py`), facing the hero; their portraits sit in the dialogue and the
-  shop. An NPC without art falls back to a stand-in hero model.
+  shop. An NPC without art falls back to a stand-in hero model. 11-28: art redone in the AOTL class-art style (v2);
+  the sprites face the camera and are sized to an upright figure's on-screen height (no double foreshortening;
+  Ralden 1.86 m, Ysolde 1.70 m), with a soft contact shadow, a slight warm dim to sit with the lit 3D hero, and an
+  idle breathing sway. Talking poses wait on the 2D-or-3D decision (owner: revisit; 3D NPCs ~85 credits).
 - Dash, buffs and casts on the Rogue and Cleric still use the shared library clips; only their basic attack and
   Q attack have class clips so far.
 - Skills reuse the heroes' existing animation clips (several skills share one); dedicated clips would come with

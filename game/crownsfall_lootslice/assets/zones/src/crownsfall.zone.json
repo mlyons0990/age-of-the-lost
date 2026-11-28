@@ -1,253 +1,330 @@
 {
+ "pitch": 31.0,
+ "camera_note": "Owner-approved 31-degree camera (2026-11-22): matches the paintings' ground angle (circles 0.51 tall/wide). ppm rescaled from 149.0 at 52 deg so the painting keeps its on-screen size; hero stays 110 px.",
+ "ground_ratio": 0.43,
+ "hero_px_1080": 110.0,
  "size": [
-  3840,
-  1648
+  13533,
+  5808
  ],
- "name": "Crownsfall \u2014 Central Plaza",
+ "name": "Crownsfall",
+ "ppm": 120.0,
+ "scale_note": "Grand City (Higgsfield C1 master B + C2 9-section upscale, 11-28). Lamp posts ~370-460 px vs 336 px on the v1 plaza at ppm 107; ppm 120 keeps the hero ~110 px at 1080p.",
+ "sources": [
+  {
+   "image": "../../art/higgsfield_2026-11/crownsfall_city/city_stitched.png",
+   "at": [
+    0,
+    0
+   ],
+   "feather": 0
+  }
+ ],
  "walkable": [
   [
    [
-    792,
-    636
+    4650,
+    2580
    ],
    [
-    1296,
-    516
+    5000,
+    2560
    ],
    [
-    1872,
-    432
+    5000,
+    2200
    ],
    [
-    2592,
-    420
+    4500,
+    2130
    ],
    [
-    2640,
-    516
+    4500,
+    1950
    ],
    [
-    3120,
-    576
+    5600,
+    1950
    ],
    [
-    3360,
-    696
+    5650,
+    2120
    ],
    [
-    3528,
-    804
+    5850,
+    2380
    ],
    [
-    3744,
-    888
+    7000,
+    2420
    ],
    [
-    3696,
-    1104
+    7450,
+    2440
    ],
    [
-    2832,
-    1536
+    7650,
+    2500
    ],
    [
-    2760,
-    1642
+    8450,
+    2520
    ],
    [
-    1680,
-    1642
+    8550,
+    2680
    ],
    [
-    1488,
-    1536
+    8950,
+    2720
    ],
    [
-    192,
-    876
+    9000,
+    2950
    ],
    [
-    96,
-    780
+    8350,
+    3260
    ],
    [
-    576,
-    648
+    7400,
+    3620
+   ],
+   [
+    7150,
+    3730
+   ],
+   [
+    6450,
+    3730
+   ],
+   [
+    6200,
+    3430
+   ],
+   [
+    5250,
+    2990
    ]
   ],
   [
    [
-    738,
-    640
+    8900,
+    2760
    ],
    [
-    1300,
-    520
+    9300,
+    2760
    ],
    [
-    1290,
-    494
+    10300,
+    2850
    ],
    [
-    1074,
-    300
+    10300,
+    2450
    ],
    [
-    1058,
-    258
+    10750,
+    2430
    ],
    [
-    606,
-    322
+    10780,
+    3110
    ],
    [
-    628,
-    380
+    11850,
+    3140
    ],
    [
-    700,
-    470
+    11950,
+    3020
+   ],
+   [
+    12500,
+    3080
+   ],
+   [
+    13450,
+    3110
+   ],
+   [
+    13450,
+    3380
+   ],
+   [
+    10350,
+    3340
+   ],
+   [
+    10300,
+    3080
+   ],
+   [
+    9300,
+    3070
+   ],
+   [
+    8900,
+    3060
+   ]
+  ],
+  [
+   [
+    10580,
+    2460
+   ],
+   [
+    10620,
+    1950
+   ],
+   [
+    9800,
+    1950
+   ],
+   [
+    9800,
+    1650
+   ],
+   [
+    11600,
+    1620
+   ],
+   [
+    11650,
+    1950
+   ],
+   [
+    11100,
+    1950
+   ],
+   [
+    11150,
+    2460
    ]
   ]
  ],
  "spawn": [
-  1920,
-  1248
+  6640,
+  3350
  ],
  "targets": [
   [
-   1344,
-   1056
+   6000,
+   2700
   ],
   [
-   2520,
-   1128
+   7400,
+   2700
   ],
   [
-   1300,
-   760
+   6640,
+   3400
   ],
   [
-   3000,
-   936
+   10000,
+   2950
+  ],
+  [
+   11500,
+   3250
   ]
  ],
- "ppm": 107.0,
- "scale_note": "Z1 painting (Higgsfield 6.5 cr, job 5fdae107). Lamp post ~336 px = ~2.1 hero heights at ppm 149 (hero 160 px in painting px); planter ~72 px = knee height. Shown at 110/160 so the hero is ~110 px at 1080p.",
- "hero_px_1080": 110.0,
- "occluders": [
-  {
-   "line": [
-    [
-     192,
-     876
-    ],
-    [
-     1488,
-     1536
-    ]
-   ],
-   "x": [
-    0,
-    1700
-   ],
-   "pad": 20,
-   "exclude": [
-    [
-     0,
-     0,
-     120,
-     700
-    ],
-    [
-     215,
-     0,
-     700,
-     760
-    ],
-    [
-     120,
-     0,
-     215,
-     525
-    ]
-   ]
-  },
-  {
-   "line": [
-    [
-     3696,
-     1104
-    ],
-    [
-     2832,
-     1536
-    ]
-   ],
-   "x": [
-    2600,
-    3840
-   ],
-   "pad": 20
-  }
- ],
+ "occluders": [],
  "exits": [
   {
-   "name": "Whisperwood",
-   "to": "whisperwood",
+   "name": "Highward Steps",
+   "to": "highward_steps",
    "poly": [
     [
-     622,
-     368
+     4500,
+     1950
     ],
     [
-     1072,
-     305
+     5150,
+     1950
     ],
     [
-     1058,
-     262
+     5150,
+     2120
     ],
     [
-     606,
-     326
+     4500,
+     2120
     ]
    ],
    "aura": {
     "poly": [
      [
-      628,
-      373
+      4500,
+      1950
      ],
      [
-      1074,
-      309
+      5150,
+      1950
      ],
      [
-      1170,
-      405
+      5150,
+      2120
      ],
      [
-      680,
-      488
+      4500,
+      2120
      ]
     ]
    },
    "arrive": [
-    720,
-    636
+    3028,
+    4438
    ],
-   "threshold": "Grand stairs up into the arcade (top-left of the plaza)"
-  }
- ],
- "sources": [
+   "threshold": "Up the grand stair and through the arcade to Highward Steps"
+  },
   {
-   "image": "assets/zones/crownsfall_plaza_z1.png",
-   "at": [
-    0,
-    0
+   "name": "Kingsroad Fields",
+   "to": "kingsroad_fields",
+   "poly": [
+    [
+     6450,
+     3620
+    ],
+    [
+     7150,
+     3620
+    ],
+    [
+     7150,
+     3740
+    ],
+    [
+     6450,
+     3740
+    ]
    ],
-   "feather": 96
+   "aura": {
+    "poly": [
+     [
+      6450,
+      3620
+     ],
+     [
+      7150,
+      3620
+     ],
+     [
+      7150,
+      3740
+     ],
+     [
+      6450,
+      3740
+     ]
+    ]
+   },
+   "arrive": [
+    560,
+    1315
+   ],
+   "threshold": "Down through the Gate District to the city gates"
   }
  ],
  "waypoints": [
@@ -255,29 +332,106 @@
    "id": "crownsfall_town",
    "name": "Crownsfall Plaza",
    "at": [
-    1924,
-    838
+    6640,
+    2920
    ],
    "centre_of": [
-    1924,
-    838
+    6640,
+    2920
    ],
-   "radius_px": 299,
-   "centre_note": "Compass rose ring centre measures (1902,860); owner moved the waypoint up/right to sit visually centred (11-22)."
+   "radius_px": 330
   }
  ],
- "pitch": 31.0,
- "camera_note": "Owner-approved 31-degree camera (2026-11-22): matches the paintings' ground angle (circles 0.51 tall/wide). ppm rescaled from 149.0 at 52 deg so the painting keeps its on-screen size; hero stays 110 px.",
- "ground_ratio": 0.43,
  "map_pois": [
   {
-   "name": "Captain Ralden",
+   "name": "Bluebanner Square",
+   "kind": "landmark",
+   "at": [
+    6640,
+    2920
+   ],
+   "blurb": "The civic heart of Crownsfall; the waypoint lies in its compass rose."
+  },
+  {
+   "name": "Royal Market",
+   "kind": "landmark",
+   "at": [
+    11300,
+    3250
+   ],
+   "blurb": "Stalls, the merchant guild and canal bridges."
+  },
+  {
+   "name": "Citadel Falls",
+   "kind": "landmark",
+   "at": [
+    10700,
+    1750
+   ],
+   "blurb": "The great falls below the citadel cliffs."
+  },
+  {
+   "name": "Pilgrim's Rise",
+   "kind": "landmark",
+   "at": [
+    1900,
+    900
+   ],
+   "blurb": "The cathedral quarter above the city."
+  },
+  {
+   "name": "Upper Citadel Approach",
+   "kind": "landmark",
+   "at": [
+    6400,
+    800
+   ],
+   "blurb": "The road up to the citadel."
+  },
+  {
+   "name": "Westgarden Terraces",
+   "kind": "landmark",
+   "at": [
+    2200,
+    2500
+   ],
+   "blurb": "Stepped gardens, gazebos and rills."
+  },
+  {
+   "name": "Bellfound Ward",
+   "kind": "landmark",
+   "at": [
+    1500,
+    4500
+   ],
+   "blurb": "Bell tower and canal homes."
+  },
+  {
+   "name": "Gate District",
+   "kind": "landmark",
+   "at": [
+    6800,
+    4800
+   ],
+   "blurb": "Barracks and the great city gates."
+  },
+  {
+   "name": "Lantern Quays",
+   "kind": "landmark",
+   "at": [
+    11500,
+    4600
+   ],
+   "blurb": "River basin, arched bridges and floating lanterns."
+  },
+  {
+   "name": "Mira Thorne's Archive Stall",
    "kind": "npc",
    "at": [
-    2500,
-    1150
+    7188,
+    3272
    ],
-   "blurb": "Commander of the city watch."
+   "blurb": "The archivist who keeps the city's records."
   }
  ]
 }

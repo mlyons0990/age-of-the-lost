@@ -83,12 +83,16 @@ BIOMES = {
 # Crownsfall city kit (A1 / A1-T art, tools/build_city_kit.py): buildings along the streets, a landmark behind each
 # square, lamps and banners at the roadside, market / garden props round the squares. Inherited by every city biome.
 C_FLOWERS = ["c_hydrangea_blue", "c_flower_white", "c_lavender", "c_hydrangea_bush", "c_flower_basket"]
-C_STREET = ["c_lamppost_double", "c_lamppost_single", "c_banner_pole", "c_banner_standard", "c_lamppost_single"]
+C_STREET = ["c_lamppost_double", "c_lamppost_single", "c_banner_pole", "c_banner_standard", "c_lamppost_single", "c_crystal_lamp", "c_lantern_float_mid"]
 C_MARKET = ["c_market_stall_fruit", "c_market_stall_cloth", "c_covered_wagon", "c_crate_stack", "c_barrels_sacks", "c_crates_wisteria", "c_apple_basket", "c_flower_barrel"]
-C_GARDEN = ["c_stone_urn", "c_flower_planter", "c_flower_pedestal", "c_topiary_urn", "c_bench", "c_pillar_post"] + C_FLOWERS
+C_BEDS = ["c_bed_straight_long", "c_bed_corner", "c_bed_square", "c_bed_round_large", "c_bed_oval", "c_bed_round_small", "c_bed_crescent",
+          "c_hedge_straight", "c_hedge_topiary_square", "c_wisteria_trellis", "c_wisteria_arch_bed", "c_bed_tree_ring"]
+C_DRIFTS = ["c_drift_lavender", "c_drift_white", "c_drift_mixed", "c_drift_wildflower", "c_drift_ivy"]
+C_MAGIC = ["c_arcane_brazier", "c_crystal_float", "c_orb_levitating", "c_sigil_stone", "c_magic_spring", "c_wisteria_wisp", "c_lantern_float_large", "c_light_motes"]
+C_GARDEN = ["c_stone_urn", "c_flower_pedestal", "c_topiary_urn", "c_bench"] + C_BEDS + C_DRIFTS
 CITYKIT = dict(kit="assets/kit/city", ground="lawn",
                buildings=["c_bld_citizen_home", "c_bld_citizen_home", "c_bld_merchant_guild", "c_bld_archive_hall", "c_bld_guard_barracks", "c_bld_royal_manor", "c_bld_temple_sanctum"],
-               landmarks=["c_lm_fountain_a", "c_lm_fountain_b", "c_lm_fountain_c", "c_lm_statue_a", "c_lm_statue_b", "c_lm_gazebo_a", "c_lm_gazebo_b"],
+               landmarks=["c_lm_fountain_a", "c_lm_fountain_b", "c_lm_fountain_c", "c_lm_statue_a", "c_lm_statue_b", "c_lm_gazebo_a", "c_lm_gazebo_b", "c_magic_spring", "c_crystal_float"],
                street=C_STREET, market=C_MARKET, garden=C_GARDEN,
                trees=[("c_tree_green", 2), ("c_tree_blossom", 2), ("c_tree_amber", 1)])
 BIOMES["city"]["citykit"] = CITYKIT
@@ -218,7 +222,7 @@ def side_toward(a, b):
 
 # ---------------------------------------------------------------- fixed (hand-built) zones: their exits
 FIXED_EXITS = {
- "crownsfall": {"highward_steps": {"at": [840, 330], "arrive": [1000, 700]}, "kingsroad_fields": {"at": [2220, 1630], "arrive": [2220, 1450]}},
+ "crownsfall": {"highward_steps": {"at": [4820, 2040], "arrive": [5450, 2380]}, "kingsroad_fields": {"at": [6800, 3680], "arrive": [6800, 3460]}},   # Grand City (11-28)
  "whisperwood_forest": {"kingsroad_fields": {"at": [140, 2630], "arrive": [700, 2630]}, "hollowmere": {"at": [10720, 4190], "arrive": [10300, 3950]},
                         "mossbarrow_crypts": {"at": [9250, 700], "arrive": [9250, 1000]}, "silverroot_grove": {"at": [6450, 4420], "arrive": [6450, 4050]}},
 }
@@ -419,8 +423,9 @@ def city_dress(z, ck, lay, exits, key):
     for j, p in enumerate([lay["hub"]] + lay["pois"]):
         lm = ck["landmarks"][(j + rs.randrange(len(ck["landmarks"]))) % len(ck["landmarks"])]
         z["place"].append([lm, p[0] + rs.randint(-120, 120), p[1] - (520 if j == 0 else 430), 1.0, rs.random() < 0.5])
-    z["dress"] = [{"at": p, "r": 560, "props": (ck["market"] if j % 2 == 0 else ck["garden"]), "n": 9, "scale": [0.9, 1.1]}
+    z["dress"] = [{"at": p, "r": 560, "props": (ck["market"] if j % 3 == 0 else (ck["garden"] if j % 3 == 1 else C_MAGIC + C_BEDS)), "n": 9, "scale": [0.9, 1.1]}
                   for j, p in enumerate(lay["pois"])]
+    z["dress"].append({"at": lay["hub"], "r": 700, "props": C_DRIFTS, "n": 10, "scale": [0.9, 1.1]})
 
 def write_spec(zid, d, lay, W, H, exits):
     bio = BIOMES[d["biome"]]
@@ -551,7 +556,7 @@ for zid in todo:
         for e in z["exits"]:
             if e["to"] in FIXED_EXITS[key]: e["arrive"] = arrive_in(e["to"], key); e["name"] = zname(e["to"])
         json.dump(z, open(p, "w"), indent=1)
-        built[key] = {"zid": zid, "W": 3840, "H": 1648, "hub": [1924, 838], "pois": [], "boss": None,
+        built[key] = {"zid": zid, "W": 13533, "H": 5808, "hub": [6640, 2920], "pois": [], "boss": None,
                       "exits": [{"to": to, "at": fx["at"], "inside": fx["arrive"]} for to, fx in FIXED_EXITS[key].items()], "kind": "fixed"}
 
 json.dump(built, open("data/campaign_built.json", "w"), indent=1)

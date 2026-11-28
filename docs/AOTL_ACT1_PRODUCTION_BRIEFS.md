@@ -15,6 +15,26 @@ The game is seen from a fixed camera **31 degrees down**, three-quarter view. Ev
   planted with A1's hydrangea, lavender and white flowers.
 
 
+
+## Crownsfall Grand City (built 11-28)
+
+Crownsfall is one painted map, 13,533 x 5,808 px at ppm 120. It comes from Higgsfield master B: plan v3, upscaled in 9
+sections and stitched (`art/higgsfield_2026-11/crownsfall_city/`).
+
+**Playable now** (`assets/zones/src/crownsfall.zone.json`):
+- Bluebanner Square, with the waypoint in the compass rose.
+- The grand stair and arcade (exit to Highward Steps).
+- The bridge into the Royal Market and the guild-hall front.
+- The stair up to the Citadel Falls terrace.
+- The gate battlement (exit down to Kingsroad Fields).
+
+**Painted backdrop, for now:** Pilgrim's Rise, the Upper Citadel Approach, Westgarden Terraces, Bellfound Ward, the
+Gate District courtyard and Lantern Quays. They can be opened up later by adding walkable areas; the art already
+exists.
+
+**Kit:** the A1-F flower beds and C3 magic pieces are in the city kit (`assets/kit/city`) for the kit-built city side
+zones.
+
 Main route: the reconciled Environment Art Bible for Act I (`docs/AOTL_Act1_Environment_Art_Bible_Reconciled.png`).
 Side areas, and the brief text of every bible zone: Production Pack v2 (`docs/production_pack_v2/Act_I_Production_Briefs.json`).
 Owner decision 11-28: merge both. Palette (art bible): limestone ivory, royal blue, forest green, olive, earth brown, dark umber, violet.

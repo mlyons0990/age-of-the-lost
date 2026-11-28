@@ -24,7 +24,7 @@ func _run() -> void:
 	var a = lab.player
 	check(lab.zone_exits.size() == 2 and lab.zone_exit_at(a.global_position).is_empty(), "Plaza has two exits (stairs, Kingsroad Gate) and the hero does not spawn on one")
 	check(get_nodes_in_group("zone_exit_label").size() == 2, "Both exits are marked in the world")
-	lab.zone_move_to(lab.zone_px_to_world(840, 318))
+	lab.zone_move_to(lab.zone_px_to_world(4820, 2040))
 	var t := 0.0
 	while lab.painted_zone != "highward_steps" and t < 12.0:
 		await physics_frame; t += 1.0 / 60.0

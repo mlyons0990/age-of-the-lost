@@ -26,9 +26,9 @@ def RZ(name, qid, qname, qtext, look, reveal, state="PRESENT"):
 ACT1 = {
  # ---- main route
  "ACT01_Z01": dict(key="crownsfall", kind="fixed", order=1, mech=("talk", "mira"),
-   npcs=[("mira", "Mira Thorne", "mage", (0.82, 0.84, 1.0), "Archivist of Crownsfall. 'Records do not lie, people do. Lately I am not sure which is which.'", False, 2400, 1180),
-         ("ralden", "Captain Ralden", "knight", (0.82, 0.86, 1.0), "Captain of the city watch. 'Mira finds the questions. I keep the people who ask them alive.'", False, 2330, 1060),
-         ("quartermaster", "Quartermaster Ysolde", "mage", (1.0, 0.92, 0.85), "Coin for steel, steel for coin.", True, 1500, 1060)],
+   npcs=[("mira", "Mira Thorne", "mage", (0.82, 0.84, 1.0), "Archivist of Crownsfall. 'Records do not lie, people do. Lately I am not sure which is which.'", False, 7188, 3272),
+         ("ralden", "Captain Ralden", "knight", (0.82, 0.86, 1.0), "Captain of the city watch. 'Mira finds the questions. I keep the people who ask them alive.'", False, 7111, 3140),
+         ("quartermaster", "Quartermaster Ysolde", "mage", (1.0, 0.92, 0.85), "Coin for steel, steel for coin.", True, 6198, 3140)],
    also=["Q_A01_09"]),
  "ACT01_Z02": dict(key="kingsroad_fields", kind="wild", biome="farmland", order=2,
    pois=["Old King's Road Milestone", "Weeping Aqueduct", "Dawnwatch Fields", "Roadside Shrine"],

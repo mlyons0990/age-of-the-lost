@@ -76,6 +76,20 @@ SPEC = {
  "hydrangea_bush": ("bush", 1.3, False, 0.0), "hydrangea_blue": ("bush", 1.0, False, 0.0), "flower_white": ("bush", 0.9, False, 0.0),
  "lavender": ("bush", 0.8, False, 0.0), "flower_basket": ("bush", 1.0, False, 0.0), "ivy_hang": ("bush", 1.4, False, 0.0),
  "wisteria_hang": ("rock", 2.4, True, 0.12),
+ # flower beds at the 31-degree camera (A1-F, 11-28): knee-high kerbs; solid, low enough not to hide the hero
+ "bed_straight_long": ("rock", 1.1, False, 0.3), "bed_corner": ("rock", 1.1, False, 0.3), "bed_end": ("rock", 1.3, False, 0.3),
+ "bed_straight_short": ("rock", 1.1, False, 0.3), "bed_tee": ("rock", 1.1, False, 0.3), "bed_square": ("rock", 1.1, False, 0.3),
+ "bed_round_large": ("rock", 1.2, False, 0.34), "bed_oval": ("rock", 1.1, False, 0.34), "bed_round_small": ("rock", 1.0, False, 0.32),
+ "bed_halfmoon": ("rock", 1.6, False, 0.3), "bed_tree_ring": ("rock", 3.0, True, 0.3), "bed_crescent": ("rock", 1.1, False, 0.28),
+ "hedge_straight": ("rock", 1.0, False, 0.3), "hedge_corner": ("rock", 1.3, False, 0.3), "hedge_end": ("rock", 1.4, False, 0.3),
+ "hedge_topiary_square": ("rock", 1.8, True, 0.3), "wisteria_trellis": ("rock", 2.6, True, 0.3), "wisteria_arch_bed": ("rock", 2.8, True, 0.3),
+ "drift_lavender": ("bush", 0.7, False, 0.0), "drift_white": ("bush", 0.6, False, 0.0), "drift_mixed": ("bush", 0.7, False, 0.0),
+ "drift_wildflower": ("bush", 0.6, False, 0.0), "drift_ivy": ("bush", 0.4, False, 0.0), "drift_step_hydrangea": ("rock", 1.4, False, 0.25),
+ # magic dressing (C3, 11-28)
+ "lantern_float_large": ("bush", 2.6, False, 0.0), "lantern_float_mid": ("bush", 2.2, False, 0.0), "lantern_float_small": ("bush", 1.8, False, 0.0),
+ "crystal_lamp": ("rock", 3.6, True, 0.1), "arcane_brazier": ("rock", 1.8, True, 0.25), "light_motes": ("bush", 1.8, False, 0.0),
+ "rune_circle": ("decal", 0.0, False, 0.0), "crystal_float": ("rock", 2.6, True, 0.25), "orb_levitating": ("rock", 2.4, True, 0.25),
+ "wisteria_wisp": ("rock", 2.8, True, 0.12), "sigil_stone": ("rock", 2.0, True, 0.2), "magic_spring": ("rock", 1.6, True, 0.3),
 }
 for name, (kind, metres, occ, fp) in SPEC.items():
     rgba = np.asarray(Image.open(f"{SRC_PROPS}/{name}.png").convert("RGBA")).copy()
@@ -86,7 +100,8 @@ for name, (kind, metres, occ, fp) in SPEC.items():
         band = a[int(fy - 0.12 * h):fy + 1]; bx = np.where(band.any(0))[0]; fx = float(bx.mean())
     else:
         fx = float(xs.mean()); fy = int(fy - 0.02 * h)          # contact line sits a little above the lowest pixel
-    ppm = (fy - ys.min()) / (metres * COS)
+    ppm = (fy - ys.min()) / (metres * COS) if kind != "decal" else (xs.max() - xs.min()) / 4.0
+    if kind == "decal": fx, fy = w / 2.0, h / 2.0
     crop, shadow = split_contact_shadow(rgba, fy) if kind != "decal" else (rgba, None)
     pname = "c_" + name
     Image.fromarray(crop, "RGBA").save(f"{OUT}/props/{pname}.png", optimize=True)

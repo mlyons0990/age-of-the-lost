@@ -363,36 +363,36 @@
  ],
  "place": [
   [
-   "c_lm_fountain_b",
+   "c_lm_statue_a",
    3340,
    1493,
    1.0,
    false
   ],
   [
-   "c_lm_fountain_c",
+   "c_lm_statue_a",
    4429,
    2093,
    1.0,
    false
   ],
   [
-   "c_lm_fountain_b",
-   1152,
+   "c_crystal_float",
+   1121,
    516,
    1.0,
    true
   ],
   [
-   "c_lm_statue_a",
-   1014,
+   "c_lm_gazebo_a",
+   911,
    3746,
    1.0,
-   false
+   true
   ],
   [
-   "c_lm_gazebo_a",
-   6759,
+   "c_crystal_float",
+   6745,
    3918,
    1.0,
    true
@@ -446,11 +446,11 @@
     ],
     "r": 170,
     "props": [
-     "c_hydrangea_blue",
-     "c_flower_white",
-     "c_lavender",
-     "c_hydrangea_bush",
-     "c_flower_basket"
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
     ]
    },
    "lavender": {
@@ -461,11 +461,11 @@
     ],
     "r": 170,
     "props": [
-     "c_hydrangea_blue",
-     "c_flower_white",
-     "c_lavender",
-     "c_hydrangea_bush",
-     "c_flower_basket"
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
     ]
    },
    "bushes": {
@@ -476,11 +476,11 @@
     ],
     "r": 170,
     "props": [
-     "c_hydrangea_blue",
-     "c_flower_white",
-     "c_lavender",
-     "c_hydrangea_bush",
-     "c_flower_basket"
+     "c_drift_lavender",
+     "c_drift_white",
+     "c_drift_mixed",
+     "c_drift_wildflower",
+     "c_drift_ivy"
     ]
    }
   },
@@ -579,7 +579,9 @@
     "c_lamppost_single",
     "c_banner_pole",
     "c_banner_standard",
-    "c_lamppost_single"
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
     0.95,
@@ -620,7 +622,9 @@
     "c_lamppost_single",
     "c_banner_pole",
     "c_banner_standard",
-    "c_lamppost_single"
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
     0.95,
@@ -661,7 +665,9 @@
     "c_lamppost_single",
     "c_banner_pole",
     "c_banner_standard",
-    "c_lamppost_single"
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
     0.95,
@@ -702,7 +708,9 @@
     "c_lamppost_single",
     "c_banner_pole",
     "c_banner_standard",
-    "c_lamppost_single"
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
     0.95,
@@ -743,7 +751,9 @@
     "c_lamppost_single",
     "c_banner_pole",
     "c_banner_standard",
-    "c_lamppost_single"
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
     0.95,
@@ -784,7 +794,9 @@
     "c_lamppost_single",
     "c_banner_pole",
     "c_banner_standard",
-    "c_lamppost_single"
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
     0.95,
@@ -825,7 +837,9 @@
     "c_lamppost_single",
     "c_banner_pole",
     "c_banner_standard",
-    "c_lamppost_single"
+    "c_lamppost_single",
+    "c_crystal_lamp",
+    "c_lantern_float_mid"
    ],
    "scale": [
     0.95,
@@ -909,8 +923,8 @@
    ],
    "r": 170,
    "arrive": [
-    1000,
-    700
+    5450,
+    2380
    ]
   },
   {
@@ -1058,16 +1072,26 @@
  "rim": {
   "props": [
    "c_stone_urn",
-   "c_flower_planter",
    "c_flower_pedestal",
    "c_topiary_urn",
    "c_bench",
-   "c_pillar_post",
-   "c_hydrangea_blue",
-   "c_flower_white",
-   "c_lavender",
-   "c_hydrangea_bush",
-   "c_flower_basket"
+   "c_bed_straight_long",
+   "c_bed_corner",
+   "c_bed_square",
+   "c_bed_round_large",
+   "c_bed_oval",
+   "c_bed_round_small",
+   "c_bed_crescent",
+   "c_hedge_straight",
+   "c_hedge_topiary_square",
+   "c_wisteria_trellis",
+   "c_wisteria_arch_bed",
+   "c_bed_tree_ring",
+   "c_drift_lavender",
+   "c_drift_white",
+   "c_drift_mixed",
+   "c_drift_wildflower",
+   "c_drift_ivy"
   ],
   "density": 0.8,
   "chance": 0.45
@@ -1103,16 +1127,26 @@
    "r": 560,
    "props": [
     "c_stone_urn",
-    "c_flower_planter",
     "c_flower_pedestal",
     "c_topiary_urn",
     "c_bench",
-    "c_pillar_post",
-    "c_hydrangea_blue",
-    "c_flower_white",
-    "c_lavender",
-    "c_hydrangea_bush",
-    "c_flower_basket"
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring",
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
    ],
    "n": 9,
    "scale": [
@@ -1124,6 +1158,40 @@
    "at": [
     946,
     4176
+   ],
+   "r": 560,
+   "props": [
+    "c_arcane_brazier",
+    "c_crystal_float",
+    "c_orb_levitating",
+    "c_sigil_stone",
+    "c_magic_spring",
+    "c_wisteria_wisp",
+    "c_lantern_float_large",
+    "c_light_motes",
+    "c_bed_straight_long",
+    "c_bed_corner",
+    "c_bed_square",
+    "c_bed_round_large",
+    "c_bed_oval",
+    "c_bed_round_small",
+    "c_bed_crescent",
+    "c_hedge_straight",
+    "c_hedge_topiary_square",
+    "c_wisteria_trellis",
+    "c_wisteria_arch_bed",
+    "c_bed_tree_ring"
+   ],
+   "n": 9,
+   "scale": [
+    0.9,
+    1.1
+   ]
+  },
+  {
+   "at": [
+    6794,
+    4348
    ],
    "r": 560,
    "props": [
@@ -1144,24 +1212,18 @@
   },
   {
    "at": [
-    6794,
-    4348
+    3451,
+    2013
    ],
-   "r": 560,
+   "r": 700,
    "props": [
-    "c_stone_urn",
-    "c_flower_planter",
-    "c_flower_pedestal",
-    "c_topiary_urn",
-    "c_bench",
-    "c_pillar_post",
-    "c_hydrangea_blue",
-    "c_flower_white",
-    "c_lavender",
-    "c_hydrangea_bush",
-    "c_flower_basket"
+    "c_drift_lavender",
+    "c_drift_white",
+    "c_drift_mixed",
+    "c_drift_wildflower",
+    "c_drift_ivy"
    ],
-   "n": 9,
+   "n": 10,
    "scale": [
     0.9,
     1.1

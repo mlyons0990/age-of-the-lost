@@ -1,0 +1,283 @@
+{
+ "size": [
+  3840,
+  1648
+ ],
+ "name": "Crownsfall \u2014 Central Plaza",
+ "walkable": [
+  [
+   [
+    792,
+    636
+   ],
+   [
+    1296,
+    516
+   ],
+   [
+    1872,
+    432
+   ],
+   [
+    2592,
+    420
+   ],
+   [
+    2640,
+    516
+   ],
+   [
+    3120,
+    576
+   ],
+   [
+    3360,
+    696
+   ],
+   [
+    3528,
+    804
+   ],
+   [
+    3744,
+    888
+   ],
+   [
+    3696,
+    1104
+   ],
+   [
+    2832,
+    1536
+   ],
+   [
+    2760,
+    1642
+   ],
+   [
+    1680,
+    1642
+   ],
+   [
+    1488,
+    1536
+   ],
+   [
+    192,
+    876
+   ],
+   [
+    96,
+    780
+   ],
+   [
+    576,
+    648
+   ]
+  ],
+  [
+   [
+    738,
+    640
+   ],
+   [
+    1300,
+    520
+   ],
+   [
+    1290,
+    494
+   ],
+   [
+    1074,
+    300
+   ],
+   [
+    1058,
+    258
+   ],
+   [
+    606,
+    322
+   ],
+   [
+    628,
+    380
+   ],
+   [
+    700,
+    470
+   ]
+  ]
+ ],
+ "spawn": [
+  1920,
+  1248
+ ],
+ "targets": [
+  [
+   1344,
+   1056
+  ],
+  [
+   2520,
+   1128
+  ],
+  [
+   1300,
+   760
+  ],
+  [
+   3000,
+   936
+  ]
+ ],
+ "ppm": 107.0,
+ "scale_note": "Z1 painting (Higgsfield 6.5 cr, job 5fdae107). Lamp post ~336 px = ~2.1 hero heights at ppm 149 (hero 160 px in painting px); planter ~72 px = knee height. Shown at 110/160 so the hero is ~110 px at 1080p.",
+ "hero_px_1080": 110.0,
+ "occluders": [
+  {
+   "line": [
+    [
+     192,
+     876
+    ],
+    [
+     1488,
+     1536
+    ]
+   ],
+   "x": [
+    0,
+    1700
+   ],
+   "pad": 20,
+   "exclude": [
+    [
+     0,
+     0,
+     120,
+     700
+    ],
+    [
+     215,
+     0,
+     700,
+     760
+    ],
+    [
+     120,
+     0,
+     215,
+     525
+    ]
+   ]
+  },
+  {
+   "line": [
+    [
+     3696,
+     1104
+    ],
+    [
+     2832,
+     1536
+    ]
+   ],
+   "x": [
+    2600,
+    3840
+   ],
+   "pad": 20
+  }
+ ],
+ "exits": [
+  {
+   "name": "Whisperwood",
+   "to": "whisperwood",
+   "poly": [
+    [
+     622,
+     368
+    ],
+    [
+     1072,
+     305
+    ],
+    [
+     1058,
+     262
+    ],
+    [
+     606,
+     326
+    ]
+   ],
+   "aura": {
+    "poly": [
+     [
+      628,
+      373
+     ],
+     [
+      1074,
+      309
+     ],
+     [
+      1170,
+      405
+     ],
+     [
+      680,
+      488
+     ]
+    ]
+   },
+   "arrive": [
+    720,
+    636
+   ],
+   "threshold": "Grand stairs up into the arcade (top-left of the plaza)"
+  }
+ ],
+ "sources": [
+  {
+   "image": "assets/zones/crownsfall_plaza_z1.png",
+   "at": [
+    0,
+    0
+   ],
+   "feather": 96
+  }
+ ],
+ "waypoints": [
+  {
+   "id": "crownsfall_town",
+   "name": "Crownsfall Plaza",
+   "at": [
+    1924,
+    838
+   ],
+   "centre_of": [
+    1924,
+    838
+   ],
+   "radius_px": 299,
+   "centre_note": "Compass rose ring centre measures (1902,860); owner moved the waypoint up/right to sit visually centred (11-22)."
+  }
+ ],
+ "pitch": 31.0,
+ "camera_note": "Owner-approved 31-degree camera (2026-11-22): matches the paintings' ground angle (circles 0.51 tall/wide). ppm rescaled from 149.0 at 52 deg so the painting keeps its on-screen size; hero stays 110 px.",
+ "ground_ratio": 0.43,
+ "map_pois": [
+  {
+   "name": "Captain Ralden",
+   "kind": "npc",
+   "at": [
+    2500,
+    1150
+   ],
+   "blurb": "Commander of the city watch."
+  }
+ ]
+}

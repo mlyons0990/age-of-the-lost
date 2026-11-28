@@ -52,9 +52,9 @@ existing Bluebanner Square painting sits unchanged in the centre cell. Around it
 
 | Tier | Districts |
 |---|---|
-| 3 (top) | Pilgrim's Rise (cathedral), Upper Citadel Approach (north exit to Highward Steps), **the Fallen Crown** (the great waterfall pouring over the colossal toppled crown of the fallen empire, the city's namesake; owner lore note 11-28) |
+| 3 (top) | Pilgrim's Rise (cathedral), Upper Citadel Approach (north exit to Highward Steps), Citadel Falls (the great waterfall below the citadel cliffs) |
 | 2 (plaza level) | Westgarden Terraces, Bluebanner Square, Royal Market |
-| 1 / 0 (lower) | Bellfound Ward canals, Gate District (south exit to Kingsroad Fields), Lantern Quays; older imperial masonry shows under the newer city |
+| 1 / 0 (lower) | Bellfound Ward canals, Gate District (south exit to Kingsroad Fields), Lantern Quays |
 
 Grand stairs link the tiers, and falls and canals run between them. This is the same pipeline that worked for
 Whisperwood: one master painting, upscaled in sections, stitched. The original plaza is then composited back into the

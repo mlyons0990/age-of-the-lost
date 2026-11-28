@@ -128,15 +128,6 @@ Two more Act I references:
 
 ## Owner lore note 11-28: why "Crownsfall"
 
-The city is named for **the crown that fell, and the empire that fell with it**. This matches the bible: Crownsfall
-"rises on fragments of older cities" (present age, Year ~3,200), and Act I's reveal is that "Crownsfall contains older
-city layers". In the environment:
-
-- **The Fallen Crown.** A colossal toppled crown of the old empire, weathered ivory stone and tarnished gold, lies
-  half-sunk at the foot of the great waterfall. The falls pour over and through its broken points. It is the city's
-  namesake landmark (previously "Crown Falls" on the plan).
-- **The lower tiers** (Bellfound Ward, Lantern Quays, the Gate District foundations) show the older imperial masonry
-  under the present city: larger, finer, broken arches and columns with the newer timber-and-slate homes built on and
-  into them.
-- **Present-day Crownsfall** (blue-gold heraldry, ivory limestone, slate) is built on top. Dialogue and lorecasts can
-  point at the crown without explaining the full truth before the bible allows it.
+The name means **the crown that fell, and the empire that fell with it**. It is not named for a waterfall. Nothing
+else in the bible's lore changes. Art and text should never imply that the name comes from "Crown Falls" (no
+district or landmark uses that name).
